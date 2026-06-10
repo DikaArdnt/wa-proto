@@ -167,7 +167,7 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.senderKeyStates != null && message.hasOwnProperty("senderKeyStates")) {
+            if (message.senderKeyStates != null && Object.hasOwnProperty.call(message, "senderKeyStates")) {
                 if (!Array.isArray(message.senderKeyStates))
                     return "senderKeyStates: array expected";
                 for (var i = 0; i < message.senderKeyStates.length; ++i) {
@@ -460,20 +460,20 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.senderKeyId != null && message.hasOwnProperty("senderKeyId"))
+            if (message.senderKeyId != null && Object.hasOwnProperty.call(message, "senderKeyId"))
                 if (!$util.isInteger(message.senderKeyId))
                     return "senderKeyId: integer expected";
-            if (message.senderChainKey != null && message.hasOwnProperty("senderChainKey")) {
+            if (message.senderChainKey != null && Object.hasOwnProperty.call(message, "senderChainKey")) {
                 var error = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.verify(message.senderChainKey, long + 1);
                 if (error)
                     return "senderChainKey." + error;
             }
-            if (message.senderSigningKey != null && message.hasOwnProperty("senderSigningKey")) {
+            if (message.senderSigningKey != null && Object.hasOwnProperty.call(message, "senderSigningKey")) {
                 var error = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.verify(message.senderSigningKey, long + 1);
                 if (error)
                     return "senderSigningKey." + error;
             }
-            if (message.senderMessageKeys != null && message.hasOwnProperty("senderMessageKeys")) {
+            if (message.senderMessageKeys != null && Object.hasOwnProperty.call(message, "senderMessageKeys")) {
                 if (!Array.isArray(message.senderMessageKeys))
                     return "senderMessageKeys: array expected";
                 for (var i = 0; i < message.senderMessageKeys.length; ++i) {
@@ -552,11 +552,11 @@ $root.SignalLocalStorageProtocol = (function() {
                 object.senderChainKey = null;
                 object.senderSigningKey = null;
             }
-            if (message.senderKeyId != null && message.hasOwnProperty("senderKeyId"))
+            if (message.senderKeyId != null && Object.hasOwnProperty.call(message, "senderKeyId"))
                 object.senderKeyId = message.senderKeyId;
-            if (message.senderChainKey != null && message.hasOwnProperty("senderChainKey"))
+            if (message.senderChainKey != null && Object.hasOwnProperty.call(message, "senderChainKey"))
                 object.senderChainKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.toObject(message.senderChainKey, options, q + 1);
-            if (message.senderSigningKey != null && message.hasOwnProperty("senderSigningKey"))
+            if (message.senderSigningKey != null && Object.hasOwnProperty.call(message, "senderSigningKey"))
                 object.senderSigningKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.toObject(message.senderSigningKey, options, q + 1);
             if (message.senderMessageKeys && message.senderMessageKeys.length) {
                 object.senderMessageKeys = [];
@@ -752,10 +752,10 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.iteration != null && message.hasOwnProperty("iteration"))
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                     if (!$util.isInteger(message.iteration))
                         return "iteration: integer expected";
-                if (message.seed != null && message.hasOwnProperty("seed"))
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
                     if (!(message.seed && typeof message.seed.length === "number" || $util.isString(message.seed)))
                         return "seed: buffer expected";
                 return null;
@@ -816,9 +816,9 @@ $root.SignalLocalStorageProtocol = (function() {
                             object.seed = $util.newBuffer(object.seed);
                     }
                 }
-                if (message.iteration != null && message.hasOwnProperty("iteration"))
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                     object.iteration = message.iteration;
-                if (message.seed != null && message.hasOwnProperty("seed"))
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
                     object.seed = options.bytes === String ? $util.base64.encode(message.seed, 0, message.seed.length) : options.bytes === Array ? Array.prototype.slice.call(message.seed) : message.seed;
                 return object;
             };
@@ -1012,10 +1012,10 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.iteration != null && message.hasOwnProperty("iteration"))
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                     if (!$util.isInteger(message.iteration))
                         return "iteration: integer expected";
-                if (message.seed != null && message.hasOwnProperty("seed"))
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
                     if (!(message.seed && typeof message.seed.length === "number" || $util.isString(message.seed)))
                         return "seed: buffer expected";
                 return null;
@@ -1076,9 +1076,9 @@ $root.SignalLocalStorageProtocol = (function() {
                             object.seed = $util.newBuffer(object.seed);
                     }
                 }
-                if (message.iteration != null && message.hasOwnProperty("iteration"))
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                     object.iteration = message.iteration;
-                if (message.seed != null && message.hasOwnProperty("seed"))
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
                     object.seed = options.bytes === String ? $util.base64.encode(message.seed, 0, message.seed.length) : options.bytes === Array ? Array.prototype.slice.call(message.seed) : message.seed;
                 return object;
             };
@@ -1272,10 +1272,10 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message["public"] != null && message.hasOwnProperty("public"))
+                if (message["public"] != null && Object.hasOwnProperty.call(message, "public"))
                     if (!(message["public"] && typeof message["public"].length === "number" || $util.isString(message["public"])))
                         return "public: buffer expected";
-                if (message["private"] != null && message.hasOwnProperty("private"))
+                if (message["private"] != null && Object.hasOwnProperty.call(message, "private"))
                     if (!(message["private"] && typeof message["private"].length === "number" || $util.isString(message["private"])))
                         return "private: buffer expected";
                 return null;
@@ -1345,9 +1345,9 @@ $root.SignalLocalStorageProtocol = (function() {
                             object["private"] = $util.newBuffer(object["private"]);
                     }
                 }
-                if (message["public"] != null && message.hasOwnProperty("public"))
+                if (message["public"] != null && Object.hasOwnProperty.call(message, "public"))
                     object["public"] = options.bytes === String ? $util.base64.encode(message["public"], 0, message["public"].length) : options.bytes === Array ? Array.prototype.slice.call(message["public"]) : message["public"];
-                if (message["private"] != null && message.hasOwnProperty("private"))
+                if (message["private"] != null && Object.hasOwnProperty.call(message, "private"))
                     object["private"] = options.bytes === String ? $util.base64.encode(message["private"], 0, message["private"].length) : options.bytes === Array ? Array.prototype.slice.call(message["private"]) : message["private"];
                 return object;
             };
@@ -1544,10 +1544,10 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 if (!(message.publicKey && typeof message.publicKey.length === "number" || $util.isString(message.publicKey)))
                     return "publicKey: buffer expected";
-            if (message.privateKey != null && message.hasOwnProperty("privateKey"))
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
                 if (!(message.privateKey && typeof message.privateKey.length === "number" || $util.isString(message.privateKey)))
                     return "privateKey: buffer expected";
             return null;
@@ -1617,9 +1617,9 @@ $root.SignalLocalStorageProtocol = (function() {
                         object.privateKey = $util.newBuffer(object.privateKey);
                 }
             }
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 object.publicKey = options.bytes === String ? $util.base64.encode(message.publicKey, 0, message.publicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.publicKey) : message.publicKey;
-            if (message.privateKey != null && message.hasOwnProperty("privateKey"))
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
                 object.privateKey = options.bytes === String ? $util.base64.encode(message.privateKey, 0, message.privateKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.privateKey) : message.privateKey;
             return object;
         };
@@ -1858,19 +1858,19 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 if (!(message.publicKey && typeof message.publicKey.length === "number" || $util.isString(message.publicKey)))
                     return "publicKey: buffer expected";
-            if (message.privateKey != null && message.hasOwnProperty("privateKey"))
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
                 if (!(message.privateKey && typeof message.privateKey.length === "number" || $util.isString(message.privateKey)))
                     return "privateKey: buffer expected";
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 if (!(message.signature && typeof message.signature.length === "number" || $util.isString(message.signature)))
                     return "signature: buffer expected";
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                     return "timestamp: integer|Long expected";
             return null;
@@ -1969,15 +1969,15 @@ $root.SignalLocalStorageProtocol = (function() {
                 } else
                     object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 object.publicKey = options.bytes === String ? $util.base64.encode(message.publicKey, 0, message.publicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.publicKey) : message.publicKey;
-            if (message.privateKey != null && message.hasOwnProperty("privateKey"))
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
                 object.privateKey = options.bytes === String ? $util.base64.encode(message.privateKey, 0, message.privateKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.privateKey) : message.privateKey;
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, true).toBigInt();
                 else if (typeof message.timestamp === "number")
@@ -2191,13 +2191,13 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 if (!(message.publicKey && typeof message.publicKey.length === "number" || $util.isString(message.publicKey)))
                     return "publicKey: buffer expected";
-            if (message.privateKey != null && message.hasOwnProperty("privateKey"))
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
                 if (!(message.privateKey && typeof message.privateKey.length === "number" || $util.isString(message.privateKey)))
                     return "privateKey: buffer expected";
             return null;
@@ -2270,11 +2270,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         object.privateKey = $util.newBuffer(object.privateKey);
                 }
             }
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 object.publicKey = options.bytes === String ? $util.base64.encode(message.publicKey, 0, message.publicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.publicKey) : message.publicKey;
-            if (message.privateKey != null && message.hasOwnProperty("privateKey"))
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
                 object.privateKey = options.bytes === String ? $util.base64.encode(message.privateKey, 0, message.privateKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.privateKey) : message.privateKey;
             return object;
         };
@@ -2472,12 +2472,12 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.currentSession != null && message.hasOwnProperty("currentSession")) {
+            if (message.currentSession != null && Object.hasOwnProperty.call(message, "currentSession")) {
                 var error = $root.SignalLocalStorageProtocol.SessionStructure.verify(message.currentSession, long + 1);
                 if (error)
                     return "currentSession." + error;
             }
-            if (message.previousSessions != null && message.hasOwnProperty("previousSessions")) {
+            if (message.previousSessions != null && Object.hasOwnProperty.call(message, "previousSessions")) {
                 if (!Array.isArray(message.previousSessions))
                     return "previousSessions: array expected";
                 for (var i = 0; i < message.previousSessions.length; ++i) {
@@ -2546,7 +2546,7 @@ $root.SignalLocalStorageProtocol = (function() {
                 object.previousSessions = [];
             if (options.defaults)
                 object.currentSession = null;
-            if (message.currentSession != null && message.hasOwnProperty("currentSession"))
+            if (message.currentSession != null && Object.hasOwnProperty.call(message, "currentSession"))
                 object.currentSession = $root.SignalLocalStorageProtocol.SessionStructure.toObject(message.currentSession, options, q + 1);
             if (message.previousSessions && message.previousSessions.length) {
                 object.previousSessions = [];
@@ -2914,27 +2914,27 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.sessionVersion != null && message.hasOwnProperty("sessionVersion"))
+            if (message.sessionVersion != null && Object.hasOwnProperty.call(message, "sessionVersion"))
                 if (!$util.isInteger(message.sessionVersion))
                     return "sessionVersion: integer expected";
-            if (message.localIdentityPublic != null && message.hasOwnProperty("localIdentityPublic"))
+            if (message.localIdentityPublic != null && Object.hasOwnProperty.call(message, "localIdentityPublic"))
                 if (!(message.localIdentityPublic && typeof message.localIdentityPublic.length === "number" || $util.isString(message.localIdentityPublic)))
                     return "localIdentityPublic: buffer expected";
-            if (message.remoteIdentityPublic != null && message.hasOwnProperty("remoteIdentityPublic"))
+            if (message.remoteIdentityPublic != null && Object.hasOwnProperty.call(message, "remoteIdentityPublic"))
                 if (!(message.remoteIdentityPublic && typeof message.remoteIdentityPublic.length === "number" || $util.isString(message.remoteIdentityPublic)))
                     return "remoteIdentityPublic: buffer expected";
-            if (message.rootKey != null && message.hasOwnProperty("rootKey"))
+            if (message.rootKey != null && Object.hasOwnProperty.call(message, "rootKey"))
                 if (!(message.rootKey && typeof message.rootKey.length === "number" || $util.isString(message.rootKey)))
                     return "rootKey: buffer expected";
-            if (message.previousCounter != null && message.hasOwnProperty("previousCounter"))
+            if (message.previousCounter != null && Object.hasOwnProperty.call(message, "previousCounter"))
                 if (!$util.isInteger(message.previousCounter))
                     return "previousCounter: integer expected";
-            if (message.senderChain != null && message.hasOwnProperty("senderChain")) {
+            if (message.senderChain != null && Object.hasOwnProperty.call(message, "senderChain")) {
                 var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.verify(message.senderChain, long + 1);
                 if (error)
                     return "senderChain." + error;
             }
-            if (message.receiverChains != null && message.hasOwnProperty("receiverChains")) {
+            if (message.receiverChains != null && Object.hasOwnProperty.call(message, "receiverChains")) {
                 if (!Array.isArray(message.receiverChains))
                     return "receiverChains: array expected";
                 for (var i = 0; i < message.receiverChains.length; ++i) {
@@ -2943,26 +2943,26 @@ $root.SignalLocalStorageProtocol = (function() {
                         return "receiverChains." + error;
                 }
             }
-            if (message.pendingKeyExchange != null && message.hasOwnProperty("pendingKeyExchange")) {
+            if (message.pendingKeyExchange != null && Object.hasOwnProperty.call(message, "pendingKeyExchange")) {
                 var error = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.verify(message.pendingKeyExchange, long + 1);
                 if (error)
                     return "pendingKeyExchange." + error;
             }
-            if (message.pendingPreKey != null && message.hasOwnProperty("pendingPreKey")) {
+            if (message.pendingPreKey != null && Object.hasOwnProperty.call(message, "pendingPreKey")) {
                 var error = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.verify(message.pendingPreKey, long + 1);
                 if (error)
                     return "pendingPreKey." + error;
             }
-            if (message.remoteRegistrationId != null && message.hasOwnProperty("remoteRegistrationId"))
+            if (message.remoteRegistrationId != null && Object.hasOwnProperty.call(message, "remoteRegistrationId"))
                 if (!$util.isInteger(message.remoteRegistrationId))
                     return "remoteRegistrationId: integer expected";
-            if (message.localRegistrationId != null && message.hasOwnProperty("localRegistrationId"))
+            if (message.localRegistrationId != null && Object.hasOwnProperty.call(message, "localRegistrationId"))
                 if (!$util.isInteger(message.localRegistrationId))
                     return "localRegistrationId: integer expected";
-            if (message.needsRefresh != null && message.hasOwnProperty("needsRefresh"))
+            if (message.needsRefresh != null && Object.hasOwnProperty.call(message, "needsRefresh"))
                 if (typeof message.needsRefresh !== "boolean")
                     return "needsRefresh: boolean expected";
-            if (message.aliceBaseKey != null && message.hasOwnProperty("aliceBaseKey"))
+            if (message.aliceBaseKey != null && Object.hasOwnProperty.call(message, "aliceBaseKey"))
                 if (!(message.aliceBaseKey && typeof message.aliceBaseKey.length === "number" || $util.isString(message.aliceBaseKey)))
                     return "aliceBaseKey: buffer expected";
             return null;
@@ -3101,34 +3101,34 @@ $root.SignalLocalStorageProtocol = (function() {
                         object.aliceBaseKey = $util.newBuffer(object.aliceBaseKey);
                 }
             }
-            if (message.sessionVersion != null && message.hasOwnProperty("sessionVersion"))
+            if (message.sessionVersion != null && Object.hasOwnProperty.call(message, "sessionVersion"))
                 object.sessionVersion = message.sessionVersion;
-            if (message.localIdentityPublic != null && message.hasOwnProperty("localIdentityPublic"))
+            if (message.localIdentityPublic != null && Object.hasOwnProperty.call(message, "localIdentityPublic"))
                 object.localIdentityPublic = options.bytes === String ? $util.base64.encode(message.localIdentityPublic, 0, message.localIdentityPublic.length) : options.bytes === Array ? Array.prototype.slice.call(message.localIdentityPublic) : message.localIdentityPublic;
-            if (message.remoteIdentityPublic != null && message.hasOwnProperty("remoteIdentityPublic"))
+            if (message.remoteIdentityPublic != null && Object.hasOwnProperty.call(message, "remoteIdentityPublic"))
                 object.remoteIdentityPublic = options.bytes === String ? $util.base64.encode(message.remoteIdentityPublic, 0, message.remoteIdentityPublic.length) : options.bytes === Array ? Array.prototype.slice.call(message.remoteIdentityPublic) : message.remoteIdentityPublic;
-            if (message.rootKey != null && message.hasOwnProperty("rootKey"))
+            if (message.rootKey != null && Object.hasOwnProperty.call(message, "rootKey"))
                 object.rootKey = options.bytes === String ? $util.base64.encode(message.rootKey, 0, message.rootKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.rootKey) : message.rootKey;
-            if (message.previousCounter != null && message.hasOwnProperty("previousCounter"))
+            if (message.previousCounter != null && Object.hasOwnProperty.call(message, "previousCounter"))
                 object.previousCounter = message.previousCounter;
-            if (message.senderChain != null && message.hasOwnProperty("senderChain"))
+            if (message.senderChain != null && Object.hasOwnProperty.call(message, "senderChain"))
                 object.senderChain = $root.SignalLocalStorageProtocol.SessionStructure.Chain.toObject(message.senderChain, options, q + 1);
             if (message.receiverChains && message.receiverChains.length) {
                 object.receiverChains = [];
                 for (var j = 0; j < message.receiverChains.length; ++j)
                     object.receiverChains[j] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.toObject(message.receiverChains[j], options, q + 1);
             }
-            if (message.pendingKeyExchange != null && message.hasOwnProperty("pendingKeyExchange"))
+            if (message.pendingKeyExchange != null && Object.hasOwnProperty.call(message, "pendingKeyExchange"))
                 object.pendingKeyExchange = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.toObject(message.pendingKeyExchange, options, q + 1);
-            if (message.pendingPreKey != null && message.hasOwnProperty("pendingPreKey"))
+            if (message.pendingPreKey != null && Object.hasOwnProperty.call(message, "pendingPreKey"))
                 object.pendingPreKey = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.toObject(message.pendingPreKey, options, q + 1);
-            if (message.remoteRegistrationId != null && message.hasOwnProperty("remoteRegistrationId"))
+            if (message.remoteRegistrationId != null && Object.hasOwnProperty.call(message, "remoteRegistrationId"))
                 object.remoteRegistrationId = message.remoteRegistrationId;
-            if (message.localRegistrationId != null && message.hasOwnProperty("localRegistrationId"))
+            if (message.localRegistrationId != null && Object.hasOwnProperty.call(message, "localRegistrationId"))
                 object.localRegistrationId = message.localRegistrationId;
-            if (message.needsRefresh != null && message.hasOwnProperty("needsRefresh"))
+            if (message.needsRefresh != null && Object.hasOwnProperty.call(message, "needsRefresh"))
                 object.needsRefresh = message.needsRefresh;
-            if (message.aliceBaseKey != null && message.hasOwnProperty("aliceBaseKey"))
+            if (message.aliceBaseKey != null && Object.hasOwnProperty.call(message, "aliceBaseKey"))
                 object.aliceBaseKey = options.bytes === String ? $util.base64.encode(message.aliceBaseKey, 0, message.aliceBaseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.aliceBaseKey) : message.aliceBaseKey;
             return object;
         };
@@ -3353,18 +3353,18 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.senderRatchetKey != null && message.hasOwnProperty("senderRatchetKey"))
+                if (message.senderRatchetKey != null && Object.hasOwnProperty.call(message, "senderRatchetKey"))
                     if (!(message.senderRatchetKey && typeof message.senderRatchetKey.length === "number" || $util.isString(message.senderRatchetKey)))
                         return "senderRatchetKey: buffer expected";
-                if (message.senderRatchetKeyPrivate != null && message.hasOwnProperty("senderRatchetKeyPrivate"))
+                if (message.senderRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "senderRatchetKeyPrivate"))
                     if (!(message.senderRatchetKeyPrivate && typeof message.senderRatchetKeyPrivate.length === "number" || $util.isString(message.senderRatchetKeyPrivate)))
                         return "senderRatchetKeyPrivate: buffer expected";
-                if (message.chainKey != null && message.hasOwnProperty("chainKey")) {
+                if (message.chainKey != null && Object.hasOwnProperty.call(message, "chainKey")) {
                     var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.verify(message.chainKey, long + 1);
                     if (error)
                         return "chainKey." + error;
                 }
-                if (message.messageKeys != null && message.hasOwnProperty("messageKeys")) {
+                if (message.messageKeys != null && Object.hasOwnProperty.call(message, "messageKeys")) {
                     if (!Array.isArray(message.messageKeys))
                         return "messageKeys: array expected";
                     for (var i = 0; i < message.messageKeys.length; ++i) {
@@ -3458,11 +3458,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     }
                     object.chainKey = null;
                 }
-                if (message.senderRatchetKey != null && message.hasOwnProperty("senderRatchetKey"))
+                if (message.senderRatchetKey != null && Object.hasOwnProperty.call(message, "senderRatchetKey"))
                     object.senderRatchetKey = options.bytes === String ? $util.base64.encode(message.senderRatchetKey, 0, message.senderRatchetKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.senderRatchetKey) : message.senderRatchetKey;
-                if (message.senderRatchetKeyPrivate != null && message.hasOwnProperty("senderRatchetKeyPrivate"))
+                if (message.senderRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "senderRatchetKeyPrivate"))
                     object.senderRatchetKeyPrivate = options.bytes === String ? $util.base64.encode(message.senderRatchetKeyPrivate, 0, message.senderRatchetKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.senderRatchetKeyPrivate) : message.senderRatchetKeyPrivate;
-                if (message.chainKey != null && message.hasOwnProperty("chainKey"))
+                if (message.chainKey != null && Object.hasOwnProperty.call(message, "chainKey"))
                     object.chainKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.toObject(message.chainKey, options, q + 1);
                 if (message.messageKeys && message.messageKeys.length) {
                     object.messageKeys = [];
@@ -3658,10 +3658,10 @@ $root.SignalLocalStorageProtocol = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.index != null && message.hasOwnProperty("index"))
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                         if (!$util.isInteger(message.index))
                             return "index: integer expected";
-                    if (message.key != null && message.hasOwnProperty("key"))
+                    if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                         if (!(message.key && typeof message.key.length === "number" || $util.isString(message.key)))
                             return "key: buffer expected";
                     return null;
@@ -3722,9 +3722,9 @@ $root.SignalLocalStorageProtocol = (function() {
                                 object.key = $util.newBuffer(object.key);
                         }
                     }
-                    if (message.index != null && message.hasOwnProperty("index"))
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                         object.index = message.index;
-                    if (message.key != null && message.hasOwnProperty("key"))
+                    if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                         object.key = options.bytes === String ? $util.base64.encode(message.key, 0, message.key.length) : options.bytes === Array ? Array.prototype.slice.call(message.key) : message.key;
                     return object;
                 };
@@ -3948,16 +3948,16 @@ $root.SignalLocalStorageProtocol = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.index != null && message.hasOwnProperty("index"))
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                         if (!$util.isInteger(message.index))
                             return "index: integer expected";
-                    if (message.cipherKey != null && message.hasOwnProperty("cipherKey"))
+                    if (message.cipherKey != null && Object.hasOwnProperty.call(message, "cipherKey"))
                         if (!(message.cipherKey && typeof message.cipherKey.length === "number" || $util.isString(message.cipherKey)))
                             return "cipherKey: buffer expected";
-                    if (message.macKey != null && message.hasOwnProperty("macKey"))
+                    if (message.macKey != null && Object.hasOwnProperty.call(message, "macKey"))
                         if (!(message.macKey && typeof message.macKey.length === "number" || $util.isString(message.macKey)))
                             return "macKey: buffer expected";
-                    if (message.iv != null && message.hasOwnProperty("iv"))
+                    if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
                         if (!(message.iv && typeof message.iv.length === "number" || $util.isString(message.iv)))
                             return "iv: buffer expected";
                     return null;
@@ -4042,13 +4042,13 @@ $root.SignalLocalStorageProtocol = (function() {
                                 object.iv = $util.newBuffer(object.iv);
                         }
                     }
-                    if (message.index != null && message.hasOwnProperty("index"))
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                         object.index = message.index;
-                    if (message.cipherKey != null && message.hasOwnProperty("cipherKey"))
+                    if (message.cipherKey != null && Object.hasOwnProperty.call(message, "cipherKey"))
                         object.cipherKey = options.bytes === String ? $util.base64.encode(message.cipherKey, 0, message.cipherKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.cipherKey) : message.cipherKey;
-                    if (message.macKey != null && message.hasOwnProperty("macKey"))
+                    if (message.macKey != null && Object.hasOwnProperty.call(message, "macKey"))
                         object.macKey = options.bytes === String ? $util.base64.encode(message.macKey, 0, message.macKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.macKey) : message.macKey;
-                    if (message.iv != null && message.hasOwnProperty("iv"))
+                    if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
                         object.iv = options.bytes === String ? $util.base64.encode(message.iv, 0, message.iv.length) : options.bytes === Array ? Array.prototype.slice.call(message.iv) : message.iv;
                     return object;
                 };
@@ -4320,25 +4320,25 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.sequence != null && message.hasOwnProperty("sequence"))
+                if (message.sequence != null && Object.hasOwnProperty.call(message, "sequence"))
                     if (!$util.isInteger(message.sequence))
                         return "sequence: integer expected";
-                if (message.localBaseKey != null && message.hasOwnProperty("localBaseKey"))
+                if (message.localBaseKey != null && Object.hasOwnProperty.call(message, "localBaseKey"))
                     if (!(message.localBaseKey && typeof message.localBaseKey.length === "number" || $util.isString(message.localBaseKey)))
                         return "localBaseKey: buffer expected";
-                if (message.localBaseKeyPrivate != null && message.hasOwnProperty("localBaseKeyPrivate"))
+                if (message.localBaseKeyPrivate != null && Object.hasOwnProperty.call(message, "localBaseKeyPrivate"))
                     if (!(message.localBaseKeyPrivate && typeof message.localBaseKeyPrivate.length === "number" || $util.isString(message.localBaseKeyPrivate)))
                         return "localBaseKeyPrivate: buffer expected";
-                if (message.localRatchetKey != null && message.hasOwnProperty("localRatchetKey"))
+                if (message.localRatchetKey != null && Object.hasOwnProperty.call(message, "localRatchetKey"))
                     if (!(message.localRatchetKey && typeof message.localRatchetKey.length === "number" || $util.isString(message.localRatchetKey)))
                         return "localRatchetKey: buffer expected";
-                if (message.localRatchetKeyPrivate != null && message.hasOwnProperty("localRatchetKeyPrivate"))
+                if (message.localRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "localRatchetKeyPrivate"))
                     if (!(message.localRatchetKeyPrivate && typeof message.localRatchetKeyPrivate.length === "number" || $util.isString(message.localRatchetKeyPrivate)))
                         return "localRatchetKeyPrivate: buffer expected";
-                if (message.localIdentityKey != null && message.hasOwnProperty("localIdentityKey"))
+                if (message.localIdentityKey != null && Object.hasOwnProperty.call(message, "localIdentityKey"))
                     if (!(message.localIdentityKey && typeof message.localIdentityKey.length === "number" || $util.isString(message.localIdentityKey)))
                         return "localIdentityKey: buffer expected";
-                if (message.localIdentityKeyPrivate != null && message.hasOwnProperty("localIdentityKeyPrivate"))
+                if (message.localIdentityKeyPrivate != null && Object.hasOwnProperty.call(message, "localIdentityKeyPrivate"))
                     if (!(message.localIdentityKeyPrivate && typeof message.localIdentityKeyPrivate.length === "number" || $util.isString(message.localIdentityKeyPrivate)))
                         return "localIdentityKeyPrivate: buffer expected";
                 return null;
@@ -4459,19 +4459,19 @@ $root.SignalLocalStorageProtocol = (function() {
                             object.localIdentityKeyPrivate = $util.newBuffer(object.localIdentityKeyPrivate);
                     }
                 }
-                if (message.sequence != null && message.hasOwnProperty("sequence"))
+                if (message.sequence != null && Object.hasOwnProperty.call(message, "sequence"))
                     object.sequence = message.sequence;
-                if (message.localBaseKey != null && message.hasOwnProperty("localBaseKey"))
+                if (message.localBaseKey != null && Object.hasOwnProperty.call(message, "localBaseKey"))
                     object.localBaseKey = options.bytes === String ? $util.base64.encode(message.localBaseKey, 0, message.localBaseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.localBaseKey) : message.localBaseKey;
-                if (message.localBaseKeyPrivate != null && message.hasOwnProperty("localBaseKeyPrivate"))
+                if (message.localBaseKeyPrivate != null && Object.hasOwnProperty.call(message, "localBaseKeyPrivate"))
                     object.localBaseKeyPrivate = options.bytes === String ? $util.base64.encode(message.localBaseKeyPrivate, 0, message.localBaseKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.localBaseKeyPrivate) : message.localBaseKeyPrivate;
-                if (message.localRatchetKey != null && message.hasOwnProperty("localRatchetKey"))
+                if (message.localRatchetKey != null && Object.hasOwnProperty.call(message, "localRatchetKey"))
                     object.localRatchetKey = options.bytes === String ? $util.base64.encode(message.localRatchetKey, 0, message.localRatchetKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.localRatchetKey) : message.localRatchetKey;
-                if (message.localRatchetKeyPrivate != null && message.hasOwnProperty("localRatchetKeyPrivate"))
+                if (message.localRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "localRatchetKeyPrivate"))
                     object.localRatchetKeyPrivate = options.bytes === String ? $util.base64.encode(message.localRatchetKeyPrivate, 0, message.localRatchetKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.localRatchetKeyPrivate) : message.localRatchetKeyPrivate;
-                if (message.localIdentityKey != null && message.hasOwnProperty("localIdentityKey"))
+                if (message.localIdentityKey != null && Object.hasOwnProperty.call(message, "localIdentityKey"))
                     object.localIdentityKey = options.bytes === String ? $util.base64.encode(message.localIdentityKey, 0, message.localIdentityKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.localIdentityKey) : message.localIdentityKey;
-                if (message.localIdentityKeyPrivate != null && message.hasOwnProperty("localIdentityKeyPrivate"))
+                if (message.localIdentityKeyPrivate != null && Object.hasOwnProperty.call(message, "localIdentityKeyPrivate"))
                     object.localIdentityKeyPrivate = options.bytes === String ? $util.base64.encode(message.localIdentityKeyPrivate, 0, message.localIdentityKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.localIdentityKeyPrivate) : message.localIdentityKeyPrivate;
                 return object;
             };
@@ -4680,13 +4680,13 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.preKeyId != null && message.hasOwnProperty("preKeyId"))
+                if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
                     if (!$util.isInteger(message.preKeyId))
                         return "preKeyId: integer expected";
-                if (message.signedPreKeyId != null && message.hasOwnProperty("signedPreKeyId"))
+                if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
                     if (!$util.isInteger(message.signedPreKeyId))
                         return "signedPreKeyId: integer expected";
-                if (message.baseKey != null && message.hasOwnProperty("baseKey"))
+                if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
                     if (!(message.baseKey && typeof message.baseKey.length === "number" || $util.isString(message.baseKey)))
                         return "baseKey: buffer expected";
                 return null;
@@ -4750,11 +4750,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     }
                     object.signedPreKeyId = 0;
                 }
-                if (message.preKeyId != null && message.hasOwnProperty("preKeyId"))
+                if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
                     object.preKeyId = message.preKeyId;
-                if (message.baseKey != null && message.hasOwnProperty("baseKey"))
+                if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
                     object.baseKey = options.bytes === String ? $util.base64.encode(message.baseKey, 0, message.baseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.baseKey) : message.baseKey;
-                if (message.signedPreKeyId != null && message.hasOwnProperty("signedPreKeyId"))
+                if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
                     object.signedPreKeyId = message.signedPreKeyId;
                 return object;
             };

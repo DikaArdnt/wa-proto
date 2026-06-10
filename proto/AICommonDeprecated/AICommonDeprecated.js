@@ -298,7 +298,7 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.messageType != null && message.hasOwnProperty("messageType"))
+            if (message.messageType != null && Object.hasOwnProperty.call(message, "messageType"))
                 switch (message.messageType) {
                 default:
                     return "messageType: enum value expected";
@@ -314,45 +314,45 @@ $root.AICommonDeprecated = (function() {
                 case 9:
                     break;
                 }
-            if (message.gridImageMetadata != null && message.hasOwnProperty("gridImageMetadata")) {
+            if (message.gridImageMetadata != null && Object.hasOwnProperty.call(message, "gridImageMetadata")) {
                 var error = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.verify(message.gridImageMetadata, long + 1);
                 if (error)
                     return "gridImageMetadata." + error;
             }
-            if (message.messageText != null && message.hasOwnProperty("messageText"))
+            if (message.messageText != null && Object.hasOwnProperty.call(message, "messageText"))
                 if (!$util.isString(message.messageText))
                     return "messageText: string expected";
-            if (message.imageMetadata != null && message.hasOwnProperty("imageMetadata")) {
+            if (message.imageMetadata != null && Object.hasOwnProperty.call(message, "imageMetadata")) {
                 var error = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.verify(message.imageMetadata, long + 1);
                 if (error)
                     return "imageMetadata." + error;
             }
-            if (message.codeMetadata != null && message.hasOwnProperty("codeMetadata")) {
+            if (message.codeMetadata != null && Object.hasOwnProperty.call(message, "codeMetadata")) {
                 var error = $root.AICommonDeprecated.AIRichResponseCodeMetadata.verify(message.codeMetadata, long + 1);
                 if (error)
                     return "codeMetadata." + error;
             }
-            if (message.tableMetadata != null && message.hasOwnProperty("tableMetadata")) {
+            if (message.tableMetadata != null && Object.hasOwnProperty.call(message, "tableMetadata")) {
                 var error = $root.AICommonDeprecated.AIRichResponseTableMetadata.verify(message.tableMetadata, long + 1);
                 if (error)
                     return "tableMetadata." + error;
             }
-            if (message.dynamicMetadata != null && message.hasOwnProperty("dynamicMetadata")) {
+            if (message.dynamicMetadata != null && Object.hasOwnProperty.call(message, "dynamicMetadata")) {
                 var error = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.verify(message.dynamicMetadata, long + 1);
                 if (error)
                     return "dynamicMetadata." + error;
             }
-            if (message.latexMetadata != null && message.hasOwnProperty("latexMetadata")) {
+            if (message.latexMetadata != null && Object.hasOwnProperty.call(message, "latexMetadata")) {
                 var error = $root.AICommonDeprecated.AIRichResponseLatexMetadata.verify(message.latexMetadata, long + 1);
                 if (error)
                     return "latexMetadata." + error;
             }
-            if (message.mapMetadata != null && message.hasOwnProperty("mapMetadata")) {
+            if (message.mapMetadata != null && Object.hasOwnProperty.call(message, "mapMetadata")) {
                 var error = $root.AICommonDeprecated.AIRichResponseMapMetadata.verify(message.mapMetadata, long + 1);
                 if (error)
                     return "mapMetadata." + error;
             }
-            if (message.contentItemsMetadata != null && message.hasOwnProperty("contentItemsMetadata")) {
+            if (message.contentItemsMetadata != null && Object.hasOwnProperty.call(message, "contentItemsMetadata")) {
                 var error = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.verify(message.contentItemsMetadata, long + 1);
                 if (error)
                     return "contentItemsMetadata." + error;
@@ -500,25 +500,25 @@ $root.AICommonDeprecated = (function() {
                 object.mapMetadata = null;
                 object.contentItemsMetadata = null;
             }
-            if (message.messageType != null && message.hasOwnProperty("messageType"))
+            if (message.messageType != null && Object.hasOwnProperty.call(message, "messageType"))
                 object.messageType = options.enums === String ? $root.AICommonDeprecated.AIRichResponseSubMessageType[message.messageType] === undefined ? message.messageType : $root.AICommonDeprecated.AIRichResponseSubMessageType[message.messageType] : message.messageType;
-            if (message.gridImageMetadata != null && message.hasOwnProperty("gridImageMetadata"))
+            if (message.gridImageMetadata != null && Object.hasOwnProperty.call(message, "gridImageMetadata"))
                 object.gridImageMetadata = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.toObject(message.gridImageMetadata, options, q + 1);
-            if (message.messageText != null && message.hasOwnProperty("messageText"))
+            if (message.messageText != null && Object.hasOwnProperty.call(message, "messageText"))
                 object.messageText = message.messageText;
-            if (message.imageMetadata != null && message.hasOwnProperty("imageMetadata"))
+            if (message.imageMetadata != null && Object.hasOwnProperty.call(message, "imageMetadata"))
                 object.imageMetadata = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.toObject(message.imageMetadata, options, q + 1);
-            if (message.codeMetadata != null && message.hasOwnProperty("codeMetadata"))
+            if (message.codeMetadata != null && Object.hasOwnProperty.call(message, "codeMetadata"))
                 object.codeMetadata = $root.AICommonDeprecated.AIRichResponseCodeMetadata.toObject(message.codeMetadata, options, q + 1);
-            if (message.tableMetadata != null && message.hasOwnProperty("tableMetadata"))
+            if (message.tableMetadata != null && Object.hasOwnProperty.call(message, "tableMetadata"))
                 object.tableMetadata = $root.AICommonDeprecated.AIRichResponseTableMetadata.toObject(message.tableMetadata, options, q + 1);
-            if (message.dynamicMetadata != null && message.hasOwnProperty("dynamicMetadata"))
+            if (message.dynamicMetadata != null && Object.hasOwnProperty.call(message, "dynamicMetadata"))
                 object.dynamicMetadata = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.toObject(message.dynamicMetadata, options, q + 1);
-            if (message.latexMetadata != null && message.hasOwnProperty("latexMetadata"))
+            if (message.latexMetadata != null && Object.hasOwnProperty.call(message, "latexMetadata"))
                 object.latexMetadata = $root.AICommonDeprecated.AIRichResponseLatexMetadata.toObject(message.latexMetadata, options, q + 1);
-            if (message.mapMetadata != null && message.hasOwnProperty("mapMetadata"))
+            if (message.mapMetadata != null && Object.hasOwnProperty.call(message, "mapMetadata"))
                 object.mapMetadata = $root.AICommonDeprecated.AIRichResponseMapMetadata.toObject(message.mapMetadata, options, q + 1);
-            if (message.contentItemsMetadata != null && message.hasOwnProperty("contentItemsMetadata"))
+            if (message.contentItemsMetadata != null && Object.hasOwnProperty.call(message, "contentItemsMetadata"))
                 object.contentItemsMetadata = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.toObject(message.contentItemsMetadata, options, q + 1);
             return object;
         };
@@ -716,7 +716,7 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.itemsMetadata != null && message.hasOwnProperty("itemsMetadata")) {
+            if (message.itemsMetadata != null && Object.hasOwnProperty.call(message, "itemsMetadata")) {
                 if (!Array.isArray(message.itemsMetadata))
                     return "itemsMetadata: array expected";
                 for (var i = 0; i < message.itemsMetadata.length; ++i) {
@@ -725,7 +725,7 @@ $root.AICommonDeprecated = (function() {
                         return "itemsMetadata." + error;
                 }
             }
-            if (message.contentType != null && message.hasOwnProperty("contentType"))
+            if (message.contentType != null && Object.hasOwnProperty.call(message, "contentType"))
                 switch (message.contentType) {
                 default:
                     return "contentType: enum value expected";
@@ -809,7 +809,7 @@ $root.AICommonDeprecated = (function() {
                 for (var j = 0; j < message.itemsMetadata.length; ++j)
                     object.itemsMetadata[j] = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.toObject(message.itemsMetadata[j], options, q + 1);
             }
-            if (message.contentType != null && message.hasOwnProperty("contentType"))
+            if (message.contentType != null && Object.hasOwnProperty.call(message, "contentType"))
                 object.contentType = options.enums === String ? $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.ContentType[message.contentType] === undefined ? message.contentType : $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.ContentType[message.contentType] : message.contentType;
             return object;
         };
@@ -1000,7 +1000,7 @@ $root.AICommonDeprecated = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 var properties = {};
-                if (message.reelItem != null && message.hasOwnProperty("reelItem")) {
+                if (message.reelItem != null && Object.hasOwnProperty.call(message, "reelItem")) {
                     properties.aIRichResponseContentItem = 1;
                     {
                         var error = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify(message.reelItem, long + 1);
@@ -1054,7 +1054,7 @@ $root.AICommonDeprecated = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 var object = {};
-                if (message.reelItem != null && message.hasOwnProperty("reelItem")) {
+                if (message.reelItem != null && Object.hasOwnProperty.call(message, "reelItem")) {
                     object.reelItem = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.toObject(message.reelItem, options, q + 1);
                     if (options.oneofs)
                         object.aIRichResponseContentItem = "reelItem";
@@ -1281,16 +1281,16 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     if (!$util.isString(message.title))
                         return "title: string expected";
-                if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl"))
+                if (message.profileIconUrl != null && Object.hasOwnProperty.call(message, "profileIconUrl"))
                     if (!$util.isString(message.profileIconUrl))
                         return "profileIconUrl: string expected";
-                if (message.thumbnailUrl != null && message.hasOwnProperty("thumbnailUrl"))
+                if (message.thumbnailUrl != null && Object.hasOwnProperty.call(message, "thumbnailUrl"))
                     if (!$util.isString(message.thumbnailUrl))
                         return "thumbnailUrl: string expected";
-                if (message.videoUrl != null && message.hasOwnProperty("videoUrl"))
+                if (message.videoUrl != null && Object.hasOwnProperty.call(message, "videoUrl"))
                     if (!$util.isString(message.videoUrl))
                         return "videoUrl: string expected";
                 return null;
@@ -1348,13 +1348,13 @@ $root.AICommonDeprecated = (function() {
                     object.thumbnailUrl = "";
                     object.videoUrl = "";
                 }
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
-                if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl"))
+                if (message.profileIconUrl != null && Object.hasOwnProperty.call(message, "profileIconUrl"))
                     object.profileIconUrl = message.profileIconUrl;
-                if (message.thumbnailUrl != null && message.hasOwnProperty("thumbnailUrl"))
+                if (message.thumbnailUrl != null && Object.hasOwnProperty.call(message, "thumbnailUrl"))
                     object.thumbnailUrl = message.thumbnailUrl;
-                if (message.videoUrl != null && message.hasOwnProperty("videoUrl"))
+                if (message.videoUrl != null && Object.hasOwnProperty.call(message, "videoUrl"))
                     object.videoUrl = message.videoUrl;
                 return object;
             };
@@ -1629,19 +1629,19 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude"))
+            if (message.centerLatitude != null && Object.hasOwnProperty.call(message, "centerLatitude"))
                 if (typeof message.centerLatitude !== "number")
                     return "centerLatitude: number expected";
-            if (message.centerLongitude != null && message.hasOwnProperty("centerLongitude"))
+            if (message.centerLongitude != null && Object.hasOwnProperty.call(message, "centerLongitude"))
                 if (typeof message.centerLongitude !== "number")
                     return "centerLongitude: number expected";
-            if (message.latitudeDelta != null && message.hasOwnProperty("latitudeDelta"))
+            if (message.latitudeDelta != null && Object.hasOwnProperty.call(message, "latitudeDelta"))
                 if (typeof message.latitudeDelta !== "number")
                     return "latitudeDelta: number expected";
-            if (message.longitudeDelta != null && message.hasOwnProperty("longitudeDelta"))
+            if (message.longitudeDelta != null && Object.hasOwnProperty.call(message, "longitudeDelta"))
                 if (typeof message.longitudeDelta !== "number")
                     return "longitudeDelta: number expected";
-            if (message.annotations != null && message.hasOwnProperty("annotations")) {
+            if (message.annotations != null && Object.hasOwnProperty.call(message, "annotations")) {
                 if (!Array.isArray(message.annotations))
                     return "annotations: array expected";
                 for (var i = 0; i < message.annotations.length; ++i) {
@@ -1650,7 +1650,7 @@ $root.AICommonDeprecated = (function() {
                         return "annotations." + error;
                 }
             }
-            if (message.showInfoList != null && message.hasOwnProperty("showInfoList"))
+            if (message.showInfoList != null && Object.hasOwnProperty.call(message, "showInfoList"))
                 if (typeof message.showInfoList !== "boolean")
                     return "showInfoList: boolean expected";
             return null;
@@ -1723,20 +1723,20 @@ $root.AICommonDeprecated = (function() {
                 object.longitudeDelta = 0;
                 object.showInfoList = false;
             }
-            if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude"))
+            if (message.centerLatitude != null && Object.hasOwnProperty.call(message, "centerLatitude"))
                 object.centerLatitude = options.json && !isFinite(message.centerLatitude) ? String(message.centerLatitude) : message.centerLatitude;
-            if (message.centerLongitude != null && message.hasOwnProperty("centerLongitude"))
+            if (message.centerLongitude != null && Object.hasOwnProperty.call(message, "centerLongitude"))
                 object.centerLongitude = options.json && !isFinite(message.centerLongitude) ? String(message.centerLongitude) : message.centerLongitude;
-            if (message.latitudeDelta != null && message.hasOwnProperty("latitudeDelta"))
+            if (message.latitudeDelta != null && Object.hasOwnProperty.call(message, "latitudeDelta"))
                 object.latitudeDelta = options.json && !isFinite(message.latitudeDelta) ? String(message.latitudeDelta) : message.latitudeDelta;
-            if (message.longitudeDelta != null && message.hasOwnProperty("longitudeDelta"))
+            if (message.longitudeDelta != null && Object.hasOwnProperty.call(message, "longitudeDelta"))
                 object.longitudeDelta = options.json && !isFinite(message.longitudeDelta) ? String(message.longitudeDelta) : message.longitudeDelta;
             if (message.annotations && message.annotations.length) {
                 object.annotations = [];
                 for (var j = 0; j < message.annotations.length; ++j)
                     object.annotations[j] = $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.toObject(message.annotations[j], options, q + 1);
             }
-            if (message.showInfoList != null && message.hasOwnProperty("showInfoList"))
+            if (message.showInfoList != null && Object.hasOwnProperty.call(message, "showInfoList"))
                 object.showInfoList = message.showInfoList;
             return object;
         };
@@ -1972,19 +1972,19 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.annotationNumber != null && message.hasOwnProperty("annotationNumber"))
+                if (message.annotationNumber != null && Object.hasOwnProperty.call(message, "annotationNumber"))
                     if (!$util.isInteger(message.annotationNumber))
                         return "annotationNumber: integer expected";
-                if (message.latitude != null && message.hasOwnProperty("latitude"))
+                if (message.latitude != null && Object.hasOwnProperty.call(message, "latitude"))
                     if (typeof message.latitude !== "number")
                         return "latitude: number expected";
-                if (message.longitude != null && message.hasOwnProperty("longitude"))
+                if (message.longitude != null && Object.hasOwnProperty.call(message, "longitude"))
                     if (typeof message.longitude !== "number")
                         return "longitude: number expected";
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     if (!$util.isString(message.title))
                         return "title: string expected";
-                if (message.body != null && message.hasOwnProperty("body"))
+                if (message.body != null && Object.hasOwnProperty.call(message, "body"))
                     if (!$util.isString(message.body))
                         return "body: string expected";
                 return null;
@@ -2045,15 +2045,15 @@ $root.AICommonDeprecated = (function() {
                     object.title = "";
                     object.body = "";
                 }
-                if (message.annotationNumber != null && message.hasOwnProperty("annotationNumber"))
+                if (message.annotationNumber != null && Object.hasOwnProperty.call(message, "annotationNumber"))
                     object.annotationNumber = message.annotationNumber;
-                if (message.latitude != null && message.hasOwnProperty("latitude"))
+                if (message.latitude != null && Object.hasOwnProperty.call(message, "latitude"))
                     object.latitude = options.json && !isFinite(message.latitude) ? String(message.latitude) : message.latitude;
-                if (message.longitude != null && message.hasOwnProperty("longitude"))
+                if (message.longitude != null && Object.hasOwnProperty.call(message, "longitude"))
                     object.longitude = options.json && !isFinite(message.longitude) ? String(message.longitude) : message.longitude;
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
-                if (message.body != null && message.hasOwnProperty("body"))
+                if (message.body != null && Object.hasOwnProperty.call(message, "body"))
                     object.body = message.body;
                 return object;
             };
@@ -2254,10 +2254,10 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.text != null && message.hasOwnProperty("text"))
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                 if (!$util.isString(message.text))
                     return "text: string expected";
-            if (message.expressions != null && message.hasOwnProperty("expressions")) {
+            if (message.expressions != null && Object.hasOwnProperty.call(message, "expressions")) {
                 if (!Array.isArray(message.expressions))
                     return "expressions: array expected";
                 for (var i = 0; i < message.expressions.length; ++i) {
@@ -2323,7 +2323,7 @@ $root.AICommonDeprecated = (function() {
                 object.expressions = [];
             if (options.defaults)
                 object.text = "";
-            if (message.text != null && message.hasOwnProperty("text"))
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                 object.text = message.text;
             if (message.expressions && message.expressions.length) {
                 object.expressions = [];
@@ -2624,31 +2624,31 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.latexExpression != null && message.hasOwnProperty("latexExpression"))
+                if (message.latexExpression != null && Object.hasOwnProperty.call(message, "latexExpression"))
                     if (!$util.isString(message.latexExpression))
                         return "latexExpression: string expected";
-                if (message.url != null && message.hasOwnProperty("url"))
+                if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                     if (!$util.isString(message.url))
                         return "url: string expected";
-                if (message.width != null && message.hasOwnProperty("width"))
+                if (message.width != null && Object.hasOwnProperty.call(message, "width"))
                     if (typeof message.width !== "number")
                         return "width: number expected";
-                if (message.height != null && message.hasOwnProperty("height"))
+                if (message.height != null && Object.hasOwnProperty.call(message, "height"))
                     if (typeof message.height !== "number")
                         return "height: number expected";
-                if (message.fontHeight != null && message.hasOwnProperty("fontHeight"))
+                if (message.fontHeight != null && Object.hasOwnProperty.call(message, "fontHeight"))
                     if (typeof message.fontHeight !== "number")
                         return "fontHeight: number expected";
-                if (message.imageTopPadding != null && message.hasOwnProperty("imageTopPadding"))
+                if (message.imageTopPadding != null && Object.hasOwnProperty.call(message, "imageTopPadding"))
                     if (typeof message.imageTopPadding !== "number")
                         return "imageTopPadding: number expected";
-                if (message.imageLeadingPadding != null && message.hasOwnProperty("imageLeadingPadding"))
+                if (message.imageLeadingPadding != null && Object.hasOwnProperty.call(message, "imageLeadingPadding"))
                     if (typeof message.imageLeadingPadding !== "number")
                         return "imageLeadingPadding: number expected";
-                if (message.imageBottomPadding != null && message.hasOwnProperty("imageBottomPadding"))
+                if (message.imageBottomPadding != null && Object.hasOwnProperty.call(message, "imageBottomPadding"))
                     if (typeof message.imageBottomPadding !== "number")
                         return "imageBottomPadding: number expected";
-                if (message.imageTrailingPadding != null && message.hasOwnProperty("imageTrailingPadding"))
+                if (message.imageTrailingPadding != null && Object.hasOwnProperty.call(message, "imageTrailingPadding"))
                     if (typeof message.imageTrailingPadding !== "number")
                         return "imageTrailingPadding: number expected";
                 return null;
@@ -2721,23 +2721,23 @@ $root.AICommonDeprecated = (function() {
                     object.imageBottomPadding = 0;
                     object.imageTrailingPadding = 0;
                 }
-                if (message.latexExpression != null && message.hasOwnProperty("latexExpression"))
+                if (message.latexExpression != null && Object.hasOwnProperty.call(message, "latexExpression"))
                     object.latexExpression = message.latexExpression;
-                if (message.url != null && message.hasOwnProperty("url"))
+                if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                     object.url = message.url;
-                if (message.width != null && message.hasOwnProperty("width"))
+                if (message.width != null && Object.hasOwnProperty.call(message, "width"))
                     object.width = options.json && !isFinite(message.width) ? String(message.width) : message.width;
-                if (message.height != null && message.hasOwnProperty("height"))
+                if (message.height != null && Object.hasOwnProperty.call(message, "height"))
                     object.height = options.json && !isFinite(message.height) ? String(message.height) : message.height;
-                if (message.fontHeight != null && message.hasOwnProperty("fontHeight"))
+                if (message.fontHeight != null && Object.hasOwnProperty.call(message, "fontHeight"))
                     object.fontHeight = options.json && !isFinite(message.fontHeight) ? String(message.fontHeight) : message.fontHeight;
-                if (message.imageTopPadding != null && message.hasOwnProperty("imageTopPadding"))
+                if (message.imageTopPadding != null && Object.hasOwnProperty.call(message, "imageTopPadding"))
                     object.imageTopPadding = options.json && !isFinite(message.imageTopPadding) ? String(message.imageTopPadding) : message.imageTopPadding;
-                if (message.imageLeadingPadding != null && message.hasOwnProperty("imageLeadingPadding"))
+                if (message.imageLeadingPadding != null && Object.hasOwnProperty.call(message, "imageLeadingPadding"))
                     object.imageLeadingPadding = options.json && !isFinite(message.imageLeadingPadding) ? String(message.imageLeadingPadding) : message.imageLeadingPadding;
-                if (message.imageBottomPadding != null && message.hasOwnProperty("imageBottomPadding"))
+                if (message.imageBottomPadding != null && Object.hasOwnProperty.call(message, "imageBottomPadding"))
                     object.imageBottomPadding = options.json && !isFinite(message.imageBottomPadding) ? String(message.imageBottomPadding) : message.imageBottomPadding;
-                if (message.imageTrailingPadding != null && message.hasOwnProperty("imageTrailingPadding"))
+                if (message.imageTrailingPadding != null && Object.hasOwnProperty.call(message, "imageTrailingPadding"))
                     object.imageTrailingPadding = options.json && !isFinite(message.imageTrailingPadding) ? String(message.imageTrailingPadding) : message.imageTrailingPadding;
                 return object;
             };
@@ -2964,7 +2964,7 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 switch (message.type) {
                 default:
                     return "type: enum value expected";
@@ -2973,13 +2973,13 @@ $root.AICommonDeprecated = (function() {
                 case 2:
                     break;
                 }
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 if (!$util.isInteger(message.version) && !(message.version && $util.isInteger(message.version.low) && $util.isInteger(message.version.high)))
                     return "version: integer|Long expected";
-            if (message.url != null && message.hasOwnProperty("url"))
+            if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                 if (!$util.isString(message.url))
                     return "url: string expected";
-            if (message.loopCount != null && message.hasOwnProperty("loopCount"))
+            if (message.loopCount != null && Object.hasOwnProperty.call(message, "loopCount"))
                 if (!$util.isInteger(message.loopCount))
                     return "loopCount: integer expected";
             return null;
@@ -3066,18 +3066,18 @@ $root.AICommonDeprecated = (function() {
                 object.url = "";
                 object.loopCount = 0;
             }
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 object.type = options.enums === String ? $root.AICommonDeprecated.AIRichResponseDynamicMetadata.AIRichResponseDynamicMetadataType[message.type] === undefined ? message.type : $root.AICommonDeprecated.AIRichResponseDynamicMetadata.AIRichResponseDynamicMetadataType[message.type] : message.type;
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.version = typeof message.version === "number" ? BigInt(message.version) : $util.Long.fromBits(message.version.low >>> 0, message.version.high >>> 0, true).toBigInt();
                 else if (typeof message.version === "number")
                     object.version = options.longs === String ? String(message.version) : message.version;
                 else
                     object.version = options.longs === String ? $util.Long.prototype.toString.call(message.version) : options.longs === Number ? new $util.LongBits(message.version.low >>> 0, message.version.high >>> 0).toNumber(true) : message.version;
-            if (message.url != null && message.hasOwnProperty("url"))
+            if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                 object.url = message.url;
-            if (message.loopCount != null && message.hasOwnProperty("loopCount"))
+            if (message.loopCount != null && Object.hasOwnProperty.call(message, "loopCount"))
                 object.loopCount = message.loopCount;
             return object;
         };
@@ -3291,7 +3291,7 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.rows != null && message.hasOwnProperty("rows")) {
+            if (message.rows != null && Object.hasOwnProperty.call(message, "rows")) {
                 if (!Array.isArray(message.rows))
                     return "rows: array expected";
                 for (var i = 0; i < message.rows.length; ++i) {
@@ -3300,7 +3300,7 @@ $root.AICommonDeprecated = (function() {
                         return "rows." + error;
                 }
             }
-            if (message.title != null && message.hasOwnProperty("title"))
+            if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                 if (!$util.isString(message.title))
                     return "title: string expected";
             return null;
@@ -3365,7 +3365,7 @@ $root.AICommonDeprecated = (function() {
                 for (var j = 0; j < message.rows.length; ++j)
                     object.rows[j] = $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.toObject(message.rows[j], options, q + 1);
             }
-            if (message.title != null && message.hasOwnProperty("title"))
+            if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                 object.title = message.title;
             return object;
         };
@@ -3560,14 +3560,14 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.items != null && message.hasOwnProperty("items")) {
+                if (message.items != null && Object.hasOwnProperty.call(message, "items")) {
                     if (!Array.isArray(message.items))
                         return "items: array expected";
                     for (var i = 0; i < message.items.length; ++i)
                         if (!$util.isString(message.items[i]))
                             return "items: string[] expected";
                 }
-                if (message.isHeading != null && message.hasOwnProperty("isHeading"))
+                if (message.isHeading != null && Object.hasOwnProperty.call(message, "isHeading"))
                     if (typeof message.isHeading !== "boolean")
                         return "isHeading: boolean expected";
                 return null;
@@ -3629,7 +3629,7 @@ $root.AICommonDeprecated = (function() {
                     for (var j = 0; j < message.items.length; ++j)
                         object.items[j] = message.items[j];
                 }
-                if (message.isHeading != null && message.hasOwnProperty("isHeading"))
+                if (message.isHeading != null && Object.hasOwnProperty.call(message, "isHeading"))
                     object.isHeading = message.isHeading;
                 return object;
             };
@@ -3830,10 +3830,10 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.codeLanguage != null && message.hasOwnProperty("codeLanguage"))
+            if (message.codeLanguage != null && Object.hasOwnProperty.call(message, "codeLanguage"))
                 if (!$util.isString(message.codeLanguage))
                     return "codeLanguage: string expected";
-            if (message.codeBlocks != null && message.hasOwnProperty("codeBlocks")) {
+            if (message.codeBlocks != null && Object.hasOwnProperty.call(message, "codeBlocks")) {
                 if (!Array.isArray(message.codeBlocks))
                     return "codeBlocks: array expected";
                 for (var i = 0; i < message.codeBlocks.length; ++i) {
@@ -3899,7 +3899,7 @@ $root.AICommonDeprecated = (function() {
                 object.codeBlocks = [];
             if (options.defaults)
                 object.codeLanguage = "";
-            if (message.codeLanguage != null && message.hasOwnProperty("codeLanguage"))
+            if (message.codeLanguage != null && Object.hasOwnProperty.call(message, "codeLanguage"))
                 object.codeLanguage = message.codeLanguage;
             if (message.codeBlocks && message.codeBlocks.length) {
                 object.codeBlocks = [];
@@ -4095,7 +4095,7 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.highlightType != null && message.hasOwnProperty("highlightType"))
+                if (message.highlightType != null && Object.hasOwnProperty.call(message, "highlightType"))
                     switch (message.highlightType) {
                     default:
                         return "highlightType: enum value expected";
@@ -4107,7 +4107,7 @@ $root.AICommonDeprecated = (function() {
                     case 5:
                         break;
                     }
-                if (message.codeContent != null && message.hasOwnProperty("codeContent"))
+                if (message.codeContent != null && Object.hasOwnProperty.call(message, "codeContent"))
                     if (!$util.isString(message.codeContent))
                         return "codeContent: string expected";
                 return null;
@@ -4189,9 +4189,9 @@ $root.AICommonDeprecated = (function() {
                     object.highlightType = options.enums === String ? "AI_RICH_RESPONSE_CODE_HIGHLIGHT_DEFAULT" : 0;
                     object.codeContent = "";
                 }
-                if (message.highlightType != null && message.hasOwnProperty("highlightType"))
+                if (message.highlightType != null && Object.hasOwnProperty.call(message, "highlightType"))
                     object.highlightType = options.enums === String ? $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeHighlightType[message.highlightType] === undefined ? message.highlightType : $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeHighlightType[message.highlightType] : message.highlightType;
-                if (message.codeContent != null && message.hasOwnProperty("codeContent"))
+                if (message.codeContent != null && Object.hasOwnProperty.call(message, "codeContent"))
                     object.codeContent = message.codeContent;
                 return object;
             };
@@ -4440,15 +4440,15 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.imageUrl != null && message.hasOwnProperty("imageUrl")) {
+            if (message.imageUrl != null && Object.hasOwnProperty.call(message, "imageUrl")) {
                 var error = $root.AICommonDeprecated.AIRichResponseImageURL.verify(message.imageUrl, long + 1);
                 if (error)
                     return "imageUrl." + error;
             }
-            if (message.imageText != null && message.hasOwnProperty("imageText"))
+            if (message.imageText != null && Object.hasOwnProperty.call(message, "imageText"))
                 if (!$util.isString(message.imageText))
                     return "imageText: string expected";
-            if (message.alignment != null && message.hasOwnProperty("alignment"))
+            if (message.alignment != null && Object.hasOwnProperty.call(message, "alignment"))
                 switch (message.alignment) {
                 default:
                     return "alignment: enum value expected";
@@ -4457,7 +4457,7 @@ $root.AICommonDeprecated = (function() {
                 case 2:
                     break;
                 }
-            if (message.tapLinkUrl != null && message.hasOwnProperty("tapLinkUrl"))
+            if (message.tapLinkUrl != null && Object.hasOwnProperty.call(message, "tapLinkUrl"))
                 if (!$util.isString(message.tapLinkUrl))
                     return "tapLinkUrl: string expected";
             return null;
@@ -4536,13 +4536,13 @@ $root.AICommonDeprecated = (function() {
                 object.alignment = options.enums === String ? "AI_RICH_RESPONSE_IMAGE_LAYOUT_LEADING_ALIGNED" : 0;
                 object.tapLinkUrl = "";
             }
-            if (message.imageUrl != null && message.hasOwnProperty("imageUrl"))
+            if (message.imageUrl != null && Object.hasOwnProperty.call(message, "imageUrl"))
                 object.imageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.toObject(message.imageUrl, options, q + 1);
-            if (message.imageText != null && message.hasOwnProperty("imageText"))
+            if (message.imageText != null && Object.hasOwnProperty.call(message, "imageText"))
                 object.imageText = message.imageText;
-            if (message.alignment != null && message.hasOwnProperty("alignment"))
+            if (message.alignment != null && Object.hasOwnProperty.call(message, "alignment"))
                 object.alignment = options.enums === String ? $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.AIRichResponseImageAlignment[message.alignment] === undefined ? message.alignment : $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.AIRichResponseImageAlignment[message.alignment] : message.alignment;
-            if (message.tapLinkUrl != null && message.hasOwnProperty("tapLinkUrl"))
+            if (message.tapLinkUrl != null && Object.hasOwnProperty.call(message, "tapLinkUrl"))
                 object.tapLinkUrl = message.tapLinkUrl;
             return object;
         };
@@ -4756,12 +4756,12 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.gridImageUrl != null && message.hasOwnProperty("gridImageUrl")) {
+            if (message.gridImageUrl != null && Object.hasOwnProperty.call(message, "gridImageUrl")) {
                 var error = $root.AICommonDeprecated.AIRichResponseImageURL.verify(message.gridImageUrl, long + 1);
                 if (error)
                     return "gridImageUrl." + error;
             }
-            if (message.imageUrls != null && message.hasOwnProperty("imageUrls")) {
+            if (message.imageUrls != null && Object.hasOwnProperty.call(message, "imageUrls")) {
                 if (!Array.isArray(message.imageUrls))
                     return "imageUrls: array expected";
                 for (var i = 0; i < message.imageUrls.length; ++i) {
@@ -4830,7 +4830,7 @@ $root.AICommonDeprecated = (function() {
                 object.imageUrls = [];
             if (options.defaults)
                 object.gridImageUrl = null;
-            if (message.gridImageUrl != null && message.hasOwnProperty("gridImageUrl"))
+            if (message.gridImageUrl != null && Object.hasOwnProperty.call(message, "gridImageUrl"))
                 object.gridImageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.toObject(message.gridImageUrl, options, q + 1);
             if (message.imageUrls && message.imageUrls.length) {
                 object.imageUrls = [];
@@ -5044,13 +5044,13 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.imagePreviewUrl != null && message.hasOwnProperty("imagePreviewUrl"))
+            if (message.imagePreviewUrl != null && Object.hasOwnProperty.call(message, "imagePreviewUrl"))
                 if (!$util.isString(message.imagePreviewUrl))
                     return "imagePreviewUrl: string expected";
-            if (message.imageHighResUrl != null && message.hasOwnProperty("imageHighResUrl"))
+            if (message.imageHighResUrl != null && Object.hasOwnProperty.call(message, "imageHighResUrl"))
                 if (!$util.isString(message.imageHighResUrl))
                     return "imageHighResUrl: string expected";
-            if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+            if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                 if (!$util.isString(message.sourceUrl))
                     return "sourceUrl: string expected";
             return null;
@@ -5105,11 +5105,11 @@ $root.AICommonDeprecated = (function() {
                 object.imageHighResUrl = "";
                 object.sourceUrl = "";
             }
-            if (message.imagePreviewUrl != null && message.hasOwnProperty("imagePreviewUrl"))
+            if (message.imagePreviewUrl != null && Object.hasOwnProperty.call(message, "imagePreviewUrl"))
                 object.imagePreviewUrl = message.imagePreviewUrl;
-            if (message.imageHighResUrl != null && message.hasOwnProperty("imageHighResUrl"))
+            if (message.imageHighResUrl != null && Object.hasOwnProperty.call(message, "imageHighResUrl"))
                 object.imageHighResUrl = message.imageHighResUrl;
-            if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+            if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                 object.sourceUrl = message.sourceUrl;
             return object;
         };
@@ -5464,7 +5464,7 @@ $root.StatusAttributions = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             var properties = {};
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 switch (message.type) {
                 default:
                     return "type: enum value expected";
@@ -5482,10 +5482,10 @@ $root.StatusAttributions = (function() {
                 case 11:
                     break;
                 }
-            if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
+            if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                 if (!$util.isString(message.actionUrl))
                     return "actionUrl: string expected";
-            if (message.statusReshare != null && message.hasOwnProperty("statusReshare")) {
+            if (message.statusReshare != null && Object.hasOwnProperty.call(message, "statusReshare")) {
                 properties.attributionData = 1;
                 {
                     var error = $root.StatusAttributions.StatusAttribution.StatusReshare.verify(message.statusReshare, long + 1);
@@ -5493,7 +5493,7 @@ $root.StatusAttributions = (function() {
                         return "statusReshare." + error;
                 }
             }
-            if (message.externalShare != null && message.hasOwnProperty("externalShare")) {
+            if (message.externalShare != null && Object.hasOwnProperty.call(message, "externalShare")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -5503,7 +5503,7 @@ $root.StatusAttributions = (function() {
                         return "externalShare." + error;
                 }
             }
-            if (message.music != null && message.hasOwnProperty("music")) {
+            if (message.music != null && Object.hasOwnProperty.call(message, "music")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -5513,7 +5513,7 @@ $root.StatusAttributions = (function() {
                         return "music." + error;
                 }
             }
-            if (message.groupStatus != null && message.hasOwnProperty("groupStatus")) {
+            if (message.groupStatus != null && Object.hasOwnProperty.call(message, "groupStatus")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -5523,7 +5523,7 @@ $root.StatusAttributions = (function() {
                         return "groupStatus." + error;
                 }
             }
-            if (message.rlAttribution != null && message.hasOwnProperty("rlAttribution")) {
+            if (message.rlAttribution != null && Object.hasOwnProperty.call(message, "rlAttribution")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -5533,7 +5533,7 @@ $root.StatusAttributions = (function() {
                         return "rlAttribution." + error;
                 }
             }
-            if (message.aiCreatedAttribution != null && message.hasOwnProperty("aiCreatedAttribution")) {
+            if (message.aiCreatedAttribution != null && Object.hasOwnProperty.call(message, "aiCreatedAttribution")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -5676,36 +5676,36 @@ $root.StatusAttributions = (function() {
                 object.type = options.enums === String ? "UNKNOWN" : 0;
                 object.actionUrl = "";
             }
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 object.type = options.enums === String ? $root.StatusAttributions.StatusAttribution.Type[message.type] === undefined ? message.type : $root.StatusAttributions.StatusAttribution.Type[message.type] : message.type;
-            if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
+            if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                 object.actionUrl = message.actionUrl;
-            if (message.statusReshare != null && message.hasOwnProperty("statusReshare")) {
+            if (message.statusReshare != null && Object.hasOwnProperty.call(message, "statusReshare")) {
                 object.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.toObject(message.statusReshare, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "statusReshare";
             }
-            if (message.externalShare != null && message.hasOwnProperty("externalShare")) {
+            if (message.externalShare != null && Object.hasOwnProperty.call(message, "externalShare")) {
                 object.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.toObject(message.externalShare, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "externalShare";
             }
-            if (message.music != null && message.hasOwnProperty("music")) {
+            if (message.music != null && Object.hasOwnProperty.call(message, "music")) {
                 object.music = $root.StatusAttributions.StatusAttribution.Music.toObject(message.music, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "music";
             }
-            if (message.groupStatus != null && message.hasOwnProperty("groupStatus")) {
+            if (message.groupStatus != null && Object.hasOwnProperty.call(message, "groupStatus")) {
                 object.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.toObject(message.groupStatus, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "groupStatus";
             }
-            if (message.rlAttribution != null && message.hasOwnProperty("rlAttribution")) {
+            if (message.rlAttribution != null && Object.hasOwnProperty.call(message, "rlAttribution")) {
                 object.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.toObject(message.rlAttribution, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "rlAttribution";
             }
-            if (message.aiCreatedAttribution != null && message.hasOwnProperty("aiCreatedAttribution")) {
+            if (message.aiCreatedAttribution != null && Object.hasOwnProperty.call(message, "aiCreatedAttribution")) {
                 object.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.toObject(message.aiCreatedAttribution, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "aiCreatedAttribution";
@@ -5884,7 +5884,7 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     switch (message.source) {
                     default:
                         return "source: enum value expected";
@@ -5951,7 +5951,7 @@ $root.StatusAttributions = (function() {
                 var object = {};
                 if (options.defaults)
                     object.source = options.enums === String ? "UNKNOWN" : 0;
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.Source[message.source] : message.source;
                 return object;
             };
@@ -6189,10 +6189,10 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
+                if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                     if (!$util.isString(message.actionUrl))
                         return "actionUrl: string expected";
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     switch (message.source) {
                     default:
                         return "source: enum value expected";
@@ -6211,10 +6211,10 @@ $root.StatusAttributions = (function() {
                     case 12:
                         break;
                     }
-                if (message.duration != null && message.hasOwnProperty("duration"))
+                if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                     if (!$util.isInteger(message.duration))
                         return "duration: integer expected";
-                if (message.actionFallbackUrl != null && message.hasOwnProperty("actionFallbackUrl"))
+                if (message.actionFallbackUrl != null && Object.hasOwnProperty.call(message, "actionFallbackUrl"))
                     if (!$util.isString(message.actionFallbackUrl))
                         return "actionFallbackUrl: string expected";
                 return null;
@@ -6330,13 +6330,13 @@ $root.StatusAttributions = (function() {
                     object.duration = 0;
                     object.actionFallbackUrl = "";
                 }
-                if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
+                if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                     object.actionUrl = message.actionUrl;
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.ExternalShare.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.ExternalShare.Source[message.source] : message.source;
-                if (message.duration != null && message.hasOwnProperty("duration"))
+                if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                     object.duration = message.duration;
-                if (message.actionFallbackUrl != null && message.hasOwnProperty("actionFallbackUrl"))
+                if (message.actionFallbackUrl != null && Object.hasOwnProperty.call(message, "actionFallbackUrl"))
                     object.actionFallbackUrl = message.actionFallbackUrl;
                 return object;
             };
@@ -6551,7 +6551,7 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.authorJid != null && message.hasOwnProperty("authorJid"))
+                if (message.authorJid != null && Object.hasOwnProperty.call(message, "authorJid"))
                     if (!$util.isString(message.authorJid))
                         return "authorJid: string expected";
                 return null;
@@ -6599,7 +6599,7 @@ $root.StatusAttributions = (function() {
                 var object = {};
                 if (options.defaults)
                     object.authorJid = "";
-                if (message.authorJid != null && message.hasOwnProperty("authorJid"))
+                if (message.authorJid != null && Object.hasOwnProperty.call(message, "authorJid"))
                     object.authorJid = message.authorJid;
                 return object;
             };
@@ -6853,22 +6853,22 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.authorName != null && message.hasOwnProperty("authorName"))
+                if (message.authorName != null && Object.hasOwnProperty.call(message, "authorName"))
                     if (!$util.isString(message.authorName))
                         return "authorName: string expected";
-                if (message.songId != null && message.hasOwnProperty("songId"))
+                if (message.songId != null && Object.hasOwnProperty.call(message, "songId"))
                     if (!$util.isString(message.songId))
                         return "songId: string expected";
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     if (!$util.isString(message.title))
                         return "title: string expected";
-                if (message.author != null && message.hasOwnProperty("author"))
+                if (message.author != null && Object.hasOwnProperty.call(message, "author"))
                     if (!$util.isString(message.author))
                         return "author: string expected";
-                if (message.artistAttribution != null && message.hasOwnProperty("artistAttribution"))
+                if (message.artistAttribution != null && Object.hasOwnProperty.call(message, "artistAttribution"))
                     if (!$util.isString(message.artistAttribution))
                         return "artistAttribution: string expected";
-                if (message.isExplicit != null && message.hasOwnProperty("isExplicit"))
+                if (message.isExplicit != null && Object.hasOwnProperty.call(message, "isExplicit"))
                     if (typeof message.isExplicit !== "boolean")
                         return "isExplicit: boolean expected";
                 return null;
@@ -6932,17 +6932,17 @@ $root.StatusAttributions = (function() {
                     object.artistAttribution = "";
                     object.isExplicit = false;
                 }
-                if (message.authorName != null && message.hasOwnProperty("authorName"))
+                if (message.authorName != null && Object.hasOwnProperty.call(message, "authorName"))
                     object.authorName = message.authorName;
-                if (message.songId != null && message.hasOwnProperty("songId"))
+                if (message.songId != null && Object.hasOwnProperty.call(message, "songId"))
                     object.songId = message.songId;
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
-                if (message.author != null && message.hasOwnProperty("author"))
+                if (message.author != null && Object.hasOwnProperty.call(message, "author"))
                     object.author = message.author;
-                if (message.artistAttribution != null && message.hasOwnProperty("artistAttribution"))
+                if (message.artistAttribution != null && Object.hasOwnProperty.call(message, "artistAttribution"))
                     object.artistAttribution = message.artistAttribution;
-                if (message.isExplicit != null && message.hasOwnProperty("isExplicit"))
+                if (message.isExplicit != null && Object.hasOwnProperty.call(message, "isExplicit"))
                     object.isExplicit = message.isExplicit;
                 return object;
             };
@@ -7121,7 +7121,7 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     switch (message.source) {
                     default:
                         return "source: enum value expected";
@@ -7198,7 +7198,7 @@ $root.StatusAttributions = (function() {
                 var object = {};
                 if (options.defaults)
                     object.source = options.enums === String ? "UNKNOWN" : 0;
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.RLAttribution.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.RLAttribution.Source[message.source] : message.source;
                 return object;
             };
@@ -7410,7 +7410,7 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     switch (message.source) {
                     default:
                         return "source: enum value expected";
@@ -7421,7 +7421,7 @@ $root.StatusAttributions = (function() {
                     case 4:
                         break;
                     }
-                if (message.metadata != null && message.hasOwnProperty("metadata")) {
+                if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata")) {
                     var error = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify(message.metadata, long + 1);
                     if (error)
                         return "metadata." + error;
@@ -7504,9 +7504,9 @@ $root.StatusAttributions = (function() {
                     object.source = options.enums === String ? "UNKNOWN" : 0;
                     object.metadata = null;
                 }
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.StatusReshare.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.StatusReshare.Source[message.source] : message.source;
-                if (message.metadata != null && message.hasOwnProperty("metadata"))
+                if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
                     object.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.toObject(message.metadata, options, q + 1);
                 return object;
             };
@@ -7727,16 +7727,16 @@ $root.StatusAttributions = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.duration != null && message.hasOwnProperty("duration"))
+                    if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                         if (!$util.isInteger(message.duration))
                             return "duration: integer expected";
-                    if (message.channelJid != null && message.hasOwnProperty("channelJid"))
+                    if (message.channelJid != null && Object.hasOwnProperty.call(message, "channelJid"))
                         if (!$util.isString(message.channelJid))
                             return "channelJid: string expected";
-                    if (message.channelMessageId != null && message.hasOwnProperty("channelMessageId"))
+                    if (message.channelMessageId != null && Object.hasOwnProperty.call(message, "channelMessageId"))
                         if (!$util.isInteger(message.channelMessageId))
                             return "channelMessageId: integer expected";
-                    if (message.hasMultipleReshares != null && message.hasOwnProperty("hasMultipleReshares"))
+                    if (message.hasMultipleReshares != null && Object.hasOwnProperty.call(message, "hasMultipleReshares"))
                         if (typeof message.hasMultipleReshares !== "boolean")
                             return "hasMultipleReshares: boolean expected";
                     return null;
@@ -7794,13 +7794,13 @@ $root.StatusAttributions = (function() {
                         object.channelMessageId = 0;
                         object.hasMultipleReshares = false;
                     }
-                    if (message.duration != null && message.hasOwnProperty("duration"))
+                    if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                         object.duration = message.duration;
-                    if (message.channelJid != null && message.hasOwnProperty("channelJid"))
+                    if (message.channelJid != null && Object.hasOwnProperty.call(message, "channelJid"))
                         object.channelJid = message.channelJid;
-                    if (message.channelMessageId != null && message.hasOwnProperty("channelMessageId"))
+                    if (message.channelMessageId != null && Object.hasOwnProperty.call(message, "channelMessageId"))
                         object.channelMessageId = message.channelMessageId;
-                    if (message.hasMultipleReshares != null && message.hasOwnProperty("hasMultipleReshares"))
+                    if (message.hasMultipleReshares != null && Object.hasOwnProperty.call(message, "hasMultipleReshares"))
                         object.hasMultipleReshares = message.hasMultipleReshares;
                     return object;
                 };

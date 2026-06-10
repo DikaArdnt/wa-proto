@@ -163,7 +163,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.token != null && message.hasOwnProperty("token"))
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
                 if (!$util.isString(message.token))
                     return "token: string expected";
             return null;
@@ -211,7 +211,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.token = "";
-            if (message.token != null && message.hasOwnProperty("token"))
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
                 object.token = message.token;
             return object;
         };
@@ -390,7 +390,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.deepLinkMetadata != null && message.hasOwnProperty("deepLinkMetadata")) {
+            if (message.deepLinkMetadata != null && Object.hasOwnProperty.call(message, "deepLinkMetadata")) {
                 var error = $root.AICommon.BotAgentDeepLinkMetadata.verify(message.deepLinkMetadata, long + 1);
                 if (error)
                     return "deepLinkMetadata." + error;
@@ -443,7 +443,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.deepLinkMetadata = null;
-            if (message.deepLinkMetadata != null && message.hasOwnProperty("deepLinkMetadata"))
+            if (message.deepLinkMetadata != null && Object.hasOwnProperty.call(message, "deepLinkMetadata"))
                 object.deepLinkMetadata = $root.AICommon.BotAgentDeepLinkMetadata.toObject(message.deepLinkMetadata, options, q + 1);
             return object;
         };
@@ -656,7 +656,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.botBackend != null && message.hasOwnProperty("botBackend"))
+            if (message.botBackend != null && Object.hasOwnProperty.call(message, "botBackend"))
                 switch (message.botBackend) {
                 default:
                     return "botBackend: enum value expected";
@@ -664,14 +664,14 @@ $root.AICommon = (function() {
                 case 1:
                     break;
                 }
-            if (message.toolsUsed != null && message.hasOwnProperty("toolsUsed")) {
+            if (message.toolsUsed != null && Object.hasOwnProperty.call(message, "toolsUsed")) {
                 if (!Array.isArray(message.toolsUsed))
                     return "toolsUsed: array expected";
                 for (var i = 0; i < message.toolsUsed.length; ++i)
                     if (!$util.isString(message.toolsUsed[i]))
                         return "toolsUsed: string[] expected";
             }
-            if (message.isThinking != null && message.hasOwnProperty("isThinking"))
+            if (message.isThinking != null && Object.hasOwnProperty.call(message, "isThinking"))
                 if (typeof message.isThinking !== "boolean")
                     return "isThinking: boolean expected";
             return null;
@@ -746,14 +746,14 @@ $root.AICommon = (function() {
                 object.botBackend = options.enums === String ? "AAPI" : 0;
                 object.isThinking = false;
             }
-            if (message.botBackend != null && message.hasOwnProperty("botBackend"))
+            if (message.botBackend != null && Object.hasOwnProperty.call(message, "botBackend"))
                 object.botBackend = options.enums === String ? $root.AICommon.BotInfrastructureDiagnostics.BotBackend[message.botBackend] === undefined ? message.botBackend : $root.AICommon.BotInfrastructureDiagnostics.BotBackend[message.botBackend] : message.botBackend;
             if (message.toolsUsed && message.toolsUsed.length) {
                 object.toolsUsed = [];
                 for (var j = 0; j < message.toolsUsed.length; ++j)
                     object.toolsUsed[j] = message.toolsUsed[j];
             }
-            if (message.isThinking != null && message.hasOwnProperty("isThinking"))
+            if (message.isThinking != null && Object.hasOwnProperty.call(message, "isThinking"))
                 object.isThinking = message.isThinking;
             return object;
         };
@@ -984,10 +984,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.lastFetchTime != null && message.hasOwnProperty("lastFetchTime"))
+            if (message.lastFetchTime != null && Object.hasOwnProperty.call(message, "lastFetchTime"))
                 if (!$util.isInteger(message.lastFetchTime) && !(message.lastFetchTime && $util.isInteger(message.lastFetchTime.low) && $util.isInteger(message.lastFetchTime.high)))
                     return "lastFetchTime: integer|Long expected";
-            if (message.capabilityOptions != null && message.hasOwnProperty("capabilityOptions")) {
+            if (message.capabilityOptions != null && Object.hasOwnProperty.call(message, "capabilityOptions")) {
                 if (!Array.isArray(message.capabilityOptions))
                     return "capabilityOptions: array expected";
                 for (var i = 0; i < message.capabilityOptions.length; ++i) {
@@ -996,7 +996,7 @@ $root.AICommon = (function() {
                         return "capabilityOptions." + error;
                 }
             }
-            if (message.conversationOptions != null && message.hasOwnProperty("conversationOptions")) {
+            if (message.conversationOptions != null && Object.hasOwnProperty.call(message, "conversationOptions")) {
                 if (!Array.isArray(message.conversationOptions))
                     return "conversationOptions: array expected";
                 for (var i = 0; i < message.conversationOptions.length; ++i) {
@@ -1085,7 +1085,7 @@ $root.AICommon = (function() {
                     object.lastFetchTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
                     object.lastFetchTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-            if (message.lastFetchTime != null && message.hasOwnProperty("lastFetchTime"))
+            if (message.lastFetchTime != null && Object.hasOwnProperty.call(message, "lastFetchTime"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.lastFetchTime = typeof message.lastFetchTime === "number" ? BigInt(message.lastFetchTime) : $util.Long.fromBits(message.lastFetchTime.low >>> 0, message.lastFetchTime.high >>> 0, false).toBigInt();
                 else if (typeof message.lastFetchTime === "number")
@@ -1381,7 +1381,7 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     switch (message.type) {
                     default:
                         return "type: enum value expected";
@@ -1393,25 +1393,25 @@ $root.AICommon = (function() {
                     case 5:
                         break;
                     }
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     if (!$util.isString(message.title))
                         return "title: string expected";
-                if (message.promptText != null && message.hasOwnProperty("promptText"))
+                if (message.promptText != null && Object.hasOwnProperty.call(message, "promptText"))
                     if (!$util.isString(message.promptText))
                         return "promptText: string expected";
-                if (message.sessionId != null && message.hasOwnProperty("sessionId"))
+                if (message.sessionId != null && Object.hasOwnProperty.call(message, "sessionId"))
                     if (!$util.isString(message.sessionId))
                         return "sessionId: string expected";
-                if (message.imageWdsIdentifier != null && message.hasOwnProperty("imageWdsIdentifier"))
+                if (message.imageWdsIdentifier != null && Object.hasOwnProperty.call(message, "imageWdsIdentifier"))
                     if (!$util.isString(message.imageWdsIdentifier))
                         return "imageWdsIdentifier: string expected";
-                if (message.imageTintColor != null && message.hasOwnProperty("imageTintColor"))
+                if (message.imageTintColor != null && Object.hasOwnProperty.call(message, "imageTintColor"))
                     if (!$util.isString(message.imageTintColor))
                         return "imageTintColor: string expected";
-                if (message.imageBackgroundColor != null && message.hasOwnProperty("imageBackgroundColor"))
+                if (message.imageBackgroundColor != null && Object.hasOwnProperty.call(message, "imageBackgroundColor"))
                     if (!$util.isString(message.imageBackgroundColor))
                         return "imageBackgroundColor: string expected";
-                if (message.cardTypeId != null && message.hasOwnProperty("cardTypeId"))
+                if (message.cardTypeId != null && Object.hasOwnProperty.call(message, "cardTypeId"))
                     if (!$util.isString(message.cardTypeId))
                         return "cardTypeId: string expected";
                 return null;
@@ -1511,21 +1511,21 @@ $root.AICommon = (function() {
                     object.imageBackgroundColor = "";
                     object.cardTypeId = "";
                 }
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.AICommon.AIHomeState.AIHomeOption.AIHomeActionType[message.type] === undefined ? message.type : $root.AICommon.AIHomeState.AIHomeOption.AIHomeActionType[message.type] : message.type;
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
-                if (message.promptText != null && message.hasOwnProperty("promptText"))
+                if (message.promptText != null && Object.hasOwnProperty.call(message, "promptText"))
                     object.promptText = message.promptText;
-                if (message.sessionId != null && message.hasOwnProperty("sessionId"))
+                if (message.sessionId != null && Object.hasOwnProperty.call(message, "sessionId"))
                     object.sessionId = message.sessionId;
-                if (message.imageWdsIdentifier != null && message.hasOwnProperty("imageWdsIdentifier"))
+                if (message.imageWdsIdentifier != null && Object.hasOwnProperty.call(message, "imageWdsIdentifier"))
                     object.imageWdsIdentifier = message.imageWdsIdentifier;
-                if (message.imageTintColor != null && message.hasOwnProperty("imageTintColor"))
+                if (message.imageTintColor != null && Object.hasOwnProperty.call(message, "imageTintColor"))
                     object.imageTintColor = message.imageTintColor;
-                if (message.imageBackgroundColor != null && message.hasOwnProperty("imageBackgroundColor"))
+                if (message.imageBackgroundColor != null && Object.hasOwnProperty.call(message, "imageBackgroundColor"))
                     object.imageBackgroundColor = message.imageBackgroundColor;
-                if (message.cardTypeId != null && message.hasOwnProperty("cardTypeId"))
+                if (message.cardTypeId != null && Object.hasOwnProperty.call(message, "cardTypeId"))
                     object.cardTypeId = message.cardTypeId;
                 return object;
             };
@@ -1729,7 +1729,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.pluginType != null && message.hasOwnProperty("pluginType"))
+            if (message.pluginType != null && Object.hasOwnProperty.call(message, "pluginType"))
                 switch (message.pluginType) {
                 default:
                     return "pluginType: enum value expected";
@@ -1796,7 +1796,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.pluginType = options.enums === String ? "TEXT_EXTRACTION" : 0;
-            if (message.pluginType != null && message.hasOwnProperty("pluginType"))
+            if (message.pluginType != null && Object.hasOwnProperty.call(message, "pluginType"))
                 object.pluginType = options.enums === String ? $root.AICommon.BotDocumentMessageMetadata.DocumentPluginType[message.pluginType] === undefined ? message.pluginType : $root.AICommon.BotDocumentMessageMetadata.DocumentPluginType[message.pluginType] : message.pluginType;
             return object;
         };
@@ -2019,13 +2019,13 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.disclaimerText != null && message.hasOwnProperty("disclaimerText"))
+            if (message.disclaimerText != null && Object.hasOwnProperty.call(message, "disclaimerText"))
                 if (!$util.isString(message.disclaimerText))
                     return "disclaimerText: string expected";
-            if (message.hcaId != null && message.hasOwnProperty("hcaId"))
+            if (message.hcaId != null && Object.hasOwnProperty.call(message, "hcaId"))
                 if (!$util.isString(message.hcaId))
                     return "hcaId: string expected";
-            if (message.sessionTransparencyType != null && message.hasOwnProperty("sessionTransparencyType"))
+            if (message.sessionTransparencyType != null && Object.hasOwnProperty.call(message, "sessionTransparencyType"))
                 switch (message.sessionTransparencyType) {
                 default:
                     return "sessionTransparencyType: enum value expected";
@@ -2099,11 +2099,11 @@ $root.AICommon = (function() {
                 object.hcaId = "";
                 object.sessionTransparencyType = options.enums === String ? "UNKNOWN_TYPE" : 0;
             }
-            if (message.disclaimerText != null && message.hasOwnProperty("disclaimerText"))
+            if (message.disclaimerText != null && Object.hasOwnProperty.call(message, "disclaimerText"))
                 object.disclaimerText = message.disclaimerText;
-            if (message.hcaId != null && message.hasOwnProperty("hcaId"))
+            if (message.hcaId != null && Object.hasOwnProperty.call(message, "hcaId"))
                 object.hcaId = message.hcaId;
-            if (message.sessionTransparencyType != null && message.hasOwnProperty("sessionTransparencyType"))
+            if (message.sessionTransparencyType != null && Object.hasOwnProperty.call(message, "sessionTransparencyType"))
                 object.sessionTransparencyType = options.enums === String ? $root.AICommon.SessionTransparencyType[message.sessionTransparencyType] === undefined ? message.sessionTransparencyType : $root.AICommon.SessionTransparencyType[message.sessionTransparencyType] : message.sessionTransparencyType;
             return object;
         };
@@ -2297,12 +2297,12 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.messageKey != null && message.hasOwnProperty("messageKey")) {
+            if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey")) {
                 var error = $root.Protocol.MessageKey.verify(message.messageKey, long + 1);
                 if (error)
                     return "messageKey." + error;
             }
-            if (message.responseTimestampMs != null && message.hasOwnProperty("responseTimestampMs"))
+            if (message.responseTimestampMs != null && Object.hasOwnProperty.call(message, "responseTimestampMs"))
                 if (!$util.isInteger(message.responseTimestampMs) && !(message.responseTimestampMs && $util.isInteger(message.responseTimestampMs.low) && $util.isInteger(message.responseTimestampMs.high)))
                     return "responseTimestampMs: integer|Long expected";
             return null;
@@ -2368,9 +2368,9 @@ $root.AICommon = (function() {
                 } else
                     object.responseTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
-            if (message.messageKey != null && message.hasOwnProperty("messageKey"))
+            if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
                 object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options, q + 1);
-            if (message.responseTimestampMs != null && message.hasOwnProperty("responseTimestampMs"))
+            if (message.responseTimestampMs != null && Object.hasOwnProperty.call(message, "responseTimestampMs"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.responseTimestampMs = typeof message.responseTimestampMs === "number" ? BigInt(message.responseTimestampMs) : $util.Long.fromBits(message.responseTimestampMs.low >>> 0, message.responseTimestampMs.high >>> 0, false).toBigInt();
                 else if (typeof message.responseTimestampMs === "number")
@@ -2554,7 +2554,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.data != null && message.hasOwnProperty("data"))
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
                 if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
                     return "data: buffer expected";
             return null;
@@ -2611,7 +2611,7 @@ $root.AICommon = (function() {
                     if (options.bytes !== Array)
                         object.data = $util.newBuffer(object.data);
                 }
-            if (message.data != null && message.hasOwnProperty("data"))
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
                 object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
             return object;
         };
@@ -2805,7 +2805,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
+            if (message.botEntryPointOrigin != null && Object.hasOwnProperty.call(message, "botEntryPointOrigin"))
                 switch (message.botEntryPointOrigin) {
                 default:
                     return "botEntryPointOrigin: enum value expected";
@@ -2859,7 +2859,7 @@ $root.AICommon = (function() {
                 case 56:
                     break;
                 }
-            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
+            if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
                 if (!$util.isInteger(message.forwardScore))
                     return "forwardScore: integer expected";
             return null;
@@ -3109,9 +3109,9 @@ $root.AICommon = (function() {
                 object.botEntryPointOrigin = options.enums === String ? "UNDEFINED_ENTRY_POINT" : 0;
                 object.forwardScore = 0;
             }
-            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
+            if (message.botEntryPointOrigin != null && Object.hasOwnProperty.call(message, "botEntryPointOrigin"))
                 object.botEntryPointOrigin = options.enums === String ? $root.AICommon.BotMetricsEntryPoint[message.botEntryPointOrigin] === undefined ? message.botEntryPointOrigin : $root.AICommon.BotMetricsEntryPoint[message.botEntryPointOrigin] : message.botEntryPointOrigin;
-            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
+            if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
                 object.forwardScore = message.forwardScore;
             return object;
         };
@@ -3320,13 +3320,13 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.botName != null && message.hasOwnProperty("botName"))
+            if (message.botName != null && Object.hasOwnProperty.call(message, "botName"))
                 if (!$util.isString(message.botName))
                     return "botName: string expected";
-            if (message.botJid != null && message.hasOwnProperty("botJid"))
+            if (message.botJid != null && Object.hasOwnProperty.call(message, "botJid"))
                 if (!$util.isString(message.botJid))
                     return "botJid: string expected";
-            if (message.creatorName != null && message.hasOwnProperty("creatorName"))
+            if (message.creatorName != null && Object.hasOwnProperty.call(message, "creatorName"))
                 if (!$util.isString(message.creatorName))
                     return "creatorName: string expected";
             return null;
@@ -3381,11 +3381,11 @@ $root.AICommon = (function() {
                 object.botJid = "";
                 object.creatorName = "";
             }
-            if (message.botName != null && message.hasOwnProperty("botName"))
+            if (message.botName != null && Object.hasOwnProperty.call(message, "botName"))
                 object.botName = message.botName;
-            if (message.botJid != null && message.hasOwnProperty("botJid"))
+            if (message.botJid != null && Object.hasOwnProperty.call(message, "botJid"))
                 object.botJid = message.botJid;
-            if (message.creatorName != null && message.hasOwnProperty("creatorName"))
+            if (message.creatorName != null && Object.hasOwnProperty.call(message, "creatorName"))
                 object.creatorName = message.creatorName;
             return object;
         };
@@ -3654,12 +3654,12 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.messageKey != null && message.hasOwnProperty("messageKey")) {
+            if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey")) {
                 var error = $root.Protocol.MessageKey.verify(message.messageKey, long + 1);
                 if (error)
                     return "messageKey." + error;
             }
-            if (message.kind != null && message.hasOwnProperty("kind"))
+            if (message.kind != null && Object.hasOwnProperty.call(message, "kind"))
                 switch (message.kind) {
                 default:
                     return "kind: enum value expected";
@@ -3680,16 +3680,16 @@ $root.AICommon = (function() {
                 case 14:
                     break;
                 }
-            if (message.text != null && message.hasOwnProperty("text"))
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                 if (!$util.isString(message.text))
                     return "text: string expected";
-            if (message.kindNegative != null && message.hasOwnProperty("kindNegative"))
+            if (message.kindNegative != null && Object.hasOwnProperty.call(message, "kindNegative"))
                 if (!$util.isInteger(message.kindNegative) && !(message.kindNegative && $util.isInteger(message.kindNegative.low) && $util.isInteger(message.kindNegative.high)))
                     return "kindNegative: integer|Long expected";
-            if (message.kindPositive != null && message.hasOwnProperty("kindPositive"))
+            if (message.kindPositive != null && Object.hasOwnProperty.call(message, "kindPositive"))
                 if (!$util.isInteger(message.kindPositive) && !(message.kindPositive && $util.isInteger(message.kindPositive.low) && $util.isInteger(message.kindPositive.high)))
                     return "kindPositive: integer|Long expected";
-            if (message.kindReport != null && message.hasOwnProperty("kindReport"))
+            if (message.kindReport != null && Object.hasOwnProperty.call(message, "kindReport"))
                 switch (message.kindReport) {
                 default:
                     return "kindReport: enum value expected";
@@ -3697,7 +3697,7 @@ $root.AICommon = (function() {
                 case 1:
                     break;
                 }
-            if (message.sideBySideSurveyMetadata != null && message.hasOwnProperty("sideBySideSurveyMetadata")) {
+            if (message.sideBySideSurveyMetadata != null && Object.hasOwnProperty.call(message, "sideBySideSurveyMetadata")) {
                 var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.verify(message.sideBySideSurveyMetadata, long + 1);
                 if (error)
                     return "sideBySideSurveyMetadata." + error;
@@ -3874,29 +3874,29 @@ $root.AICommon = (function() {
                 object.kindReport = options.enums === String ? "NONE" : 0;
                 object.sideBySideSurveyMetadata = null;
             }
-            if (message.messageKey != null && message.hasOwnProperty("messageKey"))
+            if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
                 object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options, q + 1);
-            if (message.kind != null && message.hasOwnProperty("kind"))
+            if (message.kind != null && Object.hasOwnProperty.call(message, "kind"))
                 object.kind = options.enums === String ? $root.AICommon.BotFeedbackMessage.BotFeedbackKind[message.kind] === undefined ? message.kind : $root.AICommon.BotFeedbackMessage.BotFeedbackKind[message.kind] : message.kind;
-            if (message.text != null && message.hasOwnProperty("text"))
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                 object.text = message.text;
-            if (message.kindNegative != null && message.hasOwnProperty("kindNegative"))
+            if (message.kindNegative != null && Object.hasOwnProperty.call(message, "kindNegative"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.kindNegative = typeof message.kindNegative === "number" ? BigInt(message.kindNegative) : $util.Long.fromBits(message.kindNegative.low >>> 0, message.kindNegative.high >>> 0, true).toBigInt();
                 else if (typeof message.kindNegative === "number")
                     object.kindNegative = options.longs === String ? String(message.kindNegative) : message.kindNegative;
                 else
                     object.kindNegative = options.longs === String ? $util.Long.prototype.toString.call(message.kindNegative) : options.longs === Number ? new $util.LongBits(message.kindNegative.low >>> 0, message.kindNegative.high >>> 0).toNumber(true) : message.kindNegative;
-            if (message.kindPositive != null && message.hasOwnProperty("kindPositive"))
+            if (message.kindPositive != null && Object.hasOwnProperty.call(message, "kindPositive"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.kindPositive = typeof message.kindPositive === "number" ? BigInt(message.kindPositive) : $util.Long.fromBits(message.kindPositive.low >>> 0, message.kindPositive.high >>> 0, true).toBigInt();
                 else if (typeof message.kindPositive === "number")
                     object.kindPositive = options.longs === String ? String(message.kindPositive) : message.kindPositive;
                 else
                     object.kindPositive = options.longs === String ? $util.Long.prototype.toString.call(message.kindPositive) : options.longs === Number ? new $util.LongBits(message.kindPositive.low >>> 0, message.kindPositive.high >>> 0).toNumber(true) : message.kindPositive;
-            if (message.kindReport != null && message.hasOwnProperty("kindReport"))
+            if (message.kindReport != null && Object.hasOwnProperty.call(message, "kindReport"))
                 object.kindReport = options.enums === String ? $root.AICommon.BotFeedbackMessage.ReportKind[message.kindReport] === undefined ? message.kindReport : $root.AICommon.BotFeedbackMessage.ReportKind[message.kindReport] : message.kindReport;
-            if (message.sideBySideSurveyMetadata != null && message.hasOwnProperty("sideBySideSurveyMetadata"))
+            if (message.sideBySideSurveyMetadata != null && Object.hasOwnProperty.call(message, "sideBySideSurveyMetadata"))
                 object.sideBySideSurveyMetadata = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.toObject(message.sideBySideSurveyMetadata, options, q + 1);
             return object;
         };
@@ -4286,33 +4286,33 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.selectedRequestId != null && message.hasOwnProperty("selectedRequestId"))
+                if (message.selectedRequestId != null && Object.hasOwnProperty.call(message, "selectedRequestId"))
                     if (!$util.isString(message.selectedRequestId))
                         return "selectedRequestId: string expected";
-                if (message.surveyId != null && message.hasOwnProperty("surveyId"))
+                if (message.surveyId != null && Object.hasOwnProperty.call(message, "surveyId"))
                     if (!$util.isInteger(message.surveyId))
                         return "surveyId: integer expected";
-                if (message.simonSessionFbid != null && message.hasOwnProperty("simonSessionFbid"))
+                if (message.simonSessionFbid != null && Object.hasOwnProperty.call(message, "simonSessionFbid"))
                     if (!$util.isString(message.simonSessionFbid))
                         return "simonSessionFbid: string expected";
-                if (message.responseOtid != null && message.hasOwnProperty("responseOtid"))
+                if (message.responseOtid != null && Object.hasOwnProperty.call(message, "responseOtid"))
                     if (!$util.isString(message.responseOtid))
                         return "responseOtid: string expected";
-                if (message.responseTimestampMsString != null && message.hasOwnProperty("responseTimestampMsString"))
+                if (message.responseTimestampMsString != null && Object.hasOwnProperty.call(message, "responseTimestampMsString"))
                     if (!$util.isString(message.responseTimestampMsString))
                         return "responseTimestampMsString: string expected";
-                if (message.isSelectedResponsePrimary != null && message.hasOwnProperty("isSelectedResponsePrimary"))
+                if (message.isSelectedResponsePrimary != null && Object.hasOwnProperty.call(message, "isSelectedResponsePrimary"))
                     if (typeof message.isSelectedResponsePrimary !== "boolean")
                         return "isSelectedResponsePrimary: boolean expected";
-                if (message.messageIdToEdit != null && message.hasOwnProperty("messageIdToEdit"))
+                if (message.messageIdToEdit != null && Object.hasOwnProperty.call(message, "messageIdToEdit"))
                     if (!$util.isString(message.messageIdToEdit))
                         return "messageIdToEdit: string expected";
-                if (message.analyticsData != null && message.hasOwnProperty("analyticsData")) {
+                if (message.analyticsData != null && Object.hasOwnProperty.call(message, "analyticsData")) {
                     var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.verify(message.analyticsData, long + 1);
                     if (error)
                         return "analyticsData." + error;
                 }
-                if (message.metaAiAnalyticsData != null && message.hasOwnProperty("metaAiAnalyticsData")) {
+                if (message.metaAiAnalyticsData != null && Object.hasOwnProperty.call(message, "metaAiAnalyticsData")) {
                     var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.verify(message.metaAiAnalyticsData, long + 1);
                     if (error)
                         return "metaAiAnalyticsData." + error;
@@ -4393,23 +4393,23 @@ $root.AICommon = (function() {
                     object.analyticsData = null;
                     object.metaAiAnalyticsData = null;
                 }
-                if (message.selectedRequestId != null && message.hasOwnProperty("selectedRequestId"))
+                if (message.selectedRequestId != null && Object.hasOwnProperty.call(message, "selectedRequestId"))
                     object.selectedRequestId = message.selectedRequestId;
-                if (message.surveyId != null && message.hasOwnProperty("surveyId"))
+                if (message.surveyId != null && Object.hasOwnProperty.call(message, "surveyId"))
                     object.surveyId = message.surveyId;
-                if (message.simonSessionFbid != null && message.hasOwnProperty("simonSessionFbid"))
+                if (message.simonSessionFbid != null && Object.hasOwnProperty.call(message, "simonSessionFbid"))
                     object.simonSessionFbid = message.simonSessionFbid;
-                if (message.responseOtid != null && message.hasOwnProperty("responseOtid"))
+                if (message.responseOtid != null && Object.hasOwnProperty.call(message, "responseOtid"))
                     object.responseOtid = message.responseOtid;
-                if (message.responseTimestampMsString != null && message.hasOwnProperty("responseTimestampMsString"))
+                if (message.responseTimestampMsString != null && Object.hasOwnProperty.call(message, "responseTimestampMsString"))
                     object.responseTimestampMsString = message.responseTimestampMsString;
-                if (message.isSelectedResponsePrimary != null && message.hasOwnProperty("isSelectedResponsePrimary"))
+                if (message.isSelectedResponsePrimary != null && Object.hasOwnProperty.call(message, "isSelectedResponsePrimary"))
                     object.isSelectedResponsePrimary = message.isSelectedResponsePrimary;
-                if (message.messageIdToEdit != null && message.hasOwnProperty("messageIdToEdit"))
+                if (message.messageIdToEdit != null && Object.hasOwnProperty.call(message, "messageIdToEdit"))
                     object.messageIdToEdit = message.messageIdToEdit;
-                if (message.analyticsData != null && message.hasOwnProperty("analyticsData"))
+                if (message.analyticsData != null && Object.hasOwnProperty.call(message, "analyticsData"))
                     object.analyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.toObject(message.analyticsData, options, q + 1);
-                if (message.metaAiAnalyticsData != null && message.hasOwnProperty("metaAiAnalyticsData"))
+                if (message.metaAiAnalyticsData != null && Object.hasOwnProperty.call(message, "metaAiAnalyticsData"))
                     object.metaAiAnalyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.toObject(message.metaAiAnalyticsData, options, q + 1);
                 return object;
             };
@@ -4615,13 +4615,13 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.tessaEvent != null && message.hasOwnProperty("tessaEvent"))
+                    if (message.tessaEvent != null && Object.hasOwnProperty.call(message, "tessaEvent"))
                         if (!$util.isString(message.tessaEvent))
                             return "tessaEvent: string expected";
-                    if (message.tessaSessionFbid != null && message.hasOwnProperty("tessaSessionFbid"))
+                    if (message.tessaSessionFbid != null && Object.hasOwnProperty.call(message, "tessaSessionFbid"))
                         if (!$util.isString(message.tessaSessionFbid))
                             return "tessaSessionFbid: string expected";
-                    if (message.simonSessionFbid != null && message.hasOwnProperty("simonSessionFbid"))
+                    if (message.simonSessionFbid != null && Object.hasOwnProperty.call(message, "simonSessionFbid"))
                         if (!$util.isString(message.simonSessionFbid))
                             return "simonSessionFbid: string expected";
                     return null;
@@ -4676,11 +4676,11 @@ $root.AICommon = (function() {
                         object.tessaSessionFbid = "";
                         object.simonSessionFbid = "";
                     }
-                    if (message.tessaEvent != null && message.hasOwnProperty("tessaEvent"))
+                    if (message.tessaEvent != null && Object.hasOwnProperty.call(message, "tessaEvent"))
                         object.tessaEvent = message.tessaEvent;
-                    if (message.tessaSessionFbid != null && message.hasOwnProperty("tessaSessionFbid"))
+                    if (message.tessaSessionFbid != null && Object.hasOwnProperty.call(message, "tessaSessionFbid"))
                         object.tessaSessionFbid = message.tessaSessionFbid;
-                    if (message.simonSessionFbid != null && message.hasOwnProperty("simonSessionFbid"))
+                    if (message.simonSessionFbid != null && Object.hasOwnProperty.call(message, "simonSessionFbid"))
                         object.simonSessionFbid = message.simonSessionFbid;
                     return object;
                 };
@@ -4979,39 +4979,39 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.surveyId != null && message.hasOwnProperty("surveyId"))
+                    if (message.surveyId != null && Object.hasOwnProperty.call(message, "surveyId"))
                         if (!$util.isInteger(message.surveyId))
                             return "surveyId: integer expected";
-                    if (message.primaryResponseId != null && message.hasOwnProperty("primaryResponseId"))
+                    if (message.primaryResponseId != null && Object.hasOwnProperty.call(message, "primaryResponseId"))
                         if (!$util.isString(message.primaryResponseId))
                             return "primaryResponseId: string expected";
-                    if (message.testArmName != null && message.hasOwnProperty("testArmName"))
+                    if (message.testArmName != null && Object.hasOwnProperty.call(message, "testArmName"))
                         if (!$util.isString(message.testArmName))
                             return "testArmName: string expected";
-                    if (message.timestampMsString != null && message.hasOwnProperty("timestampMsString"))
+                    if (message.timestampMsString != null && Object.hasOwnProperty.call(message, "timestampMsString"))
                         if (!$util.isString(message.timestampMsString))
                             return "timestampMsString: string expected";
-                    if (message.ctaImpressionEvent != null && message.hasOwnProperty("ctaImpressionEvent")) {
+                    if (message.ctaImpressionEvent != null && Object.hasOwnProperty.call(message, "ctaImpressionEvent")) {
                         var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.verify(message.ctaImpressionEvent, long + 1);
                         if (error)
                             return "ctaImpressionEvent." + error;
                     }
-                    if (message.ctaClickEvent != null && message.hasOwnProperty("ctaClickEvent")) {
+                    if (message.ctaClickEvent != null && Object.hasOwnProperty.call(message, "ctaClickEvent")) {
                         var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.verify(message.ctaClickEvent, long + 1);
                         if (error)
                             return "ctaClickEvent." + error;
                     }
-                    if (message.cardImpressionEvent != null && message.hasOwnProperty("cardImpressionEvent")) {
+                    if (message.cardImpressionEvent != null && Object.hasOwnProperty.call(message, "cardImpressionEvent")) {
                         var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.verify(message.cardImpressionEvent, long + 1);
                         if (error)
                             return "cardImpressionEvent." + error;
                     }
-                    if (message.responseEvent != null && message.hasOwnProperty("responseEvent")) {
+                    if (message.responseEvent != null && Object.hasOwnProperty.call(message, "responseEvent")) {
                         var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.verify(message.responseEvent, long + 1);
                         if (error)
                             return "responseEvent." + error;
                     }
-                    if (message.abandonEvent != null && message.hasOwnProperty("abandonEvent")) {
+                    if (message.abandonEvent != null && Object.hasOwnProperty.call(message, "abandonEvent")) {
                         var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.verify(message.abandonEvent, long + 1);
                         if (error)
                             return "abandonEvent." + error;
@@ -5101,23 +5101,23 @@ $root.AICommon = (function() {
                         object.responseEvent = null;
                         object.abandonEvent = null;
                     }
-                    if (message.surveyId != null && message.hasOwnProperty("surveyId"))
+                    if (message.surveyId != null && Object.hasOwnProperty.call(message, "surveyId"))
                         object.surveyId = message.surveyId;
-                    if (message.primaryResponseId != null && message.hasOwnProperty("primaryResponseId"))
+                    if (message.primaryResponseId != null && Object.hasOwnProperty.call(message, "primaryResponseId"))
                         object.primaryResponseId = message.primaryResponseId;
-                    if (message.testArmName != null && message.hasOwnProperty("testArmName"))
+                    if (message.testArmName != null && Object.hasOwnProperty.call(message, "testArmName"))
                         object.testArmName = message.testArmName;
-                    if (message.timestampMsString != null && message.hasOwnProperty("timestampMsString"))
+                    if (message.timestampMsString != null && Object.hasOwnProperty.call(message, "timestampMsString"))
                         object.timestampMsString = message.timestampMsString;
-                    if (message.ctaImpressionEvent != null && message.hasOwnProperty("ctaImpressionEvent"))
+                    if (message.ctaImpressionEvent != null && Object.hasOwnProperty.call(message, "ctaImpressionEvent"))
                         object.ctaImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.toObject(message.ctaImpressionEvent, options, q + 1);
-                    if (message.ctaClickEvent != null && message.hasOwnProperty("ctaClickEvent"))
+                    if (message.ctaClickEvent != null && Object.hasOwnProperty.call(message, "ctaClickEvent"))
                         object.ctaClickEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.toObject(message.ctaClickEvent, options, q + 1);
-                    if (message.cardImpressionEvent != null && message.hasOwnProperty("cardImpressionEvent"))
+                    if (message.cardImpressionEvent != null && Object.hasOwnProperty.call(message, "cardImpressionEvent"))
                         object.cardImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.toObject(message.cardImpressionEvent, options, q + 1);
-                    if (message.responseEvent != null && message.hasOwnProperty("responseEvent"))
+                    if (message.responseEvent != null && Object.hasOwnProperty.call(message, "responseEvent"))
                         object.responseEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.toObject(message.responseEvent, options, q + 1);
-                    if (message.abandonEvent != null && message.hasOwnProperty("abandonEvent"))
+                    if (message.abandonEvent != null && Object.hasOwnProperty.call(message, "abandonEvent"))
                         object.abandonEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.toObject(message.abandonEvent, options, q + 1);
                     return object;
                 };
@@ -5293,7 +5293,7 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $util.recursionLimit)
                             return "maximum nesting depth exceeded";
-                        if (message.abandonDwellTimeMsString != null && message.hasOwnProperty("abandonDwellTimeMsString"))
+                        if (message.abandonDwellTimeMsString != null && Object.hasOwnProperty.call(message, "abandonDwellTimeMsString"))
                             if (!$util.isString(message.abandonDwellTimeMsString))
                                 return "abandonDwellTimeMsString: string expected";
                         return null;
@@ -5341,7 +5341,7 @@ $root.AICommon = (function() {
                         var object = {};
                         if (options.defaults)
                             object.abandonDwellTimeMsString = "";
-                        if (message.abandonDwellTimeMsString != null && message.hasOwnProperty("abandonDwellTimeMsString"))
+                        if (message.abandonDwellTimeMsString != null && Object.hasOwnProperty.call(message, "abandonDwellTimeMsString"))
                             object.abandonDwellTimeMsString = message.abandonDwellTimeMsString;
                         return object;
                     };
@@ -5535,10 +5535,10 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $util.recursionLimit)
                             return "maximum nesting depth exceeded";
-                        if (message.isSurveyExpired != null && message.hasOwnProperty("isSurveyExpired"))
+                        if (message.isSurveyExpired != null && Object.hasOwnProperty.call(message, "isSurveyExpired"))
                             if (typeof message.isSurveyExpired !== "boolean")
                                 return "isSurveyExpired: boolean expected";
-                        if (message.clickDwellTimeMsString != null && message.hasOwnProperty("clickDwellTimeMsString"))
+                        if (message.clickDwellTimeMsString != null && Object.hasOwnProperty.call(message, "clickDwellTimeMsString"))
                             if (!$util.isString(message.clickDwellTimeMsString))
                                 return "clickDwellTimeMsString: string expected";
                         return null;
@@ -5590,9 +5590,9 @@ $root.AICommon = (function() {
                             object.isSurveyExpired = false;
                             object.clickDwellTimeMsString = "";
                         }
-                        if (message.isSurveyExpired != null && message.hasOwnProperty("isSurveyExpired"))
+                        if (message.isSurveyExpired != null && Object.hasOwnProperty.call(message, "isSurveyExpired"))
                             object.isSurveyExpired = message.isSurveyExpired;
-                        if (message.clickDwellTimeMsString != null && message.hasOwnProperty("clickDwellTimeMsString"))
+                        if (message.clickDwellTimeMsString != null && Object.hasOwnProperty.call(message, "clickDwellTimeMsString"))
                             object.clickDwellTimeMsString = message.clickDwellTimeMsString;
                         return object;
                     };
@@ -5771,7 +5771,7 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $util.recursionLimit)
                             return "maximum nesting depth exceeded";
-                        if (message.isSurveyExpired != null && message.hasOwnProperty("isSurveyExpired"))
+                        if (message.isSurveyExpired != null && Object.hasOwnProperty.call(message, "isSurveyExpired"))
                             if (typeof message.isSurveyExpired !== "boolean")
                                 return "isSurveyExpired: boolean expected";
                         return null;
@@ -5819,7 +5819,7 @@ $root.AICommon = (function() {
                         var object = {};
                         if (options.defaults)
                             object.isSurveyExpired = false;
-                        if (message.isSurveyExpired != null && message.hasOwnProperty("isSurveyExpired"))
+                        if (message.isSurveyExpired != null && Object.hasOwnProperty.call(message, "isSurveyExpired"))
                             object.isSurveyExpired = message.isSurveyExpired;
                         return object;
                     };
@@ -5997,12 +5997,6 @@ $root.AICommon = (function() {
                     SideBySideSurveyCardImpressionEventData.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData)
                             return object;
-                        if (!$util.isObject(object))
-                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData: object expected");
-                        if (long === undefined)
-                            long = 0;
-                        if (long > $util.recursionLimit)
-                            throw Error("maximum nesting depth exceeded");
                         return new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData();
                     };
 
@@ -6208,10 +6202,10 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $util.recursionLimit)
                             return "maximum nesting depth exceeded";
-                        if (message.responseDwellTimeMsString != null && message.hasOwnProperty("responseDwellTimeMsString"))
+                        if (message.responseDwellTimeMsString != null && Object.hasOwnProperty.call(message, "responseDwellTimeMsString"))
                             if (!$util.isString(message.responseDwellTimeMsString))
                                 return "responseDwellTimeMsString: string expected";
-                        if (message.selectedResponseId != null && message.hasOwnProperty("selectedResponseId"))
+                        if (message.selectedResponseId != null && Object.hasOwnProperty.call(message, "selectedResponseId"))
                             if (!$util.isString(message.selectedResponseId))
                                 return "selectedResponseId: string expected";
                         return null;
@@ -6263,9 +6257,9 @@ $root.AICommon = (function() {
                             object.responseDwellTimeMsString = "";
                             object.selectedResponseId = "";
                         }
-                        if (message.responseDwellTimeMsString != null && message.hasOwnProperty("responseDwellTimeMsString"))
+                        if (message.responseDwellTimeMsString != null && Object.hasOwnProperty.call(message, "responseDwellTimeMsString"))
                             object.responseDwellTimeMsString = message.responseDwellTimeMsString;
-                        if (message.selectedResponseId != null && message.hasOwnProperty("selectedResponseId"))
+                        if (message.selectedResponseId != null && Object.hasOwnProperty.call(message, "selectedResponseId"))
                             object.selectedResponseId = message.selectedResponseId;
                         return object;
                     };
@@ -6453,7 +6447,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.botFbid != null && message.hasOwnProperty("botFbid"))
+            if (message.botFbid != null && Object.hasOwnProperty.call(message, "botFbid"))
                 if (!$util.isString(message.botFbid))
                     return "botFbid: string expected";
             return null;
@@ -6501,7 +6495,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.botFbid = "";
-            if (message.botFbid != null && message.hasOwnProperty("botFbid"))
+            if (message.botFbid != null && Object.hasOwnProperty.call(message, "botFbid"))
                 object.botFbid = message.botFbid;
             return object;
         };
@@ -6695,10 +6689,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.bloksVersioningId != null && message.hasOwnProperty("bloksVersioningId"))
+            if (message.bloksVersioningId != null && Object.hasOwnProperty.call(message, "bloksVersioningId"))
                 if (!$util.isString(message.bloksVersioningId))
                     return "bloksVersioningId: string expected";
-            if (message.pixelDensity != null && message.hasOwnProperty("pixelDensity"))
+            if (message.pixelDensity != null && Object.hasOwnProperty.call(message, "pixelDensity"))
                 if (typeof message.pixelDensity !== "number")
                     return "pixelDensity: number expected";
             return null;
@@ -6750,9 +6744,9 @@ $root.AICommon = (function() {
                 object.bloksVersioningId = "";
                 object.pixelDensity = 0;
             }
-            if (message.bloksVersioningId != null && message.hasOwnProperty("bloksVersioningId"))
+            if (message.bloksVersioningId != null && Object.hasOwnProperty.call(message, "bloksVersioningId"))
                 object.bloksVersioningId = message.bloksVersioningId;
-            if (message.pixelDensity != null && message.hasOwnProperty("pixelDensity"))
+            if (message.pixelDensity != null && Object.hasOwnProperty.call(message, "pixelDensity"))
                 object.pixelDensity = options.json && !isFinite(message.pixelDensity) ? String(message.pixelDensity) : message.pixelDensity;
             return object;
         };
@@ -6935,7 +6929,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.participantsMetadata != null && message.hasOwnProperty("participantsMetadata")) {
+            if (message.participantsMetadata != null && Object.hasOwnProperty.call(message, "participantsMetadata")) {
                 if (!Array.isArray(message.participantsMetadata))
                     return "participantsMetadata: array expected";
                 for (var i = 0; i < message.participantsMetadata.length; ++i) {
@@ -7179,7 +7173,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.requestType != null && message.hasOwnProperty("requestType"))
+            if (message.requestType != null && Object.hasOwnProperty.call(message, "requestType"))
                 switch (message.requestType) {
                 default:
                     return "requestType: enum value expected";
@@ -7256,7 +7250,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.requestType = options.enums === String ? "UNSPECIFIED" : 0;
-            if (message.requestType != null && message.hasOwnProperty("requestType"))
+            if (message.requestType != null && Object.hasOwnProperty.call(message, "requestType"))
                 object.requestType = options.enums === String ? $root.AICommon.AISubscriptionRequestType[message.requestType] === undefined ? message.requestType : $root.AICommon.AISubscriptionRequestType[message.requestType] : message.requestType;
             return object;
         };
@@ -8050,198 +8044,198 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.personaId != null && message.hasOwnProperty("personaId"))
+            if (message.personaId != null && Object.hasOwnProperty.call(message, "personaId"))
                 if (!$util.isString(message.personaId))
                     return "personaId: string expected";
-            if (message.pluginMetadata != null && message.hasOwnProperty("pluginMetadata")) {
+            if (message.pluginMetadata != null && Object.hasOwnProperty.call(message, "pluginMetadata")) {
                 var error = $root.AICommon.BotPluginMetadata.verify(message.pluginMetadata, long + 1);
                 if (error)
                     return "pluginMetadata." + error;
             }
-            if (message.suggestedPromptMetadata != null && message.hasOwnProperty("suggestedPromptMetadata")) {
+            if (message.suggestedPromptMetadata != null && Object.hasOwnProperty.call(message, "suggestedPromptMetadata")) {
                 var error = $root.AICommon.BotSuggestedPromptMetadata.verify(message.suggestedPromptMetadata, long + 1);
                 if (error)
                     return "suggestedPromptMetadata." + error;
             }
-            if (message.invokerJid != null && message.hasOwnProperty("invokerJid"))
+            if (message.invokerJid != null && Object.hasOwnProperty.call(message, "invokerJid"))
                 if (!$util.isString(message.invokerJid))
                     return "invokerJid: string expected";
-            if (message.sessionMetadata != null && message.hasOwnProperty("sessionMetadata")) {
+            if (message.sessionMetadata != null && Object.hasOwnProperty.call(message, "sessionMetadata")) {
                 var error = $root.AICommon.BotSessionMetadata.verify(message.sessionMetadata, long + 1);
                 if (error)
                     return "sessionMetadata." + error;
             }
-            if (message.memuMetadata != null && message.hasOwnProperty("memuMetadata")) {
+            if (message.memuMetadata != null && Object.hasOwnProperty.call(message, "memuMetadata")) {
                 var error = $root.AICommon.BotMemuMetadata.verify(message.memuMetadata, long + 1);
                 if (error)
                     return "memuMetadata." + error;
             }
-            if (message.timezone != null && message.hasOwnProperty("timezone"))
+            if (message.timezone != null && Object.hasOwnProperty.call(message, "timezone"))
                 if (!$util.isString(message.timezone))
                     return "timezone: string expected";
-            if (message.reminderMetadata != null && message.hasOwnProperty("reminderMetadata")) {
+            if (message.reminderMetadata != null && Object.hasOwnProperty.call(message, "reminderMetadata")) {
                 var error = $root.AICommon.BotReminderMetadata.verify(message.reminderMetadata, long + 1);
                 if (error)
                     return "reminderMetadata." + error;
             }
-            if (message.modelMetadata != null && message.hasOwnProperty("modelMetadata")) {
+            if (message.modelMetadata != null && Object.hasOwnProperty.call(message, "modelMetadata")) {
                 var error = $root.AICommon.BotModelMetadata.verify(message.modelMetadata, long + 1);
                 if (error)
                     return "modelMetadata." + error;
             }
-            if (message.messageDisclaimerText != null && message.hasOwnProperty("messageDisclaimerText"))
+            if (message.messageDisclaimerText != null && Object.hasOwnProperty.call(message, "messageDisclaimerText"))
                 if (!$util.isString(message.messageDisclaimerText))
                     return "messageDisclaimerText: string expected";
-            if (message.progressIndicatorMetadata != null && message.hasOwnProperty("progressIndicatorMetadata")) {
+            if (message.progressIndicatorMetadata != null && Object.hasOwnProperty.call(message, "progressIndicatorMetadata")) {
                 var error = $root.AICommon.BotProgressIndicatorMetadata.verify(message.progressIndicatorMetadata, long + 1);
                 if (error)
                     return "progressIndicatorMetadata." + error;
             }
-            if (message.capabilityMetadata != null && message.hasOwnProperty("capabilityMetadata")) {
+            if (message.capabilityMetadata != null && Object.hasOwnProperty.call(message, "capabilityMetadata")) {
                 var error = $root.AICommon.BotCapabilityMetadata.verify(message.capabilityMetadata, long + 1);
                 if (error)
                     return "capabilityMetadata." + error;
             }
-            if (message.imagineMetadata != null && message.hasOwnProperty("imagineMetadata")) {
+            if (message.imagineMetadata != null && Object.hasOwnProperty.call(message, "imagineMetadata")) {
                 var error = $root.AICommon.BotImagineMetadata.verify(message.imagineMetadata, long + 1);
                 if (error)
                     return "imagineMetadata." + error;
             }
-            if (message.memoryMetadata != null && message.hasOwnProperty("memoryMetadata")) {
+            if (message.memoryMetadata != null && Object.hasOwnProperty.call(message, "memoryMetadata")) {
                 var error = $root.AICommon.BotMemoryMetadata.verify(message.memoryMetadata, long + 1);
                 if (error)
                     return "memoryMetadata." + error;
             }
-            if (message.renderingMetadata != null && message.hasOwnProperty("renderingMetadata")) {
+            if (message.renderingMetadata != null && Object.hasOwnProperty.call(message, "renderingMetadata")) {
                 var error = $root.AICommon.BotRenderingMetadata.verify(message.renderingMetadata, long + 1);
                 if (error)
                     return "renderingMetadata." + error;
             }
-            if (message.botMetricsMetadata != null && message.hasOwnProperty("botMetricsMetadata")) {
+            if (message.botMetricsMetadata != null && Object.hasOwnProperty.call(message, "botMetricsMetadata")) {
                 var error = $root.AICommon.BotMetricsMetadata.verify(message.botMetricsMetadata, long + 1);
                 if (error)
                     return "botMetricsMetadata." + error;
             }
-            if (message.botLinkedAccountsMetadata != null && message.hasOwnProperty("botLinkedAccountsMetadata")) {
+            if (message.botLinkedAccountsMetadata != null && Object.hasOwnProperty.call(message, "botLinkedAccountsMetadata")) {
                 var error = $root.AICommon.BotLinkedAccountsMetadata.verify(message.botLinkedAccountsMetadata, long + 1);
                 if (error)
                     return "botLinkedAccountsMetadata." + error;
             }
-            if (message.richResponseSourcesMetadata != null && message.hasOwnProperty("richResponseSourcesMetadata")) {
+            if (message.richResponseSourcesMetadata != null && Object.hasOwnProperty.call(message, "richResponseSourcesMetadata")) {
                 var error = $root.AICommon.BotSourcesMetadata.verify(message.richResponseSourcesMetadata, long + 1);
                 if (error)
                     return "richResponseSourcesMetadata." + error;
             }
-            if (message.aiConversationContext != null && message.hasOwnProperty("aiConversationContext"))
+            if (message.aiConversationContext != null && Object.hasOwnProperty.call(message, "aiConversationContext"))
                 if (!(message.aiConversationContext && typeof message.aiConversationContext.length === "number" || $util.isString(message.aiConversationContext)))
                     return "aiConversationContext: buffer expected";
-            if (message.botPromotionMessageMetadata != null && message.hasOwnProperty("botPromotionMessageMetadata")) {
+            if (message.botPromotionMessageMetadata != null && Object.hasOwnProperty.call(message, "botPromotionMessageMetadata")) {
                 var error = $root.AICommon.BotPromotionMessageMetadata.verify(message.botPromotionMessageMetadata, long + 1);
                 if (error)
                     return "botPromotionMessageMetadata." + error;
             }
-            if (message.botModeSelectionMetadata != null && message.hasOwnProperty("botModeSelectionMetadata")) {
+            if (message.botModeSelectionMetadata != null && Object.hasOwnProperty.call(message, "botModeSelectionMetadata")) {
                 var error = $root.AICommon.BotModeSelectionMetadata.verify(message.botModeSelectionMetadata, long + 1);
                 if (error)
                     return "botModeSelectionMetadata." + error;
             }
-            if (message.botQuotaMetadata != null && message.hasOwnProperty("botQuotaMetadata")) {
+            if (message.botQuotaMetadata != null && Object.hasOwnProperty.call(message, "botQuotaMetadata")) {
                 var error = $root.AICommon.BotQuotaMetadata.verify(message.botQuotaMetadata, long + 1);
                 if (error)
                     return "botQuotaMetadata." + error;
             }
-            if (message.botAgeCollectionMetadata != null && message.hasOwnProperty("botAgeCollectionMetadata")) {
+            if (message.botAgeCollectionMetadata != null && Object.hasOwnProperty.call(message, "botAgeCollectionMetadata")) {
                 var error = $root.AICommon.BotAgeCollectionMetadata.verify(message.botAgeCollectionMetadata, long + 1);
                 if (error)
                     return "botAgeCollectionMetadata." + error;
             }
-            if (message.conversationStarterPromptId != null && message.hasOwnProperty("conversationStarterPromptId"))
+            if (message.conversationStarterPromptId != null && Object.hasOwnProperty.call(message, "conversationStarterPromptId"))
                 if (!$util.isString(message.conversationStarterPromptId))
                     return "conversationStarterPromptId: string expected";
-            if (message.botResponseId != null && message.hasOwnProperty("botResponseId"))
+            if (message.botResponseId != null && Object.hasOwnProperty.call(message, "botResponseId"))
                 if (!$util.isString(message.botResponseId))
                     return "botResponseId: string expected";
-            if (message.verificationMetadata != null && message.hasOwnProperty("verificationMetadata")) {
+            if (message.verificationMetadata != null && Object.hasOwnProperty.call(message, "verificationMetadata")) {
                 var error = $root.AICommon.BotSignatureVerificationMetadata.verify(message.verificationMetadata, long + 1);
                 if (error)
                     return "verificationMetadata." + error;
             }
-            if (message.unifiedResponseMutation != null && message.hasOwnProperty("unifiedResponseMutation")) {
+            if (message.unifiedResponseMutation != null && Object.hasOwnProperty.call(message, "unifiedResponseMutation")) {
                 var error = $root.AICommon.BotUnifiedResponseMutation.verify(message.unifiedResponseMutation, long + 1);
                 if (error)
                     return "unifiedResponseMutation." + error;
             }
-            if (message.botMessageOriginMetadata != null && message.hasOwnProperty("botMessageOriginMetadata")) {
+            if (message.botMessageOriginMetadata != null && Object.hasOwnProperty.call(message, "botMessageOriginMetadata")) {
                 var error = $root.AICommon.BotMessageOriginMetadata.verify(message.botMessageOriginMetadata, long + 1);
                 if (error)
                     return "botMessageOriginMetadata." + error;
             }
-            if (message.inThreadSurveyMetadata != null && message.hasOwnProperty("inThreadSurveyMetadata")) {
+            if (message.inThreadSurveyMetadata != null && Object.hasOwnProperty.call(message, "inThreadSurveyMetadata")) {
                 var error = $root.AICommon.InThreadSurveyMetadata.verify(message.inThreadSurveyMetadata, long + 1);
                 if (error)
                     return "inThreadSurveyMetadata." + error;
             }
-            if (message.botThreadInfo != null && message.hasOwnProperty("botThreadInfo")) {
+            if (message.botThreadInfo != null && Object.hasOwnProperty.call(message, "botThreadInfo")) {
                 var error = $root.AICommon.AIThreadInfo.verify(message.botThreadInfo, long + 1);
                 if (error)
                     return "botThreadInfo." + error;
             }
-            if (message.regenerateMetadata != null && message.hasOwnProperty("regenerateMetadata")) {
+            if (message.regenerateMetadata != null && Object.hasOwnProperty.call(message, "regenerateMetadata")) {
                 var error = $root.AICommon.AIRegenerateMetadata.verify(message.regenerateMetadata, long + 1);
                 if (error)
                     return "regenerateMetadata." + error;
             }
-            if (message.sessionTransparencyMetadata != null && message.hasOwnProperty("sessionTransparencyMetadata")) {
+            if (message.sessionTransparencyMetadata != null && Object.hasOwnProperty.call(message, "sessionTransparencyMetadata")) {
                 var error = $root.AICommon.SessionTransparencyMetadata.verify(message.sessionTransparencyMetadata, long + 1);
                 if (error)
                     return "sessionTransparencyMetadata." + error;
             }
-            if (message.botDocumentMessageMetadata != null && message.hasOwnProperty("botDocumentMessageMetadata")) {
+            if (message.botDocumentMessageMetadata != null && Object.hasOwnProperty.call(message, "botDocumentMessageMetadata")) {
                 var error = $root.AICommon.BotDocumentMessageMetadata.verify(message.botDocumentMessageMetadata, long + 1);
                 if (error)
                     return "botDocumentMessageMetadata." + error;
             }
-            if (message.botGroupMetadata != null && message.hasOwnProperty("botGroupMetadata")) {
+            if (message.botGroupMetadata != null && Object.hasOwnProperty.call(message, "botGroupMetadata")) {
                 var error = $root.AICommon.BotGroupMetadata.verify(message.botGroupMetadata, long + 1);
                 if (error)
                     return "botGroupMetadata." + error;
             }
-            if (message.botRenderingConfigMetadata != null && message.hasOwnProperty("botRenderingConfigMetadata")) {
+            if (message.botRenderingConfigMetadata != null && Object.hasOwnProperty.call(message, "botRenderingConfigMetadata")) {
                 var error = $root.AICommon.BotRenderingConfigMetadata.verify(message.botRenderingConfigMetadata, long + 1);
                 if (error)
                     return "botRenderingConfigMetadata." + error;
             }
-            if (message.botInfrastructureDiagnostics != null && message.hasOwnProperty("botInfrastructureDiagnostics")) {
+            if (message.botInfrastructureDiagnostics != null && Object.hasOwnProperty.call(message, "botInfrastructureDiagnostics")) {
                 var error = $root.AICommon.BotInfrastructureDiagnostics.verify(message.botInfrastructureDiagnostics, long + 1);
                 if (error)
                     return "botInfrastructureDiagnostics." + error;
             }
-            if (message.aiMediaCollectionMetadata != null && message.hasOwnProperty("aiMediaCollectionMetadata")) {
+            if (message.aiMediaCollectionMetadata != null && Object.hasOwnProperty.call(message, "aiMediaCollectionMetadata")) {
                 var error = $root.AICommon.AIMediaCollectionMetadata.verify(message.aiMediaCollectionMetadata, long + 1);
                 if (error)
                     return "aiMediaCollectionMetadata." + error;
             }
-            if (message.commandMetadata != null && message.hasOwnProperty("commandMetadata")) {
+            if (message.commandMetadata != null && Object.hasOwnProperty.call(message, "commandMetadata")) {
                 var error = $root.AICommon.BotCommandMetadata.verify(message.commandMetadata, long + 1);
                 if (error)
                     return "commandMetadata." + error;
             }
-            if (message.resolvedToolCallMetadata != null && message.hasOwnProperty("resolvedToolCallMetadata")) {
+            if (message.resolvedToolCallMetadata != null && Object.hasOwnProperty.call(message, "resolvedToolCallMetadata")) {
                 var error = $root.AICommon.BotResolvedToolCallMetadata.verify(message.resolvedToolCallMetadata, long + 1);
                 if (error)
                     return "resolvedToolCallMetadata." + error;
             }
-            if (message.subscriptionUpsellMetadata != null && message.hasOwnProperty("subscriptionUpsellMetadata")) {
+            if (message.subscriptionUpsellMetadata != null && Object.hasOwnProperty.call(message, "subscriptionUpsellMetadata")) {
                 var error = $root.AICommon.AISubscriptionUpsellMetadata.verify(message.subscriptionUpsellMetadata, long + 1);
                 if (error)
                     return "subscriptionUpsellMetadata." + error;
             }
-            if (message.pttPromptMetadata != null && message.hasOwnProperty("pttPromptMetadata")) {
+            if (message.pttPromptMetadata != null && Object.hasOwnProperty.call(message, "pttPromptMetadata")) {
                 var error = $root.AICommon.BotPttPromptMetadata.verify(message.pttPromptMetadata, long + 1);
                 if (error)
                     return "pttPromptMetadata." + error;
             }
-            if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
+            if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 if (!(message.internalMetadata && typeof message.internalMetadata.length === "number" || $util.isString(message.internalMetadata)))
                     return "internalMetadata: buffer expected";
             return null;
@@ -8533,89 +8527,89 @@ $root.AICommon = (function() {
                         object.internalMetadata = $util.newBuffer(object.internalMetadata);
                 }
             }
-            if (message.personaId != null && message.hasOwnProperty("personaId"))
+            if (message.personaId != null && Object.hasOwnProperty.call(message, "personaId"))
                 object.personaId = message.personaId;
-            if (message.pluginMetadata != null && message.hasOwnProperty("pluginMetadata"))
+            if (message.pluginMetadata != null && Object.hasOwnProperty.call(message, "pluginMetadata"))
                 object.pluginMetadata = $root.AICommon.BotPluginMetadata.toObject(message.pluginMetadata, options, q + 1);
-            if (message.suggestedPromptMetadata != null && message.hasOwnProperty("suggestedPromptMetadata"))
+            if (message.suggestedPromptMetadata != null && Object.hasOwnProperty.call(message, "suggestedPromptMetadata"))
                 object.suggestedPromptMetadata = $root.AICommon.BotSuggestedPromptMetadata.toObject(message.suggestedPromptMetadata, options, q + 1);
-            if (message.invokerJid != null && message.hasOwnProperty("invokerJid"))
+            if (message.invokerJid != null && Object.hasOwnProperty.call(message, "invokerJid"))
                 object.invokerJid = message.invokerJid;
-            if (message.sessionMetadata != null && message.hasOwnProperty("sessionMetadata"))
+            if (message.sessionMetadata != null && Object.hasOwnProperty.call(message, "sessionMetadata"))
                 object.sessionMetadata = $root.AICommon.BotSessionMetadata.toObject(message.sessionMetadata, options, q + 1);
-            if (message.memuMetadata != null && message.hasOwnProperty("memuMetadata"))
+            if (message.memuMetadata != null && Object.hasOwnProperty.call(message, "memuMetadata"))
                 object.memuMetadata = $root.AICommon.BotMemuMetadata.toObject(message.memuMetadata, options, q + 1);
-            if (message.timezone != null && message.hasOwnProperty("timezone"))
+            if (message.timezone != null && Object.hasOwnProperty.call(message, "timezone"))
                 object.timezone = message.timezone;
-            if (message.reminderMetadata != null && message.hasOwnProperty("reminderMetadata"))
+            if (message.reminderMetadata != null && Object.hasOwnProperty.call(message, "reminderMetadata"))
                 object.reminderMetadata = $root.AICommon.BotReminderMetadata.toObject(message.reminderMetadata, options, q + 1);
-            if (message.modelMetadata != null && message.hasOwnProperty("modelMetadata"))
+            if (message.modelMetadata != null && Object.hasOwnProperty.call(message, "modelMetadata"))
                 object.modelMetadata = $root.AICommon.BotModelMetadata.toObject(message.modelMetadata, options, q + 1);
-            if (message.messageDisclaimerText != null && message.hasOwnProperty("messageDisclaimerText"))
+            if (message.messageDisclaimerText != null && Object.hasOwnProperty.call(message, "messageDisclaimerText"))
                 object.messageDisclaimerText = message.messageDisclaimerText;
-            if (message.progressIndicatorMetadata != null && message.hasOwnProperty("progressIndicatorMetadata"))
+            if (message.progressIndicatorMetadata != null && Object.hasOwnProperty.call(message, "progressIndicatorMetadata"))
                 object.progressIndicatorMetadata = $root.AICommon.BotProgressIndicatorMetadata.toObject(message.progressIndicatorMetadata, options, q + 1);
-            if (message.capabilityMetadata != null && message.hasOwnProperty("capabilityMetadata"))
+            if (message.capabilityMetadata != null && Object.hasOwnProperty.call(message, "capabilityMetadata"))
                 object.capabilityMetadata = $root.AICommon.BotCapabilityMetadata.toObject(message.capabilityMetadata, options, q + 1);
-            if (message.imagineMetadata != null && message.hasOwnProperty("imagineMetadata"))
+            if (message.imagineMetadata != null && Object.hasOwnProperty.call(message, "imagineMetadata"))
                 object.imagineMetadata = $root.AICommon.BotImagineMetadata.toObject(message.imagineMetadata, options, q + 1);
-            if (message.memoryMetadata != null && message.hasOwnProperty("memoryMetadata"))
+            if (message.memoryMetadata != null && Object.hasOwnProperty.call(message, "memoryMetadata"))
                 object.memoryMetadata = $root.AICommon.BotMemoryMetadata.toObject(message.memoryMetadata, options, q + 1);
-            if (message.renderingMetadata != null && message.hasOwnProperty("renderingMetadata"))
+            if (message.renderingMetadata != null && Object.hasOwnProperty.call(message, "renderingMetadata"))
                 object.renderingMetadata = $root.AICommon.BotRenderingMetadata.toObject(message.renderingMetadata, options, q + 1);
-            if (message.botMetricsMetadata != null && message.hasOwnProperty("botMetricsMetadata"))
+            if (message.botMetricsMetadata != null && Object.hasOwnProperty.call(message, "botMetricsMetadata"))
                 object.botMetricsMetadata = $root.AICommon.BotMetricsMetadata.toObject(message.botMetricsMetadata, options, q + 1);
-            if (message.botLinkedAccountsMetadata != null && message.hasOwnProperty("botLinkedAccountsMetadata"))
+            if (message.botLinkedAccountsMetadata != null && Object.hasOwnProperty.call(message, "botLinkedAccountsMetadata"))
                 object.botLinkedAccountsMetadata = $root.AICommon.BotLinkedAccountsMetadata.toObject(message.botLinkedAccountsMetadata, options, q + 1);
-            if (message.richResponseSourcesMetadata != null && message.hasOwnProperty("richResponseSourcesMetadata"))
+            if (message.richResponseSourcesMetadata != null && Object.hasOwnProperty.call(message, "richResponseSourcesMetadata"))
                 object.richResponseSourcesMetadata = $root.AICommon.BotSourcesMetadata.toObject(message.richResponseSourcesMetadata, options, q + 1);
-            if (message.aiConversationContext != null && message.hasOwnProperty("aiConversationContext"))
+            if (message.aiConversationContext != null && Object.hasOwnProperty.call(message, "aiConversationContext"))
                 object.aiConversationContext = options.bytes === String ? $util.base64.encode(message.aiConversationContext, 0, message.aiConversationContext.length) : options.bytes === Array ? Array.prototype.slice.call(message.aiConversationContext) : message.aiConversationContext;
-            if (message.botPromotionMessageMetadata != null && message.hasOwnProperty("botPromotionMessageMetadata"))
+            if (message.botPromotionMessageMetadata != null && Object.hasOwnProperty.call(message, "botPromotionMessageMetadata"))
                 object.botPromotionMessageMetadata = $root.AICommon.BotPromotionMessageMetadata.toObject(message.botPromotionMessageMetadata, options, q + 1);
-            if (message.botModeSelectionMetadata != null && message.hasOwnProperty("botModeSelectionMetadata"))
+            if (message.botModeSelectionMetadata != null && Object.hasOwnProperty.call(message, "botModeSelectionMetadata"))
                 object.botModeSelectionMetadata = $root.AICommon.BotModeSelectionMetadata.toObject(message.botModeSelectionMetadata, options, q + 1);
-            if (message.botQuotaMetadata != null && message.hasOwnProperty("botQuotaMetadata"))
+            if (message.botQuotaMetadata != null && Object.hasOwnProperty.call(message, "botQuotaMetadata"))
                 object.botQuotaMetadata = $root.AICommon.BotQuotaMetadata.toObject(message.botQuotaMetadata, options, q + 1);
-            if (message.botAgeCollectionMetadata != null && message.hasOwnProperty("botAgeCollectionMetadata"))
+            if (message.botAgeCollectionMetadata != null && Object.hasOwnProperty.call(message, "botAgeCollectionMetadata"))
                 object.botAgeCollectionMetadata = $root.AICommon.BotAgeCollectionMetadata.toObject(message.botAgeCollectionMetadata, options, q + 1);
-            if (message.conversationStarterPromptId != null && message.hasOwnProperty("conversationStarterPromptId"))
+            if (message.conversationStarterPromptId != null && Object.hasOwnProperty.call(message, "conversationStarterPromptId"))
                 object.conversationStarterPromptId = message.conversationStarterPromptId;
-            if (message.botResponseId != null && message.hasOwnProperty("botResponseId"))
+            if (message.botResponseId != null && Object.hasOwnProperty.call(message, "botResponseId"))
                 object.botResponseId = message.botResponseId;
-            if (message.verificationMetadata != null && message.hasOwnProperty("verificationMetadata"))
+            if (message.verificationMetadata != null && Object.hasOwnProperty.call(message, "verificationMetadata"))
                 object.verificationMetadata = $root.AICommon.BotSignatureVerificationMetadata.toObject(message.verificationMetadata, options, q + 1);
-            if (message.unifiedResponseMutation != null && message.hasOwnProperty("unifiedResponseMutation"))
+            if (message.unifiedResponseMutation != null && Object.hasOwnProperty.call(message, "unifiedResponseMutation"))
                 object.unifiedResponseMutation = $root.AICommon.BotUnifiedResponseMutation.toObject(message.unifiedResponseMutation, options, q + 1);
-            if (message.botMessageOriginMetadata != null && message.hasOwnProperty("botMessageOriginMetadata"))
+            if (message.botMessageOriginMetadata != null && Object.hasOwnProperty.call(message, "botMessageOriginMetadata"))
                 object.botMessageOriginMetadata = $root.AICommon.BotMessageOriginMetadata.toObject(message.botMessageOriginMetadata, options, q + 1);
-            if (message.inThreadSurveyMetadata != null && message.hasOwnProperty("inThreadSurveyMetadata"))
+            if (message.inThreadSurveyMetadata != null && Object.hasOwnProperty.call(message, "inThreadSurveyMetadata"))
                 object.inThreadSurveyMetadata = $root.AICommon.InThreadSurveyMetadata.toObject(message.inThreadSurveyMetadata, options, q + 1);
-            if (message.botThreadInfo != null && message.hasOwnProperty("botThreadInfo"))
+            if (message.botThreadInfo != null && Object.hasOwnProperty.call(message, "botThreadInfo"))
                 object.botThreadInfo = $root.AICommon.AIThreadInfo.toObject(message.botThreadInfo, options, q + 1);
-            if (message.regenerateMetadata != null && message.hasOwnProperty("regenerateMetadata"))
+            if (message.regenerateMetadata != null && Object.hasOwnProperty.call(message, "regenerateMetadata"))
                 object.regenerateMetadata = $root.AICommon.AIRegenerateMetadata.toObject(message.regenerateMetadata, options, q + 1);
-            if (message.sessionTransparencyMetadata != null && message.hasOwnProperty("sessionTransparencyMetadata"))
+            if (message.sessionTransparencyMetadata != null && Object.hasOwnProperty.call(message, "sessionTransparencyMetadata"))
                 object.sessionTransparencyMetadata = $root.AICommon.SessionTransparencyMetadata.toObject(message.sessionTransparencyMetadata, options, q + 1);
-            if (message.botDocumentMessageMetadata != null && message.hasOwnProperty("botDocumentMessageMetadata"))
+            if (message.botDocumentMessageMetadata != null && Object.hasOwnProperty.call(message, "botDocumentMessageMetadata"))
                 object.botDocumentMessageMetadata = $root.AICommon.BotDocumentMessageMetadata.toObject(message.botDocumentMessageMetadata, options, q + 1);
-            if (message.botGroupMetadata != null && message.hasOwnProperty("botGroupMetadata"))
+            if (message.botGroupMetadata != null && Object.hasOwnProperty.call(message, "botGroupMetadata"))
                 object.botGroupMetadata = $root.AICommon.BotGroupMetadata.toObject(message.botGroupMetadata, options, q + 1);
-            if (message.botRenderingConfigMetadata != null && message.hasOwnProperty("botRenderingConfigMetadata"))
+            if (message.botRenderingConfigMetadata != null && Object.hasOwnProperty.call(message, "botRenderingConfigMetadata"))
                 object.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.toObject(message.botRenderingConfigMetadata, options, q + 1);
-            if (message.botInfrastructureDiagnostics != null && message.hasOwnProperty("botInfrastructureDiagnostics"))
+            if (message.botInfrastructureDiagnostics != null && Object.hasOwnProperty.call(message, "botInfrastructureDiagnostics"))
                 object.botInfrastructureDiagnostics = $root.AICommon.BotInfrastructureDiagnostics.toObject(message.botInfrastructureDiagnostics, options, q + 1);
-            if (message.aiMediaCollectionMetadata != null && message.hasOwnProperty("aiMediaCollectionMetadata"))
+            if (message.aiMediaCollectionMetadata != null && Object.hasOwnProperty.call(message, "aiMediaCollectionMetadata"))
                 object.aiMediaCollectionMetadata = $root.AICommon.AIMediaCollectionMetadata.toObject(message.aiMediaCollectionMetadata, options, q + 1);
-            if (message.commandMetadata != null && message.hasOwnProperty("commandMetadata"))
+            if (message.commandMetadata != null && Object.hasOwnProperty.call(message, "commandMetadata"))
                 object.commandMetadata = $root.AICommon.BotCommandMetadata.toObject(message.commandMetadata, options, q + 1);
-            if (message.resolvedToolCallMetadata != null && message.hasOwnProperty("resolvedToolCallMetadata"))
+            if (message.resolvedToolCallMetadata != null && Object.hasOwnProperty.call(message, "resolvedToolCallMetadata"))
                 object.resolvedToolCallMetadata = $root.AICommon.BotResolvedToolCallMetadata.toObject(message.resolvedToolCallMetadata, options, q + 1);
-            if (message.subscriptionUpsellMetadata != null && message.hasOwnProperty("subscriptionUpsellMetadata"))
+            if (message.subscriptionUpsellMetadata != null && Object.hasOwnProperty.call(message, "subscriptionUpsellMetadata"))
                 object.subscriptionUpsellMetadata = $root.AICommon.AISubscriptionUpsellMetadata.toObject(message.subscriptionUpsellMetadata, options, q + 1);
-            if (message.pttPromptMetadata != null && message.hasOwnProperty("pttPromptMetadata"))
+            if (message.pttPromptMetadata != null && Object.hasOwnProperty.call(message, "pttPromptMetadata"))
                 object.pttPromptMetadata = $root.AICommon.BotPttPromptMetadata.toObject(message.pttPromptMetadata, options, q + 1);
-            if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
+            if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 object.internalMetadata = options.bytes === String ? $util.base64.encode(message.internalMetadata, 0, message.internalMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.internalMetadata) : message.internalMetadata;
             return object;
         };
@@ -8794,7 +8788,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.transcript != null && message.hasOwnProperty("transcript"))
+            if (message.transcript != null && Object.hasOwnProperty.call(message, "transcript"))
                 if (!$util.isString(message.transcript))
                     return "transcript: string expected";
             return null;
@@ -8842,7 +8836,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.transcript = "";
-            if (message.transcript != null && message.hasOwnProperty("transcript"))
+            if (message.transcript != null && Object.hasOwnProperty.call(message, "transcript"))
                 object.transcript = message.transcript;
             return object;
         };
@@ -9036,10 +9030,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.toolCallId != null && message.hasOwnProperty("toolCallId"))
+            if (message.toolCallId != null && Object.hasOwnProperty.call(message, "toolCallId"))
                 if (!$util.isString(message.toolCallId))
                     return "toolCallId: string expected";
-            if (message.resolutionDataSerialized != null && message.hasOwnProperty("resolutionDataSerialized"))
+            if (message.resolutionDataSerialized != null && Object.hasOwnProperty.call(message, "resolutionDataSerialized"))
                 if (!$util.isString(message.resolutionDataSerialized))
                     return "resolutionDataSerialized: string expected";
             return null;
@@ -9091,9 +9085,9 @@ $root.AICommon = (function() {
                 object.toolCallId = "";
                 object.resolutionDataSerialized = "";
             }
-            if (message.toolCallId != null && message.hasOwnProperty("toolCallId"))
+            if (message.toolCallId != null && Object.hasOwnProperty.call(message, "toolCallId"))
                 object.toolCallId = message.toolCallId;
-            if (message.resolutionDataSerialized != null && message.hasOwnProperty("resolutionDataSerialized"))
+            if (message.resolutionDataSerialized != null && Object.hasOwnProperty.call(message, "resolutionDataSerialized"))
                 object.resolutionDataSerialized = message.resolutionDataSerialized;
             return object;
         };
@@ -9302,13 +9296,13 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.commandName != null && message.hasOwnProperty("commandName"))
+            if (message.commandName != null && Object.hasOwnProperty.call(message, "commandName"))
                 if (!$util.isString(message.commandName))
                     return "commandName: string expected";
-            if (message.commandDescription != null && message.hasOwnProperty("commandDescription"))
+            if (message.commandDescription != null && Object.hasOwnProperty.call(message, "commandDescription"))
                 if (!$util.isString(message.commandDescription))
                     return "commandDescription: string expected";
-            if (message.commandPrompt != null && message.hasOwnProperty("commandPrompt"))
+            if (message.commandPrompt != null && Object.hasOwnProperty.call(message, "commandPrompt"))
                 if (!$util.isString(message.commandPrompt))
                     return "commandPrompt: string expected";
             return null;
@@ -9363,11 +9357,11 @@ $root.AICommon = (function() {
                 object.commandDescription = "";
                 object.commandPrompt = "";
             }
-            if (message.commandName != null && message.hasOwnProperty("commandName"))
+            if (message.commandName != null && Object.hasOwnProperty.call(message, "commandName"))
                 object.commandName = message.commandName;
-            if (message.commandDescription != null && message.hasOwnProperty("commandDescription"))
+            if (message.commandDescription != null && Object.hasOwnProperty.call(message, "commandDescription"))
                 object.commandDescription = message.commandDescription;
-            if (message.commandPrompt != null && message.hasOwnProperty("commandPrompt"))
+            if (message.commandPrompt != null && Object.hasOwnProperty.call(message, "commandPrompt"))
                 object.commandPrompt = message.commandPrompt;
             return object;
         };
@@ -9546,7 +9540,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.hatchMetadataSync != null && message.hasOwnProperty("hatchMetadataSync")) {
+            if (message.hatchMetadataSync != null && Object.hasOwnProperty.call(message, "hatchMetadataSync")) {
                 var error = $root.AICommon.HatchMetadataSync.verify(message.hatchMetadataSync, long + 1);
                 if (error)
                     return "hatchMetadataSync." + error;
@@ -9599,7 +9593,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.hatchMetadataSync = null;
-            if (message.hatchMetadataSync != null && message.hasOwnProperty("hatchMetadataSync"))
+            if (message.hatchMetadataSync != null && Object.hasOwnProperty.call(message, "hatchMetadataSync"))
                 object.hatchMetadataSync = $root.AICommon.HatchMetadataSync.toObject(message.hatchMetadataSync, options, q + 1);
             return object;
         };
@@ -9808,13 +9802,13 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.data != null && message.hasOwnProperty("data"))
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
                 if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
                     return "data: buffer expected";
-            if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
+            if (message.timestampMs != null && Object.hasOwnProperty.call(message, "timestampMs"))
                 if (!$util.isInteger(message.timestampMs) && !(message.timestampMs && $util.isInteger(message.timestampMs.low) && $util.isInteger(message.timestampMs.high)))
                     return "timestampMs: integer|Long expected";
-            if (message.requestId != null && message.hasOwnProperty("requestId"))
+            if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
                 if (!$util.isString(message.requestId))
                     return "requestId: string expected";
             return null;
@@ -9889,16 +9883,16 @@ $root.AICommon = (function() {
                     object.timestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.requestId = "";
             }
-            if (message.data != null && message.hasOwnProperty("data"))
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
                 object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
-            if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
+            if (message.timestampMs != null && Object.hasOwnProperty.call(message, "timestampMs"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.timestampMs = typeof message.timestampMs === "number" ? BigInt(message.timestampMs) : $util.Long.fromBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0, false).toBigInt();
                 else if (typeof message.timestampMs === "number")
                     object.timestampMs = options.longs === String ? String(message.timestampMs) : message.timestampMs;
                 else
                     object.timestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.timestampMs) : options.longs === Number ? new $util.LongBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0).toNumber() : message.timestampMs;
-            if (message.requestId != null && message.hasOwnProperty("requestId"))
+            if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
                 object.requestId = message.requestId;
             return object;
         };
@@ -10107,13 +10101,13 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.collectionId != null && message.hasOwnProperty("collectionId"))
+            if (message.collectionId != null && Object.hasOwnProperty.call(message, "collectionId"))
                 if (!$util.isString(message.collectionId))
                     return "collectionId: string expected";
-            if (message.expectedMediaCount != null && message.hasOwnProperty("expectedMediaCount"))
+            if (message.expectedMediaCount != null && Object.hasOwnProperty.call(message, "expectedMediaCount"))
                 if (!$util.isInteger(message.expectedMediaCount))
                     return "expectedMediaCount: integer expected";
-            if (message.hasGlobalCaption != null && message.hasOwnProperty("hasGlobalCaption"))
+            if (message.hasGlobalCaption != null && Object.hasOwnProperty.call(message, "hasGlobalCaption"))
                 if (typeof message.hasGlobalCaption !== "boolean")
                     return "hasGlobalCaption: boolean expected";
             return null;
@@ -10168,11 +10162,11 @@ $root.AICommon = (function() {
                 object.expectedMediaCount = 0;
                 object.hasGlobalCaption = false;
             }
-            if (message.collectionId != null && message.hasOwnProperty("collectionId"))
+            if (message.collectionId != null && Object.hasOwnProperty.call(message, "collectionId"))
                 object.collectionId = message.collectionId;
-            if (message.expectedMediaCount != null && message.hasOwnProperty("expectedMediaCount"))
+            if (message.expectedMediaCount != null && Object.hasOwnProperty.call(message, "expectedMediaCount"))
                 object.expectedMediaCount = message.expectedMediaCount;
-            if (message.hasGlobalCaption != null && message.hasOwnProperty("hasGlobalCaption"))
+            if (message.hasGlobalCaption != null && Object.hasOwnProperty.call(message, "hasGlobalCaption"))
                 object.hasGlobalCaption = message.hasGlobalCaption;
             return object;
         };
@@ -10366,10 +10360,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.collectionId != null && message.hasOwnProperty("collectionId"))
+            if (message.collectionId != null && Object.hasOwnProperty.call(message, "collectionId"))
                 if (!$util.isString(message.collectionId))
                     return "collectionId: string expected";
-            if (message.uploadOrderIndex != null && message.hasOwnProperty("uploadOrderIndex"))
+            if (message.uploadOrderIndex != null && Object.hasOwnProperty.call(message, "uploadOrderIndex"))
                 if (!$util.isInteger(message.uploadOrderIndex))
                     return "uploadOrderIndex: integer expected";
             return null;
@@ -10421,9 +10415,9 @@ $root.AICommon = (function() {
                 object.collectionId = "";
                 object.uploadOrderIndex = 0;
             }
-            if (message.collectionId != null && message.hasOwnProperty("collectionId"))
+            if (message.collectionId != null && Object.hasOwnProperty.call(message, "collectionId"))
                 object.collectionId = message.collectionId;
-            if (message.uploadOrderIndex != null && message.hasOwnProperty("uploadOrderIndex"))
+            if (message.uploadOrderIndex != null && Object.hasOwnProperty.call(message, "uploadOrderIndex"))
                 object.uploadOrderIndex = message.uploadOrderIndex;
             return object;
         };
@@ -10617,12 +10611,12 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.serverInfo != null && message.hasOwnProperty("serverInfo")) {
+            if (message.serverInfo != null && Object.hasOwnProperty.call(message, "serverInfo")) {
                 var error = $root.AICommon.AIThreadInfo.AIThreadServerInfo.verify(message.serverInfo, long + 1);
                 if (error)
                     return "serverInfo." + error;
             }
-            if (message.clientInfo != null && message.hasOwnProperty("clientInfo")) {
+            if (message.clientInfo != null && Object.hasOwnProperty.call(message, "clientInfo")) {
                 var error = $root.AICommon.AIThreadInfo.AIThreadClientInfo.verify(message.clientInfo, long + 1);
                 if (error)
                     return "clientInfo." + error;
@@ -10682,9 +10676,9 @@ $root.AICommon = (function() {
                 object.serverInfo = null;
                 object.clientInfo = null;
             }
-            if (message.serverInfo != null && message.hasOwnProperty("serverInfo"))
+            if (message.serverInfo != null && Object.hasOwnProperty.call(message, "serverInfo"))
                 object.serverInfo = $root.AICommon.AIThreadInfo.AIThreadServerInfo.toObject(message.serverInfo, options, q + 1);
-            if (message.clientInfo != null && message.hasOwnProperty("clientInfo"))
+            if (message.clientInfo != null && Object.hasOwnProperty.call(message, "clientInfo"))
                 object.clientInfo = $root.AICommon.AIThreadInfo.AIThreadClientInfo.toObject(message.clientInfo, options, q + 1);
             return object;
         };
@@ -10875,7 +10869,7 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     switch (message.type) {
                     default:
                         return "type: enum value expected";
@@ -10885,7 +10879,7 @@ $root.AICommon = (function() {
                     case 3:
                         break;
                     }
-                if (message.sourceChatJid != null && message.hasOwnProperty("sourceChatJid"))
+                if (message.sourceChatJid != null && Object.hasOwnProperty.call(message, "sourceChatJid"))
                     if (!$util.isString(message.sourceChatJid))
                         return "sourceChatJid: string expected";
                 return null;
@@ -10959,9 +10953,9 @@ $root.AICommon = (function() {
                     object.type = options.enums === String ? "UNKNOWN" : 0;
                     object.sourceChatJid = "";
                 }
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType[message.type] === undefined ? message.type : $root.AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType[message.type] : message.type;
-                if (message.sourceChatJid != null && message.hasOwnProperty("sourceChatJid"))
+                if (message.sourceChatJid != null && Object.hasOwnProperty.call(message, "sourceChatJid"))
                     object.sourceChatJid = message.sourceChatJid;
                 return object;
             };
@@ -11158,7 +11152,7 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     if (!$util.isString(message.title))
                         return "title: string expected";
                 return null;
@@ -11206,7 +11200,7 @@ $root.AICommon = (function() {
                 var object = {};
                 if (options.defaults)
                     object.title = "";
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
                 return object;
             };
@@ -11407,12 +11401,12 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.sbsMetadata != null && message.hasOwnProperty("sbsMetadata")) {
+            if (message.sbsMetadata != null && Object.hasOwnProperty.call(message, "sbsMetadata")) {
                 var error = $root.AICommon.BotUnifiedResponseMutation.SideBySideMetadata.verify(message.sbsMetadata, long + 1);
                 if (error)
                     return "sbsMetadata." + error;
             }
-            if (message.mediaDetailsMetadataList != null && message.hasOwnProperty("mediaDetailsMetadataList")) {
+            if (message.mediaDetailsMetadataList != null && Object.hasOwnProperty.call(message, "mediaDetailsMetadataList")) {
                 if (!Array.isArray(message.mediaDetailsMetadataList))
                     return "mediaDetailsMetadataList: array expected";
                 for (var i = 0; i < message.mediaDetailsMetadataList.length; ++i) {
@@ -11481,7 +11475,7 @@ $root.AICommon = (function() {
                 object.mediaDetailsMetadataList = [];
             if (options.defaults)
                 object.sbsMetadata = null;
-            if (message.sbsMetadata != null && message.hasOwnProperty("sbsMetadata"))
+            if (message.sbsMetadata != null && Object.hasOwnProperty.call(message, "sbsMetadata"))
                 object.sbsMetadata = $root.AICommon.BotUnifiedResponseMutation.SideBySideMetadata.toObject(message.sbsMetadata, options, q + 1);
             if (message.mediaDetailsMetadataList && message.mediaDetailsMetadataList.length) {
                 object.mediaDetailsMetadataList = [];
@@ -11692,15 +11686,15 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.id != null && message.hasOwnProperty("id"))
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                     if (!$util.isString(message.id))
                         return "id: string expected";
-                if (message.highResMedia != null && message.hasOwnProperty("highResMedia")) {
+                if (message.highResMedia != null && Object.hasOwnProperty.call(message, "highResMedia")) {
                     var error = $root.AICommon.BotMediaMetadata.verify(message.highResMedia, long + 1);
                     if (error)
                         return "highResMedia." + error;
                 }
-                if (message.previewMedia != null && message.hasOwnProperty("previewMedia")) {
+                if (message.previewMedia != null && Object.hasOwnProperty.call(message, "previewMedia")) {
                     var error = $root.AICommon.BotMediaMetadata.verify(message.previewMedia, long + 1);
                     if (error)
                         return "previewMedia." + error;
@@ -11763,11 +11757,11 @@ $root.AICommon = (function() {
                     object.highResMedia = null;
                     object.previewMedia = null;
                 }
-                if (message.id != null && message.hasOwnProperty("id"))
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                     object.id = message.id;
-                if (message.highResMedia != null && message.hasOwnProperty("highResMedia"))
+                if (message.highResMedia != null && Object.hasOwnProperty.call(message, "highResMedia"))
                     object.highResMedia = $root.AICommon.BotMediaMetadata.toObject(message.highResMedia, options, q + 1);
-                if (message.previewMedia != null && message.hasOwnProperty("previewMedia"))
+                if (message.previewMedia != null && Object.hasOwnProperty.call(message, "previewMedia"))
                     object.previewMedia = $root.AICommon.BotMediaMetadata.toObject(message.previewMedia, options, q + 1);
                 return object;
             };
@@ -11961,10 +11955,10 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.primaryResponseId != null && message.hasOwnProperty("primaryResponseId"))
+                if (message.primaryResponseId != null && Object.hasOwnProperty.call(message, "primaryResponseId"))
                     if (!$util.isString(message.primaryResponseId))
                         return "primaryResponseId: string expected";
-                if (message.surveyCtaHasRendered != null && message.hasOwnProperty("surveyCtaHasRendered"))
+                if (message.surveyCtaHasRendered != null && Object.hasOwnProperty.call(message, "surveyCtaHasRendered"))
                     if (typeof message.surveyCtaHasRendered !== "boolean")
                         return "surveyCtaHasRendered: boolean expected";
                 return null;
@@ -12016,9 +12010,9 @@ $root.AICommon = (function() {
                     object.primaryResponseId = "";
                     object.surveyCtaHasRendered = false;
                 }
-                if (message.primaryResponseId != null && message.hasOwnProperty("primaryResponseId"))
+                if (message.primaryResponseId != null && Object.hasOwnProperty.call(message, "primaryResponseId"))
                     object.primaryResponseId = message.primaryResponseId;
-                if (message.surveyCtaHasRendered != null && message.hasOwnProperty("surveyCtaHasRendered"))
+                if (message.surveyCtaHasRendered != null && Object.hasOwnProperty.call(message, "surveyCtaHasRendered"))
                     object.surveyCtaHasRendered = message.surveyCtaHasRendered;
                 return object;
             };
@@ -12200,7 +12194,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 switch (message.type) {
                 default:
                     return "type: enum value expected";
@@ -12262,7 +12256,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.type = options.enums === String ? "BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED" : 0;
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 object.type = options.enums === String ? $root.AICommon.BotMessageOrigin.BotMessageOriginType[message.type] === undefined ? message.type : $root.AICommon.BotMessageOrigin.BotMessageOriginType[message.type] : message.type;
             return object;
         };
@@ -12457,7 +12451,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.origins != null && message.hasOwnProperty("origins")) {
+            if (message.origins != null && Object.hasOwnProperty.call(message, "origins")) {
                 if (!Array.isArray(message.origins))
                     return "origins: array expected";
                 for (var i = 0; i < message.origins.length; ++i) {
@@ -12964,40 +12958,40 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.tessaSessionId != null && message.hasOwnProperty("tessaSessionId"))
+            if (message.tessaSessionId != null && Object.hasOwnProperty.call(message, "tessaSessionId"))
                 if (!$util.isString(message.tessaSessionId))
                     return "tessaSessionId: string expected";
-            if (message.simonSessionId != null && message.hasOwnProperty("simonSessionId"))
+            if (message.simonSessionId != null && Object.hasOwnProperty.call(message, "simonSessionId"))
                 if (!$util.isString(message.simonSessionId))
                     return "simonSessionId: string expected";
-            if (message.simonSurveyId != null && message.hasOwnProperty("simonSurveyId"))
+            if (message.simonSurveyId != null && Object.hasOwnProperty.call(message, "simonSurveyId"))
                 if (!$util.isString(message.simonSurveyId))
                     return "simonSurveyId: string expected";
-            if (message.tessaRootId != null && message.hasOwnProperty("tessaRootId"))
+            if (message.tessaRootId != null && Object.hasOwnProperty.call(message, "tessaRootId"))
                 if (!$util.isString(message.tessaRootId))
                     return "tessaRootId: string expected";
-            if (message.requestId != null && message.hasOwnProperty("requestId"))
+            if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
                 if (!$util.isString(message.requestId))
                     return "requestId: string expected";
-            if (message.tessaEvent != null && message.hasOwnProperty("tessaEvent"))
+            if (message.tessaEvent != null && Object.hasOwnProperty.call(message, "tessaEvent"))
                 if (!$util.isString(message.tessaEvent))
                     return "tessaEvent: string expected";
-            if (message.invitationHeaderText != null && message.hasOwnProperty("invitationHeaderText"))
+            if (message.invitationHeaderText != null && Object.hasOwnProperty.call(message, "invitationHeaderText"))
                 if (!$util.isString(message.invitationHeaderText))
                     return "invitationHeaderText: string expected";
-            if (message.invitationBodyText != null && message.hasOwnProperty("invitationBodyText"))
+            if (message.invitationBodyText != null && Object.hasOwnProperty.call(message, "invitationBodyText"))
                 if (!$util.isString(message.invitationBodyText))
                     return "invitationBodyText: string expected";
-            if (message.invitationCtaText != null && message.hasOwnProperty("invitationCtaText"))
+            if (message.invitationCtaText != null && Object.hasOwnProperty.call(message, "invitationCtaText"))
                 if (!$util.isString(message.invitationCtaText))
                     return "invitationCtaText: string expected";
-            if (message.invitationCtaUrl != null && message.hasOwnProperty("invitationCtaUrl"))
+            if (message.invitationCtaUrl != null && Object.hasOwnProperty.call(message, "invitationCtaUrl"))
                 if (!$util.isString(message.invitationCtaUrl))
                     return "invitationCtaUrl: string expected";
-            if (message.surveyTitle != null && message.hasOwnProperty("surveyTitle"))
+            if (message.surveyTitle != null && Object.hasOwnProperty.call(message, "surveyTitle"))
                 if (!$util.isString(message.surveyTitle))
                     return "surveyTitle: string expected";
-            if (message.questions != null && message.hasOwnProperty("questions")) {
+            if (message.questions != null && Object.hasOwnProperty.call(message, "questions")) {
                 if (!Array.isArray(message.questions))
                     return "questions: array expected";
                 for (var i = 0; i < message.questions.length; ++i) {
@@ -13006,16 +13000,16 @@ $root.AICommon = (function() {
                         return "questions." + error;
                 }
             }
-            if (message.surveyContinueButtonText != null && message.hasOwnProperty("surveyContinueButtonText"))
+            if (message.surveyContinueButtonText != null && Object.hasOwnProperty.call(message, "surveyContinueButtonText"))
                 if (!$util.isString(message.surveyContinueButtonText))
                     return "surveyContinueButtonText: string expected";
-            if (message.surveySubmitButtonText != null && message.hasOwnProperty("surveySubmitButtonText"))
+            if (message.surveySubmitButtonText != null && Object.hasOwnProperty.call(message, "surveySubmitButtonText"))
                 if (!$util.isString(message.surveySubmitButtonText))
                     return "surveySubmitButtonText: string expected";
-            if (message.privacyStatementFull != null && message.hasOwnProperty("privacyStatementFull"))
+            if (message.privacyStatementFull != null && Object.hasOwnProperty.call(message, "privacyStatementFull"))
                 if (!$util.isString(message.privacyStatementFull))
                     return "privacyStatementFull: string expected";
-            if (message.privacyStatementParts != null && message.hasOwnProperty("privacyStatementParts")) {
+            if (message.privacyStatementParts != null && Object.hasOwnProperty.call(message, "privacyStatementParts")) {
                 if (!Array.isArray(message.privacyStatementParts))
                     return "privacyStatementParts: array expected";
                 for (var i = 0; i < message.privacyStatementParts.length; ++i) {
@@ -13024,10 +13018,10 @@ $root.AICommon = (function() {
                         return "privacyStatementParts." + error;
                 }
             }
-            if (message.feedbackToastText != null && message.hasOwnProperty("feedbackToastText"))
+            if (message.feedbackToastText != null && Object.hasOwnProperty.call(message, "feedbackToastText"))
                 if (!$util.isString(message.feedbackToastText))
                     return "feedbackToastText: string expected";
-            if (message.startQuestionIndex != null && message.hasOwnProperty("startQuestionIndex"))
+            if (message.startQuestionIndex != null && Object.hasOwnProperty.call(message, "startQuestionIndex"))
                 if (!$util.isInteger(message.startQuestionIndex))
                     return "startQuestionIndex: integer expected";
             return null;
@@ -13145,47 +13139,47 @@ $root.AICommon = (function() {
                 object.feedbackToastText = "";
                 object.startQuestionIndex = 0;
             }
-            if (message.tessaSessionId != null && message.hasOwnProperty("tessaSessionId"))
+            if (message.tessaSessionId != null && Object.hasOwnProperty.call(message, "tessaSessionId"))
                 object.tessaSessionId = message.tessaSessionId;
-            if (message.simonSessionId != null && message.hasOwnProperty("simonSessionId"))
+            if (message.simonSessionId != null && Object.hasOwnProperty.call(message, "simonSessionId"))
                 object.simonSessionId = message.simonSessionId;
-            if (message.simonSurveyId != null && message.hasOwnProperty("simonSurveyId"))
+            if (message.simonSurveyId != null && Object.hasOwnProperty.call(message, "simonSurveyId"))
                 object.simonSurveyId = message.simonSurveyId;
-            if (message.tessaRootId != null && message.hasOwnProperty("tessaRootId"))
+            if (message.tessaRootId != null && Object.hasOwnProperty.call(message, "tessaRootId"))
                 object.tessaRootId = message.tessaRootId;
-            if (message.requestId != null && message.hasOwnProperty("requestId"))
+            if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
                 object.requestId = message.requestId;
-            if (message.tessaEvent != null && message.hasOwnProperty("tessaEvent"))
+            if (message.tessaEvent != null && Object.hasOwnProperty.call(message, "tessaEvent"))
                 object.tessaEvent = message.tessaEvent;
-            if (message.invitationHeaderText != null && message.hasOwnProperty("invitationHeaderText"))
+            if (message.invitationHeaderText != null && Object.hasOwnProperty.call(message, "invitationHeaderText"))
                 object.invitationHeaderText = message.invitationHeaderText;
-            if (message.invitationBodyText != null && message.hasOwnProperty("invitationBodyText"))
+            if (message.invitationBodyText != null && Object.hasOwnProperty.call(message, "invitationBodyText"))
                 object.invitationBodyText = message.invitationBodyText;
-            if (message.invitationCtaText != null && message.hasOwnProperty("invitationCtaText"))
+            if (message.invitationCtaText != null && Object.hasOwnProperty.call(message, "invitationCtaText"))
                 object.invitationCtaText = message.invitationCtaText;
-            if (message.invitationCtaUrl != null && message.hasOwnProperty("invitationCtaUrl"))
+            if (message.invitationCtaUrl != null && Object.hasOwnProperty.call(message, "invitationCtaUrl"))
                 object.invitationCtaUrl = message.invitationCtaUrl;
-            if (message.surveyTitle != null && message.hasOwnProperty("surveyTitle"))
+            if (message.surveyTitle != null && Object.hasOwnProperty.call(message, "surveyTitle"))
                 object.surveyTitle = message.surveyTitle;
             if (message.questions && message.questions.length) {
                 object.questions = [];
                 for (var j = 0; j < message.questions.length; ++j)
                     object.questions[j] = $root.AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion.toObject(message.questions[j], options, q + 1);
             }
-            if (message.surveyContinueButtonText != null && message.hasOwnProperty("surveyContinueButtonText"))
+            if (message.surveyContinueButtonText != null && Object.hasOwnProperty.call(message, "surveyContinueButtonText"))
                 object.surveyContinueButtonText = message.surveyContinueButtonText;
-            if (message.surveySubmitButtonText != null && message.hasOwnProperty("surveySubmitButtonText"))
+            if (message.surveySubmitButtonText != null && Object.hasOwnProperty.call(message, "surveySubmitButtonText"))
                 object.surveySubmitButtonText = message.surveySubmitButtonText;
-            if (message.privacyStatementFull != null && message.hasOwnProperty("privacyStatementFull"))
+            if (message.privacyStatementFull != null && Object.hasOwnProperty.call(message, "privacyStatementFull"))
                 object.privacyStatementFull = message.privacyStatementFull;
             if (message.privacyStatementParts && message.privacyStatementParts.length) {
                 object.privacyStatementParts = [];
                 for (var j = 0; j < message.privacyStatementParts.length; ++j)
                     object.privacyStatementParts[j] = $root.AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.toObject(message.privacyStatementParts[j], options, q + 1);
             }
-            if (message.feedbackToastText != null && message.hasOwnProperty("feedbackToastText"))
+            if (message.feedbackToastText != null && Object.hasOwnProperty.call(message, "feedbackToastText"))
                 object.feedbackToastText = message.feedbackToastText;
-            if (message.startQuestionIndex != null && message.hasOwnProperty("startQuestionIndex"))
+            if (message.startQuestionIndex != null && Object.hasOwnProperty.call(message, "startQuestionIndex"))
                 object.startQuestionIndex = message.startQuestionIndex;
             return object;
         };
@@ -13391,13 +13385,13 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.stringValue != null && message.hasOwnProperty("stringValue"))
+                if (message.stringValue != null && Object.hasOwnProperty.call(message, "stringValue"))
                     if (!$util.isString(message.stringValue))
                         return "stringValue: string expected";
-                if (message.numericValue != null && message.hasOwnProperty("numericValue"))
+                if (message.numericValue != null && Object.hasOwnProperty.call(message, "numericValue"))
                     if (!$util.isInteger(message.numericValue))
                         return "numericValue: integer expected";
-                if (message.textTranslated != null && message.hasOwnProperty("textTranslated"))
+                if (message.textTranslated != null && Object.hasOwnProperty.call(message, "textTranslated"))
                     if (!$util.isString(message.textTranslated))
                         return "textTranslated: string expected";
                 return null;
@@ -13452,11 +13446,11 @@ $root.AICommon = (function() {
                     object.numericValue = 0;
                     object.textTranslated = "";
                 }
-                if (message.stringValue != null && message.hasOwnProperty("stringValue"))
+                if (message.stringValue != null && Object.hasOwnProperty.call(message, "stringValue"))
                     object.stringValue = message.stringValue;
-                if (message.numericValue != null && message.hasOwnProperty("numericValue"))
+                if (message.numericValue != null && Object.hasOwnProperty.call(message, "numericValue"))
                     object.numericValue = message.numericValue;
-                if (message.textTranslated != null && message.hasOwnProperty("textTranslated"))
+                if (message.textTranslated != null && Object.hasOwnProperty.call(message, "textTranslated"))
                     object.textTranslated = message.textTranslated;
                 return object;
             };
@@ -13650,10 +13644,10 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.text != null && message.hasOwnProperty("text"))
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     if (!$util.isString(message.text))
                         return "text: string expected";
-                if (message.url != null && message.hasOwnProperty("url"))
+                if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                     if (!$util.isString(message.url))
                         return "url: string expected";
                 return null;
@@ -13705,9 +13699,9 @@ $root.AICommon = (function() {
                     object.text = "";
                     object.url = "";
                 }
-                if (message.text != null && message.hasOwnProperty("text"))
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     object.text = message.text;
-                if (message.url != null && message.hasOwnProperty("url"))
+                if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                     object.url = message.url;
                 return object;
             };
@@ -13920,13 +13914,13 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.questionText != null && message.hasOwnProperty("questionText"))
+                if (message.questionText != null && Object.hasOwnProperty.call(message, "questionText"))
                     if (!$util.isString(message.questionText))
                         return "questionText: string expected";
-                if (message.questionId != null && message.hasOwnProperty("questionId"))
+                if (message.questionId != null && Object.hasOwnProperty.call(message, "questionId"))
                     if (!$util.isString(message.questionId))
                         return "questionId: string expected";
-                if (message.questionOptions != null && message.hasOwnProperty("questionOptions")) {
+                if (message.questionOptions != null && Object.hasOwnProperty.call(message, "questionOptions")) {
                     if (!Array.isArray(message.questionOptions))
                         return "questionOptions: array expected";
                     for (var i = 0; i < message.questionOptions.length; ++i) {
@@ -13996,9 +13990,9 @@ $root.AICommon = (function() {
                     object.questionText = "";
                     object.questionId = "";
                 }
-                if (message.questionText != null && message.hasOwnProperty("questionText"))
+                if (message.questionText != null && Object.hasOwnProperty.call(message, "questionText"))
                     object.questionText = message.questionText;
-                if (message.questionId != null && message.hasOwnProperty("questionId"))
+                if (message.questionId != null && Object.hasOwnProperty.call(message, "questionId"))
                     object.questionId = message.questionId;
                 if (message.questionOptions && message.questionOptions.length) {
                     object.questionOptions = [];
@@ -14189,7 +14183,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.sources != null && message.hasOwnProperty("sources")) {
+            if (message.sources != null && Object.hasOwnProperty.call(message, "sources")) {
                 if (!Array.isArray(message.sources))
                     return "sources: array expected";
                 for (var i = 0; i < message.sources.length; ++i) {
@@ -14520,7 +14514,7 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.provider != null && message.hasOwnProperty("provider"))
+                if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
                     switch (message.provider) {
                     default:
                         return "provider: enum value expected";
@@ -14531,22 +14525,22 @@ $root.AICommon = (function() {
                     case 4:
                         break;
                     }
-                if (message.thumbnailCdnUrl != null && message.hasOwnProperty("thumbnailCdnUrl"))
+                if (message.thumbnailCdnUrl != null && Object.hasOwnProperty.call(message, "thumbnailCdnUrl"))
                     if (!$util.isString(message.thumbnailCdnUrl))
                         return "thumbnailCdnUrl: string expected";
-                if (message.sourceProviderUrl != null && message.hasOwnProperty("sourceProviderUrl"))
+                if (message.sourceProviderUrl != null && Object.hasOwnProperty.call(message, "sourceProviderUrl"))
                     if (!$util.isString(message.sourceProviderUrl))
                         return "sourceProviderUrl: string expected";
-                if (message.sourceQuery != null && message.hasOwnProperty("sourceQuery"))
+                if (message.sourceQuery != null && Object.hasOwnProperty.call(message, "sourceQuery"))
                     if (!$util.isString(message.sourceQuery))
                         return "sourceQuery: string expected";
-                if (message.faviconCdnUrl != null && message.hasOwnProperty("faviconCdnUrl"))
+                if (message.faviconCdnUrl != null && Object.hasOwnProperty.call(message, "faviconCdnUrl"))
                     if (!$util.isString(message.faviconCdnUrl))
                         return "faviconCdnUrl: string expected";
-                if (message.citationNumber != null && message.hasOwnProperty("citationNumber"))
+                if (message.citationNumber != null && Object.hasOwnProperty.call(message, "citationNumber"))
                     if (!$util.isInteger(message.citationNumber))
                         return "citationNumber: integer expected";
-                if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
+                if (message.sourceTitle != null && Object.hasOwnProperty.call(message, "sourceTitle"))
                     if (!$util.isString(message.sourceTitle))
                         return "sourceTitle: string expected";
                 return null;
@@ -14639,19 +14633,19 @@ $root.AICommon = (function() {
                     object.citationNumber = 0;
                     object.sourceTitle = "";
                 }
-                if (message.provider != null && message.hasOwnProperty("provider"))
+                if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
                     object.provider = options.enums === String ? $root.AICommon.BotSourcesMetadata.BotSourceItem.SourceProvider[message.provider] === undefined ? message.provider : $root.AICommon.BotSourcesMetadata.BotSourceItem.SourceProvider[message.provider] : message.provider;
-                if (message.thumbnailCdnUrl != null && message.hasOwnProperty("thumbnailCdnUrl"))
+                if (message.thumbnailCdnUrl != null && Object.hasOwnProperty.call(message, "thumbnailCdnUrl"))
                     object.thumbnailCdnUrl = message.thumbnailCdnUrl;
-                if (message.sourceProviderUrl != null && message.hasOwnProperty("sourceProviderUrl"))
+                if (message.sourceProviderUrl != null && Object.hasOwnProperty.call(message, "sourceProviderUrl"))
                     object.sourceProviderUrl = message.sourceProviderUrl;
-                if (message.sourceQuery != null && message.hasOwnProperty("sourceQuery"))
+                if (message.sourceQuery != null && Object.hasOwnProperty.call(message, "sourceQuery"))
                     object.sourceQuery = message.sourceQuery;
-                if (message.faviconCdnUrl != null && message.hasOwnProperty("faviconCdnUrl"))
+                if (message.faviconCdnUrl != null && Object.hasOwnProperty.call(message, "faviconCdnUrl"))
                     object.faviconCdnUrl = message.faviconCdnUrl;
-                if (message.citationNumber != null && message.hasOwnProperty("citationNumber"))
+                if (message.citationNumber != null && Object.hasOwnProperty.call(message, "citationNumber"))
                     object.citationNumber = message.citationNumber;
-                if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
+                if (message.sourceTitle != null && Object.hasOwnProperty.call(message, "sourceTitle"))
                     object.sourceTitle = message.sourceTitle;
                 return object;
             };
@@ -14883,13 +14877,13 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.ageCollectionEligible != null && message.hasOwnProperty("ageCollectionEligible"))
+            if (message.ageCollectionEligible != null && Object.hasOwnProperty.call(message, "ageCollectionEligible"))
                 if (typeof message.ageCollectionEligible !== "boolean")
                     return "ageCollectionEligible: boolean expected";
-            if (message.shouldTriggerAgeCollectionOnClient != null && message.hasOwnProperty("shouldTriggerAgeCollectionOnClient"))
+            if (message.shouldTriggerAgeCollectionOnClient != null && Object.hasOwnProperty.call(message, "shouldTriggerAgeCollectionOnClient"))
                 if (typeof message.shouldTriggerAgeCollectionOnClient !== "boolean")
                     return "shouldTriggerAgeCollectionOnClient: boolean expected";
-            if (message.ageCollectionType != null && message.hasOwnProperty("ageCollectionType"))
+            if (message.ageCollectionType != null && Object.hasOwnProperty.call(message, "ageCollectionType"))
                 switch (message.ageCollectionType) {
                 default:
                     return "ageCollectionType: enum value expected";
@@ -14963,11 +14957,11 @@ $root.AICommon = (function() {
                 object.shouldTriggerAgeCollectionOnClient = false;
                 object.ageCollectionType = options.enums === String ? "O18_BINARY" : 0;
             }
-            if (message.ageCollectionEligible != null && message.hasOwnProperty("ageCollectionEligible"))
+            if (message.ageCollectionEligible != null && Object.hasOwnProperty.call(message, "ageCollectionEligible"))
                 object.ageCollectionEligible = message.ageCollectionEligible;
-            if (message.shouldTriggerAgeCollectionOnClient != null && message.hasOwnProperty("shouldTriggerAgeCollectionOnClient"))
+            if (message.shouldTriggerAgeCollectionOnClient != null && Object.hasOwnProperty.call(message, "shouldTriggerAgeCollectionOnClient"))
                 object.shouldTriggerAgeCollectionOnClient = message.shouldTriggerAgeCollectionOnClient;
-            if (message.ageCollectionType != null && message.hasOwnProperty("ageCollectionType"))
+            if (message.ageCollectionType != null && Object.hasOwnProperty.call(message, "ageCollectionType"))
                 object.ageCollectionType = options.enums === String ? $root.AICommon.BotAgeCollectionMetadata.AgeCollectionType[message.ageCollectionType] === undefined ? message.ageCollectionType : $root.AICommon.BotAgeCollectionMetadata.AgeCollectionType[message.ageCollectionType] : message.ageCollectionType;
             return object;
         };
@@ -15175,7 +15169,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.imagineType != null && message.hasOwnProperty("imagineType"))
+            if (message.imagineType != null && Object.hasOwnProperty.call(message, "imagineType"))
                 switch (message.imagineType) {
                 default:
                     return "imagineType: enum value expected";
@@ -15186,7 +15180,7 @@ $root.AICommon = (function() {
                 case 4:
                     break;
                 }
-            if (message.shortPrompt != null && message.hasOwnProperty("shortPrompt"))
+            if (message.shortPrompt != null && Object.hasOwnProperty.call(message, "shortPrompt"))
                 if (!$util.isString(message.shortPrompt))
                     return "shortPrompt: string expected";
             return null;
@@ -15264,9 +15258,9 @@ $root.AICommon = (function() {
                 object.imagineType = options.enums === String ? "UNKNOWN" : 0;
                 object.shortPrompt = "";
             }
-            if (message.imagineType != null && message.hasOwnProperty("imagineType"))
+            if (message.imagineType != null && Object.hasOwnProperty.call(message, "imagineType"))
                 object.imagineType = options.enums === String ? $root.AICommon.BotImagineMetadata.ImagineType[message.imagineType] === undefined ? message.imagineType : $root.AICommon.BotImagineMetadata.ImagineType[message.imagineType] : message.imagineType;
-            if (message.shortPrompt != null && message.hasOwnProperty("shortPrompt"))
+            if (message.shortPrompt != null && Object.hasOwnProperty.call(message, "shortPrompt"))
                 object.shortPrompt = message.shortPrompt;
             return object;
         };
@@ -15469,7 +15463,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.botFeatureQuotaMetadata != null && message.hasOwnProperty("botFeatureQuotaMetadata")) {
+            if (message.botFeatureQuotaMetadata != null && Object.hasOwnProperty.call(message, "botFeatureQuotaMetadata")) {
                 if (!Array.isArray(message.botFeatureQuotaMetadata))
                     return "botFeatureQuotaMetadata: array expected";
                 for (var i = 0; i < message.botFeatureQuotaMetadata.length; ++i) {
@@ -15740,7 +15734,7 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.featureType != null && message.hasOwnProperty("featureType"))
+                if (message.featureType != null && Object.hasOwnProperty.call(message, "featureType"))
                     switch (message.featureType) {
                     default:
                         return "featureType: enum value expected";
@@ -15748,10 +15742,10 @@ $root.AICommon = (function() {
                     case 1:
                         break;
                     }
-                if (message.remainingQuota != null && message.hasOwnProperty("remainingQuota"))
+                if (message.remainingQuota != null && Object.hasOwnProperty.call(message, "remainingQuota"))
                     if (!$util.isInteger(message.remainingQuota))
                         return "remainingQuota: integer expected";
-                if (message.expirationTimestamp != null && message.hasOwnProperty("expirationTimestamp"))
+                if (message.expirationTimestamp != null && Object.hasOwnProperty.call(message, "expirationTimestamp"))
                     if (!$util.isInteger(message.expirationTimestamp) && !(message.expirationTimestamp && $util.isInteger(message.expirationTimestamp.low) && $util.isInteger(message.expirationTimestamp.high)))
                         return "expirationTimestamp: integer|Long expected";
                 return null;
@@ -15831,11 +15825,11 @@ $root.AICommon = (function() {
                     } else
                         object.expirationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.featureType != null && message.hasOwnProperty("featureType"))
+                if (message.featureType != null && Object.hasOwnProperty.call(message, "featureType"))
                     object.featureType = options.enums === String ? $root.AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] === undefined ? message.featureType : $root.AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] : message.featureType;
-                if (message.remainingQuota != null && message.hasOwnProperty("remainingQuota"))
+                if (message.remainingQuota != null && Object.hasOwnProperty.call(message, "remainingQuota"))
                     object.remainingQuota = message.remainingQuota;
-                if (message.expirationTimestamp != null && message.hasOwnProperty("expirationTimestamp"))
+                if (message.expirationTimestamp != null && Object.hasOwnProperty.call(message, "expirationTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.expirationTimestamp = typeof message.expirationTimestamp === "number" ? BigInt(message.expirationTimestamp) : $util.Long.fromBits(message.expirationTimestamp.low >>> 0, message.expirationTimestamp.high >>> 0, true).toBigInt();
                     else if (typeof message.expirationTimestamp === "number")
@@ -16069,7 +16063,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.mode != null && message.hasOwnProperty("mode")) {
+            if (message.mode != null && Object.hasOwnProperty.call(message, "mode")) {
                 if (!Array.isArray(message.mode))
                     return "mode: array expected";
                 for (var i = 0; i < message.mode.length; ++i)
@@ -16081,7 +16075,7 @@ $root.AICommon = (function() {
                         break;
                     }
             }
-            if (message.overrideMode != null && message.hasOwnProperty("overrideMode")) {
+            if (message.overrideMode != null && Object.hasOwnProperty.call(message, "overrideMode")) {
                 if (!Array.isArray(message.overrideMode))
                     return "overrideMode: array expected";
                 for (var i = 0; i < message.overrideMode.length; ++i)
@@ -16371,7 +16365,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.capabilities != null && message.hasOwnProperty("capabilities")) {
+            if (message.capabilities != null && Object.hasOwnProperty.call(message, "capabilities")) {
                 if (!Array.isArray(message.capabilities))
                     return "capabilities: array expected";
                 for (var i = 0; i < message.capabilities.length; ++i)
@@ -17125,10 +17119,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.progressDescription != null && message.hasOwnProperty("progressDescription"))
+            if (message.progressDescription != null && Object.hasOwnProperty.call(message, "progressDescription"))
                 if (!$util.isString(message.progressDescription))
                     return "progressDescription: string expected";
-            if (message.stepsMetadata != null && message.hasOwnProperty("stepsMetadata")) {
+            if (message.stepsMetadata != null && Object.hasOwnProperty.call(message, "stepsMetadata")) {
                 if (!Array.isArray(message.stepsMetadata))
                     return "stepsMetadata: array expected";
                 for (var i = 0; i < message.stepsMetadata.length; ++i) {
@@ -17137,7 +17131,7 @@ $root.AICommon = (function() {
                         return "stepsMetadata." + error;
                 }
             }
-            if (message.estimatedCompletionTime != null && message.hasOwnProperty("estimatedCompletionTime"))
+            if (message.estimatedCompletionTime != null && Object.hasOwnProperty.call(message, "estimatedCompletionTime"))
                 if (!$util.isInteger(message.estimatedCompletionTime) && !(message.estimatedCompletionTime && $util.isInteger(message.estimatedCompletionTime.low) && $util.isInteger(message.estimatedCompletionTime.high)))
                     return "estimatedCompletionTime: integer|Long expected";
             return null;
@@ -17212,14 +17206,14 @@ $root.AICommon = (function() {
                 } else
                     object.estimatedCompletionTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
-            if (message.progressDescription != null && message.hasOwnProperty("progressDescription"))
+            if (message.progressDescription != null && Object.hasOwnProperty.call(message, "progressDescription"))
                 object.progressDescription = message.progressDescription;
             if (message.stepsMetadata && message.stepsMetadata.length) {
                 object.stepsMetadata = [];
                 for (var j = 0; j < message.stepsMetadata.length; ++j)
                     object.stepsMetadata[j] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.toObject(message.stepsMetadata[j], options, q + 1);
             }
-            if (message.estimatedCompletionTime != null && message.hasOwnProperty("estimatedCompletionTime"))
+            if (message.estimatedCompletionTime != null && Object.hasOwnProperty.call(message, "estimatedCompletionTime"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.estimatedCompletionTime = typeof message.estimatedCompletionTime === "number" ? BigInt(message.estimatedCompletionTime) : $util.Long.fromBits(message.estimatedCompletionTime.low >>> 0, message.estimatedCompletionTime.high >>> 0, false).toBigInt();
                 else if (typeof message.estimatedCompletionTime === "number")
@@ -17498,13 +17492,13 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
+                if (message.statusTitle != null && Object.hasOwnProperty.call(message, "statusTitle"))
                     if (!$util.isString(message.statusTitle))
                         return "statusTitle: string expected";
-                if (message.statusBody != null && message.hasOwnProperty("statusBody"))
+                if (message.statusBody != null && Object.hasOwnProperty.call(message, "statusBody"))
                     if (!$util.isString(message.statusBody))
                         return "statusBody: string expected";
-                if (message.sourcesMetadata != null && message.hasOwnProperty("sourcesMetadata")) {
+                if (message.sourcesMetadata != null && Object.hasOwnProperty.call(message, "sourcesMetadata")) {
                     if (!Array.isArray(message.sourcesMetadata))
                         return "sourcesMetadata: array expected";
                     for (var i = 0; i < message.sourcesMetadata.length; ++i) {
@@ -17513,7 +17507,7 @@ $root.AICommon = (function() {
                             return "sourcesMetadata." + error;
                     }
                 }
-                if (message.status != null && message.hasOwnProperty("status"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     switch (message.status) {
                     default:
                         return "status: enum value expected";
@@ -17523,13 +17517,13 @@ $root.AICommon = (function() {
                     case 3:
                         break;
                     }
-                if (message.isReasoning != null && message.hasOwnProperty("isReasoning"))
+                if (message.isReasoning != null && Object.hasOwnProperty.call(message, "isReasoning"))
                     if (typeof message.isReasoning !== "boolean")
                         return "isReasoning: boolean expected";
-                if (message.isEnhancedSearch != null && message.hasOwnProperty("isEnhancedSearch"))
+                if (message.isEnhancedSearch != null && Object.hasOwnProperty.call(message, "isEnhancedSearch"))
                     if (typeof message.isEnhancedSearch !== "boolean")
                         return "isEnhancedSearch: boolean expected";
-                if (message.sections != null && message.hasOwnProperty("sections")) {
+                if (message.sections != null && Object.hasOwnProperty.call(message, "sections")) {
                     if (!Array.isArray(message.sections))
                         return "sections: array expected";
                     for (var i = 0; i < message.sections.length; ++i) {
@@ -17642,20 +17636,20 @@ $root.AICommon = (function() {
                     object.isReasoning = false;
                     object.isEnhancedSearch = false;
                 }
-                if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
+                if (message.statusTitle != null && Object.hasOwnProperty.call(message, "statusTitle"))
                     object.statusTitle = message.statusTitle;
-                if (message.statusBody != null && message.hasOwnProperty("statusBody"))
+                if (message.statusBody != null && Object.hasOwnProperty.call(message, "statusBody"))
                     object.statusBody = message.statusBody;
                 if (message.sourcesMetadata && message.sourcesMetadata.length) {
                     object.sourcesMetadata = [];
                     for (var j = 0; j < message.sourcesMetadata.length; ++j)
                         object.sourcesMetadata[j] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.toObject(message.sourcesMetadata[j], options, q + 1);
                 }
-                if (message.status != null && message.hasOwnProperty("status"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     object.status = options.enums === String ? $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus[message.status] === undefined ? message.status : $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus[message.status] : message.status;
-                if (message.isReasoning != null && message.hasOwnProperty("isReasoning"))
+                if (message.isReasoning != null && Object.hasOwnProperty.call(message, "isReasoning"))
                     object.isReasoning = message.isReasoning;
-                if (message.isEnhancedSearch != null && message.hasOwnProperty("isEnhancedSearch"))
+                if (message.isEnhancedSearch != null && Object.hasOwnProperty.call(message, "isEnhancedSearch"))
                     object.isEnhancedSearch = message.isEnhancedSearch;
                 if (message.sections && message.sections.length) {
                     object.sections = [];
@@ -17881,10 +17875,10 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.title != null && message.hasOwnProperty("title"))
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                         if (!$util.isString(message.title))
                             return "title: string expected";
-                    if (message.provider != null && message.hasOwnProperty("provider"))
+                    if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
                         switch (message.provider) {
                         default:
                             return "provider: enum value expected";
@@ -17894,10 +17888,10 @@ $root.AICommon = (function() {
                         case 3:
                             break;
                         }
-                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                         if (!$util.isString(message.sourceUrl))
                             return "sourceUrl: string expected";
-                    if (message.favIconUrl != null && message.hasOwnProperty("favIconUrl"))
+                    if (message.favIconUrl != null && Object.hasOwnProperty.call(message, "favIconUrl"))
                         if (!$util.isString(message.favIconUrl))
                             return "favIconUrl: string expected";
                     return null;
@@ -17977,13 +17971,13 @@ $root.AICommon = (function() {
                         object.sourceUrl = "";
                         object.favIconUrl = "";
                     }
-                    if (message.title != null && message.hasOwnProperty("title"))
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                         object.title = message.title;
-                    if (message.provider != null && message.hasOwnProperty("provider"))
+                    if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
                         object.provider = options.enums === String ? $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider[message.provider] === undefined ? message.provider : $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider[message.provider] : message.provider;
-                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                         object.sourceUrl = message.sourceUrl;
-                    if (message.favIconUrl != null && message.hasOwnProperty("favIconUrl"))
+                    if (message.favIconUrl != null && Object.hasOwnProperty.call(message, "favIconUrl"))
                         object.favIconUrl = message.favIconUrl;
                     return object;
                 };
@@ -18192,10 +18186,10 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
+                    if (message.sourceTitle != null && Object.hasOwnProperty.call(message, "sourceTitle"))
                         if (!$util.isString(message.sourceTitle))
                             return "sourceTitle: string expected";
-                    if (message.provider != null && message.hasOwnProperty("provider"))
+                    if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
                         switch (message.provider) {
                         default:
                             return "provider: enum value expected";
@@ -18205,7 +18199,7 @@ $root.AICommon = (function() {
                         case 3:
                             break;
                         }
-                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                         if (!$util.isString(message.sourceUrl))
                             return "sourceUrl: string expected";
                     return null;
@@ -18282,11 +18276,11 @@ $root.AICommon = (function() {
                         object.provider = options.enums === String ? "UNKNOWN" : 0;
                         object.sourceUrl = "";
                     }
-                    if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
+                    if (message.sourceTitle != null && Object.hasOwnProperty.call(message, "sourceTitle"))
                         object.sourceTitle = message.sourceTitle;
-                    if (message.provider != null && message.hasOwnProperty("provider"))
+                    if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
                         object.provider = options.enums === String ? $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider[message.provider] === undefined ? message.provider : $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider[message.provider] : message.provider;
-                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                         object.sourceUrl = message.sourceUrl;
                     return object;
                 };
@@ -18517,13 +18511,13 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.sectionTitle != null && message.hasOwnProperty("sectionTitle"))
+                    if (message.sectionTitle != null && Object.hasOwnProperty.call(message, "sectionTitle"))
                         if (!$util.isString(message.sectionTitle))
                             return "sectionTitle: string expected";
-                    if (message.sectionBody != null && message.hasOwnProperty("sectionBody"))
+                    if (message.sectionBody != null && Object.hasOwnProperty.call(message, "sectionBody"))
                         if (!$util.isString(message.sectionBody))
                             return "sectionBody: string expected";
-                    if (message.sourcesMetadata != null && message.hasOwnProperty("sourcesMetadata")) {
+                    if (message.sourcesMetadata != null && Object.hasOwnProperty.call(message, "sourcesMetadata")) {
                         if (!Array.isArray(message.sourcesMetadata))
                             return "sourcesMetadata: array expected";
                         for (var i = 0; i < message.sourcesMetadata.length; ++i) {
@@ -18593,9 +18587,9 @@ $root.AICommon = (function() {
                         object.sectionTitle = "";
                         object.sectionBody = "";
                     }
-                    if (message.sectionTitle != null && message.hasOwnProperty("sectionTitle"))
+                    if (message.sectionTitle != null && Object.hasOwnProperty.call(message, "sectionTitle"))
                         object.sectionTitle = message.sectionTitle;
-                    if (message.sectionBody != null && message.hasOwnProperty("sectionBody"))
+                    if (message.sectionBody != null && Object.hasOwnProperty.call(message, "sectionBody"))
                         object.sectionBody = message.sectionBody;
                     if (message.sourcesMetadata && message.sourcesMetadata.length) {
                         object.sourcesMetadata = [];
@@ -18851,7 +18845,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.modelType != null && message.hasOwnProperty("modelType"))
+            if (message.modelType != null && Object.hasOwnProperty.call(message, "modelType"))
                 switch (message.modelType) {
                 default:
                     return "modelType: enum value expected";
@@ -18860,7 +18854,7 @@ $root.AICommon = (function() {
                 case 2:
                     break;
                 }
-            if (message.premiumModelStatus != null && message.hasOwnProperty("premiumModelStatus"))
+            if (message.premiumModelStatus != null && Object.hasOwnProperty.call(message, "premiumModelStatus"))
                 switch (message.premiumModelStatus) {
                 default:
                     return "premiumModelStatus: enum value expected";
@@ -18869,7 +18863,7 @@ $root.AICommon = (function() {
                 case 2:
                     break;
                 }
-            if (message.modelNameOverride != null && message.hasOwnProperty("modelNameOverride"))
+            if (message.modelNameOverride != null && Object.hasOwnProperty.call(message, "modelNameOverride"))
                 if (!$util.isString(message.modelNameOverride))
                     return "modelNameOverride: string expected";
             return null;
@@ -18960,11 +18954,11 @@ $root.AICommon = (function() {
                 object.premiumModelStatus = options.enums === String ? "UNKNOWN_STATUS" : 0;
                 object.modelNameOverride = "";
             }
-            if (message.modelType != null && message.hasOwnProperty("modelType"))
+            if (message.modelType != null && Object.hasOwnProperty.call(message, "modelType"))
                 object.modelType = options.enums === String ? $root.AICommon.BotModelMetadata.ModelType[message.modelType] === undefined ? message.modelType : $root.AICommon.BotModelMetadata.ModelType[message.modelType] : message.modelType;
-            if (message.premiumModelStatus != null && message.hasOwnProperty("premiumModelStatus"))
+            if (message.premiumModelStatus != null && Object.hasOwnProperty.call(message, "premiumModelStatus"))
                 object.premiumModelStatus = options.enums === String ? $root.AICommon.BotModelMetadata.PremiumModelStatus[message.premiumModelStatus] === undefined ? message.premiumModelStatus : $root.AICommon.BotModelMetadata.PremiumModelStatus[message.premiumModelStatus] : message.premiumModelStatus;
-            if (message.modelNameOverride != null && message.hasOwnProperty("modelNameOverride"))
+            if (message.modelNameOverride != null && Object.hasOwnProperty.call(message, "modelNameOverride"))
                 object.modelNameOverride = message.modelNameOverride;
             return object;
         };
@@ -19235,12 +19229,12 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.requestMessageKey != null && message.hasOwnProperty("requestMessageKey")) {
+            if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey")) {
                 var error = $root.Protocol.MessageKey.verify(message.requestMessageKey, long + 1);
                 if (error)
                     return "requestMessageKey." + error;
             }
-            if (message.action != null && message.hasOwnProperty("action"))
+            if (message.action != null && Object.hasOwnProperty.call(message, "action"))
                 switch (message.action) {
                 default:
                     return "action: enum value expected";
@@ -19250,13 +19244,13 @@ $root.AICommon = (function() {
                 case 4:
                     break;
                 }
-            if (message.name != null && message.hasOwnProperty("name"))
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
-            if (message.nextTriggerTimestamp != null && message.hasOwnProperty("nextTriggerTimestamp"))
+            if (message.nextTriggerTimestamp != null && Object.hasOwnProperty.call(message, "nextTriggerTimestamp"))
                 if (!$util.isInteger(message.nextTriggerTimestamp) && !(message.nextTriggerTimestamp && $util.isInteger(message.nextTriggerTimestamp.low) && $util.isInteger(message.nextTriggerTimestamp.high)))
                     return "nextTriggerTimestamp: integer|Long expected";
-            if (message.frequency != null && message.hasOwnProperty("frequency"))
+            if (message.frequency != null && Object.hasOwnProperty.call(message, "frequency"))
                 switch (message.frequency) {
                 default:
                     return "frequency: enum value expected";
@@ -19387,20 +19381,20 @@ $root.AICommon = (function() {
                     object.nextTriggerTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.frequency = options.enums === String ? "ONCE" : 1;
             }
-            if (message.requestMessageKey != null && message.hasOwnProperty("requestMessageKey"))
+            if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey"))
                 object.requestMessageKey = $root.Protocol.MessageKey.toObject(message.requestMessageKey, options, q + 1);
-            if (message.action != null && message.hasOwnProperty("action"))
+            if (message.action != null && Object.hasOwnProperty.call(message, "action"))
                 object.action = options.enums === String ? $root.AICommon.BotReminderMetadata.ReminderAction[message.action] === undefined ? message.action : $root.AICommon.BotReminderMetadata.ReminderAction[message.action] : message.action;
-            if (message.name != null && message.hasOwnProperty("name"))
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 object.name = message.name;
-            if (message.nextTriggerTimestamp != null && message.hasOwnProperty("nextTriggerTimestamp"))
+            if (message.nextTriggerTimestamp != null && Object.hasOwnProperty.call(message, "nextTriggerTimestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.nextTriggerTimestamp = typeof message.nextTriggerTimestamp === "number" ? BigInt(message.nextTriggerTimestamp) : $util.Long.fromBits(message.nextTriggerTimestamp.low >>> 0, message.nextTriggerTimestamp.high >>> 0, true).toBigInt();
                 else if (typeof message.nextTriggerTimestamp === "number")
                     object.nextTriggerTimestamp = options.longs === String ? String(message.nextTriggerTimestamp) : message.nextTriggerTimestamp;
                 else
                     object.nextTriggerTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.nextTriggerTimestamp) : options.longs === Number ? new $util.LongBits(message.nextTriggerTimestamp.low >>> 0, message.nextTriggerTimestamp.high >>> 0).toNumber(true) : message.nextTriggerTimestamp;
-            if (message.frequency != null && message.hasOwnProperty("frequency"))
+            if (message.frequency != null && Object.hasOwnProperty.call(message, "frequency"))
                 object.frequency = options.enums === String ? $root.AICommon.BotReminderMetadata.ReminderFrequency[message.frequency] === undefined ? message.frequency : $root.AICommon.BotReminderMetadata.ReminderFrequency[message.frequency] : message.frequency;
             return object;
         };
@@ -19621,7 +19615,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.faceImages != null && message.hasOwnProperty("faceImages")) {
+            if (message.faceImages != null && Object.hasOwnProperty.call(message, "faceImages")) {
                 if (!Array.isArray(message.faceImages))
                     return "faceImages: array expected";
                 for (var i = 0; i < message.faceImages.length; ++i) {
@@ -19955,25 +19949,25 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
+            if (message.fileSha256 != null && Object.hasOwnProperty.call(message, "fileSha256"))
                 if (!$util.isString(message.fileSha256))
                     return "fileSha256: string expected";
-            if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
+            if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
                 if (!$util.isString(message.mediaKey))
                     return "mediaKey: string expected";
-            if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
+            if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
                 if (!$util.isString(message.fileEncSha256))
                     return "fileEncSha256: string expected";
-            if (message.directPath != null && message.hasOwnProperty("directPath"))
+            if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
                 if (!$util.isString(message.directPath))
                     return "directPath: string expected";
-            if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
+            if (message.mediaKeyTimestamp != null && Object.hasOwnProperty.call(message, "mediaKeyTimestamp"))
                 if (!$util.isInteger(message.mediaKeyTimestamp) && !(message.mediaKeyTimestamp && $util.isInteger(message.mediaKeyTimestamp.low) && $util.isInteger(message.mediaKeyTimestamp.high)))
                     return "mediaKeyTimestamp: integer|Long expected";
-            if (message.mimetype != null && message.hasOwnProperty("mimetype"))
+            if (message.mimetype != null && Object.hasOwnProperty.call(message, "mimetype"))
                 if (!$util.isString(message.mimetype))
                     return "mimetype: string expected";
-            if (message.orientationType != null && message.hasOwnProperty("orientationType"))
+            if (message.orientationType != null && Object.hasOwnProperty.call(message, "orientationType"))
                 switch (message.orientationType) {
                 default:
                     return "orientationType: enum value expected";
@@ -20075,24 +20069,24 @@ $root.AICommon = (function() {
                 object.mimetype = "";
                 object.orientationType = options.enums === String ? "CENTER" : 1;
             }
-            if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
+            if (message.fileSha256 != null && Object.hasOwnProperty.call(message, "fileSha256"))
                 object.fileSha256 = message.fileSha256;
-            if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
+            if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
                 object.mediaKey = message.mediaKey;
-            if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
+            if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
                 object.fileEncSha256 = message.fileEncSha256;
-            if (message.directPath != null && message.hasOwnProperty("directPath"))
+            if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
                 object.directPath = message.directPath;
-            if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
+            if (message.mediaKeyTimestamp != null && Object.hasOwnProperty.call(message, "mediaKeyTimestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
                 else if (typeof message.mediaKeyTimestamp === "number")
                     object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                 else
                     object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
-            if (message.mimetype != null && message.hasOwnProperty("mimetype"))
+            if (message.mimetype != null && Object.hasOwnProperty.call(message, "mimetype"))
                 object.mimetype = message.mimetype;
-            if (message.orientationType != null && message.hasOwnProperty("orientationType"))
+            if (message.orientationType != null && Object.hasOwnProperty.call(message, "orientationType"))
                 object.orientationType = options.enums === String ? $root.AICommon.BotMediaMetadata.OrientationType[message.orientationType] === undefined ? message.orientationType : $root.AICommon.BotMediaMetadata.OrientationType[message.orientationType] : message.orientationType;
             return object;
         };
@@ -20302,10 +20296,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.sessionId != null && message.hasOwnProperty("sessionId"))
+            if (message.sessionId != null && Object.hasOwnProperty.call(message, "sessionId"))
                 if (!$util.isString(message.sessionId))
                     return "sessionId: string expected";
-            if (message.sessionSource != null && message.hasOwnProperty("sessionSource"))
+            if (message.sessionSource != null && Object.hasOwnProperty.call(message, "sessionSource"))
                 switch (message.sessionSource) {
                 default:
                     return "sessionSource: enum value expected";
@@ -20406,9 +20400,9 @@ $root.AICommon = (function() {
                 object.sessionId = "";
                 object.sessionSource = options.enums === String ? "NONE" : 0;
             }
-            if (message.sessionId != null && message.hasOwnProperty("sessionId"))
+            if (message.sessionId != null && Object.hasOwnProperty.call(message, "sessionId"))
                 object.sessionId = message.sessionId;
-            if (message.sessionSource != null && message.hasOwnProperty("sessionSource"))
+            if (message.sessionSource != null && Object.hasOwnProperty.call(message, "sessionSource"))
                 object.sessionSource = options.enums === String ? $root.AICommon.BotSessionSource[message.sessionSource] === undefined ? message.sessionSource : $root.AICommon.BotSessionSource[message.sessionSource] : message.sessionSource;
             return object;
         };
@@ -20617,10 +20611,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.destinationId != null && message.hasOwnProperty("destinationId"))
+            if (message.destinationId != null && Object.hasOwnProperty.call(message, "destinationId"))
                 if (!$util.isString(message.destinationId))
                     return "destinationId: string expected";
-            if (message.destinationEntryPoint != null && message.hasOwnProperty("destinationEntryPoint"))
+            if (message.destinationEntryPoint != null && Object.hasOwnProperty.call(message, "destinationEntryPoint"))
                 switch (message.destinationEntryPoint) {
                 default:
                     return "destinationEntryPoint: enum value expected";
@@ -20674,7 +20668,7 @@ $root.AICommon = (function() {
                 case 56:
                     break;
                 }
-            if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
+            if (message.threadOrigin != null && Object.hasOwnProperty.call(message, "threadOrigin"))
                 switch (message.threadOrigin) {
                 default:
                     return "threadOrigin: enum value expected";
@@ -20961,11 +20955,11 @@ $root.AICommon = (function() {
                 object.destinationEntryPoint = options.enums === String ? "UNDEFINED_ENTRY_POINT" : 0;
                 object.threadOrigin = options.enums === String ? "AI_TAB_THREAD" : 1;
             }
-            if (message.destinationId != null && message.hasOwnProperty("destinationId"))
+            if (message.destinationId != null && Object.hasOwnProperty.call(message, "destinationId"))
                 object.destinationId = message.destinationId;
-            if (message.destinationEntryPoint != null && message.hasOwnProperty("destinationEntryPoint"))
+            if (message.destinationEntryPoint != null && Object.hasOwnProperty.call(message, "destinationEntryPoint"))
                 object.destinationEntryPoint = options.enums === String ? $root.AICommon.BotMetricsEntryPoint[message.destinationEntryPoint] === undefined ? message.destinationEntryPoint : $root.AICommon.BotMetricsEntryPoint[message.destinationEntryPoint] : message.destinationEntryPoint;
-            if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
+            if (message.threadOrigin != null && Object.hasOwnProperty.call(message, "threadOrigin"))
                 object.threadOrigin = options.enums === String ? $root.AICommon.BotMetricsThreadEntryPoint[message.threadOrigin] === undefined ? message.threadOrigin : $root.AICommon.BotMetricsThreadEntryPoint[message.threadOrigin] : message.threadOrigin;
             return object;
         };
@@ -21148,7 +21142,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.keywords != null && message.hasOwnProperty("keywords")) {
+            if (message.keywords != null && Object.hasOwnProperty.call(message, "keywords")) {
                 if (!Array.isArray(message.keywords))
                     return "keywords: array expected";
                 for (var i = 0; i < message.keywords.length; ++i) {
@@ -21408,10 +21402,10 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.value != null && message.hasOwnProperty("value"))
+                if (message.value != null && Object.hasOwnProperty.call(message, "value"))
                     if (!$util.isString(message.value))
                         return "value: string expected";
-                if (message.associatedPrompts != null && message.hasOwnProperty("associatedPrompts")) {
+                if (message.associatedPrompts != null && Object.hasOwnProperty.call(message, "associatedPrompts")) {
                     if (!Array.isArray(message.associatedPrompts))
                         return "associatedPrompts: array expected";
                     for (var i = 0; i < message.associatedPrompts.length; ++i)
@@ -21472,7 +21466,7 @@ $root.AICommon = (function() {
                     object.associatedPrompts = [];
                 if (options.defaults)
                     object.value = "";
-                if (message.value != null && message.hasOwnProperty("value"))
+                if (message.value != null && Object.hasOwnProperty.call(message, "value"))
                     object.value = message.value;
                 if (message.associatedPrompts && message.associatedPrompts.length) {
                     object.associatedPrompts = [];
@@ -21674,7 +21668,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.promotionType != null && message.hasOwnProperty("promotionType"))
+            if (message.promotionType != null && Object.hasOwnProperty.call(message, "promotionType"))
                 switch (message.promotionType) {
                 default:
                     return "promotionType: enum value expected";
@@ -21683,7 +21677,7 @@ $root.AICommon = (function() {
                 case 2:
                     break;
                 }
-            if (message.buttonTitle != null && message.hasOwnProperty("buttonTitle"))
+            if (message.buttonTitle != null && Object.hasOwnProperty.call(message, "buttonTitle"))
                 if (!$util.isString(message.buttonTitle))
                     return "buttonTitle: string expected";
             return null;
@@ -21753,9 +21747,9 @@ $root.AICommon = (function() {
                 object.promotionType = options.enums === String ? "UNKNOWN_TYPE" : 0;
                 object.buttonTitle = "";
             }
-            if (message.promotionType != null && message.hasOwnProperty("promotionType"))
+            if (message.promotionType != null && Object.hasOwnProperty.call(message, "promotionType"))
                 object.promotionType = options.enums === String ? $root.AICommon.BotPromotionMessageMetadata.BotPromotionType[message.promotionType] === undefined ? message.promotionType : $root.AICommon.BotPromotionMessageMetadata.BotPromotionType[message.promotionType] : message.promotionType;
-            if (message.buttonTitle != null && message.hasOwnProperty("buttonTitle"))
+            if (message.buttonTitle != null && Object.hasOwnProperty.call(message, "buttonTitle"))
                 object.buttonTitle = message.buttonTitle;
             return object;
         };
@@ -21999,10 +21993,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 if (!$util.isInteger(message.version))
                     return "version: integer expected";
-            if (message.useCase != null && message.hasOwnProperty("useCase"))
+            if (message.useCase != null && Object.hasOwnProperty.call(message, "useCase"))
                 switch (message.useCase) {
                 default:
                     return "useCase: enum value expected";
@@ -22012,10 +22006,10 @@ $root.AICommon = (function() {
                 case 3:
                     break;
                 }
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 if (!(message.signature && typeof message.signature.length === "number" || $util.isString(message.signature)))
                     return "signature: buffer expected";
-            if (message.certificateChain != null && message.hasOwnProperty("certificateChain")) {
+            if (message.certificateChain != null && Object.hasOwnProperty.call(message, "certificateChain")) {
                 if (!Array.isArray(message.certificateChain))
                     return "certificateChain: array expected";
                 for (var i = 0; i < message.certificateChain.length; ++i)
@@ -22117,11 +22111,11 @@ $root.AICommon = (function() {
                         object.signature = $util.newBuffer(object.signature);
                 }
             }
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 object.version = message.version;
-            if (message.useCase != null && message.hasOwnProperty("useCase"))
+            if (message.useCase != null && Object.hasOwnProperty.call(message, "useCase"))
                 object.useCase = options.enums === String ? $root.AICommon.BotSignatureVerificationUseCaseProof.BotSignatureUseCase[message.useCase] === undefined ? message.useCase : $root.AICommon.BotSignatureVerificationUseCaseProof.BotSignatureUseCase[message.useCase] : message.useCase;
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
             if (message.certificateChain && message.certificateChain.length) {
                 object.certificateChain = [];
@@ -22327,7 +22321,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.proofs != null && message.hasOwnProperty("proofs")) {
+            if (message.proofs != null && Object.hasOwnProperty.call(message, "proofs")) {
                 if (!Array.isArray(message.proofs))
                     return "proofs: array expected";
                 for (var i = 0; i < message.proofs.length; ++i) {
@@ -22586,10 +22580,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.fact != null && message.hasOwnProperty("fact"))
+            if (message.fact != null && Object.hasOwnProperty.call(message, "fact"))
                 if (!$util.isString(message.fact))
                     return "fact: string expected";
-            if (message.factId != null && message.hasOwnProperty("factId"))
+            if (message.factId != null && Object.hasOwnProperty.call(message, "factId"))
                 if (!$util.isString(message.factId))
                     return "factId: string expected";
             return null;
@@ -22641,9 +22635,9 @@ $root.AICommon = (function() {
                 object.fact = "";
                 object.factId = "";
             }
-            if (message.fact != null && message.hasOwnProperty("fact"))
+            if (message.fact != null && Object.hasOwnProperty.call(message, "fact"))
                 object.fact = message.fact;
-            if (message.factId != null && message.hasOwnProperty("factId"))
+            if (message.factId != null && Object.hasOwnProperty.call(message, "factId"))
                 object.factId = message.factId;
             return object;
         };
@@ -22860,7 +22854,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.addedFacts != null && message.hasOwnProperty("addedFacts")) {
+            if (message.addedFacts != null && Object.hasOwnProperty.call(message, "addedFacts")) {
                 if (!Array.isArray(message.addedFacts))
                     return "addedFacts: array expected";
                 for (var i = 0; i < message.addedFacts.length; ++i) {
@@ -22869,7 +22863,7 @@ $root.AICommon = (function() {
                         return "addedFacts." + error;
                 }
             }
-            if (message.removedFacts != null && message.hasOwnProperty("removedFacts")) {
+            if (message.removedFacts != null && Object.hasOwnProperty.call(message, "removedFacts")) {
                 if (!Array.isArray(message.removedFacts))
                     return "removedFacts: array expected";
                 for (var i = 0; i < message.removedFacts.length; ++i) {
@@ -22878,7 +22872,7 @@ $root.AICommon = (function() {
                         return "removedFacts." + error;
                 }
             }
-            if (message.disclaimer != null && message.hasOwnProperty("disclaimer"))
+            if (message.disclaimer != null && Object.hasOwnProperty.call(message, "disclaimer"))
                 if (!$util.isString(message.disclaimer))
                     return "disclaimer: string expected";
             return null;
@@ -22960,7 +22954,7 @@ $root.AICommon = (function() {
                 for (var j = 0; j < message.removedFacts.length; ++j)
                     object.removedFacts[j] = $root.AICommon.BotMemoryFact.toObject(message.removedFacts[j], options, q + 1);
             }
-            if (message.disclaimer != null && message.hasOwnProperty("disclaimer"))
+            if (message.disclaimer != null && Object.hasOwnProperty.call(message, "disclaimer"))
                 object.disclaimer = message.disclaimer;
             return object;
         };
@@ -23139,7 +23133,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 switch (message.type) {
                 default:
                     return "type: enum value expected";
@@ -23201,7 +23195,7 @@ $root.AICommon = (function() {
             var object = {};
             if (options.defaults)
                 object.type = options.enums === String ? "BOT_LINKED_ACCOUNT_TYPE_1P" : 0;
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 object.type = options.enums === String ? $root.AICommon.BotLinkedAccount.BotLinkedAccountType[message.type] === undefined ? message.type : $root.AICommon.BotLinkedAccount.BotLinkedAccountType[message.type] : message.type;
             return object;
         };
@@ -23426,7 +23420,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.accounts != null && message.hasOwnProperty("accounts")) {
+            if (message.accounts != null && Object.hasOwnProperty.call(message, "accounts")) {
                 if (!Array.isArray(message.accounts))
                     return "accounts: array expected";
                 for (var i = 0; i < message.accounts.length; ++i) {
@@ -23435,10 +23429,10 @@ $root.AICommon = (function() {
                         return "accounts." + error;
                 }
             }
-            if (message.acAuthTokens != null && message.hasOwnProperty("acAuthTokens"))
+            if (message.acAuthTokens != null && Object.hasOwnProperty.call(message, "acAuthTokens"))
                 if (!(message.acAuthTokens && typeof message.acAuthTokens.length === "number" || $util.isString(message.acAuthTokens)))
                     return "acAuthTokens: buffer expected";
-            if (message.acErrorCode != null && message.hasOwnProperty("acErrorCode"))
+            if (message.acErrorCode != null && Object.hasOwnProperty.call(message, "acErrorCode"))
                 if (!$util.isInteger(message.acErrorCode))
                     return "acErrorCode: integer expected";
             return null;
@@ -23516,9 +23510,9 @@ $root.AICommon = (function() {
                 for (var j = 0; j < message.accounts.length; ++j)
                     object.accounts[j] = $root.AICommon.BotLinkedAccount.toObject(message.accounts[j], options, q + 1);
             }
-            if (message.acAuthTokens != null && message.hasOwnProperty("acAuthTokens"))
+            if (message.acAuthTokens != null && Object.hasOwnProperty.call(message, "acAuthTokens"))
                 object.acAuthTokens = options.bytes === String ? $util.base64.encode(message.acAuthTokens, 0, message.acAuthTokens.length) : options.bytes === Array ? Array.prototype.slice.call(message.acAuthTokens) : message.acAuthTokens;
-            if (message.acErrorCode != null && message.hasOwnProperty("acErrorCode"))
+            if (message.acErrorCode != null && Object.hasOwnProperty.call(message, "acErrorCode"))
                 object.acErrorCode = message.acErrorCode;
             return object;
         };
@@ -23712,10 +23706,10 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.prompt != null && message.hasOwnProperty("prompt"))
+            if (message.prompt != null && Object.hasOwnProperty.call(message, "prompt"))
                 if (!$util.isString(message.prompt))
                     return "prompt: string expected";
-            if (message.promptId != null && message.hasOwnProperty("promptId"))
+            if (message.promptId != null && Object.hasOwnProperty.call(message, "promptId"))
                 if (!$util.isString(message.promptId))
                     return "promptId: string expected";
             return null;
@@ -23767,9 +23761,9 @@ $root.AICommon = (function() {
                 object.prompt = "";
                 object.promptId = "";
             }
-            if (message.prompt != null && message.hasOwnProperty("prompt"))
+            if (message.prompt != null && Object.hasOwnProperty.call(message, "prompt"))
                 object.prompt = message.prompt;
-            if (message.promptId != null && message.hasOwnProperty("promptId"))
+            if (message.promptId != null && Object.hasOwnProperty.call(message, "promptId"))
                 object.promptId = message.promptId;
             return object;
         };
@@ -23952,7 +23946,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.suggestions != null && message.hasOwnProperty("suggestions")) {
+            if (message.suggestions != null && Object.hasOwnProperty.call(message, "suggestions")) {
                 if (!Array.isArray(message.suggestions))
                     return "suggestions: array expected";
                 for (var i = 0; i < message.suggestions.length; ++i) {
@@ -24245,22 +24239,22 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.suggestedPrompts != null && message.hasOwnProperty("suggestedPrompts")) {
+            if (message.suggestedPrompts != null && Object.hasOwnProperty.call(message, "suggestedPrompts")) {
                 if (!Array.isArray(message.suggestedPrompts))
                     return "suggestedPrompts: array expected";
                 for (var i = 0; i < message.suggestedPrompts.length; ++i)
                     if (!$util.isString(message.suggestedPrompts[i]))
                         return "suggestedPrompts: string[] expected";
             }
-            if (message.selectedPromptIndex != null && message.hasOwnProperty("selectedPromptIndex"))
+            if (message.selectedPromptIndex != null && Object.hasOwnProperty.call(message, "selectedPromptIndex"))
                 if (!$util.isInteger(message.selectedPromptIndex))
                     return "selectedPromptIndex: integer expected";
-            if (message.promptSuggestions != null && message.hasOwnProperty("promptSuggestions")) {
+            if (message.promptSuggestions != null && Object.hasOwnProperty.call(message, "promptSuggestions")) {
                 var error = $root.AICommon.BotPromptSuggestions.verify(message.promptSuggestions, long + 1);
                 if (error)
                     return "promptSuggestions." + error;
             }
-            if (message.selectedPromptId != null && message.hasOwnProperty("selectedPromptId"))
+            if (message.selectedPromptId != null && Object.hasOwnProperty.call(message, "selectedPromptId"))
                 if (!$util.isString(message.selectedPromptId))
                     return "selectedPromptId: string expected";
             return null;
@@ -24332,11 +24326,11 @@ $root.AICommon = (function() {
                 for (var j = 0; j < message.suggestedPrompts.length; ++j)
                     object.suggestedPrompts[j] = message.suggestedPrompts[j];
             }
-            if (message.selectedPromptIndex != null && message.hasOwnProperty("selectedPromptIndex"))
+            if (message.selectedPromptIndex != null && Object.hasOwnProperty.call(message, "selectedPromptIndex"))
                 object.selectedPromptIndex = message.selectedPromptIndex;
-            if (message.promptSuggestions != null && message.hasOwnProperty("promptSuggestions"))
+            if (message.promptSuggestions != null && Object.hasOwnProperty.call(message, "promptSuggestions"))
                 object.promptSuggestions = $root.AICommon.BotPromptSuggestions.toObject(message.promptSuggestions, options, q + 1);
-            if (message.selectedPromptId != null && message.hasOwnProperty("selectedPromptId"))
+            if (message.selectedPromptId != null && Object.hasOwnProperty.call(message, "selectedPromptId"))
                 object.selectedPromptId = message.selectedPromptId;
             return object;
         };
@@ -24680,7 +24674,7 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.provider != null && message.hasOwnProperty("provider"))
+            if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
                 switch (message.provider) {
                 default:
                     return "provider: enum value expected";
@@ -24690,7 +24684,7 @@ $root.AICommon = (function() {
                 case 3:
                     break;
                 }
-            if (message.pluginType != null && message.hasOwnProperty("pluginType"))
+            if (message.pluginType != null && Object.hasOwnProperty.call(message, "pluginType"))
                 switch (message.pluginType) {
                 default:
                     return "pluginType: enum value expected";
@@ -24699,30 +24693,30 @@ $root.AICommon = (function() {
                 case 2:
                     break;
                 }
-            if (message.thumbnailCdnUrl != null && message.hasOwnProperty("thumbnailCdnUrl"))
+            if (message.thumbnailCdnUrl != null && Object.hasOwnProperty.call(message, "thumbnailCdnUrl"))
                 if (!$util.isString(message.thumbnailCdnUrl))
                     return "thumbnailCdnUrl: string expected";
-            if (message.profilePhotoCdnUrl != null && message.hasOwnProperty("profilePhotoCdnUrl"))
+            if (message.profilePhotoCdnUrl != null && Object.hasOwnProperty.call(message, "profilePhotoCdnUrl"))
                 if (!$util.isString(message.profilePhotoCdnUrl))
                     return "profilePhotoCdnUrl: string expected";
-            if (message.searchProviderUrl != null && message.hasOwnProperty("searchProviderUrl"))
+            if (message.searchProviderUrl != null && Object.hasOwnProperty.call(message, "searchProviderUrl"))
                 if (!$util.isString(message.searchProviderUrl))
                     return "searchProviderUrl: string expected";
-            if (message.referenceIndex != null && message.hasOwnProperty("referenceIndex"))
+            if (message.referenceIndex != null && Object.hasOwnProperty.call(message, "referenceIndex"))
                 if (!$util.isInteger(message.referenceIndex))
                     return "referenceIndex: integer expected";
-            if (message.expectedLinksCount != null && message.hasOwnProperty("expectedLinksCount"))
+            if (message.expectedLinksCount != null && Object.hasOwnProperty.call(message, "expectedLinksCount"))
                 if (!$util.isInteger(message.expectedLinksCount))
                     return "expectedLinksCount: integer expected";
-            if (message.searchQuery != null && message.hasOwnProperty("searchQuery"))
+            if (message.searchQuery != null && Object.hasOwnProperty.call(message, "searchQuery"))
                 if (!$util.isString(message.searchQuery))
                     return "searchQuery: string expected";
-            if (message.parentPluginMessageKey != null && message.hasOwnProperty("parentPluginMessageKey")) {
+            if (message.parentPluginMessageKey != null && Object.hasOwnProperty.call(message, "parentPluginMessageKey")) {
                 var error = $root.Protocol.MessageKey.verify(message.parentPluginMessageKey, long + 1);
                 if (error)
                     return "parentPluginMessageKey." + error;
             }
-            if (message.deprecatedField != null && message.hasOwnProperty("deprecatedField"))
+            if (message.deprecatedField != null && Object.hasOwnProperty.call(message, "deprecatedField"))
                 switch (message.deprecatedField) {
                 default:
                     return "deprecatedField: enum value expected";
@@ -24731,7 +24725,7 @@ $root.AICommon = (function() {
                 case 2:
                     break;
                 }
-            if (message.parentPluginType != null && message.hasOwnProperty("parentPluginType"))
+            if (message.parentPluginType != null && Object.hasOwnProperty.call(message, "parentPluginType"))
                 switch (message.parentPluginType) {
                 default:
                     return "parentPluginType: enum value expected";
@@ -24740,7 +24734,7 @@ $root.AICommon = (function() {
                 case 2:
                     break;
                 }
-            if (message.faviconCdnUrl != null && message.hasOwnProperty("faviconCdnUrl"))
+            if (message.faviconCdnUrl != null && Object.hasOwnProperty.call(message, "faviconCdnUrl"))
                 if (!$util.isString(message.faviconCdnUrl))
                     return "faviconCdnUrl: string expected";
             return null;
@@ -24901,29 +24895,29 @@ $root.AICommon = (function() {
                 object.parentPluginType = options.enums === String ? "UNKNOWN_PLUGIN" : 0;
                 object.faviconCdnUrl = "";
             }
-            if (message.provider != null && message.hasOwnProperty("provider"))
+            if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
                 object.provider = options.enums === String ? $root.AICommon.BotPluginMetadata.SearchProvider[message.provider] === undefined ? message.provider : $root.AICommon.BotPluginMetadata.SearchProvider[message.provider] : message.provider;
-            if (message.pluginType != null && message.hasOwnProperty("pluginType"))
+            if (message.pluginType != null && Object.hasOwnProperty.call(message, "pluginType"))
                 object.pluginType = options.enums === String ? $root.AICommon.BotPluginMetadata.PluginType[message.pluginType] === undefined ? message.pluginType : $root.AICommon.BotPluginMetadata.PluginType[message.pluginType] : message.pluginType;
-            if (message.thumbnailCdnUrl != null && message.hasOwnProperty("thumbnailCdnUrl"))
+            if (message.thumbnailCdnUrl != null && Object.hasOwnProperty.call(message, "thumbnailCdnUrl"))
                 object.thumbnailCdnUrl = message.thumbnailCdnUrl;
-            if (message.profilePhotoCdnUrl != null && message.hasOwnProperty("profilePhotoCdnUrl"))
+            if (message.profilePhotoCdnUrl != null && Object.hasOwnProperty.call(message, "profilePhotoCdnUrl"))
                 object.profilePhotoCdnUrl = message.profilePhotoCdnUrl;
-            if (message.searchProviderUrl != null && message.hasOwnProperty("searchProviderUrl"))
+            if (message.searchProviderUrl != null && Object.hasOwnProperty.call(message, "searchProviderUrl"))
                 object.searchProviderUrl = message.searchProviderUrl;
-            if (message.referenceIndex != null && message.hasOwnProperty("referenceIndex"))
+            if (message.referenceIndex != null && Object.hasOwnProperty.call(message, "referenceIndex"))
                 object.referenceIndex = message.referenceIndex;
-            if (message.expectedLinksCount != null && message.hasOwnProperty("expectedLinksCount"))
+            if (message.expectedLinksCount != null && Object.hasOwnProperty.call(message, "expectedLinksCount"))
                 object.expectedLinksCount = message.expectedLinksCount;
-            if (message.searchQuery != null && message.hasOwnProperty("searchQuery"))
+            if (message.searchQuery != null && Object.hasOwnProperty.call(message, "searchQuery"))
                 object.searchQuery = message.searchQuery;
-            if (message.parentPluginMessageKey != null && message.hasOwnProperty("parentPluginMessageKey"))
+            if (message.parentPluginMessageKey != null && Object.hasOwnProperty.call(message, "parentPluginMessageKey"))
                 object.parentPluginMessageKey = $root.Protocol.MessageKey.toObject(message.parentPluginMessageKey, options, q + 1);
-            if (message.deprecatedField != null && message.hasOwnProperty("deprecatedField"))
+            if (message.deprecatedField != null && Object.hasOwnProperty.call(message, "deprecatedField"))
                 object.deprecatedField = options.enums === String ? $root.AICommon.BotPluginMetadata.PluginType[message.deprecatedField] === undefined ? message.deprecatedField : $root.AICommon.BotPluginMetadata.PluginType[message.deprecatedField] : message.deprecatedField;
-            if (message.parentPluginType != null && message.hasOwnProperty("parentPluginType"))
+            if (message.parentPluginType != null && Object.hasOwnProperty.call(message, "parentPluginType"))
                 object.parentPluginType = options.enums === String ? $root.AICommon.BotPluginMetadata.PluginType[message.parentPluginType] === undefined ? message.parentPluginType : $root.AICommon.BotPluginMetadata.PluginType[message.parentPluginType] : message.parentPluginType;
-            if (message.faviconCdnUrl != null && message.hasOwnProperty("faviconCdnUrl"))
+            if (message.faviconCdnUrl != null && Object.hasOwnProperty.call(message, "faviconCdnUrl"))
                 object.faviconCdnUrl = message.faviconCdnUrl;
             return object;
         };
@@ -25377,10 +25371,10 @@ $root.Protocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
                 if (typeof message.sharingLimited !== "boolean")
                     return "sharingLimited: boolean expected";
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
                 switch (message.trigger) {
                 default:
                     return "trigger: enum value expected";
@@ -25390,10 +25384,10 @@ $root.Protocol = (function() {
                 case 3:
                     break;
                 }
-            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
                 if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
                     return "limitSharingSettingTimestamp: integer|Long expected";
-            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
                 if (typeof message.initiatedByMe !== "boolean")
                     return "initiatedByMe: boolean expected";
             return null;
@@ -25484,18 +25478,18 @@ $root.Protocol = (function() {
                     object.limitSharingSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.initiatedByMe = false;
             }
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
                 object.sharingLimited = message.sharingLimited;
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
                 object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
-            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.limitSharingSettingTimestamp = typeof message.limitSharingSettingTimestamp === "number" ? BigInt(message.limitSharingSettingTimestamp) : $util.Long.fromBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0, false).toBigInt();
                 else if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
                 else
                     object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
-            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
                 object.initiatedByMe = message.initiatedByMe;
             return object;
         };
@@ -25737,16 +25731,16 @@ $root.Protocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
                 if (!$util.isString(message.remoteJid))
                     return "remoteJid: string expected";
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
                 if (typeof message.fromMe !== "boolean")
                     return "fromMe: boolean expected";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isString(message.id))
                     return "id: string expected";
-            if (message.participant != null && message.hasOwnProperty("participant"))
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
                 if (!$util.isString(message.participant))
                     return "participant: string expected";
             return null;
@@ -25804,13 +25798,13 @@ $root.Protocol = (function() {
                 object.id = "";
                 object.participant = "";
             }
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
                 object.remoteJid = message.remoteJid;
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
                 object.fromMe = message.fromMe;
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.participant != null && message.hasOwnProperty("participant"))
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
                 object.participant = message.participant;
             return object;
         };

@@ -208,10 +208,10 @@ $root.Protocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
                 if (typeof message.sharingLimited !== "boolean")
                     return "sharingLimited: boolean expected";
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
                 switch (message.trigger) {
                 default:
                     return "trigger: enum value expected";
@@ -221,10 +221,10 @@ $root.Protocol = (function() {
                 case 3:
                     break;
                 }
-            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
                 if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
                     return "limitSharingSettingTimestamp: integer|Long expected";
-            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
                 if (typeof message.initiatedByMe !== "boolean")
                     return "initiatedByMe: boolean expected";
             return null;
@@ -315,18 +315,18 @@ $root.Protocol = (function() {
                     object.limitSharingSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.initiatedByMe = false;
             }
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
                 object.sharingLimited = message.sharingLimited;
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
                 object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
-            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.limitSharingSettingTimestamp = typeof message.limitSharingSettingTimestamp === "number" ? BigInt(message.limitSharingSettingTimestamp) : $util.Long.fromBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0, false).toBigInt();
                 else if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
                 else
                     object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
-            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
                 object.initiatedByMe = message.initiatedByMe;
             return object;
         };
@@ -568,16 +568,16 @@ $root.Protocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
                 if (!$util.isString(message.remoteJid))
                     return "remoteJid: string expected";
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
                 if (typeof message.fromMe !== "boolean")
                     return "fromMe: boolean expected";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isString(message.id))
                     return "id: string expected";
-            if (message.participant != null && message.hasOwnProperty("participant"))
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
                 if (!$util.isString(message.participant))
                     return "participant: string expected";
             return null;
@@ -635,13 +635,13 @@ $root.Protocol = (function() {
                 object.id = "";
                 object.participant = "";
             }
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
                 object.remoteJid = message.remoteJid;
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
                 object.fromMe = message.fromMe;
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.participant != null && message.hasOwnProperty("participant"))
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
                 object.participant = message.participant;
             return object;
         };

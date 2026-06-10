@@ -313,34 +313,34 @@ $root.SyncAction = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.currentLthash != null && message.hasOwnProperty("currentLthash"))
+            if (message.currentLthash != null && Object.hasOwnProperty.call(message, "currentLthash"))
                 if (!(message.currentLthash && typeof message.currentLthash.length === "number" || $util.isString(message.currentLthash)))
                     return "currentLthash: buffer expected";
-            if (message.newLthash != null && message.hasOwnProperty("newLthash"))
+            if (message.newLthash != null && Object.hasOwnProperty.call(message, "newLthash"))
                 if (!(message.newLthash && typeof message.newLthash.length === "number" || $util.isString(message.newLthash)))
                     return "newLthash: buffer expected";
-            if (message.patchVersion != null && message.hasOwnProperty("patchVersion"))
+            if (message.patchVersion != null && Object.hasOwnProperty.call(message, "patchVersion"))
                 if (!(message.patchVersion && typeof message.patchVersion.length === "number" || $util.isString(message.patchVersion)))
                     return "patchVersion: buffer expected";
-            if (message.collectionName != null && message.hasOwnProperty("collectionName"))
+            if (message.collectionName != null && Object.hasOwnProperty.call(message, "collectionName"))
                 if (!(message.collectionName && typeof message.collectionName.length === "number" || $util.isString(message.collectionName)))
                     return "collectionName: buffer expected";
-            if (message.firstFourBytesFromAHashOfSnapshotMacKey != null && message.hasOwnProperty("firstFourBytesFromAHashOfSnapshotMacKey"))
+            if (message.firstFourBytesFromAHashOfSnapshotMacKey != null && Object.hasOwnProperty.call(message, "firstFourBytesFromAHashOfSnapshotMacKey"))
                 if (!(message.firstFourBytesFromAHashOfSnapshotMacKey && typeof message.firstFourBytesFromAHashOfSnapshotMacKey.length === "number" || $util.isString(message.firstFourBytesFromAHashOfSnapshotMacKey)))
                     return "firstFourBytesFromAHashOfSnapshotMacKey: buffer expected";
-            if (message.newLthashSubtract != null && message.hasOwnProperty("newLthashSubtract"))
+            if (message.newLthashSubtract != null && Object.hasOwnProperty.call(message, "newLthashSubtract"))
                 if (!(message.newLthashSubtract && typeof message.newLthashSubtract.length === "number" || $util.isString(message.newLthashSubtract)))
                     return "newLthashSubtract: buffer expected";
-            if (message.numberAdd != null && message.hasOwnProperty("numberAdd"))
+            if (message.numberAdd != null && Object.hasOwnProperty.call(message, "numberAdd"))
                 if (!$util.isInteger(message.numberAdd))
                     return "numberAdd: integer expected";
-            if (message.numberRemove != null && message.hasOwnProperty("numberRemove"))
+            if (message.numberRemove != null && Object.hasOwnProperty.call(message, "numberRemove"))
                 if (!$util.isInteger(message.numberRemove))
                     return "numberRemove: integer expected";
-            if (message.numberOverride != null && message.hasOwnProperty("numberOverride"))
+            if (message.numberOverride != null && Object.hasOwnProperty.call(message, "numberOverride"))
                 if (!$util.isInteger(message.numberOverride))
                     return "numberOverride: integer expected";
-            if (message.senderPlatform != null && message.hasOwnProperty("senderPlatform"))
+            if (message.senderPlatform != null && Object.hasOwnProperty.call(message, "senderPlatform"))
                 switch (message.senderPlatform) {
                 default:
                     return "senderPlatform: enum value expected";
@@ -358,7 +358,7 @@ $root.SyncAction = (function() {
                 case 11:
                     break;
                 }
-            if (message.isSenderPrimary != null && message.hasOwnProperty("isSenderPrimary"))
+            if (message.isSenderPrimary != null && Object.hasOwnProperty.call(message, "isSenderPrimary"))
                 if (typeof message.isSenderPrimary !== "boolean")
                     return "isSenderPrimary: boolean expected";
             return null;
@@ -545,27 +545,27 @@ $root.SyncAction = (function() {
                 object.senderPlatform = options.enums === String ? "ANDROID" : 0;
                 object.isSenderPrimary = false;
             }
-            if (message.currentLthash != null && message.hasOwnProperty("currentLthash"))
+            if (message.currentLthash != null && Object.hasOwnProperty.call(message, "currentLthash"))
                 object.currentLthash = options.bytes === String ? $util.base64.encode(message.currentLthash, 0, message.currentLthash.length) : options.bytes === Array ? Array.prototype.slice.call(message.currentLthash) : message.currentLthash;
-            if (message.newLthash != null && message.hasOwnProperty("newLthash"))
+            if (message.newLthash != null && Object.hasOwnProperty.call(message, "newLthash"))
                 object.newLthash = options.bytes === String ? $util.base64.encode(message.newLthash, 0, message.newLthash.length) : options.bytes === Array ? Array.prototype.slice.call(message.newLthash) : message.newLthash;
-            if (message.patchVersion != null && message.hasOwnProperty("patchVersion"))
+            if (message.patchVersion != null && Object.hasOwnProperty.call(message, "patchVersion"))
                 object.patchVersion = options.bytes === String ? $util.base64.encode(message.patchVersion, 0, message.patchVersion.length) : options.bytes === Array ? Array.prototype.slice.call(message.patchVersion) : message.patchVersion;
-            if (message.collectionName != null && message.hasOwnProperty("collectionName"))
+            if (message.collectionName != null && Object.hasOwnProperty.call(message, "collectionName"))
                 object.collectionName = options.bytes === String ? $util.base64.encode(message.collectionName, 0, message.collectionName.length) : options.bytes === Array ? Array.prototype.slice.call(message.collectionName) : message.collectionName;
-            if (message.firstFourBytesFromAHashOfSnapshotMacKey != null && message.hasOwnProperty("firstFourBytesFromAHashOfSnapshotMacKey"))
+            if (message.firstFourBytesFromAHashOfSnapshotMacKey != null && Object.hasOwnProperty.call(message, "firstFourBytesFromAHashOfSnapshotMacKey"))
                 object.firstFourBytesFromAHashOfSnapshotMacKey = options.bytes === String ? $util.base64.encode(message.firstFourBytesFromAHashOfSnapshotMacKey, 0, message.firstFourBytesFromAHashOfSnapshotMacKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.firstFourBytesFromAHashOfSnapshotMacKey) : message.firstFourBytesFromAHashOfSnapshotMacKey;
-            if (message.newLthashSubtract != null && message.hasOwnProperty("newLthashSubtract"))
+            if (message.newLthashSubtract != null && Object.hasOwnProperty.call(message, "newLthashSubtract"))
                 object.newLthashSubtract = options.bytes === String ? $util.base64.encode(message.newLthashSubtract, 0, message.newLthashSubtract.length) : options.bytes === Array ? Array.prototype.slice.call(message.newLthashSubtract) : message.newLthashSubtract;
-            if (message.numberAdd != null && message.hasOwnProperty("numberAdd"))
+            if (message.numberAdd != null && Object.hasOwnProperty.call(message, "numberAdd"))
                 object.numberAdd = message.numberAdd;
-            if (message.numberRemove != null && message.hasOwnProperty("numberRemove"))
+            if (message.numberRemove != null && Object.hasOwnProperty.call(message, "numberRemove"))
                 object.numberRemove = message.numberRemove;
-            if (message.numberOverride != null && message.hasOwnProperty("numberOverride"))
+            if (message.numberOverride != null && Object.hasOwnProperty.call(message, "numberOverride"))
                 object.numberOverride = message.numberOverride;
-            if (message.senderPlatform != null && message.hasOwnProperty("senderPlatform"))
+            if (message.senderPlatform != null && Object.hasOwnProperty.call(message, "senderPlatform"))
                 object.senderPlatform = options.enums === String ? $root.SyncAction.PatchDebugData.Platform[message.senderPlatform] === undefined ? message.senderPlatform : $root.SyncAction.PatchDebugData.Platform[message.senderPlatform] : message.senderPlatform;
-            if (message.isSenderPrimary != null && message.hasOwnProperty("isSenderPrimary"))
+            if (message.isSenderPrimary != null && Object.hasOwnProperty.call(message, "isSenderPrimary"))
                 object.isSenderPrimary = message.isSenderPrimary;
             return object;
         };
@@ -823,18 +823,18 @@ $root.SyncAction = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.index != null && message.hasOwnProperty("index"))
+            if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                 if (!(message.index && typeof message.index.length === "number" || $util.isString(message.index)))
                     return "index: buffer expected";
-            if (message.value != null && message.hasOwnProperty("value")) {
+            if (message.value != null && Object.hasOwnProperty.call(message, "value")) {
                 var error = $root.SyncAction.SyncActionValue.verify(message.value, long + 1);
                 if (error)
                     return "value." + error;
             }
-            if (message.padding != null && message.hasOwnProperty("padding"))
+            if (message.padding != null && Object.hasOwnProperty.call(message, "padding"))
                 if (!(message.padding && typeof message.padding.length === "number" || $util.isString(message.padding)))
                     return "padding: buffer expected";
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 if (!$util.isInteger(message.version))
                     return "version: integer expected";
             return null;
@@ -913,13 +913,13 @@ $root.SyncAction = (function() {
                 }
                 object.version = 0;
             }
-            if (message.index != null && message.hasOwnProperty("index"))
+            if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                 object.index = options.bytes === String ? $util.base64.encode(message.index, 0, message.index.length) : options.bytes === Array ? Array.prototype.slice.call(message.index) : message.index;
-            if (message.value != null && message.hasOwnProperty("value"))
+            if (message.value != null && Object.hasOwnProperty.call(message, "value"))
                 object.value = $root.SyncAction.SyncActionValue.toObject(message.value, options, q + 1);
-            if (message.padding != null && message.hasOwnProperty("padding"))
+            if (message.padding != null && Object.hasOwnProperty.call(message, "padding"))
                 object.padding = options.bytes === String ? $util.base64.encode(message.padding, 0, message.padding.length) : options.bytes === Array ? Array.prototype.slice.call(message.padding) : message.padding;
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 object.version = message.version;
             return object;
         };
@@ -2253,390 +2253,390 @@ $root.SyncAction = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                     return "timestamp: integer|Long expected";
-            if (message.starAction != null && message.hasOwnProperty("starAction")) {
+            if (message.starAction != null && Object.hasOwnProperty.call(message, "starAction")) {
                 var error = $root.SyncAction.SyncActionValue.StarAction.verify(message.starAction, long + 1);
                 if (error)
                     return "starAction." + error;
             }
-            if (message.contactAction != null && message.hasOwnProperty("contactAction")) {
+            if (message.contactAction != null && Object.hasOwnProperty.call(message, "contactAction")) {
                 var error = $root.SyncAction.SyncActionValue.ContactAction.verify(message.contactAction, long + 1);
                 if (error)
                     return "contactAction." + error;
             }
-            if (message.muteAction != null && message.hasOwnProperty("muteAction")) {
+            if (message.muteAction != null && Object.hasOwnProperty.call(message, "muteAction")) {
                 var error = $root.SyncAction.SyncActionValue.MuteAction.verify(message.muteAction, long + 1);
                 if (error)
                     return "muteAction." + error;
             }
-            if (message.pinAction != null && message.hasOwnProperty("pinAction")) {
+            if (message.pinAction != null && Object.hasOwnProperty.call(message, "pinAction")) {
                 var error = $root.SyncAction.SyncActionValue.PinAction.verify(message.pinAction, long + 1);
                 if (error)
                     return "pinAction." + error;
             }
-            if (message.pushNameSetting != null && message.hasOwnProperty("pushNameSetting")) {
+            if (message.pushNameSetting != null && Object.hasOwnProperty.call(message, "pushNameSetting")) {
                 var error = $root.SyncAction.SyncActionValue.PushNameSetting.verify(message.pushNameSetting, long + 1);
                 if (error)
                     return "pushNameSetting." + error;
             }
-            if (message.quickReplyAction != null && message.hasOwnProperty("quickReplyAction")) {
+            if (message.quickReplyAction != null && Object.hasOwnProperty.call(message, "quickReplyAction")) {
                 var error = $root.SyncAction.SyncActionValue.QuickReplyAction.verify(message.quickReplyAction, long + 1);
                 if (error)
                     return "quickReplyAction." + error;
             }
-            if (message.recentEmojiWeightsAction != null && message.hasOwnProperty("recentEmojiWeightsAction")) {
+            if (message.recentEmojiWeightsAction != null && Object.hasOwnProperty.call(message, "recentEmojiWeightsAction")) {
                 var error = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.verify(message.recentEmojiWeightsAction, long + 1);
                 if (error)
                     return "recentEmojiWeightsAction." + error;
             }
-            if (message.labelEditAction != null && message.hasOwnProperty("labelEditAction")) {
+            if (message.labelEditAction != null && Object.hasOwnProperty.call(message, "labelEditAction")) {
                 var error = $root.SyncAction.SyncActionValue.LabelEditAction.verify(message.labelEditAction, long + 1);
                 if (error)
                     return "labelEditAction." + error;
             }
-            if (message.labelAssociationAction != null && message.hasOwnProperty("labelAssociationAction")) {
+            if (message.labelAssociationAction != null && Object.hasOwnProperty.call(message, "labelAssociationAction")) {
                 var error = $root.SyncAction.SyncActionValue.LabelAssociationAction.verify(message.labelAssociationAction, long + 1);
                 if (error)
                     return "labelAssociationAction." + error;
             }
-            if (message.localeSetting != null && message.hasOwnProperty("localeSetting")) {
+            if (message.localeSetting != null && Object.hasOwnProperty.call(message, "localeSetting")) {
                 var error = $root.SyncAction.SyncActionValue.LocaleSetting.verify(message.localeSetting, long + 1);
                 if (error)
                     return "localeSetting." + error;
             }
-            if (message.archiveChatAction != null && message.hasOwnProperty("archiveChatAction")) {
+            if (message.archiveChatAction != null && Object.hasOwnProperty.call(message, "archiveChatAction")) {
                 var error = $root.SyncAction.SyncActionValue.ArchiveChatAction.verify(message.archiveChatAction, long + 1);
                 if (error)
                     return "archiveChatAction." + error;
             }
-            if (message.deleteMessageForMeAction != null && message.hasOwnProperty("deleteMessageForMeAction")) {
+            if (message.deleteMessageForMeAction != null && Object.hasOwnProperty.call(message, "deleteMessageForMeAction")) {
                 var error = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.verify(message.deleteMessageForMeAction, long + 1);
                 if (error)
                     return "deleteMessageForMeAction." + error;
             }
-            if (message.keyExpiration != null && message.hasOwnProperty("keyExpiration")) {
+            if (message.keyExpiration != null && Object.hasOwnProperty.call(message, "keyExpiration")) {
                 var error = $root.SyncAction.SyncActionValue.KeyExpiration.verify(message.keyExpiration, long + 1);
                 if (error)
                     return "keyExpiration." + error;
             }
-            if (message.markChatAsReadAction != null && message.hasOwnProperty("markChatAsReadAction")) {
+            if (message.markChatAsReadAction != null && Object.hasOwnProperty.call(message, "markChatAsReadAction")) {
                 var error = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.verify(message.markChatAsReadAction, long + 1);
                 if (error)
                     return "markChatAsReadAction." + error;
             }
-            if (message.clearChatAction != null && message.hasOwnProperty("clearChatAction")) {
+            if (message.clearChatAction != null && Object.hasOwnProperty.call(message, "clearChatAction")) {
                 var error = $root.SyncAction.SyncActionValue.ClearChatAction.verify(message.clearChatAction, long + 1);
                 if (error)
                     return "clearChatAction." + error;
             }
-            if (message.deleteChatAction != null && message.hasOwnProperty("deleteChatAction")) {
+            if (message.deleteChatAction != null && Object.hasOwnProperty.call(message, "deleteChatAction")) {
                 var error = $root.SyncAction.SyncActionValue.DeleteChatAction.verify(message.deleteChatAction, long + 1);
                 if (error)
                     return "deleteChatAction." + error;
             }
-            if (message.unarchiveChatsSetting != null && message.hasOwnProperty("unarchiveChatsSetting")) {
+            if (message.unarchiveChatsSetting != null && Object.hasOwnProperty.call(message, "unarchiveChatsSetting")) {
                 var error = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.verify(message.unarchiveChatsSetting, long + 1);
                 if (error)
                     return "unarchiveChatsSetting." + error;
             }
-            if (message.primaryFeature != null && message.hasOwnProperty("primaryFeature")) {
+            if (message.primaryFeature != null && Object.hasOwnProperty.call(message, "primaryFeature")) {
                 var error = $root.SyncAction.SyncActionValue.PrimaryFeature.verify(message.primaryFeature, long + 1);
                 if (error)
                     return "primaryFeature." + error;
             }
-            if (message.androidUnsupportedActions != null && message.hasOwnProperty("androidUnsupportedActions")) {
+            if (message.androidUnsupportedActions != null && Object.hasOwnProperty.call(message, "androidUnsupportedActions")) {
                 var error = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.verify(message.androidUnsupportedActions, long + 1);
                 if (error)
                     return "androidUnsupportedActions." + error;
             }
-            if (message.agentAction != null && message.hasOwnProperty("agentAction")) {
+            if (message.agentAction != null && Object.hasOwnProperty.call(message, "agentAction")) {
                 var error = $root.SyncAction.SyncActionValue.AgentAction.verify(message.agentAction, long + 1);
                 if (error)
                     return "agentAction." + error;
             }
-            if (message.subscriptionAction != null && message.hasOwnProperty("subscriptionAction")) {
+            if (message.subscriptionAction != null && Object.hasOwnProperty.call(message, "subscriptionAction")) {
                 var error = $root.SyncAction.SyncActionValue.SubscriptionAction.verify(message.subscriptionAction, long + 1);
                 if (error)
                     return "subscriptionAction." + error;
             }
-            if (message.userStatusMuteAction != null && message.hasOwnProperty("userStatusMuteAction")) {
+            if (message.userStatusMuteAction != null && Object.hasOwnProperty.call(message, "userStatusMuteAction")) {
                 var error = $root.SyncAction.SyncActionValue.UserStatusMuteAction.verify(message.userStatusMuteAction, long + 1);
                 if (error)
                     return "userStatusMuteAction." + error;
             }
-            if (message.timeFormatAction != null && message.hasOwnProperty("timeFormatAction")) {
+            if (message.timeFormatAction != null && Object.hasOwnProperty.call(message, "timeFormatAction")) {
                 var error = $root.SyncAction.SyncActionValue.TimeFormatAction.verify(message.timeFormatAction, long + 1);
                 if (error)
                     return "timeFormatAction." + error;
             }
-            if (message.nuxAction != null && message.hasOwnProperty("nuxAction")) {
+            if (message.nuxAction != null && Object.hasOwnProperty.call(message, "nuxAction")) {
                 var error = $root.SyncAction.SyncActionValue.NuxAction.verify(message.nuxAction, long + 1);
                 if (error)
                     return "nuxAction." + error;
             }
-            if (message.primaryVersionAction != null && message.hasOwnProperty("primaryVersionAction")) {
+            if (message.primaryVersionAction != null && Object.hasOwnProperty.call(message, "primaryVersionAction")) {
                 var error = $root.SyncAction.SyncActionValue.PrimaryVersionAction.verify(message.primaryVersionAction, long + 1);
                 if (error)
                     return "primaryVersionAction." + error;
             }
-            if (message.stickerAction != null && message.hasOwnProperty("stickerAction")) {
+            if (message.stickerAction != null && Object.hasOwnProperty.call(message, "stickerAction")) {
                 var error = $root.SyncAction.SyncActionValue.StickerAction.verify(message.stickerAction, long + 1);
                 if (error)
                     return "stickerAction." + error;
             }
-            if (message.removeRecentStickerAction != null && message.hasOwnProperty("removeRecentStickerAction")) {
+            if (message.removeRecentStickerAction != null && Object.hasOwnProperty.call(message, "removeRecentStickerAction")) {
                 var error = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.verify(message.removeRecentStickerAction, long + 1);
                 if (error)
                     return "removeRecentStickerAction." + error;
             }
-            if (message.chatAssignment != null && message.hasOwnProperty("chatAssignment")) {
+            if (message.chatAssignment != null && Object.hasOwnProperty.call(message, "chatAssignment")) {
                 var error = $root.SyncAction.SyncActionValue.ChatAssignmentAction.verify(message.chatAssignment, long + 1);
                 if (error)
                     return "chatAssignment." + error;
             }
-            if (message.chatAssignmentOpenedStatus != null && message.hasOwnProperty("chatAssignmentOpenedStatus")) {
+            if (message.chatAssignmentOpenedStatus != null && Object.hasOwnProperty.call(message, "chatAssignmentOpenedStatus")) {
                 var error = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.verify(message.chatAssignmentOpenedStatus, long + 1);
                 if (error)
                     return "chatAssignmentOpenedStatus." + error;
             }
-            if (message.pnForLidChatAction != null && message.hasOwnProperty("pnForLidChatAction")) {
+            if (message.pnForLidChatAction != null && Object.hasOwnProperty.call(message, "pnForLidChatAction")) {
                 var error = $root.SyncAction.SyncActionValue.PnForLidChatAction.verify(message.pnForLidChatAction, long + 1);
                 if (error)
                     return "pnForLidChatAction." + error;
             }
-            if (message.marketingMessageAction != null && message.hasOwnProperty("marketingMessageAction")) {
+            if (message.marketingMessageAction != null && Object.hasOwnProperty.call(message, "marketingMessageAction")) {
                 var error = $root.SyncAction.SyncActionValue.MarketingMessageAction.verify(message.marketingMessageAction, long + 1);
                 if (error)
                     return "marketingMessageAction." + error;
             }
-            if (message.marketingMessageBroadcastAction != null && message.hasOwnProperty("marketingMessageBroadcastAction")) {
+            if (message.marketingMessageBroadcastAction != null && Object.hasOwnProperty.call(message, "marketingMessageBroadcastAction")) {
                 var error = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.verify(message.marketingMessageBroadcastAction, long + 1);
                 if (error)
                     return "marketingMessageBroadcastAction." + error;
             }
-            if (message.externalWebBetaAction != null && message.hasOwnProperty("externalWebBetaAction")) {
+            if (message.externalWebBetaAction != null && Object.hasOwnProperty.call(message, "externalWebBetaAction")) {
                 var error = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.verify(message.externalWebBetaAction, long + 1);
                 if (error)
                     return "externalWebBetaAction." + error;
             }
-            if (message.privacySettingRelayAllCalls != null && message.hasOwnProperty("privacySettingRelayAllCalls")) {
+            if (message.privacySettingRelayAllCalls != null && Object.hasOwnProperty.call(message, "privacySettingRelayAllCalls")) {
                 var error = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.verify(message.privacySettingRelayAllCalls, long + 1);
                 if (error)
                     return "privacySettingRelayAllCalls." + error;
             }
-            if (message.callLogAction != null && message.hasOwnProperty("callLogAction")) {
+            if (message.callLogAction != null && Object.hasOwnProperty.call(message, "callLogAction")) {
                 var error = $root.SyncAction.SyncActionValue.CallLogAction.verify(message.callLogAction, long + 1);
                 if (error)
                     return "callLogAction." + error;
             }
-            if (message.ugcBot != null && message.hasOwnProperty("ugcBot")) {
+            if (message.ugcBot != null && Object.hasOwnProperty.call(message, "ugcBot")) {
                 var error = $root.SyncAction.SyncActionValue.UGCBot.verify(message.ugcBot, long + 1);
                 if (error)
                     return "ugcBot." + error;
             }
-            if (message.statusPrivacy != null && message.hasOwnProperty("statusPrivacy")) {
+            if (message.statusPrivacy != null && Object.hasOwnProperty.call(message, "statusPrivacy")) {
                 var error = $root.SyncAction.SyncActionValue.StatusPrivacyAction.verify(message.statusPrivacy, long + 1);
                 if (error)
                     return "statusPrivacy." + error;
             }
-            if (message.botWelcomeRequestAction != null && message.hasOwnProperty("botWelcomeRequestAction")) {
+            if (message.botWelcomeRequestAction != null && Object.hasOwnProperty.call(message, "botWelcomeRequestAction")) {
                 var error = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.verify(message.botWelcomeRequestAction, long + 1);
                 if (error)
                     return "botWelcomeRequestAction." + error;
             }
-            if (message.deleteIndividualCallLog != null && message.hasOwnProperty("deleteIndividualCallLog")) {
+            if (message.deleteIndividualCallLog != null && Object.hasOwnProperty.call(message, "deleteIndividualCallLog")) {
                 var error = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.verify(message.deleteIndividualCallLog, long + 1);
                 if (error)
                     return "deleteIndividualCallLog." + error;
             }
-            if (message.labelReorderingAction != null && message.hasOwnProperty("labelReorderingAction")) {
+            if (message.labelReorderingAction != null && Object.hasOwnProperty.call(message, "labelReorderingAction")) {
                 var error = $root.SyncAction.SyncActionValue.LabelReorderingAction.verify(message.labelReorderingAction, long + 1);
                 if (error)
                     return "labelReorderingAction." + error;
             }
-            if (message.paymentInfoAction != null && message.hasOwnProperty("paymentInfoAction")) {
+            if (message.paymentInfoAction != null && Object.hasOwnProperty.call(message, "paymentInfoAction")) {
                 var error = $root.SyncAction.SyncActionValue.PaymentInfoAction.verify(message.paymentInfoAction, long + 1);
                 if (error)
                     return "paymentInfoAction." + error;
             }
-            if (message.customPaymentMethodsAction != null && message.hasOwnProperty("customPaymentMethodsAction")) {
+            if (message.customPaymentMethodsAction != null && Object.hasOwnProperty.call(message, "customPaymentMethodsAction")) {
                 var error = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.verify(message.customPaymentMethodsAction, long + 1);
                 if (error)
                     return "customPaymentMethodsAction." + error;
             }
-            if (message.lockChatAction != null && message.hasOwnProperty("lockChatAction")) {
+            if (message.lockChatAction != null && Object.hasOwnProperty.call(message, "lockChatAction")) {
                 var error = $root.SyncAction.SyncActionValue.LockChatAction.verify(message.lockChatAction, long + 1);
                 if (error)
                     return "lockChatAction." + error;
             }
-            if (message.chatLockSettings != null && message.hasOwnProperty("chatLockSettings")) {
+            if (message.chatLockSettings != null && Object.hasOwnProperty.call(message, "chatLockSettings")) {
                 var error = $root.ChatLockSettings.ChatLockSettings.verify(message.chatLockSettings, long + 1);
                 if (error)
                     return "chatLockSettings." + error;
             }
-            if (message.wamoUserIdentifierAction != null && message.hasOwnProperty("wamoUserIdentifierAction")) {
+            if (message.wamoUserIdentifierAction != null && Object.hasOwnProperty.call(message, "wamoUserIdentifierAction")) {
                 var error = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.verify(message.wamoUserIdentifierAction, long + 1);
                 if (error)
                     return "wamoUserIdentifierAction." + error;
             }
-            if (message.privacySettingDisableLinkPreviewsAction != null && message.hasOwnProperty("privacySettingDisableLinkPreviewsAction")) {
+            if (message.privacySettingDisableLinkPreviewsAction != null && Object.hasOwnProperty.call(message, "privacySettingDisableLinkPreviewsAction")) {
                 var error = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.verify(message.privacySettingDisableLinkPreviewsAction, long + 1);
                 if (error)
                     return "privacySettingDisableLinkPreviewsAction." + error;
             }
-            if (message.deviceCapabilities != null && message.hasOwnProperty("deviceCapabilities")) {
+            if (message.deviceCapabilities != null && Object.hasOwnProperty.call(message, "deviceCapabilities")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.verify(message.deviceCapabilities, long + 1);
                 if (error)
                     return "deviceCapabilities." + error;
             }
-            if (message.noteEditAction != null && message.hasOwnProperty("noteEditAction")) {
+            if (message.noteEditAction != null && Object.hasOwnProperty.call(message, "noteEditAction")) {
                 var error = $root.SyncAction.SyncActionValue.NoteEditAction.verify(message.noteEditAction, long + 1);
                 if (error)
                     return "noteEditAction." + error;
             }
-            if (message.favoritesAction != null && message.hasOwnProperty("favoritesAction")) {
+            if (message.favoritesAction != null && Object.hasOwnProperty.call(message, "favoritesAction")) {
                 var error = $root.SyncAction.SyncActionValue.FavoritesAction.verify(message.favoritesAction, long + 1);
                 if (error)
                     return "favoritesAction." + error;
             }
-            if (message.merchantPaymentPartnerAction != null && message.hasOwnProperty("merchantPaymentPartnerAction")) {
+            if (message.merchantPaymentPartnerAction != null && Object.hasOwnProperty.call(message, "merchantPaymentPartnerAction")) {
                 var error = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.verify(message.merchantPaymentPartnerAction, long + 1);
                 if (error)
                     return "merchantPaymentPartnerAction." + error;
             }
-            if (message.waffleAccountLinkStateAction != null && message.hasOwnProperty("waffleAccountLinkStateAction")) {
+            if (message.waffleAccountLinkStateAction != null && Object.hasOwnProperty.call(message, "waffleAccountLinkStateAction")) {
                 var error = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.verify(message.waffleAccountLinkStateAction, long + 1);
                 if (error)
                     return "waffleAccountLinkStateAction." + error;
             }
-            if (message.usernameChatStartMode != null && message.hasOwnProperty("usernameChatStartMode")) {
+            if (message.usernameChatStartMode != null && Object.hasOwnProperty.call(message, "usernameChatStartMode")) {
                 var error = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.verify(message.usernameChatStartMode, long + 1);
                 if (error)
                     return "usernameChatStartMode." + error;
             }
-            if (message.notificationActivitySettingAction != null && message.hasOwnProperty("notificationActivitySettingAction")) {
+            if (message.notificationActivitySettingAction != null && Object.hasOwnProperty.call(message, "notificationActivitySettingAction")) {
                 var error = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.verify(message.notificationActivitySettingAction, long + 1);
                 if (error)
                     return "notificationActivitySettingAction." + error;
             }
-            if (message.lidContactAction != null && message.hasOwnProperty("lidContactAction")) {
+            if (message.lidContactAction != null && Object.hasOwnProperty.call(message, "lidContactAction")) {
                 var error = $root.SyncAction.SyncActionValue.LidContactAction.verify(message.lidContactAction, long + 1);
                 if (error)
                     return "lidContactAction." + error;
             }
-            if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction")) {
+            if (message.ctwaPerCustomerDataSharingAction != null && Object.hasOwnProperty.call(message, "ctwaPerCustomerDataSharingAction")) {
                 var error = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify(message.ctwaPerCustomerDataSharingAction, long + 1);
                 if (error)
                     return "ctwaPerCustomerDataSharingAction." + error;
             }
-            if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction")) {
+            if (message.paymentTosAction != null && Object.hasOwnProperty.call(message, "paymentTosAction")) {
                 var error = $root.SyncAction.SyncActionValue.PaymentTosAction.verify(message.paymentTosAction, long + 1);
                 if (error)
                     return "paymentTosAction." + error;
             }
-            if (message.privacySettingChannelsPersonalisedRecommendationAction != null && message.hasOwnProperty("privacySettingChannelsPersonalisedRecommendationAction")) {
+            if (message.privacySettingChannelsPersonalisedRecommendationAction != null && Object.hasOwnProperty.call(message, "privacySettingChannelsPersonalisedRecommendationAction")) {
                 var error = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.verify(message.privacySettingChannelsPersonalisedRecommendationAction, long + 1);
                 if (error)
                     return "privacySettingChannelsPersonalisedRecommendationAction." + error;
             }
-            if (message.detectedOutcomesStatusAction != null && message.hasOwnProperty("detectedOutcomesStatusAction")) {
+            if (message.detectedOutcomesStatusAction != null && Object.hasOwnProperty.call(message, "detectedOutcomesStatusAction")) {
                 var error = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.verify(message.detectedOutcomesStatusAction, long + 1);
                 if (error)
                     return "detectedOutcomesStatusAction." + error;
             }
-            if (message.maibaAiFeaturesControlAction != null && message.hasOwnProperty("maibaAiFeaturesControlAction")) {
+            if (message.maibaAiFeaturesControlAction != null && Object.hasOwnProperty.call(message, "maibaAiFeaturesControlAction")) {
                 var error = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.verify(message.maibaAiFeaturesControlAction, long + 1);
                 if (error)
                     return "maibaAiFeaturesControlAction." + error;
             }
-            if (message.businessBroadcastListAction != null && message.hasOwnProperty("businessBroadcastListAction")) {
+            if (message.businessBroadcastListAction != null && Object.hasOwnProperty.call(message, "businessBroadcastListAction")) {
                 var error = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.verify(message.businessBroadcastListAction, long + 1);
                 if (error)
                     return "businessBroadcastListAction." + error;
             }
-            if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction")) {
+            if (message.musicUserIdAction != null && Object.hasOwnProperty.call(message, "musicUserIdAction")) {
                 var error = $root.SyncAction.SyncActionValue.MusicUserIdAction.verify(message.musicUserIdAction, long + 1);
                 if (error)
                     return "musicUserIdAction." + error;
             }
-            if (message.statusPostOptInNotificationPreferencesAction != null && message.hasOwnProperty("statusPostOptInNotificationPreferencesAction")) {
+            if (message.statusPostOptInNotificationPreferencesAction != null && Object.hasOwnProperty.call(message, "statusPostOptInNotificationPreferencesAction")) {
                 var error = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.verify(message.statusPostOptInNotificationPreferencesAction, long + 1);
                 if (error)
                     return "statusPostOptInNotificationPreferencesAction." + error;
             }
-            if (message.avatarUpdatedAction != null && message.hasOwnProperty("avatarUpdatedAction")) {
+            if (message.avatarUpdatedAction != null && Object.hasOwnProperty.call(message, "avatarUpdatedAction")) {
                 var error = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.verify(message.avatarUpdatedAction, long + 1);
                 if (error)
                     return "avatarUpdatedAction." + error;
             }
-            if (message.privateProcessingSettingAction != null && message.hasOwnProperty("privateProcessingSettingAction")) {
+            if (message.privateProcessingSettingAction != null && Object.hasOwnProperty.call(message, "privateProcessingSettingAction")) {
                 var error = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.verify(message.privateProcessingSettingAction, long + 1);
                 if (error)
                     return "privateProcessingSettingAction." + error;
             }
-            if (message.newsletterSavedInterestsAction != null && message.hasOwnProperty("newsletterSavedInterestsAction")) {
+            if (message.newsletterSavedInterestsAction != null && Object.hasOwnProperty.call(message, "newsletterSavedInterestsAction")) {
                 var error = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.verify(message.newsletterSavedInterestsAction, long + 1);
                 if (error)
                     return "newsletterSavedInterestsAction." + error;
             }
-            if (message.aiThreadRenameAction != null && message.hasOwnProperty("aiThreadRenameAction")) {
+            if (message.aiThreadRenameAction != null && Object.hasOwnProperty.call(message, "aiThreadRenameAction")) {
                 var error = $root.SyncAction.SyncActionValue.AiThreadRenameAction.verify(message.aiThreadRenameAction, long + 1);
                 if (error)
                     return "aiThreadRenameAction." + error;
             }
-            if (message.interactiveMessageAction != null && message.hasOwnProperty("interactiveMessageAction")) {
+            if (message.interactiveMessageAction != null && Object.hasOwnProperty.call(message, "interactiveMessageAction")) {
                 var error = $root.SyncAction.SyncActionValue.InteractiveMessageAction.verify(message.interactiveMessageAction, long + 1);
                 if (error)
                     return "interactiveMessageAction." + error;
             }
-            if (message.settingsSyncAction != null && message.hasOwnProperty("settingsSyncAction")) {
+            if (message.settingsSyncAction != null && Object.hasOwnProperty.call(message, "settingsSyncAction")) {
                 var error = $root.SyncAction.SyncActionValue.SettingsSyncAction.verify(message.settingsSyncAction, long + 1);
                 if (error)
                     return "settingsSyncAction." + error;
             }
-            if (message.outContactAction != null && message.hasOwnProperty("outContactAction")) {
+            if (message.outContactAction != null && Object.hasOwnProperty.call(message, "outContactAction")) {
                 var error = $root.SyncAction.SyncActionValue.OutContactAction.verify(message.outContactAction, long + 1);
                 if (error)
                     return "outContactAction." + error;
             }
-            if (message.nctSaltSyncAction != null && message.hasOwnProperty("nctSaltSyncAction")) {
+            if (message.nctSaltSyncAction != null && Object.hasOwnProperty.call(message, "nctSaltSyncAction")) {
                 var error = $root.SyncAction.SyncActionValue.NctSaltSyncAction.verify(message.nctSaltSyncAction, long + 1);
                 if (error)
                     return "nctSaltSyncAction." + error;
             }
-            if (message.businessBroadcastCampaignAction != null && message.hasOwnProperty("businessBroadcastCampaignAction")) {
+            if (message.businessBroadcastCampaignAction != null && Object.hasOwnProperty.call(message, "businessBroadcastCampaignAction")) {
                 var error = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.verify(message.businessBroadcastCampaignAction, long + 1);
                 if (error)
                     return "businessBroadcastCampaignAction." + error;
             }
-            if (message.businessBroadcastInsightsAction != null && message.hasOwnProperty("businessBroadcastInsightsAction")) {
+            if (message.businessBroadcastInsightsAction != null && Object.hasOwnProperty.call(message, "businessBroadcastInsightsAction")) {
                 var error = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.verify(message.businessBroadcastInsightsAction, long + 1);
                 if (error)
                     return "businessBroadcastInsightsAction." + error;
             }
-            if (message.customerDataAction != null && message.hasOwnProperty("customerDataAction")) {
+            if (message.customerDataAction != null && Object.hasOwnProperty.call(message, "customerDataAction")) {
                 var error = $root.SyncAction.SyncActionValue.CustomerDataAction.verify(message.customerDataAction, long + 1);
                 if (error)
                     return "customerDataAction." + error;
             }
-            if (message.subscriptionsSyncV2Action != null && message.hasOwnProperty("subscriptionsSyncV2Action")) {
+            if (message.subscriptionsSyncV2Action != null && Object.hasOwnProperty.call(message, "subscriptionsSyncV2Action")) {
                 var error = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.verify(message.subscriptionsSyncV2Action, long + 1);
                 if (error)
                     return "subscriptionsSyncV2Action." + error;
             }
-            if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction")) {
+            if (message.threadPinAction != null && Object.hasOwnProperty.call(message, "threadPinAction")) {
                 var error = $root.SyncAction.SyncActionValue.ThreadPinAction.verify(message.threadPinAction, long + 1);
                 if (error)
                     return "threadPinAction." + error;
             }
-            if (message.autoOrganizeBusinessChatSetting != null && message.hasOwnProperty("autoOrganizeBusinessChatSetting")) {
+            if (message.autoOrganizeBusinessChatSetting != null && Object.hasOwnProperty.call(message, "autoOrganizeBusinessChatSetting")) {
                 var error = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.verify(message.autoOrganizeBusinessChatSetting, long + 1);
                 if (error)
                     return "autoOrganizeBusinessChatSetting." + error;
             }
-            if (message.bizAiSettingsNudgeAction != null && message.hasOwnProperty("bizAiSettingsNudgeAction")) {
+            if (message.bizAiSettingsNudgeAction != null && Object.hasOwnProperty.call(message, "bizAiSettingsNudgeAction")) {
                 var error = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.verify(message.bizAiSettingsNudgeAction, long + 1);
                 if (error)
                     return "bizAiSettingsNudgeAction." + error;
@@ -3160,166 +3160,166 @@ $root.SyncAction = (function() {
                 object.autoOrganizeBusinessChatSetting = null;
                 object.bizAiSettingsNudgeAction = null;
             }
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
                 else if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
-            if (message.starAction != null && message.hasOwnProperty("starAction"))
+            if (message.starAction != null && Object.hasOwnProperty.call(message, "starAction"))
                 object.starAction = $root.SyncAction.SyncActionValue.StarAction.toObject(message.starAction, options, q + 1);
-            if (message.contactAction != null && message.hasOwnProperty("contactAction"))
+            if (message.contactAction != null && Object.hasOwnProperty.call(message, "contactAction"))
                 object.contactAction = $root.SyncAction.SyncActionValue.ContactAction.toObject(message.contactAction, options, q + 1);
-            if (message.muteAction != null && message.hasOwnProperty("muteAction"))
+            if (message.muteAction != null && Object.hasOwnProperty.call(message, "muteAction"))
                 object.muteAction = $root.SyncAction.SyncActionValue.MuteAction.toObject(message.muteAction, options, q + 1);
-            if (message.pinAction != null && message.hasOwnProperty("pinAction"))
+            if (message.pinAction != null && Object.hasOwnProperty.call(message, "pinAction"))
                 object.pinAction = $root.SyncAction.SyncActionValue.PinAction.toObject(message.pinAction, options, q + 1);
-            if (message.pushNameSetting != null && message.hasOwnProperty("pushNameSetting"))
+            if (message.pushNameSetting != null && Object.hasOwnProperty.call(message, "pushNameSetting"))
                 object.pushNameSetting = $root.SyncAction.SyncActionValue.PushNameSetting.toObject(message.pushNameSetting, options, q + 1);
-            if (message.quickReplyAction != null && message.hasOwnProperty("quickReplyAction"))
+            if (message.quickReplyAction != null && Object.hasOwnProperty.call(message, "quickReplyAction"))
                 object.quickReplyAction = $root.SyncAction.SyncActionValue.QuickReplyAction.toObject(message.quickReplyAction, options, q + 1);
-            if (message.recentEmojiWeightsAction != null && message.hasOwnProperty("recentEmojiWeightsAction"))
+            if (message.recentEmojiWeightsAction != null && Object.hasOwnProperty.call(message, "recentEmojiWeightsAction"))
                 object.recentEmojiWeightsAction = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.toObject(message.recentEmojiWeightsAction, options, q + 1);
-            if (message.labelEditAction != null && message.hasOwnProperty("labelEditAction"))
+            if (message.labelEditAction != null && Object.hasOwnProperty.call(message, "labelEditAction"))
                 object.labelEditAction = $root.SyncAction.SyncActionValue.LabelEditAction.toObject(message.labelEditAction, options, q + 1);
-            if (message.labelAssociationAction != null && message.hasOwnProperty("labelAssociationAction"))
+            if (message.labelAssociationAction != null && Object.hasOwnProperty.call(message, "labelAssociationAction"))
                 object.labelAssociationAction = $root.SyncAction.SyncActionValue.LabelAssociationAction.toObject(message.labelAssociationAction, options, q + 1);
-            if (message.localeSetting != null && message.hasOwnProperty("localeSetting"))
+            if (message.localeSetting != null && Object.hasOwnProperty.call(message, "localeSetting"))
                 object.localeSetting = $root.SyncAction.SyncActionValue.LocaleSetting.toObject(message.localeSetting, options, q + 1);
-            if (message.archiveChatAction != null && message.hasOwnProperty("archiveChatAction"))
+            if (message.archiveChatAction != null && Object.hasOwnProperty.call(message, "archiveChatAction"))
                 object.archiveChatAction = $root.SyncAction.SyncActionValue.ArchiveChatAction.toObject(message.archiveChatAction, options, q + 1);
-            if (message.deleteMessageForMeAction != null && message.hasOwnProperty("deleteMessageForMeAction"))
+            if (message.deleteMessageForMeAction != null && Object.hasOwnProperty.call(message, "deleteMessageForMeAction"))
                 object.deleteMessageForMeAction = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.toObject(message.deleteMessageForMeAction, options, q + 1);
-            if (message.keyExpiration != null && message.hasOwnProperty("keyExpiration"))
+            if (message.keyExpiration != null && Object.hasOwnProperty.call(message, "keyExpiration"))
                 object.keyExpiration = $root.SyncAction.SyncActionValue.KeyExpiration.toObject(message.keyExpiration, options, q + 1);
-            if (message.markChatAsReadAction != null && message.hasOwnProperty("markChatAsReadAction"))
+            if (message.markChatAsReadAction != null && Object.hasOwnProperty.call(message, "markChatAsReadAction"))
                 object.markChatAsReadAction = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.toObject(message.markChatAsReadAction, options, q + 1);
-            if (message.clearChatAction != null && message.hasOwnProperty("clearChatAction"))
+            if (message.clearChatAction != null && Object.hasOwnProperty.call(message, "clearChatAction"))
                 object.clearChatAction = $root.SyncAction.SyncActionValue.ClearChatAction.toObject(message.clearChatAction, options, q + 1);
-            if (message.deleteChatAction != null && message.hasOwnProperty("deleteChatAction"))
+            if (message.deleteChatAction != null && Object.hasOwnProperty.call(message, "deleteChatAction"))
                 object.deleteChatAction = $root.SyncAction.SyncActionValue.DeleteChatAction.toObject(message.deleteChatAction, options, q + 1);
-            if (message.unarchiveChatsSetting != null && message.hasOwnProperty("unarchiveChatsSetting"))
+            if (message.unarchiveChatsSetting != null && Object.hasOwnProperty.call(message, "unarchiveChatsSetting"))
                 object.unarchiveChatsSetting = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.toObject(message.unarchiveChatsSetting, options, q + 1);
-            if (message.primaryFeature != null && message.hasOwnProperty("primaryFeature"))
+            if (message.primaryFeature != null && Object.hasOwnProperty.call(message, "primaryFeature"))
                 object.primaryFeature = $root.SyncAction.SyncActionValue.PrimaryFeature.toObject(message.primaryFeature, options, q + 1);
-            if (message.androidUnsupportedActions != null && message.hasOwnProperty("androidUnsupportedActions"))
+            if (message.androidUnsupportedActions != null && Object.hasOwnProperty.call(message, "androidUnsupportedActions"))
                 object.androidUnsupportedActions = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.toObject(message.androidUnsupportedActions, options, q + 1);
-            if (message.agentAction != null && message.hasOwnProperty("agentAction"))
+            if (message.agentAction != null && Object.hasOwnProperty.call(message, "agentAction"))
                 object.agentAction = $root.SyncAction.SyncActionValue.AgentAction.toObject(message.agentAction, options, q + 1);
-            if (message.subscriptionAction != null && message.hasOwnProperty("subscriptionAction"))
+            if (message.subscriptionAction != null && Object.hasOwnProperty.call(message, "subscriptionAction"))
                 object.subscriptionAction = $root.SyncAction.SyncActionValue.SubscriptionAction.toObject(message.subscriptionAction, options, q + 1);
-            if (message.userStatusMuteAction != null && message.hasOwnProperty("userStatusMuteAction"))
+            if (message.userStatusMuteAction != null && Object.hasOwnProperty.call(message, "userStatusMuteAction"))
                 object.userStatusMuteAction = $root.SyncAction.SyncActionValue.UserStatusMuteAction.toObject(message.userStatusMuteAction, options, q + 1);
-            if (message.timeFormatAction != null && message.hasOwnProperty("timeFormatAction"))
+            if (message.timeFormatAction != null && Object.hasOwnProperty.call(message, "timeFormatAction"))
                 object.timeFormatAction = $root.SyncAction.SyncActionValue.TimeFormatAction.toObject(message.timeFormatAction, options, q + 1);
-            if (message.nuxAction != null && message.hasOwnProperty("nuxAction"))
+            if (message.nuxAction != null && Object.hasOwnProperty.call(message, "nuxAction"))
                 object.nuxAction = $root.SyncAction.SyncActionValue.NuxAction.toObject(message.nuxAction, options, q + 1);
-            if (message.primaryVersionAction != null && message.hasOwnProperty("primaryVersionAction"))
+            if (message.primaryVersionAction != null && Object.hasOwnProperty.call(message, "primaryVersionAction"))
                 object.primaryVersionAction = $root.SyncAction.SyncActionValue.PrimaryVersionAction.toObject(message.primaryVersionAction, options, q + 1);
-            if (message.stickerAction != null && message.hasOwnProperty("stickerAction"))
+            if (message.stickerAction != null && Object.hasOwnProperty.call(message, "stickerAction"))
                 object.stickerAction = $root.SyncAction.SyncActionValue.StickerAction.toObject(message.stickerAction, options, q + 1);
-            if (message.removeRecentStickerAction != null && message.hasOwnProperty("removeRecentStickerAction"))
+            if (message.removeRecentStickerAction != null && Object.hasOwnProperty.call(message, "removeRecentStickerAction"))
                 object.removeRecentStickerAction = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.toObject(message.removeRecentStickerAction, options, q + 1);
-            if (message.chatAssignment != null && message.hasOwnProperty("chatAssignment"))
+            if (message.chatAssignment != null && Object.hasOwnProperty.call(message, "chatAssignment"))
                 object.chatAssignment = $root.SyncAction.SyncActionValue.ChatAssignmentAction.toObject(message.chatAssignment, options, q + 1);
-            if (message.chatAssignmentOpenedStatus != null && message.hasOwnProperty("chatAssignmentOpenedStatus"))
+            if (message.chatAssignmentOpenedStatus != null && Object.hasOwnProperty.call(message, "chatAssignmentOpenedStatus"))
                 object.chatAssignmentOpenedStatus = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.toObject(message.chatAssignmentOpenedStatus, options, q + 1);
-            if (message.pnForLidChatAction != null && message.hasOwnProperty("pnForLidChatAction"))
+            if (message.pnForLidChatAction != null && Object.hasOwnProperty.call(message, "pnForLidChatAction"))
                 object.pnForLidChatAction = $root.SyncAction.SyncActionValue.PnForLidChatAction.toObject(message.pnForLidChatAction, options, q + 1);
-            if (message.marketingMessageAction != null && message.hasOwnProperty("marketingMessageAction"))
+            if (message.marketingMessageAction != null && Object.hasOwnProperty.call(message, "marketingMessageAction"))
                 object.marketingMessageAction = $root.SyncAction.SyncActionValue.MarketingMessageAction.toObject(message.marketingMessageAction, options, q + 1);
-            if (message.marketingMessageBroadcastAction != null && message.hasOwnProperty("marketingMessageBroadcastAction"))
+            if (message.marketingMessageBroadcastAction != null && Object.hasOwnProperty.call(message, "marketingMessageBroadcastAction"))
                 object.marketingMessageBroadcastAction = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.toObject(message.marketingMessageBroadcastAction, options, q + 1);
-            if (message.externalWebBetaAction != null && message.hasOwnProperty("externalWebBetaAction"))
+            if (message.externalWebBetaAction != null && Object.hasOwnProperty.call(message, "externalWebBetaAction"))
                 object.externalWebBetaAction = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.toObject(message.externalWebBetaAction, options, q + 1);
-            if (message.privacySettingRelayAllCalls != null && message.hasOwnProperty("privacySettingRelayAllCalls"))
+            if (message.privacySettingRelayAllCalls != null && Object.hasOwnProperty.call(message, "privacySettingRelayAllCalls"))
                 object.privacySettingRelayAllCalls = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.toObject(message.privacySettingRelayAllCalls, options, q + 1);
-            if (message.callLogAction != null && message.hasOwnProperty("callLogAction"))
+            if (message.callLogAction != null && Object.hasOwnProperty.call(message, "callLogAction"))
                 object.callLogAction = $root.SyncAction.SyncActionValue.CallLogAction.toObject(message.callLogAction, options, q + 1);
-            if (message.ugcBot != null && message.hasOwnProperty("ugcBot"))
+            if (message.ugcBot != null && Object.hasOwnProperty.call(message, "ugcBot"))
                 object.ugcBot = $root.SyncAction.SyncActionValue.UGCBot.toObject(message.ugcBot, options, q + 1);
-            if (message.statusPrivacy != null && message.hasOwnProperty("statusPrivacy"))
+            if (message.statusPrivacy != null && Object.hasOwnProperty.call(message, "statusPrivacy"))
                 object.statusPrivacy = $root.SyncAction.SyncActionValue.StatusPrivacyAction.toObject(message.statusPrivacy, options, q + 1);
-            if (message.botWelcomeRequestAction != null && message.hasOwnProperty("botWelcomeRequestAction"))
+            if (message.botWelcomeRequestAction != null && Object.hasOwnProperty.call(message, "botWelcomeRequestAction"))
                 object.botWelcomeRequestAction = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.toObject(message.botWelcomeRequestAction, options, q + 1);
-            if (message.deleteIndividualCallLog != null && message.hasOwnProperty("deleteIndividualCallLog"))
+            if (message.deleteIndividualCallLog != null && Object.hasOwnProperty.call(message, "deleteIndividualCallLog"))
                 object.deleteIndividualCallLog = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.toObject(message.deleteIndividualCallLog, options, q + 1);
-            if (message.labelReorderingAction != null && message.hasOwnProperty("labelReorderingAction"))
+            if (message.labelReorderingAction != null && Object.hasOwnProperty.call(message, "labelReorderingAction"))
                 object.labelReorderingAction = $root.SyncAction.SyncActionValue.LabelReorderingAction.toObject(message.labelReorderingAction, options, q + 1);
-            if (message.paymentInfoAction != null && message.hasOwnProperty("paymentInfoAction"))
+            if (message.paymentInfoAction != null && Object.hasOwnProperty.call(message, "paymentInfoAction"))
                 object.paymentInfoAction = $root.SyncAction.SyncActionValue.PaymentInfoAction.toObject(message.paymentInfoAction, options, q + 1);
-            if (message.customPaymentMethodsAction != null && message.hasOwnProperty("customPaymentMethodsAction"))
+            if (message.customPaymentMethodsAction != null && Object.hasOwnProperty.call(message, "customPaymentMethodsAction"))
                 object.customPaymentMethodsAction = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.toObject(message.customPaymentMethodsAction, options, q + 1);
-            if (message.lockChatAction != null && message.hasOwnProperty("lockChatAction"))
+            if (message.lockChatAction != null && Object.hasOwnProperty.call(message, "lockChatAction"))
                 object.lockChatAction = $root.SyncAction.SyncActionValue.LockChatAction.toObject(message.lockChatAction, options, q + 1);
-            if (message.chatLockSettings != null && message.hasOwnProperty("chatLockSettings"))
+            if (message.chatLockSettings != null && Object.hasOwnProperty.call(message, "chatLockSettings"))
                 object.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.toObject(message.chatLockSettings, options, q + 1);
-            if (message.wamoUserIdentifierAction != null && message.hasOwnProperty("wamoUserIdentifierAction"))
+            if (message.wamoUserIdentifierAction != null && Object.hasOwnProperty.call(message, "wamoUserIdentifierAction"))
                 object.wamoUserIdentifierAction = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.toObject(message.wamoUserIdentifierAction, options, q + 1);
-            if (message.privacySettingDisableLinkPreviewsAction != null && message.hasOwnProperty("privacySettingDisableLinkPreviewsAction"))
+            if (message.privacySettingDisableLinkPreviewsAction != null && Object.hasOwnProperty.call(message, "privacySettingDisableLinkPreviewsAction"))
                 object.privacySettingDisableLinkPreviewsAction = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.toObject(message.privacySettingDisableLinkPreviewsAction, options, q + 1);
-            if (message.deviceCapabilities != null && message.hasOwnProperty("deviceCapabilities"))
+            if (message.deviceCapabilities != null && Object.hasOwnProperty.call(message, "deviceCapabilities"))
                 object.deviceCapabilities = $root.DeviceCapabilities.DeviceCapabilities.toObject(message.deviceCapabilities, options, q + 1);
-            if (message.noteEditAction != null && message.hasOwnProperty("noteEditAction"))
+            if (message.noteEditAction != null && Object.hasOwnProperty.call(message, "noteEditAction"))
                 object.noteEditAction = $root.SyncAction.SyncActionValue.NoteEditAction.toObject(message.noteEditAction, options, q + 1);
-            if (message.favoritesAction != null && message.hasOwnProperty("favoritesAction"))
+            if (message.favoritesAction != null && Object.hasOwnProperty.call(message, "favoritesAction"))
                 object.favoritesAction = $root.SyncAction.SyncActionValue.FavoritesAction.toObject(message.favoritesAction, options, q + 1);
-            if (message.merchantPaymentPartnerAction != null && message.hasOwnProperty("merchantPaymentPartnerAction"))
+            if (message.merchantPaymentPartnerAction != null && Object.hasOwnProperty.call(message, "merchantPaymentPartnerAction"))
                 object.merchantPaymentPartnerAction = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.toObject(message.merchantPaymentPartnerAction, options, q + 1);
-            if (message.waffleAccountLinkStateAction != null && message.hasOwnProperty("waffleAccountLinkStateAction"))
+            if (message.waffleAccountLinkStateAction != null && Object.hasOwnProperty.call(message, "waffleAccountLinkStateAction"))
                 object.waffleAccountLinkStateAction = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.toObject(message.waffleAccountLinkStateAction, options, q + 1);
-            if (message.usernameChatStartMode != null && message.hasOwnProperty("usernameChatStartMode"))
+            if (message.usernameChatStartMode != null && Object.hasOwnProperty.call(message, "usernameChatStartMode"))
                 object.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.toObject(message.usernameChatStartMode, options, q + 1);
-            if (message.notificationActivitySettingAction != null && message.hasOwnProperty("notificationActivitySettingAction"))
+            if (message.notificationActivitySettingAction != null && Object.hasOwnProperty.call(message, "notificationActivitySettingAction"))
                 object.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.toObject(message.notificationActivitySettingAction, options, q + 1);
-            if (message.lidContactAction != null && message.hasOwnProperty("lidContactAction"))
+            if (message.lidContactAction != null && Object.hasOwnProperty.call(message, "lidContactAction"))
                 object.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.toObject(message.lidContactAction, options, q + 1);
-            if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction"))
+            if (message.ctwaPerCustomerDataSharingAction != null && Object.hasOwnProperty.call(message, "ctwaPerCustomerDataSharingAction"))
                 object.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.toObject(message.ctwaPerCustomerDataSharingAction, options, q + 1);
-            if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction"))
+            if (message.paymentTosAction != null && Object.hasOwnProperty.call(message, "paymentTosAction"))
                 object.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.toObject(message.paymentTosAction, options, q + 1);
-            if (message.privacySettingChannelsPersonalisedRecommendationAction != null && message.hasOwnProperty("privacySettingChannelsPersonalisedRecommendationAction"))
+            if (message.privacySettingChannelsPersonalisedRecommendationAction != null && Object.hasOwnProperty.call(message, "privacySettingChannelsPersonalisedRecommendationAction"))
                 object.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.toObject(message.privacySettingChannelsPersonalisedRecommendationAction, options, q + 1);
-            if (message.detectedOutcomesStatusAction != null && message.hasOwnProperty("detectedOutcomesStatusAction"))
+            if (message.detectedOutcomesStatusAction != null && Object.hasOwnProperty.call(message, "detectedOutcomesStatusAction"))
                 object.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.toObject(message.detectedOutcomesStatusAction, options, q + 1);
-            if (message.maibaAiFeaturesControlAction != null && message.hasOwnProperty("maibaAiFeaturesControlAction"))
+            if (message.maibaAiFeaturesControlAction != null && Object.hasOwnProperty.call(message, "maibaAiFeaturesControlAction"))
                 object.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.toObject(message.maibaAiFeaturesControlAction, options, q + 1);
-            if (message.businessBroadcastListAction != null && message.hasOwnProperty("businessBroadcastListAction"))
+            if (message.businessBroadcastListAction != null && Object.hasOwnProperty.call(message, "businessBroadcastListAction"))
                 object.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.toObject(message.businessBroadcastListAction, options, q + 1);
-            if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction"))
+            if (message.musicUserIdAction != null && Object.hasOwnProperty.call(message, "musicUserIdAction"))
                 object.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.toObject(message.musicUserIdAction, options, q + 1);
-            if (message.statusPostOptInNotificationPreferencesAction != null && message.hasOwnProperty("statusPostOptInNotificationPreferencesAction"))
+            if (message.statusPostOptInNotificationPreferencesAction != null && Object.hasOwnProperty.call(message, "statusPostOptInNotificationPreferencesAction"))
                 object.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.toObject(message.statusPostOptInNotificationPreferencesAction, options, q + 1);
-            if (message.avatarUpdatedAction != null && message.hasOwnProperty("avatarUpdatedAction"))
+            if (message.avatarUpdatedAction != null && Object.hasOwnProperty.call(message, "avatarUpdatedAction"))
                 object.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.toObject(message.avatarUpdatedAction, options, q + 1);
-            if (message.privateProcessingSettingAction != null && message.hasOwnProperty("privateProcessingSettingAction"))
+            if (message.privateProcessingSettingAction != null && Object.hasOwnProperty.call(message, "privateProcessingSettingAction"))
                 object.privateProcessingSettingAction = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.toObject(message.privateProcessingSettingAction, options, q + 1);
-            if (message.newsletterSavedInterestsAction != null && message.hasOwnProperty("newsletterSavedInterestsAction"))
+            if (message.newsletterSavedInterestsAction != null && Object.hasOwnProperty.call(message, "newsletterSavedInterestsAction"))
                 object.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.toObject(message.newsletterSavedInterestsAction, options, q + 1);
-            if (message.aiThreadRenameAction != null && message.hasOwnProperty("aiThreadRenameAction"))
+            if (message.aiThreadRenameAction != null && Object.hasOwnProperty.call(message, "aiThreadRenameAction"))
                 object.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.toObject(message.aiThreadRenameAction, options, q + 1);
-            if (message.interactiveMessageAction != null && message.hasOwnProperty("interactiveMessageAction"))
+            if (message.interactiveMessageAction != null && Object.hasOwnProperty.call(message, "interactiveMessageAction"))
                 object.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.toObject(message.interactiveMessageAction, options, q + 1);
-            if (message.settingsSyncAction != null && message.hasOwnProperty("settingsSyncAction"))
+            if (message.settingsSyncAction != null && Object.hasOwnProperty.call(message, "settingsSyncAction"))
                 object.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.toObject(message.settingsSyncAction, options, q + 1);
-            if (message.outContactAction != null && message.hasOwnProperty("outContactAction"))
+            if (message.outContactAction != null && Object.hasOwnProperty.call(message, "outContactAction"))
                 object.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.toObject(message.outContactAction, options, q + 1);
-            if (message.nctSaltSyncAction != null && message.hasOwnProperty("nctSaltSyncAction"))
+            if (message.nctSaltSyncAction != null && Object.hasOwnProperty.call(message, "nctSaltSyncAction"))
                 object.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.toObject(message.nctSaltSyncAction, options, q + 1);
-            if (message.businessBroadcastCampaignAction != null && message.hasOwnProperty("businessBroadcastCampaignAction"))
+            if (message.businessBroadcastCampaignAction != null && Object.hasOwnProperty.call(message, "businessBroadcastCampaignAction"))
                 object.businessBroadcastCampaignAction = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.toObject(message.businessBroadcastCampaignAction, options, q + 1);
-            if (message.businessBroadcastInsightsAction != null && message.hasOwnProperty("businessBroadcastInsightsAction"))
+            if (message.businessBroadcastInsightsAction != null && Object.hasOwnProperty.call(message, "businessBroadcastInsightsAction"))
                 object.businessBroadcastInsightsAction = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.toObject(message.businessBroadcastInsightsAction, options, q + 1);
-            if (message.customerDataAction != null && message.hasOwnProperty("customerDataAction"))
+            if (message.customerDataAction != null && Object.hasOwnProperty.call(message, "customerDataAction"))
                 object.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.toObject(message.customerDataAction, options, q + 1);
-            if (message.subscriptionsSyncV2Action != null && message.hasOwnProperty("subscriptionsSyncV2Action"))
+            if (message.subscriptionsSyncV2Action != null && Object.hasOwnProperty.call(message, "subscriptionsSyncV2Action"))
                 object.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.toObject(message.subscriptionsSyncV2Action, options, q + 1);
-            if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction"))
+            if (message.threadPinAction != null && Object.hasOwnProperty.call(message, "threadPinAction"))
                 object.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.toObject(message.threadPinAction, options, q + 1);
-            if (message.autoOrganizeBusinessChatSetting != null && message.hasOwnProperty("autoOrganizeBusinessChatSetting"))
+            if (message.autoOrganizeBusinessChatSetting != null && Object.hasOwnProperty.call(message, "autoOrganizeBusinessChatSetting"))
                 object.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.toObject(message.autoOrganizeBusinessChatSetting, options, q + 1);
-            if (message.bizAiSettingsNudgeAction != null && message.hasOwnProperty("bizAiSettingsNudgeAction"))
+            if (message.bizAiSettingsNudgeAction != null && Object.hasOwnProperty.call(message, "bizAiSettingsNudgeAction"))
                 object.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.toObject(message.bizAiSettingsNudgeAction, options, q + 1);
             return object;
         };
@@ -3525,13 +3525,13 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
-                if (message.deviceID != null && message.hasOwnProperty("deviceID"))
+                if (message.deviceID != null && Object.hasOwnProperty.call(message, "deviceID"))
                     if (!$util.isInteger(message.deviceID))
                         return "deviceID: integer expected";
-                if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
+                if (message.isDeleted != null && Object.hasOwnProperty.call(message, "isDeleted"))
                     if (typeof message.isDeleted !== "boolean")
                         return "isDeleted: boolean expected";
                 return null;
@@ -3586,11 +3586,11 @@ $root.SyncAction = (function() {
                     object.deviceID = 0;
                     object.isDeleted = false;
                 }
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     object.name = message.name;
-                if (message.deviceID != null && message.hasOwnProperty("deviceID"))
+                if (message.deviceID != null && Object.hasOwnProperty.call(message, "deviceID"))
                     object.deviceID = message.deviceID;
-                if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
+                if (message.isDeleted != null && Object.hasOwnProperty.call(message, "isDeleted"))
                     object.isDeleted = message.isDeleted;
                 return object;
             };
@@ -3769,7 +3769,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.newTitle != null && message.hasOwnProperty("newTitle"))
+                if (message.newTitle != null && Object.hasOwnProperty.call(message, "newTitle"))
                     if (!$util.isString(message.newTitle))
                         return "newTitle: string expected";
                 return null;
@@ -3817,7 +3817,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.newTitle = "";
-                if (message.newTitle != null && message.hasOwnProperty("newTitle"))
+                if (message.newTitle != null && Object.hasOwnProperty.call(message, "newTitle"))
                     object.newTitle = message.newTitle;
                 return object;
             };
@@ -3996,7 +3996,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.allowed != null && message.hasOwnProperty("allowed"))
+                if (message.allowed != null && Object.hasOwnProperty.call(message, "allowed"))
                     if (typeof message.allowed !== "boolean")
                         return "allowed: boolean expected";
                 return null;
@@ -4044,7 +4044,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.allowed = false;
-                if (message.allowed != null && message.hasOwnProperty("allowed"))
+                if (message.allowed != null && Object.hasOwnProperty.call(message, "allowed"))
                     object.allowed = message.allowed;
                 return object;
             };
@@ -4238,10 +4238,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.archived != null && message.hasOwnProperty("archived"))
+                if (message.archived != null && Object.hasOwnProperty.call(message, "archived"))
                     if (typeof message.archived !== "boolean")
                         return "archived: boolean expected";
-                if (message.messageRange != null && message.hasOwnProperty("messageRange")) {
+                if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange")) {
                     var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange, long + 1);
                     if (error)
                         return "messageRange." + error;
@@ -4298,9 +4298,9 @@ $root.SyncAction = (function() {
                     object.archived = false;
                     object.messageRange = null;
                 }
-                if (message.archived != null && message.hasOwnProperty("archived"))
+                if (message.archived != null && Object.hasOwnProperty.call(message, "archived"))
                     object.archived = message.archived;
-                if (message.messageRange != null && message.hasOwnProperty("messageRange"))
+                if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange"))
                     object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options, q + 1);
                 return object;
             };
@@ -4479,7 +4479,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.autoOrganize != null && message.hasOwnProperty("autoOrganize"))
+                if (message.autoOrganize != null && Object.hasOwnProperty.call(message, "autoOrganize"))
                     if (typeof message.autoOrganize !== "boolean")
                         return "autoOrganize: boolean expected";
                 return null;
@@ -4527,7 +4527,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.autoOrganize = false;
-                if (message.autoOrganize != null && message.hasOwnProperty("autoOrganize"))
+                if (message.autoOrganize != null && Object.hasOwnProperty.call(message, "autoOrganize"))
                     object.autoOrganize = message.autoOrganize;
                 return object;
             };
@@ -4725,7 +4725,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.eventType != null && message.hasOwnProperty("eventType"))
+                if (message.eventType != null && Object.hasOwnProperty.call(message, "eventType"))
                     switch (message.eventType) {
                     default:
                         return "eventType: enum value expected";
@@ -4734,7 +4734,7 @@ $root.SyncAction = (function() {
                     case 2:
                         break;
                     }
-                if (message.recentAvatarStickers != null && message.hasOwnProperty("recentAvatarStickers")) {
+                if (message.recentAvatarStickers != null && Object.hasOwnProperty.call(message, "recentAvatarStickers")) {
                     if (!Array.isArray(message.recentAvatarStickers))
                         return "recentAvatarStickers: array expected";
                     for (var i = 0; i < message.recentAvatarStickers.length; ++i) {
@@ -4818,7 +4818,7 @@ $root.SyncAction = (function() {
                     object.recentAvatarStickers = [];
                 if (options.defaults)
                     object.eventType = options.enums === String ? "UPDATED" : 0;
-                if (message.eventType != null && message.hasOwnProperty("eventType"))
+                if (message.eventType != null && Object.hasOwnProperty.call(message, "eventType"))
                     object.eventType = options.enums === String ? $root.SyncAction.SyncActionValue.AvatarUpdatedAction.AvatarEventType[message.eventType] === undefined ? message.eventType : $root.SyncAction.SyncActionValue.AvatarUpdatedAction.AvatarEventType[message.eventType] : message.eventType;
                 if (message.recentAvatarStickers && message.recentAvatarStickers.length) {
                     object.recentAvatarStickers = [];
@@ -5048,7 +5048,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.category != null && message.hasOwnProperty("category"))
+                if (message.category != null && Object.hasOwnProperty.call(message, "category"))
                     switch (message.category) {
                     default:
                         return "category: enum value expected";
@@ -5060,10 +5060,10 @@ $root.SyncAction = (function() {
                     case 5:
                         break;
                     }
-                if (message.version != null && message.hasOwnProperty("version"))
+                if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                     if (!$util.isInteger(message.version) && !(message.version && $util.isInteger(message.version.low) && $util.isInteger(message.version.high)))
                         return "version: integer|Long expected";
-                if (message.updatedAtMs != null && message.hasOwnProperty("updatedAtMs"))
+                if (message.updatedAtMs != null && Object.hasOwnProperty.call(message, "updatedAtMs"))
                     if (!$util.isInteger(message.updatedAtMs) && !(message.updatedAtMs && $util.isInteger(message.updatedAtMs.low) && $util.isInteger(message.updatedAtMs.high)))
                         return "updatedAtMs: integer|Long expected";
                 return null;
@@ -5170,16 +5170,16 @@ $root.SyncAction = (function() {
                     } else
                         object.updatedAtMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.category != null && message.hasOwnProperty("category"))
+                if (message.category != null && Object.hasOwnProperty.call(message, "category"))
                     object.category = options.enums === String ? $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory[message.category] === undefined ? message.category : $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory[message.category] : message.category;
-                if (message.version != null && message.hasOwnProperty("version"))
+                if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.version = typeof message.version === "number" ? BigInt(message.version) : $util.Long.fromBits(message.version.low >>> 0, message.version.high >>> 0, false).toBigInt();
                     else if (typeof message.version === "number")
                         object.version = options.longs === String ? String(message.version) : message.version;
                     else
                         object.version = options.longs === String ? $util.Long.prototype.toString.call(message.version) : options.longs === Number ? new $util.LongBits(message.version.low >>> 0, message.version.high >>> 0).toNumber() : message.version;
-                if (message.updatedAtMs != null && message.hasOwnProperty("updatedAtMs"))
+                if (message.updatedAtMs != null && Object.hasOwnProperty.call(message, "updatedAtMs"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.updatedAtMs = typeof message.updatedAtMs === "number" ? BigInt(message.updatedAtMs) : $util.Long.fromBits(message.updatedAtMs.low >>> 0, message.updatedAtMs.high >>> 0, false).toBigInt();
                     else if (typeof message.updatedAtMs === "number")
@@ -5385,7 +5385,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isSent != null && message.hasOwnProperty("isSent"))
+                if (message.isSent != null && Object.hasOwnProperty.call(message, "isSent"))
                     if (typeof message.isSent !== "boolean")
                         return "isSent: boolean expected";
                 return null;
@@ -5433,7 +5433,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.isSent = false;
-                if (message.isSent != null && message.hasOwnProperty("isSent"))
+                if (message.isSent != null && Object.hasOwnProperty.call(message, "isSent"))
                     object.isSent = message.isSent;
                 return object;
             };
@@ -5592,7 +5592,7 @@ $root.SyncAction = (function() {
                         break;
                     }
                 }
-                if (!message.hasOwnProperty("lidJid"))
+                if (!Object.hasOwnProperty.call(message, "lidJid"))
                     throw $util.ProtocolError("missing required 'lidJid'", { instance: message });
                 return message;
             };
@@ -5630,7 +5630,7 @@ $root.SyncAction = (function() {
                     return "maximum nesting depth exceeded";
                 if (!$util.isString(message.lidJid))
                     return "lidJid: string expected";
-                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
                     if (!$util.isString(message.pnJid))
                         return "pnJid: string expected";
                 return null;
@@ -5682,9 +5682,9 @@ $root.SyncAction = (function() {
                     object.lidJid = "";
                     object.pnJid = "";
                 }
-                if (message.lidJid != null && message.hasOwnProperty("lidJid"))
+                if (message.lidJid != null && Object.hasOwnProperty.call(message, "lidJid"))
                     object.lidJid = message.lidJid;
-                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
                     object.pnJid = message.pnJid;
                 return object;
             };
@@ -5863,7 +5863,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
                 return null;
@@ -5911,7 +5911,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.deleted = false;
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     object.deleted = message.deleted;
                 return object;
             };
@@ -6210,31 +6210,31 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.deviceId != null && message.hasOwnProperty("deviceId"))
+                if (message.deviceId != null && Object.hasOwnProperty.call(message, "deviceId"))
                     if (!$util.isInteger(message.deviceId))
                         return "deviceId: integer expected";
-                if (message.adId != null && message.hasOwnProperty("adId"))
+                if (message.adId != null && Object.hasOwnProperty.call(message, "adId"))
                     if (!$util.isString(message.adId))
                         return "adId: string expected";
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
-                if (message.msgId != null && message.hasOwnProperty("msgId"))
+                if (message.msgId != null && Object.hasOwnProperty.call(message, "msgId"))
                     if (!$util.isString(message.msgId))
                         return "msgId: string expected";
-                if (message.broadcastJid != null && message.hasOwnProperty("broadcastJid"))
+                if (message.broadcastJid != null && Object.hasOwnProperty.call(message, "broadcastJid"))
                     if (!$util.isString(message.broadcastJid))
                         return "broadcastJid: string expected";
-                if (message.reservedQuota != null && message.hasOwnProperty("reservedQuota"))
+                if (message.reservedQuota != null && Object.hasOwnProperty.call(message, "reservedQuota"))
                     if (!$util.isInteger(message.reservedQuota))
                         return "reservedQuota: integer expected";
-                if (message.scheduledTimestamp != null && message.hasOwnProperty("scheduledTimestamp"))
+                if (message.scheduledTimestamp != null && Object.hasOwnProperty.call(message, "scheduledTimestamp"))
                     if (!$util.isInteger(message.scheduledTimestamp) && !(message.scheduledTimestamp && $util.isInteger(message.scheduledTimestamp.low) && $util.isInteger(message.scheduledTimestamp.high)))
                         return "scheduledTimestamp: integer|Long expected";
-                if (message.createTimestamp != null && message.hasOwnProperty("createTimestamp"))
+                if (message.createTimestamp != null && Object.hasOwnProperty.call(message, "createTimestamp"))
                     if (!$util.isInteger(message.createTimestamp) && !(message.createTimestamp && $util.isInteger(message.createTimestamp.low) && $util.isInteger(message.createTimestamp.high)))
                         return "createTimestamp: integer|Long expected";
-                if (message.status != null && message.hasOwnProperty("status"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     switch (message.status) {
                     default:
                         return "status: enum value expected";
@@ -6363,33 +6363,33 @@ $root.SyncAction = (function() {
                         object.createTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.status = options.enums === String ? "DRAFT" : 1;
                 }
-                if (message.deviceId != null && message.hasOwnProperty("deviceId"))
+                if (message.deviceId != null && Object.hasOwnProperty.call(message, "deviceId"))
                     object.deviceId = message.deviceId;
-                if (message.adId != null && message.hasOwnProperty("adId"))
+                if (message.adId != null && Object.hasOwnProperty.call(message, "adId"))
                     object.adId = message.adId;
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     object.name = message.name;
-                if (message.msgId != null && message.hasOwnProperty("msgId"))
+                if (message.msgId != null && Object.hasOwnProperty.call(message, "msgId"))
                     object.msgId = message.msgId;
-                if (message.broadcastJid != null && message.hasOwnProperty("broadcastJid"))
+                if (message.broadcastJid != null && Object.hasOwnProperty.call(message, "broadcastJid"))
                     object.broadcastJid = message.broadcastJid;
-                if (message.reservedQuota != null && message.hasOwnProperty("reservedQuota"))
+                if (message.reservedQuota != null && Object.hasOwnProperty.call(message, "reservedQuota"))
                     object.reservedQuota = message.reservedQuota;
-                if (message.scheduledTimestamp != null && message.hasOwnProperty("scheduledTimestamp"))
+                if (message.scheduledTimestamp != null && Object.hasOwnProperty.call(message, "scheduledTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.scheduledTimestamp = typeof message.scheduledTimestamp === "number" ? BigInt(message.scheduledTimestamp) : $util.Long.fromBits(message.scheduledTimestamp.low >>> 0, message.scheduledTimestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.scheduledTimestamp === "number")
                         object.scheduledTimestamp = options.longs === String ? String(message.scheduledTimestamp) : message.scheduledTimestamp;
                     else
                         object.scheduledTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.scheduledTimestamp) : options.longs === Number ? new $util.LongBits(message.scheduledTimestamp.low >>> 0, message.scheduledTimestamp.high >>> 0).toNumber() : message.scheduledTimestamp;
-                if (message.createTimestamp != null && message.hasOwnProperty("createTimestamp"))
+                if (message.createTimestamp != null && Object.hasOwnProperty.call(message, "createTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.createTimestamp = typeof message.createTimestamp === "number" ? BigInt(message.createTimestamp) : $util.Long.fromBits(message.createTimestamp.low >>> 0, message.createTimestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.createTimestamp === "number")
                         object.createTimestamp = options.longs === String ? String(message.createTimestamp) : message.createTimestamp;
                     else
                         object.createTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.createTimestamp) : options.longs === Number ? new $util.LongBits(message.createTimestamp.low >>> 0, message.createTimestamp.high >>> 0).toNumber() : message.createTimestamp;
-                if (message.status != null && message.hasOwnProperty("status"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     object.status = options.enums === String ? $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus[message.status] === undefined ? message.status : $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus[message.status] : message.status;
                 return object;
             };
@@ -6648,19 +6648,19 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.recipientCount != null && message.hasOwnProperty("recipientCount"))
+                if (message.recipientCount != null && Object.hasOwnProperty.call(message, "recipientCount"))
                     if (!$util.isInteger(message.recipientCount))
                         return "recipientCount: integer expected";
-                if (message.deliveredCount != null && message.hasOwnProperty("deliveredCount"))
+                if (message.deliveredCount != null && Object.hasOwnProperty.call(message, "deliveredCount"))
                     if (!$util.isInteger(message.deliveredCount))
                         return "deliveredCount: integer expected";
-                if (message.readCount != null && message.hasOwnProperty("readCount"))
+                if (message.readCount != null && Object.hasOwnProperty.call(message, "readCount"))
                     if (!$util.isInteger(message.readCount))
                         return "readCount: integer expected";
-                if (message.repliedCount != null && message.hasOwnProperty("repliedCount"))
+                if (message.repliedCount != null && Object.hasOwnProperty.call(message, "repliedCount"))
                     if (!$util.isInteger(message.repliedCount))
                         return "repliedCount: integer expected";
-                if (message.quickReplyCount != null && message.hasOwnProperty("quickReplyCount"))
+                if (message.quickReplyCount != null && Object.hasOwnProperty.call(message, "quickReplyCount"))
                     if (!$util.isInteger(message.quickReplyCount))
                         return "quickReplyCount: integer expected";
                 return null;
@@ -6721,15 +6721,15 @@ $root.SyncAction = (function() {
                     object.repliedCount = 0;
                     object.quickReplyCount = 0;
                 }
-                if (message.recipientCount != null && message.hasOwnProperty("recipientCount"))
+                if (message.recipientCount != null && Object.hasOwnProperty.call(message, "recipientCount"))
                     object.recipientCount = message.recipientCount;
-                if (message.deliveredCount != null && message.hasOwnProperty("deliveredCount"))
+                if (message.deliveredCount != null && Object.hasOwnProperty.call(message, "deliveredCount"))
                     object.deliveredCount = message.deliveredCount;
-                if (message.readCount != null && message.hasOwnProperty("readCount"))
+                if (message.readCount != null && Object.hasOwnProperty.call(message, "readCount"))
                     object.readCount = message.readCount;
-                if (message.repliedCount != null && message.hasOwnProperty("repliedCount"))
+                if (message.repliedCount != null && Object.hasOwnProperty.call(message, "repliedCount"))
                     object.repliedCount = message.repliedCount;
-                if (message.quickReplyCount != null && message.hasOwnProperty("quickReplyCount"))
+                if (message.quickReplyCount != null && Object.hasOwnProperty.call(message, "quickReplyCount"))
                     object.quickReplyCount = message.quickReplyCount;
                 return object;
             };
@@ -6976,10 +6976,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
-                if (message.participants != null && message.hasOwnProperty("participants")) {
+                if (message.participants != null && Object.hasOwnProperty.call(message, "participants")) {
                     if (!Array.isArray(message.participants))
                         return "participants: array expected";
                     for (var i = 0; i < message.participants.length; ++i) {
@@ -6988,17 +6988,17 @@ $root.SyncAction = (function() {
                             return "participants." + error;
                     }
                 }
-                if (message.listName != null && message.hasOwnProperty("listName"))
+                if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
                     if (!$util.isString(message.listName))
                         return "listName: string expected";
-                if (message.labelIds != null && message.hasOwnProperty("labelIds")) {
+                if (message.labelIds != null && Object.hasOwnProperty.call(message, "labelIds")) {
                     if (!Array.isArray(message.labelIds))
                         return "labelIds: array expected";
                     for (var i = 0; i < message.labelIds.length; ++i)
                         if (!$util.isString(message.labelIds[i]))
                             return "labelIds: string[] expected";
                 }
-                if (message.audienceExpression != null && message.hasOwnProperty("audienceExpression"))
+                if (message.audienceExpression != null && Object.hasOwnProperty.call(message, "audienceExpression"))
                     if (!$util.isString(message.audienceExpression))
                         return "audienceExpression: string expected";
                 return null;
@@ -7074,21 +7074,21 @@ $root.SyncAction = (function() {
                     object.listName = "";
                     object.audienceExpression = "";
                 }
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     object.deleted = message.deleted;
                 if (message.participants && message.participants.length) {
                     object.participants = [];
                     for (var j = 0; j < message.participants.length; ++j)
                         object.participants[j] = $root.SyncAction.SyncActionValue.BroadcastListParticipant.toObject(message.participants[j], options, q + 1);
                 }
-                if (message.listName != null && message.hasOwnProperty("listName"))
+                if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
                     object.listName = message.listName;
                 if (message.labelIds && message.labelIds.length) {
                     object.labelIds = [];
                     for (var j = 0; j < message.labelIds.length; ++j)
                         object.labelIds[j] = message.labelIds[j];
                 }
-                if (message.audienceExpression != null && message.hasOwnProperty("audienceExpression"))
+                if (message.audienceExpression != null && Object.hasOwnProperty.call(message, "audienceExpression"))
                     object.audienceExpression = message.audienceExpression;
                 return object;
             };
@@ -7267,7 +7267,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.callLogRecord != null && message.hasOwnProperty("callLogRecord")) {
+                if (message.callLogRecord != null && Object.hasOwnProperty.call(message, "callLogRecord")) {
                     var error = $root.SyncAction.CallLogRecord.verify(message.callLogRecord, long + 1);
                     if (error)
                         return "callLogRecord." + error;
@@ -7320,7 +7320,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.callLogRecord = null;
-                if (message.callLogRecord != null && message.hasOwnProperty("callLogRecord"))
+                if (message.callLogRecord != null && Object.hasOwnProperty.call(message, "callLogRecord"))
                     object.callLogRecord = $root.SyncAction.CallLogRecord.toObject(message.callLogRecord, options, q + 1);
                 return object;
             };
@@ -7499,7 +7499,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.deviceAgentID != null && message.hasOwnProperty("deviceAgentID"))
+                if (message.deviceAgentID != null && Object.hasOwnProperty.call(message, "deviceAgentID"))
                     if (!$util.isString(message.deviceAgentID))
                         return "deviceAgentID: string expected";
                 return null;
@@ -7547,7 +7547,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.deviceAgentID = "";
-                if (message.deviceAgentID != null && message.hasOwnProperty("deviceAgentID"))
+                if (message.deviceAgentID != null && Object.hasOwnProperty.call(message, "deviceAgentID"))
                     object.deviceAgentID = message.deviceAgentID;
                 return object;
             };
@@ -7726,7 +7726,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.chatOpened != null && message.hasOwnProperty("chatOpened"))
+                if (message.chatOpened != null && Object.hasOwnProperty.call(message, "chatOpened"))
                     if (typeof message.chatOpened !== "boolean")
                         return "chatOpened: boolean expected";
                 return null;
@@ -7774,7 +7774,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.chatOpened = false;
-                if (message.chatOpened != null && message.hasOwnProperty("chatOpened"))
+                if (message.chatOpened != null && Object.hasOwnProperty.call(message, "chatOpened"))
                     object.chatOpened = message.chatOpened;
                 return object;
             };
@@ -7953,7 +7953,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.messageRange != null && message.hasOwnProperty("messageRange")) {
+                if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange")) {
                     var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange, long + 1);
                     if (error)
                         return "messageRange." + error;
@@ -8006,7 +8006,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.messageRange = null;
-                if (message.messageRange != null && message.hasOwnProperty("messageRange"))
+                if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange"))
                     object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options, q + 1);
                 return object;
             };
@@ -8260,22 +8260,22 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     if (!$util.isString(message.fullName))
                         return "fullName: string expected";
-                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
                     if (!$util.isString(message.firstName))
                         return "firstName: string expected";
-                if (message.lidJid != null && message.hasOwnProperty("lidJid"))
+                if (message.lidJid != null && Object.hasOwnProperty.call(message, "lidJid"))
                     if (!$util.isString(message.lidJid))
                         return "lidJid: string expected";
-                if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
+                if (message.saveOnPrimaryAddressbook != null && Object.hasOwnProperty.call(message, "saveOnPrimaryAddressbook"))
                     if (typeof message.saveOnPrimaryAddressbook !== "boolean")
                         return "saveOnPrimaryAddressbook: boolean expected";
-                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
                     if (!$util.isString(message.pnJid))
                         return "pnJid: string expected";
-                if (message.username != null && message.hasOwnProperty("username"))
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     if (!$util.isString(message.username))
                         return "username: string expected";
                 return null;
@@ -8339,17 +8339,17 @@ $root.SyncAction = (function() {
                     object.pnJid = "";
                     object.username = "";
                 }
-                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     object.fullName = message.fullName;
-                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
                     object.firstName = message.firstName;
-                if (message.lidJid != null && message.hasOwnProperty("lidJid"))
+                if (message.lidJid != null && Object.hasOwnProperty.call(message, "lidJid"))
                     object.lidJid = message.lidJid;
-                if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
+                if (message.saveOnPrimaryAddressbook != null && Object.hasOwnProperty.call(message, "saveOnPrimaryAddressbook"))
                     object.saveOnPrimaryAddressbook = message.saveOnPrimaryAddressbook;
-                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
                     object.pnJid = message.pnJid;
-                if (message.username != null && message.hasOwnProperty("username"))
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     object.username = message.username;
                 return object;
             };
@@ -8528,7 +8528,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isCtwaPerCustomerDataSharingEnabled != null && message.hasOwnProperty("isCtwaPerCustomerDataSharingEnabled"))
+                if (message.isCtwaPerCustomerDataSharingEnabled != null && Object.hasOwnProperty.call(message, "isCtwaPerCustomerDataSharingEnabled"))
                     if (typeof message.isCtwaPerCustomerDataSharingEnabled !== "boolean")
                         return "isCtwaPerCustomerDataSharingEnabled: boolean expected";
                 return null;
@@ -8576,7 +8576,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.isCtwaPerCustomerDataSharingEnabled = false;
-                if (message.isCtwaPerCustomerDataSharingEnabled != null && message.hasOwnProperty("isCtwaPerCustomerDataSharingEnabled"))
+                if (message.isCtwaPerCustomerDataSharingEnabled != null && Object.hasOwnProperty.call(message, "isCtwaPerCustomerDataSharingEnabled"))
                     object.isCtwaPerCustomerDataSharingEnabled = message.isCtwaPerCustomerDataSharingEnabled;
                 return object;
             };
@@ -8767,11 +8767,11 @@ $root.SyncAction = (function() {
                         break;
                     }
                 }
-                if (!message.hasOwnProperty("credentialId"))
+                if (!Object.hasOwnProperty.call(message, "credentialId"))
                     throw $util.ProtocolError("missing required 'credentialId'", { instance: message });
-                if (!message.hasOwnProperty("country"))
+                if (!Object.hasOwnProperty.call(message, "country"))
                     throw $util.ProtocolError("missing required 'country'", { instance: message });
-                if (!message.hasOwnProperty("type"))
+                if (!Object.hasOwnProperty.call(message, "type"))
                     throw $util.ProtocolError("missing required 'type'", { instance: message });
                 return message;
             };
@@ -8813,7 +8813,7 @@ $root.SyncAction = (function() {
                     return "country: string expected";
                 if (!$util.isString(message.type))
                     return "type: string expected";
-                if (message.metadata != null && message.hasOwnProperty("metadata")) {
+                if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata")) {
                     if (!Array.isArray(message.metadata))
                         return "metadata: array expected";
                     for (var i = 0; i < message.metadata.length; ++i) {
@@ -8886,11 +8886,11 @@ $root.SyncAction = (function() {
                     object.country = "";
                     object.type = "";
                 }
-                if (message.credentialId != null && message.hasOwnProperty("credentialId"))
+                if (message.credentialId != null && Object.hasOwnProperty.call(message, "credentialId"))
                     object.credentialId = message.credentialId;
-                if (message.country != null && message.hasOwnProperty("country"))
+                if (message.country != null && Object.hasOwnProperty.call(message, "country"))
                     object.country = message.country;
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = message.type;
                 if (message.metadata && message.metadata.length) {
                     object.metadata = [];
@@ -9053,9 +9053,9 @@ $root.SyncAction = (function() {
                         break;
                     }
                 }
-                if (!message.hasOwnProperty("key"))
+                if (!Object.hasOwnProperty.call(message, "key"))
                     throw $util.ProtocolError("missing required 'key'", { instance: message });
-                if (!message.hasOwnProperty("value"))
+                if (!Object.hasOwnProperty.call(message, "value"))
                     throw $util.ProtocolError("missing required 'value'", { instance: message });
                 return message;
             };
@@ -9144,9 +9144,9 @@ $root.SyncAction = (function() {
                     object.key = "";
                     object.value = "";
                 }
-                if (message.key != null && message.hasOwnProperty("key"))
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     object.key = message.key;
-                if (message.value != null && message.hasOwnProperty("value"))
+                if (message.value != null && Object.hasOwnProperty.call(message, "value"))
                     object.value = message.value;
                 return object;
             };
@@ -9329,7 +9329,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.customPaymentMethods != null && message.hasOwnProperty("customPaymentMethods")) {
+                if (message.customPaymentMethods != null && Object.hasOwnProperty.call(message, "customPaymentMethods")) {
                     if (!Array.isArray(message.customPaymentMethods))
                         return "customPaymentMethods: array expected";
                     for (var i = 0; i < message.customPaymentMethods.length; ++i) {
@@ -9723,37 +9723,37 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.chatJid != null && message.hasOwnProperty("chatJid"))
+                if (message.chatJid != null && Object.hasOwnProperty.call(message, "chatJid"))
                     if (!$util.isString(message.chatJid))
                         return "chatJid: string expected";
-                if (message.contactType != null && message.hasOwnProperty("contactType"))
+                if (message.contactType != null && Object.hasOwnProperty.call(message, "contactType"))
                     if (!$util.isInteger(message.contactType))
                         return "contactType: integer expected";
-                if (message.email != null && message.hasOwnProperty("email"))
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
                     if (!$util.isString(message.email))
                         return "email: string expected";
-                if (message.altPhoneNumbers != null && message.hasOwnProperty("altPhoneNumbers"))
+                if (message.altPhoneNumbers != null && Object.hasOwnProperty.call(message, "altPhoneNumbers"))
                     if (!$util.isString(message.altPhoneNumbers))
                         return "altPhoneNumbers: string expected";
-                if (message.birthday != null && message.hasOwnProperty("birthday"))
+                if (message.birthday != null && Object.hasOwnProperty.call(message, "birthday"))
                     if (!$util.isInteger(message.birthday) && !(message.birthday && $util.isInteger(message.birthday.low) && $util.isInteger(message.birthday.high)))
                         return "birthday: integer|Long expected";
-                if (message.address != null && message.hasOwnProperty("address"))
+                if (message.address != null && Object.hasOwnProperty.call(message, "address"))
                     if (!$util.isString(message.address))
                         return "address: string expected";
-                if (message.acquisitionSource != null && message.hasOwnProperty("acquisitionSource"))
+                if (message.acquisitionSource != null && Object.hasOwnProperty.call(message, "acquisitionSource"))
                     if (!$util.isInteger(message.acquisitionSource))
                         return "acquisitionSource: integer expected";
-                if (message.leadStage != null && message.hasOwnProperty("leadStage"))
+                if (message.leadStage != null && Object.hasOwnProperty.call(message, "leadStage"))
                     if (!$util.isInteger(message.leadStage))
                         return "leadStage: integer expected";
-                if (message.lastOrder != null && message.hasOwnProperty("lastOrder"))
+                if (message.lastOrder != null && Object.hasOwnProperty.call(message, "lastOrder"))
                     if (!$util.isInteger(message.lastOrder) && !(message.lastOrder && $util.isInteger(message.lastOrder.low) && $util.isInteger(message.lastOrder.high)))
                         return "lastOrder: integer|Long expected";
-                if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                     if (!$util.isInteger(message.createdAt) && !(message.createdAt && $util.isInteger(message.createdAt.low) && $util.isInteger(message.createdAt.high)))
                         return "createdAt: integer|Long expected";
-                if (message.modifiedAt != null && message.hasOwnProperty("modifiedAt"))
+                if (message.modifiedAt != null && Object.hasOwnProperty.call(message, "modifiedAt"))
                     if (!$util.isInteger(message.modifiedAt) && !(message.modifiedAt && $util.isInteger(message.modifiedAt.low) && $util.isInteger(message.modifiedAt.high)))
                         return "modifiedAt: integer|Long expected";
                 return null;
@@ -9876,42 +9876,42 @@ $root.SyncAction = (function() {
                     } else
                         object.modifiedAt = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.chatJid != null && message.hasOwnProperty("chatJid"))
+                if (message.chatJid != null && Object.hasOwnProperty.call(message, "chatJid"))
                     object.chatJid = message.chatJid;
-                if (message.contactType != null && message.hasOwnProperty("contactType"))
+                if (message.contactType != null && Object.hasOwnProperty.call(message, "contactType"))
                     object.contactType = message.contactType;
-                if (message.email != null && message.hasOwnProperty("email"))
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
                     object.email = message.email;
-                if (message.altPhoneNumbers != null && message.hasOwnProperty("altPhoneNumbers"))
+                if (message.altPhoneNumbers != null && Object.hasOwnProperty.call(message, "altPhoneNumbers"))
                     object.altPhoneNumbers = message.altPhoneNumbers;
-                if (message.birthday != null && message.hasOwnProperty("birthday"))
+                if (message.birthday != null && Object.hasOwnProperty.call(message, "birthday"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.birthday = typeof message.birthday === "number" ? BigInt(message.birthday) : $util.Long.fromBits(message.birthday.low >>> 0, message.birthday.high >>> 0, false).toBigInt();
                     else if (typeof message.birthday === "number")
                         object.birthday = options.longs === String ? String(message.birthday) : message.birthday;
                     else
                         object.birthday = options.longs === String ? $util.Long.prototype.toString.call(message.birthday) : options.longs === Number ? new $util.LongBits(message.birthday.low >>> 0, message.birthday.high >>> 0).toNumber() : message.birthday;
-                if (message.address != null && message.hasOwnProperty("address"))
+                if (message.address != null && Object.hasOwnProperty.call(message, "address"))
                     object.address = message.address;
-                if (message.acquisitionSource != null && message.hasOwnProperty("acquisitionSource"))
+                if (message.acquisitionSource != null && Object.hasOwnProperty.call(message, "acquisitionSource"))
                     object.acquisitionSource = message.acquisitionSource;
-                if (message.leadStage != null && message.hasOwnProperty("leadStage"))
+                if (message.leadStage != null && Object.hasOwnProperty.call(message, "leadStage"))
                     object.leadStage = message.leadStage;
-                if (message.lastOrder != null && message.hasOwnProperty("lastOrder"))
+                if (message.lastOrder != null && Object.hasOwnProperty.call(message, "lastOrder"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.lastOrder = typeof message.lastOrder === "number" ? BigInt(message.lastOrder) : $util.Long.fromBits(message.lastOrder.low >>> 0, message.lastOrder.high >>> 0, false).toBigInt();
                     else if (typeof message.lastOrder === "number")
                         object.lastOrder = options.longs === String ? String(message.lastOrder) : message.lastOrder;
                     else
                         object.lastOrder = options.longs === String ? $util.Long.prototype.toString.call(message.lastOrder) : options.longs === Number ? new $util.LongBits(message.lastOrder.low >>> 0, message.lastOrder.high >>> 0).toNumber() : message.lastOrder;
-                if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.createdAt = typeof message.createdAt === "number" ? BigInt(message.createdAt) : $util.Long.fromBits(message.createdAt.low >>> 0, message.createdAt.high >>> 0, false).toBigInt();
                     else if (typeof message.createdAt === "number")
                         object.createdAt = options.longs === String ? String(message.createdAt) : message.createdAt;
                     else
                         object.createdAt = options.longs === String ? $util.Long.prototype.toString.call(message.createdAt) : options.longs === Number ? new $util.LongBits(message.createdAt.low >>> 0, message.createdAt.high >>> 0).toNumber() : message.createdAt;
-                if (message.modifiedAt != null && message.hasOwnProperty("modifiedAt"))
+                if (message.modifiedAt != null && Object.hasOwnProperty.call(message, "modifiedAt"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.modifiedAt = typeof message.modifiedAt === "number" ? BigInt(message.modifiedAt) : $util.Long.fromBits(message.modifiedAt.low >>> 0, message.modifiedAt.high >>> 0, false).toBigInt();
                     else if (typeof message.modifiedAt === "number")
@@ -10095,7 +10095,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.messageRange != null && message.hasOwnProperty("messageRange")) {
+                if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange")) {
                     var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange, long + 1);
                     if (error)
                         return "messageRange." + error;
@@ -10148,7 +10148,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.messageRange = null;
-                if (message.messageRange != null && message.hasOwnProperty("messageRange"))
+                if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange"))
                     object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options, q + 1);
                 return object;
             };
@@ -10342,10 +10342,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.peerJid != null && message.hasOwnProperty("peerJid"))
+                if (message.peerJid != null && Object.hasOwnProperty.call(message, "peerJid"))
                     if (!$util.isString(message.peerJid))
                         return "peerJid: string expected";
-                if (message.isIncoming != null && message.hasOwnProperty("isIncoming"))
+                if (message.isIncoming != null && Object.hasOwnProperty.call(message, "isIncoming"))
                     if (typeof message.isIncoming !== "boolean")
                         return "isIncoming: boolean expected";
                 return null;
@@ -10397,9 +10397,9 @@ $root.SyncAction = (function() {
                     object.peerJid = "";
                     object.isIncoming = false;
                 }
-                if (message.peerJid != null && message.hasOwnProperty("peerJid"))
+                if (message.peerJid != null && Object.hasOwnProperty.call(message, "peerJid"))
                     object.peerJid = message.peerJid;
-                if (message.isIncoming != null && message.hasOwnProperty("isIncoming"))
+                if (message.isIncoming != null && Object.hasOwnProperty.call(message, "isIncoming"))
                     object.isIncoming = message.isIncoming;
                 return object;
             };
@@ -10593,10 +10593,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.deleteMedia != null && message.hasOwnProperty("deleteMedia"))
+                if (message.deleteMedia != null && Object.hasOwnProperty.call(message, "deleteMedia"))
                     if (typeof message.deleteMedia !== "boolean")
                         return "deleteMedia: boolean expected";
-                if (message.messageTimestamp != null && message.hasOwnProperty("messageTimestamp"))
+                if (message.messageTimestamp != null && Object.hasOwnProperty.call(message, "messageTimestamp"))
                     if (!$util.isInteger(message.messageTimestamp) && !(message.messageTimestamp && $util.isInteger(message.messageTimestamp.low) && $util.isInteger(message.messageTimestamp.high)))
                         return "messageTimestamp: integer|Long expected";
                 return null;
@@ -10659,9 +10659,9 @@ $root.SyncAction = (function() {
                     } else
                         object.messageTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.deleteMedia != null && message.hasOwnProperty("deleteMedia"))
+                if (message.deleteMedia != null && Object.hasOwnProperty.call(message, "deleteMedia"))
                     object.deleteMedia = message.deleteMedia;
-                if (message.messageTimestamp != null && message.hasOwnProperty("messageTimestamp"))
+                if (message.messageTimestamp != null && Object.hasOwnProperty.call(message, "messageTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.messageTimestamp = typeof message.messageTimestamp === "number" ? BigInt(message.messageTimestamp) : $util.Long.fromBits(message.messageTimestamp.low >>> 0, message.messageTimestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.messageTimestamp === "number")
@@ -10845,7 +10845,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
                     if (typeof message.isEnabled !== "boolean")
                         return "isEnabled: boolean expected";
                 return null;
@@ -10893,7 +10893,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.isEnabled = false;
-                if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
                     object.isEnabled = message.isEnabled;
                 return object;
             };
@@ -11072,7 +11072,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isOptIn != null && message.hasOwnProperty("isOptIn"))
+                if (message.isOptIn != null && Object.hasOwnProperty.call(message, "isOptIn"))
                     if (typeof message.isOptIn !== "boolean")
                         return "isOptIn: boolean expected";
                 return null;
@@ -11120,7 +11120,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.isOptIn = false;
-                if (message.isOptIn != null && message.hasOwnProperty("isOptIn"))
+                if (message.isOptIn != null && Object.hasOwnProperty.call(message, "isOptIn"))
                     object.isOptIn = message.isOptIn;
                 return object;
             };
@@ -11303,7 +11303,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.favorites != null && message.hasOwnProperty("favorites")) {
+                if (message.favorites != null && Object.hasOwnProperty.call(message, "favorites")) {
                     if (!Array.isArray(message.favorites))
                         return "favorites: array expected";
                     for (var i = 0; i < message.favorites.length; ++i) {
@@ -11544,7 +11544,7 @@ $root.SyncAction = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         if (!$util.isString(message.id))
                             return "id: string expected";
                     return null;
@@ -11592,7 +11592,7 @@ $root.SyncAction = (function() {
                     var object = {};
                     if (options.defaults)
                         object.id = "";
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         object.id = message.id;
                     return object;
                 };
@@ -11754,7 +11754,7 @@ $root.SyncAction = (function() {
                         break;
                     }
                 }
-                if (!message.hasOwnProperty("type"))
+                if (!Object.hasOwnProperty.call(message, "type"))
                     throw $util.ProtocolError("missing required 'type'", { instance: message });
                 return message;
             };
@@ -11796,7 +11796,7 @@ $root.SyncAction = (function() {
                 case 1:
                     break;
                 }
-                if (message.agmId != null && message.hasOwnProperty("agmId"))
+                if (message.agmId != null && Object.hasOwnProperty.call(message, "agmId"))
                     if (!$util.isString(message.agmId))
                         return "agmId: string expected";
                 return null;
@@ -11858,9 +11858,9 @@ $root.SyncAction = (function() {
                     object.type = options.enums === String ? "DISABLE_CTA" : 1;
                     object.agmId = "";
                 }
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode[message.type] : message.type;
-                if (message.agmId != null && message.hasOwnProperty("agmId"))
+                if (message.agmId != null && Object.hasOwnProperty.call(message, "agmId"))
                     object.agmId = message.agmId;
                 return object;
             };
@@ -12051,7 +12051,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.expiredKeyEpoch != null && message.hasOwnProperty("expiredKeyEpoch"))
+                if (message.expiredKeyEpoch != null && Object.hasOwnProperty.call(message, "expiredKeyEpoch"))
                     if (!$util.isInteger(message.expiredKeyEpoch))
                         return "expiredKeyEpoch: integer expected";
                 return null;
@@ -12099,7 +12099,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.expiredKeyEpoch = 0;
-                if (message.expiredKeyEpoch != null && message.hasOwnProperty("expiredKeyEpoch"))
+                if (message.expiredKeyEpoch != null && Object.hasOwnProperty.call(message, "expiredKeyEpoch"))
                     object.expiredKeyEpoch = message.expiredKeyEpoch;
                 return object;
             };
@@ -12293,10 +12293,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.labeled != null && message.hasOwnProperty("labeled"))
+                if (message.labeled != null && Object.hasOwnProperty.call(message, "labeled"))
                     if (typeof message.labeled !== "boolean")
                         return "labeled: boolean expected";
-                if (message.modelMetaData != null && message.hasOwnProperty("modelMetaData"))
+                if (message.modelMetaData != null && Object.hasOwnProperty.call(message, "modelMetaData"))
                     if (!$util.isString(message.modelMetaData))
                         return "modelMetaData: string expected";
                 return null;
@@ -12348,9 +12348,9 @@ $root.SyncAction = (function() {
                     object.labeled = false;
                     object.modelMetaData = "";
                 }
-                if (message.labeled != null && message.hasOwnProperty("labeled"))
+                if (message.labeled != null && Object.hasOwnProperty.call(message, "labeled"))
                     object.labeled = message.labeled;
-                if (message.modelMetaData != null && message.hasOwnProperty("modelMetaData"))
+                if (message.modelMetaData != null && Object.hasOwnProperty.call(message, "modelMetaData"))
                     object.modelMetaData = message.modelMetaData;
                 return object;
             };
@@ -12649,25 +12649,25 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
-                if (message.color != null && message.hasOwnProperty("color"))
+                if (message.color != null && Object.hasOwnProperty.call(message, "color"))
                     if (!$util.isInteger(message.color))
                         return "color: integer expected";
-                if (message.predefinedId != null && message.hasOwnProperty("predefinedId"))
+                if (message.predefinedId != null && Object.hasOwnProperty.call(message, "predefinedId"))
                     if (!$util.isInteger(message.predefinedId))
                         return "predefinedId: integer expected";
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
-                if (message.orderIndex != null && message.hasOwnProperty("orderIndex"))
+                if (message.orderIndex != null && Object.hasOwnProperty.call(message, "orderIndex"))
                     if (!$util.isInteger(message.orderIndex))
                         return "orderIndex: integer expected";
-                if (message.isActive != null && message.hasOwnProperty("isActive"))
+                if (message.isActive != null && Object.hasOwnProperty.call(message, "isActive"))
                     if (typeof message.isActive !== "boolean")
                         return "isActive: boolean expected";
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     switch (message.type) {
                     default:
                         return "type: enum value expected";
@@ -12689,10 +12689,10 @@ $root.SyncAction = (function() {
                     case 15:
                         break;
                     }
-                if (message.isImmutable != null && message.hasOwnProperty("isImmutable"))
+                if (message.isImmutable != null && Object.hasOwnProperty.call(message, "isImmutable"))
                     if (typeof message.isImmutable !== "boolean")
                         return "isImmutable: boolean expected";
-                if (message.muteEndTimeMs != null && message.hasOwnProperty("muteEndTimeMs"))
+                if (message.muteEndTimeMs != null && Object.hasOwnProperty.call(message, "muteEndTimeMs"))
                     if (!$util.isInteger(message.muteEndTimeMs) && !(message.muteEndTimeMs && $util.isInteger(message.muteEndTimeMs.low) && $util.isInteger(message.muteEndTimeMs.high)))
                         return "muteEndTimeMs: integer|Long expected";
                 return null;
@@ -12846,23 +12846,23 @@ $root.SyncAction = (function() {
                     } else
                         object.muteEndTimeMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     object.name = message.name;
-                if (message.color != null && message.hasOwnProperty("color"))
+                if (message.color != null && Object.hasOwnProperty.call(message, "color"))
                     object.color = message.color;
-                if (message.predefinedId != null && message.hasOwnProperty("predefinedId"))
+                if (message.predefinedId != null && Object.hasOwnProperty.call(message, "predefinedId"))
                     object.predefinedId = message.predefinedId;
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     object.deleted = message.deleted;
-                if (message.orderIndex != null && message.hasOwnProperty("orderIndex"))
+                if (message.orderIndex != null && Object.hasOwnProperty.call(message, "orderIndex"))
                     object.orderIndex = message.orderIndex;
-                if (message.isActive != null && message.hasOwnProperty("isActive"))
+                if (message.isActive != null && Object.hasOwnProperty.call(message, "isActive"))
                     object.isActive = message.isActive;
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.SyncAction.SyncActionValue.LabelEditAction.ListType[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.LabelEditAction.ListType[message.type] : message.type;
-                if (message.isImmutable != null && message.hasOwnProperty("isImmutable"))
+                if (message.isImmutable != null && Object.hasOwnProperty.call(message, "isImmutable"))
                     object.isImmutable = message.isImmutable;
-                if (message.muteEndTimeMs != null && message.hasOwnProperty("muteEndTimeMs"))
+                if (message.muteEndTimeMs != null && Object.hasOwnProperty.call(message, "muteEndTimeMs"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.muteEndTimeMs = typeof message.muteEndTimeMs === "number" ? BigInt(message.muteEndTimeMs) : $util.Long.fromBits(message.muteEndTimeMs.low >>> 0, message.muteEndTimeMs.high >>> 0, false).toBigInt();
                     else if (typeof message.muteEndTimeMs === "number")
@@ -13097,7 +13097,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.sortedLabelIds != null && message.hasOwnProperty("sortedLabelIds")) {
+                if (message.sortedLabelIds != null && Object.hasOwnProperty.call(message, "sortedLabelIds")) {
                     if (!Array.isArray(message.sortedLabelIds))
                         return "sortedLabelIds: array expected";
                     for (var i = 0; i < message.sortedLabelIds.length; ++i)
@@ -13366,13 +13366,13 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     if (!$util.isString(message.fullName))
                         return "fullName: string expected";
-                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
                     if (!$util.isString(message.firstName))
                         return "firstName: string expected";
-                if (message.username != null && message.hasOwnProperty("username"))
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     if (!$util.isString(message.username))
                         return "username: string expected";
                 return null;
@@ -13427,11 +13427,11 @@ $root.SyncAction = (function() {
                     object.firstName = "";
                     object.username = "";
                 }
-                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     object.fullName = message.fullName;
-                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
                     object.firstName = message.firstName;
-                if (message.username != null && message.hasOwnProperty("username"))
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     object.username = message.username;
                 return object;
             };
@@ -13610,7 +13610,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.locale != null && message.hasOwnProperty("locale"))
+                if (message.locale != null && Object.hasOwnProperty.call(message, "locale"))
                     if (!$util.isString(message.locale))
                         return "locale: string expected";
                 return null;
@@ -13658,7 +13658,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.locale = "";
-                if (message.locale != null && message.hasOwnProperty("locale"))
+                if (message.locale != null && Object.hasOwnProperty.call(message, "locale"))
                     object.locale = message.locale;
                 return object;
             };
@@ -13837,7 +13837,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.locked != null && message.hasOwnProperty("locked"))
+                if (message.locked != null && Object.hasOwnProperty.call(message, "locked"))
                     if (typeof message.locked !== "boolean")
                         return "locked: boolean expected";
                 return null;
@@ -13885,7 +13885,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.locked = false;
-                if (message.locked != null && message.hasOwnProperty("locked"))
+                if (message.locked != null && Object.hasOwnProperty.call(message, "locked"))
                     object.locked = message.locked;
                 return object;
             };
@@ -14079,7 +14079,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.aiFeatureStatus != null && message.hasOwnProperty("aiFeatureStatus"))
+                if (message.aiFeatureStatus != null && Object.hasOwnProperty.call(message, "aiFeatureStatus"))
                     switch (message.aiFeatureStatus) {
                     default:
                         return "aiFeatureStatus: enum value expected";
@@ -14088,7 +14088,7 @@ $root.SyncAction = (function() {
                     case 2:
                         break;
                     }
-                if (message.aiReplyMode != null && message.hasOwnProperty("aiReplyMode"))
+                if (message.aiReplyMode != null && Object.hasOwnProperty.call(message, "aiReplyMode"))
                     switch (message.aiReplyMode) {
                     default:
                         return "aiReplyMode: enum value expected";
@@ -14182,9 +14182,9 @@ $root.SyncAction = (function() {
                     object.aiFeatureStatus = options.enums === String ? "ENABLED" : 0;
                     object.aiReplyMode = options.enums === String ? "MUTED" : 0;
                 }
-                if (message.aiFeatureStatus != null && message.hasOwnProperty("aiFeatureStatus"))
+                if (message.aiFeatureStatus != null && Object.hasOwnProperty.call(message, "aiFeatureStatus"))
                     object.aiFeatureStatus = options.enums === String ? $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus[message.aiFeatureStatus] === undefined ? message.aiFeatureStatus : $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus[message.aiFeatureStatus] : message.aiFeatureStatus;
-                if (message.aiReplyMode != null && message.hasOwnProperty("aiReplyMode"))
+                if (message.aiReplyMode != null && Object.hasOwnProperty.call(message, "aiReplyMode"))
                     object.aiReplyMode = options.enums === String ? $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIReplyMode[message.aiReplyMode] === undefined ? message.aiReplyMode : $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIReplyMode[message.aiReplyMode] : message.aiReplyMode;
                 return object;
             };
@@ -14410,10 +14410,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.read != null && message.hasOwnProperty("read"))
+                if (message.read != null && Object.hasOwnProperty.call(message, "read"))
                     if (typeof message.read !== "boolean")
                         return "read: boolean expected";
-                if (message.messageRange != null && message.hasOwnProperty("messageRange")) {
+                if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange")) {
                     var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange, long + 1);
                     if (error)
                         return "messageRange." + error;
@@ -14470,9 +14470,9 @@ $root.SyncAction = (function() {
                     object.read = false;
                     object.messageRange = null;
                 }
-                if (message.read != null && message.hasOwnProperty("read"))
+                if (message.read != null && Object.hasOwnProperty.call(message, "read"))
                     object.read = message.read;
-                if (message.messageRange != null && message.hasOwnProperty("messageRange"))
+                if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange"))
                     object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options, q + 1);
                 return object;
             };
@@ -14741,29 +14741,29 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
-                if (message.message != null && message.hasOwnProperty("message"))
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     if (!$util.isString(message.message))
                         return "message: string expected";
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     switch (message.type) {
                     default:
                         return "type: enum value expected";
                     case 0:
                         break;
                     }
-                if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                     if (!$util.isInteger(message.createdAt) && !(message.createdAt && $util.isInteger(message.createdAt.low) && $util.isInteger(message.createdAt.high)))
                         return "createdAt: integer|Long expected";
-                if (message.lastSentAt != null && message.hasOwnProperty("lastSentAt"))
+                if (message.lastSentAt != null && Object.hasOwnProperty.call(message, "lastSentAt"))
                     if (!$util.isInteger(message.lastSentAt) && !(message.lastSentAt && $util.isInteger(message.lastSentAt.low) && $util.isInteger(message.lastSentAt.high)))
                         return "lastSentAt: integer|Long expected";
-                if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
+                if (message.isDeleted != null && Object.hasOwnProperty.call(message, "isDeleted"))
                     if (typeof message.isDeleted !== "boolean")
                         return "isDeleted: boolean expected";
-                if (message.mediaId != null && message.hasOwnProperty("mediaId"))
+                if (message.mediaId != null && Object.hasOwnProperty.call(message, "mediaId"))
                     if (!$util.isString(message.mediaId))
                         return "mediaId: string expected";
                 return null;
@@ -14862,29 +14862,29 @@ $root.SyncAction = (function() {
                     object.isDeleted = false;
                     object.mediaId = "";
                 }
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     object.name = message.name;
-                if (message.message != null && message.hasOwnProperty("message"))
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     object.message = message.message;
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.SyncAction.SyncActionValue.MarketingMessageAction.MarketingMessagePrototypeType[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.MarketingMessageAction.MarketingMessagePrototypeType[message.type] : message.type;
-                if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.createdAt = typeof message.createdAt === "number" ? BigInt(message.createdAt) : $util.Long.fromBits(message.createdAt.low >>> 0, message.createdAt.high >>> 0, false).toBigInt();
                     else if (typeof message.createdAt === "number")
                         object.createdAt = options.longs === String ? String(message.createdAt) : message.createdAt;
                     else
                         object.createdAt = options.longs === String ? $util.Long.prototype.toString.call(message.createdAt) : options.longs === Number ? new $util.LongBits(message.createdAt.low >>> 0, message.createdAt.high >>> 0).toNumber() : message.createdAt;
-                if (message.lastSentAt != null && message.hasOwnProperty("lastSentAt"))
+                if (message.lastSentAt != null && Object.hasOwnProperty.call(message, "lastSentAt"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.lastSentAt = typeof message.lastSentAt === "number" ? BigInt(message.lastSentAt) : $util.Long.fromBits(message.lastSentAt.low >>> 0, message.lastSentAt.high >>> 0, false).toBigInt();
                     else if (typeof message.lastSentAt === "number")
                         object.lastSentAt = options.longs === String ? String(message.lastSentAt) : message.lastSentAt;
                     else
                         object.lastSentAt = options.longs === String ? $util.Long.prototype.toString.call(message.lastSentAt) : options.longs === Number ? new $util.LongBits(message.lastSentAt.low >>> 0, message.lastSentAt.high >>> 0).toNumber() : message.lastSentAt;
-                if (message.isDeleted != null && message.hasOwnProperty("isDeleted"))
+                if (message.isDeleted != null && Object.hasOwnProperty.call(message, "isDeleted"))
                     object.isDeleted = message.isDeleted;
-                if (message.mediaId != null && message.hasOwnProperty("mediaId"))
+                if (message.mediaId != null && Object.hasOwnProperty.call(message, "mediaId"))
                     object.mediaId = message.mediaId;
                 return object;
             };
@@ -15075,7 +15075,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.repliedCount != null && message.hasOwnProperty("repliedCount"))
+                if (message.repliedCount != null && Object.hasOwnProperty.call(message, "repliedCount"))
                     if (!$util.isInteger(message.repliedCount))
                         return "repliedCount: integer expected";
                 return null;
@@ -15123,7 +15123,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.repliedCount = 0;
-                if (message.repliedCount != null && message.hasOwnProperty("repliedCount"))
+                if (message.repliedCount != null && Object.hasOwnProperty.call(message, "repliedCount"))
                     object.repliedCount = message.repliedCount;
                 return object;
             };
@@ -15311,9 +15311,9 @@ $root.SyncAction = (function() {
                         break;
                     }
                 }
-                if (!message.hasOwnProperty("status"))
+                if (!Object.hasOwnProperty.call(message, "status"))
                     throw $util.ProtocolError("missing required 'status'", { instance: message });
-                if (!message.hasOwnProperty("country"))
+                if (!Object.hasOwnProperty.call(message, "country"))
                     throw $util.ProtocolError("missing required 'country'", { instance: message });
                 return message;
             };
@@ -15358,10 +15358,10 @@ $root.SyncAction = (function() {
                 }
                 if (!$util.isString(message.country))
                     return "country: string expected";
-                if (message.gatewayName != null && message.hasOwnProperty("gatewayName"))
+                if (message.gatewayName != null && Object.hasOwnProperty.call(message, "gatewayName"))
                     if (!$util.isString(message.gatewayName))
                         return "gatewayName: string expected";
-                if (message.credentialId != null && message.hasOwnProperty("credentialId"))
+                if (message.credentialId != null && Object.hasOwnProperty.call(message, "credentialId"))
                     if (!$util.isString(message.credentialId))
                         return "credentialId: string expected";
                 return null;
@@ -15433,13 +15433,13 @@ $root.SyncAction = (function() {
                     object.gatewayName = "";
                     object.credentialId = "";
                 }
-                if (message.status != null && message.hasOwnProperty("status"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     object.status = options.enums === String ? $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.Status[message.status] === undefined ? message.status : $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.Status[message.status] : message.status;
-                if (message.country != null && message.hasOwnProperty("country"))
+                if (message.country != null && Object.hasOwnProperty.call(message, "country"))
                     object.country = message.country;
-                if (message.gatewayName != null && message.hasOwnProperty("gatewayName"))
+                if (message.gatewayName != null && Object.hasOwnProperty.call(message, "gatewayName"))
                     object.gatewayName = message.gatewayName;
-                if (message.credentialId != null && message.hasOwnProperty("credentialId"))
+                if (message.credentialId != null && Object.hasOwnProperty.call(message, "credentialId"))
                     object.credentialId = message.credentialId;
                 return object;
             };
@@ -15670,10 +15670,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.musicUserId != null && message.hasOwnProperty("musicUserId"))
+                if (message.musicUserId != null && Object.hasOwnProperty.call(message, "musicUserId"))
                     if (!$util.isString(message.musicUserId))
                         return "musicUserId: string expected";
-                if (message.musicUserIdMap != null && message.hasOwnProperty("musicUserIdMap")) {
+                if (message.musicUserIdMap != null && Object.hasOwnProperty.call(message, "musicUserIdMap")) {
                     if (!$util.isObject(message.musicUserIdMap))
                         return "musicUserIdMap: object expected";
                     var key = Object.keys(message.musicUserIdMap);
@@ -15738,7 +15738,7 @@ $root.SyncAction = (function() {
                     object.musicUserIdMap = {};
                 if (options.defaults)
                     object.musicUserId = "";
-                if (message.musicUserId != null && message.hasOwnProperty("musicUserId"))
+                if (message.musicUserId != null && Object.hasOwnProperty.call(message, "musicUserId"))
                     object.musicUserId = message.musicUserId;
                 var keys2;
                 if (message.musicUserIdMap && (keys2 = Object.keys(message.musicUserIdMap)).length) {
@@ -15971,16 +15971,16 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.muted != null && message.hasOwnProperty("muted"))
+                if (message.muted != null && Object.hasOwnProperty.call(message, "muted"))
                     if (typeof message.muted !== "boolean")
                         return "muted: boolean expected";
-                if (message.muteEndTimestamp != null && message.hasOwnProperty("muteEndTimestamp"))
+                if (message.muteEndTimestamp != null && Object.hasOwnProperty.call(message, "muteEndTimestamp"))
                     if (!$util.isInteger(message.muteEndTimestamp) && !(message.muteEndTimestamp && $util.isInteger(message.muteEndTimestamp.low) && $util.isInteger(message.muteEndTimestamp.high)))
                         return "muteEndTimestamp: integer|Long expected";
-                if (message.autoMuted != null && message.hasOwnProperty("autoMuted"))
+                if (message.autoMuted != null && Object.hasOwnProperty.call(message, "autoMuted"))
                     if (typeof message.autoMuted !== "boolean")
                         return "autoMuted: boolean expected";
-                if (message.muteEveryoneMentionEndTimestamp != null && message.hasOwnProperty("muteEveryoneMentionEndTimestamp"))
+                if (message.muteEveryoneMentionEndTimestamp != null && Object.hasOwnProperty.call(message, "muteEveryoneMentionEndTimestamp"))
                     if (!$util.isInteger(message.muteEveryoneMentionEndTimestamp) && !(message.muteEveryoneMentionEndTimestamp && $util.isInteger(message.muteEveryoneMentionEndTimestamp.low) && $util.isInteger(message.muteEveryoneMentionEndTimestamp.high)))
                         return "muteEveryoneMentionEndTimestamp: integer|Long expected";
                 return null;
@@ -16060,18 +16060,18 @@ $root.SyncAction = (function() {
                     } else
                         object.muteEveryoneMentionEndTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.muted != null && message.hasOwnProperty("muted"))
+                if (message.muted != null && Object.hasOwnProperty.call(message, "muted"))
                     object.muted = message.muted;
-                if (message.muteEndTimestamp != null && message.hasOwnProperty("muteEndTimestamp"))
+                if (message.muteEndTimestamp != null && Object.hasOwnProperty.call(message, "muteEndTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.muteEndTimestamp = typeof message.muteEndTimestamp === "number" ? BigInt(message.muteEndTimestamp) : $util.Long.fromBits(message.muteEndTimestamp.low >>> 0, message.muteEndTimestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.muteEndTimestamp === "number")
                         object.muteEndTimestamp = options.longs === String ? String(message.muteEndTimestamp) : message.muteEndTimestamp;
                     else
                         object.muteEndTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.muteEndTimestamp) : options.longs === Number ? new $util.LongBits(message.muteEndTimestamp.low >>> 0, message.muteEndTimestamp.high >>> 0).toNumber() : message.muteEndTimestamp;
-                if (message.autoMuted != null && message.hasOwnProperty("autoMuted"))
+                if (message.autoMuted != null && Object.hasOwnProperty.call(message, "autoMuted"))
                     object.autoMuted = message.autoMuted;
-                if (message.muteEveryoneMentionEndTimestamp != null && message.hasOwnProperty("muteEveryoneMentionEndTimestamp"))
+                if (message.muteEveryoneMentionEndTimestamp != null && Object.hasOwnProperty.call(message, "muteEveryoneMentionEndTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.muteEveryoneMentionEndTimestamp = typeof message.muteEveryoneMentionEndTimestamp === "number" ? BigInt(message.muteEveryoneMentionEndTimestamp) : $util.Long.fromBits(message.muteEveryoneMentionEndTimestamp.low >>> 0, message.muteEveryoneMentionEndTimestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.muteEveryoneMentionEndTimestamp === "number")
@@ -16255,7 +16255,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.salt != null && message.hasOwnProperty("salt"))
+                if (message.salt != null && Object.hasOwnProperty.call(message, "salt"))
                     if (!(message.salt && typeof message.salt.length === "number" || $util.isString(message.salt)))
                         return "salt: buffer expected";
                 return null;
@@ -16312,7 +16312,7 @@ $root.SyncAction = (function() {
                         if (options.bytes !== Array)
                             object.salt = $util.newBuffer(object.salt);
                     }
-                if (message.salt != null && message.hasOwnProperty("salt"))
+                if (message.salt != null && Object.hasOwnProperty.call(message, "salt"))
                     object.salt = options.bytes === String ? $util.base64.encode(message.salt, 0, message.salt.length) : options.bytes === Array ? Array.prototype.slice.call(message.salt) : message.salt;
                 return object;
             };
@@ -16491,7 +16491,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.newsletterSavedInterests != null && message.hasOwnProperty("newsletterSavedInterests"))
+                if (message.newsletterSavedInterests != null && Object.hasOwnProperty.call(message, "newsletterSavedInterests"))
                     if (!$util.isString(message.newsletterSavedInterests))
                         return "newsletterSavedInterests: string expected";
                 return null;
@@ -16539,7 +16539,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.newsletterSavedInterests = "";
-                if (message.newsletterSavedInterests != null && message.hasOwnProperty("newsletterSavedInterests"))
+                if (message.newsletterSavedInterests != null && Object.hasOwnProperty.call(message, "newsletterSavedInterests"))
                     object.newsletterSavedInterests = message.newsletterSavedInterests;
                 return object;
             };
@@ -16778,7 +16778,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     switch (message.type) {
                     default:
                         return "type: enum value expected";
@@ -16786,16 +16786,16 @@ $root.SyncAction = (function() {
                     case 2:
                         break;
                     }
-                if (message.chatJid != null && message.hasOwnProperty("chatJid"))
+                if (message.chatJid != null && Object.hasOwnProperty.call(message, "chatJid"))
                     if (!$util.isString(message.chatJid))
                         return "chatJid: string expected";
-                if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                     if (!$util.isInteger(message.createdAt) && !(message.createdAt && $util.isInteger(message.createdAt.low) && $util.isInteger(message.createdAt.high)))
                         return "createdAt: integer|Long expected";
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
-                if (message.unstructuredContent != null && message.hasOwnProperty("unstructuredContent"))
+                if (message.unstructuredContent != null && Object.hasOwnProperty.call(message, "unstructuredContent"))
                     if (!$util.isString(message.unstructuredContent))
                         return "unstructuredContent: string expected";
                 return null;
@@ -16881,20 +16881,20 @@ $root.SyncAction = (function() {
                     object.deleted = false;
                     object.unstructuredContent = "";
                 }
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.SyncAction.SyncActionValue.NoteEditAction.NoteType[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.NoteEditAction.NoteType[message.type] : message.type;
-                if (message.chatJid != null && message.hasOwnProperty("chatJid"))
+                if (message.chatJid != null && Object.hasOwnProperty.call(message, "chatJid"))
                     object.chatJid = message.chatJid;
-                if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.createdAt = typeof message.createdAt === "number" ? BigInt(message.createdAt) : $util.Long.fromBits(message.createdAt.low >>> 0, message.createdAt.high >>> 0, false).toBigInt();
                     else if (typeof message.createdAt === "number")
                         object.createdAt = options.longs === String ? String(message.createdAt) : message.createdAt;
                     else
                         object.createdAt = options.longs === String ? $util.Long.prototype.toString.call(message.createdAt) : options.longs === Number ? new $util.LongBits(message.createdAt.low >>> 0, message.createdAt.high >>> 0).toNumber() : message.createdAt;
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     object.deleted = message.deleted;
-                if (message.unstructuredContent != null && message.hasOwnProperty("unstructuredContent"))
+                if (message.unstructuredContent != null && Object.hasOwnProperty.call(message, "unstructuredContent"))
                     object.unstructuredContent = message.unstructuredContent;
                 return object;
             };
@@ -17087,7 +17087,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.notificationActivitySetting != null && message.hasOwnProperty("notificationActivitySetting"))
+                if (message.notificationActivitySetting != null && Object.hasOwnProperty.call(message, "notificationActivitySetting"))
                     switch (message.notificationActivitySetting) {
                     default:
                         return "notificationActivitySetting: enum value expected";
@@ -17164,7 +17164,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.notificationActivitySetting = options.enums === String ? "DEFAULT_ALL_MESSAGES" : 0;
-                if (message.notificationActivitySetting != null && message.hasOwnProperty("notificationActivitySetting"))
+                if (message.notificationActivitySetting != null && Object.hasOwnProperty.call(message, "notificationActivitySetting"))
                     object.notificationActivitySetting = options.enums === String ? $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.NotificationActivitySetting[message.notificationActivitySetting] === undefined ? message.notificationActivitySetting : $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.NotificationActivitySetting[message.notificationActivitySetting] : message.notificationActivitySetting;
                 return object;
             };
@@ -17361,7 +17361,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.acknowledged != null && message.hasOwnProperty("acknowledged"))
+                if (message.acknowledged != null && Object.hasOwnProperty.call(message, "acknowledged"))
                     if (typeof message.acknowledged !== "boolean")
                         return "acknowledged: boolean expected";
                 return null;
@@ -17409,7 +17409,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.acknowledged = false;
-                if (message.acknowledged != null && message.hasOwnProperty("acknowledged"))
+                if (message.acknowledged != null && Object.hasOwnProperty.call(message, "acknowledged"))
                     object.acknowledged = message.acknowledged;
                 return object;
             };
@@ -17603,10 +17603,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     if (!$util.isString(message.fullName))
                         return "fullName: string expected";
-                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
                     if (!$util.isString(message.firstName))
                         return "firstName: string expected";
                 return null;
@@ -17658,9 +17658,9 @@ $root.SyncAction = (function() {
                     object.fullName = "";
                     object.firstName = "";
                 }
-                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     object.fullName = message.fullName;
-                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
                     object.firstName = message.firstName;
                 return object;
             };
@@ -17839,7 +17839,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.cpi != null && message.hasOwnProperty("cpi"))
+                if (message.cpi != null && Object.hasOwnProperty.call(message, "cpi"))
                     if (!$util.isString(message.cpi))
                         return "cpi: string expected";
                 return null;
@@ -17887,7 +17887,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.cpi = "";
-                if (message.cpi != null && message.hasOwnProperty("cpi"))
+                if (message.cpi != null && Object.hasOwnProperty.call(message, "cpi"))
                     object.cpi = message.cpi;
                 return object;
             };
@@ -18045,9 +18045,9 @@ $root.SyncAction = (function() {
                         break;
                     }
                 }
-                if (!message.hasOwnProperty("paymentNotice"))
+                if (!Object.hasOwnProperty.call(message, "paymentNotice"))
                     throw $util.ProtocolError("missing required 'paymentNotice'", { instance: message });
-                if (!message.hasOwnProperty("accepted"))
+                if (!Object.hasOwnProperty.call(message, "accepted"))
                     throw $util.ProtocolError("missing required 'accepted'", { instance: message });
                 return message;
             };
@@ -18150,9 +18150,9 @@ $root.SyncAction = (function() {
                     object.paymentNotice = options.enums === String ? "BR_PAY_PRIVACY_POLICY" : 0;
                     object.accepted = false;
                 }
-                if (message.paymentNotice != null && message.hasOwnProperty("paymentNotice"))
+                if (message.paymentNotice != null && Object.hasOwnProperty.call(message, "paymentNotice"))
                     object.paymentNotice = options.enums === String ? $root.SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice[message.paymentNotice] === undefined ? message.paymentNotice : $root.SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice[message.paymentNotice] : message.paymentNotice;
-                if (message.accepted != null && message.hasOwnProperty("accepted"))
+                if (message.accepted != null && Object.hasOwnProperty.call(message, "accepted"))
                     object.accepted = message.accepted;
                 return object;
             };
@@ -18343,7 +18343,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.pinned != null && message.hasOwnProperty("pinned"))
+                if (message.pinned != null && Object.hasOwnProperty.call(message, "pinned"))
                     if (typeof message.pinned !== "boolean")
                         return "pinned: boolean expected";
                 return null;
@@ -18391,7 +18391,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.pinned = false;
-                if (message.pinned != null && message.hasOwnProperty("pinned"))
+                if (message.pinned != null && Object.hasOwnProperty.call(message, "pinned"))
                     object.pinned = message.pinned;
                 return object;
             };
@@ -18570,7 +18570,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
                     if (!$util.isString(message.pnJid))
                         return "pnJid: string expected";
                 return null;
@@ -18618,7 +18618,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.pnJid = "";
-                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
                     object.pnJid = message.pnJid;
                 return object;
             };
@@ -18801,7 +18801,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.flags != null && message.hasOwnProperty("flags")) {
+                if (message.flags != null && Object.hasOwnProperty.call(message, "flags")) {
                     if (!Array.isArray(message.flags))
                         return "flags: array expected";
                     for (var i = 0; i < message.flags.length; ++i)
@@ -19040,7 +19040,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.version != null && message.hasOwnProperty("version"))
+                if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                     if (!$util.isString(message.version))
                         return "version: string expected";
                 return null;
@@ -19088,7 +19088,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.version = "";
-                if (message.version != null && message.hasOwnProperty("version"))
+                if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                     object.version = message.version;
                 return object;
             };
@@ -19267,7 +19267,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isUserOptedOut != null && message.hasOwnProperty("isUserOptedOut"))
+                if (message.isUserOptedOut != null && Object.hasOwnProperty.call(message, "isUserOptedOut"))
                     if (typeof message.isUserOptedOut !== "boolean")
                         return "isUserOptedOut: boolean expected";
                 return null;
@@ -19315,7 +19315,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.isUserOptedOut = false;
-                if (message.isUserOptedOut != null && message.hasOwnProperty("isUserOptedOut"))
+                if (message.isUserOptedOut != null && Object.hasOwnProperty.call(message, "isUserOptedOut"))
                     object.isUserOptedOut = message.isUserOptedOut;
                 return object;
             };
@@ -19494,7 +19494,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isPreviewsDisabled != null && message.hasOwnProperty("isPreviewsDisabled"))
+                if (message.isPreviewsDisabled != null && Object.hasOwnProperty.call(message, "isPreviewsDisabled"))
                     if (typeof message.isPreviewsDisabled !== "boolean")
                         return "isPreviewsDisabled: boolean expected";
                 return null;
@@ -19542,7 +19542,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.isPreviewsDisabled = false;
-                if (message.isPreviewsDisabled != null && message.hasOwnProperty("isPreviewsDisabled"))
+                if (message.isPreviewsDisabled != null && Object.hasOwnProperty.call(message, "isPreviewsDisabled"))
                     object.isPreviewsDisabled = message.isPreviewsDisabled;
                 return object;
             };
@@ -19721,7 +19721,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
                     if (typeof message.isEnabled !== "boolean")
                         return "isEnabled: boolean expected";
                 return null;
@@ -19769,7 +19769,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.isEnabled = false;
-                if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
                     object.isEnabled = message.isEnabled;
                 return object;
             };
@@ -19948,7 +19948,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.privateProcessingStatus != null && message.hasOwnProperty("privateProcessingStatus"))
+                if (message.privateProcessingStatus != null && Object.hasOwnProperty.call(message, "privateProcessingStatus"))
                     switch (message.privateProcessingStatus) {
                     default:
                         return "privateProcessingStatus: enum value expected";
@@ -20020,7 +20020,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.privateProcessingStatus = options.enums === String ? "UNDEFINED" : 0;
-                if (message.privateProcessingStatus != null && message.hasOwnProperty("privateProcessingStatus"))
+                if (message.privateProcessingStatus != null && Object.hasOwnProperty.call(message, "privateProcessingStatus"))
                     object.privateProcessingStatus = options.enums === String ? $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.PrivateProcessingStatus[message.privateProcessingStatus] === undefined ? message.privateProcessingStatus : $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.PrivateProcessingStatus[message.privateProcessingStatus] : message.privateProcessingStatus;
                 return object;
             };
@@ -20215,7 +20215,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
                 return null;
@@ -20263,7 +20263,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.name = "";
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     object.name = message.name;
                 return object;
             };
@@ -20525,26 +20525,26 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.shortcut != null && message.hasOwnProperty("shortcut"))
+                if (message.shortcut != null && Object.hasOwnProperty.call(message, "shortcut"))
                     if (!$util.isString(message.shortcut))
                         return "shortcut: string expected";
-                if (message.message != null && message.hasOwnProperty("message"))
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     if (!$util.isString(message.message))
                         return "message: string expected";
-                if (message.keywords != null && message.hasOwnProperty("keywords")) {
+                if (message.keywords != null && Object.hasOwnProperty.call(message, "keywords")) {
                     if (!Array.isArray(message.keywords))
                         return "keywords: array expected";
                     for (var i = 0; i < message.keywords.length; ++i)
                         if (!$util.isString(message.keywords[i]))
                             return "keywords: string[] expected";
                 }
-                if (message.count != null && message.hasOwnProperty("count"))
+                if (message.count != null && Object.hasOwnProperty.call(message, "count"))
                     if (!$util.isInteger(message.count))
                         return "count: integer expected";
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
-                if (message.associatedLabelIds != null && message.hasOwnProperty("associatedLabelIds")) {
+                if (message.associatedLabelIds != null && Object.hasOwnProperty.call(message, "associatedLabelIds")) {
                     if (!Array.isArray(message.associatedLabelIds))
                         return "associatedLabelIds: array expected";
                     for (var i = 0; i < message.associatedLabelIds.length; ++i)
@@ -20624,18 +20624,18 @@ $root.SyncAction = (function() {
                     object.count = 0;
                     object.deleted = false;
                 }
-                if (message.shortcut != null && message.hasOwnProperty("shortcut"))
+                if (message.shortcut != null && Object.hasOwnProperty.call(message, "shortcut"))
                     object.shortcut = message.shortcut;
-                if (message.message != null && message.hasOwnProperty("message"))
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     object.message = message.message;
                 if (message.keywords && message.keywords.length) {
                     object.keywords = [];
                     for (var j = 0; j < message.keywords.length; ++j)
                         object.keywords[j] = message.keywords[j];
                 }
-                if (message.count != null && message.hasOwnProperty("count"))
+                if (message.count != null && Object.hasOwnProperty.call(message, "count"))
                     object.count = message.count;
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     object.deleted = message.deleted;
                 if (message.associatedLabelIds && message.associatedLabelIds.length) {
                     object.associatedLabelIds = [];
@@ -20823,7 +20823,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.weights != null && message.hasOwnProperty("weights")) {
+                if (message.weights != null && Object.hasOwnProperty.call(message, "weights")) {
                     if (!Array.isArray(message.weights))
                         return "weights: array expected";
                     for (var i = 0; i < message.weights.length; ++i) {
@@ -21067,7 +21067,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.lastStickerSentTs != null && message.hasOwnProperty("lastStickerSentTs"))
+                if (message.lastStickerSentTs != null && Object.hasOwnProperty.call(message, "lastStickerSentTs"))
                     if (!$util.isInteger(message.lastStickerSentTs) && !(message.lastStickerSentTs && $util.isInteger(message.lastStickerSentTs.low) && $util.isInteger(message.lastStickerSentTs.high)))
                         return "lastStickerSentTs: integer|Long expected";
                 return null;
@@ -21126,7 +21126,7 @@ $root.SyncAction = (function() {
                         object.lastStickerSentTs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
                         object.lastStickerSentTs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-                if (message.lastStickerSentTs != null && message.hasOwnProperty("lastStickerSentTs"))
+                if (message.lastStickerSentTs != null && Object.hasOwnProperty.call(message, "lastStickerSentTs"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.lastStickerSentTs = typeof message.lastStickerSentTs === "number" ? BigInt(message.lastStickerSentTs) : $util.Long.fromBits(message.lastStickerSentTs.low >>> 0, message.lastStickerSentTs.high >>> 0, false).toBigInt();
                     else if (typeof message.lastStickerSentTs === "number")
@@ -21790,19 +21790,19 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.startAtLogin != null && message.hasOwnProperty("startAtLogin"))
+                if (message.startAtLogin != null && Object.hasOwnProperty.call(message, "startAtLogin"))
                     if (typeof message.startAtLogin !== "boolean")
                         return "startAtLogin: boolean expected";
-                if (message.minimizeToTray != null && message.hasOwnProperty("minimizeToTray"))
+                if (message.minimizeToTray != null && Object.hasOwnProperty.call(message, "minimizeToTray"))
                     if (typeof message.minimizeToTray !== "boolean")
                         return "minimizeToTray: boolean expected";
-                if (message.language != null && message.hasOwnProperty("language"))
+                if (message.language != null && Object.hasOwnProperty.call(message, "language"))
                     if (!$util.isString(message.language))
                         return "language: string expected";
-                if (message.replaceTextWithEmoji != null && message.hasOwnProperty("replaceTextWithEmoji"))
+                if (message.replaceTextWithEmoji != null && Object.hasOwnProperty.call(message, "replaceTextWithEmoji"))
                     if (typeof message.replaceTextWithEmoji !== "boolean")
                         return "replaceTextWithEmoji: boolean expected";
-                if (message.bannerNotificationDisplayMode != null && message.hasOwnProperty("bannerNotificationDisplayMode"))
+                if (message.bannerNotificationDisplayMode != null && Object.hasOwnProperty.call(message, "bannerNotificationDisplayMode"))
                     switch (message.bannerNotificationDisplayMode) {
                     default:
                         return "bannerNotificationDisplayMode: enum value expected";
@@ -21812,7 +21812,7 @@ $root.SyncAction = (function() {
                     case 3:
                         break;
                     }
-                if (message.unreadCounterBadgeDisplayMode != null && message.hasOwnProperty("unreadCounterBadgeDisplayMode"))
+                if (message.unreadCounterBadgeDisplayMode != null && Object.hasOwnProperty.call(message, "unreadCounterBadgeDisplayMode"))
                     switch (message.unreadCounterBadgeDisplayMode) {
                     default:
                         return "unreadCounterBadgeDisplayMode: enum value expected";
@@ -21822,58 +21822,58 @@ $root.SyncAction = (function() {
                     case 3:
                         break;
                     }
-                if (message.isMessagesNotificationEnabled != null && message.hasOwnProperty("isMessagesNotificationEnabled"))
+                if (message.isMessagesNotificationEnabled != null && Object.hasOwnProperty.call(message, "isMessagesNotificationEnabled"))
                     if (typeof message.isMessagesNotificationEnabled !== "boolean")
                         return "isMessagesNotificationEnabled: boolean expected";
-                if (message.isCallsNotificationEnabled != null && message.hasOwnProperty("isCallsNotificationEnabled"))
+                if (message.isCallsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isCallsNotificationEnabled"))
                     if (typeof message.isCallsNotificationEnabled !== "boolean")
                         return "isCallsNotificationEnabled: boolean expected";
-                if (message.isReactionsNotificationEnabled != null && message.hasOwnProperty("isReactionsNotificationEnabled"))
+                if (message.isReactionsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isReactionsNotificationEnabled"))
                     if (typeof message.isReactionsNotificationEnabled !== "boolean")
                         return "isReactionsNotificationEnabled: boolean expected";
-                if (message.isStatusReactionsNotificationEnabled != null && message.hasOwnProperty("isStatusReactionsNotificationEnabled"))
+                if (message.isStatusReactionsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isStatusReactionsNotificationEnabled"))
                     if (typeof message.isStatusReactionsNotificationEnabled !== "boolean")
                         return "isStatusReactionsNotificationEnabled: boolean expected";
-                if (message.isTextPreviewForNotificationEnabled != null && message.hasOwnProperty("isTextPreviewForNotificationEnabled"))
+                if (message.isTextPreviewForNotificationEnabled != null && Object.hasOwnProperty.call(message, "isTextPreviewForNotificationEnabled"))
                     if (typeof message.isTextPreviewForNotificationEnabled !== "boolean")
                         return "isTextPreviewForNotificationEnabled: boolean expected";
-                if (message.defaultNotificationToneId != null && message.hasOwnProperty("defaultNotificationToneId"))
+                if (message.defaultNotificationToneId != null && Object.hasOwnProperty.call(message, "defaultNotificationToneId"))
                     if (!$util.isInteger(message.defaultNotificationToneId))
                         return "defaultNotificationToneId: integer expected";
-                if (message.groupDefaultNotificationToneId != null && message.hasOwnProperty("groupDefaultNotificationToneId"))
+                if (message.groupDefaultNotificationToneId != null && Object.hasOwnProperty.call(message, "groupDefaultNotificationToneId"))
                     if (!$util.isInteger(message.groupDefaultNotificationToneId))
                         return "groupDefaultNotificationToneId: integer expected";
-                if (message.appTheme != null && message.hasOwnProperty("appTheme"))
+                if (message.appTheme != null && Object.hasOwnProperty.call(message, "appTheme"))
                     if (!$util.isInteger(message.appTheme))
                         return "appTheme: integer expected";
-                if (message.wallpaperId != null && message.hasOwnProperty("wallpaperId"))
+                if (message.wallpaperId != null && Object.hasOwnProperty.call(message, "wallpaperId"))
                     if (!$util.isInteger(message.wallpaperId))
                         return "wallpaperId: integer expected";
-                if (message.isDoodleWallpaperEnabled != null && message.hasOwnProperty("isDoodleWallpaperEnabled"))
+                if (message.isDoodleWallpaperEnabled != null && Object.hasOwnProperty.call(message, "isDoodleWallpaperEnabled"))
                     if (typeof message.isDoodleWallpaperEnabled !== "boolean")
                         return "isDoodleWallpaperEnabled: boolean expected";
-                if (message.fontSize != null && message.hasOwnProperty("fontSize"))
+                if (message.fontSize != null && Object.hasOwnProperty.call(message, "fontSize"))
                     if (!$util.isInteger(message.fontSize))
                         return "fontSize: integer expected";
-                if (message.isPhotosAutodownloadEnabled != null && message.hasOwnProperty("isPhotosAutodownloadEnabled"))
+                if (message.isPhotosAutodownloadEnabled != null && Object.hasOwnProperty.call(message, "isPhotosAutodownloadEnabled"))
                     if (typeof message.isPhotosAutodownloadEnabled !== "boolean")
                         return "isPhotosAutodownloadEnabled: boolean expected";
-                if (message.isAudiosAutodownloadEnabled != null && message.hasOwnProperty("isAudiosAutodownloadEnabled"))
+                if (message.isAudiosAutodownloadEnabled != null && Object.hasOwnProperty.call(message, "isAudiosAutodownloadEnabled"))
                     if (typeof message.isAudiosAutodownloadEnabled !== "boolean")
                         return "isAudiosAutodownloadEnabled: boolean expected";
-                if (message.isVideosAutodownloadEnabled != null && message.hasOwnProperty("isVideosAutodownloadEnabled"))
+                if (message.isVideosAutodownloadEnabled != null && Object.hasOwnProperty.call(message, "isVideosAutodownloadEnabled"))
                     if (typeof message.isVideosAutodownloadEnabled !== "boolean")
                         return "isVideosAutodownloadEnabled: boolean expected";
-                if (message.isDocumentsAutodownloadEnabled != null && message.hasOwnProperty("isDocumentsAutodownloadEnabled"))
+                if (message.isDocumentsAutodownloadEnabled != null && Object.hasOwnProperty.call(message, "isDocumentsAutodownloadEnabled"))
                     if (typeof message.isDocumentsAutodownloadEnabled !== "boolean")
                         return "isDocumentsAutodownloadEnabled: boolean expected";
-                if (message.disableLinkPreviews != null && message.hasOwnProperty("disableLinkPreviews"))
+                if (message.disableLinkPreviews != null && Object.hasOwnProperty.call(message, "disableLinkPreviews"))
                     if (typeof message.disableLinkPreviews !== "boolean")
                         return "disableLinkPreviews: boolean expected";
-                if (message.notificationToneId != null && message.hasOwnProperty("notificationToneId"))
+                if (message.notificationToneId != null && Object.hasOwnProperty.call(message, "notificationToneId"))
                     if (!$util.isInteger(message.notificationToneId))
                         return "notificationToneId: integer expected";
-                if (message.mediaUploadQuality != null && message.hasOwnProperty("mediaUploadQuality"))
+                if (message.mediaUploadQuality != null && Object.hasOwnProperty.call(message, "mediaUploadQuality"))
                     switch (message.mediaUploadQuality) {
                     default:
                         return "mediaUploadQuality: enum value expected";
@@ -21882,31 +21882,31 @@ $root.SyncAction = (function() {
                     case 2:
                         break;
                     }
-                if (message.isSpellCheckEnabled != null && message.hasOwnProperty("isSpellCheckEnabled"))
+                if (message.isSpellCheckEnabled != null && Object.hasOwnProperty.call(message, "isSpellCheckEnabled"))
                     if (typeof message.isSpellCheckEnabled !== "boolean")
                         return "isSpellCheckEnabled: boolean expected";
-                if (message.isEnterToSendEnabled != null && message.hasOwnProperty("isEnterToSendEnabled"))
+                if (message.isEnterToSendEnabled != null && Object.hasOwnProperty.call(message, "isEnterToSendEnabled"))
                     if (typeof message.isEnterToSendEnabled !== "boolean")
                         return "isEnterToSendEnabled: boolean expected";
-                if (message.isGroupMessageNotificationEnabled != null && message.hasOwnProperty("isGroupMessageNotificationEnabled"))
+                if (message.isGroupMessageNotificationEnabled != null && Object.hasOwnProperty.call(message, "isGroupMessageNotificationEnabled"))
                     if (typeof message.isGroupMessageNotificationEnabled !== "boolean")
                         return "isGroupMessageNotificationEnabled: boolean expected";
-                if (message.isGroupReactionsNotificationEnabled != null && message.hasOwnProperty("isGroupReactionsNotificationEnabled"))
+                if (message.isGroupReactionsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isGroupReactionsNotificationEnabled"))
                     if (typeof message.isGroupReactionsNotificationEnabled !== "boolean")
                         return "isGroupReactionsNotificationEnabled: boolean expected";
-                if (message.isStatusNotificationEnabled != null && message.hasOwnProperty("isStatusNotificationEnabled"))
+                if (message.isStatusNotificationEnabled != null && Object.hasOwnProperty.call(message, "isStatusNotificationEnabled"))
                     if (typeof message.isStatusNotificationEnabled !== "boolean")
                         return "isStatusNotificationEnabled: boolean expected";
-                if (message.statusNotificationToneId != null && message.hasOwnProperty("statusNotificationToneId"))
+                if (message.statusNotificationToneId != null && Object.hasOwnProperty.call(message, "statusNotificationToneId"))
                     if (!$util.isInteger(message.statusNotificationToneId))
                         return "statusNotificationToneId: integer expected";
-                if (message.shouldPlaySoundForCallNotification != null && message.hasOwnProperty("shouldPlaySoundForCallNotification"))
+                if (message.shouldPlaySoundForCallNotification != null && Object.hasOwnProperty.call(message, "shouldPlaySoundForCallNotification"))
                     if (typeof message.shouldPlaySoundForCallNotification !== "boolean")
                         return "shouldPlaySoundForCallNotification: boolean expected";
-                if (message.chatThemeId != null && message.hasOwnProperty("chatThemeId"))
+                if (message.chatThemeId != null && Object.hasOwnProperty.call(message, "chatThemeId"))
                     if (!$util.isString(message.chatThemeId))
                         return "chatThemeId: string expected";
-                if (message.colorSchemeId != null && message.hasOwnProperty("colorSchemeId"))
+                if (message.colorSchemeId != null && Object.hasOwnProperty.call(message, "colorSchemeId"))
                     if (!$util.isString(message.colorSchemeId))
                         return "colorSchemeId: string expected";
                 return null;
@@ -22113,71 +22113,71 @@ $root.SyncAction = (function() {
                     object.chatThemeId = "";
                     object.colorSchemeId = "";
                 }
-                if (message.startAtLogin != null && message.hasOwnProperty("startAtLogin"))
+                if (message.startAtLogin != null && Object.hasOwnProperty.call(message, "startAtLogin"))
                     object.startAtLogin = message.startAtLogin;
-                if (message.minimizeToTray != null && message.hasOwnProperty("minimizeToTray"))
+                if (message.minimizeToTray != null && Object.hasOwnProperty.call(message, "minimizeToTray"))
                     object.minimizeToTray = message.minimizeToTray;
-                if (message.language != null && message.hasOwnProperty("language"))
+                if (message.language != null && Object.hasOwnProperty.call(message, "language"))
                     object.language = message.language;
-                if (message.replaceTextWithEmoji != null && message.hasOwnProperty("replaceTextWithEmoji"))
+                if (message.replaceTextWithEmoji != null && Object.hasOwnProperty.call(message, "replaceTextWithEmoji"))
                     object.replaceTextWithEmoji = message.replaceTextWithEmoji;
-                if (message.bannerNotificationDisplayMode != null && message.hasOwnProperty("bannerNotificationDisplayMode"))
+                if (message.bannerNotificationDisplayMode != null && Object.hasOwnProperty.call(message, "bannerNotificationDisplayMode"))
                     object.bannerNotificationDisplayMode = options.enums === String ? $root.SyncAction.SyncActionValue.SettingsSyncAction.DisplayMode[message.bannerNotificationDisplayMode] === undefined ? message.bannerNotificationDisplayMode : $root.SyncAction.SyncActionValue.SettingsSyncAction.DisplayMode[message.bannerNotificationDisplayMode] : message.bannerNotificationDisplayMode;
-                if (message.unreadCounterBadgeDisplayMode != null && message.hasOwnProperty("unreadCounterBadgeDisplayMode"))
+                if (message.unreadCounterBadgeDisplayMode != null && Object.hasOwnProperty.call(message, "unreadCounterBadgeDisplayMode"))
                     object.unreadCounterBadgeDisplayMode = options.enums === String ? $root.SyncAction.SyncActionValue.SettingsSyncAction.DisplayMode[message.unreadCounterBadgeDisplayMode] === undefined ? message.unreadCounterBadgeDisplayMode : $root.SyncAction.SyncActionValue.SettingsSyncAction.DisplayMode[message.unreadCounterBadgeDisplayMode] : message.unreadCounterBadgeDisplayMode;
-                if (message.isMessagesNotificationEnabled != null && message.hasOwnProperty("isMessagesNotificationEnabled"))
+                if (message.isMessagesNotificationEnabled != null && Object.hasOwnProperty.call(message, "isMessagesNotificationEnabled"))
                     object.isMessagesNotificationEnabled = message.isMessagesNotificationEnabled;
-                if (message.isCallsNotificationEnabled != null && message.hasOwnProperty("isCallsNotificationEnabled"))
+                if (message.isCallsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isCallsNotificationEnabled"))
                     object.isCallsNotificationEnabled = message.isCallsNotificationEnabled;
-                if (message.isReactionsNotificationEnabled != null && message.hasOwnProperty("isReactionsNotificationEnabled"))
+                if (message.isReactionsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isReactionsNotificationEnabled"))
                     object.isReactionsNotificationEnabled = message.isReactionsNotificationEnabled;
-                if (message.isStatusReactionsNotificationEnabled != null && message.hasOwnProperty("isStatusReactionsNotificationEnabled"))
+                if (message.isStatusReactionsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isStatusReactionsNotificationEnabled"))
                     object.isStatusReactionsNotificationEnabled = message.isStatusReactionsNotificationEnabled;
-                if (message.isTextPreviewForNotificationEnabled != null && message.hasOwnProperty("isTextPreviewForNotificationEnabled"))
+                if (message.isTextPreviewForNotificationEnabled != null && Object.hasOwnProperty.call(message, "isTextPreviewForNotificationEnabled"))
                     object.isTextPreviewForNotificationEnabled = message.isTextPreviewForNotificationEnabled;
-                if (message.defaultNotificationToneId != null && message.hasOwnProperty("defaultNotificationToneId"))
+                if (message.defaultNotificationToneId != null && Object.hasOwnProperty.call(message, "defaultNotificationToneId"))
                     object.defaultNotificationToneId = message.defaultNotificationToneId;
-                if (message.groupDefaultNotificationToneId != null && message.hasOwnProperty("groupDefaultNotificationToneId"))
+                if (message.groupDefaultNotificationToneId != null && Object.hasOwnProperty.call(message, "groupDefaultNotificationToneId"))
                     object.groupDefaultNotificationToneId = message.groupDefaultNotificationToneId;
-                if (message.appTheme != null && message.hasOwnProperty("appTheme"))
+                if (message.appTheme != null && Object.hasOwnProperty.call(message, "appTheme"))
                     object.appTheme = message.appTheme;
-                if (message.wallpaperId != null && message.hasOwnProperty("wallpaperId"))
+                if (message.wallpaperId != null && Object.hasOwnProperty.call(message, "wallpaperId"))
                     object.wallpaperId = message.wallpaperId;
-                if (message.isDoodleWallpaperEnabled != null && message.hasOwnProperty("isDoodleWallpaperEnabled"))
+                if (message.isDoodleWallpaperEnabled != null && Object.hasOwnProperty.call(message, "isDoodleWallpaperEnabled"))
                     object.isDoodleWallpaperEnabled = message.isDoodleWallpaperEnabled;
-                if (message.fontSize != null && message.hasOwnProperty("fontSize"))
+                if (message.fontSize != null && Object.hasOwnProperty.call(message, "fontSize"))
                     object.fontSize = message.fontSize;
-                if (message.isPhotosAutodownloadEnabled != null && message.hasOwnProperty("isPhotosAutodownloadEnabled"))
+                if (message.isPhotosAutodownloadEnabled != null && Object.hasOwnProperty.call(message, "isPhotosAutodownloadEnabled"))
                     object.isPhotosAutodownloadEnabled = message.isPhotosAutodownloadEnabled;
-                if (message.isAudiosAutodownloadEnabled != null && message.hasOwnProperty("isAudiosAutodownloadEnabled"))
+                if (message.isAudiosAutodownloadEnabled != null && Object.hasOwnProperty.call(message, "isAudiosAutodownloadEnabled"))
                     object.isAudiosAutodownloadEnabled = message.isAudiosAutodownloadEnabled;
-                if (message.isVideosAutodownloadEnabled != null && message.hasOwnProperty("isVideosAutodownloadEnabled"))
+                if (message.isVideosAutodownloadEnabled != null && Object.hasOwnProperty.call(message, "isVideosAutodownloadEnabled"))
                     object.isVideosAutodownloadEnabled = message.isVideosAutodownloadEnabled;
-                if (message.isDocumentsAutodownloadEnabled != null && message.hasOwnProperty("isDocumentsAutodownloadEnabled"))
+                if (message.isDocumentsAutodownloadEnabled != null && Object.hasOwnProperty.call(message, "isDocumentsAutodownloadEnabled"))
                     object.isDocumentsAutodownloadEnabled = message.isDocumentsAutodownloadEnabled;
-                if (message.disableLinkPreviews != null && message.hasOwnProperty("disableLinkPreviews"))
+                if (message.disableLinkPreviews != null && Object.hasOwnProperty.call(message, "disableLinkPreviews"))
                     object.disableLinkPreviews = message.disableLinkPreviews;
-                if (message.notificationToneId != null && message.hasOwnProperty("notificationToneId"))
+                if (message.notificationToneId != null && Object.hasOwnProperty.call(message, "notificationToneId"))
                     object.notificationToneId = message.notificationToneId;
-                if (message.mediaUploadQuality != null && message.hasOwnProperty("mediaUploadQuality"))
+                if (message.mediaUploadQuality != null && Object.hasOwnProperty.call(message, "mediaUploadQuality"))
                     object.mediaUploadQuality = options.enums === String ? $root.SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting[message.mediaUploadQuality] === undefined ? message.mediaUploadQuality : $root.SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting[message.mediaUploadQuality] : message.mediaUploadQuality;
-                if (message.isSpellCheckEnabled != null && message.hasOwnProperty("isSpellCheckEnabled"))
+                if (message.isSpellCheckEnabled != null && Object.hasOwnProperty.call(message, "isSpellCheckEnabled"))
                     object.isSpellCheckEnabled = message.isSpellCheckEnabled;
-                if (message.isEnterToSendEnabled != null && message.hasOwnProperty("isEnterToSendEnabled"))
+                if (message.isEnterToSendEnabled != null && Object.hasOwnProperty.call(message, "isEnterToSendEnabled"))
                     object.isEnterToSendEnabled = message.isEnterToSendEnabled;
-                if (message.isGroupMessageNotificationEnabled != null && message.hasOwnProperty("isGroupMessageNotificationEnabled"))
+                if (message.isGroupMessageNotificationEnabled != null && Object.hasOwnProperty.call(message, "isGroupMessageNotificationEnabled"))
                     object.isGroupMessageNotificationEnabled = message.isGroupMessageNotificationEnabled;
-                if (message.isGroupReactionsNotificationEnabled != null && message.hasOwnProperty("isGroupReactionsNotificationEnabled"))
+                if (message.isGroupReactionsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isGroupReactionsNotificationEnabled"))
                     object.isGroupReactionsNotificationEnabled = message.isGroupReactionsNotificationEnabled;
-                if (message.isStatusNotificationEnabled != null && message.hasOwnProperty("isStatusNotificationEnabled"))
+                if (message.isStatusNotificationEnabled != null && Object.hasOwnProperty.call(message, "isStatusNotificationEnabled"))
                     object.isStatusNotificationEnabled = message.isStatusNotificationEnabled;
-                if (message.statusNotificationToneId != null && message.hasOwnProperty("statusNotificationToneId"))
+                if (message.statusNotificationToneId != null && Object.hasOwnProperty.call(message, "statusNotificationToneId"))
                     object.statusNotificationToneId = message.statusNotificationToneId;
-                if (message.shouldPlaySoundForCallNotification != null && message.hasOwnProperty("shouldPlaySoundForCallNotification"))
+                if (message.shouldPlaySoundForCallNotification != null && Object.hasOwnProperty.call(message, "shouldPlaySoundForCallNotification"))
                     object.shouldPlaySoundForCallNotification = message.shouldPlaySoundForCallNotification;
-                if (message.chatThemeId != null && message.hasOwnProperty("chatThemeId"))
+                if (message.chatThemeId != null && Object.hasOwnProperty.call(message, "chatThemeId"))
                     object.chatThemeId = message.chatThemeId;
-                if (message.colorSchemeId != null && message.hasOwnProperty("colorSchemeId"))
+                if (message.colorSchemeId != null && Object.hasOwnProperty.call(message, "colorSchemeId"))
                     object.colorSchemeId = message.colorSchemeId;
                 return object;
             };
@@ -22488,7 +22488,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.starred != null && message.hasOwnProperty("starred"))
+                if (message.starred != null && Object.hasOwnProperty.call(message, "starred"))
                     if (typeof message.starred !== "boolean")
                         return "starred: boolean expected";
                 return null;
@@ -22536,7 +22536,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.starred = false;
-                if (message.starred != null && message.hasOwnProperty("starred"))
+                if (message.starred != null && Object.hasOwnProperty.call(message, "starred"))
                     object.starred = message.starred;
                 return object;
             };
@@ -22715,7 +22715,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.enabled != null && message.hasOwnProperty("enabled"))
+                if (message.enabled != null && Object.hasOwnProperty.call(message, "enabled"))
                     if (typeof message.enabled !== "boolean")
                         return "enabled: boolean expected";
                 return null;
@@ -22763,7 +22763,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.enabled = false;
-                if (message.enabled != null && message.hasOwnProperty("enabled"))
+                if (message.enabled != null && Object.hasOwnProperty.call(message, "enabled"))
                     object.enabled = message.enabled;
                 return object;
             };
@@ -23034,7 +23034,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.mode != null && message.hasOwnProperty("mode"))
+                if (message.mode != null && Object.hasOwnProperty.call(message, "mode"))
                     switch (message.mode) {
                     default:
                         return "mode: enum value expected";
@@ -23045,20 +23045,20 @@ $root.SyncAction = (function() {
                     case 4:
                         break;
                     }
-                if (message.userJid != null && message.hasOwnProperty("userJid")) {
+                if (message.userJid != null && Object.hasOwnProperty.call(message, "userJid")) {
                     if (!Array.isArray(message.userJid))
                         return "userJid: array expected";
                     for (var i = 0; i < message.userJid.length; ++i)
                         if (!$util.isString(message.userJid[i]))
                             return "userJid: string[] expected";
                 }
-                if (message.shareToFB != null && message.hasOwnProperty("shareToFB"))
+                if (message.shareToFB != null && Object.hasOwnProperty.call(message, "shareToFB"))
                     if (typeof message.shareToFB !== "boolean")
                         return "shareToFB: boolean expected";
-                if (message.shareToIG != null && message.hasOwnProperty("shareToIG"))
+                if (message.shareToIG != null && Object.hasOwnProperty.call(message, "shareToIG"))
                     if (typeof message.shareToIG !== "boolean")
                         return "shareToIG: boolean expected";
-                if (message.customLists != null && message.hasOwnProperty("customLists")) {
+                if (message.customLists != null && Object.hasOwnProperty.call(message, "customLists")) {
                     if (!Array.isArray(message.customLists))
                         return "customLists: array expected";
                     for (var i = 0; i < message.customLists.length; ++i) {
@@ -23067,7 +23067,7 @@ $root.SyncAction = (function() {
                             return "customLists." + error;
                     }
                 }
-                if (message.modes != null && message.hasOwnProperty("modes")) {
+                if (message.modes != null && Object.hasOwnProperty.call(message, "modes")) {
                     if (!Array.isArray(message.modes))
                         return "modes: array expected";
                     for (var i = 0; i < message.modes.length; ++i)
@@ -23215,16 +23215,16 @@ $root.SyncAction = (function() {
                     object.shareToFB = false;
                     object.shareToIG = false;
                 }
-                if (message.mode != null && message.hasOwnProperty("mode"))
+                if (message.mode != null && Object.hasOwnProperty.call(message, "mode"))
                     object.mode = options.enums === String ? $root.SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[message.mode] === undefined ? message.mode : $root.SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[message.mode] : message.mode;
                 if (message.userJid && message.userJid.length) {
                     object.userJid = [];
                     for (var j = 0; j < message.userJid.length; ++j)
                         object.userJid[j] = message.userJid[j];
                 }
-                if (message.shareToFB != null && message.hasOwnProperty("shareToFB"))
+                if (message.shareToFB != null && Object.hasOwnProperty.call(message, "shareToFB"))
                     object.shareToFB = message.shareToFB;
-                if (message.shareToIG != null && message.hasOwnProperty("shareToIG"))
+                if (message.shareToIG != null && Object.hasOwnProperty.call(message, "shareToIG"))
                     object.shareToIG = message.shareToIG;
                 if (message.customLists && message.customLists.length) {
                     object.customLists = [];
@@ -23474,19 +23474,19 @@ $root.SyncAction = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.listId != null && message.hasOwnProperty("listId"))
+                    if (message.listId != null && Object.hasOwnProperty.call(message, "listId"))
                         if (!$util.isString(message.listId))
                             return "listId: string expected";
-                    if (message.name != null && message.hasOwnProperty("name"))
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                         if (!$util.isString(message.name))
                             return "name: string expected";
-                    if (message.emoji != null && message.hasOwnProperty("emoji"))
+                    if (message.emoji != null && Object.hasOwnProperty.call(message, "emoji"))
                         if (!$util.isString(message.emoji))
                             return "emoji: string expected";
-                    if (message.isSelected != null && message.hasOwnProperty("isSelected"))
+                    if (message.isSelected != null && Object.hasOwnProperty.call(message, "isSelected"))
                         if (typeof message.isSelected !== "boolean")
                             return "isSelected: boolean expected";
-                    if (message.userJid != null && message.hasOwnProperty("userJid")) {
+                    if (message.userJid != null && Object.hasOwnProperty.call(message, "userJid")) {
                         if (!Array.isArray(message.userJid))
                             return "userJid: array expected";
                         for (var i = 0; i < message.userJid.length; ++i)
@@ -23557,13 +23557,13 @@ $root.SyncAction = (function() {
                         object.emoji = "";
                         object.isSelected = false;
                     }
-                    if (message.listId != null && message.hasOwnProperty("listId"))
+                    if (message.listId != null && Object.hasOwnProperty.call(message, "listId"))
                         object.listId = message.listId;
-                    if (message.name != null && message.hasOwnProperty("name"))
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                         object.name = message.name;
-                    if (message.emoji != null && message.hasOwnProperty("emoji"))
+                    if (message.emoji != null && Object.hasOwnProperty.call(message, "emoji"))
                         object.emoji = message.emoji;
-                    if (message.isSelected != null && message.hasOwnProperty("isSelected"))
+                    if (message.isSelected != null && Object.hasOwnProperty.call(message, "isSelected"))
                         object.isSelected = message.isSelected;
                     if (message.userJid && message.userJid.length) {
                         object.userJid = [];
@@ -23950,43 +23950,43 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.url != null && message.hasOwnProperty("url"))
+                if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                     if (!$util.isString(message.url))
                         return "url: string expected";
-                if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
+                if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
                     if (!(message.fileEncSha256 && typeof message.fileEncSha256.length === "number" || $util.isString(message.fileEncSha256)))
                         return "fileEncSha256: buffer expected";
-                if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
+                if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
                     if (!(message.mediaKey && typeof message.mediaKey.length === "number" || $util.isString(message.mediaKey)))
                         return "mediaKey: buffer expected";
-                if (message.mimetype != null && message.hasOwnProperty("mimetype"))
+                if (message.mimetype != null && Object.hasOwnProperty.call(message, "mimetype"))
                     if (!$util.isString(message.mimetype))
                         return "mimetype: string expected";
-                if (message.height != null && message.hasOwnProperty("height"))
+                if (message.height != null && Object.hasOwnProperty.call(message, "height"))
                     if (!$util.isInteger(message.height))
                         return "height: integer expected";
-                if (message.width != null && message.hasOwnProperty("width"))
+                if (message.width != null && Object.hasOwnProperty.call(message, "width"))
                     if (!$util.isInteger(message.width))
                         return "width: integer expected";
-                if (message.directPath != null && message.hasOwnProperty("directPath"))
+                if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
                     if (!$util.isString(message.directPath))
                         return "directPath: string expected";
-                if (message.fileLength != null && message.hasOwnProperty("fileLength"))
+                if (message.fileLength != null && Object.hasOwnProperty.call(message, "fileLength"))
                     if (!$util.isInteger(message.fileLength) && !(message.fileLength && $util.isInteger(message.fileLength.low) && $util.isInteger(message.fileLength.high)))
                         return "fileLength: integer|Long expected";
-                if (message.isFavorite != null && message.hasOwnProperty("isFavorite"))
+                if (message.isFavorite != null && Object.hasOwnProperty.call(message, "isFavorite"))
                     if (typeof message.isFavorite !== "boolean")
                         return "isFavorite: boolean expected";
-                if (message.deviceIdHint != null && message.hasOwnProperty("deviceIdHint"))
+                if (message.deviceIdHint != null && Object.hasOwnProperty.call(message, "deviceIdHint"))
                     if (!$util.isInteger(message.deviceIdHint))
                         return "deviceIdHint: integer expected";
-                if (message.isLottie != null && message.hasOwnProperty("isLottie"))
+                if (message.isLottie != null && Object.hasOwnProperty.call(message, "isLottie"))
                     if (typeof message.isLottie !== "boolean")
                         return "isLottie: boolean expected";
-                if (message.imageHash != null && message.hasOwnProperty("imageHash"))
+                if (message.imageHash != null && Object.hasOwnProperty.call(message, "imageHash"))
                     if (!$util.isString(message.imageHash))
                         return "imageHash: string expected";
-                if (message.isAvatarSticker != null && message.hasOwnProperty("isAvatarSticker"))
+                if (message.isAvatarSticker != null && Object.hasOwnProperty.call(message, "isAvatarSticker"))
                     if (typeof message.isAvatarSticker !== "boolean")
                         return "isAvatarSticker: boolean expected";
                 return null;
@@ -24100,36 +24100,36 @@ $root.SyncAction = (function() {
                     object.imageHash = "";
                     object.isAvatarSticker = false;
                 }
-                if (message.url != null && message.hasOwnProperty("url"))
+                if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                     object.url = message.url;
-                if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
+                if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
                     object.fileEncSha256 = options.bytes === String ? $util.base64.encode(message.fileEncSha256, 0, message.fileEncSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileEncSha256) : message.fileEncSha256;
-                if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
+                if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
                     object.mediaKey = options.bytes === String ? $util.base64.encode(message.mediaKey, 0, message.mediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.mediaKey) : message.mediaKey;
-                if (message.mimetype != null && message.hasOwnProperty("mimetype"))
+                if (message.mimetype != null && Object.hasOwnProperty.call(message, "mimetype"))
                     object.mimetype = message.mimetype;
-                if (message.height != null && message.hasOwnProperty("height"))
+                if (message.height != null && Object.hasOwnProperty.call(message, "height"))
                     object.height = message.height;
-                if (message.width != null && message.hasOwnProperty("width"))
+                if (message.width != null && Object.hasOwnProperty.call(message, "width"))
                     object.width = message.width;
-                if (message.directPath != null && message.hasOwnProperty("directPath"))
+                if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
                     object.directPath = message.directPath;
-                if (message.fileLength != null && message.hasOwnProperty("fileLength"))
+                if (message.fileLength != null && Object.hasOwnProperty.call(message, "fileLength"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
                     else if (typeof message.fileLength === "number")
                         object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                     else
                         object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
-                if (message.isFavorite != null && message.hasOwnProperty("isFavorite"))
+                if (message.isFavorite != null && Object.hasOwnProperty.call(message, "isFavorite"))
                     object.isFavorite = message.isFavorite;
-                if (message.deviceIdHint != null && message.hasOwnProperty("deviceIdHint"))
+                if (message.deviceIdHint != null && Object.hasOwnProperty.call(message, "deviceIdHint"))
                     object.deviceIdHint = message.deviceIdHint;
-                if (message.isLottie != null && message.hasOwnProperty("isLottie"))
+                if (message.isLottie != null && Object.hasOwnProperty.call(message, "isLottie"))
                     object.isLottie = message.isLottie;
-                if (message.imageHash != null && message.hasOwnProperty("imageHash"))
+                if (message.imageHash != null && Object.hasOwnProperty.call(message, "imageHash"))
                     object.imageHash = message.imageHash;
-                if (message.isAvatarSticker != null && message.hasOwnProperty("isAvatarSticker"))
+                if (message.isAvatarSticker != null && Object.hasOwnProperty.call(message, "isAvatarSticker"))
                     object.isAvatarSticker = message.isAvatarSticker;
                 return object;
             };
@@ -24338,13 +24338,13 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isDeactivated != null && message.hasOwnProperty("isDeactivated"))
+                if (message.isDeactivated != null && Object.hasOwnProperty.call(message, "isDeactivated"))
                     if (typeof message.isDeactivated !== "boolean")
                         return "isDeactivated: boolean expected";
-                if (message.isAutoRenewing != null && message.hasOwnProperty("isAutoRenewing"))
+                if (message.isAutoRenewing != null && Object.hasOwnProperty.call(message, "isAutoRenewing"))
                     if (typeof message.isAutoRenewing !== "boolean")
                         return "isAutoRenewing: boolean expected";
-                if (message.expirationDate != null && message.hasOwnProperty("expirationDate"))
+                if (message.expirationDate != null && Object.hasOwnProperty.call(message, "expirationDate"))
                     if (!$util.isInteger(message.expirationDate) && !(message.expirationDate && $util.isInteger(message.expirationDate.low) && $util.isInteger(message.expirationDate.high)))
                         return "expirationDate: integer|Long expected";
                 return null;
@@ -24410,11 +24410,11 @@ $root.SyncAction = (function() {
                     } else
                         object.expirationDate = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.isDeactivated != null && message.hasOwnProperty("isDeactivated"))
+                if (message.isDeactivated != null && Object.hasOwnProperty.call(message, "isDeactivated"))
                     object.isDeactivated = message.isDeactivated;
-                if (message.isAutoRenewing != null && message.hasOwnProperty("isAutoRenewing"))
+                if (message.isAutoRenewing != null && Object.hasOwnProperty.call(message, "isAutoRenewing"))
                     object.isAutoRenewing = message.isAutoRenewing;
-                if (message.expirationDate != null && message.hasOwnProperty("expirationDate"))
+                if (message.expirationDate != null && Object.hasOwnProperty.call(message, "expirationDate"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.expirationDate = typeof message.expirationDate === "number" ? BigInt(message.expirationDate) : $util.Long.fromBits(message.expirationDate.low >>> 0, message.expirationDate.high >>> 0, false).toBigInt();
                     else if (typeof message.expirationDate === "number")
@@ -24621,7 +24621,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.subscriptions != null && message.hasOwnProperty("subscriptions")) {
+                if (message.subscriptions != null && Object.hasOwnProperty.call(message, "subscriptions")) {
                     if (!Array.isArray(message.subscriptions))
                         return "subscriptions: array expected";
                     for (var i = 0; i < message.subscriptions.length; ++i) {
@@ -24630,7 +24630,7 @@ $root.SyncAction = (function() {
                             return "subscriptions." + error;
                     }
                 }
-                if (message.paidFeature != null && message.hasOwnProperty("paidFeature")) {
+                if (message.paidFeature != null && Object.hasOwnProperty.call(message, "paidFeature")) {
                     if (!Array.isArray(message.paidFeature))
                         return "paidFeature: array expected";
                     for (var i = 0; i < message.paidFeature.length; ++i) {
@@ -24933,16 +24933,16 @@ $root.SyncAction = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.name != null && message.hasOwnProperty("name"))
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                         if (!$util.isString(message.name))
                             return "name: string expected";
-                    if (message.enabled != null && message.hasOwnProperty("enabled"))
+                    if (message.enabled != null && Object.hasOwnProperty.call(message, "enabled"))
                         if (typeof message.enabled !== "boolean")
                             return "enabled: boolean expected";
-                    if (message.limit != null && message.hasOwnProperty("limit"))
+                    if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
                         if (!$util.isInteger(message.limit))
                             return "limit: integer expected";
-                    if (message.expirationTime != null && message.hasOwnProperty("expirationTime"))
+                    if (message.expirationTime != null && Object.hasOwnProperty.call(message, "expirationTime"))
                         if (!$util.isInteger(message.expirationTime) && !(message.expirationTime && $util.isInteger(message.expirationTime.low) && $util.isInteger(message.expirationTime.high)))
                             return "expirationTime: integer|Long expected";
                     return null;
@@ -25011,13 +25011,13 @@ $root.SyncAction = (function() {
                         } else
                             object.expirationTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     }
-                    if (message.name != null && message.hasOwnProperty("name"))
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                         object.name = message.name;
-                    if (message.enabled != null && message.hasOwnProperty("enabled"))
+                    if (message.enabled != null && Object.hasOwnProperty.call(message, "enabled"))
                         object.enabled = message.enabled;
-                    if (message.limit != null && message.hasOwnProperty("limit"))
+                    if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
                         object.limit = message.limit;
-                    if (message.expirationTime != null && message.hasOwnProperty("expirationTime"))
+                    if (message.expirationTime != null && Object.hasOwnProperty.call(message, "expirationTime"))
                         if (typeof BigInt !== "undefined" && options.longs === BigInt)
                             object.expirationTime = typeof message.expirationTime === "number" ? BigInt(message.expirationTime) : $util.Long.fromBits(message.expirationTime.low >>> 0, message.expirationTime.high >>> 0, false).toBigInt();
                         else if (typeof message.expirationTime === "number")
@@ -25306,28 +25306,28 @@ $root.SyncAction = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         if (!$util.isString(message.id))
                             return "id: string expected";
-                    if (message.tier != null && message.hasOwnProperty("tier"))
+                    if (message.tier != null && Object.hasOwnProperty.call(message, "tier"))
                         if (!$util.isInteger(message.tier))
                             return "tier: integer expected";
-                    if (message.status != null && message.hasOwnProperty("status"))
+                    if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                         if (!$util.isString(message.status))
                             return "status: string expected";
-                    if (message.startTime != null && message.hasOwnProperty("startTime"))
+                    if (message.startTime != null && Object.hasOwnProperty.call(message, "startTime"))
                         if (!$util.isInteger(message.startTime) && !(message.startTime && $util.isInteger(message.startTime.low) && $util.isInteger(message.startTime.high)))
                             return "startTime: integer|Long expected";
-                    if (message.endTime != null && message.hasOwnProperty("endTime"))
+                    if (message.endTime != null && Object.hasOwnProperty.call(message, "endTime"))
                         if (!$util.isInteger(message.endTime) && !(message.endTime && $util.isInteger(message.endTime.low) && $util.isInteger(message.endTime.high)))
                             return "endTime: integer|Long expected";
-                    if (message.isPlatformChanged != null && message.hasOwnProperty("isPlatformChanged"))
+                    if (message.isPlatformChanged != null && Object.hasOwnProperty.call(message, "isPlatformChanged"))
                         if (typeof message.isPlatformChanged !== "boolean")
                             return "isPlatformChanged: boolean expected";
-                    if (message.source != null && message.hasOwnProperty("source"))
+                    if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                         if (!$util.isString(message.source))
                             return "source: string expected";
-                    if (message.creationTime != null && message.hasOwnProperty("creationTime"))
+                    if (message.creationTime != null && Object.hasOwnProperty.call(message, "creationTime"))
                         if (!$util.isInteger(message.creationTime) && !(message.creationTime && $util.isInteger(message.creationTime.low) && $util.isInteger(message.creationTime.high)))
                             return "creationTime: integer|Long expected";
                     return null;
@@ -25430,31 +25430,31 @@ $root.SyncAction = (function() {
                         } else
                             object.creationTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     }
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         object.id = message.id;
-                    if (message.tier != null && message.hasOwnProperty("tier"))
+                    if (message.tier != null && Object.hasOwnProperty.call(message, "tier"))
                         object.tier = message.tier;
-                    if (message.status != null && message.hasOwnProperty("status"))
+                    if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                         object.status = message.status;
-                    if (message.startTime != null && message.hasOwnProperty("startTime"))
+                    if (message.startTime != null && Object.hasOwnProperty.call(message, "startTime"))
                         if (typeof BigInt !== "undefined" && options.longs === BigInt)
                             object.startTime = typeof message.startTime === "number" ? BigInt(message.startTime) : $util.Long.fromBits(message.startTime.low >>> 0, message.startTime.high >>> 0, false).toBigInt();
                         else if (typeof message.startTime === "number")
                             object.startTime = options.longs === String ? String(message.startTime) : message.startTime;
                         else
                             object.startTime = options.longs === String ? $util.Long.prototype.toString.call(message.startTime) : options.longs === Number ? new $util.LongBits(message.startTime.low >>> 0, message.startTime.high >>> 0).toNumber() : message.startTime;
-                    if (message.endTime != null && message.hasOwnProperty("endTime"))
+                    if (message.endTime != null && Object.hasOwnProperty.call(message, "endTime"))
                         if (typeof BigInt !== "undefined" && options.longs === BigInt)
                             object.endTime = typeof message.endTime === "number" ? BigInt(message.endTime) : $util.Long.fromBits(message.endTime.low >>> 0, message.endTime.high >>> 0, false).toBigInt();
                         else if (typeof message.endTime === "number")
                             object.endTime = options.longs === String ? String(message.endTime) : message.endTime;
                         else
                             object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
-                    if (message.isPlatformChanged != null && message.hasOwnProperty("isPlatformChanged"))
+                    if (message.isPlatformChanged != null && Object.hasOwnProperty.call(message, "isPlatformChanged"))
                         object.isPlatformChanged = message.isPlatformChanged;
-                    if (message.source != null && message.hasOwnProperty("source"))
+                    if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                         object.source = message.source;
-                    if (message.creationTime != null && message.hasOwnProperty("creationTime"))
+                    if (message.creationTime != null && Object.hasOwnProperty.call(message, "creationTime"))
                         if (typeof BigInt !== "undefined" && options.longs === BigInt)
                             object.creationTime = typeof message.creationTime === "number" ? BigInt(message.creationTime) : $util.Long.fromBits(message.creationTime.low >>> 0, message.creationTime.high >>> 0, false).toBigInt();
                         else if (typeof message.creationTime === "number")
@@ -25656,12 +25656,12 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.key != null && message.hasOwnProperty("key")) {
+                if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
                     var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
-                if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                     if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                         return "timestamp: integer|Long expected";
                 return null;
@@ -25727,9 +25727,9 @@ $root.SyncAction = (function() {
                     } else
                         object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.key != null && message.hasOwnProperty("key"))
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
-                if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.timestamp === "number")
@@ -25947,13 +25947,13 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.lastMessageTimestamp != null && message.hasOwnProperty("lastMessageTimestamp"))
+                if (message.lastMessageTimestamp != null && Object.hasOwnProperty.call(message, "lastMessageTimestamp"))
                     if (!$util.isInteger(message.lastMessageTimestamp) && !(message.lastMessageTimestamp && $util.isInteger(message.lastMessageTimestamp.low) && $util.isInteger(message.lastMessageTimestamp.high)))
                         return "lastMessageTimestamp: integer|Long expected";
-                if (message.lastSystemMessageTimestamp != null && message.hasOwnProperty("lastSystemMessageTimestamp"))
+                if (message.lastSystemMessageTimestamp != null && Object.hasOwnProperty.call(message, "lastSystemMessageTimestamp"))
                     if (!$util.isInteger(message.lastSystemMessageTimestamp) && !(message.lastSystemMessageTimestamp && $util.isInteger(message.lastSystemMessageTimestamp.low) && $util.isInteger(message.lastSystemMessageTimestamp.high)))
                         return "lastSystemMessageTimestamp: integer|Long expected";
-                if (message.messages != null && message.hasOwnProperty("messages")) {
+                if (message.messages != null && Object.hasOwnProperty.call(message, "messages")) {
                     if (!Array.isArray(message.messages))
                         return "messages: array expected";
                     for (var i = 0; i < message.messages.length; ++i) {
@@ -26045,14 +26045,14 @@ $root.SyncAction = (function() {
                     } else
                         object.lastSystemMessageTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.lastMessageTimestamp != null && message.hasOwnProperty("lastMessageTimestamp"))
+                if (message.lastMessageTimestamp != null && Object.hasOwnProperty.call(message, "lastMessageTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.lastMessageTimestamp = typeof message.lastMessageTimestamp === "number" ? BigInt(message.lastMessageTimestamp) : $util.Long.fromBits(message.lastMessageTimestamp.low >>> 0, message.lastMessageTimestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.lastMessageTimestamp === "number")
                         object.lastMessageTimestamp = options.longs === String ? String(message.lastMessageTimestamp) : message.lastMessageTimestamp;
                     else
                         object.lastMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.lastMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.lastMessageTimestamp.low >>> 0, message.lastMessageTimestamp.high >>> 0).toNumber() : message.lastMessageTimestamp;
-                if (message.lastSystemMessageTimestamp != null && message.hasOwnProperty("lastSystemMessageTimestamp"))
+                if (message.lastSystemMessageTimestamp != null && Object.hasOwnProperty.call(message, "lastSystemMessageTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.lastSystemMessageTimestamp = typeof message.lastSystemMessageTimestamp === "number" ? BigInt(message.lastSystemMessageTimestamp) : $util.Long.fromBits(message.lastSystemMessageTimestamp.low >>> 0, message.lastSystemMessageTimestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.lastSystemMessageTimestamp === "number")
@@ -26241,7 +26241,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.pinned != null && message.hasOwnProperty("pinned"))
+                if (message.pinned != null && Object.hasOwnProperty.call(message, "pinned"))
                     if (typeof message.pinned !== "boolean")
                         return "pinned: boolean expected";
                 return null;
@@ -26289,7 +26289,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.pinned = false;
-                if (message.pinned != null && message.hasOwnProperty("pinned"))
+                if (message.pinned != null && Object.hasOwnProperty.call(message, "pinned"))
                     object.pinned = message.pinned;
                 return object;
             };
@@ -26468,7 +26468,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.isTwentyFourHourFormatEnabled != null && message.hasOwnProperty("isTwentyFourHourFormatEnabled"))
+                if (message.isTwentyFourHourFormatEnabled != null && Object.hasOwnProperty.call(message, "isTwentyFourHourFormatEnabled"))
                     if (typeof message.isTwentyFourHourFormatEnabled !== "boolean")
                         return "isTwentyFourHourFormatEnabled: boolean expected";
                 return null;
@@ -26516,7 +26516,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.isTwentyFourHourFormatEnabled = false;
-                if (message.isTwentyFourHourFormatEnabled != null && message.hasOwnProperty("isTwentyFourHourFormatEnabled"))
+                if (message.isTwentyFourHourFormatEnabled != null && Object.hasOwnProperty.call(message, "isTwentyFourHourFormatEnabled"))
                     object.isTwentyFourHourFormatEnabled = message.isTwentyFourHourFormatEnabled;
                 return object;
             };
@@ -26695,7 +26695,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.definition != null && message.hasOwnProperty("definition"))
+                if (message.definition != null && Object.hasOwnProperty.call(message, "definition"))
                     if (!(message.definition && typeof message.definition.length === "number" || $util.isString(message.definition)))
                         return "definition: buffer expected";
                 return null;
@@ -26752,7 +26752,7 @@ $root.SyncAction = (function() {
                         if (options.bytes !== Array)
                             object.definition = $util.newBuffer(object.definition);
                     }
-                if (message.definition != null && message.hasOwnProperty("definition"))
+                if (message.definition != null && Object.hasOwnProperty.call(message, "definition"))
                     object.definition = options.bytes === String ? $util.base64.encode(message.definition, 0, message.definition.length) : options.bytes === Array ? Array.prototype.slice.call(message.definition) : message.definition;
                 return object;
             };
@@ -26931,7 +26931,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.unarchiveChats != null && message.hasOwnProperty("unarchiveChats"))
+                if (message.unarchiveChats != null && Object.hasOwnProperty.call(message, "unarchiveChats"))
                     if (typeof message.unarchiveChats !== "boolean")
                         return "unarchiveChats: boolean expected";
                 return null;
@@ -26979,7 +26979,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.unarchiveChats = false;
-                if (message.unarchiveChats != null && message.hasOwnProperty("unarchiveChats"))
+                if (message.unarchiveChats != null && Object.hasOwnProperty.call(message, "unarchiveChats"))
                     object.unarchiveChats = message.unarchiveChats;
                 return object;
             };
@@ -27158,7 +27158,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.muted != null && message.hasOwnProperty("muted"))
+                if (message.muted != null && Object.hasOwnProperty.call(message, "muted"))
                     if (typeof message.muted !== "boolean")
                         return "muted: boolean expected";
                 return null;
@@ -27206,7 +27206,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.muted = false;
-                if (message.muted != null && message.hasOwnProperty("muted"))
+                if (message.muted != null && Object.hasOwnProperty.call(message, "muted"))
                     object.muted = message.muted;
                 return object;
             };
@@ -27385,7 +27385,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.chatStartMode != null && message.hasOwnProperty("chatStartMode"))
+                if (message.chatStartMode != null && Object.hasOwnProperty.call(message, "chatStartMode"))
                     switch (message.chatStartMode) {
                     default:
                         return "chatStartMode: enum value expected";
@@ -27452,7 +27452,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.chatStartMode = options.enums === String ? "LID" : 1;
-                if (message.chatStartMode != null && message.hasOwnProperty("chatStartMode"))
+                if (message.chatStartMode != null && Object.hasOwnProperty.call(message, "chatStartMode"))
                     object.chatStartMode = options.enums === String ? $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.ChatStartMode[message.chatStartMode] === undefined ? message.chatStartMode : $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.ChatStartMode[message.chatStartMode] : message.chatStartMode;
                 return object;
             };
@@ -27645,7 +27645,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.linkState != null && message.hasOwnProperty("linkState"))
+                if (message.linkState != null && Object.hasOwnProperty.call(message, "linkState"))
                     switch (message.linkState) {
                     default:
                         return "linkState: enum value expected";
@@ -27717,7 +27717,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.linkState = options.enums === String ? "ACTIVE" : 0;
-                if (message.linkState != null && message.hasOwnProperty("linkState"))
+                if (message.linkState != null && Object.hasOwnProperty.call(message, "linkState"))
                     object.linkState = options.enums === String ? $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.AccountLinkState[message.linkState] === undefined ? message.linkState : $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.AccountLinkState[message.linkState] : message.linkState;
                 return object;
             };
@@ -27912,7 +27912,7 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.identifier != null && message.hasOwnProperty("identifier"))
+                if (message.identifier != null && Object.hasOwnProperty.call(message, "identifier"))
                     if (!$util.isString(message.identifier))
                         return "identifier: string expected";
                 return null;
@@ -27960,7 +27960,7 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.defaults)
                     object.identifier = "";
-                if (message.identifier != null && message.hasOwnProperty("identifier"))
+                if (message.identifier != null && Object.hasOwnProperty.call(message, "identifier"))
                     object.identifier = message.identifier;
                 return object;
             };
@@ -28356,7 +28356,7 @@ $root.SyncAction = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.callResult != null && message.hasOwnProperty("callResult"))
+            if (message.callResult != null && Object.hasOwnProperty.call(message, "callResult"))
                 switch (message.callResult) {
                 default:
                     return "callResult: enum value expected";
@@ -28373,10 +28373,10 @@ $root.SyncAction = (function() {
                 case 10:
                     break;
                 }
-            if (message.isDndMode != null && message.hasOwnProperty("isDndMode"))
+            if (message.isDndMode != null && Object.hasOwnProperty.call(message, "isDndMode"))
                 if (typeof message.isDndMode !== "boolean")
                     return "isDndMode: boolean expected";
-            if (message.silenceReason != null && message.hasOwnProperty("silenceReason"))
+            if (message.silenceReason != null && Object.hasOwnProperty.call(message, "silenceReason"))
                 switch (message.silenceReason) {
                 default:
                     return "silenceReason: enum value expected";
@@ -28386,37 +28386,37 @@ $root.SyncAction = (function() {
                 case 3:
                     break;
                 }
-            if (message.duration != null && message.hasOwnProperty("duration"))
+            if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                 if (!$util.isInteger(message.duration) && !(message.duration && $util.isInteger(message.duration.low) && $util.isInteger(message.duration.high)))
                     return "duration: integer|Long expected";
-            if (message.startTime != null && message.hasOwnProperty("startTime"))
+            if (message.startTime != null && Object.hasOwnProperty.call(message, "startTime"))
                 if (!$util.isInteger(message.startTime) && !(message.startTime && $util.isInteger(message.startTime.low) && $util.isInteger(message.startTime.high)))
                     return "startTime: integer|Long expected";
-            if (message.isIncoming != null && message.hasOwnProperty("isIncoming"))
+            if (message.isIncoming != null && Object.hasOwnProperty.call(message, "isIncoming"))
                 if (typeof message.isIncoming !== "boolean")
                     return "isIncoming: boolean expected";
-            if (message.isVideo != null && message.hasOwnProperty("isVideo"))
+            if (message.isVideo != null && Object.hasOwnProperty.call(message, "isVideo"))
                 if (typeof message.isVideo !== "boolean")
                     return "isVideo: boolean expected";
-            if (message.isCallLink != null && message.hasOwnProperty("isCallLink"))
+            if (message.isCallLink != null && Object.hasOwnProperty.call(message, "isCallLink"))
                 if (typeof message.isCallLink !== "boolean")
                     return "isCallLink: boolean expected";
-            if (message.callLinkToken != null && message.hasOwnProperty("callLinkToken"))
+            if (message.callLinkToken != null && Object.hasOwnProperty.call(message, "callLinkToken"))
                 if (!$util.isString(message.callLinkToken))
                     return "callLinkToken: string expected";
-            if (message.scheduledCallId != null && message.hasOwnProperty("scheduledCallId"))
+            if (message.scheduledCallId != null && Object.hasOwnProperty.call(message, "scheduledCallId"))
                 if (!$util.isString(message.scheduledCallId))
                     return "scheduledCallId: string expected";
-            if (message.callId != null && message.hasOwnProperty("callId"))
+            if (message.callId != null && Object.hasOwnProperty.call(message, "callId"))
                 if (!$util.isString(message.callId))
                     return "callId: string expected";
-            if (message.callCreatorJid != null && message.hasOwnProperty("callCreatorJid"))
+            if (message.callCreatorJid != null && Object.hasOwnProperty.call(message, "callCreatorJid"))
                 if (!$util.isString(message.callCreatorJid))
                     return "callCreatorJid: string expected";
-            if (message.groupJid != null && message.hasOwnProperty("groupJid"))
+            if (message.groupJid != null && Object.hasOwnProperty.call(message, "groupJid"))
                 if (!$util.isString(message.groupJid))
                     return "groupJid: string expected";
-            if (message.participants != null && message.hasOwnProperty("participants")) {
+            if (message.participants != null && Object.hasOwnProperty.call(message, "participants")) {
                 if (!Array.isArray(message.participants))
                     return "participants: array expected";
                 for (var i = 0; i < message.participants.length; ++i) {
@@ -28425,7 +28425,7 @@ $root.SyncAction = (function() {
                         return "participants." + error;
                 }
             }
-            if (message.callType != null && message.hasOwnProperty("callType"))
+            if (message.callType != null && Object.hasOwnProperty.call(message, "callType"))
                 switch (message.callType) {
                 default:
                     return "callType: enum value expected";
@@ -28643,48 +28643,48 @@ $root.SyncAction = (function() {
                 object.groupJid = "";
                 object.callType = options.enums === String ? "REGULAR" : 0;
             }
-            if (message.callResult != null && message.hasOwnProperty("callResult"))
+            if (message.callResult != null && Object.hasOwnProperty.call(message, "callResult"))
                 object.callResult = options.enums === String ? $root.SyncAction.CallLogRecord.CallResult[message.callResult] === undefined ? message.callResult : $root.SyncAction.CallLogRecord.CallResult[message.callResult] : message.callResult;
-            if (message.isDndMode != null && message.hasOwnProperty("isDndMode"))
+            if (message.isDndMode != null && Object.hasOwnProperty.call(message, "isDndMode"))
                 object.isDndMode = message.isDndMode;
-            if (message.silenceReason != null && message.hasOwnProperty("silenceReason"))
+            if (message.silenceReason != null && Object.hasOwnProperty.call(message, "silenceReason"))
                 object.silenceReason = options.enums === String ? $root.SyncAction.CallLogRecord.SilenceReason[message.silenceReason] === undefined ? message.silenceReason : $root.SyncAction.CallLogRecord.SilenceReason[message.silenceReason] : message.silenceReason;
-            if (message.duration != null && message.hasOwnProperty("duration"))
+            if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.duration = typeof message.duration === "number" ? BigInt(message.duration) : $util.Long.fromBits(message.duration.low >>> 0, message.duration.high >>> 0, false).toBigInt();
                 else if (typeof message.duration === "number")
                     object.duration = options.longs === String ? String(message.duration) : message.duration;
                 else
                     object.duration = options.longs === String ? $util.Long.prototype.toString.call(message.duration) : options.longs === Number ? new $util.LongBits(message.duration.low >>> 0, message.duration.high >>> 0).toNumber() : message.duration;
-            if (message.startTime != null && message.hasOwnProperty("startTime"))
+            if (message.startTime != null && Object.hasOwnProperty.call(message, "startTime"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.startTime = typeof message.startTime === "number" ? BigInt(message.startTime) : $util.Long.fromBits(message.startTime.low >>> 0, message.startTime.high >>> 0, false).toBigInt();
                 else if (typeof message.startTime === "number")
                     object.startTime = options.longs === String ? String(message.startTime) : message.startTime;
                 else
                     object.startTime = options.longs === String ? $util.Long.prototype.toString.call(message.startTime) : options.longs === Number ? new $util.LongBits(message.startTime.low >>> 0, message.startTime.high >>> 0).toNumber() : message.startTime;
-            if (message.isIncoming != null && message.hasOwnProperty("isIncoming"))
+            if (message.isIncoming != null && Object.hasOwnProperty.call(message, "isIncoming"))
                 object.isIncoming = message.isIncoming;
-            if (message.isVideo != null && message.hasOwnProperty("isVideo"))
+            if (message.isVideo != null && Object.hasOwnProperty.call(message, "isVideo"))
                 object.isVideo = message.isVideo;
-            if (message.isCallLink != null && message.hasOwnProperty("isCallLink"))
+            if (message.isCallLink != null && Object.hasOwnProperty.call(message, "isCallLink"))
                 object.isCallLink = message.isCallLink;
-            if (message.callLinkToken != null && message.hasOwnProperty("callLinkToken"))
+            if (message.callLinkToken != null && Object.hasOwnProperty.call(message, "callLinkToken"))
                 object.callLinkToken = message.callLinkToken;
-            if (message.scheduledCallId != null && message.hasOwnProperty("scheduledCallId"))
+            if (message.scheduledCallId != null && Object.hasOwnProperty.call(message, "scheduledCallId"))
                 object.scheduledCallId = message.scheduledCallId;
-            if (message.callId != null && message.hasOwnProperty("callId"))
+            if (message.callId != null && Object.hasOwnProperty.call(message, "callId"))
                 object.callId = message.callId;
-            if (message.callCreatorJid != null && message.hasOwnProperty("callCreatorJid"))
+            if (message.callCreatorJid != null && Object.hasOwnProperty.call(message, "callCreatorJid"))
                 object.callCreatorJid = message.callCreatorJid;
-            if (message.groupJid != null && message.hasOwnProperty("groupJid"))
+            if (message.groupJid != null && Object.hasOwnProperty.call(message, "groupJid"))
                 object.groupJid = message.groupJid;
             if (message.participants && message.participants.length) {
                 object.participants = [];
                 for (var j = 0; j < message.participants.length; ++j)
                     object.participants[j] = $root.SyncAction.CallLogRecord.ParticipantInfo.toObject(message.participants[j], options, q + 1);
             }
-            if (message.callType != null && message.hasOwnProperty("callType"))
+            if (message.callType != null && Object.hasOwnProperty.call(message, "callType"))
                 object.callType = options.enums === String ? $root.SyncAction.CallLogRecord.CallType[message.callType] === undefined ? message.callType : $root.SyncAction.CallLogRecord.CallType[message.callType] : message.callType;
             return object;
         };
@@ -28923,10 +28923,10 @@ $root.SyncAction = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.userJid != null && message.hasOwnProperty("userJid"))
+                if (message.userJid != null && Object.hasOwnProperty.call(message, "userJid"))
                     if (!$util.isString(message.userJid))
                         return "userJid: string expected";
-                if (message.callResult != null && message.hasOwnProperty("callResult"))
+                if (message.callResult != null && Object.hasOwnProperty.call(message, "callResult"))
                     switch (message.callResult) {
                     default:
                         return "callResult: enum value expected";
@@ -29042,9 +29042,9 @@ $root.SyncAction = (function() {
                     object.userJid = "";
                     object.callResult = options.enums === String ? "CONNECTED" : 0;
                 }
-                if (message.userJid != null && message.hasOwnProperty("userJid"))
+                if (message.userJid != null && Object.hasOwnProperty.call(message, "userJid"))
                     object.userJid = message.userJid;
-                if (message.callResult != null && message.hasOwnProperty("callResult"))
+                if (message.callResult != null && Object.hasOwnProperty.call(message, "callResult"))
                     object.callResult = options.enums === String ? $root.SyncAction.CallLogRecord.CallResult[message.callResult] === undefined ? message.callResult : $root.SyncAction.CallLogRecord.CallResult[message.callResult] : message.callResult;
                 return object;
             };
@@ -29259,10 +29259,10 @@ $root.SyncAction = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.emoji != null && message.hasOwnProperty("emoji"))
+            if (message.emoji != null && Object.hasOwnProperty.call(message, "emoji"))
                 if (!$util.isString(message.emoji))
                     return "emoji: string expected";
-            if (message.weight != null && message.hasOwnProperty("weight"))
+            if (message.weight != null && Object.hasOwnProperty.call(message, "weight"))
                 if (typeof message.weight !== "number")
                     return "weight: number expected";
             return null;
@@ -29314,9 +29314,9 @@ $root.SyncAction = (function() {
                 object.emoji = "";
                 object.weight = 0;
             }
-            if (message.emoji != null && message.hasOwnProperty("emoji"))
+            if (message.emoji != null && Object.hasOwnProperty.call(message, "emoji"))
                 object.emoji = message.emoji;
-            if (message.weight != null && message.hasOwnProperty("weight"))
+            if (message.weight != null && Object.hasOwnProperty.call(message, "weight"))
                 object.weight = options.json && !isFinite(message.weight) ? String(message.weight) : message.weight;
             return object;
         };
@@ -29722,10 +29722,10 @@ $root.ChatLockSettings = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.hideLockedChats != null && message.hasOwnProperty("hideLockedChats"))
+            if (message.hideLockedChats != null && Object.hasOwnProperty.call(message, "hideLockedChats"))
                 if (typeof message.hideLockedChats !== "boolean")
                     return "hideLockedChats: boolean expected";
-            if (message.secretCode != null && message.hasOwnProperty("secretCode")) {
+            if (message.secretCode != null && Object.hasOwnProperty.call(message, "secretCode")) {
                 var error = $root.UserPassword.UserPassword.verify(message.secretCode, long + 1);
                 if (error)
                     return "secretCode." + error;
@@ -29782,9 +29782,9 @@ $root.ChatLockSettings = (function() {
                 object.hideLockedChats = false;
                 object.secretCode = null;
             }
-            if (message.hideLockedChats != null && message.hasOwnProperty("hideLockedChats"))
+            if (message.hideLockedChats != null && Object.hasOwnProperty.call(message, "hideLockedChats"))
                 object.hideLockedChats = message.hideLockedChats;
-            if (message.secretCode != null && message.hasOwnProperty("secretCode"))
+            if (message.secretCode != null && Object.hasOwnProperty.call(message, "secretCode"))
                 object.secretCode = $root.UserPassword.UserPassword.toObject(message.secretCode, options, q + 1);
             return object;
         };
@@ -30024,7 +30024,7 @@ $root.UserPassword = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.encoding != null && message.hasOwnProperty("encoding"))
+            if (message.encoding != null && Object.hasOwnProperty.call(message, "encoding"))
                 switch (message.encoding) {
                 default:
                     return "encoding: enum value expected";
@@ -30032,7 +30032,7 @@ $root.UserPassword = (function() {
                 case 1:
                     break;
                 }
-            if (message.transformer != null && message.hasOwnProperty("transformer"))
+            if (message.transformer != null && Object.hasOwnProperty.call(message, "transformer"))
                 switch (message.transformer) {
                 default:
                     return "transformer: enum value expected";
@@ -30041,7 +30041,7 @@ $root.UserPassword = (function() {
                 case 2:
                     break;
                 }
-            if (message.transformerArg != null && message.hasOwnProperty("transformerArg")) {
+            if (message.transformerArg != null && Object.hasOwnProperty.call(message, "transformerArg")) {
                 if (!Array.isArray(message.transformerArg))
                     return "transformerArg: array expected";
                 for (var i = 0; i < message.transformerArg.length; ++i) {
@@ -30050,7 +30050,7 @@ $root.UserPassword = (function() {
                         return "transformerArg." + error;
                 }
             }
-            if (message.transformedData != null && message.hasOwnProperty("transformedData"))
+            if (message.transformedData != null && Object.hasOwnProperty.call(message, "transformedData"))
                 if (!(message.transformedData && typeof message.transformedData.length === "number" || $util.isString(message.transformedData)))
                     return "transformedData: buffer expected";
             return null;
@@ -30158,16 +30158,16 @@ $root.UserPassword = (function() {
                         object.transformedData = $util.newBuffer(object.transformedData);
                 }
             }
-            if (message.encoding != null && message.hasOwnProperty("encoding"))
+            if (message.encoding != null && Object.hasOwnProperty.call(message, "encoding"))
                 object.encoding = options.enums === String ? $root.UserPassword.UserPassword.Encoding[message.encoding] === undefined ? message.encoding : $root.UserPassword.UserPassword.Encoding[message.encoding] : message.encoding;
-            if (message.transformer != null && message.hasOwnProperty("transformer"))
+            if (message.transformer != null && Object.hasOwnProperty.call(message, "transformer"))
                 object.transformer = options.enums === String ? $root.UserPassword.UserPassword.Transformer[message.transformer] === undefined ? message.transformer : $root.UserPassword.UserPassword.Transformer[message.transformer] : message.transformer;
             if (message.transformerArg && message.transformerArg.length) {
                 object.transformerArg = [];
                 for (var j = 0; j < message.transformerArg.length; ++j)
                     object.transformerArg[j] = $root.UserPassword.UserPassword.TransformerArg.toObject(message.transformerArg[j], options, q + 1);
             }
-            if (message.transformedData != null && message.hasOwnProperty("transformedData"))
+            if (message.transformedData != null && Object.hasOwnProperty.call(message, "transformedData"))
                 object.transformedData = options.bytes === String ? $util.base64.encode(message.transformedData, 0, message.transformedData.length) : options.bytes === Array ? Array.prototype.slice.call(message.transformedData) : message.transformedData;
             return object;
         };
@@ -30388,10 +30388,10 @@ $root.UserPassword = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.key != null && message.hasOwnProperty("key"))
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     if (!$util.isString(message.key))
                         return "key: string expected";
-                if (message.value != null && message.hasOwnProperty("value")) {
+                if (message.value != null && Object.hasOwnProperty.call(message, "value")) {
                     var error = $root.UserPassword.UserPassword.TransformerArg.Value.verify(message.value, long + 1);
                     if (error)
                         return "value." + error;
@@ -30448,9 +30448,9 @@ $root.UserPassword = (function() {
                     object.key = "";
                     object.value = null;
                 }
-                if (message.key != null && message.hasOwnProperty("key"))
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     object.key = message.key;
-                if (message.value != null && message.hasOwnProperty("value"))
+                if (message.value != null && Object.hasOwnProperty.call(message, "value"))
                     object.value = $root.UserPassword.UserPassword.TransformerArg.Value.toObject(message.value, options, q + 1);
                 return object;
             };
@@ -30656,12 +30656,12 @@ $root.UserPassword = (function() {
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
                     var properties = {};
-                    if (message.asBlob != null && message.hasOwnProperty("asBlob")) {
+                    if (message.asBlob != null && Object.hasOwnProperty.call(message, "asBlob")) {
                         properties.value = 1;
                         if (!(message.asBlob && typeof message.asBlob.length === "number" || $util.isString(message.asBlob)))
                             return "asBlob: buffer expected";
                     }
-                    if (message.asUnsignedInteger != null && message.hasOwnProperty("asUnsignedInteger")) {
+                    if (message.asUnsignedInteger != null && Object.hasOwnProperty.call(message, "asUnsignedInteger")) {
                         if (properties.value === 1)
                             return "value: multiple values";
                         properties.value = 1;
@@ -30716,12 +30716,12 @@ $root.UserPassword = (function() {
                     if (q > $util.recursionLimit)
                         throw Error("max depth exceeded");
                     var object = {};
-                    if (message.asBlob != null && message.hasOwnProperty("asBlob")) {
+                    if (message.asBlob != null && Object.hasOwnProperty.call(message, "asBlob")) {
                         object.asBlob = options.bytes === String ? $util.base64.encode(message.asBlob, 0, message.asBlob.length) : options.bytes === Array ? Array.prototype.slice.call(message.asBlob) : message.asBlob;
                         if (options.oneofs)
                             object.value = "asBlob";
                     }
-                    if (message.asUnsignedInteger != null && message.hasOwnProperty("asUnsignedInteger")) {
+                    if (message.asUnsignedInteger != null && Object.hasOwnProperty.call(message, "asUnsignedInteger")) {
                         object.asUnsignedInteger = message.asUnsignedInteger;
                         if (options.oneofs)
                             object.value = "asUnsignedInteger";
@@ -30996,7 +30996,7 @@ $root.DeviceCapabilities = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
+            if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 switch (message.chatLockSupportLevel) {
                 default:
                     return "chatLockSupportLevel: enum value expected";
@@ -31005,22 +31005,22 @@ $root.DeviceCapabilities = (function() {
                 case 2:
                     break;
                 }
-            if (message.lidMigration != null && message.hasOwnProperty("lidMigration")) {
+            if (message.lidMigration != null && Object.hasOwnProperty.call(message, "lidMigration")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.verify(message.lidMigration, long + 1);
                 if (error)
                     return "lidMigration." + error;
             }
-            if (message.businessBroadcast != null && message.hasOwnProperty("businessBroadcast")) {
+            if (message.businessBroadcast != null && Object.hasOwnProperty.call(message, "businessBroadcast")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.verify(message.businessBroadcast, long + 1);
                 if (error)
                     return "businessBroadcast." + error;
             }
-            if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar")) {
+            if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify(message.userHasAvatar, long + 1);
                 if (error)
                     return "userHasAvatar." + error;
             }
-            if (message.memberNameTagPrimarySupport != null && message.hasOwnProperty("memberNameTagPrimarySupport"))
+            if (message.memberNameTagPrimarySupport != null && Object.hasOwnProperty.call(message, "memberNameTagPrimarySupport"))
                 switch (message.memberNameTagPrimarySupport) {
                 default:
                     return "memberNameTagPrimarySupport: enum value expected";
@@ -31029,7 +31029,7 @@ $root.DeviceCapabilities = (function() {
                 case 2:
                     break;
                 }
-            if (message.aiThread != null && message.hasOwnProperty("aiThread")) {
+            if (message.aiThread != null && Object.hasOwnProperty.call(message, "aiThread")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.AiThread.verify(message.aiThread, long + 1);
                 if (error)
                     return "aiThread." + error;
@@ -31143,17 +31143,17 @@ $root.DeviceCapabilities = (function() {
                 object.memberNameTagPrimarySupport = options.enums === String ? "DISABLED" : 0;
                 object.aiThread = null;
             }
-            if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
+            if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 object.chatLockSupportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] === undefined ? message.chatLockSupportLevel : $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] : message.chatLockSupportLevel;
-            if (message.lidMigration != null && message.hasOwnProperty("lidMigration"))
+            if (message.lidMigration != null && Object.hasOwnProperty.call(message, "lidMigration"))
                 object.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options, q + 1);
-            if (message.businessBroadcast != null && message.hasOwnProperty("businessBroadcast"))
+            if (message.businessBroadcast != null && Object.hasOwnProperty.call(message, "businessBroadcast"))
                 object.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.toObject(message.businessBroadcast, options, q + 1);
-            if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+            if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
                 object.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.toObject(message.userHasAvatar, options, q + 1);
-            if (message.memberNameTagPrimarySupport != null && message.hasOwnProperty("memberNameTagPrimarySupport"))
+            if (message.memberNameTagPrimarySupport != null && Object.hasOwnProperty.call(message, "memberNameTagPrimarySupport"))
                 object.memberNameTagPrimarySupport = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport[message.memberNameTagPrimarySupport] === undefined ? message.memberNameTagPrimarySupport : $root.DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport[message.memberNameTagPrimarySupport] : message.memberNameTagPrimarySupport;
-            if (message.aiThread != null && message.hasOwnProperty("aiThread"))
+            if (message.aiThread != null && Object.hasOwnProperty.call(message, "aiThread"))
                 object.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.toObject(message.aiThread, options, q + 1);
             return object;
         };
@@ -31329,7 +31329,7 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.supportLevel != null && message.hasOwnProperty("supportLevel"))
+                if (message.supportLevel != null && Object.hasOwnProperty.call(message, "supportLevel"))
                     switch (message.supportLevel) {
                     default:
                         return "supportLevel: enum value expected";
@@ -31401,7 +31401,7 @@ $root.DeviceCapabilities = (function() {
                 var object = {};
                 if (options.defaults)
                     object.supportLevel = options.enums === String ? "NONE" : 0;
-                if (message.supportLevel != null && message.hasOwnProperty("supportLevel"))
+                if (message.supportLevel != null && Object.hasOwnProperty.call(message, "supportLevel"))
                     object.supportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.AiThread.SupportLevel[message.supportLevel] === undefined ? message.supportLevel : $root.DeviceCapabilities.DeviceCapabilities.AiThread.SupportLevel[message.supportLevel] : message.supportLevel;
                 return object;
             };
@@ -31656,19 +31656,19 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
+                if (message.importListEnabled != null && Object.hasOwnProperty.call(message, "importListEnabled"))
                     if (typeof message.importListEnabled !== "boolean")
                         return "importListEnabled: boolean expected";
-                if (message.companionSupportEnabled != null && message.hasOwnProperty("companionSupportEnabled"))
+                if (message.companionSupportEnabled != null && Object.hasOwnProperty.call(message, "companionSupportEnabled"))
                     if (typeof message.companionSupportEnabled !== "boolean")
                         return "companionSupportEnabled: boolean expected";
-                if (message.campaignSyncEnabled != null && message.hasOwnProperty("campaignSyncEnabled"))
+                if (message.campaignSyncEnabled != null && Object.hasOwnProperty.call(message, "campaignSyncEnabled"))
                     if (typeof message.campaignSyncEnabled !== "boolean")
                         return "campaignSyncEnabled: boolean expected";
-                if (message.insightsSyncEnabled != null && message.hasOwnProperty("insightsSyncEnabled"))
+                if (message.insightsSyncEnabled != null && Object.hasOwnProperty.call(message, "insightsSyncEnabled"))
                     if (typeof message.insightsSyncEnabled !== "boolean")
                         return "insightsSyncEnabled: boolean expected";
-                if (message.recipientLimit != null && message.hasOwnProperty("recipientLimit"))
+                if (message.recipientLimit != null && Object.hasOwnProperty.call(message, "recipientLimit"))
                     if (!$util.isInteger(message.recipientLimit))
                         return "recipientLimit: integer expected";
                 return null;
@@ -31729,15 +31729,15 @@ $root.DeviceCapabilities = (function() {
                     object.insightsSyncEnabled = false;
                     object.recipientLimit = 0;
                 }
-                if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
+                if (message.importListEnabled != null && Object.hasOwnProperty.call(message, "importListEnabled"))
                     object.importListEnabled = message.importListEnabled;
-                if (message.companionSupportEnabled != null && message.hasOwnProperty("companionSupportEnabled"))
+                if (message.companionSupportEnabled != null && Object.hasOwnProperty.call(message, "companionSupportEnabled"))
                     object.companionSupportEnabled = message.companionSupportEnabled;
-                if (message.campaignSyncEnabled != null && message.hasOwnProperty("campaignSyncEnabled"))
+                if (message.campaignSyncEnabled != null && Object.hasOwnProperty.call(message, "campaignSyncEnabled"))
                     object.campaignSyncEnabled = message.campaignSyncEnabled;
-                if (message.insightsSyncEnabled != null && message.hasOwnProperty("insightsSyncEnabled"))
+                if (message.insightsSyncEnabled != null && Object.hasOwnProperty.call(message, "insightsSyncEnabled"))
                     object.insightsSyncEnabled = message.insightsSyncEnabled;
-                if (message.recipientLimit != null && message.hasOwnProperty("recipientLimit"))
+                if (message.recipientLimit != null && Object.hasOwnProperty.call(message, "recipientLimit"))
                     object.recipientLimit = message.recipientLimit;
                 return object;
             };
@@ -31932,7 +31932,7 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+                if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
                         return "chatDbMigrationTimestamp: integer|Long expected";
                 return null;
@@ -31991,7 +31991,7 @@ $root.DeviceCapabilities = (function() {
                         object.chatDbMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
                         object.chatDbMigrationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-                if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+                if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.chatDbMigrationTimestamp = typeof message.chatDbMigrationTimestamp === "number" ? BigInt(message.chatDbMigrationTimestamp) : $util.Long.fromBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0, true).toBigInt();
                     else if (typeof message.chatDbMigrationTimestamp === "number")
@@ -32191,7 +32191,7 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+                if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
                     if (typeof message.userHasAvatar !== "boolean")
                         return "userHasAvatar: boolean expected";
                 return null;
@@ -32239,7 +32239,7 @@ $root.DeviceCapabilities = (function() {
                 var object = {};
                 if (options.defaults)
                     object.userHasAvatar = false;
-                if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+                if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
                     object.userHasAvatar = message.userHasAvatar;
                 return object;
             };
@@ -32478,10 +32478,10 @@ $root.Protocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
                 if (typeof message.sharingLimited !== "boolean")
                     return "sharingLimited: boolean expected";
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
                 switch (message.trigger) {
                 default:
                     return "trigger: enum value expected";
@@ -32491,10 +32491,10 @@ $root.Protocol = (function() {
                 case 3:
                     break;
                 }
-            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
                 if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
                     return "limitSharingSettingTimestamp: integer|Long expected";
-            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
                 if (typeof message.initiatedByMe !== "boolean")
                     return "initiatedByMe: boolean expected";
             return null;
@@ -32585,18 +32585,18 @@ $root.Protocol = (function() {
                     object.limitSharingSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.initiatedByMe = false;
             }
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
                 object.sharingLimited = message.sharingLimited;
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
                 object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
-            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.limitSharingSettingTimestamp = typeof message.limitSharingSettingTimestamp === "number" ? BigInt(message.limitSharingSettingTimestamp) : $util.Long.fromBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0, false).toBigInt();
                 else if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
                 else
                     object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
-            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
                 object.initiatedByMe = message.initiatedByMe;
             return object;
         };
@@ -32838,16 +32838,16 @@ $root.Protocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
                 if (!$util.isString(message.remoteJid))
                     return "remoteJid: string expected";
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
                 if (typeof message.fromMe !== "boolean")
                     return "fromMe: boolean expected";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isString(message.id))
                     return "id: string expected";
-            if (message.participant != null && message.hasOwnProperty("participant"))
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
                 if (!$util.isString(message.participant))
                     return "participant: string expected";
             return null;
@@ -32905,13 +32905,13 @@ $root.Protocol = (function() {
                 object.id = "";
                 object.participant = "";
             }
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
                 object.remoteJid = message.remoteJid;
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
                 object.fromMe = message.fromMe;
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.participant != null && message.hasOwnProperty("participant"))
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
                 object.participant = message.participant;
             return object;
         };

@@ -163,7 +163,7 @@ $root.MmsRetry = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
+            if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                 if (!$util.isString(message.stanzaId))
                     return "stanzaId: string expected";
             return null;
@@ -211,7 +211,7 @@ $root.MmsRetry = (function() {
             var object = {};
             if (options.defaults)
                 object.stanzaId = "";
-            if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
+            if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                 object.stanzaId = message.stanzaId;
             return object;
         };
@@ -435,13 +435,13 @@ $root.MmsRetry = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
+            if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                 if (!$util.isString(message.stanzaId))
                     return "stanzaId: string expected";
-            if (message.directPath != null && message.hasOwnProperty("directPath"))
+            if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
                 if (!$util.isString(message.directPath))
                     return "directPath: string expected";
-            if (message.result != null && message.hasOwnProperty("result"))
+            if (message.result != null && Object.hasOwnProperty.call(message, "result"))
                 switch (message.result) {
                 default:
                     return "result: enum value expected";
@@ -451,7 +451,7 @@ $root.MmsRetry = (function() {
                 case 3:
                     break;
                 }
-            if (message.messageSecret != null && message.hasOwnProperty("messageSecret"))
+            if (message.messageSecret != null && Object.hasOwnProperty.call(message, "messageSecret"))
                 if (!(message.messageSecret && typeof message.messageSecret.length === "number" || $util.isString(message.messageSecret)))
                     return "messageSecret: buffer expected";
             return null;
@@ -540,13 +540,13 @@ $root.MmsRetry = (function() {
                         object.messageSecret = $util.newBuffer(object.messageSecret);
                 }
             }
-            if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
+            if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                 object.stanzaId = message.stanzaId;
-            if (message.directPath != null && message.hasOwnProperty("directPath"))
+            if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
                 object.directPath = message.directPath;
-            if (message.result != null && message.hasOwnProperty("result"))
+            if (message.result != null && Object.hasOwnProperty.call(message, "result"))
                 object.result = options.enums === String ? $root.MmsRetry.MediaRetryNotification.ResultType[message.result] === undefined ? message.result : $root.MmsRetry.MediaRetryNotification.ResultType[message.result] : message.result;
-            if (message.messageSecret != null && message.hasOwnProperty("messageSecret"))
+            if (message.messageSecret != null && Object.hasOwnProperty.call(message, "messageSecret"))
                 object.messageSecret = options.bytes === String ? $util.base64.encode(message.messageSecret, 0, message.messageSecret.length) : options.bytes === Array ? Array.prototype.slice.call(message.messageSecret) : message.messageSecret;
             return object;
         };

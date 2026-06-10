@@ -178,10 +178,10 @@ $root.Ephemeral = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.duration != null && message.hasOwnProperty("duration"))
+            if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                 if (!$util.isInteger(message.duration))
                     return "duration: integer expected";
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                     return "timestamp: integer|Long expected";
             return null;
@@ -244,9 +244,9 @@ $root.Ephemeral = (function() {
                 } else
                     object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
-            if (message.duration != null && message.hasOwnProperty("duration"))
+            if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                 object.duration = message.duration;
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
                 else if (typeof message.timestamp === "number")

@@ -223,19 +223,19 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.isChatDbLidMigrated != null && message.hasOwnProperty("isChatDbLidMigrated"))
+            if (message.isChatDbLidMigrated != null && Object.hasOwnProperty.call(message, "isChatDbLidMigrated"))
                 if (typeof message.isChatDbLidMigrated !== "boolean")
                     return "isChatDbLidMigrated: boolean expected";
-            if (message.isSyncdPureLidSession != null && message.hasOwnProperty("isSyncdPureLidSession"))
+            if (message.isSyncdPureLidSession != null && Object.hasOwnProperty.call(message, "isSyncdPureLidSession"))
                 if (typeof message.isSyncdPureLidSession !== "boolean")
                     return "isSyncdPureLidSession: boolean expected";
-            if (message.isSyncdSnapshotRecoveryEnabled != null && message.hasOwnProperty("isSyncdSnapshotRecoveryEnabled"))
+            if (message.isSyncdSnapshotRecoveryEnabled != null && Object.hasOwnProperty.call(message, "isSyncdSnapshotRecoveryEnabled"))
                 if (typeof message.isSyncdSnapshotRecoveryEnabled !== "boolean")
                     return "isSyncdSnapshotRecoveryEnabled: boolean expected";
-            if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
+            if (message.isHsThumbnailSyncEnabled != null && Object.hasOwnProperty.call(message, "isHsThumbnailSyncEnabled"))
                 if (typeof message.isHsThumbnailSyncEnabled !== "boolean")
                     return "isHsThumbnailSyncEnabled: boolean expected";
-            if (message.subscriptionSyncPayload != null && message.hasOwnProperty("subscriptionSyncPayload"))
+            if (message.subscriptionSyncPayload != null && Object.hasOwnProperty.call(message, "subscriptionSyncPayload"))
                 if (!(message.subscriptionSyncPayload && typeof message.subscriptionSyncPayload.length === "number" || $util.isString(message.subscriptionSyncPayload)))
                     return "subscriptionSyncPayload: buffer expected";
             return null;
@@ -305,15 +305,15 @@ $root.CompanionReg = (function() {
                         object.subscriptionSyncPayload = $util.newBuffer(object.subscriptionSyncPayload);
                 }
             }
-            if (message.isChatDbLidMigrated != null && message.hasOwnProperty("isChatDbLidMigrated"))
+            if (message.isChatDbLidMigrated != null && Object.hasOwnProperty.call(message, "isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
-            if (message.isSyncdPureLidSession != null && message.hasOwnProperty("isSyncdPureLidSession"))
+            if (message.isSyncdPureLidSession != null && Object.hasOwnProperty.call(message, "isSyncdPureLidSession"))
                 object.isSyncdPureLidSession = message.isSyncdPureLidSession;
-            if (message.isSyncdSnapshotRecoveryEnabled != null && message.hasOwnProperty("isSyncdSnapshotRecoveryEnabled"))
+            if (message.isSyncdSnapshotRecoveryEnabled != null && Object.hasOwnProperty.call(message, "isSyncdSnapshotRecoveryEnabled"))
                 object.isSyncdSnapshotRecoveryEnabled = message.isSyncdSnapshotRecoveryEnabled;
-            if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
+            if (message.isHsThumbnailSyncEnabled != null && Object.hasOwnProperty.call(message, "isHsThumbnailSyncEnabled"))
                 object.isHsThumbnailSyncEnabled = message.isHsThumbnailSyncEnabled;
-            if (message.subscriptionSyncPayload != null && message.hasOwnProperty("subscriptionSyncPayload"))
+            if (message.subscriptionSyncPayload != null && Object.hasOwnProperty.call(message, "subscriptionSyncPayload"))
                 object.subscriptionSyncPayload = options.bytes === String ? $util.base64.encode(message.subscriptionSyncPayload, 0, message.subscriptionSyncPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.subscriptionSyncPayload) : message.subscriptionSyncPayload;
             return object;
         };
@@ -507,10 +507,10 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.encryptedPayload != null && message.hasOwnProperty("encryptedPayload"))
+            if (message.encryptedPayload != null && Object.hasOwnProperty.call(message, "encryptedPayload"))
                 if (!(message.encryptedPayload && typeof message.encryptedPayload.length === "number" || $util.isString(message.encryptedPayload)))
                     return "encryptedPayload: buffer expected";
-            if (message.iv != null && message.hasOwnProperty("iv"))
+            if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
                 if (!(message.iv && typeof message.iv.length === "number" || $util.isString(message.iv)))
                     return "iv: buffer expected";
             return null;
@@ -580,9 +580,9 @@ $root.CompanionReg = (function() {
                         object.iv = $util.newBuffer(object.iv);
                 }
             }
-            if (message.encryptedPayload != null && message.hasOwnProperty("encryptedPayload"))
+            if (message.encryptedPayload != null && Object.hasOwnProperty.call(message, "encryptedPayload"))
                 object.encryptedPayload = options.bytes === String ? $util.base64.encode(message.encryptedPayload, 0, message.encryptedPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.encryptedPayload) : message.encryptedPayload;
-            if (message.iv != null && message.hasOwnProperty("iv"))
+            if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
                 object.iv = options.bytes === String ? $util.base64.encode(message.iv, 0, message.iv.length) : options.bytes === Array ? Array.prototype.slice.call(message.iv) : message.iv;
             return object;
         };
@@ -791,13 +791,13 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.companionPublicKey != null && message.hasOwnProperty("companionPublicKey"))
+            if (message.companionPublicKey != null && Object.hasOwnProperty.call(message, "companionPublicKey"))
                 if (!(message.companionPublicKey && typeof message.companionPublicKey.length === "number" || $util.isString(message.companionPublicKey)))
                     return "companionPublicKey: buffer expected";
-            if (message.companionIdentityKey != null && message.hasOwnProperty("companionIdentityKey"))
+            if (message.companionIdentityKey != null && Object.hasOwnProperty.call(message, "companionIdentityKey"))
                 if (!(message.companionIdentityKey && typeof message.companionIdentityKey.length === "number" || $util.isString(message.companionIdentityKey)))
                     return "companionIdentityKey: buffer expected";
-            if (message.advSecret != null && message.hasOwnProperty("advSecret"))
+            if (message.advSecret != null && Object.hasOwnProperty.call(message, "advSecret"))
                 if (!(message.advSecret && typeof message.advSecret.length === "number" || $util.isString(message.advSecret)))
                     return "advSecret: buffer expected";
             return null;
@@ -879,11 +879,11 @@ $root.CompanionReg = (function() {
                         object.advSecret = $util.newBuffer(object.advSecret);
                 }
             }
-            if (message.companionPublicKey != null && message.hasOwnProperty("companionPublicKey"))
+            if (message.companionPublicKey != null && Object.hasOwnProperty.call(message, "companionPublicKey"))
                 object.companionPublicKey = options.bytes === String ? $util.base64.encode(message.companionPublicKey, 0, message.companionPublicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.companionPublicKey) : message.companionPublicKey;
-            if (message.companionIdentityKey != null && message.hasOwnProperty("companionIdentityKey"))
+            if (message.companionIdentityKey != null && Object.hasOwnProperty.call(message, "companionIdentityKey"))
                 object.companionIdentityKey = options.bytes === String ? $util.base64.encode(message.companionIdentityKey, 0, message.companionIdentityKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.companionIdentityKey) : message.companionIdentityKey;
-            if (message.advSecret != null && message.hasOwnProperty("advSecret"))
+            if (message.advSecret != null && Object.hasOwnProperty.call(message, "advSecret"))
                 object.advSecret = options.bytes === String ? $util.base64.encode(message.advSecret, 0, message.advSecret.length) : options.bytes === Array ? Array.prototype.slice.call(message.advSecret) : message.advSecret;
             return object;
         };
@@ -1077,10 +1077,10 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 if (!(message.publicKey && typeof message.publicKey.length === "number" || $util.isString(message.publicKey)))
                     return "publicKey: buffer expected";
-            if (message.nonce != null && message.hasOwnProperty("nonce"))
+            if (message.nonce != null && Object.hasOwnProperty.call(message, "nonce"))
                 if (!(message.nonce && typeof message.nonce.length === "number" || $util.isString(message.nonce)))
                     return "nonce: buffer expected";
             return null;
@@ -1150,9 +1150,9 @@ $root.CompanionReg = (function() {
                         object.nonce = $util.newBuffer(object.nonce);
                 }
             }
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 object.publicKey = options.bytes === String ? $util.base64.encode(message.publicKey, 0, message.publicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.publicKey) : message.publicKey;
-            if (message.nonce != null && message.hasOwnProperty("nonce"))
+            if (message.nonce != null && Object.hasOwnProperty.call(message, "nonce"))
                 object.nonce = options.bytes === String ? $util.base64.encode(message.nonce, 0, message.nonce.length) : options.bytes === Array ? Array.prototype.slice.call(message.nonce) : message.nonce;
             return object;
         };
@@ -1346,10 +1346,10 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.companionEphemeralIdentity != null && message.hasOwnProperty("companionEphemeralIdentity"))
+            if (message.companionEphemeralIdentity != null && Object.hasOwnProperty.call(message, "companionEphemeralIdentity"))
                 if (!(message.companionEphemeralIdentity && typeof message.companionEphemeralIdentity.length === "number" || $util.isString(message.companionEphemeralIdentity)))
                     return "companionEphemeralIdentity: buffer expected";
-            if (message.commitment != null && message.hasOwnProperty("commitment")) {
+            if (message.commitment != null && Object.hasOwnProperty.call(message, "commitment")) {
                 var error = $root.CompanionReg.CompanionCommitment.verify(message.commitment, long + 1);
                 if (error)
                     return "commitment." + error;
@@ -1415,9 +1415,9 @@ $root.CompanionReg = (function() {
                 }
                 object.commitment = null;
             }
-            if (message.companionEphemeralIdentity != null && message.hasOwnProperty("companionEphemeralIdentity"))
+            if (message.companionEphemeralIdentity != null && Object.hasOwnProperty.call(message, "companionEphemeralIdentity"))
                 object.companionEphemeralIdentity = options.bytes === String ? $util.base64.encode(message.companionEphemeralIdentity, 0, message.companionEphemeralIdentity.length) : options.bytes === Array ? Array.prototype.slice.call(message.companionEphemeralIdentity) : message.companionEphemeralIdentity;
-            if (message.commitment != null && message.hasOwnProperty("commitment"))
+            if (message.commitment != null && Object.hasOwnProperty.call(message, "commitment"))
                 object.commitment = $root.CompanionReg.CompanionCommitment.toObject(message.commitment, options, q + 1);
             return object;
         };
@@ -1596,7 +1596,7 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.hash != null && message.hasOwnProperty("hash"))
+            if (message.hash != null && Object.hasOwnProperty.call(message, "hash"))
                 if (!(message.hash && typeof message.hash.length === "number" || $util.isString(message.hash)))
                     return "hash: buffer expected";
             return null;
@@ -1653,7 +1653,7 @@ $root.CompanionReg = (function() {
                     if (options.bytes !== Array)
                         object.hash = $util.newBuffer(object.hash);
                 }
-            if (message.hash != null && message.hasOwnProperty("hash"))
+            if (message.hash != null && Object.hasOwnProperty.call(message, "hash"))
                 object.hash = options.bytes === String ? $util.base64.encode(message.hash, 0, message.hash.length) : options.bytes === Array ? Array.prototype.slice.call(message.hash) : message.hash;
             return object;
         };
@@ -1862,10 +1862,10 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 if (!(message.publicKey && typeof message.publicKey.length === "number" || $util.isString(message.publicKey)))
                     return "publicKey: buffer expected";
-            if (message.deviceType != null && message.hasOwnProperty("deviceType"))
+            if (message.deviceType != null && Object.hasOwnProperty.call(message, "deviceType"))
                 switch (message.deviceType) {
                 default:
                     return "deviceType: enum value expected";
@@ -1896,7 +1896,7 @@ $root.CompanionReg = (function() {
                 case 24:
                     break;
                 }
-            if (message.ref != null && message.hasOwnProperty("ref"))
+            if (message.ref != null && Object.hasOwnProperty.call(message, "ref"))
                 if (!$util.isString(message.ref))
                     return "ref: string expected";
             return null;
@@ -2066,11 +2066,11 @@ $root.CompanionReg = (function() {
                 object.deviceType = options.enums === String ? "UNKNOWN" : 0;
                 object.ref = "";
             }
-            if (message.publicKey != null && message.hasOwnProperty("publicKey"))
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 object.publicKey = options.bytes === String ? $util.base64.encode(message.publicKey, 0, message.publicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.publicKey) : message.publicKey;
-            if (message.deviceType != null && message.hasOwnProperty("deviceType"))
+            if (message.deviceType != null && Object.hasOwnProperty.call(message, "deviceType"))
                 object.deviceType = options.enums === String ? $root.CompanionReg.DeviceProps.PlatformType[message.deviceType] === undefined ? message.deviceType : $root.CompanionReg.DeviceProps.PlatformType[message.deviceType] : message.deviceType;
-            if (message.ref != null && message.hasOwnProperty("ref"))
+            if (message.ref != null && Object.hasOwnProperty.call(message, "ref"))
                 object.ref = message.ref;
             return object;
         };
@@ -2309,15 +2309,15 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.os != null && message.hasOwnProperty("os"))
+            if (message.os != null && Object.hasOwnProperty.call(message, "os"))
                 if (!$util.isString(message.os))
                     return "os: string expected";
-            if (message.version != null && message.hasOwnProperty("version")) {
+            if (message.version != null && Object.hasOwnProperty.call(message, "version")) {
                 var error = $root.CompanionReg.DeviceProps.AppVersion.verify(message.version, long + 1);
                 if (error)
                     return "version." + error;
             }
-            if (message.platformType != null && message.hasOwnProperty("platformType"))
+            if (message.platformType != null && Object.hasOwnProperty.call(message, "platformType"))
                 switch (message.platformType) {
                 default:
                     return "platformType: enum value expected";
@@ -2348,10 +2348,10 @@ $root.CompanionReg = (function() {
                 case 24:
                     break;
                 }
-            if (message.requireFullSync != null && message.hasOwnProperty("requireFullSync"))
+            if (message.requireFullSync != null && Object.hasOwnProperty.call(message, "requireFullSync"))
                 if (typeof message.requireFullSync !== "boolean")
                     return "requireFullSync: boolean expected";
-            if (message.historySyncConfig != null && message.hasOwnProperty("historySyncConfig")) {
+            if (message.historySyncConfig != null && Object.hasOwnProperty.call(message, "historySyncConfig")) {
                 var error = $root.CompanionReg.DeviceProps.HistorySyncConfig.verify(message.historySyncConfig, long + 1);
                 if (error)
                     return "historySyncConfig." + error;
@@ -2526,15 +2526,15 @@ $root.CompanionReg = (function() {
                 object.requireFullSync = false;
                 object.historySyncConfig = null;
             }
-            if (message.os != null && message.hasOwnProperty("os"))
+            if (message.os != null && Object.hasOwnProperty.call(message, "os"))
                 object.os = message.os;
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 object.version = $root.CompanionReg.DeviceProps.AppVersion.toObject(message.version, options, q + 1);
-            if (message.platformType != null && message.hasOwnProperty("platformType"))
+            if (message.platformType != null && Object.hasOwnProperty.call(message, "platformType"))
                 object.platformType = options.enums === String ? $root.CompanionReg.DeviceProps.PlatformType[message.platformType] === undefined ? message.platformType : $root.CompanionReg.DeviceProps.PlatformType[message.platformType] : message.platformType;
-            if (message.requireFullSync != null && message.hasOwnProperty("requireFullSync"))
+            if (message.requireFullSync != null && Object.hasOwnProperty.call(message, "requireFullSync"))
                 object.requireFullSync = message.requireFullSync;
-            if (message.historySyncConfig != null && message.hasOwnProperty("historySyncConfig"))
+            if (message.historySyncConfig != null && Object.hasOwnProperty.call(message, "historySyncConfig"))
                 object.historySyncConfig = $root.CompanionReg.DeviceProps.HistorySyncConfig.toObject(message.historySyncConfig, options, q + 1);
             return object;
         };
@@ -2770,19 +2770,19 @@ $root.CompanionReg = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.primary != null && message.hasOwnProperty("primary"))
+                if (message.primary != null && Object.hasOwnProperty.call(message, "primary"))
                     if (!$util.isInteger(message.primary))
                         return "primary: integer expected";
-                if (message.secondary != null && message.hasOwnProperty("secondary"))
+                if (message.secondary != null && Object.hasOwnProperty.call(message, "secondary"))
                     if (!$util.isInteger(message.secondary))
                         return "secondary: integer expected";
-                if (message.tertiary != null && message.hasOwnProperty("tertiary"))
+                if (message.tertiary != null && Object.hasOwnProperty.call(message, "tertiary"))
                     if (!$util.isInteger(message.tertiary))
                         return "tertiary: integer expected";
-                if (message.quaternary != null && message.hasOwnProperty("quaternary"))
+                if (message.quaternary != null && Object.hasOwnProperty.call(message, "quaternary"))
                     if (!$util.isInteger(message.quaternary))
                         return "quaternary: integer expected";
-                if (message.quinary != null && message.hasOwnProperty("quinary"))
+                if (message.quinary != null && Object.hasOwnProperty.call(message, "quinary"))
                     if (!$util.isInteger(message.quinary))
                         return "quinary: integer expected";
                 return null;
@@ -2843,15 +2843,15 @@ $root.CompanionReg = (function() {
                     object.quaternary = 0;
                     object.quinary = 0;
                 }
-                if (message.primary != null && message.hasOwnProperty("primary"))
+                if (message.primary != null && Object.hasOwnProperty.call(message, "primary"))
                     object.primary = message.primary;
-                if (message.secondary != null && message.hasOwnProperty("secondary"))
+                if (message.secondary != null && Object.hasOwnProperty.call(message, "secondary"))
                     object.secondary = message.secondary;
-                if (message.tertiary != null && message.hasOwnProperty("tertiary"))
+                if (message.tertiary != null && Object.hasOwnProperty.call(message, "tertiary"))
                     object.tertiary = message.tertiary;
-                if (message.quaternary != null && message.hasOwnProperty("quaternary"))
+                if (message.quaternary != null && Object.hasOwnProperty.call(message, "quaternary"))
                     object.quaternary = message.quaternary;
-                if (message.quinary != null && message.hasOwnProperty("quinary"))
+                if (message.quinary != null && Object.hasOwnProperty.call(message, "quinary"))
                     object.quinary = message.quinary;
                 return object;
             };
@@ -3379,80 +3379,80 @@ $root.CompanionReg = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
+                if (message.fullSyncDaysLimit != null && Object.hasOwnProperty.call(message, "fullSyncDaysLimit"))
                     if (!$util.isInteger(message.fullSyncDaysLimit))
                         return "fullSyncDaysLimit: integer expected";
-                if (message.fullSyncSizeMbLimit != null && message.hasOwnProperty("fullSyncSizeMbLimit"))
+                if (message.fullSyncSizeMbLimit != null && Object.hasOwnProperty.call(message, "fullSyncSizeMbLimit"))
                     if (!$util.isInteger(message.fullSyncSizeMbLimit))
                         return "fullSyncSizeMbLimit: integer expected";
-                if (message.storageQuotaMb != null && message.hasOwnProperty("storageQuotaMb"))
+                if (message.storageQuotaMb != null && Object.hasOwnProperty.call(message, "storageQuotaMb"))
                     if (!$util.isInteger(message.storageQuotaMb))
                         return "storageQuotaMb: integer expected";
-                if (message.inlineInitialPayloadInE2EeMsg != null && message.hasOwnProperty("inlineInitialPayloadInE2EeMsg"))
+                if (message.inlineInitialPayloadInE2EeMsg != null && Object.hasOwnProperty.call(message, "inlineInitialPayloadInE2EeMsg"))
                     if (typeof message.inlineInitialPayloadInE2EeMsg !== "boolean")
                         return "inlineInitialPayloadInE2EeMsg: boolean expected";
-                if (message.recentSyncDaysLimit != null && message.hasOwnProperty("recentSyncDaysLimit"))
+                if (message.recentSyncDaysLimit != null && Object.hasOwnProperty.call(message, "recentSyncDaysLimit"))
                     if (!$util.isInteger(message.recentSyncDaysLimit))
                         return "recentSyncDaysLimit: integer expected";
-                if (message.supportCallLogHistory != null && message.hasOwnProperty("supportCallLogHistory"))
+                if (message.supportCallLogHistory != null && Object.hasOwnProperty.call(message, "supportCallLogHistory"))
                     if (typeof message.supportCallLogHistory !== "boolean")
                         return "supportCallLogHistory: boolean expected";
-                if (message.supportBotUserAgentChatHistory != null && message.hasOwnProperty("supportBotUserAgentChatHistory"))
+                if (message.supportBotUserAgentChatHistory != null && Object.hasOwnProperty.call(message, "supportBotUserAgentChatHistory"))
                     if (typeof message.supportBotUserAgentChatHistory !== "boolean")
                         return "supportBotUserAgentChatHistory: boolean expected";
-                if (message.supportCagReactionsAndPolls != null && message.hasOwnProperty("supportCagReactionsAndPolls"))
+                if (message.supportCagReactionsAndPolls != null && Object.hasOwnProperty.call(message, "supportCagReactionsAndPolls"))
                     if (typeof message.supportCagReactionsAndPolls !== "boolean")
                         return "supportCagReactionsAndPolls: boolean expected";
-                if (message.supportBizHostedMsg != null && message.hasOwnProperty("supportBizHostedMsg"))
+                if (message.supportBizHostedMsg != null && Object.hasOwnProperty.call(message, "supportBizHostedMsg"))
                     if (typeof message.supportBizHostedMsg !== "boolean")
                         return "supportBizHostedMsg: boolean expected";
-                if (message.supportRecentSyncChunkMessageCountTuning != null && message.hasOwnProperty("supportRecentSyncChunkMessageCountTuning"))
+                if (message.supportRecentSyncChunkMessageCountTuning != null && Object.hasOwnProperty.call(message, "supportRecentSyncChunkMessageCountTuning"))
                     if (typeof message.supportRecentSyncChunkMessageCountTuning !== "boolean")
                         return "supportRecentSyncChunkMessageCountTuning: boolean expected";
-                if (message.supportHostedGroupMsg != null && message.hasOwnProperty("supportHostedGroupMsg"))
+                if (message.supportHostedGroupMsg != null && Object.hasOwnProperty.call(message, "supportHostedGroupMsg"))
                     if (typeof message.supportHostedGroupMsg !== "boolean")
                         return "supportHostedGroupMsg: boolean expected";
-                if (message.supportFbidBotChatHistory != null && message.hasOwnProperty("supportFbidBotChatHistory"))
+                if (message.supportFbidBotChatHistory != null && Object.hasOwnProperty.call(message, "supportFbidBotChatHistory"))
                     if (typeof message.supportFbidBotChatHistory !== "boolean")
                         return "supportFbidBotChatHistory: boolean expected";
-                if (message.supportAddOnHistorySyncMigration != null && message.hasOwnProperty("supportAddOnHistorySyncMigration"))
+                if (message.supportAddOnHistorySyncMigration != null && Object.hasOwnProperty.call(message, "supportAddOnHistorySyncMigration"))
                     if (typeof message.supportAddOnHistorySyncMigration !== "boolean")
                         return "supportAddOnHistorySyncMigration: boolean expected";
-                if (message.supportMessageAssociation != null && message.hasOwnProperty("supportMessageAssociation"))
+                if (message.supportMessageAssociation != null && Object.hasOwnProperty.call(message, "supportMessageAssociation"))
                     if (typeof message.supportMessageAssociation !== "boolean")
                         return "supportMessageAssociation: boolean expected";
-                if (message.supportGroupHistory != null && message.hasOwnProperty("supportGroupHistory"))
+                if (message.supportGroupHistory != null && Object.hasOwnProperty.call(message, "supportGroupHistory"))
                     if (typeof message.supportGroupHistory !== "boolean")
                         return "supportGroupHistory: boolean expected";
-                if (message.onDemandReady != null && message.hasOwnProperty("onDemandReady"))
+                if (message.onDemandReady != null && Object.hasOwnProperty.call(message, "onDemandReady"))
                     if (typeof message.onDemandReady !== "boolean")
                         return "onDemandReady: boolean expected";
-                if (message.supportGuestChat != null && message.hasOwnProperty("supportGuestChat"))
+                if (message.supportGuestChat != null && Object.hasOwnProperty.call(message, "supportGuestChat"))
                     if (typeof message.supportGuestChat !== "boolean")
                         return "supportGuestChat: boolean expected";
-                if (message.completeOnDemandReady != null && message.hasOwnProperty("completeOnDemandReady"))
+                if (message.completeOnDemandReady != null && Object.hasOwnProperty.call(message, "completeOnDemandReady"))
                     if (typeof message.completeOnDemandReady !== "boolean")
                         return "completeOnDemandReady: boolean expected";
-                if (message.thumbnailSyncDaysLimit != null && message.hasOwnProperty("thumbnailSyncDaysLimit"))
+                if (message.thumbnailSyncDaysLimit != null && Object.hasOwnProperty.call(message, "thumbnailSyncDaysLimit"))
                     if (!$util.isInteger(message.thumbnailSyncDaysLimit))
                         return "thumbnailSyncDaysLimit: integer expected";
-                if (message.initialSyncMaxMessagesPerChat != null && message.hasOwnProperty("initialSyncMaxMessagesPerChat"))
+                if (message.initialSyncMaxMessagesPerChat != null && Object.hasOwnProperty.call(message, "initialSyncMaxMessagesPerChat"))
                     if (!$util.isInteger(message.initialSyncMaxMessagesPerChat))
                         return "initialSyncMaxMessagesPerChat: integer expected";
-                if (message.supportManusHistory != null && message.hasOwnProperty("supportManusHistory"))
+                if (message.supportManusHistory != null && Object.hasOwnProperty.call(message, "supportManusHistory"))
                     if (typeof message.supportManusHistory !== "boolean")
                         return "supportManusHistory: boolean expected";
-                if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
+                if (message.supportHatchHistory != null && Object.hasOwnProperty.call(message, "supportHatchHistory"))
                     if (typeof message.supportHatchHistory !== "boolean")
                         return "supportHatchHistory: boolean expected";
-                if (message.supportedBotChannelFbids != null && message.hasOwnProperty("supportedBotChannelFbids")) {
+                if (message.supportedBotChannelFbids != null && Object.hasOwnProperty.call(message, "supportedBotChannelFbids")) {
                     if (!Array.isArray(message.supportedBotChannelFbids))
                         return "supportedBotChannelFbids: array expected";
                     for (var i = 0; i < message.supportedBotChannelFbids.length; ++i)
                         if (!$util.isString(message.supportedBotChannelFbids[i]))
                             return "supportedBotChannelFbids: string[] expected";
                 }
-                if (message.supportInlineContacts != null && message.hasOwnProperty("supportInlineContacts"))
+                if (message.supportInlineContacts != null && Object.hasOwnProperty.call(message, "supportInlineContacts"))
                     if (typeof message.supportInlineContacts !== "boolean")
                         return "supportInlineContacts: boolean expected";
                 return null;
@@ -3576,56 +3576,56 @@ $root.CompanionReg = (function() {
                     object.supportHatchHistory = false;
                     object.supportInlineContacts = false;
                 }
-                if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
+                if (message.fullSyncDaysLimit != null && Object.hasOwnProperty.call(message, "fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
-                if (message.fullSyncSizeMbLimit != null && message.hasOwnProperty("fullSyncSizeMbLimit"))
+                if (message.fullSyncSizeMbLimit != null && Object.hasOwnProperty.call(message, "fullSyncSizeMbLimit"))
                     object.fullSyncSizeMbLimit = message.fullSyncSizeMbLimit;
-                if (message.storageQuotaMb != null && message.hasOwnProperty("storageQuotaMb"))
+                if (message.storageQuotaMb != null && Object.hasOwnProperty.call(message, "storageQuotaMb"))
                     object.storageQuotaMb = message.storageQuotaMb;
-                if (message.inlineInitialPayloadInE2EeMsg != null && message.hasOwnProperty("inlineInitialPayloadInE2EeMsg"))
+                if (message.inlineInitialPayloadInE2EeMsg != null && Object.hasOwnProperty.call(message, "inlineInitialPayloadInE2EeMsg"))
                     object.inlineInitialPayloadInE2EeMsg = message.inlineInitialPayloadInE2EeMsg;
-                if (message.recentSyncDaysLimit != null && message.hasOwnProperty("recentSyncDaysLimit"))
+                if (message.recentSyncDaysLimit != null && Object.hasOwnProperty.call(message, "recentSyncDaysLimit"))
                     object.recentSyncDaysLimit = message.recentSyncDaysLimit;
-                if (message.supportCallLogHistory != null && message.hasOwnProperty("supportCallLogHistory"))
+                if (message.supportCallLogHistory != null && Object.hasOwnProperty.call(message, "supportCallLogHistory"))
                     object.supportCallLogHistory = message.supportCallLogHistory;
-                if (message.supportBotUserAgentChatHistory != null && message.hasOwnProperty("supportBotUserAgentChatHistory"))
+                if (message.supportBotUserAgentChatHistory != null && Object.hasOwnProperty.call(message, "supportBotUserAgentChatHistory"))
                     object.supportBotUserAgentChatHistory = message.supportBotUserAgentChatHistory;
-                if (message.supportCagReactionsAndPolls != null && message.hasOwnProperty("supportCagReactionsAndPolls"))
+                if (message.supportCagReactionsAndPolls != null && Object.hasOwnProperty.call(message, "supportCagReactionsAndPolls"))
                     object.supportCagReactionsAndPolls = message.supportCagReactionsAndPolls;
-                if (message.supportBizHostedMsg != null && message.hasOwnProperty("supportBizHostedMsg"))
+                if (message.supportBizHostedMsg != null && Object.hasOwnProperty.call(message, "supportBizHostedMsg"))
                     object.supportBizHostedMsg = message.supportBizHostedMsg;
-                if (message.supportRecentSyncChunkMessageCountTuning != null && message.hasOwnProperty("supportRecentSyncChunkMessageCountTuning"))
+                if (message.supportRecentSyncChunkMessageCountTuning != null && Object.hasOwnProperty.call(message, "supportRecentSyncChunkMessageCountTuning"))
                     object.supportRecentSyncChunkMessageCountTuning = message.supportRecentSyncChunkMessageCountTuning;
-                if (message.supportHostedGroupMsg != null && message.hasOwnProperty("supportHostedGroupMsg"))
+                if (message.supportHostedGroupMsg != null && Object.hasOwnProperty.call(message, "supportHostedGroupMsg"))
                     object.supportHostedGroupMsg = message.supportHostedGroupMsg;
-                if (message.supportFbidBotChatHistory != null && message.hasOwnProperty("supportFbidBotChatHistory"))
+                if (message.supportFbidBotChatHistory != null && Object.hasOwnProperty.call(message, "supportFbidBotChatHistory"))
                     object.supportFbidBotChatHistory = message.supportFbidBotChatHistory;
-                if (message.supportAddOnHistorySyncMigration != null && message.hasOwnProperty("supportAddOnHistorySyncMigration"))
+                if (message.supportAddOnHistorySyncMigration != null && Object.hasOwnProperty.call(message, "supportAddOnHistorySyncMigration"))
                     object.supportAddOnHistorySyncMigration = message.supportAddOnHistorySyncMigration;
-                if (message.supportMessageAssociation != null && message.hasOwnProperty("supportMessageAssociation"))
+                if (message.supportMessageAssociation != null && Object.hasOwnProperty.call(message, "supportMessageAssociation"))
                     object.supportMessageAssociation = message.supportMessageAssociation;
-                if (message.supportGroupHistory != null && message.hasOwnProperty("supportGroupHistory"))
+                if (message.supportGroupHistory != null && Object.hasOwnProperty.call(message, "supportGroupHistory"))
                     object.supportGroupHistory = message.supportGroupHistory;
-                if (message.onDemandReady != null && message.hasOwnProperty("onDemandReady"))
+                if (message.onDemandReady != null && Object.hasOwnProperty.call(message, "onDemandReady"))
                     object.onDemandReady = message.onDemandReady;
-                if (message.supportGuestChat != null && message.hasOwnProperty("supportGuestChat"))
+                if (message.supportGuestChat != null && Object.hasOwnProperty.call(message, "supportGuestChat"))
                     object.supportGuestChat = message.supportGuestChat;
-                if (message.completeOnDemandReady != null && message.hasOwnProperty("completeOnDemandReady"))
+                if (message.completeOnDemandReady != null && Object.hasOwnProperty.call(message, "completeOnDemandReady"))
                     object.completeOnDemandReady = message.completeOnDemandReady;
-                if (message.thumbnailSyncDaysLimit != null && message.hasOwnProperty("thumbnailSyncDaysLimit"))
+                if (message.thumbnailSyncDaysLimit != null && Object.hasOwnProperty.call(message, "thumbnailSyncDaysLimit"))
                     object.thumbnailSyncDaysLimit = message.thumbnailSyncDaysLimit;
-                if (message.initialSyncMaxMessagesPerChat != null && message.hasOwnProperty("initialSyncMaxMessagesPerChat"))
+                if (message.initialSyncMaxMessagesPerChat != null && Object.hasOwnProperty.call(message, "initialSyncMaxMessagesPerChat"))
                     object.initialSyncMaxMessagesPerChat = message.initialSyncMaxMessagesPerChat;
-                if (message.supportManusHistory != null && message.hasOwnProperty("supportManusHistory"))
+                if (message.supportManusHistory != null && Object.hasOwnProperty.call(message, "supportManusHistory"))
                     object.supportManusHistory = message.supportManusHistory;
-                if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
+                if (message.supportHatchHistory != null && Object.hasOwnProperty.call(message, "supportHatchHistory"))
                     object.supportHatchHistory = message.supportHatchHistory;
                 if (message.supportedBotChannelFbids && message.supportedBotChannelFbids.length) {
                     object.supportedBotChannelFbids = [];
                     for (var j = 0; j < message.supportedBotChannelFbids.length; ++j)
                         object.supportedBotChannelFbids[j] = message.supportedBotChannelFbids[j];
                 }
-                if (message.supportInlineContacts != null && message.hasOwnProperty("supportInlineContacts"))
+                if (message.supportInlineContacts != null && Object.hasOwnProperty.call(message, "supportInlineContacts"))
                     object.supportInlineContacts = message.supportInlineContacts;
                 return object;
             };

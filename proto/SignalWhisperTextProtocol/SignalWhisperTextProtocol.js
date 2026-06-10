@@ -178,10 +178,10 @@ $root.SignalWhisperTextProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.generation != null && message.hasOwnProperty("generation"))
+            if (message.generation != null && Object.hasOwnProperty.call(message, "generation"))
                 if (!$util.isInteger(message.generation))
                     return "generation: integer expected";
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 if (!(message.signature && typeof message.signature.length === "number" || $util.isString(message.signature)))
                     return "signature: buffer expected";
             return null;
@@ -242,9 +242,9 @@ $root.SignalWhisperTextProtocol = (function() {
                         object.signature = $util.newBuffer(object.signature);
                 }
             }
-            if (message.generation != null && message.hasOwnProperty("generation"))
+            if (message.generation != null && Object.hasOwnProperty.call(message, "generation"))
                 object.generation = message.generation;
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
             return object;
         };
@@ -468,16 +468,16 @@ $root.SignalWhisperTextProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
-            if (message.iteration != null && message.hasOwnProperty("iteration"))
+            if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                 if (!$util.isInteger(message.iteration))
                     return "iteration: integer expected";
-            if (message.chainKey != null && message.hasOwnProperty("chainKey"))
+            if (message.chainKey != null && Object.hasOwnProperty.call(message, "chainKey"))
                 if (!(message.chainKey && typeof message.chainKey.length === "number" || $util.isString(message.chainKey)))
                     return "chainKey: buffer expected";
-            if (message.signingKey != null && message.hasOwnProperty("signingKey"))
+            if (message.signingKey != null && Object.hasOwnProperty.call(message, "signingKey"))
                 if (!(message.signingKey && typeof message.signingKey.length === "number" || $util.isString(message.signingKey)))
                     return "signingKey: buffer expected";
             return null;
@@ -553,13 +553,13 @@ $root.SignalWhisperTextProtocol = (function() {
                         object.signingKey = $util.newBuffer(object.signingKey);
                 }
             }
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.iteration != null && message.hasOwnProperty("iteration"))
+            if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                 object.iteration = message.iteration;
-            if (message.chainKey != null && message.hasOwnProperty("chainKey"))
+            if (message.chainKey != null && Object.hasOwnProperty.call(message, "chainKey"))
                 object.chainKey = options.bytes === String ? $util.base64.encode(message.chainKey, 0, message.chainKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.chainKey) : message.chainKey;
-            if (message.signingKey != null && message.hasOwnProperty("signingKey"))
+            if (message.signingKey != null && Object.hasOwnProperty.call(message, "signingKey"))
                 object.signingKey = options.bytes === String ? $util.base64.encode(message.signingKey, 0, message.signingKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.signingKey) : message.signingKey;
             return object;
         };
@@ -768,13 +768,13 @@ $root.SignalWhisperTextProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
-            if (message.iteration != null && message.hasOwnProperty("iteration"))
+            if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                 if (!$util.isInteger(message.iteration))
                     return "iteration: integer expected";
-            if (message.ciphertext != null && message.hasOwnProperty("ciphertext"))
+            if (message.ciphertext != null && Object.hasOwnProperty.call(message, "ciphertext"))
                 if (!(message.ciphertext && typeof message.ciphertext.length === "number" || $util.isString(message.ciphertext)))
                     return "ciphertext: buffer expected";
             return null;
@@ -838,11 +838,11 @@ $root.SignalWhisperTextProtocol = (function() {
                         object.ciphertext = $util.newBuffer(object.ciphertext);
                 }
             }
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.iteration != null && message.hasOwnProperty("iteration"))
+            if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                 object.iteration = message.iteration;
-            if (message.ciphertext != null && message.hasOwnProperty("ciphertext"))
+            if (message.ciphertext != null && Object.hasOwnProperty.call(message, "ciphertext"))
                 object.ciphertext = options.bytes === String ? $util.base64.encode(message.ciphertext, 0, message.ciphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.ciphertext) : message.ciphertext;
             return object;
         };
@@ -1081,19 +1081,19 @@ $root.SignalWhisperTextProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
-            if (message.baseKey != null && message.hasOwnProperty("baseKey"))
+            if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
                 if (!(message.baseKey && typeof message.baseKey.length === "number" || $util.isString(message.baseKey)))
                     return "baseKey: buffer expected";
-            if (message.ratchetKey != null && message.hasOwnProperty("ratchetKey"))
+            if (message.ratchetKey != null && Object.hasOwnProperty.call(message, "ratchetKey"))
                 if (!(message.ratchetKey && typeof message.ratchetKey.length === "number" || $util.isString(message.ratchetKey)))
                     return "ratchetKey: buffer expected";
-            if (message.identityKey != null && message.hasOwnProperty("identityKey"))
+            if (message.identityKey != null && Object.hasOwnProperty.call(message, "identityKey"))
                 if (!(message.identityKey && typeof message.identityKey.length === "number" || $util.isString(message.identityKey)))
                     return "identityKey: buffer expected";
-            if (message.baseKeySignature != null && message.hasOwnProperty("baseKeySignature"))
+            if (message.baseKeySignature != null && Object.hasOwnProperty.call(message, "baseKeySignature"))
                 if (!(message.baseKeySignature && typeof message.baseKeySignature.length === "number" || $util.isString(message.baseKeySignature)))
                     return "baseKeySignature: buffer expected";
             return null;
@@ -1190,15 +1190,15 @@ $root.SignalWhisperTextProtocol = (function() {
                         object.baseKeySignature = $util.newBuffer(object.baseKeySignature);
                 }
             }
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.baseKey != null && message.hasOwnProperty("baseKey"))
+            if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
                 object.baseKey = options.bytes === String ? $util.base64.encode(message.baseKey, 0, message.baseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.baseKey) : message.baseKey;
-            if (message.ratchetKey != null && message.hasOwnProperty("ratchetKey"))
+            if (message.ratchetKey != null && Object.hasOwnProperty.call(message, "ratchetKey"))
                 object.ratchetKey = options.bytes === String ? $util.base64.encode(message.ratchetKey, 0, message.ratchetKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.ratchetKey) : message.ratchetKey;
-            if (message.identityKey != null && message.hasOwnProperty("identityKey"))
+            if (message.identityKey != null && Object.hasOwnProperty.call(message, "identityKey"))
                 object.identityKey = options.bytes === String ? $util.base64.encode(message.identityKey, 0, message.identityKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.identityKey) : message.identityKey;
-            if (message.baseKeySignature != null && message.hasOwnProperty("baseKeySignature"))
+            if (message.baseKeySignature != null && Object.hasOwnProperty.call(message, "baseKeySignature"))
                 object.baseKeySignature = options.bytes === String ? $util.base64.encode(message.baseKeySignature, 0, message.baseKeySignature.length) : options.bytes === Array ? Array.prototype.slice.call(message.baseKeySignature) : message.baseKeySignature;
             return object;
         };
@@ -1452,22 +1452,22 @@ $root.SignalWhisperTextProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.registrationId != null && message.hasOwnProperty("registrationId"))
+            if (message.registrationId != null && Object.hasOwnProperty.call(message, "registrationId"))
                 if (!$util.isInteger(message.registrationId))
                     return "registrationId: integer expected";
-            if (message.preKeyId != null && message.hasOwnProperty("preKeyId"))
+            if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
                 if (!$util.isInteger(message.preKeyId))
                     return "preKeyId: integer expected";
-            if (message.signedPreKeyId != null && message.hasOwnProperty("signedPreKeyId"))
+            if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
                 if (!$util.isInteger(message.signedPreKeyId))
                     return "signedPreKeyId: integer expected";
-            if (message.baseKey != null && message.hasOwnProperty("baseKey"))
+            if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
                 if (!(message.baseKey && typeof message.baseKey.length === "number" || $util.isString(message.baseKey)))
                     return "baseKey: buffer expected";
-            if (message.identityKey != null && message.hasOwnProperty("identityKey"))
+            if (message.identityKey != null && Object.hasOwnProperty.call(message, "identityKey"))
                 if (!(message.identityKey && typeof message.identityKey.length === "number" || $util.isString(message.identityKey)))
                     return "identityKey: buffer expected";
-            if (message.message != null && message.hasOwnProperty("message"))
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 if (!(message.message && typeof message.message.length === "number" || $util.isString(message.message)))
                     return "message: buffer expected";
             return null;
@@ -1558,17 +1558,17 @@ $root.SignalWhisperTextProtocol = (function() {
                 object.registrationId = 0;
                 object.signedPreKeyId = 0;
             }
-            if (message.preKeyId != null && message.hasOwnProperty("preKeyId"))
+            if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
                 object.preKeyId = message.preKeyId;
-            if (message.baseKey != null && message.hasOwnProperty("baseKey"))
+            if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
                 object.baseKey = options.bytes === String ? $util.base64.encode(message.baseKey, 0, message.baseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.baseKey) : message.baseKey;
-            if (message.identityKey != null && message.hasOwnProperty("identityKey"))
+            if (message.identityKey != null && Object.hasOwnProperty.call(message, "identityKey"))
                 object.identityKey = options.bytes === String ? $util.base64.encode(message.identityKey, 0, message.identityKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.identityKey) : message.identityKey;
-            if (message.message != null && message.hasOwnProperty("message"))
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 object.message = options.bytes === String ? $util.base64.encode(message.message, 0, message.message.length) : options.bytes === Array ? Array.prototype.slice.call(message.message) : message.message;
-            if (message.registrationId != null && message.hasOwnProperty("registrationId"))
+            if (message.registrationId != null && Object.hasOwnProperty.call(message, "registrationId"))
                 object.registrationId = message.registrationId;
-            if (message.signedPreKeyId != null && message.hasOwnProperty("signedPreKeyId"))
+            if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
                 object.signedPreKeyId = message.signedPreKeyId;
             return object;
         };
@@ -1792,16 +1792,16 @@ $root.SignalWhisperTextProtocol = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.ratchetKey != null && message.hasOwnProperty("ratchetKey"))
+            if (message.ratchetKey != null && Object.hasOwnProperty.call(message, "ratchetKey"))
                 if (!(message.ratchetKey && typeof message.ratchetKey.length === "number" || $util.isString(message.ratchetKey)))
                     return "ratchetKey: buffer expected";
-            if (message.counter != null && message.hasOwnProperty("counter"))
+            if (message.counter != null && Object.hasOwnProperty.call(message, "counter"))
                 if (!$util.isInteger(message.counter))
                     return "counter: integer expected";
-            if (message.previousCounter != null && message.hasOwnProperty("previousCounter"))
+            if (message.previousCounter != null && Object.hasOwnProperty.call(message, "previousCounter"))
                 if (!$util.isInteger(message.previousCounter))
                     return "previousCounter: integer expected";
-            if (message.ciphertext != null && message.hasOwnProperty("ciphertext"))
+            if (message.ciphertext != null && Object.hasOwnProperty.call(message, "ciphertext"))
                 if (!(message.ciphertext && typeof message.ciphertext.length === "number" || $util.isString(message.ciphertext)))
                     return "ciphertext: buffer expected";
             return null;
@@ -1877,13 +1877,13 @@ $root.SignalWhisperTextProtocol = (function() {
                         object.ciphertext = $util.newBuffer(object.ciphertext);
                 }
             }
-            if (message.ratchetKey != null && message.hasOwnProperty("ratchetKey"))
+            if (message.ratchetKey != null && Object.hasOwnProperty.call(message, "ratchetKey"))
                 object.ratchetKey = options.bytes === String ? $util.base64.encode(message.ratchetKey, 0, message.ratchetKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.ratchetKey) : message.ratchetKey;
-            if (message.counter != null && message.hasOwnProperty("counter"))
+            if (message.counter != null && Object.hasOwnProperty.call(message, "counter"))
                 object.counter = message.counter;
-            if (message.previousCounter != null && message.hasOwnProperty("previousCounter"))
+            if (message.previousCounter != null && Object.hasOwnProperty.call(message, "previousCounter"))
                 object.previousCounter = message.previousCounter;
-            if (message.ciphertext != null && message.hasOwnProperty("ciphertext"))
+            if (message.ciphertext != null && Object.hasOwnProperty.call(message, "ciphertext"))
                 object.ciphertext = options.bytes === String ? $util.base64.encode(message.ciphertext, 0, message.ciphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.ciphertext) : message.ciphertext;
             return object;
         };

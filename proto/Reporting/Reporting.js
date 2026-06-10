@@ -246,19 +246,19 @@ $root.Reporting = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.minVersion != null && message.hasOwnProperty("minVersion"))
+            if (message.minVersion != null && Object.hasOwnProperty.call(message, "minVersion"))
                 if (!$util.isInteger(message.minVersion))
                     return "minVersion: integer expected";
-            if (message.maxVersion != null && message.hasOwnProperty("maxVersion"))
+            if (message.maxVersion != null && Object.hasOwnProperty.call(message, "maxVersion"))
                 if (!$util.isInteger(message.maxVersion))
                     return "maxVersion: integer expected";
-            if (message.notReportableMinVersion != null && message.hasOwnProperty("notReportableMinVersion"))
+            if (message.notReportableMinVersion != null && Object.hasOwnProperty.call(message, "notReportableMinVersion"))
                 if (!$util.isInteger(message.notReportableMinVersion))
                     return "notReportableMinVersion: integer expected";
-            if (message.isMessage != null && message.hasOwnProperty("isMessage"))
+            if (message.isMessage != null && Object.hasOwnProperty.call(message, "isMessage"))
                 if (typeof message.isMessage !== "boolean")
                     return "isMessage: boolean expected";
-            if (message.subfield != null && message.hasOwnProperty("subfield")) {
+            if (message.subfield != null && Object.hasOwnProperty.call(message, "subfield")) {
                 if (!$util.isObject(message.subfield))
                     return "subfield: object expected";
                 var key = Object.keys(message.subfield);
@@ -341,13 +341,13 @@ $root.Reporting = (function() {
                 object.notReportableMinVersion = 0;
                 object.isMessage = false;
             }
-            if (message.minVersion != null && message.hasOwnProperty("minVersion"))
+            if (message.minVersion != null && Object.hasOwnProperty.call(message, "minVersion"))
                 object.minVersion = message.minVersion;
-            if (message.maxVersion != null && message.hasOwnProperty("maxVersion"))
+            if (message.maxVersion != null && Object.hasOwnProperty.call(message, "maxVersion"))
                 object.maxVersion = message.maxVersion;
-            if (message.notReportableMinVersion != null && message.hasOwnProperty("notReportableMinVersion"))
+            if (message.notReportableMinVersion != null && Object.hasOwnProperty.call(message, "notReportableMinVersion"))
                 object.notReportableMinVersion = message.notReportableMinVersion;
-            if (message.isMessage != null && message.hasOwnProperty("isMessage"))
+            if (message.isMessage != null && Object.hasOwnProperty.call(message, "isMessage"))
                 object.isMessage = message.isMessage;
             var keys2;
             if (message.subfield && (keys2 = Object.keys(message.subfield)).length) {
@@ -573,7 +573,7 @@ $root.Reporting = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.field != null && message.hasOwnProperty("field")) {
+            if (message.field != null && Object.hasOwnProperty.call(message, "field")) {
                 if (!$util.isObject(message.field))
                     return "field: object expected";
                 var key = Object.keys(message.field);
@@ -587,7 +587,7 @@ $root.Reporting = (function() {
                     }
                 }
             }
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 if (!$util.isInteger(message.version))
                     return "version: integer expected";
             return null;
@@ -658,7 +658,7 @@ $root.Reporting = (function() {
                     object.field[keys2[j]] = $root.Reporting.Field.toObject(message.field[keys2[j]], options, q + 1);
                 }
             }
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 object.version = message.version;
             return object;
         };
@@ -882,16 +882,16 @@ $root.Reporting = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.minVersion != null && message.hasOwnProperty("minVersion"))
+            if (message.minVersion != null && Object.hasOwnProperty.call(message, "minVersion"))
                 if (!$util.isInteger(message.minVersion))
                     return "minVersion: integer expected";
-            if (message.maxVersion != null && message.hasOwnProperty("maxVersion"))
+            if (message.maxVersion != null && Object.hasOwnProperty.call(message, "maxVersion"))
                 if (!$util.isInteger(message.maxVersion))
                     return "maxVersion: integer expected";
-            if (message.notReportableMinVersion != null && message.hasOwnProperty("notReportableMinVersion"))
+            if (message.notReportableMinVersion != null && Object.hasOwnProperty.call(message, "notReportableMinVersion"))
                 if (!$util.isInteger(message.notReportableMinVersion))
                     return "notReportableMinVersion: integer expected";
-            if (message.never != null && message.hasOwnProperty("never"))
+            if (message.never != null && Object.hasOwnProperty.call(message, "never"))
                 if (typeof message.never !== "boolean")
                     return "never: boolean expected";
             return null;
@@ -949,13 +949,13 @@ $root.Reporting = (function() {
                 object.notReportableMinVersion = 0;
                 object.never = false;
             }
-            if (message.minVersion != null && message.hasOwnProperty("minVersion"))
+            if (message.minVersion != null && Object.hasOwnProperty.call(message, "minVersion"))
                 object.minVersion = message.minVersion;
-            if (message.maxVersion != null && message.hasOwnProperty("maxVersion"))
+            if (message.maxVersion != null && Object.hasOwnProperty.call(message, "maxVersion"))
                 object.maxVersion = message.maxVersion;
-            if (message.notReportableMinVersion != null && message.hasOwnProperty("notReportableMinVersion"))
+            if (message.notReportableMinVersion != null && Object.hasOwnProperty.call(message, "notReportableMinVersion"))
                 object.notReportableMinVersion = message.notReportableMinVersion;
-            if (message.never != null && message.hasOwnProperty("never"))
+            if (message.never != null && Object.hasOwnProperty.call(message, "never"))
                 object.never = message.never;
             return object;
         };

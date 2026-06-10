@@ -193,13 +193,13 @@ $root.Adv = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
-            if (message.hmac != null && message.hasOwnProperty("hmac"))
+            if (message.hmac != null && Object.hasOwnProperty.call(message, "hmac"))
                 if (!(message.hmac && typeof message.hmac.length === "number" || $util.isString(message.hmac)))
                     return "hmac: buffer expected";
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 switch (message.accountType) {
                 default:
                     return "accountType: enum value expected";
@@ -296,11 +296,11 @@ $root.Adv = (function() {
                 }
                 object.accountType = options.enums === String ? "E2EE" : 0;
             }
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 object.details = options.bytes === String ? $util.base64.encode(message.details, 0, message.details.length) : options.bytes === Array ? Array.prototype.slice.call(message.details) : message.details;
-            if (message.hmac != null && message.hasOwnProperty("hmac"))
+            if (message.hmac != null && Object.hasOwnProperty.call(message, "hmac"))
                 object.hmac = options.bytes === String ? $util.base64.encode(message.hmac, 0, message.hmac.length) : options.bytes === Array ? Array.prototype.slice.call(message.hmac) : message.hmac;
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 object.accountType = options.enums === String ? $root.Adv.ADVEncryptionType[message.accountType] === undefined ? message.accountType : $root.Adv.ADVEncryptionType[message.accountType] : message.accountType;
             return object;
         };
@@ -524,16 +524,16 @@ $root.Adv = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
-            if (message.accountSignatureKey != null && message.hasOwnProperty("accountSignatureKey"))
+            if (message.accountSignatureKey != null && Object.hasOwnProperty.call(message, "accountSignatureKey"))
                 if (!(message.accountSignatureKey && typeof message.accountSignatureKey.length === "number" || $util.isString(message.accountSignatureKey)))
                     return "accountSignatureKey: buffer expected";
-            if (message.accountSignature != null && message.hasOwnProperty("accountSignature"))
+            if (message.accountSignature != null && Object.hasOwnProperty.call(message, "accountSignature"))
                 if (!(message.accountSignature && typeof message.accountSignature.length === "number" || $util.isString(message.accountSignature)))
                     return "accountSignature: buffer expected";
-            if (message.deviceSignature != null && message.hasOwnProperty("deviceSignature"))
+            if (message.deviceSignature != null && Object.hasOwnProperty.call(message, "deviceSignature"))
                 if (!(message.deviceSignature && typeof message.deviceSignature.length === "number" || $util.isString(message.deviceSignature)))
                     return "deviceSignature: buffer expected";
             return null;
@@ -627,13 +627,13 @@ $root.Adv = (function() {
                         object.deviceSignature = $util.newBuffer(object.deviceSignature);
                 }
             }
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 object.details = options.bytes === String ? $util.base64.encode(message.details, 0, message.details.length) : options.bytes === Array ? Array.prototype.slice.call(message.details) : message.details;
-            if (message.accountSignatureKey != null && message.hasOwnProperty("accountSignatureKey"))
+            if (message.accountSignatureKey != null && Object.hasOwnProperty.call(message, "accountSignatureKey"))
                 object.accountSignatureKey = options.bytes === String ? $util.base64.encode(message.accountSignatureKey, 0, message.accountSignatureKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.accountSignatureKey) : message.accountSignatureKey;
-            if (message.accountSignature != null && message.hasOwnProperty("accountSignature"))
+            if (message.accountSignature != null && Object.hasOwnProperty.call(message, "accountSignature"))
                 object.accountSignature = options.bytes === String ? $util.base64.encode(message.accountSignature, 0, message.accountSignature.length) : options.bytes === Array ? Array.prototype.slice.call(message.accountSignature) : message.accountSignature;
-            if (message.deviceSignature != null && message.hasOwnProperty("deviceSignature"))
+            if (message.deviceSignature != null && Object.hasOwnProperty.call(message, "deviceSignature"))
                 object.deviceSignature = options.bytes === String ? $util.base64.encode(message.deviceSignature, 0, message.deviceSignature.length) : options.bytes === Array ? Array.prototype.slice.call(message.deviceSignature) : message.deviceSignature;
             return object;
         };
@@ -872,16 +872,16 @@ $root.Adv = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.rawId != null && message.hasOwnProperty("rawId"))
+            if (message.rawId != null && Object.hasOwnProperty.call(message, "rawId"))
                 if (!$util.isInteger(message.rawId))
                     return "rawId: integer expected";
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                     return "timestamp: integer|Long expected";
-            if (message.keyIndex != null && message.hasOwnProperty("keyIndex"))
+            if (message.keyIndex != null && Object.hasOwnProperty.call(message, "keyIndex"))
                 if (!$util.isInteger(message.keyIndex))
                     return "keyIndex: integer expected";
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 switch (message.accountType) {
                 default:
                     return "accountType: enum value expected";
@@ -890,7 +890,7 @@ $root.Adv = (function() {
                 case 2:
                     break;
                 }
-            if (message.deviceType != null && message.hasOwnProperty("deviceType"))
+            if (message.deviceType != null && Object.hasOwnProperty.call(message, "deviceType"))
                 switch (message.deviceType) {
                 default:
                     return "deviceType: enum value expected";
@@ -1004,20 +1004,20 @@ $root.Adv = (function() {
                 object.accountType = options.enums === String ? "E2EE" : 0;
                 object.deviceType = options.enums === String ? "E2EE" : 0;
             }
-            if (message.rawId != null && message.hasOwnProperty("rawId"))
+            if (message.rawId != null && Object.hasOwnProperty.call(message, "rawId"))
                 object.rawId = message.rawId;
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, true).toBigInt();
                 else if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
-            if (message.keyIndex != null && message.hasOwnProperty("keyIndex"))
+            if (message.keyIndex != null && Object.hasOwnProperty.call(message, "keyIndex"))
                 object.keyIndex = message.keyIndex;
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 object.accountType = options.enums === String ? $root.Adv.ADVEncryptionType[message.accountType] === undefined ? message.accountType : $root.Adv.ADVEncryptionType[message.accountType] : message.accountType;
-            if (message.deviceType != null && message.hasOwnProperty("deviceType"))
+            if (message.deviceType != null && Object.hasOwnProperty.call(message, "deviceType"))
                 object.deviceType = options.enums === String ? $root.Adv.ADVEncryptionType[message.deviceType] === undefined ? message.deviceType : $root.Adv.ADVEncryptionType[message.deviceType] : message.deviceType;
             return object;
         };
@@ -1226,13 +1226,13 @@ $root.Adv = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
-            if (message.accountSignature != null && message.hasOwnProperty("accountSignature"))
+            if (message.accountSignature != null && Object.hasOwnProperty.call(message, "accountSignature"))
                 if (!(message.accountSignature && typeof message.accountSignature.length === "number" || $util.isString(message.accountSignature)))
                     return "accountSignature: buffer expected";
-            if (message.accountSignatureKey != null && message.hasOwnProperty("accountSignatureKey"))
+            if (message.accountSignatureKey != null && Object.hasOwnProperty.call(message, "accountSignatureKey"))
                 if (!(message.accountSignatureKey && typeof message.accountSignatureKey.length === "number" || $util.isString(message.accountSignatureKey)))
                     return "accountSignatureKey: buffer expected";
             return null;
@@ -1314,11 +1314,11 @@ $root.Adv = (function() {
                         object.accountSignatureKey = $util.newBuffer(object.accountSignatureKey);
                 }
             }
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 object.details = options.bytes === String ? $util.base64.encode(message.details, 0, message.details.length) : options.bytes === Array ? Array.prototype.slice.call(message.details) : message.details;
-            if (message.accountSignature != null && message.hasOwnProperty("accountSignature"))
+            if (message.accountSignature != null && Object.hasOwnProperty.call(message, "accountSignature"))
                 object.accountSignature = options.bytes === String ? $util.base64.encode(message.accountSignature, 0, message.accountSignature.length) : options.bytes === Array ? Array.prototype.slice.call(message.accountSignature) : message.accountSignature;
-            if (message.accountSignatureKey != null && message.hasOwnProperty("accountSignatureKey"))
+            if (message.accountSignatureKey != null && Object.hasOwnProperty.call(message, "accountSignatureKey"))
                 object.accountSignatureKey = options.bytes === String ? $util.base64.encode(message.accountSignatureKey, 0, message.accountSignatureKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.accountSignatureKey) : message.accountSignatureKey;
             return object;
         };
@@ -1569,23 +1569,23 @@ $root.Adv = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.rawId != null && message.hasOwnProperty("rawId"))
+            if (message.rawId != null && Object.hasOwnProperty.call(message, "rawId"))
                 if (!$util.isInteger(message.rawId))
                     return "rawId: integer expected";
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                     return "timestamp: integer|Long expected";
-            if (message.currentIndex != null && message.hasOwnProperty("currentIndex"))
+            if (message.currentIndex != null && Object.hasOwnProperty.call(message, "currentIndex"))
                 if (!$util.isInteger(message.currentIndex))
                     return "currentIndex: integer expected";
-            if (message.validIndexes != null && message.hasOwnProperty("validIndexes")) {
+            if (message.validIndexes != null && Object.hasOwnProperty.call(message, "validIndexes")) {
                 if (!Array.isArray(message.validIndexes))
                     return "validIndexes: array expected";
                 for (var i = 0; i < message.validIndexes.length; ++i)
                     if (!$util.isInteger(message.validIndexes[i]))
                         return "validIndexes: integer[] expected";
             }
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 switch (message.accountType) {
                 default:
                     return "accountType: enum value expected";
@@ -1687,23 +1687,23 @@ $root.Adv = (function() {
                 object.currentIndex = 0;
                 object.accountType = options.enums === String ? "E2EE" : 0;
             }
-            if (message.rawId != null && message.hasOwnProperty("rawId"))
+            if (message.rawId != null && Object.hasOwnProperty.call(message, "rawId"))
                 object.rawId = message.rawId;
-            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, true).toBigInt();
                 else if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
-            if (message.currentIndex != null && message.hasOwnProperty("currentIndex"))
+            if (message.currentIndex != null && Object.hasOwnProperty.call(message, "currentIndex"))
                 object.currentIndex = message.currentIndex;
             if (message.validIndexes && message.validIndexes.length) {
                 object.validIndexes = [];
                 for (var j = 0; j < message.validIndexes.length; ++j)
                     object.validIndexes[j] = message.validIndexes[j];
             }
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 object.accountType = options.enums === String ? $root.Adv.ADVEncryptionType[message.accountType] === undefined ? message.accountType : $root.Adv.ADVEncryptionType[message.accountType] : message.accountType;
             return object;
         };

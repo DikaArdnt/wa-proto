@@ -238,7 +238,7 @@ $root.DeviceCapabilities = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
+            if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 switch (message.chatLockSupportLevel) {
                 default:
                     return "chatLockSupportLevel: enum value expected";
@@ -247,22 +247,22 @@ $root.DeviceCapabilities = (function() {
                 case 2:
                     break;
                 }
-            if (message.lidMigration != null && message.hasOwnProperty("lidMigration")) {
+            if (message.lidMigration != null && Object.hasOwnProperty.call(message, "lidMigration")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.verify(message.lidMigration, long + 1);
                 if (error)
                     return "lidMigration." + error;
             }
-            if (message.businessBroadcast != null && message.hasOwnProperty("businessBroadcast")) {
+            if (message.businessBroadcast != null && Object.hasOwnProperty.call(message, "businessBroadcast")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.verify(message.businessBroadcast, long + 1);
                 if (error)
                     return "businessBroadcast." + error;
             }
-            if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar")) {
+            if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify(message.userHasAvatar, long + 1);
                 if (error)
                     return "userHasAvatar." + error;
             }
-            if (message.memberNameTagPrimarySupport != null && message.hasOwnProperty("memberNameTagPrimarySupport"))
+            if (message.memberNameTagPrimarySupport != null && Object.hasOwnProperty.call(message, "memberNameTagPrimarySupport"))
                 switch (message.memberNameTagPrimarySupport) {
                 default:
                     return "memberNameTagPrimarySupport: enum value expected";
@@ -271,7 +271,7 @@ $root.DeviceCapabilities = (function() {
                 case 2:
                     break;
                 }
-            if (message.aiThread != null && message.hasOwnProperty("aiThread")) {
+            if (message.aiThread != null && Object.hasOwnProperty.call(message, "aiThread")) {
                 var error = $root.DeviceCapabilities.DeviceCapabilities.AiThread.verify(message.aiThread, long + 1);
                 if (error)
                     return "aiThread." + error;
@@ -385,17 +385,17 @@ $root.DeviceCapabilities = (function() {
                 object.memberNameTagPrimarySupport = options.enums === String ? "DISABLED" : 0;
                 object.aiThread = null;
             }
-            if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
+            if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 object.chatLockSupportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] === undefined ? message.chatLockSupportLevel : $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] : message.chatLockSupportLevel;
-            if (message.lidMigration != null && message.hasOwnProperty("lidMigration"))
+            if (message.lidMigration != null && Object.hasOwnProperty.call(message, "lidMigration"))
                 object.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options, q + 1);
-            if (message.businessBroadcast != null && message.hasOwnProperty("businessBroadcast"))
+            if (message.businessBroadcast != null && Object.hasOwnProperty.call(message, "businessBroadcast"))
                 object.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.toObject(message.businessBroadcast, options, q + 1);
-            if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+            if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
                 object.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.toObject(message.userHasAvatar, options, q + 1);
-            if (message.memberNameTagPrimarySupport != null && message.hasOwnProperty("memberNameTagPrimarySupport"))
+            if (message.memberNameTagPrimarySupport != null && Object.hasOwnProperty.call(message, "memberNameTagPrimarySupport"))
                 object.memberNameTagPrimarySupport = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport[message.memberNameTagPrimarySupport] === undefined ? message.memberNameTagPrimarySupport : $root.DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport[message.memberNameTagPrimarySupport] : message.memberNameTagPrimarySupport;
-            if (message.aiThread != null && message.hasOwnProperty("aiThread"))
+            if (message.aiThread != null && Object.hasOwnProperty.call(message, "aiThread"))
                 object.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.toObject(message.aiThread, options, q + 1);
             return object;
         };
@@ -571,7 +571,7 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.supportLevel != null && message.hasOwnProperty("supportLevel"))
+                if (message.supportLevel != null && Object.hasOwnProperty.call(message, "supportLevel"))
                     switch (message.supportLevel) {
                     default:
                         return "supportLevel: enum value expected";
@@ -643,7 +643,7 @@ $root.DeviceCapabilities = (function() {
                 var object = {};
                 if (options.defaults)
                     object.supportLevel = options.enums === String ? "NONE" : 0;
-                if (message.supportLevel != null && message.hasOwnProperty("supportLevel"))
+                if (message.supportLevel != null && Object.hasOwnProperty.call(message, "supportLevel"))
                     object.supportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.AiThread.SupportLevel[message.supportLevel] === undefined ? message.supportLevel : $root.DeviceCapabilities.DeviceCapabilities.AiThread.SupportLevel[message.supportLevel] : message.supportLevel;
                 return object;
             };
@@ -898,19 +898,19 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
+                if (message.importListEnabled != null && Object.hasOwnProperty.call(message, "importListEnabled"))
                     if (typeof message.importListEnabled !== "boolean")
                         return "importListEnabled: boolean expected";
-                if (message.companionSupportEnabled != null && message.hasOwnProperty("companionSupportEnabled"))
+                if (message.companionSupportEnabled != null && Object.hasOwnProperty.call(message, "companionSupportEnabled"))
                     if (typeof message.companionSupportEnabled !== "boolean")
                         return "companionSupportEnabled: boolean expected";
-                if (message.campaignSyncEnabled != null && message.hasOwnProperty("campaignSyncEnabled"))
+                if (message.campaignSyncEnabled != null && Object.hasOwnProperty.call(message, "campaignSyncEnabled"))
                     if (typeof message.campaignSyncEnabled !== "boolean")
                         return "campaignSyncEnabled: boolean expected";
-                if (message.insightsSyncEnabled != null && message.hasOwnProperty("insightsSyncEnabled"))
+                if (message.insightsSyncEnabled != null && Object.hasOwnProperty.call(message, "insightsSyncEnabled"))
                     if (typeof message.insightsSyncEnabled !== "boolean")
                         return "insightsSyncEnabled: boolean expected";
-                if (message.recipientLimit != null && message.hasOwnProperty("recipientLimit"))
+                if (message.recipientLimit != null && Object.hasOwnProperty.call(message, "recipientLimit"))
                     if (!$util.isInteger(message.recipientLimit))
                         return "recipientLimit: integer expected";
                 return null;
@@ -971,15 +971,15 @@ $root.DeviceCapabilities = (function() {
                     object.insightsSyncEnabled = false;
                     object.recipientLimit = 0;
                 }
-                if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
+                if (message.importListEnabled != null && Object.hasOwnProperty.call(message, "importListEnabled"))
                     object.importListEnabled = message.importListEnabled;
-                if (message.companionSupportEnabled != null && message.hasOwnProperty("companionSupportEnabled"))
+                if (message.companionSupportEnabled != null && Object.hasOwnProperty.call(message, "companionSupportEnabled"))
                     object.companionSupportEnabled = message.companionSupportEnabled;
-                if (message.campaignSyncEnabled != null && message.hasOwnProperty("campaignSyncEnabled"))
+                if (message.campaignSyncEnabled != null && Object.hasOwnProperty.call(message, "campaignSyncEnabled"))
                     object.campaignSyncEnabled = message.campaignSyncEnabled;
-                if (message.insightsSyncEnabled != null && message.hasOwnProperty("insightsSyncEnabled"))
+                if (message.insightsSyncEnabled != null && Object.hasOwnProperty.call(message, "insightsSyncEnabled"))
                     object.insightsSyncEnabled = message.insightsSyncEnabled;
-                if (message.recipientLimit != null && message.hasOwnProperty("recipientLimit"))
+                if (message.recipientLimit != null && Object.hasOwnProperty.call(message, "recipientLimit"))
                     object.recipientLimit = message.recipientLimit;
                 return object;
             };
@@ -1174,7 +1174,7 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+                if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
                         return "chatDbMigrationTimestamp: integer|Long expected";
                 return null;
@@ -1233,7 +1233,7 @@ $root.DeviceCapabilities = (function() {
                         object.chatDbMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
                         object.chatDbMigrationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-                if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+                if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.chatDbMigrationTimestamp = typeof message.chatDbMigrationTimestamp === "number" ? BigInt(message.chatDbMigrationTimestamp) : $util.Long.fromBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0, true).toBigInt();
                     else if (typeof message.chatDbMigrationTimestamp === "number")
@@ -1433,7 +1433,7 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+                if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
                     if (typeof message.userHasAvatar !== "boolean")
                         return "userHasAvatar: boolean expected";
                 return null;
@@ -1481,7 +1481,7 @@ $root.DeviceCapabilities = (function() {
                 var object = {};
                 if (options.defaults)
                     object.userHasAvatar = false;
-                if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+                if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
                     object.userHasAvatar = message.userHasAvatar;
                 return object;
             };

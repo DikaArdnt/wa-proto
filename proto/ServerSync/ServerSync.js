@@ -287,12 +287,12 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.version != null && message.hasOwnProperty("version")) {
+            if (message.version != null && Object.hasOwnProperty.call(message, "version")) {
                 var error = $root.ServerSync.SyncdVersion.verify(message.version, long + 1);
                 if (error)
                     return "version." + error;
             }
-            if (message.mutations != null && message.hasOwnProperty("mutations")) {
+            if (message.mutations != null && Object.hasOwnProperty.call(message, "mutations")) {
                 if (!Array.isArray(message.mutations))
                     return "mutations: array expected";
                 for (var i = 0; i < message.mutations.length; ++i) {
@@ -301,31 +301,31 @@ $root.ServerSync = (function() {
                         return "mutations." + error;
                 }
             }
-            if (message.externalMutations != null && message.hasOwnProperty("externalMutations")) {
+            if (message.externalMutations != null && Object.hasOwnProperty.call(message, "externalMutations")) {
                 var error = $root.ServerSync.ExternalBlobReference.verify(message.externalMutations, long + 1);
                 if (error)
                     return "externalMutations." + error;
             }
-            if (message.snapshotMac != null && message.hasOwnProperty("snapshotMac"))
+            if (message.snapshotMac != null && Object.hasOwnProperty.call(message, "snapshotMac"))
                 if (!(message.snapshotMac && typeof message.snapshotMac.length === "number" || $util.isString(message.snapshotMac)))
                     return "snapshotMac: buffer expected";
-            if (message.patchMac != null && message.hasOwnProperty("patchMac"))
+            if (message.patchMac != null && Object.hasOwnProperty.call(message, "patchMac"))
                 if (!(message.patchMac && typeof message.patchMac.length === "number" || $util.isString(message.patchMac)))
                     return "patchMac: buffer expected";
-            if (message.keyId != null && message.hasOwnProperty("keyId")) {
+            if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId")) {
                 var error = $root.ServerSync.KeyId.verify(message.keyId, long + 1);
                 if (error)
                     return "keyId." + error;
             }
-            if (message.exitCode != null && message.hasOwnProperty("exitCode")) {
+            if (message.exitCode != null && Object.hasOwnProperty.call(message, "exitCode")) {
                 var error = $root.ServerSync.ExitCode.verify(message.exitCode, long + 1);
                 if (error)
                     return "exitCode." + error;
             }
-            if (message.deviceIndex != null && message.hasOwnProperty("deviceIndex"))
+            if (message.deviceIndex != null && Object.hasOwnProperty.call(message, "deviceIndex"))
                 if (!$util.isInteger(message.deviceIndex))
                     return "deviceIndex: integer expected";
-            if (message.clientDebugData != null && message.hasOwnProperty("clientDebugData"))
+            if (message.clientDebugData != null && Object.hasOwnProperty.call(message, "clientDebugData"))
                 if (!(message.clientDebugData && typeof message.clientDebugData.length === "number" || $util.isString(message.clientDebugData)))
                     return "clientDebugData: buffer expected";
             return null;
@@ -446,26 +446,26 @@ $root.ServerSync = (function() {
                         object.clientDebugData = $util.newBuffer(object.clientDebugData);
                 }
             }
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 object.version = $root.ServerSync.SyncdVersion.toObject(message.version, options, q + 1);
             if (message.mutations && message.mutations.length) {
                 object.mutations = [];
                 for (var j = 0; j < message.mutations.length; ++j)
                     object.mutations[j] = $root.ServerSync.SyncdMutation.toObject(message.mutations[j], options, q + 1);
             }
-            if (message.externalMutations != null && message.hasOwnProperty("externalMutations"))
+            if (message.externalMutations != null && Object.hasOwnProperty.call(message, "externalMutations"))
                 object.externalMutations = $root.ServerSync.ExternalBlobReference.toObject(message.externalMutations, options, q + 1);
-            if (message.snapshotMac != null && message.hasOwnProperty("snapshotMac"))
+            if (message.snapshotMac != null && Object.hasOwnProperty.call(message, "snapshotMac"))
                 object.snapshotMac = options.bytes === String ? $util.base64.encode(message.snapshotMac, 0, message.snapshotMac.length) : options.bytes === Array ? Array.prototype.slice.call(message.snapshotMac) : message.snapshotMac;
-            if (message.patchMac != null && message.hasOwnProperty("patchMac"))
+            if (message.patchMac != null && Object.hasOwnProperty.call(message, "patchMac"))
                 object.patchMac = options.bytes === String ? $util.base64.encode(message.patchMac, 0, message.patchMac.length) : options.bytes === Array ? Array.prototype.slice.call(message.patchMac) : message.patchMac;
-            if (message.keyId != null && message.hasOwnProperty("keyId"))
+            if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId"))
                 object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options, q + 1);
-            if (message.exitCode != null && message.hasOwnProperty("exitCode"))
+            if (message.exitCode != null && Object.hasOwnProperty.call(message, "exitCode"))
                 object.exitCode = $root.ServerSync.ExitCode.toObject(message.exitCode, options, q + 1);
-            if (message.deviceIndex != null && message.hasOwnProperty("deviceIndex"))
+            if (message.deviceIndex != null && Object.hasOwnProperty.call(message, "deviceIndex"))
                 object.deviceIndex = message.deviceIndex;
-            if (message.clientDebugData != null && message.hasOwnProperty("clientDebugData"))
+            if (message.clientDebugData != null && Object.hasOwnProperty.call(message, "clientDebugData"))
                 object.clientDebugData = options.bytes === String ? $util.base64.encode(message.clientDebugData, 0, message.clientDebugData.length) : options.bytes === Array ? Array.prototype.slice.call(message.clientDebugData) : message.clientDebugData;
             return object;
         };
@@ -659,7 +659,7 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.operation != null && message.hasOwnProperty("operation"))
+            if (message.operation != null && Object.hasOwnProperty.call(message, "operation"))
                 switch (message.operation) {
                 default:
                     return "operation: enum value expected";
@@ -667,7 +667,7 @@ $root.ServerSync = (function() {
                 case 1:
                     break;
                 }
-            if (message.record != null && message.hasOwnProperty("record")) {
+            if (message.record != null && Object.hasOwnProperty.call(message, "record")) {
                 var error = $root.ServerSync.SyncdRecord.verify(message.record, long + 1);
                 if (error)
                     return "record." + error;
@@ -738,9 +738,9 @@ $root.ServerSync = (function() {
                 object.operation = options.enums === String ? "SET" : 0;
                 object.record = null;
             }
-            if (message.operation != null && message.hasOwnProperty("operation"))
+            if (message.operation != null && Object.hasOwnProperty.call(message, "operation"))
                 object.operation = options.enums === String ? $root.ServerSync.SyncdMutation.SyncdOperation[message.operation] === undefined ? message.operation : $root.ServerSync.SyncdMutation.SyncdOperation[message.operation] : message.operation;
-            if (message.record != null && message.hasOwnProperty("record"))
+            if (message.record != null && Object.hasOwnProperty.call(message, "record"))
                 object.record = $root.ServerSync.SyncdRecord.toObject(message.record, options, q + 1);
             return object;
         };
@@ -937,7 +937,7 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.mutations != null && message.hasOwnProperty("mutations")) {
+            if (message.mutations != null && Object.hasOwnProperty.call(message, "mutations")) {
                 if (!Array.isArray(message.mutations))
                     return "mutations: array expected";
                 for (var i = 0; i < message.mutations.length; ++i) {
@@ -1230,12 +1230,12 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.version != null && message.hasOwnProperty("version")) {
+            if (message.version != null && Object.hasOwnProperty.call(message, "version")) {
                 var error = $root.ServerSync.SyncdVersion.verify(message.version, long + 1);
                 if (error)
                     return "version." + error;
             }
-            if (message.records != null && message.hasOwnProperty("records")) {
+            if (message.records != null && Object.hasOwnProperty.call(message, "records")) {
                 if (!Array.isArray(message.records))
                     return "records: array expected";
                 for (var i = 0; i < message.records.length; ++i) {
@@ -1244,10 +1244,10 @@ $root.ServerSync = (function() {
                         return "records." + error;
                 }
             }
-            if (message.mac != null && message.hasOwnProperty("mac"))
+            if (message.mac != null && Object.hasOwnProperty.call(message, "mac"))
                 if (!(message.mac && typeof message.mac.length === "number" || $util.isString(message.mac)))
                     return "mac: buffer expected";
-            if (message.keyId != null && message.hasOwnProperty("keyId")) {
+            if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId")) {
                 var error = $root.ServerSync.KeyId.verify(message.keyId, long + 1);
                 if (error)
                     return "keyId." + error;
@@ -1331,16 +1331,16 @@ $root.ServerSync = (function() {
                 }
                 object.keyId = null;
             }
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 object.version = $root.ServerSync.SyncdVersion.toObject(message.version, options, q + 1);
             if (message.records && message.records.length) {
                 object.records = [];
                 for (var j = 0; j < message.records.length; ++j)
                     object.records[j] = $root.ServerSync.SyncdRecord.toObject(message.records[j], options, q + 1);
             }
-            if (message.mac != null && message.hasOwnProperty("mac"))
+            if (message.mac != null && Object.hasOwnProperty.call(message, "mac"))
                 object.mac = options.bytes === String ? $util.base64.encode(message.mac, 0, message.mac.length) : options.bytes === Array ? Array.prototype.slice.call(message.mac) : message.mac;
-            if (message.keyId != null && message.hasOwnProperty("keyId"))
+            if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId"))
                 object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options, q + 1);
             return object;
         };
@@ -1594,22 +1594,22 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
+            if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
                 if (!(message.mediaKey && typeof message.mediaKey.length === "number" || $util.isString(message.mediaKey)))
                     return "mediaKey: buffer expected";
-            if (message.directPath != null && message.hasOwnProperty("directPath"))
+            if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
                 if (!$util.isString(message.directPath))
                     return "directPath: string expected";
-            if (message.handle != null && message.hasOwnProperty("handle"))
+            if (message.handle != null && Object.hasOwnProperty.call(message, "handle"))
                 if (!$util.isString(message.handle))
                     return "handle: string expected";
-            if (message.fileSizeBytes != null && message.hasOwnProperty("fileSizeBytes"))
+            if (message.fileSizeBytes != null && Object.hasOwnProperty.call(message, "fileSizeBytes"))
                 if (!$util.isInteger(message.fileSizeBytes) && !(message.fileSizeBytes && $util.isInteger(message.fileSizeBytes.low) && $util.isInteger(message.fileSizeBytes.high)))
                     return "fileSizeBytes: integer|Long expected";
-            if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
+            if (message.fileSha256 != null && Object.hasOwnProperty.call(message, "fileSha256"))
                 if (!(message.fileSha256 && typeof message.fileSha256.length === "number" || $util.isString(message.fileSha256)))
                     return "fileSha256: buffer expected";
-            if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
+            if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
                 if (!(message.fileEncSha256 && typeof message.fileEncSha256.length === "number" || $util.isString(message.fileEncSha256)))
                     return "fileEncSha256: buffer expected";
             return null;
@@ -1711,22 +1711,22 @@ $root.ServerSync = (function() {
                         object.fileEncSha256 = $util.newBuffer(object.fileEncSha256);
                 }
             }
-            if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
+            if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
                 object.mediaKey = options.bytes === String ? $util.base64.encode(message.mediaKey, 0, message.mediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.mediaKey) : message.mediaKey;
-            if (message.directPath != null && message.hasOwnProperty("directPath"))
+            if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
                 object.directPath = message.directPath;
-            if (message.handle != null && message.hasOwnProperty("handle"))
+            if (message.handle != null && Object.hasOwnProperty.call(message, "handle"))
                 object.handle = message.handle;
-            if (message.fileSizeBytes != null && message.hasOwnProperty("fileSizeBytes"))
+            if (message.fileSizeBytes != null && Object.hasOwnProperty.call(message, "fileSizeBytes"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.fileSizeBytes = typeof message.fileSizeBytes === "number" ? BigInt(message.fileSizeBytes) : $util.Long.fromBits(message.fileSizeBytes.low >>> 0, message.fileSizeBytes.high >>> 0, true).toBigInt();
                 else if (typeof message.fileSizeBytes === "number")
                     object.fileSizeBytes = options.longs === String ? String(message.fileSizeBytes) : message.fileSizeBytes;
                 else
                     object.fileSizeBytes = options.longs === String ? $util.Long.prototype.toString.call(message.fileSizeBytes) : options.longs === Number ? new $util.LongBits(message.fileSizeBytes.low >>> 0, message.fileSizeBytes.high >>> 0).toNumber(true) : message.fileSizeBytes;
-            if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
+            if (message.fileSha256 != null && Object.hasOwnProperty.call(message, "fileSha256"))
                 object.fileSha256 = options.bytes === String ? $util.base64.encode(message.fileSha256, 0, message.fileSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileSha256) : message.fileSha256;
-            if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
+            if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
                 object.fileEncSha256 = options.bytes === String ? $util.base64.encode(message.fileEncSha256, 0, message.fileEncSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileEncSha256) : message.fileEncSha256;
             return object;
         };
@@ -1935,17 +1935,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.index != null && message.hasOwnProperty("index")) {
+            if (message.index != null && Object.hasOwnProperty.call(message, "index")) {
                 var error = $root.ServerSync.SyncdIndex.verify(message.index, long + 1);
                 if (error)
                     return "index." + error;
             }
-            if (message.value != null && message.hasOwnProperty("value")) {
+            if (message.value != null && Object.hasOwnProperty.call(message, "value")) {
                 var error = $root.ServerSync.SyncdValue.verify(message.value, long + 1);
                 if (error)
                     return "value." + error;
             }
-            if (message.keyId != null && message.hasOwnProperty("keyId")) {
+            if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId")) {
                 var error = $root.ServerSync.KeyId.verify(message.keyId, long + 1);
                 if (error)
                     return "keyId." + error;
@@ -2011,11 +2011,11 @@ $root.ServerSync = (function() {
                 object.value = null;
                 object.keyId = null;
             }
-            if (message.index != null && message.hasOwnProperty("index"))
+            if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                 object.index = $root.ServerSync.SyncdIndex.toObject(message.index, options, q + 1);
-            if (message.value != null && message.hasOwnProperty("value"))
+            if (message.value != null && Object.hasOwnProperty.call(message, "value"))
                 object.value = $root.ServerSync.SyncdValue.toObject(message.value, options, q + 1);
-            if (message.keyId != null && message.hasOwnProperty("keyId"))
+            if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId"))
                 object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options, q + 1);
             return object;
         };
@@ -2194,7 +2194,7 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 if (!(message.id && typeof message.id.length === "number" || $util.isString(message.id)))
                     return "id: buffer expected";
             return null;
@@ -2251,7 +2251,7 @@ $root.ServerSync = (function() {
                     if (options.bytes !== Array)
                         object.id = $util.newBuffer(object.id);
                 }
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 object.id = options.bytes === String ? $util.base64.encode(message.id, 0, message.id.length) : options.bytes === Array ? Array.prototype.slice.call(message.id) : message.id;
             return object;
         };
@@ -2430,7 +2430,7 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.blob != null && message.hasOwnProperty("blob"))
+            if (message.blob != null && Object.hasOwnProperty.call(message, "blob"))
                 if (!(message.blob && typeof message.blob.length === "number" || $util.isString(message.blob)))
                     return "blob: buffer expected";
             return null;
@@ -2487,7 +2487,7 @@ $root.ServerSync = (function() {
                     if (options.bytes !== Array)
                         object.blob = $util.newBuffer(object.blob);
                 }
-            if (message.blob != null && message.hasOwnProperty("blob"))
+            if (message.blob != null && Object.hasOwnProperty.call(message, "blob"))
                 object.blob = options.bytes === String ? $util.base64.encode(message.blob, 0, message.blob.length) : options.bytes === Array ? Array.prototype.slice.call(message.blob) : message.blob;
             return object;
         };
@@ -2666,7 +2666,7 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.blob != null && message.hasOwnProperty("blob"))
+            if (message.blob != null && Object.hasOwnProperty.call(message, "blob"))
                 if (!(message.blob && typeof message.blob.length === "number" || $util.isString(message.blob)))
                     return "blob: buffer expected";
             return null;
@@ -2723,7 +2723,7 @@ $root.ServerSync = (function() {
                     if (options.bytes !== Array)
                         object.blob = $util.newBuffer(object.blob);
                 }
-            if (message.blob != null && message.hasOwnProperty("blob"))
+            if (message.blob != null && Object.hasOwnProperty.call(message, "blob"))
                 object.blob = options.bytes === String ? $util.base64.encode(message.blob, 0, message.blob.length) : options.bytes === Array ? Array.prototype.slice.call(message.blob) : message.blob;
             return object;
         };
@@ -2917,10 +2917,10 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.code != null && message.hasOwnProperty("code"))
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
                 if (!$util.isInteger(message.code) && !(message.code && $util.isInteger(message.code.low) && $util.isInteger(message.code.high)))
                     return "code: integer|Long expected";
-            if (message.text != null && message.hasOwnProperty("text"))
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                 if (!$util.isString(message.text))
                     return "text: string expected";
             return null;
@@ -2983,14 +2983,14 @@ $root.ServerSync = (function() {
                     object.code = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.text = "";
             }
-            if (message.code != null && message.hasOwnProperty("code"))
+            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.code = typeof message.code === "number" ? BigInt(message.code) : $util.Long.fromBits(message.code.low >>> 0, message.code.high >>> 0, true).toBigInt();
                 else if (typeof message.code === "number")
                     object.code = options.longs === String ? String(message.code) : message.code;
                 else
                     object.code = options.longs === String ? $util.Long.prototype.toString.call(message.code) : options.longs === Number ? new $util.LongBits(message.code.low >>> 0, message.code.high >>> 0).toNumber(true) : message.code;
-            if (message.text != null && message.hasOwnProperty("text"))
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                 object.text = message.text;
             return object;
         };
@@ -3169,7 +3169,7 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 if (!$util.isInteger(message.version) && !(message.version && $util.isInteger(message.version.low) && $util.isInteger(message.version.high)))
                     return "version: integer|Long expected";
             return null;
@@ -3228,7 +3228,7 @@ $root.ServerSync = (function() {
                     object.version = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
                     object.version = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-            if (message.version != null && message.hasOwnProperty("version"))
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.version = typeof message.version === "number" ? BigInt(message.version) : $util.Long.fromBits(message.version.low >>> 0, message.version.high >>> 0, true).toBigInt();
                 else if (typeof message.version === "number")

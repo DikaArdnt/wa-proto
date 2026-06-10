@@ -178,12 +178,12 @@ $root.Cert = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.leaf != null && message.hasOwnProperty("leaf")) {
+            if (message.leaf != null && Object.hasOwnProperty.call(message, "leaf")) {
                 var error = $root.Cert.CertChain.NoiseCertificate.verify(message.leaf, long + 1);
                 if (error)
                     return "leaf." + error;
             }
-            if (message.intermediate != null && message.hasOwnProperty("intermediate")) {
+            if (message.intermediate != null && Object.hasOwnProperty.call(message, "intermediate")) {
                 var error = $root.Cert.CertChain.NoiseCertificate.verify(message.intermediate, long + 1);
                 if (error)
                     return "intermediate." + error;
@@ -243,9 +243,9 @@ $root.Cert = (function() {
                 object.leaf = null;
                 object.intermediate = null;
             }
-            if (message.leaf != null && message.hasOwnProperty("leaf"))
+            if (message.leaf != null && Object.hasOwnProperty.call(message, "leaf"))
                 object.leaf = $root.Cert.CertChain.NoiseCertificate.toObject(message.leaf, options, q + 1);
-            if (message.intermediate != null && message.hasOwnProperty("intermediate"))
+            if (message.intermediate != null && Object.hasOwnProperty.call(message, "intermediate"))
                 object.intermediate = $root.Cert.CertChain.NoiseCertificate.toObject(message.intermediate, options, q + 1);
             return object;
         };
@@ -436,10 +436,10 @@ $root.Cert = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.details != null && message.hasOwnProperty("details"))
+                if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                     if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                         return "details: buffer expected";
-                if (message.signature != null && message.hasOwnProperty("signature"))
+                if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                     if (!(message.signature && typeof message.signature.length === "number" || $util.isString(message.signature)))
                         return "signature: buffer expected";
                 return null;
@@ -509,9 +509,9 @@ $root.Cert = (function() {
                             object.signature = $util.newBuffer(object.signature);
                     }
                 }
-                if (message.details != null && message.hasOwnProperty("details"))
+                if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                     object.details = options.bytes === String ? $util.base64.encode(message.details, 0, message.details.length) : options.bytes === Array ? Array.prototype.slice.call(message.details) : message.details;
-                if (message.signature != null && message.hasOwnProperty("signature"))
+                if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                     object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
                 return object;
             };
@@ -747,19 +747,19 @@ $root.Cert = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.serial != null && message.hasOwnProperty("serial"))
+                    if (message.serial != null && Object.hasOwnProperty.call(message, "serial"))
                         if (!$util.isInteger(message.serial))
                             return "serial: integer expected";
-                    if (message.issuerSerial != null && message.hasOwnProperty("issuerSerial"))
+                    if (message.issuerSerial != null && Object.hasOwnProperty.call(message, "issuerSerial"))
                         if (!$util.isInteger(message.issuerSerial))
                             return "issuerSerial: integer expected";
-                    if (message.key != null && message.hasOwnProperty("key"))
+                    if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                         if (!(message.key && typeof message.key.length === "number" || $util.isString(message.key)))
                             return "key: buffer expected";
-                    if (message.notBefore != null && message.hasOwnProperty("notBefore"))
+                    if (message.notBefore != null && Object.hasOwnProperty.call(message, "notBefore"))
                         if (!$util.isInteger(message.notBefore) && !(message.notBefore && $util.isInteger(message.notBefore.low) && $util.isInteger(message.notBefore.high)))
                             return "notBefore: integer|Long expected";
-                    if (message.notAfter != null && message.hasOwnProperty("notAfter"))
+                    if (message.notAfter != null && Object.hasOwnProperty.call(message, "notAfter"))
                         if (!$util.isInteger(message.notAfter) && !(message.notAfter && $util.isInteger(message.notAfter.low) && $util.isInteger(message.notAfter.high)))
                             return "notAfter: integer|Long expected";
                     return null;
@@ -851,20 +851,20 @@ $root.Cert = (function() {
                         } else
                             object.notAfter = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     }
-                    if (message.serial != null && message.hasOwnProperty("serial"))
+                    if (message.serial != null && Object.hasOwnProperty.call(message, "serial"))
                         object.serial = message.serial;
-                    if (message.issuerSerial != null && message.hasOwnProperty("issuerSerial"))
+                    if (message.issuerSerial != null && Object.hasOwnProperty.call(message, "issuerSerial"))
                         object.issuerSerial = message.issuerSerial;
-                    if (message.key != null && message.hasOwnProperty("key"))
+                    if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                         object.key = options.bytes === String ? $util.base64.encode(message.key, 0, message.key.length) : options.bytes === Array ? Array.prototype.slice.call(message.key) : message.key;
-                    if (message.notBefore != null && message.hasOwnProperty("notBefore"))
+                    if (message.notBefore != null && Object.hasOwnProperty.call(message, "notBefore"))
                         if (typeof BigInt !== "undefined" && options.longs === BigInt)
                             object.notBefore = typeof message.notBefore === "number" ? BigInt(message.notBefore) : $util.Long.fromBits(message.notBefore.low >>> 0, message.notBefore.high >>> 0, true).toBigInt();
                         else if (typeof message.notBefore === "number")
                             object.notBefore = options.longs === String ? String(message.notBefore) : message.notBefore;
                         else
                             object.notBefore = options.longs === String ? $util.Long.prototype.toString.call(message.notBefore) : options.longs === Number ? new $util.LongBits(message.notBefore.low >>> 0, message.notBefore.high >>> 0).toNumber(true) : message.notBefore;
-                    if (message.notAfter != null && message.hasOwnProperty("notAfter"))
+                    if (message.notAfter != null && Object.hasOwnProperty.call(message, "notAfter"))
                         if (typeof BigInt !== "undefined" && options.longs === BigInt)
                             object.notAfter = typeof message.notAfter === "number" ? BigInt(message.notAfter) : $util.Long.fromBits(message.notAfter.low >>> 0, message.notAfter.high >>> 0, true).toBigInt();
                         else if (typeof message.notAfter === "number")
@@ -1069,10 +1069,10 @@ $root.Cert = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 if (!(message.signature && typeof message.signature.length === "number" || $util.isString(message.signature)))
                     return "signature: buffer expected";
             return null;
@@ -1142,9 +1142,9 @@ $root.Cert = (function() {
                         object.signature = $util.newBuffer(object.signature);
                 }
             }
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 object.details = options.bytes === String ? $util.base64.encode(message.details, 0, message.details.length) : options.bytes === Array ? Array.prototype.slice.call(message.details) : message.details;
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
             return object;
         };
@@ -1380,19 +1380,19 @@ $root.Cert = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.serial != null && message.hasOwnProperty("serial"))
+                if (message.serial != null && Object.hasOwnProperty.call(message, "serial"))
                     if (!$util.isInteger(message.serial))
                         return "serial: integer expected";
-                if (message.issuer != null && message.hasOwnProperty("issuer"))
+                if (message.issuer != null && Object.hasOwnProperty.call(message, "issuer"))
                     if (!$util.isString(message.issuer))
                         return "issuer: string expected";
-                if (message.expires != null && message.hasOwnProperty("expires"))
+                if (message.expires != null && Object.hasOwnProperty.call(message, "expires"))
                     if (!$util.isInteger(message.expires) && !(message.expires && $util.isInteger(message.expires.low) && $util.isInteger(message.expires.high)))
                         return "expires: integer|Long expected";
-                if (message.subject != null && message.hasOwnProperty("subject"))
+                if (message.subject != null && Object.hasOwnProperty.call(message, "subject"))
                     if (!$util.isString(message.subject))
                         return "subject: string expected";
-                if (message.key != null && message.hasOwnProperty("key"))
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     if (!(message.key && typeof message.key.length === "number" || $util.isString(message.key)))
                         return "key: buffer expected";
                 return null;
@@ -1473,20 +1473,20 @@ $root.Cert = (function() {
                             object.key = $util.newBuffer(object.key);
                     }
                 }
-                if (message.serial != null && message.hasOwnProperty("serial"))
+                if (message.serial != null && Object.hasOwnProperty.call(message, "serial"))
                     object.serial = message.serial;
-                if (message.issuer != null && message.hasOwnProperty("issuer"))
+                if (message.issuer != null && Object.hasOwnProperty.call(message, "issuer"))
                     object.issuer = message.issuer;
-                if (message.expires != null && message.hasOwnProperty("expires"))
+                if (message.expires != null && Object.hasOwnProperty.call(message, "expires"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.expires = typeof message.expires === "number" ? BigInt(message.expires) : $util.Long.fromBits(message.expires.low >>> 0, message.expires.high >>> 0, true).toBigInt();
                     else if (typeof message.expires === "number")
                         object.expires = options.longs === String ? String(message.expires) : message.expires;
                     else
                         object.expires = options.longs === String ? $util.Long.prototype.toString.call(message.expires) : options.longs === Number ? new $util.LongBits(message.expires.low >>> 0, message.expires.high >>> 0).toNumber(true) : message.expires;
-                if (message.subject != null && message.hasOwnProperty("subject"))
+                if (message.subject != null && Object.hasOwnProperty.call(message, "subject"))
                     object.subject = message.subject;
-                if (message.key != null && message.hasOwnProperty("key"))
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     object.key = options.bytes === String ? $util.base64.encode(message.key, 0, message.key.length) : options.bytes === Array ? Array.prototype.slice.call(message.key) : message.key;
                 return object;
             };

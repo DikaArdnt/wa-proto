@@ -283,7 +283,7 @@ $root.StatusAttributions = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             var properties = {};
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 switch (message.type) {
                 default:
                     return "type: enum value expected";
@@ -301,10 +301,10 @@ $root.StatusAttributions = (function() {
                 case 11:
                     break;
                 }
-            if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
+            if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                 if (!$util.isString(message.actionUrl))
                     return "actionUrl: string expected";
-            if (message.statusReshare != null && message.hasOwnProperty("statusReshare")) {
+            if (message.statusReshare != null && Object.hasOwnProperty.call(message, "statusReshare")) {
                 properties.attributionData = 1;
                 {
                     var error = $root.StatusAttributions.StatusAttribution.StatusReshare.verify(message.statusReshare, long + 1);
@@ -312,7 +312,7 @@ $root.StatusAttributions = (function() {
                         return "statusReshare." + error;
                 }
             }
-            if (message.externalShare != null && message.hasOwnProperty("externalShare")) {
+            if (message.externalShare != null && Object.hasOwnProperty.call(message, "externalShare")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -322,7 +322,7 @@ $root.StatusAttributions = (function() {
                         return "externalShare." + error;
                 }
             }
-            if (message.music != null && message.hasOwnProperty("music")) {
+            if (message.music != null && Object.hasOwnProperty.call(message, "music")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -332,7 +332,7 @@ $root.StatusAttributions = (function() {
                         return "music." + error;
                 }
             }
-            if (message.groupStatus != null && message.hasOwnProperty("groupStatus")) {
+            if (message.groupStatus != null && Object.hasOwnProperty.call(message, "groupStatus")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -342,7 +342,7 @@ $root.StatusAttributions = (function() {
                         return "groupStatus." + error;
                 }
             }
-            if (message.rlAttribution != null && message.hasOwnProperty("rlAttribution")) {
+            if (message.rlAttribution != null && Object.hasOwnProperty.call(message, "rlAttribution")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -352,7 +352,7 @@ $root.StatusAttributions = (function() {
                         return "rlAttribution." + error;
                 }
             }
-            if (message.aiCreatedAttribution != null && message.hasOwnProperty("aiCreatedAttribution")) {
+            if (message.aiCreatedAttribution != null && Object.hasOwnProperty.call(message, "aiCreatedAttribution")) {
                 if (properties.attributionData === 1)
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
@@ -495,36 +495,36 @@ $root.StatusAttributions = (function() {
                 object.type = options.enums === String ? "UNKNOWN" : 0;
                 object.actionUrl = "";
             }
-            if (message.type != null && message.hasOwnProperty("type"))
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 object.type = options.enums === String ? $root.StatusAttributions.StatusAttribution.Type[message.type] === undefined ? message.type : $root.StatusAttributions.StatusAttribution.Type[message.type] : message.type;
-            if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
+            if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                 object.actionUrl = message.actionUrl;
-            if (message.statusReshare != null && message.hasOwnProperty("statusReshare")) {
+            if (message.statusReshare != null && Object.hasOwnProperty.call(message, "statusReshare")) {
                 object.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.toObject(message.statusReshare, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "statusReshare";
             }
-            if (message.externalShare != null && message.hasOwnProperty("externalShare")) {
+            if (message.externalShare != null && Object.hasOwnProperty.call(message, "externalShare")) {
                 object.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.toObject(message.externalShare, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "externalShare";
             }
-            if (message.music != null && message.hasOwnProperty("music")) {
+            if (message.music != null && Object.hasOwnProperty.call(message, "music")) {
                 object.music = $root.StatusAttributions.StatusAttribution.Music.toObject(message.music, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "music";
             }
-            if (message.groupStatus != null && message.hasOwnProperty("groupStatus")) {
+            if (message.groupStatus != null && Object.hasOwnProperty.call(message, "groupStatus")) {
                 object.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.toObject(message.groupStatus, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "groupStatus";
             }
-            if (message.rlAttribution != null && message.hasOwnProperty("rlAttribution")) {
+            if (message.rlAttribution != null && Object.hasOwnProperty.call(message, "rlAttribution")) {
                 object.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.toObject(message.rlAttribution, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "rlAttribution";
             }
-            if (message.aiCreatedAttribution != null && message.hasOwnProperty("aiCreatedAttribution")) {
+            if (message.aiCreatedAttribution != null && Object.hasOwnProperty.call(message, "aiCreatedAttribution")) {
                 object.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.toObject(message.aiCreatedAttribution, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "aiCreatedAttribution";
@@ -703,7 +703,7 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     switch (message.source) {
                     default:
                         return "source: enum value expected";
@@ -770,7 +770,7 @@ $root.StatusAttributions = (function() {
                 var object = {};
                 if (options.defaults)
                     object.source = options.enums === String ? "UNKNOWN" : 0;
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.Source[message.source] : message.source;
                 return object;
             };
@@ -1008,10 +1008,10 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
+                if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                     if (!$util.isString(message.actionUrl))
                         return "actionUrl: string expected";
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     switch (message.source) {
                     default:
                         return "source: enum value expected";
@@ -1030,10 +1030,10 @@ $root.StatusAttributions = (function() {
                     case 12:
                         break;
                     }
-                if (message.duration != null && message.hasOwnProperty("duration"))
+                if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                     if (!$util.isInteger(message.duration))
                         return "duration: integer expected";
-                if (message.actionFallbackUrl != null && message.hasOwnProperty("actionFallbackUrl"))
+                if (message.actionFallbackUrl != null && Object.hasOwnProperty.call(message, "actionFallbackUrl"))
                     if (!$util.isString(message.actionFallbackUrl))
                         return "actionFallbackUrl: string expected";
                 return null;
@@ -1149,13 +1149,13 @@ $root.StatusAttributions = (function() {
                     object.duration = 0;
                     object.actionFallbackUrl = "";
                 }
-                if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
+                if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                     object.actionUrl = message.actionUrl;
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.ExternalShare.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.ExternalShare.Source[message.source] : message.source;
-                if (message.duration != null && message.hasOwnProperty("duration"))
+                if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                     object.duration = message.duration;
-                if (message.actionFallbackUrl != null && message.hasOwnProperty("actionFallbackUrl"))
+                if (message.actionFallbackUrl != null && Object.hasOwnProperty.call(message, "actionFallbackUrl"))
                     object.actionFallbackUrl = message.actionFallbackUrl;
                 return object;
             };
@@ -1370,7 +1370,7 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.authorJid != null && message.hasOwnProperty("authorJid"))
+                if (message.authorJid != null && Object.hasOwnProperty.call(message, "authorJid"))
                     if (!$util.isString(message.authorJid))
                         return "authorJid: string expected";
                 return null;
@@ -1418,7 +1418,7 @@ $root.StatusAttributions = (function() {
                 var object = {};
                 if (options.defaults)
                     object.authorJid = "";
-                if (message.authorJid != null && message.hasOwnProperty("authorJid"))
+                if (message.authorJid != null && Object.hasOwnProperty.call(message, "authorJid"))
                     object.authorJid = message.authorJid;
                 return object;
             };
@@ -1672,22 +1672,22 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.authorName != null && message.hasOwnProperty("authorName"))
+                if (message.authorName != null && Object.hasOwnProperty.call(message, "authorName"))
                     if (!$util.isString(message.authorName))
                         return "authorName: string expected";
-                if (message.songId != null && message.hasOwnProperty("songId"))
+                if (message.songId != null && Object.hasOwnProperty.call(message, "songId"))
                     if (!$util.isString(message.songId))
                         return "songId: string expected";
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     if (!$util.isString(message.title))
                         return "title: string expected";
-                if (message.author != null && message.hasOwnProperty("author"))
+                if (message.author != null && Object.hasOwnProperty.call(message, "author"))
                     if (!$util.isString(message.author))
                         return "author: string expected";
-                if (message.artistAttribution != null && message.hasOwnProperty("artistAttribution"))
+                if (message.artistAttribution != null && Object.hasOwnProperty.call(message, "artistAttribution"))
                     if (!$util.isString(message.artistAttribution))
                         return "artistAttribution: string expected";
-                if (message.isExplicit != null && message.hasOwnProperty("isExplicit"))
+                if (message.isExplicit != null && Object.hasOwnProperty.call(message, "isExplicit"))
                     if (typeof message.isExplicit !== "boolean")
                         return "isExplicit: boolean expected";
                 return null;
@@ -1751,17 +1751,17 @@ $root.StatusAttributions = (function() {
                     object.artistAttribution = "";
                     object.isExplicit = false;
                 }
-                if (message.authorName != null && message.hasOwnProperty("authorName"))
+                if (message.authorName != null && Object.hasOwnProperty.call(message, "authorName"))
                     object.authorName = message.authorName;
-                if (message.songId != null && message.hasOwnProperty("songId"))
+                if (message.songId != null && Object.hasOwnProperty.call(message, "songId"))
                     object.songId = message.songId;
-                if (message.title != null && message.hasOwnProperty("title"))
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
-                if (message.author != null && message.hasOwnProperty("author"))
+                if (message.author != null && Object.hasOwnProperty.call(message, "author"))
                     object.author = message.author;
-                if (message.artistAttribution != null && message.hasOwnProperty("artistAttribution"))
+                if (message.artistAttribution != null && Object.hasOwnProperty.call(message, "artistAttribution"))
                     object.artistAttribution = message.artistAttribution;
-                if (message.isExplicit != null && message.hasOwnProperty("isExplicit"))
+                if (message.isExplicit != null && Object.hasOwnProperty.call(message, "isExplicit"))
                     object.isExplicit = message.isExplicit;
                 return object;
             };
@@ -1940,7 +1940,7 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     switch (message.source) {
                     default:
                         return "source: enum value expected";
@@ -2017,7 +2017,7 @@ $root.StatusAttributions = (function() {
                 var object = {};
                 if (options.defaults)
                     object.source = options.enums === String ? "UNKNOWN" : 0;
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.RLAttribution.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.RLAttribution.Source[message.source] : message.source;
                 return object;
             };
@@ -2229,7 +2229,7 @@ $root.StatusAttributions = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     switch (message.source) {
                     default:
                         return "source: enum value expected";
@@ -2240,7 +2240,7 @@ $root.StatusAttributions = (function() {
                     case 4:
                         break;
                     }
-                if (message.metadata != null && message.hasOwnProperty("metadata")) {
+                if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata")) {
                     var error = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify(message.metadata, long + 1);
                     if (error)
                         return "metadata." + error;
@@ -2323,9 +2323,9 @@ $root.StatusAttributions = (function() {
                     object.source = options.enums === String ? "UNKNOWN" : 0;
                     object.metadata = null;
                 }
-                if (message.source != null && message.hasOwnProperty("source"))
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.StatusReshare.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.StatusReshare.Source[message.source] : message.source;
-                if (message.metadata != null && message.hasOwnProperty("metadata"))
+                if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
                     object.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.toObject(message.metadata, options, q + 1);
                 return object;
             };
@@ -2546,16 +2546,16 @@ $root.StatusAttributions = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.duration != null && message.hasOwnProperty("duration"))
+                    if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                         if (!$util.isInteger(message.duration))
                             return "duration: integer expected";
-                    if (message.channelJid != null && message.hasOwnProperty("channelJid"))
+                    if (message.channelJid != null && Object.hasOwnProperty.call(message, "channelJid"))
                         if (!$util.isString(message.channelJid))
                             return "channelJid: string expected";
-                    if (message.channelMessageId != null && message.hasOwnProperty("channelMessageId"))
+                    if (message.channelMessageId != null && Object.hasOwnProperty.call(message, "channelMessageId"))
                         if (!$util.isInteger(message.channelMessageId))
                             return "channelMessageId: integer expected";
-                    if (message.hasMultipleReshares != null && message.hasOwnProperty("hasMultipleReshares"))
+                    if (message.hasMultipleReshares != null && Object.hasOwnProperty.call(message, "hasMultipleReshares"))
                         if (typeof message.hasMultipleReshares !== "boolean")
                             return "hasMultipleReshares: boolean expected";
                     return null;
@@ -2613,13 +2613,13 @@ $root.StatusAttributions = (function() {
                         object.channelMessageId = 0;
                         object.hasMultipleReshares = false;
                     }
-                    if (message.duration != null && message.hasOwnProperty("duration"))
+                    if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                         object.duration = message.duration;
-                    if (message.channelJid != null && message.hasOwnProperty("channelJid"))
+                    if (message.channelJid != null && Object.hasOwnProperty.call(message, "channelJid"))
                         object.channelJid = message.channelJid;
-                    if (message.channelMessageId != null && message.hasOwnProperty("channelMessageId"))
+                    if (message.channelMessageId != null && Object.hasOwnProperty.call(message, "channelMessageId"))
                         object.channelMessageId = message.channelMessageId;
-                    if (message.hasMultipleReshares != null && message.hasOwnProperty("hasMultipleReshares"))
+                    if (message.hasMultipleReshares != null && Object.hasOwnProperty.call(message, "hasMultipleReshares"))
                         object.hasMultipleReshares = message.hasMultipleReshares;
                     return object;
                 };

@@ -163,7 +163,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.draftMessage != null && message.hasOwnProperty("draftMessage")) {
+            if (message.draftMessage != null && Object.hasOwnProperty.call(message, "draftMessage")) {
                 var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.verify(message.draftMessage, long + 1);
                 if (error)
                     return "draftMessage." + error;
@@ -216,7 +216,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
             var object = {};
             if (options.defaults)
                 object.draftMessage = null;
-            if (message.draftMessage != null && message.hasOwnProperty("draftMessage"))
+            if (message.draftMessage != null && Object.hasOwnProperty.call(message, "draftMessage"))
                 object.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.toObject(message.draftMessage, options, q + 1);
             return object;
         };
@@ -452,23 +452,23 @@ $root.MdStorageChatRowOpaqueData = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.text != null && message.hasOwnProperty("text"))
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     if (!$util.isString(message.text))
                         return "text: string expected";
-                if (message.omittedUrl != null && message.hasOwnProperty("omittedUrl"))
+                if (message.omittedUrl != null && Object.hasOwnProperty.call(message, "omittedUrl"))
                     if (!$util.isString(message.omittedUrl))
                         return "omittedUrl: string expected";
-                if (message.ctwaContextLinkData != null && message.hasOwnProperty("ctwaContextLinkData")) {
+                if (message.ctwaContextLinkData != null && Object.hasOwnProperty.call(message, "ctwaContextLinkData")) {
                     var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.verify(message.ctwaContextLinkData, long + 1);
                     if (error)
                         return "ctwaContextLinkData." + error;
                 }
-                if (message.ctwaContext != null && message.hasOwnProperty("ctwaContext")) {
+                if (message.ctwaContext != null && Object.hasOwnProperty.call(message, "ctwaContext")) {
                     var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.verify(message.ctwaContext, long + 1);
                     if (error)
                         return "ctwaContext." + error;
                 }
-                if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                     if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                         return "timestamp: integer|Long expected";
                 return null;
@@ -546,15 +546,15 @@ $root.MdStorageChatRowOpaqueData = (function() {
                     } else
                         object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.text != null && message.hasOwnProperty("text"))
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     object.text = message.text;
-                if (message.omittedUrl != null && message.hasOwnProperty("omittedUrl"))
+                if (message.omittedUrl != null && Object.hasOwnProperty.call(message, "omittedUrl"))
                     object.omittedUrl = message.omittedUrl;
-                if (message.ctwaContextLinkData != null && message.hasOwnProperty("ctwaContextLinkData"))
+                if (message.ctwaContextLinkData != null && Object.hasOwnProperty.call(message, "ctwaContextLinkData"))
                     object.ctwaContextLinkData = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.toObject(message.ctwaContextLinkData, options, q + 1);
-                if (message.ctwaContext != null && message.hasOwnProperty("ctwaContext"))
+                if (message.ctwaContext != null && Object.hasOwnProperty.call(message, "ctwaContext"))
                     object.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.toObject(message.ctwaContext, options, q + 1);
-                if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
                     else if (typeof message.timestamp === "number")
@@ -900,34 +900,34 @@ $root.MdStorageChatRowOpaqueData = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.conversionSource != null && message.hasOwnProperty("conversionSource"))
+                    if (message.conversionSource != null && Object.hasOwnProperty.call(message, "conversionSource"))
                         if (!$util.isString(message.conversionSource))
                             return "conversionSource: string expected";
-                    if (message.conversionData != null && message.hasOwnProperty("conversionData"))
+                    if (message.conversionData != null && Object.hasOwnProperty.call(message, "conversionData"))
                         if (!(message.conversionData && typeof message.conversionData.length === "number" || $util.isString(message.conversionData)))
                             return "conversionData: buffer expected";
-                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                         if (!$util.isString(message.sourceUrl))
                             return "sourceUrl: string expected";
-                    if (message.sourceId != null && message.hasOwnProperty("sourceId"))
+                    if (message.sourceId != null && Object.hasOwnProperty.call(message, "sourceId"))
                         if (!$util.isString(message.sourceId))
                             return "sourceId: string expected";
-                    if (message.sourceType != null && message.hasOwnProperty("sourceType"))
+                    if (message.sourceType != null && Object.hasOwnProperty.call(message, "sourceType"))
                         if (!$util.isString(message.sourceType))
                             return "sourceType: string expected";
-                    if (message.title != null && message.hasOwnProperty("title"))
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                         if (!$util.isString(message.title))
                             return "title: string expected";
-                    if (message.description != null && message.hasOwnProperty("description"))
+                    if (message.description != null && Object.hasOwnProperty.call(message, "description"))
                         if (!$util.isString(message.description))
                             return "description: string expected";
-                    if (message.thumbnail != null && message.hasOwnProperty("thumbnail"))
+                    if (message.thumbnail != null && Object.hasOwnProperty.call(message, "thumbnail"))
                         if (!$util.isString(message.thumbnail))
                             return "thumbnail: string expected";
-                    if (message.thumbnailUrl != null && message.hasOwnProperty("thumbnailUrl"))
+                    if (message.thumbnailUrl != null && Object.hasOwnProperty.call(message, "thumbnailUrl"))
                         if (!$util.isString(message.thumbnailUrl))
                             return "thumbnailUrl: string expected";
-                    if (message.mediaType != null && message.hasOwnProperty("mediaType"))
+                    if (message.mediaType != null && Object.hasOwnProperty.call(message, "mediaType"))
                         switch (message.mediaType) {
                         default:
                             return "mediaType: enum value expected";
@@ -936,10 +936,10 @@ $root.MdStorageChatRowOpaqueData = (function() {
                         case 2:
                             break;
                         }
-                    if (message.mediaUrl != null && message.hasOwnProperty("mediaUrl"))
+                    if (message.mediaUrl != null && Object.hasOwnProperty.call(message, "mediaUrl"))
                         if (!$util.isString(message.mediaUrl))
                             return "mediaUrl: string expected";
-                    if (message.isSuspiciousLink != null && message.hasOwnProperty("isSuspiciousLink"))
+                    if (message.isSuspiciousLink != null && Object.hasOwnProperty.call(message, "isSuspiciousLink"))
                         if (typeof message.isSuspiciousLink !== "boolean")
                             return "isSuspiciousLink: boolean expected";
                     return null;
@@ -1048,29 +1048,29 @@ $root.MdStorageChatRowOpaqueData = (function() {
                         object.mediaUrl = "";
                         object.isSuspiciousLink = false;
                     }
-                    if (message.conversionSource != null && message.hasOwnProperty("conversionSource"))
+                    if (message.conversionSource != null && Object.hasOwnProperty.call(message, "conversionSource"))
                         object.conversionSource = message.conversionSource;
-                    if (message.conversionData != null && message.hasOwnProperty("conversionData"))
+                    if (message.conversionData != null && Object.hasOwnProperty.call(message, "conversionData"))
                         object.conversionData = options.bytes === String ? $util.base64.encode(message.conversionData, 0, message.conversionData.length) : options.bytes === Array ? Array.prototype.slice.call(message.conversionData) : message.conversionData;
-                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                         object.sourceUrl = message.sourceUrl;
-                    if (message.sourceId != null && message.hasOwnProperty("sourceId"))
+                    if (message.sourceId != null && Object.hasOwnProperty.call(message, "sourceId"))
                         object.sourceId = message.sourceId;
-                    if (message.sourceType != null && message.hasOwnProperty("sourceType"))
+                    if (message.sourceType != null && Object.hasOwnProperty.call(message, "sourceType"))
                         object.sourceType = message.sourceType;
-                    if (message.title != null && message.hasOwnProperty("title"))
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                         object.title = message.title;
-                    if (message.description != null && message.hasOwnProperty("description"))
+                    if (message.description != null && Object.hasOwnProperty.call(message, "description"))
                         object.description = message.description;
-                    if (message.thumbnail != null && message.hasOwnProperty("thumbnail"))
+                    if (message.thumbnail != null && Object.hasOwnProperty.call(message, "thumbnail"))
                         object.thumbnail = message.thumbnail;
-                    if (message.thumbnailUrl != null && message.hasOwnProperty("thumbnailUrl"))
+                    if (message.thumbnailUrl != null && Object.hasOwnProperty.call(message, "thumbnailUrl"))
                         object.thumbnailUrl = message.thumbnailUrl;
-                    if (message.mediaType != null && message.hasOwnProperty("mediaType"))
+                    if (message.mediaType != null && Object.hasOwnProperty.call(message, "mediaType"))
                         object.mediaType = options.enums === String ? $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.ContextInfoExternalAdReplyInfoMediaType[message.mediaType] === undefined ? message.mediaType : $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.ContextInfoExternalAdReplyInfoMediaType[message.mediaType] : message.mediaType;
-                    if (message.mediaUrl != null && message.hasOwnProperty("mediaUrl"))
+                    if (message.mediaUrl != null && Object.hasOwnProperty.call(message, "mediaUrl"))
                         object.mediaUrl = message.mediaUrl;
-                    if (message.isSuspiciousLink != null && message.hasOwnProperty("isSuspiciousLink"))
+                    if (message.isSuspiciousLink != null && Object.hasOwnProperty.call(message, "isSuspiciousLink"))
                         object.isSuspiciousLink = message.isSuspiciousLink;
                     return object;
                 };
@@ -1310,16 +1310,16 @@ $root.MdStorageChatRowOpaqueData = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.context != null && message.hasOwnProperty("context"))
+                    if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                         if (!$util.isString(message.context))
                             return "context: string expected";
-                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                         if (!$util.isString(message.sourceUrl))
                             return "sourceUrl: string expected";
-                    if (message.icebreaker != null && message.hasOwnProperty("icebreaker"))
+                    if (message.icebreaker != null && Object.hasOwnProperty.call(message, "icebreaker"))
                         if (!$util.isString(message.icebreaker))
                             return "icebreaker: string expected";
-                    if (message.phone != null && message.hasOwnProperty("phone"))
+                    if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
                         if (!$util.isString(message.phone))
                             return "phone: string expected";
                     return null;
@@ -1377,13 +1377,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                         object.icebreaker = "";
                         object.phone = "";
                     }
-                    if (message.context != null && message.hasOwnProperty("context"))
+                    if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                         object.context = message.context;
-                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
                         object.sourceUrl = message.sourceUrl;
-                    if (message.icebreaker != null && message.hasOwnProperty("icebreaker"))
+                    if (message.icebreaker != null && Object.hasOwnProperty.call(message, "icebreaker"))
                         object.icebreaker = message.icebreaker;
-                    if (message.phone != null && message.hasOwnProperty("phone"))
+                    if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
                         object.phone = message.phone;
                     return object;
                 };

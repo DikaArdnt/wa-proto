@@ -701,32 +701,32 @@ $root.Wa6 = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.username != null && message.hasOwnProperty("username"))
+            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                 if (!$util.isInteger(message.username) && !(message.username && $util.isInteger(message.username.low) && $util.isInteger(message.username.high)))
                     return "username: integer|Long expected";
-            if (message.passive != null && message.hasOwnProperty("passive"))
+            if (message.passive != null && Object.hasOwnProperty.call(message, "passive"))
                 if (typeof message.passive !== "boolean")
                     return "passive: boolean expected";
-            if (message.userAgent != null && message.hasOwnProperty("userAgent")) {
+            if (message.userAgent != null && Object.hasOwnProperty.call(message, "userAgent")) {
                 var error = $root.Wa6.ClientPayload.UserAgent.verify(message.userAgent, long + 1);
                 if (error)
                     return "userAgent." + error;
             }
-            if (message.webInfo != null && message.hasOwnProperty("webInfo")) {
+            if (message.webInfo != null && Object.hasOwnProperty.call(message, "webInfo")) {
                 var error = $root.Wa6.ClientPayload.WebInfo.verify(message.webInfo, long + 1);
                 if (error)
                     return "webInfo." + error;
             }
-            if (message.pushName != null && message.hasOwnProperty("pushName"))
+            if (message.pushName != null && Object.hasOwnProperty.call(message, "pushName"))
                 if (!$util.isString(message.pushName))
                     return "pushName: string expected";
-            if (message.sessionId != null && message.hasOwnProperty("sessionId"))
+            if (message.sessionId != null && Object.hasOwnProperty.call(message, "sessionId"))
                 if (!$util.isInteger(message.sessionId))
                     return "sessionId: integer expected";
-            if (message.shortConnect != null && message.hasOwnProperty("shortConnect"))
+            if (message.shortConnect != null && Object.hasOwnProperty.call(message, "shortConnect"))
                 if (typeof message.shortConnect !== "boolean")
                     return "shortConnect: boolean expected";
-            if (message.connectType != null && message.hasOwnProperty("connectType"))
+            if (message.connectType != null && Object.hasOwnProperty.call(message, "connectType"))
                 switch (message.connectType) {
                 default:
                     return "connectType: enum value expected";
@@ -747,7 +747,7 @@ $root.Wa6 = (function() {
                 case 112:
                     break;
                 }
-            if (message.connectReason != null && message.hasOwnProperty("connectReason"))
+            if (message.connectReason != null && Object.hasOwnProperty.call(message, "connectReason"))
                 switch (message.connectReason) {
                 default:
                     return "connectReason: enum value expected";
@@ -760,30 +760,30 @@ $root.Wa6 = (function() {
                 case 6:
                     break;
                 }
-            if (message.shards != null && message.hasOwnProperty("shards")) {
+            if (message.shards != null && Object.hasOwnProperty.call(message, "shards")) {
                 if (!Array.isArray(message.shards))
                     return "shards: array expected";
                 for (var i = 0; i < message.shards.length; ++i)
                     if (!$util.isInteger(message.shards[i]))
                         return "shards: integer[] expected";
             }
-            if (message.dnsSource != null && message.hasOwnProperty("dnsSource")) {
+            if (message.dnsSource != null && Object.hasOwnProperty.call(message, "dnsSource")) {
                 var error = $root.Wa6.ClientPayload.DNSSource.verify(message.dnsSource, long + 1);
                 if (error)
                     return "dnsSource." + error;
             }
-            if (message.connectAttemptCount != null && message.hasOwnProperty("connectAttemptCount"))
+            if (message.connectAttemptCount != null && Object.hasOwnProperty.call(message, "connectAttemptCount"))
                 if (!$util.isInteger(message.connectAttemptCount))
                     return "connectAttemptCount: integer expected";
-            if (message.device != null && message.hasOwnProperty("device"))
+            if (message.device != null && Object.hasOwnProperty.call(message, "device"))
                 if (!$util.isInteger(message.device))
                     return "device: integer expected";
-            if (message.devicePairingData != null && message.hasOwnProperty("devicePairingData")) {
+            if (message.devicePairingData != null && Object.hasOwnProperty.call(message, "devicePairingData")) {
                 var error = $root.Wa6.ClientPayload.DevicePairingRegistrationData.verify(message.devicePairingData, long + 1);
                 if (error)
                     return "devicePairingData." + error;
             }
-            if (message.product != null && message.hasOwnProperty("product"))
+            if (message.product != null && Object.hasOwnProperty.call(message, "product"))
                 switch (message.product) {
                 default:
                     return "product: enum value expected";
@@ -794,19 +794,19 @@ $root.Wa6 = (function() {
                 case 4:
                     break;
                 }
-            if (message.fbCat != null && message.hasOwnProperty("fbCat"))
+            if (message.fbCat != null && Object.hasOwnProperty.call(message, "fbCat"))
                 if (!(message.fbCat && typeof message.fbCat.length === "number" || $util.isString(message.fbCat)))
                     return "fbCat: buffer expected";
-            if (message.fbUserAgent != null && message.hasOwnProperty("fbUserAgent"))
+            if (message.fbUserAgent != null && Object.hasOwnProperty.call(message, "fbUserAgent"))
                 if (!(message.fbUserAgent && typeof message.fbUserAgent.length === "number" || $util.isString(message.fbUserAgent)))
                     return "fbUserAgent: buffer expected";
-            if (message.oc != null && message.hasOwnProperty("oc"))
+            if (message.oc != null && Object.hasOwnProperty.call(message, "oc"))
                 if (typeof message.oc !== "boolean")
                     return "oc: boolean expected";
-            if (message.lc != null && message.hasOwnProperty("lc"))
+            if (message.lc != null && Object.hasOwnProperty.call(message, "lc"))
                 if (!$util.isInteger(message.lc))
                     return "lc: integer expected";
-            if (message.iosAppExtension != null && message.hasOwnProperty("iosAppExtension"))
+            if (message.iosAppExtension != null && Object.hasOwnProperty.call(message, "iosAppExtension"))
                 switch (message.iosAppExtension) {
                 default:
                     return "iosAppExtension: enum value expected";
@@ -815,30 +815,30 @@ $root.Wa6 = (function() {
                 case 2:
                     break;
                 }
-            if (message.fbAppId != null && message.hasOwnProperty("fbAppId"))
+            if (message.fbAppId != null && Object.hasOwnProperty.call(message, "fbAppId"))
                 if (!$util.isInteger(message.fbAppId) && !(message.fbAppId && $util.isInteger(message.fbAppId.low) && $util.isInteger(message.fbAppId.high)))
                     return "fbAppId: integer|Long expected";
-            if (message.fbDeviceId != null && message.hasOwnProperty("fbDeviceId"))
+            if (message.fbDeviceId != null && Object.hasOwnProperty.call(message, "fbDeviceId"))
                 if (!(message.fbDeviceId && typeof message.fbDeviceId.length === "number" || $util.isString(message.fbDeviceId)))
                     return "fbDeviceId: buffer expected";
-            if (message.pull != null && message.hasOwnProperty("pull"))
+            if (message.pull != null && Object.hasOwnProperty.call(message, "pull"))
                 if (typeof message.pull !== "boolean")
                     return "pull: boolean expected";
-            if (message.paddingBytes != null && message.hasOwnProperty("paddingBytes"))
+            if (message.paddingBytes != null && Object.hasOwnProperty.call(message, "paddingBytes"))
                 if (!(message.paddingBytes && typeof message.paddingBytes.length === "number" || $util.isString(message.paddingBytes)))
                     return "paddingBytes: buffer expected";
-            if (message.yearClass != null && message.hasOwnProperty("yearClass"))
+            if (message.yearClass != null && Object.hasOwnProperty.call(message, "yearClass"))
                 if (!$util.isInteger(message.yearClass))
                     return "yearClass: integer expected";
-            if (message.memClass != null && message.hasOwnProperty("memClass"))
+            if (message.memClass != null && Object.hasOwnProperty.call(message, "memClass"))
                 if (!$util.isInteger(message.memClass))
                     return "memClass: integer expected";
-            if (message.interopData != null && message.hasOwnProperty("interopData")) {
+            if (message.interopData != null && Object.hasOwnProperty.call(message, "interopData")) {
                 var error = $root.Wa6.ClientPayload.InteropData.verify(message.interopData, long + 1);
                 if (error)
                     return "interopData." + error;
             }
-            if (message.trafficAnonymization != null && message.hasOwnProperty("trafficAnonymization"))
+            if (message.trafficAnonymization != null && Object.hasOwnProperty.call(message, "trafficAnonymization"))
                 switch (message.trafficAnonymization) {
                 default:
                     return "trafficAnonymization: enum value expected";
@@ -846,10 +846,10 @@ $root.Wa6 = (function() {
                 case 1:
                     break;
                 }
-            if (message.lidDbMigrated != null && message.hasOwnProperty("lidDbMigrated"))
+            if (message.lidDbMigrated != null && Object.hasOwnProperty.call(message, "lidDbMigrated"))
                 if (typeof message.lidDbMigrated !== "boolean")
                     return "lidDbMigrated: boolean expected";
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 switch (message.accountType) {
                 default:
                     return "accountType: enum value expected";
@@ -857,26 +857,26 @@ $root.Wa6 = (function() {
                 case 1:
                     break;
                 }
-            if (message.connectionSequenceInfo != null && message.hasOwnProperty("connectionSequenceInfo"))
+            if (message.connectionSequenceInfo != null && Object.hasOwnProperty.call(message, "connectionSequenceInfo"))
                 if (!$util.isInteger(message.connectionSequenceInfo))
                     return "connectionSequenceInfo: integer expected";
-            if (message.paaLink != null && message.hasOwnProperty("paaLink"))
+            if (message.paaLink != null && Object.hasOwnProperty.call(message, "paaLink"))
                 if (typeof message.paaLink !== "boolean")
                     return "paaLink: boolean expected";
-            if (message.preacksCount != null && message.hasOwnProperty("preacksCount"))
+            if (message.preacksCount != null && Object.hasOwnProperty.call(message, "preacksCount"))
                 if (!$util.isInteger(message.preacksCount))
                     return "preacksCount: integer expected";
-            if (message.processingQueueSize != null && message.hasOwnProperty("processingQueueSize"))
+            if (message.processingQueueSize != null && Object.hasOwnProperty.call(message, "processingQueueSize"))
                 if (!$util.isInteger(message.processingQueueSize))
                     return "processingQueueSize: integer expected";
-            if (message.pairedPeripherals != null && message.hasOwnProperty("pairedPeripherals")) {
+            if (message.pairedPeripherals != null && Object.hasOwnProperty.call(message, "pairedPeripherals")) {
                 if (!Array.isArray(message.pairedPeripherals))
                     return "pairedPeripherals: array expected";
                 for (var i = 0; i < message.pairedPeripherals.length; ++i)
                     if (!$util.isString(message.pairedPeripherals[i]))
                         return "pairedPeripherals: string[] expected";
             }
-            if (message.testIsolationId != null && message.hasOwnProperty("testIsolationId"))
+            if (message.testIsolationId != null && Object.hasOwnProperty.call(message, "testIsolationId"))
                 if (!(message.testIsolationId && typeof message.testIsolationId.length === "number" || $util.isString(message.testIsolationId)))
                     return "testIsolationId: buffer expected";
             return null;
@@ -1296,93 +1296,93 @@ $root.Wa6 = (function() {
                         object.testIsolationId = $util.newBuffer(object.testIsolationId);
                 }
             }
-            if (message.username != null && message.hasOwnProperty("username"))
+            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.username = typeof message.username === "number" ? BigInt(message.username) : $util.Long.fromBits(message.username.low >>> 0, message.username.high >>> 0, true).toBigInt();
                 else if (typeof message.username === "number")
                     object.username = options.longs === String ? String(message.username) : message.username;
                 else
                     object.username = options.longs === String ? $util.Long.prototype.toString.call(message.username) : options.longs === Number ? new $util.LongBits(message.username.low >>> 0, message.username.high >>> 0).toNumber(true) : message.username;
-            if (message.passive != null && message.hasOwnProperty("passive"))
+            if (message.passive != null && Object.hasOwnProperty.call(message, "passive"))
                 object.passive = message.passive;
-            if (message.userAgent != null && message.hasOwnProperty("userAgent"))
+            if (message.userAgent != null && Object.hasOwnProperty.call(message, "userAgent"))
                 object.userAgent = $root.Wa6.ClientPayload.UserAgent.toObject(message.userAgent, options, q + 1);
-            if (message.webInfo != null && message.hasOwnProperty("webInfo"))
+            if (message.webInfo != null && Object.hasOwnProperty.call(message, "webInfo"))
                 object.webInfo = $root.Wa6.ClientPayload.WebInfo.toObject(message.webInfo, options, q + 1);
-            if (message.pushName != null && message.hasOwnProperty("pushName"))
+            if (message.pushName != null && Object.hasOwnProperty.call(message, "pushName"))
                 object.pushName = message.pushName;
-            if (message.sessionId != null && message.hasOwnProperty("sessionId"))
+            if (message.sessionId != null && Object.hasOwnProperty.call(message, "sessionId"))
                 object.sessionId = message.sessionId;
-            if (message.shortConnect != null && message.hasOwnProperty("shortConnect"))
+            if (message.shortConnect != null && Object.hasOwnProperty.call(message, "shortConnect"))
                 object.shortConnect = message.shortConnect;
-            if (message.connectType != null && message.hasOwnProperty("connectType"))
+            if (message.connectType != null && Object.hasOwnProperty.call(message, "connectType"))
                 object.connectType = options.enums === String ? $root.Wa6.ClientPayload.ConnectType[message.connectType] === undefined ? message.connectType : $root.Wa6.ClientPayload.ConnectType[message.connectType] : message.connectType;
-            if (message.connectReason != null && message.hasOwnProperty("connectReason"))
+            if (message.connectReason != null && Object.hasOwnProperty.call(message, "connectReason"))
                 object.connectReason = options.enums === String ? $root.Wa6.ClientPayload.ConnectReason[message.connectReason] === undefined ? message.connectReason : $root.Wa6.ClientPayload.ConnectReason[message.connectReason] : message.connectReason;
             if (message.shards && message.shards.length) {
                 object.shards = [];
                 for (var j = 0; j < message.shards.length; ++j)
                     object.shards[j] = message.shards[j];
             }
-            if (message.dnsSource != null && message.hasOwnProperty("dnsSource"))
+            if (message.dnsSource != null && Object.hasOwnProperty.call(message, "dnsSource"))
                 object.dnsSource = $root.Wa6.ClientPayload.DNSSource.toObject(message.dnsSource, options, q + 1);
-            if (message.connectAttemptCount != null && message.hasOwnProperty("connectAttemptCount"))
+            if (message.connectAttemptCount != null && Object.hasOwnProperty.call(message, "connectAttemptCount"))
                 object.connectAttemptCount = message.connectAttemptCount;
-            if (message.device != null && message.hasOwnProperty("device"))
+            if (message.device != null && Object.hasOwnProperty.call(message, "device"))
                 object.device = message.device;
-            if (message.devicePairingData != null && message.hasOwnProperty("devicePairingData"))
+            if (message.devicePairingData != null && Object.hasOwnProperty.call(message, "devicePairingData"))
                 object.devicePairingData = $root.Wa6.ClientPayload.DevicePairingRegistrationData.toObject(message.devicePairingData, options, q + 1);
-            if (message.product != null && message.hasOwnProperty("product"))
+            if (message.product != null && Object.hasOwnProperty.call(message, "product"))
                 object.product = options.enums === String ? $root.Wa6.ClientPayload.Product[message.product] === undefined ? message.product : $root.Wa6.ClientPayload.Product[message.product] : message.product;
-            if (message.fbCat != null && message.hasOwnProperty("fbCat"))
+            if (message.fbCat != null && Object.hasOwnProperty.call(message, "fbCat"))
                 object.fbCat = options.bytes === String ? $util.base64.encode(message.fbCat, 0, message.fbCat.length) : options.bytes === Array ? Array.prototype.slice.call(message.fbCat) : message.fbCat;
-            if (message.fbUserAgent != null && message.hasOwnProperty("fbUserAgent"))
+            if (message.fbUserAgent != null && Object.hasOwnProperty.call(message, "fbUserAgent"))
                 object.fbUserAgent = options.bytes === String ? $util.base64.encode(message.fbUserAgent, 0, message.fbUserAgent.length) : options.bytes === Array ? Array.prototype.slice.call(message.fbUserAgent) : message.fbUserAgent;
-            if (message.oc != null && message.hasOwnProperty("oc"))
+            if (message.oc != null && Object.hasOwnProperty.call(message, "oc"))
                 object.oc = message.oc;
-            if (message.lc != null && message.hasOwnProperty("lc"))
+            if (message.lc != null && Object.hasOwnProperty.call(message, "lc"))
                 object.lc = message.lc;
-            if (message.iosAppExtension != null && message.hasOwnProperty("iosAppExtension"))
+            if (message.iosAppExtension != null && Object.hasOwnProperty.call(message, "iosAppExtension"))
                 object.iosAppExtension = options.enums === String ? $root.Wa6.ClientPayload.IOSAppExtension[message.iosAppExtension] === undefined ? message.iosAppExtension : $root.Wa6.ClientPayload.IOSAppExtension[message.iosAppExtension] : message.iosAppExtension;
-            if (message.fbAppId != null && message.hasOwnProperty("fbAppId"))
+            if (message.fbAppId != null && Object.hasOwnProperty.call(message, "fbAppId"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.fbAppId = typeof message.fbAppId === "number" ? BigInt(message.fbAppId) : $util.Long.fromBits(message.fbAppId.low >>> 0, message.fbAppId.high >>> 0, true).toBigInt();
                 else if (typeof message.fbAppId === "number")
                     object.fbAppId = options.longs === String ? String(message.fbAppId) : message.fbAppId;
                 else
                     object.fbAppId = options.longs === String ? $util.Long.prototype.toString.call(message.fbAppId) : options.longs === Number ? new $util.LongBits(message.fbAppId.low >>> 0, message.fbAppId.high >>> 0).toNumber(true) : message.fbAppId;
-            if (message.fbDeviceId != null && message.hasOwnProperty("fbDeviceId"))
+            if (message.fbDeviceId != null && Object.hasOwnProperty.call(message, "fbDeviceId"))
                 object.fbDeviceId = options.bytes === String ? $util.base64.encode(message.fbDeviceId, 0, message.fbDeviceId.length) : options.bytes === Array ? Array.prototype.slice.call(message.fbDeviceId) : message.fbDeviceId;
-            if (message.pull != null && message.hasOwnProperty("pull"))
+            if (message.pull != null && Object.hasOwnProperty.call(message, "pull"))
                 object.pull = message.pull;
-            if (message.paddingBytes != null && message.hasOwnProperty("paddingBytes"))
+            if (message.paddingBytes != null && Object.hasOwnProperty.call(message, "paddingBytes"))
                 object.paddingBytes = options.bytes === String ? $util.base64.encode(message.paddingBytes, 0, message.paddingBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.paddingBytes) : message.paddingBytes;
-            if (message.yearClass != null && message.hasOwnProperty("yearClass"))
+            if (message.yearClass != null && Object.hasOwnProperty.call(message, "yearClass"))
                 object.yearClass = message.yearClass;
-            if (message.memClass != null && message.hasOwnProperty("memClass"))
+            if (message.memClass != null && Object.hasOwnProperty.call(message, "memClass"))
                 object.memClass = message.memClass;
-            if (message.interopData != null && message.hasOwnProperty("interopData"))
+            if (message.interopData != null && Object.hasOwnProperty.call(message, "interopData"))
                 object.interopData = $root.Wa6.ClientPayload.InteropData.toObject(message.interopData, options, q + 1);
-            if (message.trafficAnonymization != null && message.hasOwnProperty("trafficAnonymization"))
+            if (message.trafficAnonymization != null && Object.hasOwnProperty.call(message, "trafficAnonymization"))
                 object.trafficAnonymization = options.enums === String ? $root.Wa6.ClientPayload.TrafficAnonymization[message.trafficAnonymization] === undefined ? message.trafficAnonymization : $root.Wa6.ClientPayload.TrafficAnonymization[message.trafficAnonymization] : message.trafficAnonymization;
-            if (message.lidDbMigrated != null && message.hasOwnProperty("lidDbMigrated"))
+            if (message.lidDbMigrated != null && Object.hasOwnProperty.call(message, "lidDbMigrated"))
                 object.lidDbMigrated = message.lidDbMigrated;
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 object.accountType = options.enums === String ? $root.Wa6.ClientPayload.AccountType[message.accountType] === undefined ? message.accountType : $root.Wa6.ClientPayload.AccountType[message.accountType] : message.accountType;
-            if (message.connectionSequenceInfo != null && message.hasOwnProperty("connectionSequenceInfo"))
+            if (message.connectionSequenceInfo != null && Object.hasOwnProperty.call(message, "connectionSequenceInfo"))
                 object.connectionSequenceInfo = message.connectionSequenceInfo;
-            if (message.paaLink != null && message.hasOwnProperty("paaLink"))
+            if (message.paaLink != null && Object.hasOwnProperty.call(message, "paaLink"))
                 object.paaLink = message.paaLink;
-            if (message.preacksCount != null && message.hasOwnProperty("preacksCount"))
+            if (message.preacksCount != null && Object.hasOwnProperty.call(message, "preacksCount"))
                 object.preacksCount = message.preacksCount;
-            if (message.processingQueueSize != null && message.hasOwnProperty("processingQueueSize"))
+            if (message.processingQueueSize != null && Object.hasOwnProperty.call(message, "processingQueueSize"))
                 object.processingQueueSize = message.processingQueueSize;
             if (message.pairedPeripherals && message.pairedPeripherals.length) {
                 object.pairedPeripherals = [];
                 for (var j = 0; j < message.pairedPeripherals.length; ++j)
                     object.pairedPeripherals[j] = message.pairedPeripherals[j];
             }
-            if (message.testIsolationId != null && message.hasOwnProperty("testIsolationId"))
+            if (message.testIsolationId != null && Object.hasOwnProperty.call(message, "testIsolationId"))
                 object.testIsolationId = options.bytes === String ? $util.base64.encode(message.testIsolationId, 0, message.testIsolationId.length) : options.bytes === Array ? Array.prototype.slice.call(message.testIsolationId) : message.testIsolationId;
             return object;
         };
@@ -1651,7 +1651,7 @@ $root.Wa6 = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.dnsMethod != null && message.hasOwnProperty("dnsMethod"))
+                if (message.dnsMethod != null && Object.hasOwnProperty.call(message, "dnsMethod"))
                     switch (message.dnsMethod) {
                     default:
                         return "dnsMethod: enum value expected";
@@ -1665,7 +1665,7 @@ $root.Wa6 = (function() {
                     case 7:
                         break;
                     }
-                if (message.appCached != null && message.hasOwnProperty("appCached"))
+                if (message.appCached != null && Object.hasOwnProperty.call(message, "appCached"))
                     if (typeof message.appCached !== "boolean")
                         return "appCached: boolean expected";
                 return null;
@@ -1755,9 +1755,9 @@ $root.Wa6 = (function() {
                     object.dnsMethod = options.enums === String ? "SYSTEM" : 0;
                     object.appCached = false;
                 }
-                if (message.dnsMethod != null && message.hasOwnProperty("dnsMethod"))
+                if (message.dnsMethod != null && Object.hasOwnProperty.call(message, "dnsMethod"))
                     object.dnsMethod = options.enums === String ? $root.Wa6.ClientPayload.DNSSource.DNSResolutionMethod[message.dnsMethod] === undefined ? message.dnsMethod : $root.Wa6.ClientPayload.DNSSource.DNSResolutionMethod[message.dnsMethod] : message.dnsMethod;
-                if (message.appCached != null && message.hasOwnProperty("appCached"))
+                if (message.appCached != null && Object.hasOwnProperty.call(message, "appCached"))
                     object.appCached = message.appCached;
                 return object;
             };
@@ -2067,28 +2067,28 @@ $root.Wa6 = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.eRegid != null && message.hasOwnProperty("eRegid"))
+                if (message.eRegid != null && Object.hasOwnProperty.call(message, "eRegid"))
                     if (!(message.eRegid && typeof message.eRegid.length === "number" || $util.isString(message.eRegid)))
                         return "eRegid: buffer expected";
-                if (message.eKeytype != null && message.hasOwnProperty("eKeytype"))
+                if (message.eKeytype != null && Object.hasOwnProperty.call(message, "eKeytype"))
                     if (!(message.eKeytype && typeof message.eKeytype.length === "number" || $util.isString(message.eKeytype)))
                         return "eKeytype: buffer expected";
-                if (message.eIdent != null && message.hasOwnProperty("eIdent"))
+                if (message.eIdent != null && Object.hasOwnProperty.call(message, "eIdent"))
                     if (!(message.eIdent && typeof message.eIdent.length === "number" || $util.isString(message.eIdent)))
                         return "eIdent: buffer expected";
-                if (message.eSkeyId != null && message.hasOwnProperty("eSkeyId"))
+                if (message.eSkeyId != null && Object.hasOwnProperty.call(message, "eSkeyId"))
                     if (!(message.eSkeyId && typeof message.eSkeyId.length === "number" || $util.isString(message.eSkeyId)))
                         return "eSkeyId: buffer expected";
-                if (message.eSkeyVal != null && message.hasOwnProperty("eSkeyVal"))
+                if (message.eSkeyVal != null && Object.hasOwnProperty.call(message, "eSkeyVal"))
                     if (!(message.eSkeyVal && typeof message.eSkeyVal.length === "number" || $util.isString(message.eSkeyVal)))
                         return "eSkeyVal: buffer expected";
-                if (message.eSkeySig != null && message.hasOwnProperty("eSkeySig"))
+                if (message.eSkeySig != null && Object.hasOwnProperty.call(message, "eSkeySig"))
                     if (!(message.eSkeySig && typeof message.eSkeySig.length === "number" || $util.isString(message.eSkeySig)))
                         return "eSkeySig: buffer expected";
-                if (message.buildHash != null && message.hasOwnProperty("buildHash"))
+                if (message.buildHash != null && Object.hasOwnProperty.call(message, "buildHash"))
                     if (!(message.buildHash && typeof message.buildHash.length === "number" || $util.isString(message.buildHash)))
                         return "buildHash: buffer expected";
-                if (message.deviceProps != null && message.hasOwnProperty("deviceProps"))
+                if (message.deviceProps != null && Object.hasOwnProperty.call(message, "deviceProps"))
                     if (!(message.deviceProps && typeof message.deviceProps.length === "number" || $util.isString(message.deviceProps)))
                         return "deviceProps: buffer expected";
                 return null;
@@ -2230,21 +2230,21 @@ $root.Wa6 = (function() {
                             object.deviceProps = $util.newBuffer(object.deviceProps);
                     }
                 }
-                if (message.eRegid != null && message.hasOwnProperty("eRegid"))
+                if (message.eRegid != null && Object.hasOwnProperty.call(message, "eRegid"))
                     object.eRegid = options.bytes === String ? $util.base64.encode(message.eRegid, 0, message.eRegid.length) : options.bytes === Array ? Array.prototype.slice.call(message.eRegid) : message.eRegid;
-                if (message.eKeytype != null && message.hasOwnProperty("eKeytype"))
+                if (message.eKeytype != null && Object.hasOwnProperty.call(message, "eKeytype"))
                     object.eKeytype = options.bytes === String ? $util.base64.encode(message.eKeytype, 0, message.eKeytype.length) : options.bytes === Array ? Array.prototype.slice.call(message.eKeytype) : message.eKeytype;
-                if (message.eIdent != null && message.hasOwnProperty("eIdent"))
+                if (message.eIdent != null && Object.hasOwnProperty.call(message, "eIdent"))
                     object.eIdent = options.bytes === String ? $util.base64.encode(message.eIdent, 0, message.eIdent.length) : options.bytes === Array ? Array.prototype.slice.call(message.eIdent) : message.eIdent;
-                if (message.eSkeyId != null && message.hasOwnProperty("eSkeyId"))
+                if (message.eSkeyId != null && Object.hasOwnProperty.call(message, "eSkeyId"))
                     object.eSkeyId = options.bytes === String ? $util.base64.encode(message.eSkeyId, 0, message.eSkeyId.length) : options.bytes === Array ? Array.prototype.slice.call(message.eSkeyId) : message.eSkeyId;
-                if (message.eSkeyVal != null && message.hasOwnProperty("eSkeyVal"))
+                if (message.eSkeyVal != null && Object.hasOwnProperty.call(message, "eSkeyVal"))
                     object.eSkeyVal = options.bytes === String ? $util.base64.encode(message.eSkeyVal, 0, message.eSkeyVal.length) : options.bytes === Array ? Array.prototype.slice.call(message.eSkeyVal) : message.eSkeyVal;
-                if (message.eSkeySig != null && message.hasOwnProperty("eSkeySig"))
+                if (message.eSkeySig != null && Object.hasOwnProperty.call(message, "eSkeySig"))
                     object.eSkeySig = options.bytes === String ? $util.base64.encode(message.eSkeySig, 0, message.eSkeySig.length) : options.bytes === Array ? Array.prototype.slice.call(message.eSkeySig) : message.eSkeySig;
-                if (message.buildHash != null && message.hasOwnProperty("buildHash"))
+                if (message.buildHash != null && Object.hasOwnProperty.call(message, "buildHash"))
                     object.buildHash = options.bytes === String ? $util.base64.encode(message.buildHash, 0, message.buildHash.length) : options.bytes === Array ? Array.prototype.slice.call(message.buildHash) : message.buildHash;
-                if (message.deviceProps != null && message.hasOwnProperty("deviceProps"))
+                if (message.deviceProps != null && Object.hasOwnProperty.call(message, "deviceProps"))
                     object.deviceProps = options.bytes === String ? $util.base64.encode(message.deviceProps, 0, message.deviceProps.length) : options.bytes === Array ? Array.prototype.slice.call(message.deviceProps) : message.deviceProps;
                 return object;
             };
@@ -2469,13 +2469,13 @@ $root.Wa6 = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.accountId != null && message.hasOwnProperty("accountId"))
+                if (message.accountId != null && Object.hasOwnProperty.call(message, "accountId"))
                     if (!$util.isInteger(message.accountId) && !(message.accountId && $util.isInteger(message.accountId.low) && $util.isInteger(message.accountId.high)))
                         return "accountId: integer|Long expected";
-                if (message.token != null && message.hasOwnProperty("token"))
+                if (message.token != null && Object.hasOwnProperty.call(message, "token"))
                     if (!(message.token && typeof message.token.length === "number" || $util.isString(message.token)))
                         return "token: buffer expected";
-                if (message.enableReadReceipts != null && message.hasOwnProperty("enableReadReceipts"))
+                if (message.enableReadReceipts != null && Object.hasOwnProperty.call(message, "enableReadReceipts"))
                     if (typeof message.enableReadReceipts !== "boolean")
                         return "enableReadReceipts: boolean expected";
                 return null;
@@ -2550,16 +2550,16 @@ $root.Wa6 = (function() {
                     }
                     object.enableReadReceipts = false;
                 }
-                if (message.accountId != null && message.hasOwnProperty("accountId"))
+                if (message.accountId != null && Object.hasOwnProperty.call(message, "accountId"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.accountId = typeof message.accountId === "number" ? BigInt(message.accountId) : $util.Long.fromBits(message.accountId.low >>> 0, message.accountId.high >>> 0, true).toBigInt();
                     else if (typeof message.accountId === "number")
                         object.accountId = options.longs === String ? String(message.accountId) : message.accountId;
                     else
                         object.accountId = options.longs === String ? $util.Long.prototype.toString.call(message.accountId) : options.longs === Number ? new $util.LongBits(message.accountId.low >>> 0, message.accountId.high >>> 0).toNumber(true) : message.accountId;
-                if (message.token != null && message.hasOwnProperty("token"))
+                if (message.token != null && Object.hasOwnProperty.call(message, "token"))
                     object.token = options.bytes === String ? $util.base64.encode(message.token, 0, message.token.length) : options.bytes === Array ? Array.prototype.slice.call(message.token) : message.token;
-                if (message.enableReadReceipts != null && message.hasOwnProperty("enableReadReceipts"))
+                if (message.enableReadReceipts != null && Object.hasOwnProperty.call(message, "enableReadReceipts"))
                     object.enableReadReceipts = message.enableReadReceipts;
                 return object;
             };
@@ -3012,7 +3012,7 @@ $root.Wa6 = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.platform != null && message.hasOwnProperty("platform"))
+                if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
                     switch (message.platform) {
                     default:
                         return "platform: enum value expected";
@@ -3056,33 +3056,33 @@ $root.Wa6 = (function() {
                     case 37:
                         break;
                     }
-                if (message.appVersion != null && message.hasOwnProperty("appVersion")) {
+                if (message.appVersion != null && Object.hasOwnProperty.call(message, "appVersion")) {
                     var error = $root.Wa6.ClientPayload.UserAgent.AppVersion.verify(message.appVersion, long + 1);
                     if (error)
                         return "appVersion." + error;
                 }
-                if (message.mcc != null && message.hasOwnProperty("mcc"))
+                if (message.mcc != null && Object.hasOwnProperty.call(message, "mcc"))
                     if (!$util.isString(message.mcc))
                         return "mcc: string expected";
-                if (message.mnc != null && message.hasOwnProperty("mnc"))
+                if (message.mnc != null && Object.hasOwnProperty.call(message, "mnc"))
                     if (!$util.isString(message.mnc))
                         return "mnc: string expected";
-                if (message.osVersion != null && message.hasOwnProperty("osVersion"))
+                if (message.osVersion != null && Object.hasOwnProperty.call(message, "osVersion"))
                     if (!$util.isString(message.osVersion))
                         return "osVersion: string expected";
-                if (message.manufacturer != null && message.hasOwnProperty("manufacturer"))
+                if (message.manufacturer != null && Object.hasOwnProperty.call(message, "manufacturer"))
                     if (!$util.isString(message.manufacturer))
                         return "manufacturer: string expected";
-                if (message.device != null && message.hasOwnProperty("device"))
+                if (message.device != null && Object.hasOwnProperty.call(message, "device"))
                     if (!$util.isString(message.device))
                         return "device: string expected";
-                if (message.osBuildNumber != null && message.hasOwnProperty("osBuildNumber"))
+                if (message.osBuildNumber != null && Object.hasOwnProperty.call(message, "osBuildNumber"))
                     if (!$util.isString(message.osBuildNumber))
                         return "osBuildNumber: string expected";
-                if (message.phoneId != null && message.hasOwnProperty("phoneId"))
+                if (message.phoneId != null && Object.hasOwnProperty.call(message, "phoneId"))
                     if (!$util.isString(message.phoneId))
                         return "phoneId: string expected";
-                if (message.releaseChannel != null && message.hasOwnProperty("releaseChannel"))
+                if (message.releaseChannel != null && Object.hasOwnProperty.call(message, "releaseChannel"))
                     switch (message.releaseChannel) {
                     default:
                         return "releaseChannel: enum value expected";
@@ -3092,19 +3092,19 @@ $root.Wa6 = (function() {
                     case 3:
                         break;
                     }
-                if (message.localeLanguageIso6391 != null && message.hasOwnProperty("localeLanguageIso6391"))
+                if (message.localeLanguageIso6391 != null && Object.hasOwnProperty.call(message, "localeLanguageIso6391"))
                     if (!$util.isString(message.localeLanguageIso6391))
                         return "localeLanguageIso6391: string expected";
-                if (message.localeCountryIso31661Alpha2 != null && message.hasOwnProperty("localeCountryIso31661Alpha2"))
+                if (message.localeCountryIso31661Alpha2 != null && Object.hasOwnProperty.call(message, "localeCountryIso31661Alpha2"))
                     if (!$util.isString(message.localeCountryIso31661Alpha2))
                         return "localeCountryIso31661Alpha2: string expected";
-                if (message.deviceBoard != null && message.hasOwnProperty("deviceBoard"))
+                if (message.deviceBoard != null && Object.hasOwnProperty.call(message, "deviceBoard"))
                     if (!$util.isString(message.deviceBoard))
                         return "deviceBoard: string expected";
-                if (message.deviceExpId != null && message.hasOwnProperty("deviceExpId"))
+                if (message.deviceExpId != null && Object.hasOwnProperty.call(message, "deviceExpId"))
                     if (!$util.isString(message.deviceExpId))
                         return "deviceExpId: string expected";
-                if (message.deviceType != null && message.hasOwnProperty("deviceType"))
+                if (message.deviceType != null && Object.hasOwnProperty.call(message, "deviceType"))
                     switch (message.deviceType) {
                     default:
                         return "deviceType: enum value expected";
@@ -3115,10 +3115,10 @@ $root.Wa6 = (function() {
                     case 4:
                         break;
                     }
-                if (message.deviceModelType != null && message.hasOwnProperty("deviceModelType"))
+                if (message.deviceModelType != null && Object.hasOwnProperty.call(message, "deviceModelType"))
                     if (!$util.isString(message.deviceModelType))
                         return "deviceModelType: string expected";
-                if (message.distributionChannel != null && message.hasOwnProperty("distributionChannel"))
+                if (message.distributionChannel != null && Object.hasOwnProperty.call(message, "distributionChannel"))
                     switch (message.distributionChannel) {
                     default:
                         return "distributionChannel: enum value expected";
@@ -3453,39 +3453,39 @@ $root.Wa6 = (function() {
                     object.deviceModelType = "";
                     object.distributionChannel = options.enums === String ? "APPSTORE" : 0;
                 }
-                if (message.platform != null && message.hasOwnProperty("platform"))
+                if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
                     object.platform = options.enums === String ? $root.Wa6.ClientPayload.UserAgent.Platform[message.platform] === undefined ? message.platform : $root.Wa6.ClientPayload.UserAgent.Platform[message.platform] : message.platform;
-                if (message.appVersion != null && message.hasOwnProperty("appVersion"))
+                if (message.appVersion != null && Object.hasOwnProperty.call(message, "appVersion"))
                     object.appVersion = $root.Wa6.ClientPayload.UserAgent.AppVersion.toObject(message.appVersion, options, q + 1);
-                if (message.mcc != null && message.hasOwnProperty("mcc"))
+                if (message.mcc != null && Object.hasOwnProperty.call(message, "mcc"))
                     object.mcc = message.mcc;
-                if (message.mnc != null && message.hasOwnProperty("mnc"))
+                if (message.mnc != null && Object.hasOwnProperty.call(message, "mnc"))
                     object.mnc = message.mnc;
-                if (message.osVersion != null && message.hasOwnProperty("osVersion"))
+                if (message.osVersion != null && Object.hasOwnProperty.call(message, "osVersion"))
                     object.osVersion = message.osVersion;
-                if (message.manufacturer != null && message.hasOwnProperty("manufacturer"))
+                if (message.manufacturer != null && Object.hasOwnProperty.call(message, "manufacturer"))
                     object.manufacturer = message.manufacturer;
-                if (message.device != null && message.hasOwnProperty("device"))
+                if (message.device != null && Object.hasOwnProperty.call(message, "device"))
                     object.device = message.device;
-                if (message.osBuildNumber != null && message.hasOwnProperty("osBuildNumber"))
+                if (message.osBuildNumber != null && Object.hasOwnProperty.call(message, "osBuildNumber"))
                     object.osBuildNumber = message.osBuildNumber;
-                if (message.phoneId != null && message.hasOwnProperty("phoneId"))
+                if (message.phoneId != null && Object.hasOwnProperty.call(message, "phoneId"))
                     object.phoneId = message.phoneId;
-                if (message.releaseChannel != null && message.hasOwnProperty("releaseChannel"))
+                if (message.releaseChannel != null && Object.hasOwnProperty.call(message, "releaseChannel"))
                     object.releaseChannel = options.enums === String ? $root.Wa6.ClientPayload.UserAgent.ReleaseChannel[message.releaseChannel] === undefined ? message.releaseChannel : $root.Wa6.ClientPayload.UserAgent.ReleaseChannel[message.releaseChannel] : message.releaseChannel;
-                if (message.localeLanguageIso6391 != null && message.hasOwnProperty("localeLanguageIso6391"))
+                if (message.localeLanguageIso6391 != null && Object.hasOwnProperty.call(message, "localeLanguageIso6391"))
                     object.localeLanguageIso6391 = message.localeLanguageIso6391;
-                if (message.localeCountryIso31661Alpha2 != null && message.hasOwnProperty("localeCountryIso31661Alpha2"))
+                if (message.localeCountryIso31661Alpha2 != null && Object.hasOwnProperty.call(message, "localeCountryIso31661Alpha2"))
                     object.localeCountryIso31661Alpha2 = message.localeCountryIso31661Alpha2;
-                if (message.deviceBoard != null && message.hasOwnProperty("deviceBoard"))
+                if (message.deviceBoard != null && Object.hasOwnProperty.call(message, "deviceBoard"))
                     object.deviceBoard = message.deviceBoard;
-                if (message.deviceExpId != null && message.hasOwnProperty("deviceExpId"))
+                if (message.deviceExpId != null && Object.hasOwnProperty.call(message, "deviceExpId"))
                     object.deviceExpId = message.deviceExpId;
-                if (message.deviceType != null && message.hasOwnProperty("deviceType"))
+                if (message.deviceType != null && Object.hasOwnProperty.call(message, "deviceType"))
                     object.deviceType = options.enums === String ? $root.Wa6.ClientPayload.UserAgent.DeviceType[message.deviceType] === undefined ? message.deviceType : $root.Wa6.ClientPayload.UserAgent.DeviceType[message.deviceType] : message.deviceType;
-                if (message.deviceModelType != null && message.hasOwnProperty("deviceModelType"))
+                if (message.deviceModelType != null && Object.hasOwnProperty.call(message, "deviceModelType"))
                     object.deviceModelType = message.deviceModelType;
-                if (message.distributionChannel != null && message.hasOwnProperty("distributionChannel"))
+                if (message.distributionChannel != null && Object.hasOwnProperty.call(message, "distributionChannel"))
                     object.distributionChannel = options.enums === String ? $root.Wa6.ClientPayload.UserAgent.DistributionChannel[message.distributionChannel] === undefined ? message.distributionChannel : $root.Wa6.ClientPayload.UserAgent.DistributionChannel[message.distributionChannel] : message.distributionChannel;
                 return object;
             };
@@ -3721,19 +3721,19 @@ $root.Wa6 = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.primary != null && message.hasOwnProperty("primary"))
+                    if (message.primary != null && Object.hasOwnProperty.call(message, "primary"))
                         if (!$util.isInteger(message.primary))
                             return "primary: integer expected";
-                    if (message.secondary != null && message.hasOwnProperty("secondary"))
+                    if (message.secondary != null && Object.hasOwnProperty.call(message, "secondary"))
                         if (!$util.isInteger(message.secondary))
                             return "secondary: integer expected";
-                    if (message.tertiary != null && message.hasOwnProperty("tertiary"))
+                    if (message.tertiary != null && Object.hasOwnProperty.call(message, "tertiary"))
                         if (!$util.isInteger(message.tertiary))
                             return "tertiary: integer expected";
-                    if (message.quaternary != null && message.hasOwnProperty("quaternary"))
+                    if (message.quaternary != null && Object.hasOwnProperty.call(message, "quaternary"))
                         if (!$util.isInteger(message.quaternary))
                             return "quaternary: integer expected";
-                    if (message.quinary != null && message.hasOwnProperty("quinary"))
+                    if (message.quinary != null && Object.hasOwnProperty.call(message, "quinary"))
                         if (!$util.isInteger(message.quinary))
                             return "quinary: integer expected";
                     return null;
@@ -3794,15 +3794,15 @@ $root.Wa6 = (function() {
                         object.quaternary = 0;
                         object.quinary = 0;
                     }
-                    if (message.primary != null && message.hasOwnProperty("primary"))
+                    if (message.primary != null && Object.hasOwnProperty.call(message, "primary"))
                         object.primary = message.primary;
-                    if (message.secondary != null && message.hasOwnProperty("secondary"))
+                    if (message.secondary != null && Object.hasOwnProperty.call(message, "secondary"))
                         object.secondary = message.secondary;
-                    if (message.tertiary != null && message.hasOwnProperty("tertiary"))
+                    if (message.tertiary != null && Object.hasOwnProperty.call(message, "tertiary"))
                         object.tertiary = message.tertiary;
-                    if (message.quaternary != null && message.hasOwnProperty("quaternary"))
+                    if (message.quaternary != null && Object.hasOwnProperty.call(message, "quaternary"))
                         object.quaternary = message.quaternary;
-                    if (message.quinary != null && message.hasOwnProperty("quinary"))
+                    if (message.quinary != null && Object.hasOwnProperty.call(message, "quinary"))
                         object.quinary = message.quinary;
                     return object;
                 };
@@ -4201,18 +4201,18 @@ $root.Wa6 = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.refToken != null && message.hasOwnProperty("refToken"))
+                if (message.refToken != null && Object.hasOwnProperty.call(message, "refToken"))
                     if (!$util.isString(message.refToken))
                         return "refToken: string expected";
-                if (message.version != null && message.hasOwnProperty("version"))
+                if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                     if (!$util.isString(message.version))
                         return "version: string expected";
-                if (message.webdPayload != null && message.hasOwnProperty("webdPayload")) {
+                if (message.webdPayload != null && Object.hasOwnProperty.call(message, "webdPayload")) {
                     var error = $root.Wa6.ClientPayload.WebInfo.WebdPayload.verify(message.webdPayload, long + 1);
                     if (error)
                         return "webdPayload." + error;
                 }
-                if (message.webSubPlatform != null && message.hasOwnProperty("webSubPlatform"))
+                if (message.webSubPlatform != null && Object.hasOwnProperty.call(message, "webSubPlatform"))
                     switch (message.webSubPlatform) {
                     default:
                         return "webSubPlatform: enum value expected";
@@ -4224,10 +4224,10 @@ $root.Wa6 = (function() {
                     case 5:
                         break;
                     }
-                if (message.browser != null && message.hasOwnProperty("browser"))
+                if (message.browser != null && Object.hasOwnProperty.call(message, "browser"))
                     if (!$util.isString(message.browser))
                         return "browser: string expected";
-                if (message.browserVersion != null && message.hasOwnProperty("browserVersion"))
+                if (message.browserVersion != null && Object.hasOwnProperty.call(message, "browserVersion"))
                     if (!$util.isString(message.browserVersion))
                         return "browserVersion: string expected";
                 return null;
@@ -4324,17 +4324,17 @@ $root.Wa6 = (function() {
                     object.browser = "";
                     object.browserVersion = "";
                 }
-                if (message.refToken != null && message.hasOwnProperty("refToken"))
+                if (message.refToken != null && Object.hasOwnProperty.call(message, "refToken"))
                     object.refToken = message.refToken;
-                if (message.version != null && message.hasOwnProperty("version"))
+                if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                     object.version = message.version;
-                if (message.webdPayload != null && message.hasOwnProperty("webdPayload"))
+                if (message.webdPayload != null && Object.hasOwnProperty.call(message, "webdPayload"))
                     object.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.toObject(message.webdPayload, options, q + 1);
-                if (message.webSubPlatform != null && message.hasOwnProperty("webSubPlatform"))
+                if (message.webSubPlatform != null && Object.hasOwnProperty.call(message, "webSubPlatform"))
                     object.webSubPlatform = options.enums === String ? $root.Wa6.ClientPayload.WebInfo.WebSubPlatform[message.webSubPlatform] === undefined ? message.webSubPlatform : $root.Wa6.ClientPayload.WebInfo.WebSubPlatform[message.webSubPlatform] : message.webSubPlatform;
-                if (message.browser != null && message.hasOwnProperty("browser"))
+                if (message.browser != null && Object.hasOwnProperty.call(message, "browser"))
                     object.browser = message.browser;
-                if (message.browserVersion != null && message.hasOwnProperty("browserVersion"))
+                if (message.browserVersion != null && Object.hasOwnProperty.call(message, "browserVersion"))
                     object.browserVersion = message.browserVersion;
                 return object;
             };
@@ -4682,37 +4682,37 @@ $root.Wa6 = (function() {
                         long = 0;
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
-                    if (message.usesParticipantInKey != null && message.hasOwnProperty("usesParticipantInKey"))
+                    if (message.usesParticipantInKey != null && Object.hasOwnProperty.call(message, "usesParticipantInKey"))
                         if (typeof message.usesParticipantInKey !== "boolean")
                             return "usesParticipantInKey: boolean expected";
-                    if (message.supportsStarredMessages != null && message.hasOwnProperty("supportsStarredMessages"))
+                    if (message.supportsStarredMessages != null && Object.hasOwnProperty.call(message, "supportsStarredMessages"))
                         if (typeof message.supportsStarredMessages !== "boolean")
                             return "supportsStarredMessages: boolean expected";
-                    if (message.supportsDocumentMessages != null && message.hasOwnProperty("supportsDocumentMessages"))
+                    if (message.supportsDocumentMessages != null && Object.hasOwnProperty.call(message, "supportsDocumentMessages"))
                         if (typeof message.supportsDocumentMessages !== "boolean")
                             return "supportsDocumentMessages: boolean expected";
-                    if (message.supportsUrlMessages != null && message.hasOwnProperty("supportsUrlMessages"))
+                    if (message.supportsUrlMessages != null && Object.hasOwnProperty.call(message, "supportsUrlMessages"))
                         if (typeof message.supportsUrlMessages !== "boolean")
                             return "supportsUrlMessages: boolean expected";
-                    if (message.supportsMediaRetry != null && message.hasOwnProperty("supportsMediaRetry"))
+                    if (message.supportsMediaRetry != null && Object.hasOwnProperty.call(message, "supportsMediaRetry"))
                         if (typeof message.supportsMediaRetry !== "boolean")
                             return "supportsMediaRetry: boolean expected";
-                    if (message.supportsE2EImage != null && message.hasOwnProperty("supportsE2EImage"))
+                    if (message.supportsE2EImage != null && Object.hasOwnProperty.call(message, "supportsE2EImage"))
                         if (typeof message.supportsE2EImage !== "boolean")
                             return "supportsE2EImage: boolean expected";
-                    if (message.supportsE2EVideo != null && message.hasOwnProperty("supportsE2EVideo"))
+                    if (message.supportsE2EVideo != null && Object.hasOwnProperty.call(message, "supportsE2EVideo"))
                         if (typeof message.supportsE2EVideo !== "boolean")
                             return "supportsE2EVideo: boolean expected";
-                    if (message.supportsE2EAudio != null && message.hasOwnProperty("supportsE2EAudio"))
+                    if (message.supportsE2EAudio != null && Object.hasOwnProperty.call(message, "supportsE2EAudio"))
                         if (typeof message.supportsE2EAudio !== "boolean")
                             return "supportsE2EAudio: boolean expected";
-                    if (message.supportsE2EDocument != null && message.hasOwnProperty("supportsE2EDocument"))
+                    if (message.supportsE2EDocument != null && Object.hasOwnProperty.call(message, "supportsE2EDocument"))
                         if (typeof message.supportsE2EDocument !== "boolean")
                             return "supportsE2EDocument: boolean expected";
-                    if (message.documentTypes != null && message.hasOwnProperty("documentTypes"))
+                    if (message.documentTypes != null && Object.hasOwnProperty.call(message, "documentTypes"))
                         if (!$util.isString(message.documentTypes))
                             return "documentTypes: string expected";
-                    if (message.features != null && message.hasOwnProperty("features"))
+                    if (message.features != null && Object.hasOwnProperty.call(message, "features"))
                         if (!(message.features && typeof message.features.length === "number" || $util.isString(message.features)))
                             return "features: buffer expected";
                     return null;
@@ -4800,27 +4800,27 @@ $root.Wa6 = (function() {
                                 object.features = $util.newBuffer(object.features);
                         }
                     }
-                    if (message.usesParticipantInKey != null && message.hasOwnProperty("usesParticipantInKey"))
+                    if (message.usesParticipantInKey != null && Object.hasOwnProperty.call(message, "usesParticipantInKey"))
                         object.usesParticipantInKey = message.usesParticipantInKey;
-                    if (message.supportsStarredMessages != null && message.hasOwnProperty("supportsStarredMessages"))
+                    if (message.supportsStarredMessages != null && Object.hasOwnProperty.call(message, "supportsStarredMessages"))
                         object.supportsStarredMessages = message.supportsStarredMessages;
-                    if (message.supportsDocumentMessages != null && message.hasOwnProperty("supportsDocumentMessages"))
+                    if (message.supportsDocumentMessages != null && Object.hasOwnProperty.call(message, "supportsDocumentMessages"))
                         object.supportsDocumentMessages = message.supportsDocumentMessages;
-                    if (message.supportsUrlMessages != null && message.hasOwnProperty("supportsUrlMessages"))
+                    if (message.supportsUrlMessages != null && Object.hasOwnProperty.call(message, "supportsUrlMessages"))
                         object.supportsUrlMessages = message.supportsUrlMessages;
-                    if (message.supportsMediaRetry != null && message.hasOwnProperty("supportsMediaRetry"))
+                    if (message.supportsMediaRetry != null && Object.hasOwnProperty.call(message, "supportsMediaRetry"))
                         object.supportsMediaRetry = message.supportsMediaRetry;
-                    if (message.supportsE2EImage != null && message.hasOwnProperty("supportsE2EImage"))
+                    if (message.supportsE2EImage != null && Object.hasOwnProperty.call(message, "supportsE2EImage"))
                         object.supportsE2EImage = message.supportsE2EImage;
-                    if (message.supportsE2EVideo != null && message.hasOwnProperty("supportsE2EVideo"))
+                    if (message.supportsE2EVideo != null && Object.hasOwnProperty.call(message, "supportsE2EVideo"))
                         object.supportsE2EVideo = message.supportsE2EVideo;
-                    if (message.supportsE2EAudio != null && message.hasOwnProperty("supportsE2EAudio"))
+                    if (message.supportsE2EAudio != null && Object.hasOwnProperty.call(message, "supportsE2EAudio"))
                         object.supportsE2EAudio = message.supportsE2EAudio;
-                    if (message.supportsE2EDocument != null && message.hasOwnProperty("supportsE2EDocument"))
+                    if (message.supportsE2EDocument != null && Object.hasOwnProperty.call(message, "supportsE2EDocument"))
                         object.supportsE2EDocument = message.supportsE2EDocument;
-                    if (message.documentTypes != null && message.hasOwnProperty("documentTypes"))
+                    if (message.documentTypes != null && Object.hasOwnProperty.call(message, "documentTypes"))
                         object.documentTypes = message.documentTypes;
-                    if (message.features != null && message.hasOwnProperty("features"))
+                    if (message.features != null && Object.hasOwnProperty.call(message, "features"))
                         object.features = options.bytes === String ? $util.base64.encode(message.features, 0, message.features.length) : options.bytes === Array ? Array.prototype.slice.call(message.features) : message.features;
                     return object;
                 };
@@ -5035,17 +5035,17 @@ $root.Wa6 = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.clientHello != null && message.hasOwnProperty("clientHello")) {
+            if (message.clientHello != null && Object.hasOwnProperty.call(message, "clientHello")) {
                 var error = $root.Wa6.HandshakeMessage.ClientHello.verify(message.clientHello, long + 1);
                 if (error)
                     return "clientHello." + error;
             }
-            if (message.serverHello != null && message.hasOwnProperty("serverHello")) {
+            if (message.serverHello != null && Object.hasOwnProperty.call(message, "serverHello")) {
                 var error = $root.Wa6.HandshakeMessage.ServerHello.verify(message.serverHello, long + 1);
                 if (error)
                     return "serverHello." + error;
             }
-            if (message.clientFinish != null && message.hasOwnProperty("clientFinish")) {
+            if (message.clientFinish != null && Object.hasOwnProperty.call(message, "clientFinish")) {
                 var error = $root.Wa6.HandshakeMessage.ClientFinish.verify(message.clientFinish, long + 1);
                 if (error)
                     return "clientFinish." + error;
@@ -5111,11 +5111,11 @@ $root.Wa6 = (function() {
                 object.serverHello = null;
                 object.clientFinish = null;
             }
-            if (message.clientHello != null && message.hasOwnProperty("clientHello"))
+            if (message.clientHello != null && Object.hasOwnProperty.call(message, "clientHello"))
                 object.clientHello = $root.Wa6.HandshakeMessage.ClientHello.toObject(message.clientHello, options, q + 1);
-            if (message.serverHello != null && message.hasOwnProperty("serverHello"))
+            if (message.serverHello != null && Object.hasOwnProperty.call(message, "serverHello"))
                 object.serverHello = $root.Wa6.HandshakeMessage.ServerHello.toObject(message.serverHello, options, q + 1);
-            if (message.clientFinish != null && message.hasOwnProperty("clientFinish"))
+            if (message.clientFinish != null && Object.hasOwnProperty.call(message, "clientFinish"))
                 object.clientFinish = $root.Wa6.HandshakeMessage.ClientFinish.toObject(message.clientFinish, options, q + 1);
             return object;
         };
@@ -5351,19 +5351,19 @@ $root.Wa6 = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message["static"] != null && message.hasOwnProperty("static"))
+                if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
                     if (!(message["static"] && typeof message["static"].length === "number" || $util.isString(message["static"])))
                         return "static: buffer expected";
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     if (!(message.payload && typeof message.payload.length === "number" || $util.isString(message.payload)))
                         return "payload: buffer expected";
-                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
                     if (!(message.extendedCiphertext && typeof message.extendedCiphertext.length === "number" || $util.isString(message.extendedCiphertext)))
                         return "extendedCiphertext: buffer expected";
-                if (message.paddedBytes != null && message.hasOwnProperty("paddedBytes"))
+                if (message.paddedBytes != null && Object.hasOwnProperty.call(message, "paddedBytes"))
                     if (!(message.paddedBytes && typeof message.paddedBytes.length === "number" || $util.isString(message.paddedBytes)))
                         return "paddedBytes: buffer expected";
-                if (message.simulateXxkemFs != null && message.hasOwnProperty("simulateXxkemFs"))
+                if (message.simulateXxkemFs != null && Object.hasOwnProperty.call(message, "simulateXxkemFs"))
                     if (typeof message.simulateXxkemFs !== "boolean")
                         return "simulateXxkemFs: boolean expected";
                 return null;
@@ -5460,15 +5460,15 @@ $root.Wa6 = (function() {
                     }
                     object.simulateXxkemFs = false;
                 }
-                if (message["static"] != null && message.hasOwnProperty("static"))
+                if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
                     object["static"] = options.bytes === String ? $util.base64.encode(message["static"], 0, message["static"].length) : options.bytes === Array ? Array.prototype.slice.call(message["static"]) : message["static"];
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     object.payload = options.bytes === String ? $util.base64.encode(message.payload, 0, message.payload.length) : options.bytes === Array ? Array.prototype.slice.call(message.payload) : message.payload;
-                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
                     object.extendedCiphertext = options.bytes === String ? $util.base64.encode(message.extendedCiphertext, 0, message.extendedCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedCiphertext) : message.extendedCiphertext;
-                if (message.paddedBytes != null && message.hasOwnProperty("paddedBytes"))
+                if (message.paddedBytes != null && Object.hasOwnProperty.call(message, "paddedBytes"))
                     object.paddedBytes = options.bytes === String ? $util.base64.encode(message.paddedBytes, 0, message.paddedBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.paddedBytes) : message.paddedBytes;
-                if (message.simulateXxkemFs != null && message.hasOwnProperty("simulateXxkemFs"))
+                if (message.simulateXxkemFs != null && Object.hasOwnProperty.call(message, "simulateXxkemFs"))
                     object.simulateXxkemFs = message.simulateXxkemFs;
                 return object;
             };
@@ -5782,31 +5782,31 @@ $root.Wa6 = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
+                if (message.ephemeral != null && Object.hasOwnProperty.call(message, "ephemeral"))
                     if (!(message.ephemeral && typeof message.ephemeral.length === "number" || $util.isString(message.ephemeral)))
                         return "ephemeral: buffer expected";
-                if (message["static"] != null && message.hasOwnProperty("static"))
+                if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
                     if (!(message["static"] && typeof message["static"].length === "number" || $util.isString(message["static"])))
                         return "static: buffer expected";
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     if (!(message.payload && typeof message.payload.length === "number" || $util.isString(message.payload)))
                         return "payload: buffer expected";
-                if (message.useExtended != null && message.hasOwnProperty("useExtended"))
+                if (message.useExtended != null && Object.hasOwnProperty.call(message, "useExtended"))
                     if (typeof message.useExtended !== "boolean")
                         return "useExtended: boolean expected";
-                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
                     if (!(message.extendedCiphertext && typeof message.extendedCiphertext.length === "number" || $util.isString(message.extendedCiphertext)))
                         return "extendedCiphertext: buffer expected";
-                if (message.paddedBytes != null && message.hasOwnProperty("paddedBytes"))
+                if (message.paddedBytes != null && Object.hasOwnProperty.call(message, "paddedBytes"))
                     if (!(message.paddedBytes && typeof message.paddedBytes.length === "number" || $util.isString(message.paddedBytes)))
                         return "paddedBytes: buffer expected";
-                if (message.sendServerHelloPaddedBytes != null && message.hasOwnProperty("sendServerHelloPaddedBytes"))
+                if (message.sendServerHelloPaddedBytes != null && Object.hasOwnProperty.call(message, "sendServerHelloPaddedBytes"))
                     if (typeof message.sendServerHelloPaddedBytes !== "boolean")
                         return "sendServerHelloPaddedBytes: boolean expected";
-                if (message.simulateXxkemFs != null && message.hasOwnProperty("simulateXxkemFs"))
+                if (message.simulateXxkemFs != null && Object.hasOwnProperty.call(message, "simulateXxkemFs"))
                     if (typeof message.simulateXxkemFs !== "boolean")
                         return "simulateXxkemFs: boolean expected";
-                if (message.pqMode != null && message.hasOwnProperty("pqMode"))
+                if (message.pqMode != null && Object.hasOwnProperty.call(message, "pqMode"))
                     switch (message.pqMode) {
                     default:
                         return "pqMode: enum value expected";
@@ -5821,7 +5821,7 @@ $root.Wa6 = (function() {
                     case 8:
                         break;
                     }
-                if (message.extendedEphemeral != null && message.hasOwnProperty("extendedEphemeral"))
+                if (message.extendedEphemeral != null && Object.hasOwnProperty.call(message, "extendedEphemeral"))
                     if (!(message.extendedEphemeral && typeof message.extendedEphemeral.length === "number" || $util.isString(message.extendedEphemeral)))
                         return "extendedEphemeral: buffer expected";
                 return null;
@@ -5993,25 +5993,25 @@ $root.Wa6 = (function() {
                             object.extendedEphemeral = $util.newBuffer(object.extendedEphemeral);
                     }
                 }
-                if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
+                if (message.ephemeral != null && Object.hasOwnProperty.call(message, "ephemeral"))
                     object.ephemeral = options.bytes === String ? $util.base64.encode(message.ephemeral, 0, message.ephemeral.length) : options.bytes === Array ? Array.prototype.slice.call(message.ephemeral) : message.ephemeral;
-                if (message["static"] != null && message.hasOwnProperty("static"))
+                if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
                     object["static"] = options.bytes === String ? $util.base64.encode(message["static"], 0, message["static"].length) : options.bytes === Array ? Array.prototype.slice.call(message["static"]) : message["static"];
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     object.payload = options.bytes === String ? $util.base64.encode(message.payload, 0, message.payload.length) : options.bytes === Array ? Array.prototype.slice.call(message.payload) : message.payload;
-                if (message.useExtended != null && message.hasOwnProperty("useExtended"))
+                if (message.useExtended != null && Object.hasOwnProperty.call(message, "useExtended"))
                     object.useExtended = message.useExtended;
-                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
                     object.extendedCiphertext = options.bytes === String ? $util.base64.encode(message.extendedCiphertext, 0, message.extendedCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedCiphertext) : message.extendedCiphertext;
-                if (message.paddedBytes != null && message.hasOwnProperty("paddedBytes"))
+                if (message.paddedBytes != null && Object.hasOwnProperty.call(message, "paddedBytes"))
                     object.paddedBytes = options.bytes === String ? $util.base64.encode(message.paddedBytes, 0, message.paddedBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.paddedBytes) : message.paddedBytes;
-                if (message.sendServerHelloPaddedBytes != null && message.hasOwnProperty("sendServerHelloPaddedBytes"))
+                if (message.sendServerHelloPaddedBytes != null && Object.hasOwnProperty.call(message, "sendServerHelloPaddedBytes"))
                     object.sendServerHelloPaddedBytes = message.sendServerHelloPaddedBytes;
-                if (message.simulateXxkemFs != null && message.hasOwnProperty("simulateXxkemFs"))
+                if (message.simulateXxkemFs != null && Object.hasOwnProperty.call(message, "simulateXxkemFs"))
                     object.simulateXxkemFs = message.simulateXxkemFs;
-                if (message.pqMode != null && message.hasOwnProperty("pqMode"))
+                if (message.pqMode != null && Object.hasOwnProperty.call(message, "pqMode"))
                     object.pqMode = options.enums === String ? $root.Wa6.HandshakeMessage.HandshakePqMode[message.pqMode] === undefined ? message.pqMode : $root.Wa6.HandshakeMessage.HandshakePqMode[message.pqMode] : message.pqMode;
-                if (message.extendedEphemeral != null && message.hasOwnProperty("extendedEphemeral"))
+                if (message.extendedEphemeral != null && Object.hasOwnProperty.call(message, "extendedEphemeral"))
                     object.extendedEphemeral = options.bytes === String ? $util.base64.encode(message.extendedEphemeral, 0, message.extendedEphemeral.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedEphemeral) : message.extendedEphemeral;
                 return object;
             };
@@ -6293,22 +6293,22 @@ $root.Wa6 = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
+                if (message.ephemeral != null && Object.hasOwnProperty.call(message, "ephemeral"))
                     if (!(message.ephemeral && typeof message.ephemeral.length === "number" || $util.isString(message.ephemeral)))
                         return "ephemeral: buffer expected";
-                if (message["static"] != null && message.hasOwnProperty("static"))
+                if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
                     if (!(message["static"] && typeof message["static"].length === "number" || $util.isString(message["static"])))
                         return "static: buffer expected";
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     if (!(message.payload && typeof message.payload.length === "number" || $util.isString(message.payload)))
                         return "payload: buffer expected";
-                if (message.extendedStatic != null && message.hasOwnProperty("extendedStatic"))
+                if (message.extendedStatic != null && Object.hasOwnProperty.call(message, "extendedStatic"))
                     if (!(message.extendedStatic && typeof message.extendedStatic.length === "number" || $util.isString(message.extendedStatic)))
                         return "extendedStatic: buffer expected";
-                if (message.paddingBytes != null && message.hasOwnProperty("paddingBytes"))
+                if (message.paddingBytes != null && Object.hasOwnProperty.call(message, "paddingBytes"))
                     if (!(message.paddingBytes && typeof message.paddingBytes.length === "number" || $util.isString(message.paddingBytes)))
                         return "paddingBytes: buffer expected";
-                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
                     if (!(message.extendedCiphertext && typeof message.extendedCiphertext.length === "number" || $util.isString(message.extendedCiphertext)))
                         return "extendedCiphertext: buffer expected";
                 return null;
@@ -6426,17 +6426,17 @@ $root.Wa6 = (function() {
                             object.extendedCiphertext = $util.newBuffer(object.extendedCiphertext);
                     }
                 }
-                if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
+                if (message.ephemeral != null && Object.hasOwnProperty.call(message, "ephemeral"))
                     object.ephemeral = options.bytes === String ? $util.base64.encode(message.ephemeral, 0, message.ephemeral.length) : options.bytes === Array ? Array.prototype.slice.call(message.ephemeral) : message.ephemeral;
-                if (message["static"] != null && message.hasOwnProperty("static"))
+                if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
                     object["static"] = options.bytes === String ? $util.base64.encode(message["static"], 0, message["static"].length) : options.bytes === Array ? Array.prototype.slice.call(message["static"]) : message["static"];
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     object.payload = options.bytes === String ? $util.base64.encode(message.payload, 0, message.payload.length) : options.bytes === Array ? Array.prototype.slice.call(message.payload) : message.payload;
-                if (message.extendedStatic != null && message.hasOwnProperty("extendedStatic"))
+                if (message.extendedStatic != null && Object.hasOwnProperty.call(message, "extendedStatic"))
                     object.extendedStatic = options.bytes === String ? $util.base64.encode(message.extendedStatic, 0, message.extendedStatic.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedStatic) : message.extendedStatic;
-                if (message.paddingBytes != null && message.hasOwnProperty("paddingBytes"))
+                if (message.paddingBytes != null && Object.hasOwnProperty.call(message, "paddingBytes"))
                     object.paddingBytes = options.bytes === String ? $util.base64.encode(message.paddingBytes, 0, message.paddingBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.paddingBytes) : message.paddingBytes;
-                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
                     object.extendedCiphertext = options.bytes === String ? $util.base64.encode(message.extendedCiphertext, 0, message.extendedCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedCiphertext) : message.extendedCiphertext;
                 return object;
             };

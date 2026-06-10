@@ -182,7 +182,7 @@ $root.LidMigrationSyncPayload = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.pnToLidMappings != null && message.hasOwnProperty("pnToLidMappings")) {
+            if (message.pnToLidMappings != null && Object.hasOwnProperty.call(message, "pnToLidMappings")) {
                 if (!Array.isArray(message.pnToLidMappings))
                     return "pnToLidMappings: array expected";
                 for (var i = 0; i < message.pnToLidMappings.length; ++i) {
@@ -191,7 +191,7 @@ $root.LidMigrationSyncPayload = (function() {
                         return "pnToLidMappings." + error;
                 }
             }
-            if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+            if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                 if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
                     return "chatDbMigrationTimestamp: integer|Long expected";
             return null;
@@ -267,7 +267,7 @@ $root.LidMigrationSyncPayload = (function() {
                 for (var j = 0; j < message.pnToLidMappings.length; ++j)
                     object.pnToLidMappings[j] = $root.LidMigrationSyncPayload.LIDMigrationMapping.toObject(message.pnToLidMappings[j], options, q + 1);
             }
-            if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+            if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.chatDbMigrationTimestamp = typeof message.chatDbMigrationTimestamp === "number" ? BigInt(message.chatDbMigrationTimestamp) : $util.Long.fromBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0, true).toBigInt();
                 else if (typeof message.chatDbMigrationTimestamp === "number")
@@ -445,9 +445,9 @@ $root.LidMigrationSyncPayload = (function() {
                     break;
                 }
             }
-            if (!message.hasOwnProperty("pn"))
+            if (!Object.hasOwnProperty.call(message, "pn"))
                 throw $util.ProtocolError("missing required 'pn'", { instance: message });
-            if (!message.hasOwnProperty("assignedLid"))
+            if (!Object.hasOwnProperty.call(message, "assignedLid"))
                 throw $util.ProtocolError("missing required 'assignedLid'", { instance: message });
             return message;
         };
@@ -487,7 +487,7 @@ $root.LidMigrationSyncPayload = (function() {
                 return "pn: integer|Long expected";
             if (!$util.isInteger(message.assignedLid) && !(message.assignedLid && $util.isInteger(message.assignedLid.low) && $util.isInteger(message.assignedLid.high)))
                 return "assignedLid: integer|Long expected";
-            if (message.latestLid != null && message.hasOwnProperty("latestLid"))
+            if (message.latestLid != null && Object.hasOwnProperty.call(message, "latestLid"))
                 if (!$util.isInteger(message.latestLid) && !(message.latestLid && $util.isInteger(message.latestLid.low) && $util.isInteger(message.latestLid.high)))
                     return "latestLid: integer|Long expected";
             return null;
@@ -575,21 +575,21 @@ $root.LidMigrationSyncPayload = (function() {
                 } else
                     object.latestLid = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
-            if (message.pn != null && message.hasOwnProperty("pn"))
+            if (message.pn != null && Object.hasOwnProperty.call(message, "pn"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.pn = typeof message.pn === "number" ? BigInt(message.pn) : $util.Long.fromBits(message.pn.low >>> 0, message.pn.high >>> 0, true).toBigInt();
                 else if (typeof message.pn === "number")
                     object.pn = options.longs === String ? String(message.pn) : message.pn;
                 else
                     object.pn = options.longs === String ? $util.Long.prototype.toString.call(message.pn) : options.longs === Number ? new $util.LongBits(message.pn.low >>> 0, message.pn.high >>> 0).toNumber(true) : message.pn;
-            if (message.assignedLid != null && message.hasOwnProperty("assignedLid"))
+            if (message.assignedLid != null && Object.hasOwnProperty.call(message, "assignedLid"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.assignedLid = typeof message.assignedLid === "number" ? BigInt(message.assignedLid) : $util.Long.fromBits(message.assignedLid.low >>> 0, message.assignedLid.high >>> 0, true).toBigInt();
                 else if (typeof message.assignedLid === "number")
                     object.assignedLid = options.longs === String ? String(message.assignedLid) : message.assignedLid;
                 else
                     object.assignedLid = options.longs === String ? $util.Long.prototype.toString.call(message.assignedLid) : options.longs === Number ? new $util.LongBits(message.assignedLid.low >>> 0, message.assignedLid.high >>> 0).toNumber(true) : message.assignedLid;
-            if (message.latestLid != null && message.hasOwnProperty("latestLid"))
+            if (message.latestLid != null && Object.hasOwnProperty.call(message, "latestLid"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.latestLid = typeof message.latestLid === "number" ? BigInt(message.latestLid) : $util.Long.fromBits(message.latestLid.low >>> 0, message.latestLid.high >>> 0, true).toBigInt();
                 else if (typeof message.latestLid === "number")

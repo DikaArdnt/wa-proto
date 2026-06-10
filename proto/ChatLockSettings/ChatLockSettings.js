@@ -178,10 +178,10 @@ $root.ChatLockSettings = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.hideLockedChats != null && message.hasOwnProperty("hideLockedChats"))
+            if (message.hideLockedChats != null && Object.hasOwnProperty.call(message, "hideLockedChats"))
                 if (typeof message.hideLockedChats !== "boolean")
                     return "hideLockedChats: boolean expected";
-            if (message.secretCode != null && message.hasOwnProperty("secretCode")) {
+            if (message.secretCode != null && Object.hasOwnProperty.call(message, "secretCode")) {
                 var error = $root.UserPassword.UserPassword.verify(message.secretCode, long + 1);
                 if (error)
                     return "secretCode." + error;
@@ -238,9 +238,9 @@ $root.ChatLockSettings = (function() {
                 object.hideLockedChats = false;
                 object.secretCode = null;
             }
-            if (message.hideLockedChats != null && message.hasOwnProperty("hideLockedChats"))
+            if (message.hideLockedChats != null && Object.hasOwnProperty.call(message, "hideLockedChats"))
                 object.hideLockedChats = message.hideLockedChats;
-            if (message.secretCode != null && message.hasOwnProperty("secretCode"))
+            if (message.secretCode != null && Object.hasOwnProperty.call(message, "secretCode"))
                 object.secretCode = $root.UserPassword.UserPassword.toObject(message.secretCode, options, q + 1);
             return object;
         };
@@ -480,7 +480,7 @@ $root.UserPassword = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.encoding != null && message.hasOwnProperty("encoding"))
+            if (message.encoding != null && Object.hasOwnProperty.call(message, "encoding"))
                 switch (message.encoding) {
                 default:
                     return "encoding: enum value expected";
@@ -488,7 +488,7 @@ $root.UserPassword = (function() {
                 case 1:
                     break;
                 }
-            if (message.transformer != null && message.hasOwnProperty("transformer"))
+            if (message.transformer != null && Object.hasOwnProperty.call(message, "transformer"))
                 switch (message.transformer) {
                 default:
                     return "transformer: enum value expected";
@@ -497,7 +497,7 @@ $root.UserPassword = (function() {
                 case 2:
                     break;
                 }
-            if (message.transformerArg != null && message.hasOwnProperty("transformerArg")) {
+            if (message.transformerArg != null && Object.hasOwnProperty.call(message, "transformerArg")) {
                 if (!Array.isArray(message.transformerArg))
                     return "transformerArg: array expected";
                 for (var i = 0; i < message.transformerArg.length; ++i) {
@@ -506,7 +506,7 @@ $root.UserPassword = (function() {
                         return "transformerArg." + error;
                 }
             }
-            if (message.transformedData != null && message.hasOwnProperty("transformedData"))
+            if (message.transformedData != null && Object.hasOwnProperty.call(message, "transformedData"))
                 if (!(message.transformedData && typeof message.transformedData.length === "number" || $util.isString(message.transformedData)))
                     return "transformedData: buffer expected";
             return null;
@@ -614,16 +614,16 @@ $root.UserPassword = (function() {
                         object.transformedData = $util.newBuffer(object.transformedData);
                 }
             }
-            if (message.encoding != null && message.hasOwnProperty("encoding"))
+            if (message.encoding != null && Object.hasOwnProperty.call(message, "encoding"))
                 object.encoding = options.enums === String ? $root.UserPassword.UserPassword.Encoding[message.encoding] === undefined ? message.encoding : $root.UserPassword.UserPassword.Encoding[message.encoding] : message.encoding;
-            if (message.transformer != null && message.hasOwnProperty("transformer"))
+            if (message.transformer != null && Object.hasOwnProperty.call(message, "transformer"))
                 object.transformer = options.enums === String ? $root.UserPassword.UserPassword.Transformer[message.transformer] === undefined ? message.transformer : $root.UserPassword.UserPassword.Transformer[message.transformer] : message.transformer;
             if (message.transformerArg && message.transformerArg.length) {
                 object.transformerArg = [];
                 for (var j = 0; j < message.transformerArg.length; ++j)
                     object.transformerArg[j] = $root.UserPassword.UserPassword.TransformerArg.toObject(message.transformerArg[j], options, q + 1);
             }
-            if (message.transformedData != null && message.hasOwnProperty("transformedData"))
+            if (message.transformedData != null && Object.hasOwnProperty.call(message, "transformedData"))
                 object.transformedData = options.bytes === String ? $util.base64.encode(message.transformedData, 0, message.transformedData.length) : options.bytes === Array ? Array.prototype.slice.call(message.transformedData) : message.transformedData;
             return object;
         };
@@ -844,10 +844,10 @@ $root.UserPassword = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.key != null && message.hasOwnProperty("key"))
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     if (!$util.isString(message.key))
                         return "key: string expected";
-                if (message.value != null && message.hasOwnProperty("value")) {
+                if (message.value != null && Object.hasOwnProperty.call(message, "value")) {
                     var error = $root.UserPassword.UserPassword.TransformerArg.Value.verify(message.value, long + 1);
                     if (error)
                         return "value." + error;
@@ -904,9 +904,9 @@ $root.UserPassword = (function() {
                     object.key = "";
                     object.value = null;
                 }
-                if (message.key != null && message.hasOwnProperty("key"))
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     object.key = message.key;
-                if (message.value != null && message.hasOwnProperty("value"))
+                if (message.value != null && Object.hasOwnProperty.call(message, "value"))
                     object.value = $root.UserPassword.UserPassword.TransformerArg.Value.toObject(message.value, options, q + 1);
                 return object;
             };
@@ -1112,12 +1112,12 @@ $root.UserPassword = (function() {
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
                     var properties = {};
-                    if (message.asBlob != null && message.hasOwnProperty("asBlob")) {
+                    if (message.asBlob != null && Object.hasOwnProperty.call(message, "asBlob")) {
                         properties.value = 1;
                         if (!(message.asBlob && typeof message.asBlob.length === "number" || $util.isString(message.asBlob)))
                             return "asBlob: buffer expected";
                     }
-                    if (message.asUnsignedInteger != null && message.hasOwnProperty("asUnsignedInteger")) {
+                    if (message.asUnsignedInteger != null && Object.hasOwnProperty.call(message, "asUnsignedInteger")) {
                         if (properties.value === 1)
                             return "value: multiple values";
                         properties.value = 1;
@@ -1172,12 +1172,12 @@ $root.UserPassword = (function() {
                     if (q > $util.recursionLimit)
                         throw Error("max depth exceeded");
                     var object = {};
-                    if (message.asBlob != null && message.hasOwnProperty("asBlob")) {
+                    if (message.asBlob != null && Object.hasOwnProperty.call(message, "asBlob")) {
                         object.asBlob = options.bytes === String ? $util.base64.encode(message.asBlob, 0, message.asBlob.length) : options.bytes === Array ? Array.prototype.slice.call(message.asBlob) : message.asBlob;
                         if (options.oneofs)
                             object.value = "asBlob";
                     }
-                    if (message.asUnsignedInteger != null && message.hasOwnProperty("asUnsignedInteger")) {
+                    if (message.asUnsignedInteger != null && Object.hasOwnProperty.call(message, "asUnsignedInteger")) {
                         object.asUnsignedInteger = message.asUnsignedInteger;
                         if (options.oneofs)
                             object.value = "asUnsignedInteger";

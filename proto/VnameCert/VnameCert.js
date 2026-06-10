@@ -268,7 +268,7 @@ $root.VnameCert = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.vlevel != null && message.hasOwnProperty("vlevel"))
+            if (message.vlevel != null && Object.hasOwnProperty.call(message, "vlevel"))
                 switch (message.vlevel) {
                 default:
                     return "vlevel: enum value expected";
@@ -277,18 +277,18 @@ $root.VnameCert = (function() {
                 case 2:
                     break;
                 }
-            if (message.vnameCert != null && message.hasOwnProperty("vnameCert")) {
+            if (message.vnameCert != null && Object.hasOwnProperty.call(message, "vnameCert")) {
                 var error = $root.VnameCert.VerifiedNameCertificate.verify(message.vnameCert, long + 1);
                 if (error)
                     return "vnameCert." + error;
             }
-            if (message.signed != null && message.hasOwnProperty("signed"))
+            if (message.signed != null && Object.hasOwnProperty.call(message, "signed"))
                 if (typeof message.signed !== "boolean")
                     return "signed: boolean expected";
-            if (message.revoked != null && message.hasOwnProperty("revoked"))
+            if (message.revoked != null && Object.hasOwnProperty.call(message, "revoked"))
                 if (typeof message.revoked !== "boolean")
                     return "revoked: boolean expected";
-            if (message.hostStorage != null && message.hasOwnProperty("hostStorage"))
+            if (message.hostStorage != null && Object.hasOwnProperty.call(message, "hostStorage"))
                 switch (message.hostStorage) {
                 default:
                     return "hostStorage: enum value expected";
@@ -296,7 +296,7 @@ $root.VnameCert = (function() {
                 case 1:
                     break;
                 }
-            if (message.actualActors != null && message.hasOwnProperty("actualActors"))
+            if (message.actualActors != null && Object.hasOwnProperty.call(message, "actualActors"))
                 switch (message.actualActors) {
                 default:
                     return "actualActors: enum value expected";
@@ -304,10 +304,10 @@ $root.VnameCert = (function() {
                 case 1:
                     break;
                 }
-            if (message.privacyModeTs != null && message.hasOwnProperty("privacyModeTs"))
+            if (message.privacyModeTs != null && Object.hasOwnProperty.call(message, "privacyModeTs"))
                 if (!$util.isInteger(message.privacyModeTs) && !(message.privacyModeTs && $util.isInteger(message.privacyModeTs.low) && $util.isInteger(message.privacyModeTs.high)))
                     return "privacyModeTs: integer|Long expected";
-            if (message.featureControls != null && message.hasOwnProperty("featureControls"))
+            if (message.featureControls != null && Object.hasOwnProperty.call(message, "featureControls"))
                 if (!$util.isInteger(message.featureControls) && !(message.featureControls && $util.isInteger(message.featureControls.low) && $util.isInteger(message.featureControls.high)))
                     return "featureControls: integer|Long expected";
             return null;
@@ -448,26 +448,26 @@ $root.VnameCert = (function() {
                 } else
                     object.featureControls = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
-            if (message.vlevel != null && message.hasOwnProperty("vlevel"))
+            if (message.vlevel != null && Object.hasOwnProperty.call(message, "vlevel"))
                 object.vlevel = options.enums === String ? $root.VnameCert.BizIdentityInfo.VerifiedLevelValue[message.vlevel] === undefined ? message.vlevel : $root.VnameCert.BizIdentityInfo.VerifiedLevelValue[message.vlevel] : message.vlevel;
-            if (message.vnameCert != null && message.hasOwnProperty("vnameCert"))
+            if (message.vnameCert != null && Object.hasOwnProperty.call(message, "vnameCert"))
                 object.vnameCert = $root.VnameCert.VerifiedNameCertificate.toObject(message.vnameCert, options, q + 1);
-            if (message.signed != null && message.hasOwnProperty("signed"))
+            if (message.signed != null && Object.hasOwnProperty.call(message, "signed"))
                 object.signed = message.signed;
-            if (message.revoked != null && message.hasOwnProperty("revoked"))
+            if (message.revoked != null && Object.hasOwnProperty.call(message, "revoked"))
                 object.revoked = message.revoked;
-            if (message.hostStorage != null && message.hasOwnProperty("hostStorage"))
+            if (message.hostStorage != null && Object.hasOwnProperty.call(message, "hostStorage"))
                 object.hostStorage = options.enums === String ? $root.VnameCert.BizIdentityInfo.HostStorageType[message.hostStorage] === undefined ? message.hostStorage : $root.VnameCert.BizIdentityInfo.HostStorageType[message.hostStorage] : message.hostStorage;
-            if (message.actualActors != null && message.hasOwnProperty("actualActors"))
+            if (message.actualActors != null && Object.hasOwnProperty.call(message, "actualActors"))
                 object.actualActors = options.enums === String ? $root.VnameCert.BizIdentityInfo.ActualActorsType[message.actualActors] === undefined ? message.actualActors : $root.VnameCert.BizIdentityInfo.ActualActorsType[message.actualActors] : message.actualActors;
-            if (message.privacyModeTs != null && message.hasOwnProperty("privacyModeTs"))
+            if (message.privacyModeTs != null && Object.hasOwnProperty.call(message, "privacyModeTs"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.privacyModeTs = typeof message.privacyModeTs === "number" ? BigInt(message.privacyModeTs) : $util.Long.fromBits(message.privacyModeTs.low >>> 0, message.privacyModeTs.high >>> 0, true).toBigInt();
                 else if (typeof message.privacyModeTs === "number")
                     object.privacyModeTs = options.longs === String ? String(message.privacyModeTs) : message.privacyModeTs;
                 else
                     object.privacyModeTs = options.longs === String ? $util.Long.prototype.toString.call(message.privacyModeTs) : options.longs === Number ? new $util.LongBits(message.privacyModeTs.low >>> 0, message.privacyModeTs.high >>> 0).toNumber(true) : message.privacyModeTs;
-            if (message.featureControls != null && message.hasOwnProperty("featureControls"))
+            if (message.featureControls != null && Object.hasOwnProperty.call(message, "featureControls"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.featureControls = typeof message.featureControls === "number" ? BigInt(message.featureControls) : $util.Long.fromBits(message.featureControls.low >>> 0, message.featureControls.high >>> 0, true).toBigInt();
                 else if (typeof message.featureControls === "number")
@@ -755,16 +755,16 @@ $root.VnameCert = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.whatsappBizAcctFbid != null && message.hasOwnProperty("whatsappBizAcctFbid"))
+            if (message.whatsappBizAcctFbid != null && Object.hasOwnProperty.call(message, "whatsappBizAcctFbid"))
                 if (!$util.isInteger(message.whatsappBizAcctFbid) && !(message.whatsappBizAcctFbid && $util.isInteger(message.whatsappBizAcctFbid.low) && $util.isInteger(message.whatsappBizAcctFbid.high)))
                     return "whatsappBizAcctFbid: integer|Long expected";
-            if (message.whatsappAcctNumber != null && message.hasOwnProperty("whatsappAcctNumber"))
+            if (message.whatsappAcctNumber != null && Object.hasOwnProperty.call(message, "whatsappAcctNumber"))
                 if (!$util.isString(message.whatsappAcctNumber))
                     return "whatsappAcctNumber: string expected";
-            if (message.issueTime != null && message.hasOwnProperty("issueTime"))
+            if (message.issueTime != null && Object.hasOwnProperty.call(message, "issueTime"))
                 if (!$util.isInteger(message.issueTime) && !(message.issueTime && $util.isInteger(message.issueTime.low) && $util.isInteger(message.issueTime.high)))
                     return "issueTime: integer|Long expected";
-            if (message.hostStorage != null && message.hasOwnProperty("hostStorage"))
+            if (message.hostStorage != null && Object.hasOwnProperty.call(message, "hostStorage"))
                 switch (message.hostStorage) {
                 default:
                     return "hostStorage: enum value expected";
@@ -772,7 +772,7 @@ $root.VnameCert = (function() {
                 case 1:
                     break;
                 }
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 switch (message.accountType) {
                 default:
                     return "accountType: enum value expected";
@@ -883,25 +883,25 @@ $root.VnameCert = (function() {
                 object.hostStorage = options.enums === String ? "ON_PREMISE" : 0;
                 object.accountType = options.enums === String ? "ENTERPRISE" : 0;
             }
-            if (message.whatsappBizAcctFbid != null && message.hasOwnProperty("whatsappBizAcctFbid"))
+            if (message.whatsappBizAcctFbid != null && Object.hasOwnProperty.call(message, "whatsappBizAcctFbid"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.whatsappBizAcctFbid = typeof message.whatsappBizAcctFbid === "number" ? BigInt(message.whatsappBizAcctFbid) : $util.Long.fromBits(message.whatsappBizAcctFbid.low >>> 0, message.whatsappBizAcctFbid.high >>> 0, true).toBigInt();
                 else if (typeof message.whatsappBizAcctFbid === "number")
                     object.whatsappBizAcctFbid = options.longs === String ? String(message.whatsappBizAcctFbid) : message.whatsappBizAcctFbid;
                 else
                     object.whatsappBizAcctFbid = options.longs === String ? $util.Long.prototype.toString.call(message.whatsappBizAcctFbid) : options.longs === Number ? new $util.LongBits(message.whatsappBizAcctFbid.low >>> 0, message.whatsappBizAcctFbid.high >>> 0).toNumber(true) : message.whatsappBizAcctFbid;
-            if (message.whatsappAcctNumber != null && message.hasOwnProperty("whatsappAcctNumber"))
+            if (message.whatsappAcctNumber != null && Object.hasOwnProperty.call(message, "whatsappAcctNumber"))
                 object.whatsappAcctNumber = message.whatsappAcctNumber;
-            if (message.issueTime != null && message.hasOwnProperty("issueTime"))
+            if (message.issueTime != null && Object.hasOwnProperty.call(message, "issueTime"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.issueTime = typeof message.issueTime === "number" ? BigInt(message.issueTime) : $util.Long.fromBits(message.issueTime.low >>> 0, message.issueTime.high >>> 0, true).toBigInt();
                 else if (typeof message.issueTime === "number")
                     object.issueTime = options.longs === String ? String(message.issueTime) : message.issueTime;
                 else
                     object.issueTime = options.longs === String ? $util.Long.prototype.toString.call(message.issueTime) : options.longs === Number ? new $util.LongBits(message.issueTime.low >>> 0, message.issueTime.high >>> 0).toNumber(true) : message.issueTime;
-            if (message.hostStorage != null && message.hasOwnProperty("hostStorage"))
+            if (message.hostStorage != null && Object.hasOwnProperty.call(message, "hostStorage"))
                 object.hostStorage = options.enums === String ? $root.VnameCert.BizAccountLinkInfo.HostStorageType[message.hostStorage] === undefined ? message.hostStorage : $root.VnameCert.BizAccountLinkInfo.HostStorageType[message.hostStorage] : message.hostStorage;
-            if (message.accountType != null && message.hasOwnProperty("accountType"))
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 object.accountType = options.enums === String ? $root.VnameCert.BizAccountLinkInfo.AccountType[message.accountType] === undefined ? message.accountType : $root.VnameCert.BizAccountLinkInfo.AccountType[message.accountType] : message.accountType;
             return object;
         };
@@ -1121,12 +1121,12 @@ $root.VnameCert = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.vnameCert != null && message.hasOwnProperty("vnameCert")) {
+            if (message.vnameCert != null && Object.hasOwnProperty.call(message, "vnameCert")) {
                 var error = $root.VnameCert.VerifiedNameCertificate.verify(message.vnameCert, long + 1);
                 if (error)
                     return "vnameCert." + error;
             }
-            if (message.bizAcctLinkInfo != null && message.hasOwnProperty("bizAcctLinkInfo"))
+            if (message.bizAcctLinkInfo != null && Object.hasOwnProperty.call(message, "bizAcctLinkInfo"))
                 if (!(message.bizAcctLinkInfo && typeof message.bizAcctLinkInfo.length === "number" || $util.isString(message.bizAcctLinkInfo)))
                     return "bizAcctLinkInfo: buffer expected";
             return null;
@@ -1190,9 +1190,9 @@ $root.VnameCert = (function() {
                         object.bizAcctLinkInfo = $util.newBuffer(object.bizAcctLinkInfo);
                 }
             }
-            if (message.vnameCert != null && message.hasOwnProperty("vnameCert"))
+            if (message.vnameCert != null && Object.hasOwnProperty.call(message, "vnameCert"))
                 object.vnameCert = $root.VnameCert.VerifiedNameCertificate.toObject(message.vnameCert, options, q + 1);
-            if (message.bizAcctLinkInfo != null && message.hasOwnProperty("bizAcctLinkInfo"))
+            if (message.bizAcctLinkInfo != null && Object.hasOwnProperty.call(message, "bizAcctLinkInfo"))
                 object.bizAcctLinkInfo = options.bytes === String ? $util.base64.encode(message.bizAcctLinkInfo, 0, message.bizAcctLinkInfo.length) : options.bytes === Array ? Array.prototype.slice.call(message.bizAcctLinkInfo) : message.bizAcctLinkInfo;
             return object;
         };
@@ -1401,13 +1401,13 @@ $root.VnameCert = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 if (!(message.signature && typeof message.signature.length === "number" || $util.isString(message.signature)))
                     return "signature: buffer expected";
-            if (message.serverSignature != null && message.hasOwnProperty("serverSignature"))
+            if (message.serverSignature != null && Object.hasOwnProperty.call(message, "serverSignature"))
                 if (!(message.serverSignature && typeof message.serverSignature.length === "number" || $util.isString(message.serverSignature)))
                     return "serverSignature: buffer expected";
             return null;
@@ -1489,11 +1489,11 @@ $root.VnameCert = (function() {
                         object.serverSignature = $util.newBuffer(object.serverSignature);
                 }
             }
-            if (message.details != null && message.hasOwnProperty("details"))
+            if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 object.details = options.bytes === String ? $util.base64.encode(message.details, 0, message.details.length) : options.bytes === Array ? Array.prototype.slice.call(message.details) : message.details;
-            if (message.signature != null && message.hasOwnProperty("signature"))
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
                 object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
-            if (message.serverSignature != null && message.hasOwnProperty("serverSignature"))
+            if (message.serverSignature != null && Object.hasOwnProperty.call(message, "serverSignature"))
                 object.serverSignature = options.bytes === String ? $util.base64.encode(message.serverSignature, 0, message.serverSignature.length) : options.bytes === Array ? Array.prototype.slice.call(message.serverSignature) : message.serverSignature;
             return object;
         };
@@ -1733,16 +1733,16 @@ $root.VnameCert = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.serial != null && message.hasOwnProperty("serial"))
+                if (message.serial != null && Object.hasOwnProperty.call(message, "serial"))
                     if (!$util.isInteger(message.serial) && !(message.serial && $util.isInteger(message.serial.low) && $util.isInteger(message.serial.high)))
                         return "serial: integer|Long expected";
-                if (message.issuer != null && message.hasOwnProperty("issuer"))
+                if (message.issuer != null && Object.hasOwnProperty.call(message, "issuer"))
                     if (!$util.isString(message.issuer))
                         return "issuer: string expected";
-                if (message.verifiedName != null && message.hasOwnProperty("verifiedName"))
+                if (message.verifiedName != null && Object.hasOwnProperty.call(message, "verifiedName"))
                     if (!$util.isString(message.verifiedName))
                         return "verifiedName: string expected";
-                if (message.localizedNames != null && message.hasOwnProperty("localizedNames")) {
+                if (message.localizedNames != null && Object.hasOwnProperty.call(message, "localizedNames")) {
                     if (!Array.isArray(message.localizedNames))
                         return "localizedNames: array expected";
                     for (var i = 0; i < message.localizedNames.length; ++i) {
@@ -1751,7 +1751,7 @@ $root.VnameCert = (function() {
                             return "localizedNames." + error;
                     }
                 }
-                if (message.issueTime != null && message.hasOwnProperty("issueTime"))
+                if (message.issueTime != null && Object.hasOwnProperty.call(message, "issueTime"))
                     if (!$util.isInteger(message.issueTime) && !(message.issueTime && $util.isInteger(message.issueTime.low) && $util.isInteger(message.issueTime.high)))
                         return "issueTime: integer|Long expected";
                 return null;
@@ -1843,23 +1843,23 @@ $root.VnameCert = (function() {
                     } else
                         object.issueTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
-                if (message.serial != null && message.hasOwnProperty("serial"))
+                if (message.serial != null && Object.hasOwnProperty.call(message, "serial"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.serial = typeof message.serial === "number" ? BigInt(message.serial) : $util.Long.fromBits(message.serial.low >>> 0, message.serial.high >>> 0, true).toBigInt();
                     else if (typeof message.serial === "number")
                         object.serial = options.longs === String ? String(message.serial) : message.serial;
                     else
                         object.serial = options.longs === String ? $util.Long.prototype.toString.call(message.serial) : options.longs === Number ? new $util.LongBits(message.serial.low >>> 0, message.serial.high >>> 0).toNumber(true) : message.serial;
-                if (message.issuer != null && message.hasOwnProperty("issuer"))
+                if (message.issuer != null && Object.hasOwnProperty.call(message, "issuer"))
                     object.issuer = message.issuer;
-                if (message.verifiedName != null && message.hasOwnProperty("verifiedName"))
+                if (message.verifiedName != null && Object.hasOwnProperty.call(message, "verifiedName"))
                     object.verifiedName = message.verifiedName;
                 if (message.localizedNames && message.localizedNames.length) {
                     object.localizedNames = [];
                     for (var j = 0; j < message.localizedNames.length; ++j)
                         object.localizedNames[j] = $root.VnameCert.LocalizedName.toObject(message.localizedNames[j], options, q + 1);
                 }
-                if (message.issueTime != null && message.hasOwnProperty("issueTime"))
+                if (message.issueTime != null && Object.hasOwnProperty.call(message, "issueTime"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.issueTime = typeof message.issueTime === "number" ? BigInt(message.issueTime) : $util.Long.fromBits(message.issueTime.low >>> 0, message.issueTime.high >>> 0, true).toBigInt();
                     else if (typeof message.issueTime === "number")
@@ -2076,13 +2076,13 @@ $root.VnameCert = (function() {
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.lg != null && message.hasOwnProperty("lg"))
+            if (message.lg != null && Object.hasOwnProperty.call(message, "lg"))
                 if (!$util.isString(message.lg))
                     return "lg: string expected";
-            if (message.lc != null && message.hasOwnProperty("lc"))
+            if (message.lc != null && Object.hasOwnProperty.call(message, "lc"))
                 if (!$util.isString(message.lc))
                     return "lc: string expected";
-            if (message.verifiedName != null && message.hasOwnProperty("verifiedName"))
+            if (message.verifiedName != null && Object.hasOwnProperty.call(message, "verifiedName"))
                 if (!$util.isString(message.verifiedName))
                     return "verifiedName: string expected";
             return null;
@@ -2137,11 +2137,11 @@ $root.VnameCert = (function() {
                 object.lc = "";
                 object.verifiedName = "";
             }
-            if (message.lg != null && message.hasOwnProperty("lg"))
+            if (message.lg != null && Object.hasOwnProperty.call(message, "lg"))
                 object.lg = message.lg;
-            if (message.lc != null && message.hasOwnProperty("lc"))
+            if (message.lc != null && Object.hasOwnProperty.call(message, "lc"))
                 object.lc = message.lc;
-            if (message.verifiedName != null && message.hasOwnProperty("verifiedName"))
+            if (message.verifiedName != null && Object.hasOwnProperty.call(message, "verifiedName"))
                 object.verifiedName = message.verifiedName;
             return object;
         };
