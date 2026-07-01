@@ -1614,6 +1614,12 @@ export namespace SignalLocalStorageProtocol {
 
             /** PendingPreKey baseKey */
             baseKey?: (Uint8Array|null);
+
+            /** PendingPreKey kyberPreKeyId */
+            kyberPreKeyId?: (number|null);
+
+            /** PendingPreKey kyberCiphertext */
+            kyberCiphertext?: (Uint8Array|null);
         }
 
         /** Represents a PendingPreKey. */
@@ -1633,6 +1639,12 @@ export namespace SignalLocalStorageProtocol {
 
             /** PendingPreKey baseKey. */
             public baseKey: Uint8Array;
+
+            /** PendingPreKey kyberPreKeyId. */
+            public kyberPreKeyId: number;
+
+            /** PendingPreKey kyberCiphertext. */
+            public kyberCiphertext: Uint8Array;
 
             /**
              * Creates a new PendingPreKey instance using the specified properties.

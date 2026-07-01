@@ -4514,6 +4514,8 @@ $root.SignalLocalStorageProtocol = (function() {
              * @property {number|null} [preKeyId] PendingPreKey preKeyId
              * @property {number|null} [signedPreKeyId] PendingPreKey signedPreKeyId
              * @property {Uint8Array|null} [baseKey] PendingPreKey baseKey
+             * @property {number|null} [kyberPreKeyId] PendingPreKey kyberPreKeyId
+             * @property {Uint8Array|null} [kyberCiphertext] PendingPreKey kyberCiphertext
              */
 
             /**
@@ -4556,6 +4558,22 @@ $root.SignalLocalStorageProtocol = (function() {
             PendingPreKey.prototype.baseKey = $util.newBuffer([]);
 
             /**
+             * PendingPreKey kyberPreKeyId.
+             * @member {number} kyberPreKeyId
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @instance
+             */
+            PendingPreKey.prototype.kyberPreKeyId = 0;
+
+            /**
+             * PendingPreKey kyberCiphertext.
+             * @member {Uint8Array} kyberCiphertext
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @instance
+             */
+            PendingPreKey.prototype.kyberCiphertext = $util.newBuffer([]);
+
+            /**
              * Creates a new PendingPreKey instance using the specified properties.
              * @function create
              * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
@@ -4589,6 +4607,10 @@ $root.SignalLocalStorageProtocol = (function() {
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.baseKey);
                 if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
                     writer.uint32(/* id 3, wireType 0 =*/24).int32(message.signedPreKeyId);
+                if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.kyberPreKeyId);
+                if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.kyberCiphertext);
                 return writer;
             };
 
@@ -4641,6 +4663,14 @@ $root.SignalLocalStorageProtocol = (function() {
                             message.baseKey = reader.bytes();
                             break;
                         }
+                    case 4: {
+                            message.kyberPreKeyId = reader.uint32();
+                            break;
+                        }
+                    case 5: {
+                            message.kyberCiphertext = reader.bytes();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -4689,6 +4719,12 @@ $root.SignalLocalStorageProtocol = (function() {
                 if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
                     if (!(message.baseKey && typeof message.baseKey.length === "number" || $util.isString(message.baseKey)))
                         return "baseKey: buffer expected";
+                if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                    if (!$util.isInteger(message.kyberPreKeyId))
+                        return "kyberPreKeyId: integer expected";
+                if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                    if (!(message.kyberCiphertext && typeof message.kyberCiphertext.length === "number" || $util.isString(message.kyberCiphertext)))
+                        return "kyberCiphertext: buffer expected";
                 return null;
             };
 
@@ -4719,6 +4755,13 @@ $root.SignalLocalStorageProtocol = (function() {
                         $util.base64.decode(object.baseKey, message.baseKey = $util.newBuffer($util.base64.length(object.baseKey)), 0);
                     else if (object.baseKey.length >= 0)
                         message.baseKey = object.baseKey;
+                if (object.kyberPreKeyId != null)
+                    message.kyberPreKeyId = object.kyberPreKeyId >>> 0;
+                if (object.kyberCiphertext != null)
+                    if (typeof object.kyberCiphertext === "string")
+                        $util.base64.decode(object.kyberCiphertext, message.kyberCiphertext = $util.newBuffer($util.base64.length(object.kyberCiphertext)), 0);
+                    else if (object.kyberCiphertext.length >= 0)
+                        message.kyberCiphertext = object.kyberCiphertext;
                 return message;
             };
 
@@ -4749,6 +4792,14 @@ $root.SignalLocalStorageProtocol = (function() {
                             object.baseKey = $util.newBuffer(object.baseKey);
                     }
                     object.signedPreKeyId = 0;
+                    object.kyberPreKeyId = 0;
+                    if (options.bytes === String)
+                        object.kyberCiphertext = "";
+                    else {
+                        object.kyberCiphertext = [];
+                        if (options.bytes !== Array)
+                            object.kyberCiphertext = $util.newBuffer(object.kyberCiphertext);
+                    }
                 }
                 if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
                     object.preKeyId = message.preKeyId;
@@ -4756,6 +4807,10 @@ $root.SignalLocalStorageProtocol = (function() {
                     object.baseKey = options.bytes === String ? $util.base64.encode(message.baseKey, 0, message.baseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.baseKey) : message.baseKey;
                 if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
                     object.signedPreKeyId = message.signedPreKeyId;
+                if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                    object.kyberPreKeyId = message.kyberPreKeyId;
+                if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                    object.kyberCiphertext = options.bytes === String ? $util.base64.encode(message.kyberCiphertext, 0, message.kyberCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.kyberCiphertext) : message.kyberCiphertext;
                 return object;
             };
 

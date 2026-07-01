@@ -91,5 +91,7 @@ message SessionStructure {
         optional uint32 preKeyId = 1;
         optional int32 signedPreKeyId = 3;
         optional bytes baseKey = 2;
+        optional uint32 kyberPreKeyId = 4;
+        optional bytes kyberCiphertext = 5;
     }
 }

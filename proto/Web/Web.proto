@@ -2,7 +2,7 @@ syntax = "proto2";
 package Web;
 
 import "../E2E/E2E.proto";
-import "../Protocol/Protocol.proto";
+import "../SignalLocalStorageProtocol/SignalLocalStorageProtocol.proto";
 
 message ScheduledMessageMetadata {
     optional string revealKeyId = 1;
@@ -29,7 +29,7 @@ message GroupHistoryBundleInfo {
 }
 
 message GroupHistoryIndividualMessageInfo {
-    optional Protocol.MessageKey bundleMessageKey = 1;
+    optional SignalLocalStorageProtocol.MessageKey bundleMessageKey = 1;
     optional bool editedAfterReceivedAsHistory = 2;
 }
 
@@ -51,7 +51,7 @@ message MessageAddOn {
     optional int64 serverTimestampMs = 4;
     optional WebMessageInfo.Status status = 5;
     optional MessageAddOnContextInfo addOnContextInfo = 6;
-    optional Protocol.MessageKey messageAddOnKey = 7;
+    optional SignalLocalStorageProtocol.MessageKey messageAddOnKey = 7;
     optional LegacyMessage legacyMessage = 8;
     enum MessageAddOnType {
         UNDEFINED = 0;
@@ -68,7 +68,7 @@ message LegacyMessage {
 }
 
 message EventResponse {
-    optional Protocol.MessageKey eventResponseMessageKey = 1;
+    optional SignalLocalStorageProtocol.MessageKey eventResponseMessageKey = 1;
     optional int64 timestampMs = 2;
     optional E2E.Message.EventResponseMessage eventResponseMessage = 3;
     optional bool unread = 4;
@@ -85,7 +85,7 @@ message MessageAddOnContextInfo {
 
 message PinInChat {
     optional Type type = 1;
-    optional Protocol.MessageKey key = 2;
+    optional SignalLocalStorageProtocol.MessageKey key = 2;
     optional int64 senderTimestampMs = 3;
     optional int64 serverTimestampMs = 4;
     optional MessageAddOnContextInfo messageAddOnContextInfo = 5;
@@ -99,7 +99,7 @@ message PinInChat {
 message KeepInChat {
     optional E2E.KeepType keepType = 1;
     optional int64 serverTimestamp = 2;
-    optional Protocol.MessageKey key = 3;
+    optional SignalLocalStorageProtocol.MessageKey key = 3;
     optional string deviceJid = 4;
     optional int64 clientTimestampMs = 5;
     optional int64 serverTimestampMs = 6;
@@ -123,7 +123,7 @@ message PollAdditionalMetadata {
 }
 
 message PollUpdate {
-    optional Protocol.MessageKey pollUpdateMessageKey = 1;
+    optional SignalLocalStorageProtocol.MessageKey pollUpdateMessageKey = 1;
     optional E2E.Message.PollVoteMessage vote = 2;
     optional int64 senderTimestampMs = 3;
     optional int64 serverTimestampMs = 4;
@@ -132,7 +132,7 @@ message PollUpdate {
 }
 
 message Reaction {
-    optional Protocol.MessageKey key = 1;
+    optional SignalLocalStorageProtocol.MessageKey key = 1;
     optional string text = 2;
     optional string groupingKey = 3;
     optional int64 senderTimestampMs = 4;
@@ -222,7 +222,7 @@ message WebFeatures {
 }
 
 message NotificationMessageInfo {
-    optional Protocol.MessageKey key = 1;
+    optional SignalLocalStorageProtocol.MessageKey key = 1;
     optional E2E.Message message = 2;
     optional uint64 messageTimestamp = 3;
     optional string participant = 4;
@@ -241,7 +241,7 @@ message PaymentInfo {
     optional string receiverJid = 3;
     optional Status status = 4;
     optional uint64 transactionTimestamp = 5;
-    optional Protocol.MessageKey requestMessageKey = 6;
+    optional SignalLocalStorageProtocol.MessageKey requestMessageKey = 6;
     optional uint64 expiryTimestamp = 7;
     optional bool futureproofed = 8;
     optional string currency = 9;
@@ -304,12 +304,12 @@ message PaymentInfo {
 }
 
 message CommentMetadata {
-    optional Protocol.MessageKey commentParentKey = 1;
+    optional SignalLocalStorageProtocol.MessageKey commentParentKey = 1;
     optional uint32 replyCount = 2;
 }
 
 message WebMessageInfo {
-    required Protocol.MessageKey key = 1;
+    required SignalLocalStorageProtocol.MessageKey key = 1;
     optional E2E.Message message = 2;
     optional uint64 messageTimestamp = 3;
     optional Status status = 4;
@@ -364,7 +364,7 @@ message WebMessageInfo {
     optional EventAdditionalMetadata eventAdditionalMetadata = 64;
     optional bool isMentionedInStatus = 65;
     repeated string statusMentions = 66;
-    optional Protocol.MessageKey targetMessageId = 67;
+    optional SignalLocalStorageProtocol.MessageKey targetMessageId = 67;
     repeated MessageAddOn messageAddOns = 68;
     optional StatusMentionMessage statusMentionMessageInfo = 69;
     optional bool isSupportAiMessage = 70;

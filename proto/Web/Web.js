@@ -900,7 +900,7 @@ $root.Web = (function() {
          * Properties of a GroupHistoryIndividualMessageInfo.
          * @memberof Web
          * @interface IGroupHistoryIndividualMessageInfo
-         * @property {Protocol.IMessageKey|null} [bundleMessageKey] GroupHistoryIndividualMessageInfo bundleMessageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [bundleMessageKey] GroupHistoryIndividualMessageInfo bundleMessageKey
          * @property {boolean|null} [editedAfterReceivedAsHistory] GroupHistoryIndividualMessageInfo editedAfterReceivedAsHistory
          */
 
@@ -921,7 +921,7 @@ $root.Web = (function() {
 
         /**
          * GroupHistoryIndividualMessageInfo bundleMessageKey.
-         * @member {Protocol.IMessageKey|null|undefined} bundleMessageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} bundleMessageKey
          * @memberof Web.GroupHistoryIndividualMessageInfo
          * @instance
          */
@@ -964,7 +964,7 @@ $root.Web = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.bundleMessageKey != null && Object.hasOwnProperty.call(message, "bundleMessageKey"))
-                $root.Protocol.MessageKey.encode(message.bundleMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.bundleMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.editedAfterReceivedAsHistory != null && Object.hasOwnProperty.call(message, "editedAfterReceivedAsHistory"))
                 writer.uint32(/* id 2, wireType 0 =*/16).bool(message.editedAfterReceivedAsHistory);
             return writer;
@@ -1008,7 +1008,7 @@ $root.Web = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.bundleMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.bundleMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -1055,7 +1055,7 @@ $root.Web = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.bundleMessageKey != null && Object.hasOwnProperty.call(message, "bundleMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.bundleMessageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.bundleMessageKey, long + 1);
                 if (error)
                     return "bundleMessageKey." + error;
             }
@@ -1086,7 +1086,7 @@ $root.Web = (function() {
             if (object.bundleMessageKey != null) {
                 if (!$util.isObject(object.bundleMessageKey))
                     throw TypeError(".Web.GroupHistoryIndividualMessageInfo.bundleMessageKey: object expected");
-                message.bundleMessageKey = $root.Protocol.MessageKey.fromObject(object.bundleMessageKey, long + 1);
+                message.bundleMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.bundleMessageKey, long + 1);
             }
             if (object.editedAfterReceivedAsHistory != null)
                 message.editedAfterReceivedAsHistory = Boolean(object.editedAfterReceivedAsHistory);
@@ -1115,7 +1115,7 @@ $root.Web = (function() {
                 object.editedAfterReceivedAsHistory = false;
             }
             if (message.bundleMessageKey != null && Object.hasOwnProperty.call(message, "bundleMessageKey"))
-                object.bundleMessageKey = $root.Protocol.MessageKey.toObject(message.bundleMessageKey, options, q + 1);
+                object.bundleMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.bundleMessageKey, options, q + 1);
             if (message.editedAfterReceivedAsHistory != null && Object.hasOwnProperty.call(message, "editedAfterReceivedAsHistory"))
                 object.editedAfterReceivedAsHistory = message.editedAfterReceivedAsHistory;
             return object;
@@ -1691,7 +1691,7 @@ $root.Web = (function() {
          * @property {number|Long|null} [serverTimestampMs] MessageAddOn serverTimestampMs
          * @property {Web.WebMessageInfo.Status|null} [status] MessageAddOn status
          * @property {Web.IMessageAddOnContextInfo|null} [addOnContextInfo] MessageAddOn addOnContextInfo
-         * @property {Protocol.IMessageKey|null} [messageAddOnKey] MessageAddOn messageAddOnKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [messageAddOnKey] MessageAddOn messageAddOnKey
          * @property {Web.ILegacyMessage|null} [legacyMessage] MessageAddOn legacyMessage
          */
 
@@ -1760,7 +1760,7 @@ $root.Web = (function() {
 
         /**
          * MessageAddOn messageAddOnKey.
-         * @member {Protocol.IMessageKey|null|undefined} messageAddOnKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} messageAddOnKey
          * @memberof Web.MessageAddOn
          * @instance
          */
@@ -1815,7 +1815,7 @@ $root.Web = (function() {
             if (message.addOnContextInfo != null && Object.hasOwnProperty.call(message, "addOnContextInfo"))
                 $root.Web.MessageAddOnContextInfo.encode(message.addOnContextInfo, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             if (message.messageAddOnKey != null && Object.hasOwnProperty.call(message, "messageAddOnKey"))
-                $root.Protocol.MessageKey.encode(message.messageAddOnKey, writer.uint32(/* id 7, wireType 2 =*/58).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.messageAddOnKey, writer.uint32(/* id 7, wireType 2 =*/58).fork(), q + 1).ldelim();
             if (message.legacyMessage != null && Object.hasOwnProperty.call(message, "legacyMessage"))
                 $root.Web.LegacyMessage.encode(message.legacyMessage, writer.uint32(/* id 8, wireType 2 =*/66).fork(), q + 1).ldelim();
             return writer;
@@ -1883,7 +1883,7 @@ $root.Web = (function() {
                         break;
                     }
                 case 7: {
-                        message.messageAddOnKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.messageAddOnKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 8: {
@@ -1969,7 +1969,7 @@ $root.Web = (function() {
                     return "addOnContextInfo." + error;
             }
             if (message.messageAddOnKey != null && Object.hasOwnProperty.call(message, "messageAddOnKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.messageAddOnKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.messageAddOnKey, long + 1);
                 if (error)
                     return "messageAddOnKey." + error;
             }
@@ -2090,7 +2090,7 @@ $root.Web = (function() {
             if (object.messageAddOnKey != null) {
                 if (!$util.isObject(object.messageAddOnKey))
                     throw TypeError(".Web.MessageAddOn.messageAddOnKey: object expected");
-                message.messageAddOnKey = $root.Protocol.MessageKey.fromObject(object.messageAddOnKey, long + 1);
+                message.messageAddOnKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.messageAddOnKey, long + 1);
             }
             if (object.legacyMessage != null) {
                 if (!$util.isObject(object.legacyMessage))
@@ -2158,7 +2158,7 @@ $root.Web = (function() {
             if (message.addOnContextInfo != null && Object.hasOwnProperty.call(message, "addOnContextInfo"))
                 object.addOnContextInfo = $root.Web.MessageAddOnContextInfo.toObject(message.addOnContextInfo, options, q + 1);
             if (message.messageAddOnKey != null && Object.hasOwnProperty.call(message, "messageAddOnKey"))
-                object.messageAddOnKey = $root.Protocol.MessageKey.toObject(message.messageAddOnKey, options, q + 1);
+                object.messageAddOnKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.messageAddOnKey, options, q + 1);
             if (message.legacyMessage != null && Object.hasOwnProperty.call(message, "legacyMessage"))
                 object.legacyMessage = $root.Web.LegacyMessage.toObject(message.legacyMessage, options, q + 1);
             return object;
@@ -2480,7 +2480,7 @@ $root.Web = (function() {
          * Properties of an EventResponse.
          * @memberof Web
          * @interface IEventResponse
-         * @property {Protocol.IMessageKey|null} [eventResponseMessageKey] EventResponse eventResponseMessageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [eventResponseMessageKey] EventResponse eventResponseMessageKey
          * @property {number|Long|null} [timestampMs] EventResponse timestampMs
          * @property {E2E.Message.IEventResponseMessage|null} [eventResponseMessage] EventResponse eventResponseMessage
          * @property {boolean|null} [unread] EventResponse unread
@@ -2503,7 +2503,7 @@ $root.Web = (function() {
 
         /**
          * EventResponse eventResponseMessageKey.
-         * @member {Protocol.IMessageKey|null|undefined} eventResponseMessageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} eventResponseMessageKey
          * @memberof Web.EventResponse
          * @instance
          */
@@ -2562,7 +2562,7 @@ $root.Web = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.eventResponseMessageKey != null && Object.hasOwnProperty.call(message, "eventResponseMessageKey"))
-                $root.Protocol.MessageKey.encode(message.eventResponseMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.eventResponseMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.timestampMs != null && Object.hasOwnProperty.call(message, "timestampMs"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int64(message.timestampMs);
             if (message.eventResponseMessage != null && Object.hasOwnProperty.call(message, "eventResponseMessage"))
@@ -2610,7 +2610,7 @@ $root.Web = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.eventResponseMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.eventResponseMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -2665,7 +2665,7 @@ $root.Web = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.eventResponseMessageKey != null && Object.hasOwnProperty.call(message, "eventResponseMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.eventResponseMessageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.eventResponseMessageKey, long + 1);
                 if (error)
                     return "eventResponseMessageKey." + error;
             }
@@ -2704,7 +2704,7 @@ $root.Web = (function() {
             if (object.eventResponseMessageKey != null) {
                 if (!$util.isObject(object.eventResponseMessageKey))
                     throw TypeError(".Web.EventResponse.eventResponseMessageKey: object expected");
-                message.eventResponseMessageKey = $root.Protocol.MessageKey.fromObject(object.eventResponseMessageKey, long + 1);
+                message.eventResponseMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.eventResponseMessageKey, long + 1);
             }
             if (object.timestampMs != null)
                 if ($util.Long)
@@ -2753,7 +2753,7 @@ $root.Web = (function() {
                 object.unread = false;
             }
             if (message.eventResponseMessageKey != null && Object.hasOwnProperty.call(message, "eventResponseMessageKey"))
-                object.eventResponseMessageKey = $root.Protocol.MessageKey.toObject(message.eventResponseMessageKey, options, q + 1);
+                object.eventResponseMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.eventResponseMessageKey, options, q + 1);
             if (message.timestampMs != null && Object.hasOwnProperty.call(message, "timestampMs"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.timestampMs = typeof message.timestampMs === "number" ? BigInt(message.timestampMs) : $util.Long.fromBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0, false).toBigInt();
@@ -3301,7 +3301,7 @@ $root.Web = (function() {
          * @memberof Web
          * @interface IPinInChat
          * @property {Web.PinInChat.Type|null} [type] PinInChat type
-         * @property {Protocol.IMessageKey|null} [key] PinInChat key
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] PinInChat key
          * @property {number|Long|null} [senderTimestampMs] PinInChat senderTimestampMs
          * @property {number|Long|null} [serverTimestampMs] PinInChat serverTimestampMs
          * @property {Web.IMessageAddOnContextInfo|null} [messageAddOnContextInfo] PinInChat messageAddOnContextInfo
@@ -3332,7 +3332,7 @@ $root.Web = (function() {
 
         /**
          * PinInChat key.
-         * @member {Protocol.IMessageKey|null|undefined} key
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
          * @memberof Web.PinInChat
          * @instance
          */
@@ -3393,7 +3393,7 @@ $root.Web = (function() {
             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int64(message.senderTimestampMs);
             if (message.serverTimestampMs != null && Object.hasOwnProperty.call(message, "serverTimestampMs"))
@@ -3445,7 +3445,7 @@ $root.Web = (function() {
                         break;
                     }
                 case 2: {
-                        message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 3: {
@@ -3509,7 +3509,7 @@ $root.Web = (function() {
                     break;
                 }
             if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                 if (error)
                     return "key." + error;
             }
@@ -3568,7 +3568,7 @@ $root.Web = (function() {
             if (object.key != null) {
                 if (!$util.isObject(object.key))
                     throw TypeError(".Web.PinInChat.key: object expected");
-                message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
             }
             if (object.senderTimestampMs != null)
                 if ($util.Long)
@@ -3631,7 +3631,7 @@ $root.Web = (function() {
             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 object.type = options.enums === String ? $root.Web.PinInChat.Type[message.type] === undefined ? message.type : $root.Web.PinInChat.Type[message.type] : message.type;
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
             if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
@@ -3704,7 +3704,7 @@ $root.Web = (function() {
          * @interface IKeepInChat
          * @property {E2E.KeepType|null} [keepType] KeepInChat keepType
          * @property {number|Long|null} [serverTimestamp] KeepInChat serverTimestamp
-         * @property {Protocol.IMessageKey|null} [key] KeepInChat key
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] KeepInChat key
          * @property {string|null} [deviceJid] KeepInChat deviceJid
          * @property {number|Long|null} [clientTimestampMs] KeepInChat clientTimestampMs
          * @property {number|Long|null} [serverTimestampMs] KeepInChat serverTimestampMs
@@ -3743,7 +3743,7 @@ $root.Web = (function() {
 
         /**
          * KeepInChat key.
-         * @member {Protocol.IMessageKey|null|undefined} key
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
          * @memberof Web.KeepInChat
          * @instance
          */
@@ -3806,7 +3806,7 @@ $root.Web = (function() {
             if (message.serverTimestamp != null && Object.hasOwnProperty.call(message, "serverTimestamp"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int64(message.serverTimestamp);
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.deviceJid != null && Object.hasOwnProperty.call(message, "deviceJid"))
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.deviceJid);
             if (message.clientTimestampMs != null && Object.hasOwnProperty.call(message, "clientTimestampMs"))
@@ -3862,7 +3862,7 @@ $root.Web = (function() {
                         break;
                     }
                 case 3: {
-                        message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 4: {
@@ -3929,7 +3929,7 @@ $root.Web = (function() {
                 if (!$util.isInteger(message.serverTimestamp) && !(message.serverTimestamp && $util.isInteger(message.serverTimestamp.low) && $util.isInteger(message.serverTimestamp.high)))
                     return "serverTimestamp: integer|Long expected";
             if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                 if (error)
                     return "key." + error;
             }
@@ -3995,7 +3995,7 @@ $root.Web = (function() {
             if (object.key != null) {
                 if (!$util.isObject(object.key))
                     throw TypeError(".Web.KeepInChat.key: object expected");
-                message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
             }
             if (object.deviceJid != null)
                 message.deviceJid = String(object.deviceJid);
@@ -4067,7 +4067,7 @@ $root.Web = (function() {
                 else
                     object.serverTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.serverTimestamp) : options.longs === Number ? new $util.LongBits(message.serverTimestamp.low >>> 0, message.serverTimestamp.high >>> 0).toNumber() : message.serverTimestamp;
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
             if (message.deviceJid != null && Object.hasOwnProperty.call(message, "deviceJid"))
                 object.deviceJid = message.deviceJid;
             if (message.clientTimestampMs != null && Object.hasOwnProperty.call(message, "clientTimestampMs"))
@@ -5108,7 +5108,7 @@ $root.Web = (function() {
          * Properties of a PollUpdate.
          * @memberof Web
          * @interface IPollUpdate
-         * @property {Protocol.IMessageKey|null} [pollUpdateMessageKey] PollUpdate pollUpdateMessageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [pollUpdateMessageKey] PollUpdate pollUpdateMessageKey
          * @property {E2E.Message.IPollVoteMessage|null} [vote] PollUpdate vote
          * @property {number|Long|null} [senderTimestampMs] PollUpdate senderTimestampMs
          * @property {number|Long|null} [serverTimestampMs] PollUpdate serverTimestampMs
@@ -5133,7 +5133,7 @@ $root.Web = (function() {
 
         /**
          * PollUpdate pollUpdateMessageKey.
-         * @member {Protocol.IMessageKey|null|undefined} pollUpdateMessageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} pollUpdateMessageKey
          * @memberof Web.PollUpdate
          * @instance
          */
@@ -5208,7 +5208,7 @@ $root.Web = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.pollUpdateMessageKey != null && Object.hasOwnProperty.call(message, "pollUpdateMessageKey"))
-                $root.Protocol.MessageKey.encode(message.pollUpdateMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.pollUpdateMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.vote != null && Object.hasOwnProperty.call(message, "vote"))
                 $root.E2E.Message.PollVoteMessage.encode(message.vote, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
@@ -5260,7 +5260,7 @@ $root.Web = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.pollUpdateMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.pollUpdateMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -5323,7 +5323,7 @@ $root.Web = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.pollUpdateMessageKey != null && Object.hasOwnProperty.call(message, "pollUpdateMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.pollUpdateMessageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.pollUpdateMessageKey, long + 1);
                 if (error)
                     return "pollUpdateMessageKey." + error;
             }
@@ -5370,7 +5370,7 @@ $root.Web = (function() {
             if (object.pollUpdateMessageKey != null) {
                 if (!$util.isObject(object.pollUpdateMessageKey))
                     throw TypeError(".Web.PollUpdate.pollUpdateMessageKey: object expected");
-                message.pollUpdateMessageKey = $root.Protocol.MessageKey.fromObject(object.pollUpdateMessageKey, long + 1);
+                message.pollUpdateMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.pollUpdateMessageKey, long + 1);
             }
             if (object.vote != null) {
                 if (!$util.isObject(object.vote))
@@ -5439,7 +5439,7 @@ $root.Web = (function() {
                 object.metadata = null;
             }
             if (message.pollUpdateMessageKey != null && Object.hasOwnProperty.call(message, "pollUpdateMessageKey"))
-                object.pollUpdateMessageKey = $root.Protocol.MessageKey.toObject(message.pollUpdateMessageKey, options, q + 1);
+                object.pollUpdateMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.pollUpdateMessageKey, options, q + 1);
             if (message.vote != null && Object.hasOwnProperty.call(message, "vote"))
                 object.vote = $root.E2E.Message.PollVoteMessage.toObject(message.vote, options, q + 1);
             if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
@@ -5498,7 +5498,7 @@ $root.Web = (function() {
          * Properties of a Reaction.
          * @memberof Web
          * @interface IReaction
-         * @property {Protocol.IMessageKey|null} [key] Reaction key
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] Reaction key
          * @property {string|null} [text] Reaction text
          * @property {string|null} [groupingKey] Reaction groupingKey
          * @property {number|Long|null} [senderTimestampMs] Reaction senderTimestampMs
@@ -5522,7 +5522,7 @@ $root.Web = (function() {
 
         /**
          * Reaction key.
-         * @member {Protocol.IMessageKey|null|undefined} key
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
          * @memberof Web.Reaction
          * @instance
          */
@@ -5589,7 +5589,7 @@ $root.Web = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
             if (message.groupingKey != null && Object.hasOwnProperty.call(message, "groupingKey"))
@@ -5639,7 +5639,7 @@ $root.Web = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -5698,7 +5698,7 @@ $root.Web = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                 if (error)
                     return "key." + error;
             }
@@ -5738,7 +5738,7 @@ $root.Web = (function() {
             if (object.key != null) {
                 if (!$util.isObject(object.key))
                     throw TypeError(".Web.Reaction.key: object expected");
-                message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
             }
             if (object.text != null)
                 message.text = String(object.text);
@@ -5787,7 +5787,7 @@ $root.Web = (function() {
                 object.unread = false;
             }
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
             if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                 object.text = message.text;
             if (message.groupingKey != null && Object.hasOwnProperty.call(message, "groupingKey"))
@@ -9865,7 +9865,7 @@ $root.Web = (function() {
          * Properties of a NotificationMessageInfo.
          * @memberof Web
          * @interface INotificationMessageInfo
-         * @property {Protocol.IMessageKey|null} [key] NotificationMessageInfo key
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] NotificationMessageInfo key
          * @property {E2E.IMessage|null} [message] NotificationMessageInfo message
          * @property {number|Long|null} [messageTimestamp] NotificationMessageInfo messageTimestamp
          * @property {string|null} [participant] NotificationMessageInfo participant
@@ -9888,7 +9888,7 @@ $root.Web = (function() {
 
         /**
          * NotificationMessageInfo key.
-         * @member {Protocol.IMessageKey|null|undefined} key
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
          * @memberof Web.NotificationMessageInfo
          * @instance
          */
@@ -9947,7 +9947,7 @@ $root.Web = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 $root.E2E.Message.encode(message.message, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.messageTimestamp != null && Object.hasOwnProperty.call(message, "messageTimestamp"))
@@ -9995,7 +9995,7 @@ $root.Web = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -10050,7 +10050,7 @@ $root.Web = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                 if (error)
                     return "key." + error;
             }
@@ -10089,7 +10089,7 @@ $root.Web = (function() {
             if (object.key != null) {
                 if (!$util.isObject(object.key))
                     throw TypeError(".Web.NotificationMessageInfo.key: object expected");
-                message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
             }
             if (object.message != null) {
                 if (!$util.isObject(object.message))
@@ -10138,7 +10138,7 @@ $root.Web = (function() {
                 object.participant = "";
             }
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
             if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 object.message = $root.E2E.Message.toObject(message.message, options, q + 1);
             if (message.messageTimestamp != null && Object.hasOwnProperty.call(message, "messageTimestamp"))
@@ -10528,7 +10528,7 @@ $root.Web = (function() {
          * @property {string|null} [receiverJid] PaymentInfo receiverJid
          * @property {Web.PaymentInfo.Status|null} [status] PaymentInfo status
          * @property {number|Long|null} [transactionTimestamp] PaymentInfo transactionTimestamp
-         * @property {Protocol.IMessageKey|null} [requestMessageKey] PaymentInfo requestMessageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [requestMessageKey] PaymentInfo requestMessageKey
          * @property {number|Long|null} [expiryTimestamp] PaymentInfo expiryTimestamp
          * @property {boolean|null} [futureproofed] PaymentInfo futureproofed
          * @property {string|null} [currency] PaymentInfo currency
@@ -10595,7 +10595,7 @@ $root.Web = (function() {
 
         /**
          * PaymentInfo requestMessageKey.
-         * @member {Protocol.IMessageKey|null|undefined} requestMessageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} requestMessageKey
          * @memberof Web.PaymentInfo
          * @instance
          */
@@ -10696,7 +10696,7 @@ $root.Web = (function() {
             if (message.transactionTimestamp != null && Object.hasOwnProperty.call(message, "transactionTimestamp"))
                 writer.uint32(/* id 5, wireType 0 =*/40).uint64(message.transactionTimestamp);
             if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey"))
-                $root.Protocol.MessageKey.encode(message.requestMessageKey, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.requestMessageKey, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             if (message.expiryTimestamp != null && Object.hasOwnProperty.call(message, "expiryTimestamp"))
                 writer.uint32(/* id 7, wireType 0 =*/56).uint64(message.expiryTimestamp);
             if (message.futureproofed != null && Object.hasOwnProperty.call(message, "futureproofed"))
@@ -10772,7 +10772,7 @@ $root.Web = (function() {
                         break;
                     }
                 case 6: {
-                        message.requestMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 7: {
@@ -10878,7 +10878,7 @@ $root.Web = (function() {
                 if (!$util.isInteger(message.transactionTimestamp) && !(message.transactionTimestamp && $util.isInteger(message.transactionTimestamp.low) && $util.isInteger(message.transactionTimestamp.high)))
                     return "transactionTimestamp: integer|Long expected";
             if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.requestMessageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.requestMessageKey, long + 1);
                 if (error)
                     return "requestMessageKey." + error;
             }
@@ -11058,7 +11058,7 @@ $root.Web = (function() {
             if (object.requestMessageKey != null) {
                 if (!$util.isObject(object.requestMessageKey))
                     throw TypeError(".Web.PaymentInfo.requestMessageKey: object expected");
-                message.requestMessageKey = $root.Protocol.MessageKey.fromObject(object.requestMessageKey, long + 1);
+                message.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.requestMessageKey, long + 1);
             }
             if (object.expiryTimestamp != null)
                 if ($util.Long)
@@ -11289,7 +11289,7 @@ $root.Web = (function() {
                 else
                     object.transactionTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.transactionTimestamp) : options.longs === Number ? new $util.LongBits(message.transactionTimestamp.low >>> 0, message.transactionTimestamp.high >>> 0).toNumber(true) : message.transactionTimestamp;
             if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey"))
-                object.requestMessageKey = $root.Protocol.MessageKey.toObject(message.requestMessageKey, options, q + 1);
+                object.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.requestMessageKey, options, q + 1);
             if (message.expiryTimestamp != null && Object.hasOwnProperty.call(message, "expiryTimestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.expiryTimestamp = typeof message.expiryTimestamp === "number" ? BigInt(message.expiryTimestamp) : $util.Long.fromBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0, true).toBigInt();
@@ -11469,7 +11469,7 @@ $root.Web = (function() {
          * Properties of a CommentMetadata.
          * @memberof Web
          * @interface ICommentMetadata
-         * @property {Protocol.IMessageKey|null} [commentParentKey] CommentMetadata commentParentKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [commentParentKey] CommentMetadata commentParentKey
          * @property {number|null} [replyCount] CommentMetadata replyCount
          */
 
@@ -11490,7 +11490,7 @@ $root.Web = (function() {
 
         /**
          * CommentMetadata commentParentKey.
-         * @member {Protocol.IMessageKey|null|undefined} commentParentKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} commentParentKey
          * @memberof Web.CommentMetadata
          * @instance
          */
@@ -11533,7 +11533,7 @@ $root.Web = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.commentParentKey != null && Object.hasOwnProperty.call(message, "commentParentKey"))
-                $root.Protocol.MessageKey.encode(message.commentParentKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.commentParentKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.replyCount != null && Object.hasOwnProperty.call(message, "replyCount"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.replyCount);
             return writer;
@@ -11577,7 +11577,7 @@ $root.Web = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.commentParentKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.commentParentKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -11624,7 +11624,7 @@ $root.Web = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.commentParentKey != null && Object.hasOwnProperty.call(message, "commentParentKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.commentParentKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.commentParentKey, long + 1);
                 if (error)
                     return "commentParentKey." + error;
             }
@@ -11655,7 +11655,7 @@ $root.Web = (function() {
             if (object.commentParentKey != null) {
                 if (!$util.isObject(object.commentParentKey))
                     throw TypeError(".Web.CommentMetadata.commentParentKey: object expected");
-                message.commentParentKey = $root.Protocol.MessageKey.fromObject(object.commentParentKey, long + 1);
+                message.commentParentKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.commentParentKey, long + 1);
             }
             if (object.replyCount != null)
                 message.replyCount = object.replyCount >>> 0;
@@ -11684,7 +11684,7 @@ $root.Web = (function() {
                 object.replyCount = 0;
             }
             if (message.commentParentKey != null && Object.hasOwnProperty.call(message, "commentParentKey"))
-                object.commentParentKey = $root.Protocol.MessageKey.toObject(message.commentParentKey, options, q + 1);
+                object.commentParentKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.commentParentKey, options, q + 1);
             if (message.replyCount != null && Object.hasOwnProperty.call(message, "replyCount"))
                 object.replyCount = message.replyCount;
             return object;
@@ -11725,7 +11725,7 @@ $root.Web = (function() {
          * Properties of a WebMessageInfo.
          * @memberof Web
          * @interface IWebMessageInfo
-         * @property {Protocol.IMessageKey} key WebMessageInfo key
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey} key WebMessageInfo key
          * @property {E2E.IMessage|null} [message] WebMessageInfo message
          * @property {number|Long|null} [messageTimestamp] WebMessageInfo messageTimestamp
          * @property {Web.WebMessageInfo.Status|null} [status] WebMessageInfo status
@@ -11780,7 +11780,7 @@ $root.Web = (function() {
          * @property {Web.IEventAdditionalMetadata|null} [eventAdditionalMetadata] WebMessageInfo eventAdditionalMetadata
          * @property {boolean|null} [isMentionedInStatus] WebMessageInfo isMentionedInStatus
          * @property {Array.<string>|null} [statusMentions] WebMessageInfo statusMentions
-         * @property {Protocol.IMessageKey|null} [targetMessageId] WebMessageInfo targetMessageId
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [targetMessageId] WebMessageInfo targetMessageId
          * @property {Array.<Web.IMessageAddOn>|null} [messageAddOns] WebMessageInfo messageAddOns
          * @property {Web.IStatusMentionMessage|null} [statusMentionMessageInfo] WebMessageInfo statusMentionMessageInfo
          * @property {boolean|null} [isSupportAiMessage] WebMessageInfo isSupportAiMessage
@@ -11827,7 +11827,7 @@ $root.Web = (function() {
 
         /**
          * WebMessageInfo key.
-         * @member {Protocol.IMessageKey} key
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey} key
          * @memberof Web.WebMessageInfo
          * @instance
          */
@@ -12267,7 +12267,7 @@ $root.Web = (function() {
 
         /**
          * WebMessageInfo targetMessageId.
-         * @member {Protocol.IMessageKey|null|undefined} targetMessageId
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} targetMessageId
          * @memberof Web.WebMessageInfo
          * @instance
          */
@@ -12429,7 +12429,7 @@ $root.Web = (function() {
                 q = 0;
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
-            $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+            $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 $root.E2E.Message.encode(message.message, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.messageTimestamp != null && Object.hasOwnProperty.call(message, "messageTimestamp"))
@@ -12546,7 +12546,7 @@ $root.Web = (function() {
                 for (var i = 0; i < message.statusMentions.length; ++i)
                     writer.uint32(/* id 66, wireType 2 =*/530).string(message.statusMentions[i]);
             if (message.targetMessageId != null && Object.hasOwnProperty.call(message, "targetMessageId"))
-                $root.Protocol.MessageKey.encode(message.targetMessageId, writer.uint32(/* id 67, wireType 2 =*/538).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.targetMessageId, writer.uint32(/* id 67, wireType 2 =*/538).fork(), q + 1).ldelim();
             if (message.messageAddOns != null && message.messageAddOns.length)
                 for (var i = 0; i < message.messageAddOns.length; ++i)
                     $root.Web.MessageAddOn.encode(message.messageAddOns[i], writer.uint32(/* id 68, wireType 2 =*/546).fork(), q + 1).ldelim();
@@ -12624,7 +12624,7 @@ $root.Web = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -12858,7 +12858,7 @@ $root.Web = (function() {
                         break;
                     }
                 case 67: {
-                        message.targetMessageId = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.targetMessageId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 68: {
@@ -12975,7 +12975,7 @@ $root.Web = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             {
-                var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                 if (error)
                     return "key." + error;
             }
@@ -13453,7 +13453,7 @@ $root.Web = (function() {
                         return "statusMentions: string[] expected";
             }
             if (message.targetMessageId != null && Object.hasOwnProperty.call(message, "targetMessageId")) {
-                var error = $root.Protocol.MessageKey.verify(message.targetMessageId, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.targetMessageId, long + 1);
                 if (error)
                     return "targetMessageId." + error;
             }
@@ -13561,7 +13561,7 @@ $root.Web = (function() {
             if (object.key != null) {
                 if (!$util.isObject(object.key))
                     throw TypeError(".Web.WebMessageInfo.key: object expected");
-                message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
             }
             if (object.message != null) {
                 if (!$util.isObject(object.message))
@@ -14772,7 +14772,7 @@ $root.Web = (function() {
             if (object.targetMessageId != null) {
                 if (!$util.isObject(object.targetMessageId))
                     throw TypeError(".Web.WebMessageInfo.targetMessageId: object expected");
-                message.targetMessageId = $root.Protocol.MessageKey.fromObject(object.targetMessageId, long + 1);
+                message.targetMessageId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.targetMessageId, long + 1);
             }
             if (object.messageAddOns) {
                 if (!Array.isArray(object.messageAddOns))
@@ -14996,7 +14996,7 @@ $root.Web = (function() {
                 object.decisionId = "";
             }
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
             if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 object.message = $root.E2E.Message.toObject(message.message, options, q + 1);
             if (message.messageTimestamp != null && Object.hasOwnProperty.call(message, "messageTimestamp"))
@@ -15152,7 +15152,7 @@ $root.Web = (function() {
                     object.statusMentions[j] = message.statusMentions[j];
             }
             if (message.targetMessageId != null && Object.hasOwnProperty.call(message, "targetMessageId"))
-                object.targetMessageId = $root.Protocol.MessageKey.toObject(message.targetMessageId, options, q + 1);
+                object.targetMessageId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.targetMessageId, options, q + 1);
             if (message.messageAddOns && message.messageAddOns.length) {
                 object.messageAddOns = [];
                 for (var j = 0; j < message.messageAddOns.length; ++j)
@@ -16340,7 +16340,7 @@ $root.E2E = (function() {
          * Properties of a AIQueryFanout.
          * @memberof E2E
          * @interface IAIQueryFanout
-         * @property {Protocol.IMessageKey|null} [messageKey] AIQueryFanout messageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [messageKey] AIQueryFanout messageKey
          * @property {E2E.IMessage|null} [message] AIQueryFanout message
          * @property {number|Long|null} [timestamp] AIQueryFanout timestamp
          */
@@ -16362,7 +16362,7 @@ $root.E2E = (function() {
 
         /**
          * AIQueryFanout messageKey.
-         * @member {Protocol.IMessageKey|null|undefined} messageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} messageKey
          * @memberof E2E.AIQueryFanout
          * @instance
          */
@@ -16413,7 +16413,7 @@ $root.E2E = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
-                $root.Protocol.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 $root.E2E.Message.encode(message.message, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
@@ -16459,7 +16459,7 @@ $root.E2E = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -16510,7 +16510,7 @@ $root.E2E = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.messageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.messageKey, long + 1);
                 if (error)
                     return "messageKey." + error;
             }
@@ -16546,7 +16546,7 @@ $root.E2E = (function() {
             if (object.messageKey != null) {
                 if (!$util.isObject(object.messageKey))
                     throw TypeError(".E2E.AIQueryFanout.messageKey: object expected");
-                message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey, long + 1);
+                message.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.messageKey, long + 1);
             }
             if (object.message != null) {
                 if (!$util.isObject(object.message))
@@ -16592,7 +16592,7 @@ $root.E2E = (function() {
                     object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
-                object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options, q + 1);
+                object.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.messageKey, options, q + 1);
             if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 object.message = $root.E2E.Message.toObject(message.message, options, q + 1);
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
@@ -27216,7 +27216,7 @@ $root.E2E = (function() {
          * @memberof E2E
          * @interface IThreadID
          * @property {E2E.ThreadID.ThreadType|null} [threadType] ThreadID threadType
-         * @property {Protocol.IMessageKey|null} [threadKey] ThreadID threadKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [threadKey] ThreadID threadKey
          */
 
         /**
@@ -27244,7 +27244,7 @@ $root.E2E = (function() {
 
         /**
          * ThreadID threadKey.
-         * @member {Protocol.IMessageKey|null|undefined} threadKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} threadKey
          * @memberof E2E.ThreadID
          * @instance
          */
@@ -27281,7 +27281,7 @@ $root.E2E = (function() {
             if (message.threadType != null && Object.hasOwnProperty.call(message, "threadType"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.threadType);
             if (message.threadKey != null && Object.hasOwnProperty.call(message, "threadKey"))
-                $root.Protocol.MessageKey.encode(message.threadKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.threadKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -27327,7 +27327,7 @@ $root.E2E = (function() {
                         break;
                     }
                 case 2: {
-                        message.threadKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.threadKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -27379,7 +27379,7 @@ $root.E2E = (function() {
                     break;
                 }
             if (message.threadKey != null && Object.hasOwnProperty.call(message, "threadKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.threadKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.threadKey, long + 1);
                 if (error)
                     return "threadKey." + error;
             }
@@ -27427,7 +27427,7 @@ $root.E2E = (function() {
             if (object.threadKey != null) {
                 if (!$util.isObject(object.threadKey))
                     throw TypeError(".E2E.ThreadID.threadKey: object expected");
-                message.threadKey = $root.Protocol.MessageKey.fromObject(object.threadKey, long + 1);
+                message.threadKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.threadKey, long + 1);
             }
             return message;
         };
@@ -27456,7 +27456,7 @@ $root.E2E = (function() {
             if (message.threadType != null && Object.hasOwnProperty.call(message, "threadType"))
                 object.threadType = options.enums === String ? $root.E2E.ThreadID.ThreadType[message.threadType] === undefined ? message.threadType : $root.E2E.ThreadID.ThreadType[message.threadType] : message.threadType;
             if (message.threadKey != null && Object.hasOwnProperty.call(message, "threadKey"))
-                object.threadKey = $root.Protocol.MessageKey.toObject(message.threadKey, options, q + 1);
+                object.threadKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.threadKey, options, q + 1);
             return object;
         };
 
@@ -27512,7 +27512,7 @@ $root.E2E = (function() {
          * @memberof E2E
          * @interface IMessageAssociation
          * @property {E2E.MessageAssociation.AssociationType|null} [associationType] MessageAssociation associationType
-         * @property {Protocol.IMessageKey|null} [parentMessageKey] MessageAssociation parentMessageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [parentMessageKey] MessageAssociation parentMessageKey
          * @property {number|null} [messageIndex] MessageAssociation messageIndex
          */
 
@@ -27541,7 +27541,7 @@ $root.E2E = (function() {
 
         /**
          * MessageAssociation parentMessageKey.
-         * @member {Protocol.IMessageKey|null|undefined} parentMessageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} parentMessageKey
          * @memberof E2E.MessageAssociation
          * @instance
          */
@@ -27586,7 +27586,7 @@ $root.E2E = (function() {
             if (message.associationType != null && Object.hasOwnProperty.call(message, "associationType"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.associationType);
             if (message.parentMessageKey != null && Object.hasOwnProperty.call(message, "parentMessageKey"))
-                $root.Protocol.MessageKey.encode(message.parentMessageKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.parentMessageKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.messageIndex != null && Object.hasOwnProperty.call(message, "messageIndex"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.messageIndex);
             return writer;
@@ -27634,7 +27634,7 @@ $root.E2E = (function() {
                         break;
                     }
                 case 2: {
-                        message.parentMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.parentMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 3: {
@@ -27708,7 +27708,7 @@ $root.E2E = (function() {
                     break;
                 }
             if (message.parentMessageKey != null && Object.hasOwnProperty.call(message, "parentMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.parentMessageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.parentMessageKey, long + 1);
                 if (error)
                     return "parentMessageKey." + error;
             }
@@ -27831,7 +27831,7 @@ $root.E2E = (function() {
             if (object.parentMessageKey != null) {
                 if (!$util.isObject(object.parentMessageKey))
                     throw TypeError(".E2E.MessageAssociation.parentMessageKey: object expected");
-                message.parentMessageKey = $root.Protocol.MessageKey.fromObject(object.parentMessageKey, long + 1);
+                message.parentMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.parentMessageKey, long + 1);
             }
             if (object.messageIndex != null)
                 message.messageIndex = object.messageIndex | 0;
@@ -27863,7 +27863,7 @@ $root.E2E = (function() {
             if (message.associationType != null && Object.hasOwnProperty.call(message, "associationType"))
                 object.associationType = options.enums === String ? $root.E2E.MessageAssociation.AssociationType[message.associationType] === undefined ? message.associationType : $root.E2E.MessageAssociation.AssociationType[message.associationType] : message.associationType;
             if (message.parentMessageKey != null && Object.hasOwnProperty.call(message, "parentMessageKey"))
-                object.parentMessageKey = $root.Protocol.MessageKey.toObject(message.parentMessageKey, options, q + 1);
+                object.parentMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.parentMessageKey, options, q + 1);
             if (message.messageIndex != null && Object.hasOwnProperty.call(message, "messageIndex"))
                 object.messageIndex = message.messageIndex;
             return object;
@@ -27967,7 +27967,7 @@ $root.E2E = (function() {
          * @property {number|null} [forwardingScore] ContextInfo forwardingScore
          * @property {boolean|null} [isForwarded] ContextInfo isForwarded
          * @property {E2E.ContextInfo.IAdReplyInfo|null} [quotedAd] ContextInfo quotedAd
-         * @property {Protocol.IMessageKey|null} [placeholderKey] ContextInfo placeholderKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [placeholderKey] ContextInfo placeholderKey
          * @property {number|null} [expiration] ContextInfo expiration
          * @property {number|Long|null} [ephemeralSettingTimestamp] ContextInfo ephemeralSettingTimestamp
          * @property {Uint8Array|null} [ephemeralSharedSecret] ContextInfo ephemeralSharedSecret
@@ -28128,7 +28128,7 @@ $root.E2E = (function() {
 
         /**
          * ContextInfo placeholderKey.
-         * @member {Protocol.IMessageKey|null|undefined} placeholderKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} placeholderKey
          * @memberof E2E.ContextInfo
          * @instance
          */
@@ -28586,7 +28586,7 @@ $root.E2E = (function() {
             if (message.quotedAd != null && Object.hasOwnProperty.call(message, "quotedAd"))
                 $root.E2E.ContextInfo.AdReplyInfo.encode(message.quotedAd, writer.uint32(/* id 23, wireType 2 =*/186).fork(), q + 1).ldelim();
             if (message.placeholderKey != null && Object.hasOwnProperty.call(message, "placeholderKey"))
-                $root.Protocol.MessageKey.encode(message.placeholderKey, writer.uint32(/* id 24, wireType 2 =*/194).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.placeholderKey, writer.uint32(/* id 24, wireType 2 =*/194).fork(), q + 1).ldelim();
             if (message.expiration != null && Object.hasOwnProperty.call(message, "expiration"))
                 writer.uint32(/* id 25, wireType 0 =*/200).uint32(message.expiration);
             if (message.ephemeralSettingTimestamp != null && Object.hasOwnProperty.call(message, "ephemeralSettingTimestamp"))
@@ -28776,7 +28776,7 @@ $root.E2E = (function() {
                         break;
                     }
                 case 24: {
-                        message.placeholderKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.placeholderKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 25: {
@@ -29064,7 +29064,7 @@ $root.E2E = (function() {
                     return "quotedAd." + error;
             }
             if (message.placeholderKey != null && Object.hasOwnProperty.call(message, "placeholderKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.placeholderKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.placeholderKey, long + 1);
                 if (error)
                     return "placeholderKey." + error;
             }
@@ -29373,7 +29373,7 @@ $root.E2E = (function() {
             if (object.placeholderKey != null) {
                 if (!$util.isObject(object.placeholderKey))
                     throw TypeError(".E2E.ContextInfo.placeholderKey: object expected");
-                message.placeholderKey = $root.Protocol.MessageKey.fromObject(object.placeholderKey, long + 1);
+                message.placeholderKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.placeholderKey, long + 1);
             }
             if (object.expiration != null)
                 message.expiration = object.expiration >>> 0;
@@ -29849,7 +29849,7 @@ $root.E2E = (function() {
             if (message.quotedAd != null && Object.hasOwnProperty.call(message, "quotedAd"))
                 object.quotedAd = $root.E2E.ContextInfo.AdReplyInfo.toObject(message.quotedAd, options, q + 1);
             if (message.placeholderKey != null && Object.hasOwnProperty.call(message, "placeholderKey"))
-                object.placeholderKey = $root.Protocol.MessageKey.toObject(message.placeholderKey, options, q + 1);
+                object.placeholderKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.placeholderKey, options, q + 1);
             if (message.expiration != null && Object.hasOwnProperty.call(message, "expiration"))
                 object.expiration = message.expiration;
             if (message.ephemeralSettingTimestamp != null && Object.hasOwnProperty.call(message, "ephemeralSettingTimestamp"))
@@ -44893,7 +44893,7 @@ $root.E2E = (function() {
              * Properties of a CancelPaymentRequestMessage.
              * @memberof E2E.Message
              * @interface ICancelPaymentRequestMessage
-             * @property {Protocol.IMessageKey|null} [key] CancelPaymentRequestMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] CancelPaymentRequestMessage key
              */
 
             /**
@@ -44913,7 +44913,7 @@ $root.E2E = (function() {
 
             /**
              * CancelPaymentRequestMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.CancelPaymentRequestMessage
              * @instance
              */
@@ -44948,7 +44948,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -44990,7 +44990,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
@@ -45033,7 +45033,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -45061,7 +45061,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.CancelPaymentRequestMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 return message;
             };
@@ -45086,7 +45086,7 @@ $root.E2E = (function() {
                 if (options.defaults)
                     object.key = null;
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 return object;
             };
 
@@ -47581,7 +47581,7 @@ $root.E2E = (function() {
              * @memberof E2E.Message
              * @interface ICommentMessage
              * @property {E2E.IMessage|null} [message] CommentMessage message
-             * @property {Protocol.IMessageKey|null} [targetMessageKey] CommentMessage targetMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [targetMessageKey] CommentMessage targetMessageKey
              */
 
             /**
@@ -47609,7 +47609,7 @@ $root.E2E = (function() {
 
             /**
              * CommentMessage targetMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} targetMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} targetMessageKey
              * @memberof E2E.Message.CommentMessage
              * @instance
              */
@@ -47646,7 +47646,7 @@ $root.E2E = (function() {
                 if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     $root.E2E.Message.encode(message.message, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.targetMessageKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.targetMessageKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -47692,7 +47692,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 2: {
-                            message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
@@ -47740,7 +47740,7 @@ $root.E2E = (function() {
                         return "message." + error;
                 }
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.targetMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.targetMessageKey, long + 1);
                     if (error)
                         return "targetMessageKey." + error;
                 }
@@ -47773,7 +47773,7 @@ $root.E2E = (function() {
                 if (object.targetMessageKey != null) {
                     if (!$util.isObject(object.targetMessageKey))
                         throw TypeError(".E2E.Message.CommentMessage.targetMessageKey: object expected");
-                    message.targetMessageKey = $root.Protocol.MessageKey.fromObject(object.targetMessageKey, long + 1);
+                    message.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.targetMessageKey, long + 1);
                 }
                 return message;
             };
@@ -47802,7 +47802,7 @@ $root.E2E = (function() {
                 if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     object.message = $root.E2E.Message.toObject(message.message, options, q + 1);
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey"))
-                    object.targetMessageKey = $root.Protocol.MessageKey.toObject(message.targetMessageKey, options, q + 1);
+                    object.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.targetMessageKey, options, q + 1);
                 return object;
             };
 
@@ -48792,7 +48792,7 @@ $root.E2E = (function() {
              * Properties of a DeclinePaymentRequestMessage.
              * @memberof E2E.Message
              * @interface IDeclinePaymentRequestMessage
-             * @property {Protocol.IMessageKey|null} [key] DeclinePaymentRequestMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] DeclinePaymentRequestMessage key
              */
 
             /**
@@ -48812,7 +48812,7 @@ $root.E2E = (function() {
 
             /**
              * DeclinePaymentRequestMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.DeclinePaymentRequestMessage
              * @instance
              */
@@ -48847,7 +48847,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -48889,7 +48889,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
@@ -48932,7 +48932,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -48960,7 +48960,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.DeclinePaymentRequestMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 return message;
             };
@@ -48985,7 +48985,7 @@ $root.E2E = (function() {
                 if (options.defaults)
                     object.key = null;
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 return object;
             };
 
@@ -50082,7 +50082,7 @@ $root.E2E = (function() {
              * Properties of an EncCommentMessage.
              * @memberof E2E.Message
              * @interface IEncCommentMessage
-             * @property {Protocol.IMessageKey|null} [targetMessageKey] EncCommentMessage targetMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [targetMessageKey] EncCommentMessage targetMessageKey
              * @property {Uint8Array|null} [encPayload] EncCommentMessage encPayload
              * @property {Uint8Array|null} [encIv] EncCommentMessage encIv
              */
@@ -50104,7 +50104,7 @@ $root.E2E = (function() {
 
             /**
              * EncCommentMessage targetMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} targetMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} targetMessageKey
              * @memberof E2E.Message.EncCommentMessage
              * @instance
              */
@@ -50155,7 +50155,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.targetMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.targetMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.encPayload);
                 if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
@@ -50201,7 +50201,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -50252,7 +50252,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.targetMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.targetMessageKey, long + 1);
                     if (error)
                         return "targetMessageKey." + error;
                 }
@@ -50286,7 +50286,7 @@ $root.E2E = (function() {
                 if (object.targetMessageKey != null) {
                     if (!$util.isObject(object.targetMessageKey))
                         throw TypeError(".E2E.Message.EncCommentMessage.targetMessageKey: object expected");
-                    message.targetMessageKey = $root.Protocol.MessageKey.fromObject(object.targetMessageKey, long + 1);
+                    message.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.targetMessageKey, long + 1);
                 }
                 if (object.encPayload != null)
                     if (typeof object.encPayload === "string")
@@ -50336,7 +50336,7 @@ $root.E2E = (function() {
                     }
                 }
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey"))
-                    object.targetMessageKey = $root.Protocol.MessageKey.toObject(message.targetMessageKey, options, q + 1);
+                    object.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.targetMessageKey, options, q + 1);
                 if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
                     object.encPayload = options.bytes === String ? $util.base64.encode(message.encPayload, 0, message.encPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.encPayload) : message.encPayload;
                 if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
@@ -50379,7 +50379,7 @@ $root.E2E = (function() {
              * Properties of an EncEventResponseMessage.
              * @memberof E2E.Message
              * @interface IEncEventResponseMessage
-             * @property {Protocol.IMessageKey|null} [eventCreationMessageKey] EncEventResponseMessage eventCreationMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [eventCreationMessageKey] EncEventResponseMessage eventCreationMessageKey
              * @property {Uint8Array|null} [encPayload] EncEventResponseMessage encPayload
              * @property {Uint8Array|null} [encIv] EncEventResponseMessage encIv
              */
@@ -50401,7 +50401,7 @@ $root.E2E = (function() {
 
             /**
              * EncEventResponseMessage eventCreationMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} eventCreationMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} eventCreationMessageKey
              * @memberof E2E.Message.EncEventResponseMessage
              * @instance
              */
@@ -50452,7 +50452,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.eventCreationMessageKey != null && Object.hasOwnProperty.call(message, "eventCreationMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.eventCreationMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.eventCreationMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.encPayload);
                 if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
@@ -50498,7 +50498,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.eventCreationMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.eventCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -50549,7 +50549,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.eventCreationMessageKey != null && Object.hasOwnProperty.call(message, "eventCreationMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.eventCreationMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.eventCreationMessageKey, long + 1);
                     if (error)
                         return "eventCreationMessageKey." + error;
                 }
@@ -50583,7 +50583,7 @@ $root.E2E = (function() {
                 if (object.eventCreationMessageKey != null) {
                     if (!$util.isObject(object.eventCreationMessageKey))
                         throw TypeError(".E2E.Message.EncEventResponseMessage.eventCreationMessageKey: object expected");
-                    message.eventCreationMessageKey = $root.Protocol.MessageKey.fromObject(object.eventCreationMessageKey, long + 1);
+                    message.eventCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.eventCreationMessageKey, long + 1);
                 }
                 if (object.encPayload != null)
                     if (typeof object.encPayload === "string")
@@ -50633,7 +50633,7 @@ $root.E2E = (function() {
                     }
                 }
                 if (message.eventCreationMessageKey != null && Object.hasOwnProperty.call(message, "eventCreationMessageKey"))
-                    object.eventCreationMessageKey = $root.Protocol.MessageKey.toObject(message.eventCreationMessageKey, options, q + 1);
+                    object.eventCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.eventCreationMessageKey, options, q + 1);
                 if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
                     object.encPayload = options.bytes === String ? $util.base64.encode(message.encPayload, 0, message.encPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.encPayload) : message.encPayload;
                 if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
@@ -50676,7 +50676,7 @@ $root.E2E = (function() {
              * Properties of an EncReactionMessage.
              * @memberof E2E.Message
              * @interface IEncReactionMessage
-             * @property {Protocol.IMessageKey|null} [targetMessageKey] EncReactionMessage targetMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [targetMessageKey] EncReactionMessage targetMessageKey
              * @property {Uint8Array|null} [encPayload] EncReactionMessage encPayload
              * @property {Uint8Array|null} [encIv] EncReactionMessage encIv
              */
@@ -50698,7 +50698,7 @@ $root.E2E = (function() {
 
             /**
              * EncReactionMessage targetMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} targetMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} targetMessageKey
              * @memberof E2E.Message.EncReactionMessage
              * @instance
              */
@@ -50749,7 +50749,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.targetMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.targetMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.encPayload);
                 if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
@@ -50795,7 +50795,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -50846,7 +50846,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.targetMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.targetMessageKey, long + 1);
                     if (error)
                         return "targetMessageKey." + error;
                 }
@@ -50880,7 +50880,7 @@ $root.E2E = (function() {
                 if (object.targetMessageKey != null) {
                     if (!$util.isObject(object.targetMessageKey))
                         throw TypeError(".E2E.Message.EncReactionMessage.targetMessageKey: object expected");
-                    message.targetMessageKey = $root.Protocol.MessageKey.fromObject(object.targetMessageKey, long + 1);
+                    message.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.targetMessageKey, long + 1);
                 }
                 if (object.encPayload != null)
                     if (typeof object.encPayload === "string")
@@ -50930,7 +50930,7 @@ $root.E2E = (function() {
                     }
                 }
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey"))
-                    object.targetMessageKey = $root.Protocol.MessageKey.toObject(message.targetMessageKey, options, q + 1);
+                    object.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.targetMessageKey, options, q + 1);
                 if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
                     object.encPayload = options.bytes === String ? $util.base64.encode(message.encPayload, 0, message.encPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.encPayload) : message.encPayload;
                 if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
@@ -63890,7 +63890,7 @@ $root.E2E = (function() {
              * Properties of a KeepInChatMessage.
              * @memberof E2E.Message
              * @interface IKeepInChatMessage
-             * @property {Protocol.IMessageKey|null} [key] KeepInChatMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] KeepInChatMessage key
              * @property {E2E.KeepType|null} [keepType] KeepInChatMessage keepType
              * @property {number|Long|null} [timestampMs] KeepInChatMessage timestampMs
              */
@@ -63912,7 +63912,7 @@ $root.E2E = (function() {
 
             /**
              * KeepInChatMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.KeepInChatMessage
              * @instance
              */
@@ -63963,7 +63963,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.keepType != null && Object.hasOwnProperty.call(message, "keepType"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.keepType);
                 if (message.timestampMs != null && Object.hasOwnProperty.call(message, "timestampMs"))
@@ -64009,7 +64009,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -64060,7 +64060,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -64100,7 +64100,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.KeepInChatMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 switch (object.keepType) {
                 default:
@@ -64161,7 +64161,7 @@ $root.E2E = (function() {
                         object.timestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 if (message.keepType != null && Object.hasOwnProperty.call(message, "keepType"))
                     object.keepType = options.enums === String ? $root.E2E.KeepType[message.keepType] === undefined ? message.keepType : $root.E2E.KeepType[message.keepType] : message.keepType;
                 if (message.timestampMs != null && Object.hasOwnProperty.call(message, "timestampMs"))
@@ -70548,7 +70548,7 @@ $root.E2E = (function() {
              * @property {string|null} [totalCurrencyCode] OrderMessage totalCurrencyCode
              * @property {E2E.IContextInfo|null} [contextInfo] OrderMessage contextInfo
              * @property {number|null} [messageVersion] OrderMessage messageVersion
-             * @property {Protocol.IMessageKey|null} [orderRequestMessageId] OrderMessage orderRequestMessageId
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [orderRequestMessageId] OrderMessage orderRequestMessageId
              * @property {string|null} [catalogType] OrderMessage catalogType
              */
 
@@ -70673,7 +70673,7 @@ $root.E2E = (function() {
 
             /**
              * OrderMessage orderRequestMessageId.
-             * @member {Protocol.IMessageKey|null|undefined} orderRequestMessageId
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} orderRequestMessageId
              * @memberof E2E.Message.OrderMessage
              * @instance
              */
@@ -70740,7 +70740,7 @@ $root.E2E = (function() {
                 if (message.messageVersion != null && Object.hasOwnProperty.call(message, "messageVersion"))
                     writer.uint32(/* id 12, wireType 0 =*/96).int32(message.messageVersion);
                 if (message.orderRequestMessageId != null && Object.hasOwnProperty.call(message, "orderRequestMessageId"))
-                    $root.Protocol.MessageKey.encode(message.orderRequestMessageId, writer.uint32(/* id 13, wireType 2 =*/106).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.orderRequestMessageId, writer.uint32(/* id 13, wireType 2 =*/106).fork(), q + 1).ldelim();
                 if (message.catalogType != null && Object.hasOwnProperty.call(message, "catalogType"))
                     writer.uint32(/* id 15, wireType 2 =*/122).string(message.catalogType);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
@@ -70838,7 +70838,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 13: {
-                            message.orderRequestMessageId = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.orderRequestMessageId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 15: {
@@ -70936,7 +70936,7 @@ $root.E2E = (function() {
                     if (!$util.isInteger(message.messageVersion))
                         return "messageVersion: integer expected";
                 if (message.orderRequestMessageId != null && Object.hasOwnProperty.call(message, "orderRequestMessageId")) {
-                    var error = $root.Protocol.MessageKey.verify(message.orderRequestMessageId, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.orderRequestMessageId, long + 1);
                     if (error)
                         return "orderRequestMessageId." + error;
                 }
@@ -71034,7 +71034,7 @@ $root.E2E = (function() {
                 if (object.orderRequestMessageId != null) {
                     if (!$util.isObject(object.orderRequestMessageId))
                         throw TypeError(".E2E.Message.OrderMessage.orderRequestMessageId: object expected");
-                    message.orderRequestMessageId = $root.Protocol.MessageKey.fromObject(object.orderRequestMessageId, long + 1);
+                    message.orderRequestMessageId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.orderRequestMessageId, long + 1);
                 }
                 if (object.catalogType != null)
                     message.catalogType = String(object.catalogType);
@@ -71115,7 +71115,7 @@ $root.E2E = (function() {
                 if (message.messageVersion != null && Object.hasOwnProperty.call(message, "messageVersion"))
                     object.messageVersion = message.messageVersion;
                 if (message.orderRequestMessageId != null && Object.hasOwnProperty.call(message, "orderRequestMessageId"))
-                    object.orderRequestMessageId = $root.Protocol.MessageKey.toObject(message.orderRequestMessageId, options, q + 1);
+                    object.orderRequestMessageId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.orderRequestMessageId, options, q + 1);
                 if (message.catalogType != null && Object.hasOwnProperty.call(message, "catalogType"))
                     object.catalogType = message.catalogType;
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
@@ -76106,7 +76106,7 @@ $root.E2E = (function() {
                  * Properties of a PlaceholderMessageResendRequest.
                  * @memberof E2E.Message.PeerDataOperationRequestMessage
                  * @interface IPlaceholderMessageResendRequest
-                 * @property {Protocol.IMessageKey|null} [messageKey] PlaceholderMessageResendRequest messageKey
+                 * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [messageKey] PlaceholderMessageResendRequest messageKey
                  */
 
                 /**
@@ -76126,7 +76126,7 @@ $root.E2E = (function() {
 
                 /**
                  * PlaceholderMessageResendRequest messageKey.
-                 * @member {Protocol.IMessageKey|null|undefined} messageKey
+                 * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} messageKey
                  * @memberof E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest
                  * @instance
                  */
@@ -76161,7 +76161,7 @@ $root.E2E = (function() {
                     if (q > $util.recursionLimit)
                         throw Error("max depth exceeded");
                     if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
-                        $root.Protocol.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                        $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                     return writer;
                 };
 
@@ -76203,7 +76203,7 @@ $root.E2E = (function() {
                             break;
                         switch (tag >>> 3) {
                         case 1: {
-                                message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                                message.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                                 break;
                             }
                         default:
@@ -76246,7 +76246,7 @@ $root.E2E = (function() {
                     if (long > $util.recursionLimit)
                         return "maximum nesting depth exceeded";
                     if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey")) {
-                        var error = $root.Protocol.MessageKey.verify(message.messageKey, long + 1);
+                        var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.messageKey, long + 1);
                         if (error)
                             return "messageKey." + error;
                     }
@@ -76274,7 +76274,7 @@ $root.E2E = (function() {
                     if (object.messageKey != null) {
                         if (!$util.isObject(object.messageKey))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest.messageKey: object expected");
-                        message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey, long + 1);
+                        message.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.messageKey, long + 1);
                     }
                     return message;
                 };
@@ -76299,7 +76299,7 @@ $root.E2E = (function() {
                     if (options.defaults)
                         object.messageKey = null;
                     if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
-                        object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options, q + 1);
+                        object.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.messageKey, options, q + 1);
                     return object;
                 };
 
@@ -82288,7 +82288,7 @@ $root.E2E = (function() {
              * Properties of a PinInChatMessage.
              * @memberof E2E.Message
              * @interface IPinInChatMessage
-             * @property {Protocol.IMessageKey|null} [key] PinInChatMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] PinInChatMessage key
              * @property {E2E.Message.PinInChatMessage.Type|null} [type] PinInChatMessage type
              * @property {number|Long|null} [senderTimestampMs] PinInChatMessage senderTimestampMs
              */
@@ -82310,7 +82310,7 @@ $root.E2E = (function() {
 
             /**
              * PinInChatMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.PinInChatMessage
              * @instance
              */
@@ -82361,7 +82361,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.type);
                 if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
@@ -82407,7 +82407,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -82458,7 +82458,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -82498,7 +82498,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.PinInChatMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 switch (object.type) {
                 default:
@@ -82559,7 +82559,7 @@ $root.E2E = (function() {
                         object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.E2E.Message.PinInChatMessage.Type[message.type] === undefined ? message.type : $root.E2E.Message.PinInChatMessage.Type[message.type] : message.type;
                 if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
@@ -82876,7 +82876,7 @@ $root.E2E = (function() {
              * Properties of a PollAddOptionMessage.
              * @memberof E2E.Message
              * @interface IPollAddOptionMessage
-             * @property {Protocol.IMessageKey|null} [pollCreationMessageKey] PollAddOptionMessage pollCreationMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [pollCreationMessageKey] PollAddOptionMessage pollCreationMessageKey
              * @property {E2E.Message.PollCreationMessage.IOption|null} [addOption] PollAddOptionMessage addOption
              * @property {E2E.Message.IPollUpdateMessageMetadata|null} [metadata] PollAddOptionMessage metadata
              */
@@ -82898,7 +82898,7 @@ $root.E2E = (function() {
 
             /**
              * PollAddOptionMessage pollCreationMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} pollCreationMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} pollCreationMessageKey
              * @memberof E2E.Message.PollAddOptionMessage
              * @instance
              */
@@ -82949,7 +82949,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.pollCreationMessageKey != null && Object.hasOwnProperty.call(message, "pollCreationMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.pollCreationMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.pollCreationMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.addOption != null && Object.hasOwnProperty.call(message, "addOption"))
                     $root.E2E.Message.PollCreationMessage.Option.encode(message.addOption, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
@@ -82995,7 +82995,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.pollCreationMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.pollCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -83046,7 +83046,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.pollCreationMessageKey != null && Object.hasOwnProperty.call(message, "pollCreationMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.pollCreationMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.pollCreationMessageKey, long + 1);
                     if (error)
                         return "pollCreationMessageKey." + error;
                 }
@@ -83084,7 +83084,7 @@ $root.E2E = (function() {
                 if (object.pollCreationMessageKey != null) {
                     if (!$util.isObject(object.pollCreationMessageKey))
                         throw TypeError(".E2E.Message.PollAddOptionMessage.pollCreationMessageKey: object expected");
-                    message.pollCreationMessageKey = $root.Protocol.MessageKey.fromObject(object.pollCreationMessageKey, long + 1);
+                    message.pollCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.pollCreationMessageKey, long + 1);
                 }
                 if (object.addOption != null) {
                     if (!$util.isObject(object.addOption))
@@ -83122,7 +83122,7 @@ $root.E2E = (function() {
                     object.metadata = null;
                 }
                 if (message.pollCreationMessageKey != null && Object.hasOwnProperty.call(message, "pollCreationMessageKey"))
-                    object.pollCreationMessageKey = $root.Protocol.MessageKey.toObject(message.pollCreationMessageKey, options, q + 1);
+                    object.pollCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.pollCreationMessageKey, options, q + 1);
                 if (message.addOption != null && Object.hasOwnProperty.call(message, "addOption"))
                     object.addOption = $root.E2E.Message.PollCreationMessage.Option.toObject(message.addOption, options, q + 1);
                 if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
@@ -84883,7 +84883,7 @@ $root.E2E = (function() {
              * Properties of a PollUpdateMessage.
              * @memberof E2E.Message
              * @interface IPollUpdateMessage
-             * @property {Protocol.IMessageKey|null} [pollCreationMessageKey] PollUpdateMessage pollCreationMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [pollCreationMessageKey] PollUpdateMessage pollCreationMessageKey
              * @property {E2E.Message.IPollEncValue|null} [vote] PollUpdateMessage vote
              * @property {E2E.Message.IPollUpdateMessageMetadata|null} [metadata] PollUpdateMessage metadata
              * @property {number|Long|null} [senderTimestampMs] PollUpdateMessage senderTimestampMs
@@ -84906,7 +84906,7 @@ $root.E2E = (function() {
 
             /**
              * PollUpdateMessage pollCreationMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} pollCreationMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} pollCreationMessageKey
              * @memberof E2E.Message.PollUpdateMessage
              * @instance
              */
@@ -84965,7 +84965,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.pollCreationMessageKey != null && Object.hasOwnProperty.call(message, "pollCreationMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.pollCreationMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.pollCreationMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.vote != null && Object.hasOwnProperty.call(message, "vote"))
                     $root.E2E.Message.PollEncValue.encode(message.vote, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
@@ -85013,7 +85013,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.pollCreationMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.pollCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -85068,7 +85068,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.pollCreationMessageKey != null && Object.hasOwnProperty.call(message, "pollCreationMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.pollCreationMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.pollCreationMessageKey, long + 1);
                     if (error)
                         return "pollCreationMessageKey." + error;
                 }
@@ -85109,7 +85109,7 @@ $root.E2E = (function() {
                 if (object.pollCreationMessageKey != null) {
                     if (!$util.isObject(object.pollCreationMessageKey))
                         throw TypeError(".E2E.Message.PollUpdateMessage.pollCreationMessageKey: object expected");
-                    message.pollCreationMessageKey = $root.Protocol.MessageKey.fromObject(object.pollCreationMessageKey, long + 1);
+                    message.pollCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.pollCreationMessageKey, long + 1);
                 }
                 if (object.vote != null) {
                     if (!$util.isObject(object.vote))
@@ -85161,7 +85161,7 @@ $root.E2E = (function() {
                         object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.pollCreationMessageKey != null && Object.hasOwnProperty.call(message, "pollCreationMessageKey"))
-                    object.pollCreationMessageKey = $root.Protocol.MessageKey.toObject(message.pollCreationMessageKey, options, q + 1);
+                    object.pollCreationMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.pollCreationMessageKey, options, q + 1);
                 if (message.vote != null && Object.hasOwnProperty.call(message, "vote"))
                     object.vote = $root.E2E.Message.PollEncValue.toObject(message.vote, options, q + 1);
                 if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
@@ -86872,7 +86872,7 @@ $root.E2E = (function() {
              * Properties of a ProtocolMessage.
              * @memberof E2E.Message
              * @interface IProtocolMessage
-             * @property {Protocol.IMessageKey|null} [key] ProtocolMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] ProtocolMessage key
              * @property {E2E.Message.ProtocolMessage.Type|null} [type] ProtocolMessage type
              * @property {number|null} [ephemeralExpiration] ProtocolMessage ephemeralExpiration
              * @property {number|Long|null} [ephemeralSettingTimestamp] ProtocolMessage ephemeralSettingTimestamp
@@ -86919,7 +86919,7 @@ $root.E2E = (function() {
 
             /**
              * ProtocolMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.ProtocolMessage
              * @instance
              */
@@ -87170,7 +87170,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.type);
                 if (message.ephemeralExpiration != null && Object.hasOwnProperty.call(message, "ephemeralExpiration"))
@@ -87266,7 +87266,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -87417,7 +87417,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -87599,7 +87599,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.ProtocolMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 switch (object.type) {
                 default:
@@ -87923,7 +87923,7 @@ $root.E2E = (function() {
                     object.aiMetadataOperation = null;
                 }
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.E2E.Message.ProtocolMessage.Type[message.type] === undefined ? message.type : $root.E2E.Message.ProtocolMessage.Type[message.type] : message.type;
                 if (message.ephemeralExpiration != null && Object.hasOwnProperty.call(message, "ephemeralExpiration"))
@@ -88096,7 +88096,7 @@ $root.E2E = (function() {
              * Properties of a QuestionResponseMessage.
              * @memberof E2E.Message
              * @interface IQuestionResponseMessage
-             * @property {Protocol.IMessageKey|null} [key] QuestionResponseMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] QuestionResponseMessage key
              * @property {string|null} [text] QuestionResponseMessage text
              */
 
@@ -88117,7 +88117,7 @@ $root.E2E = (function() {
 
             /**
              * QuestionResponseMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.QuestionResponseMessage
              * @instance
              */
@@ -88160,7 +88160,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
                 return writer;
@@ -88204,7 +88204,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -88251,7 +88251,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -88282,7 +88282,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.QuestionResponseMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 if (object.text != null)
                     message.text = String(object.text);
@@ -88311,7 +88311,7 @@ $root.E2E = (function() {
                     object.text = "";
                 }
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     object.text = message.text;
                 return object;
@@ -88352,7 +88352,7 @@ $root.E2E = (function() {
              * Properties of a ReactionMessage.
              * @memberof E2E.Message
              * @interface IReactionMessage
-             * @property {Protocol.IMessageKey|null} [key] ReactionMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] ReactionMessage key
              * @property {string|null} [text] ReactionMessage text
              * @property {string|null} [groupingKey] ReactionMessage groupingKey
              * @property {number|Long|null} [senderTimestampMs] ReactionMessage senderTimestampMs
@@ -88375,7 +88375,7 @@ $root.E2E = (function() {
 
             /**
              * ReactionMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.ReactionMessage
              * @instance
              */
@@ -88434,7 +88434,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
                 if (message.groupingKey != null && Object.hasOwnProperty.call(message, "groupingKey"))
@@ -88482,7 +88482,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -88537,7 +88537,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -88574,7 +88574,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.ReactionMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 if (object.text != null)
                     message.text = String(object.text);
@@ -88620,7 +88620,7 @@ $root.E2E = (function() {
                         object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     object.text = message.text;
                 if (message.groupingKey != null && Object.hasOwnProperty.call(message, "groupingKey"))
@@ -90217,7 +90217,7 @@ $root.E2E = (function() {
              * Properties of a ScheduledCallEditMessage.
              * @memberof E2E.Message
              * @interface IScheduledCallEditMessage
-             * @property {Protocol.IMessageKey|null} [key] ScheduledCallEditMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] ScheduledCallEditMessage key
              * @property {E2E.Message.ScheduledCallEditMessage.EditType|null} [editType] ScheduledCallEditMessage editType
              */
 
@@ -90238,7 +90238,7 @@ $root.E2E = (function() {
 
             /**
              * ScheduledCallEditMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.ScheduledCallEditMessage
              * @instance
              */
@@ -90281,7 +90281,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.editType != null && Object.hasOwnProperty.call(message, "editType"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.editType);
                 return writer;
@@ -90325,7 +90325,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -90372,7 +90372,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -90408,7 +90408,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.ScheduledCallEditMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 switch (object.editType) {
                 default:
@@ -90451,7 +90451,7 @@ $root.E2E = (function() {
                     object.editType = options.enums === String ? "UNKNOWN" : 0;
                 }
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 if (message.editType != null && Object.hasOwnProperty.call(message, "editType"))
                     object.editType = options.enums === String ? $root.E2E.Message.ScheduledCallEditMessage.EditType[message.editType] === undefined ? message.editType : $root.E2E.Message.ScheduledCallEditMessage.EditType[message.editType] : message.editType;
                 return object;
@@ -90506,7 +90506,7 @@ $root.E2E = (function() {
              * Properties of a SecretEncryptedMessage.
              * @memberof E2E.Message
              * @interface ISecretEncryptedMessage
-             * @property {Protocol.IMessageKey|null} [targetMessageKey] SecretEncryptedMessage targetMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [targetMessageKey] SecretEncryptedMessage targetMessageKey
              * @property {Uint8Array|null} [encPayload] SecretEncryptedMessage encPayload
              * @property {Uint8Array|null} [encIv] SecretEncryptedMessage encIv
              * @property {E2E.Message.SecretEncryptedMessage.SecretEncType|null} [secretEncType] SecretEncryptedMessage secretEncType
@@ -90530,7 +90530,7 @@ $root.E2E = (function() {
 
             /**
              * SecretEncryptedMessage targetMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} targetMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} targetMessageKey
              * @memberof E2E.Message.SecretEncryptedMessage
              * @instance
              */
@@ -90597,7 +90597,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.targetMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.targetMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.encPayload);
                 if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
@@ -90647,7 +90647,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -90706,7 +90706,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.targetMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.targetMessageKey, long + 1);
                     if (error)
                         return "targetMessageKey." + error;
                 }
@@ -90755,7 +90755,7 @@ $root.E2E = (function() {
                 if (object.targetMessageKey != null) {
                     if (!$util.isObject(object.targetMessageKey))
                         throw TypeError(".E2E.Message.SecretEncryptedMessage.targetMessageKey: object expected");
-                    message.targetMessageKey = $root.Protocol.MessageKey.fromObject(object.targetMessageKey, long + 1);
+                    message.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.targetMessageKey, long + 1);
                 }
                 if (object.encPayload != null)
                     if (typeof object.encPayload === "string")
@@ -90841,7 +90841,7 @@ $root.E2E = (function() {
                     object.remoteKeyId = "";
                 }
                 if (message.targetMessageKey != null && Object.hasOwnProperty.call(message, "targetMessageKey"))
-                    object.targetMessageKey = $root.Protocol.MessageKey.toObject(message.targetMessageKey, options, q + 1);
+                    object.targetMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.targetMessageKey, options, q + 1);
                 if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
                     object.encPayload = options.bytes === String ? $util.base64.encode(message.encPayload, 0, message.encPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.encPayload) : message.encPayload;
                 if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
@@ -90911,7 +90911,7 @@ $root.E2E = (function() {
              * @memberof E2E.Message
              * @interface ISendPaymentMessage
              * @property {E2E.IMessage|null} [noteMessage] SendPaymentMessage noteMessage
-             * @property {Protocol.IMessageKey|null} [requestMessageKey] SendPaymentMessage requestMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [requestMessageKey] SendPaymentMessage requestMessageKey
              * @property {E2E.IPaymentBackground|null} [background] SendPaymentMessage background
              * @property {string|null} [transactionData] SendPaymentMessage transactionData
              */
@@ -90941,7 +90941,7 @@ $root.E2E = (function() {
 
             /**
              * SendPaymentMessage requestMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} requestMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} requestMessageKey
              * @memberof E2E.Message.SendPaymentMessage
              * @instance
              */
@@ -90994,7 +90994,7 @@ $root.E2E = (function() {
                 if (message.noteMessage != null && Object.hasOwnProperty.call(message, "noteMessage"))
                     $root.E2E.Message.encode(message.noteMessage, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.requestMessageKey, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.requestMessageKey, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
                 if (message.background != null && Object.hasOwnProperty.call(message, "background"))
                     $root.E2E.PaymentBackground.encode(message.background, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
                 if (message.transactionData != null && Object.hasOwnProperty.call(message, "transactionData"))
@@ -91044,7 +91044,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 3: {
-                            message.requestMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 4: {
@@ -91100,7 +91100,7 @@ $root.E2E = (function() {
                         return "noteMessage." + error;
                 }
                 if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.requestMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.requestMessageKey, long + 1);
                     if (error)
                         return "requestMessageKey." + error;
                 }
@@ -91141,7 +91141,7 @@ $root.E2E = (function() {
                 if (object.requestMessageKey != null) {
                     if (!$util.isObject(object.requestMessageKey))
                         throw TypeError(".E2E.Message.SendPaymentMessage.requestMessageKey: object expected");
-                    message.requestMessageKey = $root.Protocol.MessageKey.fromObject(object.requestMessageKey, long + 1);
+                    message.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.requestMessageKey, long + 1);
                 }
                 if (object.background != null) {
                     if (!$util.isObject(object.background))
@@ -91179,7 +91179,7 @@ $root.E2E = (function() {
                 if (message.noteMessage != null && Object.hasOwnProperty.call(message, "noteMessage"))
                     object.noteMessage = $root.E2E.Message.toObject(message.noteMessage, options, q + 1);
                 if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey"))
-                    object.requestMessageKey = $root.Protocol.MessageKey.toObject(message.requestMessageKey, options, q + 1);
+                    object.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.requestMessageKey, options, q + 1);
                 if (message.background != null && Object.hasOwnProperty.call(message, "background"))
                     object.background = $root.E2E.PaymentBackground.toObject(message.background, options, q + 1);
                 if (message.transactionData != null && Object.hasOwnProperty.call(message, "transactionData"))
@@ -92208,8 +92208,8 @@ $root.E2E = (function() {
              * Properties of a StatusNotificationMessage.
              * @memberof E2E.Message
              * @interface IStatusNotificationMessage
-             * @property {Protocol.IMessageKey|null} [responseMessageKey] StatusNotificationMessage responseMessageKey
-             * @property {Protocol.IMessageKey|null} [originalMessageKey] StatusNotificationMessage originalMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [responseMessageKey] StatusNotificationMessage responseMessageKey
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [originalMessageKey] StatusNotificationMessage originalMessageKey
              * @property {E2E.Message.StatusNotificationMessage.StatusNotificationType|null} [type] StatusNotificationMessage type
              */
 
@@ -92230,7 +92230,7 @@ $root.E2E = (function() {
 
             /**
              * StatusNotificationMessage responseMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} responseMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} responseMessageKey
              * @memberof E2E.Message.StatusNotificationMessage
              * @instance
              */
@@ -92238,7 +92238,7 @@ $root.E2E = (function() {
 
             /**
              * StatusNotificationMessage originalMessageKey.
-             * @member {Protocol.IMessageKey|null|undefined} originalMessageKey
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} originalMessageKey
              * @memberof E2E.Message.StatusNotificationMessage
              * @instance
              */
@@ -92281,9 +92281,9 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.responseMessageKey != null && Object.hasOwnProperty.call(message, "responseMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.responseMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.responseMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.originalMessageKey != null && Object.hasOwnProperty.call(message, "originalMessageKey"))
-                    $root.Protocol.MessageKey.encode(message.originalMessageKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.originalMessageKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type);
                 return writer;
@@ -92327,11 +92327,11 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.responseMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.responseMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
-                            message.originalMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.originalMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 3: {
@@ -92378,12 +92378,12 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.responseMessageKey != null && Object.hasOwnProperty.call(message, "responseMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.responseMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.responseMessageKey, long + 1);
                     if (error)
                         return "responseMessageKey." + error;
                 }
                 if (message.originalMessageKey != null && Object.hasOwnProperty.call(message, "originalMessageKey")) {
-                    var error = $root.Protocol.MessageKey.verify(message.originalMessageKey, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.originalMessageKey, long + 1);
                     if (error)
                         return "originalMessageKey." + error;
                 }
@@ -92421,12 +92421,12 @@ $root.E2E = (function() {
                 if (object.responseMessageKey != null) {
                     if (!$util.isObject(object.responseMessageKey))
                         throw TypeError(".E2E.Message.StatusNotificationMessage.responseMessageKey: object expected");
-                    message.responseMessageKey = $root.Protocol.MessageKey.fromObject(object.responseMessageKey, long + 1);
+                    message.responseMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.responseMessageKey, long + 1);
                 }
                 if (object.originalMessageKey != null) {
                     if (!$util.isObject(object.originalMessageKey))
                         throw TypeError(".E2E.Message.StatusNotificationMessage.originalMessageKey: object expected");
-                    message.originalMessageKey = $root.Protocol.MessageKey.fromObject(object.originalMessageKey, long + 1);
+                    message.originalMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.originalMessageKey, long + 1);
                 }
                 switch (object.type) {
                 default:
@@ -92478,9 +92478,9 @@ $root.E2E = (function() {
                     object.type = options.enums === String ? "UNKNOWN" : 0;
                 }
                 if (message.responseMessageKey != null && Object.hasOwnProperty.call(message, "responseMessageKey"))
-                    object.responseMessageKey = $root.Protocol.MessageKey.toObject(message.responseMessageKey, options, q + 1);
+                    object.responseMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.responseMessageKey, options, q + 1);
                 if (message.originalMessageKey != null && Object.hasOwnProperty.call(message, "originalMessageKey"))
-                    object.originalMessageKey = $root.Protocol.MessageKey.toObject(message.originalMessageKey, options, q + 1);
+                    object.originalMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.originalMessageKey, options, q + 1);
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     object.type = options.enums === String ? $root.E2E.Message.StatusNotificationMessage.StatusNotificationType[message.type] === undefined ? message.type : $root.E2E.Message.StatusNotificationMessage.StatusNotificationType[message.type] : message.type;
                 return object;
@@ -92539,7 +92539,7 @@ $root.E2E = (function() {
              * Properties of a StatusQuestionAnswerMessage.
              * @memberof E2E.Message
              * @interface IStatusQuestionAnswerMessage
-             * @property {Protocol.IMessageKey|null} [key] StatusQuestionAnswerMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] StatusQuestionAnswerMessage key
              * @property {string|null} [text] StatusQuestionAnswerMessage text
              */
 
@@ -92560,7 +92560,7 @@ $root.E2E = (function() {
 
             /**
              * StatusQuestionAnswerMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.StatusQuestionAnswerMessage
              * @instance
              */
@@ -92603,7 +92603,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
                 return writer;
@@ -92647,7 +92647,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -92694,7 +92694,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -92725,7 +92725,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.StatusQuestionAnswerMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 if (object.text != null)
                     message.text = String(object.text);
@@ -92754,7 +92754,7 @@ $root.E2E = (function() {
                     object.text = "";
                 }
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     object.text = message.text;
                 return object;
@@ -92798,7 +92798,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.StatusQuotedMessage.StatusQuotedMessageType|null} [type] StatusQuotedMessage type
              * @property {string|null} [text] StatusQuotedMessage text
              * @property {Uint8Array|null} [thumbnail] StatusQuotedMessage thumbnail
-             * @property {Protocol.IMessageKey|null} [originalStatusId] StatusQuotedMessage originalStatusId
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [originalStatusId] StatusQuotedMessage originalStatusId
              */
 
             /**
@@ -92842,7 +92842,7 @@ $root.E2E = (function() {
 
             /**
              * StatusQuotedMessage originalStatusId.
-             * @member {Protocol.IMessageKey|null|undefined} originalStatusId
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} originalStatusId
              * @memberof E2E.Message.StatusQuotedMessage
              * @instance
              */
@@ -92883,7 +92883,7 @@ $root.E2E = (function() {
                 if (message.thumbnail != null && Object.hasOwnProperty.call(message, "thumbnail"))
                     writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.thumbnail);
                 if (message.originalStatusId != null && Object.hasOwnProperty.call(message, "originalStatusId"))
-                    $root.Protocol.MessageKey.encode(message.originalStatusId, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.originalStatusId, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -92937,7 +92937,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 4: {
-                            message.originalStatusId = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.originalStatusId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
@@ -92993,7 +92993,7 @@ $root.E2E = (function() {
                     if (!(message.thumbnail && typeof message.thumbnail.length === "number" || $util.isString(message.thumbnail)))
                         return "thumbnail: buffer expected";
                 if (message.originalStatusId != null && Object.hasOwnProperty.call(message, "originalStatusId")) {
-                    var error = $root.Protocol.MessageKey.verify(message.originalStatusId, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.originalStatusId, long + 1);
                     if (error)
                         return "originalStatusId." + error;
                 }
@@ -93040,7 +93040,7 @@ $root.E2E = (function() {
                 if (object.originalStatusId != null) {
                     if (!$util.isObject(object.originalStatusId))
                         throw TypeError(".E2E.Message.StatusQuotedMessage.originalStatusId: object expected");
-                    message.originalStatusId = $root.Protocol.MessageKey.fromObject(object.originalStatusId, long + 1);
+                    message.originalStatusId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.originalStatusId, long + 1);
                 }
                 return message;
             };
@@ -93081,7 +93081,7 @@ $root.E2E = (function() {
                 if (message.thumbnail != null && Object.hasOwnProperty.call(message, "thumbnail"))
                     object.thumbnail = options.bytes === String ? $util.base64.encode(message.thumbnail, 0, message.thumbnail.length) : options.bytes === Array ? Array.prototype.slice.call(message.thumbnail) : message.thumbnail;
                 if (message.originalStatusId != null && Object.hasOwnProperty.call(message, "originalStatusId"))
-                    object.originalStatusId = $root.Protocol.MessageKey.toObject(message.originalStatusId, options, q + 1);
+                    object.originalStatusId = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.originalStatusId, options, q + 1);
                 return object;
             };
 
@@ -93132,7 +93132,7 @@ $root.E2E = (function() {
              * Properties of a StatusStickerInteractionMessage.
              * @memberof E2E.Message
              * @interface IStatusStickerInteractionMessage
-             * @property {Protocol.IMessageKey|null} [key] StatusStickerInteractionMessage key
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] StatusStickerInteractionMessage key
              * @property {string|null} [stickerKey] StatusStickerInteractionMessage stickerKey
              * @property {E2E.Message.StatusStickerInteractionMessage.StatusStickerType|null} [type] StatusStickerInteractionMessage type
              */
@@ -93154,7 +93154,7 @@ $root.E2E = (function() {
 
             /**
              * StatusStickerInteractionMessage key.
-             * @member {Protocol.IMessageKey|null|undefined} key
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
              * @memberof E2E.Message.StatusStickerInteractionMessage
              * @instance
              */
@@ -93205,7 +93205,7 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.stickerKey != null && Object.hasOwnProperty.call(message, "stickerKey"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.stickerKey);
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
@@ -93251,7 +93251,7 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -93302,7 +93302,7 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
                 if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -93341,7 +93341,7 @@ $root.E2E = (function() {
                 if (object.key != null) {
                     if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.StatusStickerInteractionMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
                 }
                 if (object.stickerKey != null)
                     message.stickerKey = String(object.stickerKey);
@@ -93387,7 +93387,7 @@ $root.E2E = (function() {
                     object.type = options.enums === String ? "UNKNOWN" : 0;
                 }
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
                 if (message.stickerKey != null && Object.hasOwnProperty.call(message, "stickerKey"))
                     object.stickerKey = message.stickerKey;
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
@@ -99285,36 +99285,34 @@ $root.E2E = (function() {
     return E2E;
 })();
 
-$root.Protocol = (function() {
+$root.SignalLocalStorageProtocol = (function() {
 
     /**
-     * Namespace Protocol.
-     * @exports Protocol
+     * Namespace SignalLocalStorageProtocol.
+     * @exports SignalLocalStorageProtocol
      * @namespace
      */
-    var Protocol = {};
+    var SignalLocalStorageProtocol = {};
 
-    Protocol.LimitSharing = (function() {
+    SignalLocalStorageProtocol.SenderKeyRecordStructure = (function() {
 
         /**
-         * Properties of a LimitSharing.
-         * @memberof Protocol
-         * @interface ILimitSharing
-         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
-         * @property {Protocol.LimitSharing.TriggerType|null} [trigger] LimitSharing trigger
-         * @property {number|Long|null} [limitSharingSettingTimestamp] LimitSharing limitSharingSettingTimestamp
-         * @property {boolean|null} [initiatedByMe] LimitSharing initiatedByMe
+         * Properties of a SenderKeyRecordStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @interface ISenderKeyRecordStructure
+         * @property {Array.<SignalLocalStorageProtocol.ISenderKeyStateStructure>|null} [senderKeyStates] SenderKeyRecordStructure senderKeyStates
          */
 
         /**
-         * Constructs a new LimitSharing.
-         * @memberof Protocol
-         * @classdesc Represents a LimitSharing.
-         * @implements ILimitSharing
+         * Constructs a new SenderKeyRecordStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @classdesc Represents a SenderKeyRecordStructure.
+         * @implements ISenderKeyRecordStructure
          * @constructor
-         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         * @param {SignalLocalStorageProtocol.ISenderKeyRecordStructure=} [properties] Properties to set
          */
-        function LimitSharing(properties) {
+        function SenderKeyRecordStructure(properties) {
+            this.senderKeyStates = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -99322,127 +99320,88 @@ $root.Protocol = (function() {
         }
 
         /**
-         * LimitSharing sharingLimited.
-         * @member {boolean} sharingLimited
-         * @memberof Protocol.LimitSharing
+         * SenderKeyRecordStructure senderKeyStates.
+         * @member {Array.<SignalLocalStorageProtocol.ISenderKeyStateStructure>} senderKeyStates
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @instance
          */
-        LimitSharing.prototype.sharingLimited = false;
+        SenderKeyRecordStructure.prototype.senderKeyStates = $util.emptyArray;
 
         /**
-         * LimitSharing trigger.
-         * @member {Protocol.LimitSharing.TriggerType} trigger
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.trigger = 0;
-
-        /**
-         * LimitSharing limitSharingSettingTimestamp.
-         * @member {number|Long} limitSharingSettingTimestamp
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.limitSharingSettingTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-        /**
-         * LimitSharing initiatedByMe.
-         * @member {boolean} initiatedByMe
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.initiatedByMe = false;
-
-        /**
-         * Creates a new LimitSharing instance using the specified properties.
+         * Creates a new SenderKeyRecordStructure instance using the specified properties.
          * @function create
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
-         * @param {Protocol.ILimitSharing=} [properties] Properties to set
-         * @returns {Protocol.LimitSharing} LimitSharing instance
+         * @param {SignalLocalStorageProtocol.ISenderKeyRecordStructure=} [properties] Properties to set
+         * @returns {SignalLocalStorageProtocol.SenderKeyRecordStructure} SenderKeyRecordStructure instance
          */
-        LimitSharing.create = function create(properties) {
-            return new LimitSharing(properties);
+        SenderKeyRecordStructure.create = function create(properties) {
+            return new SenderKeyRecordStructure(properties);
         };
 
         /**
-         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * Encodes the specified SenderKeyRecordStructure message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyRecordStructure.verify|verify} messages.
          * @function encode
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
-         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {SignalLocalStorageProtocol.ISenderKeyRecordStructure} message SenderKeyRecordStructure message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LimitSharing.encode = function encode(message, writer, q) {
+        SenderKeyRecordStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
             if (q === undefined)
                 q = 0;
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
-            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
-                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
-            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
-            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
-                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.limitSharingSettingTimestamp);
-            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
-                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.initiatedByMe);
+            if (message.senderKeyStates != null && message.senderKeyStates.length)
+                for (var i = 0; i < message.senderKeyStates.length; ++i)
+                    $root.SignalLocalStorageProtocol.SenderKeyStateStructure.encode(message.senderKeyStates[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             return writer;
         };
 
         /**
-         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * Encodes the specified SenderKeyRecordStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyRecordStructure.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
-         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {SignalLocalStorageProtocol.ISenderKeyRecordStructure} message SenderKeyRecordStructure message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
+        SenderKeyRecordStructure.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
-         * Decodes a LimitSharing message from the specified reader or buffer.
+         * Decodes a SenderKeyRecordStructure message from the specified reader or buffer.
          * @function decode
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {Protocol.LimitSharing} LimitSharing
+         * @returns {SignalLocalStorageProtocol.SenderKeyRecordStructure} SenderKeyRecordStructure
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LimitSharing.decode = function decode(reader, length, error, long) {
+        SenderKeyRecordStructure.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             if (long === undefined)
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.sharingLimited = reader.bool();
-                        break;
-                    }
-                case 2: {
-                        message.trigger = reader.int32();
-                        break;
-                    }
-                case 3: {
-                        message.limitSharingSettingTimestamp = reader.int64();
-                        break;
-                    }
-                case 4: {
-                        message.initiatedByMe = reader.bool();
+                        if (!(message.senderKeyStates && message.senderKeyStates.length))
+                            message.senderKeyStates = [];
+                        message.senderKeyStates.push($root.SignalLocalStorageProtocol.SenderKeyStateStructure.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
@@ -99454,126 +99413,89 @@ $root.Protocol = (function() {
         };
 
         /**
-         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * Decodes a SenderKeyRecordStructure message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {Protocol.LimitSharing} LimitSharing
+         * @returns {SignalLocalStorageProtocol.SenderKeyRecordStructure} SenderKeyRecordStructure
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
+        SenderKeyRecordStructure.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a LimitSharing message.
+         * Verifies a SenderKeyRecordStructure message.
          * @function verify
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LimitSharing.verify = function verify(message, long) {
+        SenderKeyRecordStructure.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
-                if (typeof message.sharingLimited !== "boolean")
-                    return "sharingLimited: boolean expected";
-            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
-                switch (message.trigger) {
-                default:
-                    return "trigger: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                    break;
+            if (message.senderKeyStates != null && Object.hasOwnProperty.call(message, "senderKeyStates")) {
+                if (!Array.isArray(message.senderKeyStates))
+                    return "senderKeyStates: array expected";
+                for (var i = 0; i < message.senderKeyStates.length; ++i) {
+                    var error = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.verify(message.senderKeyStates[i], long + 1);
+                    if (error)
+                        return "senderKeyStates." + error;
                 }
-            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
-                if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
-                    return "limitSharingSettingTimestamp: integer|Long expected";
-            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
-                if (typeof message.initiatedByMe !== "boolean")
-                    return "initiatedByMe: boolean expected";
+            }
             return null;
         };
 
         /**
-         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * Creates a SenderKeyRecordStructure message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {Protocol.LimitSharing} LimitSharing
+         * @returns {SignalLocalStorageProtocol.SenderKeyRecordStructure} SenderKeyRecordStructure
          */
-        LimitSharing.fromObject = function fromObject(object, long) {
-            if (object instanceof $root.Protocol.LimitSharing)
+        SenderKeyRecordStructure.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyRecordStructure)
                 return object;
             if (!$util.isObject(object))
-                throw TypeError(".Protocol.LimitSharing: object expected");
+                throw TypeError(".SignalLocalStorageProtocol.SenderKeyRecordStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var message = new $root.Protocol.LimitSharing();
-            if (object.sharingLimited != null)
-                message.sharingLimited = Boolean(object.sharingLimited);
-            switch (object.trigger) {
-            default:
-                if (typeof object.trigger === "number") {
-                    message.trigger = object.trigger;
-                    break;
+            var message = new $root.SignalLocalStorageProtocol.SenderKeyRecordStructure();
+            if (object.senderKeyStates) {
+                if (!Array.isArray(object.senderKeyStates))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyRecordStructure.senderKeyStates: array expected");
+                message.senderKeyStates = [];
+                for (var i = 0; i < object.senderKeyStates.length; ++i) {
+                    if (!$util.isObject(object.senderKeyStates[i]))
+                        throw TypeError(".SignalLocalStorageProtocol.SenderKeyRecordStructure.senderKeyStates: object expected");
+                    message.senderKeyStates[i] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.fromObject(object.senderKeyStates[i], long + 1);
                 }
-                break;
-            case "UNKNOWN":
-            case 0:
-                message.trigger = 0;
-                break;
-            case "CHAT_SETTING":
-            case 1:
-                message.trigger = 1;
-                break;
-            case "BIZ_SUPPORTS_FB_HOSTING":
-            case 2:
-                message.trigger = 2;
-                break;
-            case "UNKNOWN_GROUP":
-            case 3:
-                message.trigger = 3;
-                break;
             }
-            if (object.limitSharingSettingTimestamp != null)
-                if ($util.Long)
-                    message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp, false);
-                else if (typeof object.limitSharingSettingTimestamp === "string")
-                    message.limitSharingSettingTimestamp = parseInt(object.limitSharingSettingTimestamp, 10);
-                else if (typeof object.limitSharingSettingTimestamp === "number")
-                    message.limitSharingSettingTimestamp = object.limitSharingSettingTimestamp;
-                else if (typeof object.limitSharingSettingTimestamp === "object")
-                    message.limitSharingSettingTimestamp = new $util.LongBits(object.limitSharingSettingTimestamp.low >>> 0, object.limitSharingSettingTimestamp.high >>> 0).toNumber();
-            if (object.initiatedByMe != null)
-                message.initiatedByMe = Boolean(object.initiatedByMe);
             return message;
         };
 
         /**
-         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * Creates a plain object from a SenderKeyRecordStructure message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
-         * @param {Protocol.LimitSharing} message LimitSharing
+         * @param {SignalLocalStorageProtocol.SenderKeyRecordStructure} message SenderKeyRecordStructure
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        LimitSharing.toObject = function toObject(message, options, q) {
+        SenderKeyRecordStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
             if (q === undefined)
@@ -99581,100 +99503,1182 @@ $root.Protocol = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             var object = {};
-            if (options.defaults) {
-                object.sharingLimited = false;
-                object.trigger = options.enums === String ? "UNKNOWN" : 0;
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, false);
-                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
-                } else
-                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-                object.initiatedByMe = false;
+            if (options.arrays || options.defaults)
+                object.senderKeyStates = [];
+            if (message.senderKeyStates && message.senderKeyStates.length) {
+                object.senderKeyStates = [];
+                for (var j = 0; j < message.senderKeyStates.length; ++j)
+                    object.senderKeyStates[j] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.toObject(message.senderKeyStates[j], options, q + 1);
             }
-            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
-                object.sharingLimited = message.sharingLimited;
-            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
-                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
-            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
-                if (typeof BigInt !== "undefined" && options.longs === BigInt)
-                    object.limitSharingSettingTimestamp = typeof message.limitSharingSettingTimestamp === "number" ? BigInt(message.limitSharingSettingTimestamp) : $util.Long.fromBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0, false).toBigInt();
-                else if (typeof message.limitSharingSettingTimestamp === "number")
-                    object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
-                else
-                    object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
-            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
-                object.initiatedByMe = message.initiatedByMe;
             return object;
         };
 
         /**
-         * Converts this LimitSharing to JSON.
+         * Converts this SenderKeyRecordStructure to JSON.
          * @function toJSON
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        LimitSharing.prototype.toJSON = function toJSON() {
+        SenderKeyRecordStructure.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for LimitSharing
+         * Gets the default type url for SenderKeyRecordStructure
          * @function getTypeUrl
-         * @memberof Protocol.LimitSharing
+         * @memberof SignalLocalStorageProtocol.SenderKeyRecordStructure
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        SenderKeyRecordStructure.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/Protocol.LimitSharing";
+            return typeUrlPrefix + "/SignalLocalStorageProtocol.SenderKeyRecordStructure";
+        };
+
+        return SenderKeyRecordStructure;
+    })();
+
+    SignalLocalStorageProtocol.SenderKeyStateStructure = (function() {
+
+        /**
+         * Properties of a SenderKeyStateStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @interface ISenderKeyStateStructure
+         * @property {number|null} [senderKeyId] SenderKeyStateStructure senderKeyId
+         * @property {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey|null} [senderChainKey] SenderKeyStateStructure senderChainKey
+         * @property {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey|null} [senderSigningKey] SenderKeyStateStructure senderSigningKey
+         * @property {Array.<SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey>|null} [senderMessageKeys] SenderKeyStateStructure senderMessageKeys
+         */
+
+        /**
+         * Constructs a new SenderKeyStateStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @classdesc Represents a SenderKeyStateStructure.
+         * @implements ISenderKeyStateStructure
+         * @constructor
+         * @param {SignalLocalStorageProtocol.ISenderKeyStateStructure=} [properties] Properties to set
+         */
+        function SenderKeyStateStructure(properties) {
+            this.senderMessageKeys = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SenderKeyStateStructure senderKeyId.
+         * @member {number} senderKeyId
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @instance
+         */
+        SenderKeyStateStructure.prototype.senderKeyId = 0;
+
+        /**
+         * SenderKeyStateStructure senderChainKey.
+         * @member {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey|null|undefined} senderChainKey
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @instance
+         */
+        SenderKeyStateStructure.prototype.senderChainKey = null;
+
+        /**
+         * SenderKeyStateStructure senderSigningKey.
+         * @member {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey|null|undefined} senderSigningKey
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @instance
+         */
+        SenderKeyStateStructure.prototype.senderSigningKey = null;
+
+        /**
+         * SenderKeyStateStructure senderMessageKeys.
+         * @member {Array.<SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey>} senderMessageKeys
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @instance
+         */
+        SenderKeyStateStructure.prototype.senderMessageKeys = $util.emptyArray;
+
+        /**
+         * Creates a new SenderKeyStateStructure instance using the specified properties.
+         * @function create
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISenderKeyStateStructure=} [properties] Properties to set
+         * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure} SenderKeyStateStructure instance
+         */
+        SenderKeyStateStructure.create = function create(properties) {
+            return new SenderKeyStateStructure(properties);
         };
 
         /**
-         * TriggerType enum.
-         * @name Protocol.LimitSharing.TriggerType
-         * @enum {number}
-         * @property {number} UNKNOWN=0 UNKNOWN value
-         * @property {number} CHAT_SETTING=1 CHAT_SETTING value
-         * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
-         * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
+         * Encodes the specified SenderKeyStateStructure message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.verify|verify} messages.
+         * @function encode
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISenderKeyStateStructure} message SenderKeyStateStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
          */
-        LimitSharing.TriggerType = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "UNKNOWN"] = 0;
-            values[valuesById[1] = "CHAT_SETTING"] = 1;
-            values[valuesById[2] = "BIZ_SUPPORTS_FB_HOSTING"] = 2;
-            values[valuesById[3] = "UNKNOWN_GROUP"] = 3;
-            return values;
+        SenderKeyStateStructure.encode = function encode(message, writer, q) {
+            if (!writer)
+                writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            if (message.senderKeyId != null && Object.hasOwnProperty.call(message, "senderKeyId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.senderKeyId);
+            if (message.senderChainKey != null && Object.hasOwnProperty.call(message, "senderChainKey"))
+                $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.encode(message.senderChainKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+            if (message.senderSigningKey != null && Object.hasOwnProperty.call(message, "senderSigningKey"))
+                $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.encode(message.senderSigningKey, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
+            if (message.senderMessageKeys != null && message.senderMessageKeys.length)
+                for (var i = 0; i < message.senderMessageKeys.length; ++i)
+                    $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.encode(message.senderMessageKeys[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SenderKeyStateStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISenderKeyStateStructure} message SenderKeyStateStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SenderKeyStateStructure.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a SenderKeyStateStructure message from the specified reader or buffer.
+         * @function decode
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure} SenderKeyStateStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SenderKeyStateStructure.decode = function decode(reader, length, error, long) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.senderKeyId = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.senderChainKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 3: {
+                        message.senderSigningKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 4: {
+                        if (!(message.senderMessageKeys && message.senderMessageKeys.length))
+                            message.senderMessageKeys = [];
+                        message.senderMessageKeys.push($root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.decode(reader, reader.uint32(), undefined, long + 1));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7, long);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SenderKeyStateStructure message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure} SenderKeyStateStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SenderKeyStateStructure.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SenderKeyStateStructure message.
+         * @function verify
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SenderKeyStateStructure.verify = function verify(message, long) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
+            if (message.senderKeyId != null && Object.hasOwnProperty.call(message, "senderKeyId"))
+                if (!$util.isInteger(message.senderKeyId))
+                    return "senderKeyId: integer expected";
+            if (message.senderChainKey != null && Object.hasOwnProperty.call(message, "senderChainKey")) {
+                var error = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.verify(message.senderChainKey, long + 1);
+                if (error)
+                    return "senderChainKey." + error;
+            }
+            if (message.senderSigningKey != null && Object.hasOwnProperty.call(message, "senderSigningKey")) {
+                var error = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.verify(message.senderSigningKey, long + 1);
+                if (error)
+                    return "senderSigningKey." + error;
+            }
+            if (message.senderMessageKeys != null && Object.hasOwnProperty.call(message, "senderMessageKeys")) {
+                if (!Array.isArray(message.senderMessageKeys))
+                    return "senderMessageKeys: array expected";
+                for (var i = 0; i < message.senderMessageKeys.length; ++i) {
+                    var error = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.verify(message.senderMessageKeys[i], long + 1);
+                    if (error)
+                        return "senderMessageKeys." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a SenderKeyStateStructure message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure} SenderKeyStateStructure
+         */
+        SenderKeyStateStructure.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyStateStructure)
+                return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure: object expected");
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure();
+            if (object.senderKeyId != null)
+                message.senderKeyId = object.senderKeyId >>> 0;
+            if (object.senderChainKey != null) {
+                if (!$util.isObject(object.senderChainKey))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.senderChainKey: object expected");
+                message.senderChainKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.fromObject(object.senderChainKey, long + 1);
+            }
+            if (object.senderSigningKey != null) {
+                if (!$util.isObject(object.senderSigningKey))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.senderSigningKey: object expected");
+                message.senderSigningKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.fromObject(object.senderSigningKey, long + 1);
+            }
+            if (object.senderMessageKeys) {
+                if (!Array.isArray(object.senderMessageKeys))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.senderMessageKeys: array expected");
+                message.senderMessageKeys = [];
+                for (var i = 0; i < object.senderMessageKeys.length; ++i) {
+                    if (!$util.isObject(object.senderMessageKeys[i]))
+                        throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.senderMessageKeys: object expected");
+                    message.senderMessageKeys[i] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.fromObject(object.senderMessageKeys[i], long + 1);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SenderKeyStateStructure message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.SenderKeyStateStructure} message SenderKeyStateStructure
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SenderKeyStateStructure.toObject = function toObject(message, options, q) {
+            if (!options)
+                options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.senderMessageKeys = [];
+            if (options.defaults) {
+                object.senderKeyId = 0;
+                object.senderChainKey = null;
+                object.senderSigningKey = null;
+            }
+            if (message.senderKeyId != null && Object.hasOwnProperty.call(message, "senderKeyId"))
+                object.senderKeyId = message.senderKeyId;
+            if (message.senderChainKey != null && Object.hasOwnProperty.call(message, "senderChainKey"))
+                object.senderChainKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.toObject(message.senderChainKey, options, q + 1);
+            if (message.senderSigningKey != null && Object.hasOwnProperty.call(message, "senderSigningKey"))
+                object.senderSigningKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.toObject(message.senderSigningKey, options, q + 1);
+            if (message.senderMessageKeys && message.senderMessageKeys.length) {
+                object.senderMessageKeys = [];
+                for (var j = 0; j < message.senderMessageKeys.length; ++j)
+                    object.senderMessageKeys[j] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.toObject(message.senderMessageKeys[j], options, q + 1);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this SenderKeyStateStructure to JSON.
+         * @function toJSON
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SenderKeyStateStructure.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SenderKeyStateStructure
+         * @function getTypeUrl
+         * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SenderKeyStateStructure.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/SignalLocalStorageProtocol.SenderKeyStateStructure";
+        };
+
+        SenderKeyStateStructure.SenderChainKey = (function() {
+
+            /**
+             * Properties of a SenderChainKey.
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+             * @interface ISenderChainKey
+             * @property {number|null} [iteration] SenderChainKey iteration
+             * @property {Uint8Array|null} [seed] SenderChainKey seed
+             */
+
+            /**
+             * Constructs a new SenderChainKey.
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+             * @classdesc Represents a SenderChainKey.
+             * @implements ISenderChainKey
+             * @constructor
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey=} [properties] Properties to set
+             */
+            function SenderChainKey(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * SenderChainKey iteration.
+             * @member {number} iteration
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @instance
+             */
+            SenderChainKey.prototype.iteration = 0;
+
+            /**
+             * SenderChainKey seed.
+             * @member {Uint8Array} seed
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @instance
+             */
+            SenderChainKey.prototype.seed = $util.newBuffer([]);
+
+            /**
+             * Creates a new SenderChainKey instance using the specified properties.
+             * @function create
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey=} [properties] Properties to set
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey} SenderChainKey instance
+             */
+            SenderChainKey.create = function create(properties) {
+                return new SenderChainKey(properties);
+            };
+
+            /**
+             * Encodes the specified SenderChainKey message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.verify|verify} messages.
+             * @function encode
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey} message SenderChainKey message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SenderChainKey.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.iteration);
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.seed);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified SenderChainKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey} message SenderChainKey message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SenderChainKey.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a SenderChainKey message from the specified reader or buffer.
+             * @function decode
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey} SenderChainKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SenderChainKey.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.iteration = reader.uint32();
+                            break;
+                        }
+                    case 2: {
+                            message.seed = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a SenderChainKey message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey} SenderChainKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SenderChainKey.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a SenderChainKey message.
+             * @function verify
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            SenderChainKey.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
+                    if (!$util.isInteger(message.iteration))
+                        return "iteration: integer expected";
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
+                    if (!(message.seed && typeof message.seed.length === "number" || $util.isString(message.seed)))
+                        return "seed: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a SenderChainKey message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey} SenderChainKey
+             */
+            SenderChainKey.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey();
+                if (object.iteration != null)
+                    message.iteration = object.iteration >>> 0;
+                if (object.seed != null)
+                    if (typeof object.seed === "string")
+                        $util.base64.decode(object.seed, message.seed = $util.newBuffer($util.base64.length(object.seed)), 0);
+                    else if (object.seed.length >= 0)
+                        message.seed = object.seed;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a SenderChainKey message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey} message SenderChainKey
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            SenderChainKey.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    object.iteration = 0;
+                    if (options.bytes === String)
+                        object.seed = "";
+                    else {
+                        object.seed = [];
+                        if (options.bytes !== Array)
+                            object.seed = $util.newBuffer(object.seed);
+                    }
+                }
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
+                    object.iteration = message.iteration;
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
+                    object.seed = options.bytes === String ? $util.base64.encode(message.seed, 0, message.seed.length) : options.bytes === Array ? Array.prototype.slice.call(message.seed) : message.seed;
+                return object;
+            };
+
+            /**
+             * Converts this SenderChainKey to JSON.
+             * @function toJSON
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            SenderChainKey.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for SenderChainKey
+             * @function getTypeUrl
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            SenderChainKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey";
+            };
+
+            return SenderChainKey;
         })();
 
-        return LimitSharing;
+        SenderKeyStateStructure.SenderMessageKey = (function() {
+
+            /**
+             * Properties of a SenderMessageKey.
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+             * @interface ISenderMessageKey
+             * @property {number|null} [iteration] SenderMessageKey iteration
+             * @property {Uint8Array|null} [seed] SenderMessageKey seed
+             */
+
+            /**
+             * Constructs a new SenderMessageKey.
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+             * @classdesc Represents a SenderMessageKey.
+             * @implements ISenderMessageKey
+             * @constructor
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey=} [properties] Properties to set
+             */
+            function SenderMessageKey(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * SenderMessageKey iteration.
+             * @member {number} iteration
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @instance
+             */
+            SenderMessageKey.prototype.iteration = 0;
+
+            /**
+             * SenderMessageKey seed.
+             * @member {Uint8Array} seed
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @instance
+             */
+            SenderMessageKey.prototype.seed = $util.newBuffer([]);
+
+            /**
+             * Creates a new SenderMessageKey instance using the specified properties.
+             * @function create
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey=} [properties] Properties to set
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey} SenderMessageKey instance
+             */
+            SenderMessageKey.create = function create(properties) {
+                return new SenderMessageKey(properties);
+            };
+
+            /**
+             * Encodes the specified SenderMessageKey message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.verify|verify} messages.
+             * @function encode
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey} message SenderMessageKey message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SenderMessageKey.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.iteration);
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.seed);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified SenderMessageKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey} message SenderMessageKey message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SenderMessageKey.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a SenderMessageKey message from the specified reader or buffer.
+             * @function decode
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey} SenderMessageKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SenderMessageKey.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.iteration = reader.uint32();
+                            break;
+                        }
+                    case 2: {
+                            message.seed = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a SenderMessageKey message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey} SenderMessageKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SenderMessageKey.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a SenderMessageKey message.
+             * @function verify
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            SenderMessageKey.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
+                    if (!$util.isInteger(message.iteration))
+                        return "iteration: integer expected";
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
+                    if (!(message.seed && typeof message.seed.length === "number" || $util.isString(message.seed)))
+                        return "seed: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a SenderMessageKey message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey} SenderMessageKey
+             */
+            SenderMessageKey.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey();
+                if (object.iteration != null)
+                    message.iteration = object.iteration >>> 0;
+                if (object.seed != null)
+                    if (typeof object.seed === "string")
+                        $util.base64.decode(object.seed, message.seed = $util.newBuffer($util.base64.length(object.seed)), 0);
+                    else if (object.seed.length >= 0)
+                        message.seed = object.seed;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a SenderMessageKey message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey} message SenderMessageKey
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            SenderMessageKey.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    object.iteration = 0;
+                    if (options.bytes === String)
+                        object.seed = "";
+                    else {
+                        object.seed = [];
+                        if (options.bytes !== Array)
+                            object.seed = $util.newBuffer(object.seed);
+                    }
+                }
+                if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
+                    object.iteration = message.iteration;
+                if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
+                    object.seed = options.bytes === String ? $util.base64.encode(message.seed, 0, message.seed.length) : options.bytes === Array ? Array.prototype.slice.call(message.seed) : message.seed;
+                return object;
+            };
+
+            /**
+             * Converts this SenderMessageKey to JSON.
+             * @function toJSON
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            SenderMessageKey.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for SenderMessageKey
+             * @function getTypeUrl
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            SenderMessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey";
+            };
+
+            return SenderMessageKey;
+        })();
+
+        SenderKeyStateStructure.SenderSigningKey = (function() {
+
+            /**
+             * Properties of a SenderSigningKey.
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+             * @interface ISenderSigningKey
+             * @property {Uint8Array|null} ["public"] SenderSigningKey public
+             * @property {Uint8Array|null} ["private"] SenderSigningKey private
+             */
+
+            /**
+             * Constructs a new SenderSigningKey.
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure
+             * @classdesc Represents a SenderSigningKey.
+             * @implements ISenderSigningKey
+             * @constructor
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey=} [properties] Properties to set
+             */
+            function SenderSigningKey(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * SenderSigningKey public.
+             * @member {Uint8Array} public
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @instance
+             */
+            SenderSigningKey.prototype["public"] = $util.newBuffer([]);
+
+            /**
+             * SenderSigningKey private.
+             * @member {Uint8Array} private
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @instance
+             */
+            SenderSigningKey.prototype["private"] = $util.newBuffer([]);
+
+            /**
+             * Creates a new SenderSigningKey instance using the specified properties.
+             * @function create
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey=} [properties] Properties to set
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey} SenderSigningKey instance
+             */
+            SenderSigningKey.create = function create(properties) {
+                return new SenderSigningKey(properties);
+            };
+
+            /**
+             * Encodes the specified SenderSigningKey message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.verify|verify} messages.
+             * @function encode
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey} message SenderSigningKey message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SenderSigningKey.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message["public"] != null && Object.hasOwnProperty.call(message, "public"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message["public"]);
+                if (message["private"] != null && Object.hasOwnProperty.call(message, "private"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message["private"]);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified SenderSigningKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey} message SenderSigningKey message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SenderSigningKey.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a SenderSigningKey message from the specified reader or buffer.
+             * @function decode
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey} SenderSigningKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SenderSigningKey.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message["public"] = reader.bytes();
+                            break;
+                        }
+                    case 2: {
+                            message["private"] = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a SenderSigningKey message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey} SenderSigningKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SenderSigningKey.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a SenderSigningKey message.
+             * @function verify
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            SenderSigningKey.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message["public"] != null && Object.hasOwnProperty.call(message, "public"))
+                    if (!(message["public"] && typeof message["public"].length === "number" || $util.isString(message["public"])))
+                        return "public: buffer expected";
+                if (message["private"] != null && Object.hasOwnProperty.call(message, "private"))
+                    if (!(message["private"] && typeof message["private"].length === "number" || $util.isString(message["private"])))
+                        return "private: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a SenderSigningKey message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey} SenderSigningKey
+             */
+            SenderSigningKey.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey();
+                if (object["public"] != null)
+                    if (typeof object["public"] === "string")
+                        $util.base64.decode(object["public"], message["public"] = $util.newBuffer($util.base64.length(object["public"])), 0);
+                    else if (object["public"].length >= 0)
+                        message["public"] = object["public"];
+                if (object["private"] != null)
+                    if (typeof object["private"] === "string")
+                        $util.base64.decode(object["private"], message["private"] = $util.newBuffer($util.base64.length(object["private"])), 0);
+                    else if (object["private"].length >= 0)
+                        message["private"] = object["private"];
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a SenderSigningKey message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey} message SenderSigningKey
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            SenderSigningKey.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    if (options.bytes === String)
+                        object["public"] = "";
+                    else {
+                        object["public"] = [];
+                        if (options.bytes !== Array)
+                            object["public"] = $util.newBuffer(object["public"]);
+                    }
+                    if (options.bytes === String)
+                        object["private"] = "";
+                    else {
+                        object["private"] = [];
+                        if (options.bytes !== Array)
+                            object["private"] = $util.newBuffer(object["private"]);
+                    }
+                }
+                if (message["public"] != null && Object.hasOwnProperty.call(message, "public"))
+                    object["public"] = options.bytes === String ? $util.base64.encode(message["public"], 0, message["public"].length) : options.bytes === Array ? Array.prototype.slice.call(message["public"]) : message["public"];
+                if (message["private"] != null && Object.hasOwnProperty.call(message, "private"))
+                    object["private"] = options.bytes === String ? $util.base64.encode(message["private"], 0, message["private"].length) : options.bytes === Array ? Array.prototype.slice.call(message["private"]) : message["private"];
+                return object;
+            };
+
+            /**
+             * Converts this SenderSigningKey to JSON.
+             * @function toJSON
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            SenderSigningKey.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for SenderSigningKey
+             * @function getTypeUrl
+             * @memberof SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            SenderSigningKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey";
+            };
+
+            return SenderSigningKey;
+        })();
+
+        return SenderKeyStateStructure;
     })();
 
-    Protocol.MessageKey = (function() {
+    SignalLocalStorageProtocol.IdentityKeyPairStructure = (function() {
 
         /**
-         * Properties of a MessageKey.
-         * @memberof Protocol
-         * @interface IMessageKey
-         * @property {string|null} [remoteJid] MessageKey remoteJid
-         * @property {boolean|null} [fromMe] MessageKey fromMe
-         * @property {string|null} [id] MessageKey id
-         * @property {string|null} [participant] MessageKey participant
+         * Properties of an IdentityKeyPairStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @interface IIdentityKeyPairStructure
+         * @property {Uint8Array|null} [publicKey] IdentityKeyPairStructure publicKey
+         * @property {Uint8Array|null} [privateKey] IdentityKeyPairStructure privateKey
          */
 
         /**
-         * Constructs a new MessageKey.
-         * @memberof Protocol
-         * @classdesc Represents a MessageKey.
-         * @implements IMessageKey
+         * Constructs a new IdentityKeyPairStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @classdesc Represents an IdentityKeyPairStructure.
+         * @implements IIdentityKeyPairStructure
          * @constructor
-         * @param {Protocol.IMessageKey=} [properties] Properties to set
+         * @param {SignalLocalStorageProtocol.IIdentityKeyPairStructure=} [properties] Properties to set
          */
-        function MessageKey(properties) {
+        function IdentityKeyPairStructure(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -99682,127 +100686,99 @@ $root.Protocol = (function() {
         }
 
         /**
-         * MessageKey remoteJid.
-         * @member {string} remoteJid
-         * @memberof Protocol.MessageKey
+         * IdentityKeyPairStructure publicKey.
+         * @member {Uint8Array} publicKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @instance
          */
-        MessageKey.prototype.remoteJid = "";
+        IdentityKeyPairStructure.prototype.publicKey = $util.newBuffer([]);
 
         /**
-         * MessageKey fromMe.
-         * @member {boolean} fromMe
-         * @memberof Protocol.MessageKey
+         * IdentityKeyPairStructure privateKey.
+         * @member {Uint8Array} privateKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @instance
          */
-        MessageKey.prototype.fromMe = false;
+        IdentityKeyPairStructure.prototype.privateKey = $util.newBuffer([]);
 
         /**
-         * MessageKey id.
-         * @member {string} id
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.id = "";
-
-        /**
-         * MessageKey participant.
-         * @member {string} participant
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.participant = "";
-
-        /**
-         * Creates a new MessageKey instance using the specified properties.
+         * Creates a new IdentityKeyPairStructure instance using the specified properties.
          * @function create
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
-         * @param {Protocol.IMessageKey=} [properties] Properties to set
-         * @returns {Protocol.MessageKey} MessageKey instance
+         * @param {SignalLocalStorageProtocol.IIdentityKeyPairStructure=} [properties] Properties to set
+         * @returns {SignalLocalStorageProtocol.IdentityKeyPairStructure} IdentityKeyPairStructure instance
          */
-        MessageKey.create = function create(properties) {
-            return new MessageKey(properties);
+        IdentityKeyPairStructure.create = function create(properties) {
+            return new IdentityKeyPairStructure(properties);
         };
 
         /**
-         * Encodes the specified MessageKey message. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * Encodes the specified IdentityKeyPairStructure message. Does not implicitly {@link SignalLocalStorageProtocol.IdentityKeyPairStructure.verify|verify} messages.
          * @function encode
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
-         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
+         * @param {SignalLocalStorageProtocol.IIdentityKeyPairStructure} message IdentityKeyPairStructure message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        MessageKey.encode = function encode(message, writer, q) {
+        IdentityKeyPairStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
             if (q === undefined)
                 q = 0;
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
-            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.remoteJid);
-            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
-                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.fromMe);
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
-            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
-                writer.uint32(/* id 4, wireType 2 =*/34).string(message.participant);
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.publicKey);
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.privateKey);
             return writer;
         };
 
         /**
-         * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * Encodes the specified IdentityKeyPairStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.IdentityKeyPairStructure.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
-         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
+         * @param {SignalLocalStorageProtocol.IIdentityKeyPairStructure} message IdentityKeyPairStructure message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
+        IdentityKeyPairStructure.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
-         * Decodes a MessageKey message from the specified reader or buffer.
+         * Decodes an IdentityKeyPairStructure message from the specified reader or buffer.
          * @function decode
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {Protocol.MessageKey} MessageKey
+         * @returns {SignalLocalStorageProtocol.IdentityKeyPairStructure} IdentityKeyPairStructure
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageKey.decode = function decode(reader, length, error, long) {
+        IdentityKeyPairStructure.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             if (long === undefined)
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.IdentityKeyPairStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.remoteJid = reader.string();
+                        message.publicKey = reader.bytes();
                         break;
                     }
                 case 2: {
-                        message.fromMe = reader.bool();
-                        break;
-                    }
-                case 3: {
-                        message.id = reader.string();
-                        break;
-                    }
-                case 4: {
-                        message.participant = reader.string();
+                        message.privateKey = reader.bytes();
                         break;
                     }
                 default:
@@ -99814,90 +100790,86 @@ $root.Protocol = (function() {
         };
 
         /**
-         * Decodes a MessageKey message from the specified reader or buffer, length delimited.
+         * Decodes an IdentityKeyPairStructure message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {Protocol.MessageKey} MessageKey
+         * @returns {SignalLocalStorageProtocol.IdentityKeyPairStructure} IdentityKeyPairStructure
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageKey.decodeDelimited = function decodeDelimited(reader) {
+        IdentityKeyPairStructure.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a MessageKey message.
+         * Verifies an IdentityKeyPairStructure message.
          * @function verify
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        MessageKey.verify = function verify(message, long) {
+        IdentityKeyPairStructure.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
-                if (!$util.isString(message.remoteJid))
-                    return "remoteJid: string expected";
-            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
-                if (typeof message.fromMe !== "boolean")
-                    return "fromMe: boolean expected";
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                if (!$util.isString(message.id))
-                    return "id: string expected";
-            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
-                if (!$util.isString(message.participant))
-                    return "participant: string expected";
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                if (!(message.publicKey && typeof message.publicKey.length === "number" || $util.isString(message.publicKey)))
+                    return "publicKey: buffer expected";
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                if (!(message.privateKey && typeof message.privateKey.length === "number" || $util.isString(message.privateKey)))
+                    return "privateKey: buffer expected";
             return null;
         };
 
         /**
-         * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
+         * Creates an IdentityKeyPairStructure message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {Protocol.MessageKey} MessageKey
+         * @returns {SignalLocalStorageProtocol.IdentityKeyPairStructure} IdentityKeyPairStructure
          */
-        MessageKey.fromObject = function fromObject(object, long) {
-            if (object instanceof $root.Protocol.MessageKey)
+        IdentityKeyPairStructure.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.SignalLocalStorageProtocol.IdentityKeyPairStructure)
                 return object;
             if (!$util.isObject(object))
-                throw TypeError(".Protocol.MessageKey: object expected");
+                throw TypeError(".SignalLocalStorageProtocol.IdentityKeyPairStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var message = new $root.Protocol.MessageKey();
-            if (object.remoteJid != null)
-                message.remoteJid = String(object.remoteJid);
-            if (object.fromMe != null)
-                message.fromMe = Boolean(object.fromMe);
-            if (object.id != null)
-                message.id = String(object.id);
-            if (object.participant != null)
-                message.participant = String(object.participant);
+            var message = new $root.SignalLocalStorageProtocol.IdentityKeyPairStructure();
+            if (object.publicKey != null)
+                if (typeof object.publicKey === "string")
+                    $util.base64.decode(object.publicKey, message.publicKey = $util.newBuffer($util.base64.length(object.publicKey)), 0);
+                else if (object.publicKey.length >= 0)
+                    message.publicKey = object.publicKey;
+            if (object.privateKey != null)
+                if (typeof object.privateKey === "string")
+                    $util.base64.decode(object.privateKey, message.privateKey = $util.newBuffer($util.base64.length(object.privateKey)), 0);
+                else if (object.privateKey.length >= 0)
+                    message.privateKey = object.privateKey;
             return message;
         };
 
         /**
-         * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
+         * Creates a plain object from an IdentityKeyPairStructure message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
-         * @param {Protocol.MessageKey} message MessageKey
+         * @param {SignalLocalStorageProtocol.IdentityKeyPairStructure} message IdentityKeyPairStructure
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        MessageKey.toObject = function toObject(message, options, q) {
+        IdentityKeyPairStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
             if (q === undefined)
@@ -99906,52 +100878,3251 @@ $root.Protocol = (function() {
                 throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
-                object.remoteJid = "";
-                object.fromMe = false;
-                object.id = "";
-                object.participant = "";
+                if (options.bytes === String)
+                    object.publicKey = "";
+                else {
+                    object.publicKey = [];
+                    if (options.bytes !== Array)
+                        object.publicKey = $util.newBuffer(object.publicKey);
+                }
+                if (options.bytes === String)
+                    object.privateKey = "";
+                else {
+                    object.privateKey = [];
+                    if (options.bytes !== Array)
+                        object.privateKey = $util.newBuffer(object.privateKey);
+                }
             }
-            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
-                object.remoteJid = message.remoteJid;
-            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
-                object.fromMe = message.fromMe;
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                object.id = message.id;
-            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
-                object.participant = message.participant;
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                object.publicKey = options.bytes === String ? $util.base64.encode(message.publicKey, 0, message.publicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.publicKey) : message.publicKey;
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                object.privateKey = options.bytes === String ? $util.base64.encode(message.privateKey, 0, message.privateKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.privateKey) : message.privateKey;
             return object;
         };
 
         /**
-         * Converts this MessageKey to JSON.
+         * Converts this IdentityKeyPairStructure to JSON.
          * @function toJSON
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        MessageKey.prototype.toJSON = function toJSON() {
+        IdentityKeyPairStructure.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for MessageKey
+         * Gets the default type url for IdentityKeyPairStructure
          * @function getTypeUrl
-         * @memberof Protocol.MessageKey
+         * @memberof SignalLocalStorageProtocol.IdentityKeyPairStructure
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        MessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        IdentityKeyPairStructure.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/Protocol.MessageKey";
+            return typeUrlPrefix + "/SignalLocalStorageProtocol.IdentityKeyPairStructure";
         };
 
-        return MessageKey;
+        return IdentityKeyPairStructure;
     })();
 
-    return Protocol;
+    SignalLocalStorageProtocol.SignedPreKeyRecordStructure = (function() {
+
+        /**
+         * Properties of a SignedPreKeyRecordStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @interface ISignedPreKeyRecordStructure
+         * @property {number|null} [id] SignedPreKeyRecordStructure id
+         * @property {Uint8Array|null} [publicKey] SignedPreKeyRecordStructure publicKey
+         * @property {Uint8Array|null} [privateKey] SignedPreKeyRecordStructure privateKey
+         * @property {Uint8Array|null} [signature] SignedPreKeyRecordStructure signature
+         * @property {number|Long|null} [timestamp] SignedPreKeyRecordStructure timestamp
+         */
+
+        /**
+         * Constructs a new SignedPreKeyRecordStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @classdesc Represents a SignedPreKeyRecordStructure.
+         * @implements ISignedPreKeyRecordStructure
+         * @constructor
+         * @param {SignalLocalStorageProtocol.ISignedPreKeyRecordStructure=} [properties] Properties to set
+         */
+        function SignedPreKeyRecordStructure(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SignedPreKeyRecordStructure id.
+         * @member {number} id
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @instance
+         */
+        SignedPreKeyRecordStructure.prototype.id = 0;
+
+        /**
+         * SignedPreKeyRecordStructure publicKey.
+         * @member {Uint8Array} publicKey
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @instance
+         */
+        SignedPreKeyRecordStructure.prototype.publicKey = $util.newBuffer([]);
+
+        /**
+         * SignedPreKeyRecordStructure privateKey.
+         * @member {Uint8Array} privateKey
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @instance
+         */
+        SignedPreKeyRecordStructure.prototype.privateKey = $util.newBuffer([]);
+
+        /**
+         * SignedPreKeyRecordStructure signature.
+         * @member {Uint8Array} signature
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @instance
+         */
+        SignedPreKeyRecordStructure.prototype.signature = $util.newBuffer([]);
+
+        /**
+         * SignedPreKeyRecordStructure timestamp.
+         * @member {number|Long} timestamp
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @instance
+         */
+        SignedPreKeyRecordStructure.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * Creates a new SignedPreKeyRecordStructure instance using the specified properties.
+         * @function create
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISignedPreKeyRecordStructure=} [properties] Properties to set
+         * @returns {SignalLocalStorageProtocol.SignedPreKeyRecordStructure} SignedPreKeyRecordStructure instance
+         */
+        SignedPreKeyRecordStructure.create = function create(properties) {
+            return new SignedPreKeyRecordStructure(properties);
+        };
+
+        /**
+         * Encodes the specified SignedPreKeyRecordStructure message. Does not implicitly {@link SignalLocalStorageProtocol.SignedPreKeyRecordStructure.verify|verify} messages.
+         * @function encode
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISignedPreKeyRecordStructure} message SignedPreKeyRecordStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SignedPreKeyRecordStructure.encode = function encode(message, writer, q) {
+            if (!writer)
+                writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.id);
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.publicKey);
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.privateKey);
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
+                writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.signature);
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                writer.uint32(/* id 5, wireType 1 =*/41).fixed64(message.timestamp);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SignedPreKeyRecordStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SignedPreKeyRecordStructure.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISignedPreKeyRecordStructure} message SignedPreKeyRecordStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SignedPreKeyRecordStructure.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a SignedPreKeyRecordStructure message from the specified reader or buffer.
+         * @function decode
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {SignalLocalStorageProtocol.SignedPreKeyRecordStructure} SignedPreKeyRecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SignedPreKeyRecordStructure.decode = function decode(reader, length, error, long) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.publicKey = reader.bytes();
+                        break;
+                    }
+                case 3: {
+                        message.privateKey = reader.bytes();
+                        break;
+                    }
+                case 4: {
+                        message.signature = reader.bytes();
+                        break;
+                    }
+                case 5: {
+                        message.timestamp = reader.fixed64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7, long);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SignedPreKeyRecordStructure message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {SignalLocalStorageProtocol.SignedPreKeyRecordStructure} SignedPreKeyRecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SignedPreKeyRecordStructure.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SignedPreKeyRecordStructure message.
+         * @function verify
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SignedPreKeyRecordStructure.verify = function verify(message, long) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                if (!$util.isInteger(message.id))
+                    return "id: integer expected";
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                if (!(message.publicKey && typeof message.publicKey.length === "number" || $util.isString(message.publicKey)))
+                    return "publicKey: buffer expected";
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                if (!(message.privateKey && typeof message.privateKey.length === "number" || $util.isString(message.privateKey)))
+                    return "privateKey: buffer expected";
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
+                if (!(message.signature && typeof message.signature.length === "number" || $util.isString(message.signature)))
+                    return "signature: buffer expected";
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
+                    return "timestamp: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a SignedPreKeyRecordStructure message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {SignalLocalStorageProtocol.SignedPreKeyRecordStructure} SignedPreKeyRecordStructure
+         */
+        SignedPreKeyRecordStructure.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure)
+                return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.SignedPreKeyRecordStructure: object expected");
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var message = new $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure();
+            if (object.id != null)
+                message.id = object.id >>> 0;
+            if (object.publicKey != null)
+                if (typeof object.publicKey === "string")
+                    $util.base64.decode(object.publicKey, message.publicKey = $util.newBuffer($util.base64.length(object.publicKey)), 0);
+                else if (object.publicKey.length >= 0)
+                    message.publicKey = object.publicKey;
+            if (object.privateKey != null)
+                if (typeof object.privateKey === "string")
+                    $util.base64.decode(object.privateKey, message.privateKey = $util.newBuffer($util.base64.length(object.privateKey)), 0);
+                else if (object.privateKey.length >= 0)
+                    message.privateKey = object.privateKey;
+            if (object.signature != null)
+                if (typeof object.signature === "string")
+                    $util.base64.decode(object.signature, message.signature = $util.newBuffer($util.base64.length(object.signature)), 0);
+                else if (object.signature.length >= 0)
+                    message.signature = object.signature;
+            if (object.timestamp != null)
+                if ($util.Long)
+                    message.timestamp = $util.Long.fromValue(object.timestamp, true);
+                else if (typeof object.timestamp === "string")
+                    message.timestamp = parseInt(object.timestamp, 10);
+                else if (typeof object.timestamp === "number")
+                    message.timestamp = object.timestamp;
+                else if (typeof object.timestamp === "object")
+                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SignedPreKeyRecordStructure message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.SignedPreKeyRecordStructure} message SignedPreKeyRecordStructure
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SignedPreKeyRecordStructure.toObject = function toObject(message, options, q) {
+            if (!options)
+                options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            var object = {};
+            if (options.defaults) {
+                object.id = 0;
+                if (options.bytes === String)
+                    object.publicKey = "";
+                else {
+                    object.publicKey = [];
+                    if (options.bytes !== Array)
+                        object.publicKey = $util.newBuffer(object.publicKey);
+                }
+                if (options.bytes === String)
+                    object.privateKey = "";
+                else {
+                    object.privateKey = [];
+                    if (options.bytes !== Array)
+                        object.privateKey = $util.newBuffer(object.privateKey);
+                }
+                if (options.bytes === String)
+                    object.signature = "";
+                else {
+                    object.signature = [];
+                    if (options.bytes !== Array)
+                        object.signature = $util.newBuffer(object.signature);
+                }
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                } else
+                    object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+            }
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                object.id = message.id;
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                object.publicKey = options.bytes === String ? $util.base64.encode(message.publicKey, 0, message.publicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.publicKey) : message.publicKey;
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                object.privateKey = options.bytes === String ? $util.base64.encode(message.privateKey, 0, message.privateKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.privateKey) : message.privateKey;
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
+                object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.timestamp === "number")
+                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
+                else
+                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
+            return object;
+        };
+
+        /**
+         * Converts this SignedPreKeyRecordStructure to JSON.
+         * @function toJSON
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SignedPreKeyRecordStructure.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SignedPreKeyRecordStructure
+         * @function getTypeUrl
+         * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SignedPreKeyRecordStructure.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/SignalLocalStorageProtocol.SignedPreKeyRecordStructure";
+        };
+
+        return SignedPreKeyRecordStructure;
+    })();
+
+    SignalLocalStorageProtocol.PreKeyRecordStructure = (function() {
+
+        /**
+         * Properties of a PreKeyRecordStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @interface IPreKeyRecordStructure
+         * @property {number|null} [id] PreKeyRecordStructure id
+         * @property {Uint8Array|null} [publicKey] PreKeyRecordStructure publicKey
+         * @property {Uint8Array|null} [privateKey] PreKeyRecordStructure privateKey
+         */
+
+        /**
+         * Constructs a new PreKeyRecordStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @classdesc Represents a PreKeyRecordStructure.
+         * @implements IPreKeyRecordStructure
+         * @constructor
+         * @param {SignalLocalStorageProtocol.IPreKeyRecordStructure=} [properties] Properties to set
+         */
+        function PreKeyRecordStructure(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PreKeyRecordStructure id.
+         * @member {number} id
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @instance
+         */
+        PreKeyRecordStructure.prototype.id = 0;
+
+        /**
+         * PreKeyRecordStructure publicKey.
+         * @member {Uint8Array} publicKey
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @instance
+         */
+        PreKeyRecordStructure.prototype.publicKey = $util.newBuffer([]);
+
+        /**
+         * PreKeyRecordStructure privateKey.
+         * @member {Uint8Array} privateKey
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @instance
+         */
+        PreKeyRecordStructure.prototype.privateKey = $util.newBuffer([]);
+
+        /**
+         * Creates a new PreKeyRecordStructure instance using the specified properties.
+         * @function create
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.IPreKeyRecordStructure=} [properties] Properties to set
+         * @returns {SignalLocalStorageProtocol.PreKeyRecordStructure} PreKeyRecordStructure instance
+         */
+        PreKeyRecordStructure.create = function create(properties) {
+            return new PreKeyRecordStructure(properties);
+        };
+
+        /**
+         * Encodes the specified PreKeyRecordStructure message. Does not implicitly {@link SignalLocalStorageProtocol.PreKeyRecordStructure.verify|verify} messages.
+         * @function encode
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.IPreKeyRecordStructure} message PreKeyRecordStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PreKeyRecordStructure.encode = function encode(message, writer, q) {
+            if (!writer)
+                writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.id);
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.publicKey);
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.privateKey);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PreKeyRecordStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.PreKeyRecordStructure.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.IPreKeyRecordStructure} message PreKeyRecordStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PreKeyRecordStructure.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a PreKeyRecordStructure message from the specified reader or buffer.
+         * @function decode
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {SignalLocalStorageProtocol.PreKeyRecordStructure} PreKeyRecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PreKeyRecordStructure.decode = function decode(reader, length, error, long) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.PreKeyRecordStructure();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.publicKey = reader.bytes();
+                        break;
+                    }
+                case 3: {
+                        message.privateKey = reader.bytes();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7, long);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PreKeyRecordStructure message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {SignalLocalStorageProtocol.PreKeyRecordStructure} PreKeyRecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PreKeyRecordStructure.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PreKeyRecordStructure message.
+         * @function verify
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PreKeyRecordStructure.verify = function verify(message, long) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                if (!$util.isInteger(message.id))
+                    return "id: integer expected";
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                if (!(message.publicKey && typeof message.publicKey.length === "number" || $util.isString(message.publicKey)))
+                    return "publicKey: buffer expected";
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                if (!(message.privateKey && typeof message.privateKey.length === "number" || $util.isString(message.privateKey)))
+                    return "privateKey: buffer expected";
+            return null;
+        };
+
+        /**
+         * Creates a PreKeyRecordStructure message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {SignalLocalStorageProtocol.PreKeyRecordStructure} PreKeyRecordStructure
+         */
+        PreKeyRecordStructure.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.SignalLocalStorageProtocol.PreKeyRecordStructure)
+                return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.PreKeyRecordStructure: object expected");
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var message = new $root.SignalLocalStorageProtocol.PreKeyRecordStructure();
+            if (object.id != null)
+                message.id = object.id >>> 0;
+            if (object.publicKey != null)
+                if (typeof object.publicKey === "string")
+                    $util.base64.decode(object.publicKey, message.publicKey = $util.newBuffer($util.base64.length(object.publicKey)), 0);
+                else if (object.publicKey.length >= 0)
+                    message.publicKey = object.publicKey;
+            if (object.privateKey != null)
+                if (typeof object.privateKey === "string")
+                    $util.base64.decode(object.privateKey, message.privateKey = $util.newBuffer($util.base64.length(object.privateKey)), 0);
+                else if (object.privateKey.length >= 0)
+                    message.privateKey = object.privateKey;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PreKeyRecordStructure message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.PreKeyRecordStructure} message PreKeyRecordStructure
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PreKeyRecordStructure.toObject = function toObject(message, options, q) {
+            if (!options)
+                options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            var object = {};
+            if (options.defaults) {
+                object.id = 0;
+                if (options.bytes === String)
+                    object.publicKey = "";
+                else {
+                    object.publicKey = [];
+                    if (options.bytes !== Array)
+                        object.publicKey = $util.newBuffer(object.publicKey);
+                }
+                if (options.bytes === String)
+                    object.privateKey = "";
+                else {
+                    object.privateKey = [];
+                    if (options.bytes !== Array)
+                        object.privateKey = $util.newBuffer(object.privateKey);
+                }
+            }
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                object.id = message.id;
+            if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
+                object.publicKey = options.bytes === String ? $util.base64.encode(message.publicKey, 0, message.publicKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.publicKey) : message.publicKey;
+            if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
+                object.privateKey = options.bytes === String ? $util.base64.encode(message.privateKey, 0, message.privateKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.privateKey) : message.privateKey;
+            return object;
+        };
+
+        /**
+         * Converts this PreKeyRecordStructure to JSON.
+         * @function toJSON
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PreKeyRecordStructure.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PreKeyRecordStructure
+         * @function getTypeUrl
+         * @memberof SignalLocalStorageProtocol.PreKeyRecordStructure
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PreKeyRecordStructure.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/SignalLocalStorageProtocol.PreKeyRecordStructure";
+        };
+
+        return PreKeyRecordStructure;
+    })();
+
+    SignalLocalStorageProtocol.RecordStructure = (function() {
+
+        /**
+         * Properties of a RecordStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @interface IRecordStructure
+         * @property {SignalLocalStorageProtocol.ISessionStructure|null} [currentSession] RecordStructure currentSession
+         * @property {Array.<SignalLocalStorageProtocol.ISessionStructure>|null} [previousSessions] RecordStructure previousSessions
+         */
+
+        /**
+         * Constructs a new RecordStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @classdesc Represents a RecordStructure.
+         * @implements IRecordStructure
+         * @constructor
+         * @param {SignalLocalStorageProtocol.IRecordStructure=} [properties] Properties to set
+         */
+        function RecordStructure(properties) {
+            this.previousSessions = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RecordStructure currentSession.
+         * @member {SignalLocalStorageProtocol.ISessionStructure|null|undefined} currentSession
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @instance
+         */
+        RecordStructure.prototype.currentSession = null;
+
+        /**
+         * RecordStructure previousSessions.
+         * @member {Array.<SignalLocalStorageProtocol.ISessionStructure>} previousSessions
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @instance
+         */
+        RecordStructure.prototype.previousSessions = $util.emptyArray;
+
+        /**
+         * Creates a new RecordStructure instance using the specified properties.
+         * @function create
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.IRecordStructure=} [properties] Properties to set
+         * @returns {SignalLocalStorageProtocol.RecordStructure} RecordStructure instance
+         */
+        RecordStructure.create = function create(properties) {
+            return new RecordStructure(properties);
+        };
+
+        /**
+         * Encodes the specified RecordStructure message. Does not implicitly {@link SignalLocalStorageProtocol.RecordStructure.verify|verify} messages.
+         * @function encode
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.IRecordStructure} message RecordStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RecordStructure.encode = function encode(message, writer, q) {
+            if (!writer)
+                writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            if (message.currentSession != null && Object.hasOwnProperty.call(message, "currentSession"))
+                $root.SignalLocalStorageProtocol.SessionStructure.encode(message.currentSession, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+            if (message.previousSessions != null && message.previousSessions.length)
+                for (var i = 0; i < message.previousSessions.length; ++i)
+                    $root.SignalLocalStorageProtocol.SessionStructure.encode(message.previousSessions[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RecordStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.RecordStructure.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.IRecordStructure} message RecordStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RecordStructure.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a RecordStructure message from the specified reader or buffer.
+         * @function decode
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {SignalLocalStorageProtocol.RecordStructure} RecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RecordStructure.decode = function decode(reader, length, error, long) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.RecordStructure();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.currentSession = $root.SignalLocalStorageProtocol.SessionStructure.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 2: {
+                        if (!(message.previousSessions && message.previousSessions.length))
+                            message.previousSessions = [];
+                        message.previousSessions.push($root.SignalLocalStorageProtocol.SessionStructure.decode(reader, reader.uint32(), undefined, long + 1));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7, long);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RecordStructure message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {SignalLocalStorageProtocol.RecordStructure} RecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RecordStructure.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RecordStructure message.
+         * @function verify
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RecordStructure.verify = function verify(message, long) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
+            if (message.currentSession != null && Object.hasOwnProperty.call(message, "currentSession")) {
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.verify(message.currentSession, long + 1);
+                if (error)
+                    return "currentSession." + error;
+            }
+            if (message.previousSessions != null && Object.hasOwnProperty.call(message, "previousSessions")) {
+                if (!Array.isArray(message.previousSessions))
+                    return "previousSessions: array expected";
+                for (var i = 0; i < message.previousSessions.length; ++i) {
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.verify(message.previousSessions[i], long + 1);
+                    if (error)
+                        return "previousSessions." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a RecordStructure message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {SignalLocalStorageProtocol.RecordStructure} RecordStructure
+         */
+        RecordStructure.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.SignalLocalStorageProtocol.RecordStructure)
+                return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.RecordStructure: object expected");
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var message = new $root.SignalLocalStorageProtocol.RecordStructure();
+            if (object.currentSession != null) {
+                if (!$util.isObject(object.currentSession))
+                    throw TypeError(".SignalLocalStorageProtocol.RecordStructure.currentSession: object expected");
+                message.currentSession = $root.SignalLocalStorageProtocol.SessionStructure.fromObject(object.currentSession, long + 1);
+            }
+            if (object.previousSessions) {
+                if (!Array.isArray(object.previousSessions))
+                    throw TypeError(".SignalLocalStorageProtocol.RecordStructure.previousSessions: array expected");
+                message.previousSessions = [];
+                for (var i = 0; i < object.previousSessions.length; ++i) {
+                    if (!$util.isObject(object.previousSessions[i]))
+                        throw TypeError(".SignalLocalStorageProtocol.RecordStructure.previousSessions: object expected");
+                    message.previousSessions[i] = $root.SignalLocalStorageProtocol.SessionStructure.fromObject(object.previousSessions[i], long + 1);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RecordStructure message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.RecordStructure} message RecordStructure
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RecordStructure.toObject = function toObject(message, options, q) {
+            if (!options)
+                options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.previousSessions = [];
+            if (options.defaults)
+                object.currentSession = null;
+            if (message.currentSession != null && Object.hasOwnProperty.call(message, "currentSession"))
+                object.currentSession = $root.SignalLocalStorageProtocol.SessionStructure.toObject(message.currentSession, options, q + 1);
+            if (message.previousSessions && message.previousSessions.length) {
+                object.previousSessions = [];
+                for (var j = 0; j < message.previousSessions.length; ++j)
+                    object.previousSessions[j] = $root.SignalLocalStorageProtocol.SessionStructure.toObject(message.previousSessions[j], options, q + 1);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this RecordStructure to JSON.
+         * @function toJSON
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RecordStructure.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for RecordStructure
+         * @function getTypeUrl
+         * @memberof SignalLocalStorageProtocol.RecordStructure
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        RecordStructure.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/SignalLocalStorageProtocol.RecordStructure";
+        };
+
+        return RecordStructure;
+    })();
+
+    SignalLocalStorageProtocol.SessionStructure = (function() {
+
+        /**
+         * Properties of a SessionStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @interface ISessionStructure
+         * @property {number|null} [sessionVersion] SessionStructure sessionVersion
+         * @property {Uint8Array|null} [localIdentityPublic] SessionStructure localIdentityPublic
+         * @property {Uint8Array|null} [remoteIdentityPublic] SessionStructure remoteIdentityPublic
+         * @property {Uint8Array|null} [rootKey] SessionStructure rootKey
+         * @property {number|null} [previousCounter] SessionStructure previousCounter
+         * @property {SignalLocalStorageProtocol.SessionStructure.IChain|null} [senderChain] SessionStructure senderChain
+         * @property {Array.<SignalLocalStorageProtocol.SessionStructure.IChain>|null} [receiverChains] SessionStructure receiverChains
+         * @property {SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange|null} [pendingKeyExchange] SessionStructure pendingKeyExchange
+         * @property {SignalLocalStorageProtocol.SessionStructure.IPendingPreKey|null} [pendingPreKey] SessionStructure pendingPreKey
+         * @property {number|null} [remoteRegistrationId] SessionStructure remoteRegistrationId
+         * @property {number|null} [localRegistrationId] SessionStructure localRegistrationId
+         * @property {boolean|null} [needsRefresh] SessionStructure needsRefresh
+         * @property {Uint8Array|null} [aliceBaseKey] SessionStructure aliceBaseKey
+         */
+
+        /**
+         * Constructs a new SessionStructure.
+         * @memberof SignalLocalStorageProtocol
+         * @classdesc Represents a SessionStructure.
+         * @implements ISessionStructure
+         * @constructor
+         * @param {SignalLocalStorageProtocol.ISessionStructure=} [properties] Properties to set
+         */
+        function SessionStructure(properties) {
+            this.receiverChains = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SessionStructure sessionVersion.
+         * @member {number} sessionVersion
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.sessionVersion = 0;
+
+        /**
+         * SessionStructure localIdentityPublic.
+         * @member {Uint8Array} localIdentityPublic
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.localIdentityPublic = $util.newBuffer([]);
+
+        /**
+         * SessionStructure remoteIdentityPublic.
+         * @member {Uint8Array} remoteIdentityPublic
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.remoteIdentityPublic = $util.newBuffer([]);
+
+        /**
+         * SessionStructure rootKey.
+         * @member {Uint8Array} rootKey
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.rootKey = $util.newBuffer([]);
+
+        /**
+         * SessionStructure previousCounter.
+         * @member {number} previousCounter
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.previousCounter = 0;
+
+        /**
+         * SessionStructure senderChain.
+         * @member {SignalLocalStorageProtocol.SessionStructure.IChain|null|undefined} senderChain
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.senderChain = null;
+
+        /**
+         * SessionStructure receiverChains.
+         * @member {Array.<SignalLocalStorageProtocol.SessionStructure.IChain>} receiverChains
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.receiverChains = $util.emptyArray;
+
+        /**
+         * SessionStructure pendingKeyExchange.
+         * @member {SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange|null|undefined} pendingKeyExchange
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.pendingKeyExchange = null;
+
+        /**
+         * SessionStructure pendingPreKey.
+         * @member {SignalLocalStorageProtocol.SessionStructure.IPendingPreKey|null|undefined} pendingPreKey
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.pendingPreKey = null;
+
+        /**
+         * SessionStructure remoteRegistrationId.
+         * @member {number} remoteRegistrationId
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.remoteRegistrationId = 0;
+
+        /**
+         * SessionStructure localRegistrationId.
+         * @member {number} localRegistrationId
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.localRegistrationId = 0;
+
+        /**
+         * SessionStructure needsRefresh.
+         * @member {boolean} needsRefresh
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.needsRefresh = false;
+
+        /**
+         * SessionStructure aliceBaseKey.
+         * @member {Uint8Array} aliceBaseKey
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         */
+        SessionStructure.prototype.aliceBaseKey = $util.newBuffer([]);
+
+        /**
+         * Creates a new SessionStructure instance using the specified properties.
+         * @function create
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISessionStructure=} [properties] Properties to set
+         * @returns {SignalLocalStorageProtocol.SessionStructure} SessionStructure instance
+         */
+        SessionStructure.create = function create(properties) {
+            return new SessionStructure(properties);
+        };
+
+        /**
+         * Encodes the specified SessionStructure message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.verify|verify} messages.
+         * @function encode
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISessionStructure} message SessionStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SessionStructure.encode = function encode(message, writer, q) {
+            if (!writer)
+                writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            if (message.sessionVersion != null && Object.hasOwnProperty.call(message, "sessionVersion"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.sessionVersion);
+            if (message.localIdentityPublic != null && Object.hasOwnProperty.call(message, "localIdentityPublic"))
+                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.localIdentityPublic);
+            if (message.remoteIdentityPublic != null && Object.hasOwnProperty.call(message, "remoteIdentityPublic"))
+                writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.remoteIdentityPublic);
+            if (message.rootKey != null && Object.hasOwnProperty.call(message, "rootKey"))
+                writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.rootKey);
+            if (message.previousCounter != null && Object.hasOwnProperty.call(message, "previousCounter"))
+                writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.previousCounter);
+            if (message.senderChain != null && Object.hasOwnProperty.call(message, "senderChain"))
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.encode(message.senderChain, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
+            if (message.receiverChains != null && message.receiverChains.length)
+                for (var i = 0; i < message.receiverChains.length; ++i)
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.encode(message.receiverChains[i], writer.uint32(/* id 7, wireType 2 =*/58).fork(), q + 1).ldelim();
+            if (message.pendingKeyExchange != null && Object.hasOwnProperty.call(message, "pendingKeyExchange"))
+                $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.encode(message.pendingKeyExchange, writer.uint32(/* id 8, wireType 2 =*/66).fork(), q + 1).ldelim();
+            if (message.pendingPreKey != null && Object.hasOwnProperty.call(message, "pendingPreKey"))
+                $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.encode(message.pendingPreKey, writer.uint32(/* id 9, wireType 2 =*/74).fork(), q + 1).ldelim();
+            if (message.remoteRegistrationId != null && Object.hasOwnProperty.call(message, "remoteRegistrationId"))
+                writer.uint32(/* id 10, wireType 0 =*/80).uint32(message.remoteRegistrationId);
+            if (message.localRegistrationId != null && Object.hasOwnProperty.call(message, "localRegistrationId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.localRegistrationId);
+            if (message.needsRefresh != null && Object.hasOwnProperty.call(message, "needsRefresh"))
+                writer.uint32(/* id 12, wireType 0 =*/96).bool(message.needsRefresh);
+            if (message.aliceBaseKey != null && Object.hasOwnProperty.call(message, "aliceBaseKey"))
+                writer.uint32(/* id 13, wireType 2 =*/106).bytes(message.aliceBaseKey);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SessionStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.ISessionStructure} message SessionStructure message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SessionStructure.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a SessionStructure message from the specified reader or buffer.
+         * @function decode
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {SignalLocalStorageProtocol.SessionStructure} SessionStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SessionStructure.decode = function decode(reader, length, error, long) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.sessionVersion = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.localIdentityPublic = reader.bytes();
+                        break;
+                    }
+                case 3: {
+                        message.remoteIdentityPublic = reader.bytes();
+                        break;
+                    }
+                case 4: {
+                        message.rootKey = reader.bytes();
+                        break;
+                    }
+                case 5: {
+                        message.previousCounter = reader.uint32();
+                        break;
+                    }
+                case 6: {
+                        message.senderChain = $root.SignalLocalStorageProtocol.SessionStructure.Chain.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 7: {
+                        if (!(message.receiverChains && message.receiverChains.length))
+                            message.receiverChains = [];
+                        message.receiverChains.push($root.SignalLocalStorageProtocol.SessionStructure.Chain.decode(reader, reader.uint32(), undefined, long + 1));
+                        break;
+                    }
+                case 8: {
+                        message.pendingKeyExchange = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 9: {
+                        message.pendingPreKey = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 10: {
+                        message.remoteRegistrationId = reader.uint32();
+                        break;
+                    }
+                case 11: {
+                        message.localRegistrationId = reader.uint32();
+                        break;
+                    }
+                case 12: {
+                        message.needsRefresh = reader.bool();
+                        break;
+                    }
+                case 13: {
+                        message.aliceBaseKey = reader.bytes();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7, long);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SessionStructure message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {SignalLocalStorageProtocol.SessionStructure} SessionStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SessionStructure.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SessionStructure message.
+         * @function verify
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SessionStructure.verify = function verify(message, long) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
+            if (message.sessionVersion != null && Object.hasOwnProperty.call(message, "sessionVersion"))
+                if (!$util.isInteger(message.sessionVersion))
+                    return "sessionVersion: integer expected";
+            if (message.localIdentityPublic != null && Object.hasOwnProperty.call(message, "localIdentityPublic"))
+                if (!(message.localIdentityPublic && typeof message.localIdentityPublic.length === "number" || $util.isString(message.localIdentityPublic)))
+                    return "localIdentityPublic: buffer expected";
+            if (message.remoteIdentityPublic != null && Object.hasOwnProperty.call(message, "remoteIdentityPublic"))
+                if (!(message.remoteIdentityPublic && typeof message.remoteIdentityPublic.length === "number" || $util.isString(message.remoteIdentityPublic)))
+                    return "remoteIdentityPublic: buffer expected";
+            if (message.rootKey != null && Object.hasOwnProperty.call(message, "rootKey"))
+                if (!(message.rootKey && typeof message.rootKey.length === "number" || $util.isString(message.rootKey)))
+                    return "rootKey: buffer expected";
+            if (message.previousCounter != null && Object.hasOwnProperty.call(message, "previousCounter"))
+                if (!$util.isInteger(message.previousCounter))
+                    return "previousCounter: integer expected";
+            if (message.senderChain != null && Object.hasOwnProperty.call(message, "senderChain")) {
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.verify(message.senderChain, long + 1);
+                if (error)
+                    return "senderChain." + error;
+            }
+            if (message.receiverChains != null && Object.hasOwnProperty.call(message, "receiverChains")) {
+                if (!Array.isArray(message.receiverChains))
+                    return "receiverChains: array expected";
+                for (var i = 0; i < message.receiverChains.length; ++i) {
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.verify(message.receiverChains[i], long + 1);
+                    if (error)
+                        return "receiverChains." + error;
+                }
+            }
+            if (message.pendingKeyExchange != null && Object.hasOwnProperty.call(message, "pendingKeyExchange")) {
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.verify(message.pendingKeyExchange, long + 1);
+                if (error)
+                    return "pendingKeyExchange." + error;
+            }
+            if (message.pendingPreKey != null && Object.hasOwnProperty.call(message, "pendingPreKey")) {
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.verify(message.pendingPreKey, long + 1);
+                if (error)
+                    return "pendingPreKey." + error;
+            }
+            if (message.remoteRegistrationId != null && Object.hasOwnProperty.call(message, "remoteRegistrationId"))
+                if (!$util.isInteger(message.remoteRegistrationId))
+                    return "remoteRegistrationId: integer expected";
+            if (message.localRegistrationId != null && Object.hasOwnProperty.call(message, "localRegistrationId"))
+                if (!$util.isInteger(message.localRegistrationId))
+                    return "localRegistrationId: integer expected";
+            if (message.needsRefresh != null && Object.hasOwnProperty.call(message, "needsRefresh"))
+                if (typeof message.needsRefresh !== "boolean")
+                    return "needsRefresh: boolean expected";
+            if (message.aliceBaseKey != null && Object.hasOwnProperty.call(message, "aliceBaseKey"))
+                if (!(message.aliceBaseKey && typeof message.aliceBaseKey.length === "number" || $util.isString(message.aliceBaseKey)))
+                    return "aliceBaseKey: buffer expected";
+            return null;
+        };
+
+        /**
+         * Creates a SessionStructure message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {SignalLocalStorageProtocol.SessionStructure} SessionStructure
+         */
+        SessionStructure.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure)
+                return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.SessionStructure: object expected");
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var message = new $root.SignalLocalStorageProtocol.SessionStructure();
+            if (object.sessionVersion != null)
+                message.sessionVersion = object.sessionVersion >>> 0;
+            if (object.localIdentityPublic != null)
+                if (typeof object.localIdentityPublic === "string")
+                    $util.base64.decode(object.localIdentityPublic, message.localIdentityPublic = $util.newBuffer($util.base64.length(object.localIdentityPublic)), 0);
+                else if (object.localIdentityPublic.length >= 0)
+                    message.localIdentityPublic = object.localIdentityPublic;
+            if (object.remoteIdentityPublic != null)
+                if (typeof object.remoteIdentityPublic === "string")
+                    $util.base64.decode(object.remoteIdentityPublic, message.remoteIdentityPublic = $util.newBuffer($util.base64.length(object.remoteIdentityPublic)), 0);
+                else if (object.remoteIdentityPublic.length >= 0)
+                    message.remoteIdentityPublic = object.remoteIdentityPublic;
+            if (object.rootKey != null)
+                if (typeof object.rootKey === "string")
+                    $util.base64.decode(object.rootKey, message.rootKey = $util.newBuffer($util.base64.length(object.rootKey)), 0);
+                else if (object.rootKey.length >= 0)
+                    message.rootKey = object.rootKey;
+            if (object.previousCounter != null)
+                message.previousCounter = object.previousCounter >>> 0;
+            if (object.senderChain != null) {
+                if (!$util.isObject(object.senderChain))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.senderChain: object expected");
+                message.senderChain = $root.SignalLocalStorageProtocol.SessionStructure.Chain.fromObject(object.senderChain, long + 1);
+            }
+            if (object.receiverChains) {
+                if (!Array.isArray(object.receiverChains))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.receiverChains: array expected");
+                message.receiverChains = [];
+                for (var i = 0; i < object.receiverChains.length; ++i) {
+                    if (!$util.isObject(object.receiverChains[i]))
+                        throw TypeError(".SignalLocalStorageProtocol.SessionStructure.receiverChains: object expected");
+                    message.receiverChains[i] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.fromObject(object.receiverChains[i], long + 1);
+                }
+            }
+            if (object.pendingKeyExchange != null) {
+                if (!$util.isObject(object.pendingKeyExchange))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.pendingKeyExchange: object expected");
+                message.pendingKeyExchange = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.fromObject(object.pendingKeyExchange, long + 1);
+            }
+            if (object.pendingPreKey != null) {
+                if (!$util.isObject(object.pendingPreKey))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.pendingPreKey: object expected");
+                message.pendingPreKey = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.fromObject(object.pendingPreKey, long + 1);
+            }
+            if (object.remoteRegistrationId != null)
+                message.remoteRegistrationId = object.remoteRegistrationId >>> 0;
+            if (object.localRegistrationId != null)
+                message.localRegistrationId = object.localRegistrationId >>> 0;
+            if (object.needsRefresh != null)
+                message.needsRefresh = Boolean(object.needsRefresh);
+            if (object.aliceBaseKey != null)
+                if (typeof object.aliceBaseKey === "string")
+                    $util.base64.decode(object.aliceBaseKey, message.aliceBaseKey = $util.newBuffer($util.base64.length(object.aliceBaseKey)), 0);
+                else if (object.aliceBaseKey.length >= 0)
+                    message.aliceBaseKey = object.aliceBaseKey;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SessionStructure message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {SignalLocalStorageProtocol.SessionStructure} message SessionStructure
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SessionStructure.toObject = function toObject(message, options, q) {
+            if (!options)
+                options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.receiverChains = [];
+            if (options.defaults) {
+                object.sessionVersion = 0;
+                if (options.bytes === String)
+                    object.localIdentityPublic = "";
+                else {
+                    object.localIdentityPublic = [];
+                    if (options.bytes !== Array)
+                        object.localIdentityPublic = $util.newBuffer(object.localIdentityPublic);
+                }
+                if (options.bytes === String)
+                    object.remoteIdentityPublic = "";
+                else {
+                    object.remoteIdentityPublic = [];
+                    if (options.bytes !== Array)
+                        object.remoteIdentityPublic = $util.newBuffer(object.remoteIdentityPublic);
+                }
+                if (options.bytes === String)
+                    object.rootKey = "";
+                else {
+                    object.rootKey = [];
+                    if (options.bytes !== Array)
+                        object.rootKey = $util.newBuffer(object.rootKey);
+                }
+                object.previousCounter = 0;
+                object.senderChain = null;
+                object.pendingKeyExchange = null;
+                object.pendingPreKey = null;
+                object.remoteRegistrationId = 0;
+                object.localRegistrationId = 0;
+                object.needsRefresh = false;
+                if (options.bytes === String)
+                    object.aliceBaseKey = "";
+                else {
+                    object.aliceBaseKey = [];
+                    if (options.bytes !== Array)
+                        object.aliceBaseKey = $util.newBuffer(object.aliceBaseKey);
+                }
+            }
+            if (message.sessionVersion != null && Object.hasOwnProperty.call(message, "sessionVersion"))
+                object.sessionVersion = message.sessionVersion;
+            if (message.localIdentityPublic != null && Object.hasOwnProperty.call(message, "localIdentityPublic"))
+                object.localIdentityPublic = options.bytes === String ? $util.base64.encode(message.localIdentityPublic, 0, message.localIdentityPublic.length) : options.bytes === Array ? Array.prototype.slice.call(message.localIdentityPublic) : message.localIdentityPublic;
+            if (message.remoteIdentityPublic != null && Object.hasOwnProperty.call(message, "remoteIdentityPublic"))
+                object.remoteIdentityPublic = options.bytes === String ? $util.base64.encode(message.remoteIdentityPublic, 0, message.remoteIdentityPublic.length) : options.bytes === Array ? Array.prototype.slice.call(message.remoteIdentityPublic) : message.remoteIdentityPublic;
+            if (message.rootKey != null && Object.hasOwnProperty.call(message, "rootKey"))
+                object.rootKey = options.bytes === String ? $util.base64.encode(message.rootKey, 0, message.rootKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.rootKey) : message.rootKey;
+            if (message.previousCounter != null && Object.hasOwnProperty.call(message, "previousCounter"))
+                object.previousCounter = message.previousCounter;
+            if (message.senderChain != null && Object.hasOwnProperty.call(message, "senderChain"))
+                object.senderChain = $root.SignalLocalStorageProtocol.SessionStructure.Chain.toObject(message.senderChain, options, q + 1);
+            if (message.receiverChains && message.receiverChains.length) {
+                object.receiverChains = [];
+                for (var j = 0; j < message.receiverChains.length; ++j)
+                    object.receiverChains[j] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.toObject(message.receiverChains[j], options, q + 1);
+            }
+            if (message.pendingKeyExchange != null && Object.hasOwnProperty.call(message, "pendingKeyExchange"))
+                object.pendingKeyExchange = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.toObject(message.pendingKeyExchange, options, q + 1);
+            if (message.pendingPreKey != null && Object.hasOwnProperty.call(message, "pendingPreKey"))
+                object.pendingPreKey = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.toObject(message.pendingPreKey, options, q + 1);
+            if (message.remoteRegistrationId != null && Object.hasOwnProperty.call(message, "remoteRegistrationId"))
+                object.remoteRegistrationId = message.remoteRegistrationId;
+            if (message.localRegistrationId != null && Object.hasOwnProperty.call(message, "localRegistrationId"))
+                object.localRegistrationId = message.localRegistrationId;
+            if (message.needsRefresh != null && Object.hasOwnProperty.call(message, "needsRefresh"))
+                object.needsRefresh = message.needsRefresh;
+            if (message.aliceBaseKey != null && Object.hasOwnProperty.call(message, "aliceBaseKey"))
+                object.aliceBaseKey = options.bytes === String ? $util.base64.encode(message.aliceBaseKey, 0, message.aliceBaseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.aliceBaseKey) : message.aliceBaseKey;
+            return object;
+        };
+
+        /**
+         * Converts this SessionStructure to JSON.
+         * @function toJSON
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SessionStructure.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SessionStructure
+         * @function getTypeUrl
+         * @memberof SignalLocalStorageProtocol.SessionStructure
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SessionStructure.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/SignalLocalStorageProtocol.SessionStructure";
+        };
+
+        SessionStructure.Chain = (function() {
+
+            /**
+             * Properties of a Chain.
+             * @memberof SignalLocalStorageProtocol.SessionStructure
+             * @interface IChain
+             * @property {Uint8Array|null} [senderRatchetKey] Chain senderRatchetKey
+             * @property {Uint8Array|null} [senderRatchetKeyPrivate] Chain senderRatchetKeyPrivate
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey|null} [chainKey] Chain chainKey
+             * @property {Array.<SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey>|null} [messageKeys] Chain messageKeys
+             */
+
+            /**
+             * Constructs a new Chain.
+             * @memberof SignalLocalStorageProtocol.SessionStructure
+             * @classdesc Represents a Chain.
+             * @implements IChain
+             * @constructor
+             * @param {SignalLocalStorageProtocol.SessionStructure.IChain=} [properties] Properties to set
+             */
+            function Chain(properties) {
+                this.messageKeys = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Chain senderRatchetKey.
+             * @member {Uint8Array} senderRatchetKey
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @instance
+             */
+            Chain.prototype.senderRatchetKey = $util.newBuffer([]);
+
+            /**
+             * Chain senderRatchetKeyPrivate.
+             * @member {Uint8Array} senderRatchetKeyPrivate
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @instance
+             */
+            Chain.prototype.senderRatchetKeyPrivate = $util.newBuffer([]);
+
+            /**
+             * Chain chainKey.
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey|null|undefined} chainKey
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @instance
+             */
+            Chain.prototype.chainKey = null;
+
+            /**
+             * Chain messageKeys.
+             * @member {Array.<SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey>} messageKeys
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @instance
+             */
+            Chain.prototype.messageKeys = $util.emptyArray;
+
+            /**
+             * Creates a new Chain instance using the specified properties.
+             * @function create
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IChain=} [properties] Properties to set
+             * @returns {SignalLocalStorageProtocol.SessionStructure.Chain} Chain instance
+             */
+            Chain.create = function create(properties) {
+                return new Chain(properties);
+            };
+
+            /**
+             * Encodes the specified Chain message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.verify|verify} messages.
+             * @function encode
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IChain} message Chain message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Chain.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.senderRatchetKey != null && Object.hasOwnProperty.call(message, "senderRatchetKey"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.senderRatchetKey);
+                if (message.senderRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "senderRatchetKeyPrivate"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.senderRatchetKeyPrivate);
+                if (message.chainKey != null && Object.hasOwnProperty.call(message, "chainKey"))
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.encode(message.chainKey, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
+                if (message.messageKeys != null && message.messageKeys.length)
+                    for (var i = 0; i < message.messageKeys.length; ++i)
+                        $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.messageKeys[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Chain message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IChain} message Chain message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Chain.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a Chain message from the specified reader or buffer.
+             * @function decode
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SignalLocalStorageProtocol.SessionStructure.Chain} Chain
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Chain.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.senderRatchetKey = reader.bytes();
+                            break;
+                        }
+                    case 2: {
+                            message.senderRatchetKeyPrivate = reader.bytes();
+                            break;
+                        }
+                    case 3: {
+                            message.chainKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.messageKeys && message.messageKeys.length))
+                                message.messageKeys = [];
+                            message.messageKeys.push($root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a Chain message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SignalLocalStorageProtocol.SessionStructure.Chain} Chain
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Chain.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a Chain message.
+             * @function verify
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Chain.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.senderRatchetKey != null && Object.hasOwnProperty.call(message, "senderRatchetKey"))
+                    if (!(message.senderRatchetKey && typeof message.senderRatchetKey.length === "number" || $util.isString(message.senderRatchetKey)))
+                        return "senderRatchetKey: buffer expected";
+                if (message.senderRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "senderRatchetKeyPrivate"))
+                    if (!(message.senderRatchetKeyPrivate && typeof message.senderRatchetKeyPrivate.length === "number" || $util.isString(message.senderRatchetKeyPrivate)))
+                        return "senderRatchetKeyPrivate: buffer expected";
+                if (message.chainKey != null && Object.hasOwnProperty.call(message, "chainKey")) {
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.verify(message.chainKey, long + 1);
+                    if (error)
+                        return "chainKey." + error;
+                }
+                if (message.messageKeys != null && Object.hasOwnProperty.call(message, "messageKeys")) {
+                    if (!Array.isArray(message.messageKeys))
+                        return "messageKeys: array expected";
+                    for (var i = 0; i < message.messageKeys.length; ++i) {
+                        var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.messageKeys[i], long + 1);
+                        if (error)
+                            return "messageKeys." + error;
+                    }
+                }
+                return null;
+            };
+
+            /**
+             * Creates a Chain message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SignalLocalStorageProtocol.SessionStructure.Chain} Chain
+             */
+            Chain.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.Chain)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain();
+                if (object.senderRatchetKey != null)
+                    if (typeof object.senderRatchetKey === "string")
+                        $util.base64.decode(object.senderRatchetKey, message.senderRatchetKey = $util.newBuffer($util.base64.length(object.senderRatchetKey)), 0);
+                    else if (object.senderRatchetKey.length >= 0)
+                        message.senderRatchetKey = object.senderRatchetKey;
+                if (object.senderRatchetKeyPrivate != null)
+                    if (typeof object.senderRatchetKeyPrivate === "string")
+                        $util.base64.decode(object.senderRatchetKeyPrivate, message.senderRatchetKeyPrivate = $util.newBuffer($util.base64.length(object.senderRatchetKeyPrivate)), 0);
+                    else if (object.senderRatchetKeyPrivate.length >= 0)
+                        message.senderRatchetKeyPrivate = object.senderRatchetKeyPrivate;
+                if (object.chainKey != null) {
+                    if (!$util.isObject(object.chainKey))
+                        throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.chainKey: object expected");
+                    message.chainKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.fromObject(object.chainKey, long + 1);
+                }
+                if (object.messageKeys) {
+                    if (!Array.isArray(object.messageKeys))
+                        throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.messageKeys: array expected");
+                    message.messageKeys = [];
+                    for (var i = 0; i < object.messageKeys.length; ++i) {
+                        if (!$util.isObject(object.messageKeys[i]))
+                            throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.messageKeys: object expected");
+                        message.messageKeys[i] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.messageKeys[i], long + 1);
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a Chain message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.Chain} message Chain
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Chain.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.messageKeys = [];
+                if (options.defaults) {
+                    if (options.bytes === String)
+                        object.senderRatchetKey = "";
+                    else {
+                        object.senderRatchetKey = [];
+                        if (options.bytes !== Array)
+                            object.senderRatchetKey = $util.newBuffer(object.senderRatchetKey);
+                    }
+                    if (options.bytes === String)
+                        object.senderRatchetKeyPrivate = "";
+                    else {
+                        object.senderRatchetKeyPrivate = [];
+                        if (options.bytes !== Array)
+                            object.senderRatchetKeyPrivate = $util.newBuffer(object.senderRatchetKeyPrivate);
+                    }
+                    object.chainKey = null;
+                }
+                if (message.senderRatchetKey != null && Object.hasOwnProperty.call(message, "senderRatchetKey"))
+                    object.senderRatchetKey = options.bytes === String ? $util.base64.encode(message.senderRatchetKey, 0, message.senderRatchetKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.senderRatchetKey) : message.senderRatchetKey;
+                if (message.senderRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "senderRatchetKeyPrivate"))
+                    object.senderRatchetKeyPrivate = options.bytes === String ? $util.base64.encode(message.senderRatchetKeyPrivate, 0, message.senderRatchetKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.senderRatchetKeyPrivate) : message.senderRatchetKeyPrivate;
+                if (message.chainKey != null && Object.hasOwnProperty.call(message, "chainKey"))
+                    object.chainKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.toObject(message.chainKey, options, q + 1);
+                if (message.messageKeys && message.messageKeys.length) {
+                    object.messageKeys = [];
+                    for (var j = 0; j < message.messageKeys.length; ++j)
+                        object.messageKeys[j] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.messageKeys[j], options, q + 1);
+                }
+                return object;
+            };
+
+            /**
+             * Converts this Chain to JSON.
+             * @function toJSON
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Chain.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for Chain
+             * @function getTypeUrl
+             * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Chain.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SignalLocalStorageProtocol.SessionStructure.Chain";
+            };
+
+            Chain.ChainKey = (function() {
+
+                /**
+                 * Properties of a ChainKey.
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+                 * @interface IChainKey
+                 * @property {number|null} [index] ChainKey index
+                 * @property {Uint8Array|null} [key] ChainKey key
+                 */
+
+                /**
+                 * Constructs a new ChainKey.
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+                 * @classdesc Represents a ChainKey.
+                 * @implements IChainKey
+                 * @constructor
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey=} [properties] Properties to set
+                 */
+                function ChainKey(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * ChainKey index.
+                 * @member {number} index
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @instance
+                 */
+                ChainKey.prototype.index = 0;
+
+                /**
+                 * ChainKey key.
+                 * @member {Uint8Array} key
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @instance
+                 */
+                ChainKey.prototype.key = $util.newBuffer([]);
+
+                /**
+                 * Creates a new ChainKey instance using the specified properties.
+                 * @function create
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey=} [properties] Properties to set
+                 * @returns {SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey} ChainKey instance
+                 */
+                ChainKey.create = function create(properties) {
+                    return new ChainKey(properties);
+                };
+
+                /**
+                 * Encodes the specified ChainKey message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.verify|verify} messages.
+                 * @function encode
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey} message ChainKey message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ChainKey.encode = function encode(message, writer, q) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.index);
+                    if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.key);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified ChainKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey} message ChainKey message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ChainKey.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+                };
+
+                /**
+                 * Decodes a ChainKey message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey} ChainKey
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ChainKey.decode = function decode(reader, length, error, long) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.index = reader.uint32();
+                                break;
+                            }
+                        case 2: {
+                                message.key = reader.bytes();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7, long);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a ChainKey message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey} ChainKey
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ChainKey.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a ChainKey message.
+                 * @function verify
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                ChainKey.verify = function verify(message, long) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                        if (!$util.isInteger(message.index))
+                            return "index: integer expected";
+                    if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                        if (!(message.key && typeof message.key.length === "number" || $util.isString(message.key)))
+                            return "key: buffer expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a ChainKey message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey} ChainKey
+                 */
+                ChainKey.fromObject = function fromObject(object, long) {
+                    if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey)
+                        return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey: object expected");
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey();
+                    if (object.index != null)
+                        message.index = object.index >>> 0;
+                    if (object.key != null)
+                        if (typeof object.key === "string")
+                            $util.base64.decode(object.key, message.key = $util.newBuffer($util.base64.length(object.key)), 0);
+                        else if (object.key.length >= 0)
+                            message.key = object.key;
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a ChainKey message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey} message ChainKey
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                ChainKey.toObject = function toObject(message, options, q) {
+                    if (!options)
+                        options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    var object = {};
+                    if (options.defaults) {
+                        object.index = 0;
+                        if (options.bytes === String)
+                            object.key = "";
+                        else {
+                            object.key = [];
+                            if (options.bytes !== Array)
+                                object.key = $util.newBuffer(object.key);
+                        }
+                    }
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                        object.index = message.index;
+                    if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                        object.key = options.bytes === String ? $util.base64.encode(message.key, 0, message.key.length) : options.bytes === Array ? Array.prototype.slice.call(message.key) : message.key;
+                    return object;
+                };
+
+                /**
+                 * Converts this ChainKey to JSON.
+                 * @function toJSON
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                ChainKey.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for ChainKey
+                 * @function getTypeUrl
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                ChainKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey";
+                };
+
+                return ChainKey;
+            })();
+
+            Chain.MessageKey = (function() {
+
+                /**
+                 * Properties of a MessageKey.
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+                 * @interface IMessageKey
+                 * @property {number|null} [index] MessageKey index
+                 * @property {Uint8Array|null} [cipherKey] MessageKey cipherKey
+                 * @property {Uint8Array|null} [macKey] MessageKey macKey
+                 * @property {Uint8Array|null} [iv] MessageKey iv
+                 */
+
+                /**
+                 * Constructs a new MessageKey.
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain
+                 * @classdesc Represents a MessageKey.
+                 * @implements IMessageKey
+                 * @constructor
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey=} [properties] Properties to set
+                 */
+                function MessageKey(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * MessageKey index.
+                 * @member {number} index
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @instance
+                 */
+                MessageKey.prototype.index = 0;
+
+                /**
+                 * MessageKey cipherKey.
+                 * @member {Uint8Array} cipherKey
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @instance
+                 */
+                MessageKey.prototype.cipherKey = $util.newBuffer([]);
+
+                /**
+                 * MessageKey macKey.
+                 * @member {Uint8Array} macKey
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @instance
+                 */
+                MessageKey.prototype.macKey = $util.newBuffer([]);
+
+                /**
+                 * MessageKey iv.
+                 * @member {Uint8Array} iv
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @instance
+                 */
+                MessageKey.prototype.iv = $util.newBuffer([]);
+
+                /**
+                 * Creates a new MessageKey instance using the specified properties.
+                 * @function create
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey=} [properties] Properties to set
+                 * @returns {SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey} MessageKey instance
+                 */
+                MessageKey.create = function create(properties) {
+                    return new MessageKey(properties);
+                };
+
+                /**
+                 * Encodes the specified MessageKey message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify|verify} messages.
+                 * @function encode
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey} message MessageKey message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                MessageKey.encode = function encode(message, writer, q) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.index);
+                    if (message.cipherKey != null && Object.hasOwnProperty.call(message, "cipherKey"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.cipherKey);
+                    if (message.macKey != null && Object.hasOwnProperty.call(message, "macKey"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.macKey);
+                    if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.iv);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey} message MessageKey message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+                };
+
+                /**
+                 * Decodes a MessageKey message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey} MessageKey
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                MessageKey.decode = function decode(reader, length, error, long) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.index = reader.uint32();
+                                break;
+                            }
+                        case 2: {
+                                message.cipherKey = reader.bytes();
+                                break;
+                            }
+                        case 3: {
+                                message.macKey = reader.bytes();
+                                break;
+                            }
+                        case 4: {
+                                message.iv = reader.bytes();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7, long);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a MessageKey message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey} MessageKey
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                MessageKey.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a MessageKey message.
+                 * @function verify
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                MessageKey.verify = function verify(message, long) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                        if (!$util.isInteger(message.index))
+                            return "index: integer expected";
+                    if (message.cipherKey != null && Object.hasOwnProperty.call(message, "cipherKey"))
+                        if (!(message.cipherKey && typeof message.cipherKey.length === "number" || $util.isString(message.cipherKey)))
+                            return "cipherKey: buffer expected";
+                    if (message.macKey != null && Object.hasOwnProperty.call(message, "macKey"))
+                        if (!(message.macKey && typeof message.macKey.length === "number" || $util.isString(message.macKey)))
+                            return "macKey: buffer expected";
+                    if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
+                        if (!(message.iv && typeof message.iv.length === "number" || $util.isString(message.iv)))
+                            return "iv: buffer expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey} MessageKey
+                 */
+                MessageKey.fromObject = function fromObject(object, long) {
+                    if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey)
+                        return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey: object expected");
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey();
+                    if (object.index != null)
+                        message.index = object.index >>> 0;
+                    if (object.cipherKey != null)
+                        if (typeof object.cipherKey === "string")
+                            $util.base64.decode(object.cipherKey, message.cipherKey = $util.newBuffer($util.base64.length(object.cipherKey)), 0);
+                        else if (object.cipherKey.length >= 0)
+                            message.cipherKey = object.cipherKey;
+                    if (object.macKey != null)
+                        if (typeof object.macKey === "string")
+                            $util.base64.decode(object.macKey, message.macKey = $util.newBuffer($util.base64.length(object.macKey)), 0);
+                        else if (object.macKey.length >= 0)
+                            message.macKey = object.macKey;
+                    if (object.iv != null)
+                        if (typeof object.iv === "string")
+                            $util.base64.decode(object.iv, message.iv = $util.newBuffer($util.base64.length(object.iv)), 0);
+                        else if (object.iv.length >= 0)
+                            message.iv = object.iv;
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey} message MessageKey
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                MessageKey.toObject = function toObject(message, options, q) {
+                    if (!options)
+                        options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    var object = {};
+                    if (options.defaults) {
+                        object.index = 0;
+                        if (options.bytes === String)
+                            object.cipherKey = "";
+                        else {
+                            object.cipherKey = [];
+                            if (options.bytes !== Array)
+                                object.cipherKey = $util.newBuffer(object.cipherKey);
+                        }
+                        if (options.bytes === String)
+                            object.macKey = "";
+                        else {
+                            object.macKey = [];
+                            if (options.bytes !== Array)
+                                object.macKey = $util.newBuffer(object.macKey);
+                        }
+                        if (options.bytes === String)
+                            object.iv = "";
+                        else {
+                            object.iv = [];
+                            if (options.bytes !== Array)
+                                object.iv = $util.newBuffer(object.iv);
+                        }
+                    }
+                    if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                        object.index = message.index;
+                    if (message.cipherKey != null && Object.hasOwnProperty.call(message, "cipherKey"))
+                        object.cipherKey = options.bytes === String ? $util.base64.encode(message.cipherKey, 0, message.cipherKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.cipherKey) : message.cipherKey;
+                    if (message.macKey != null && Object.hasOwnProperty.call(message, "macKey"))
+                        object.macKey = options.bytes === String ? $util.base64.encode(message.macKey, 0, message.macKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.macKey) : message.macKey;
+                    if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
+                        object.iv = options.bytes === String ? $util.base64.encode(message.iv, 0, message.iv.length) : options.bytes === Array ? Array.prototype.slice.call(message.iv) : message.iv;
+                    return object;
+                };
+
+                /**
+                 * Converts this MessageKey to JSON.
+                 * @function toJSON
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                MessageKey.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for MessageKey
+                 * @function getTypeUrl
+                 * @memberof SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                MessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey";
+                };
+
+                return MessageKey;
+            })();
+
+            return Chain;
+        })();
+
+        SessionStructure.PendingKeyExchange = (function() {
+
+            /**
+             * Properties of a PendingKeyExchange.
+             * @memberof SignalLocalStorageProtocol.SessionStructure
+             * @interface IPendingKeyExchange
+             * @property {number|null} [sequence] PendingKeyExchange sequence
+             * @property {Uint8Array|null} [localBaseKey] PendingKeyExchange localBaseKey
+             * @property {Uint8Array|null} [localBaseKeyPrivate] PendingKeyExchange localBaseKeyPrivate
+             * @property {Uint8Array|null} [localRatchetKey] PendingKeyExchange localRatchetKey
+             * @property {Uint8Array|null} [localRatchetKeyPrivate] PendingKeyExchange localRatchetKeyPrivate
+             * @property {Uint8Array|null} [localIdentityKey] PendingKeyExchange localIdentityKey
+             * @property {Uint8Array|null} [localIdentityKeyPrivate] PendingKeyExchange localIdentityKeyPrivate
+             */
+
+            /**
+             * Constructs a new PendingKeyExchange.
+             * @memberof SignalLocalStorageProtocol.SessionStructure
+             * @classdesc Represents a PendingKeyExchange.
+             * @implements IPendingKeyExchange
+             * @constructor
+             * @param {SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange=} [properties] Properties to set
+             */
+            function PendingKeyExchange(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PendingKeyExchange sequence.
+             * @member {number} sequence
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @instance
+             */
+            PendingKeyExchange.prototype.sequence = 0;
+
+            /**
+             * PendingKeyExchange localBaseKey.
+             * @member {Uint8Array} localBaseKey
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @instance
+             */
+            PendingKeyExchange.prototype.localBaseKey = $util.newBuffer([]);
+
+            /**
+             * PendingKeyExchange localBaseKeyPrivate.
+             * @member {Uint8Array} localBaseKeyPrivate
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @instance
+             */
+            PendingKeyExchange.prototype.localBaseKeyPrivate = $util.newBuffer([]);
+
+            /**
+             * PendingKeyExchange localRatchetKey.
+             * @member {Uint8Array} localRatchetKey
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @instance
+             */
+            PendingKeyExchange.prototype.localRatchetKey = $util.newBuffer([]);
+
+            /**
+             * PendingKeyExchange localRatchetKeyPrivate.
+             * @member {Uint8Array} localRatchetKeyPrivate
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @instance
+             */
+            PendingKeyExchange.prototype.localRatchetKeyPrivate = $util.newBuffer([]);
+
+            /**
+             * PendingKeyExchange localIdentityKey.
+             * @member {Uint8Array} localIdentityKey
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @instance
+             */
+            PendingKeyExchange.prototype.localIdentityKey = $util.newBuffer([]);
+
+            /**
+             * PendingKeyExchange localIdentityKeyPrivate.
+             * @member {Uint8Array} localIdentityKeyPrivate
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @instance
+             */
+            PendingKeyExchange.prototype.localIdentityKeyPrivate = $util.newBuffer([]);
+
+            /**
+             * Creates a new PendingKeyExchange instance using the specified properties.
+             * @function create
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange=} [properties] Properties to set
+             * @returns {SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange} PendingKeyExchange instance
+             */
+            PendingKeyExchange.create = function create(properties) {
+                return new PendingKeyExchange(properties);
+            };
+
+            /**
+             * Encodes the specified PendingKeyExchange message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.verify|verify} messages.
+             * @function encode
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange} message PendingKeyExchange message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PendingKeyExchange.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.sequence != null && Object.hasOwnProperty.call(message, "sequence"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.sequence);
+                if (message.localBaseKey != null && Object.hasOwnProperty.call(message, "localBaseKey"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.localBaseKey);
+                if (message.localBaseKeyPrivate != null && Object.hasOwnProperty.call(message, "localBaseKeyPrivate"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.localBaseKeyPrivate);
+                if (message.localRatchetKey != null && Object.hasOwnProperty.call(message, "localRatchetKey"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.localRatchetKey);
+                if (message.localRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "localRatchetKeyPrivate"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.localRatchetKeyPrivate);
+                if (message.localIdentityKey != null && Object.hasOwnProperty.call(message, "localIdentityKey"))
+                    writer.uint32(/* id 7, wireType 2 =*/58).bytes(message.localIdentityKey);
+                if (message.localIdentityKeyPrivate != null && Object.hasOwnProperty.call(message, "localIdentityKeyPrivate"))
+                    writer.uint32(/* id 8, wireType 2 =*/66).bytes(message.localIdentityKeyPrivate);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PendingKeyExchange message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange} message PendingKeyExchange message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PendingKeyExchange.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a PendingKeyExchange message from the specified reader or buffer.
+             * @function decode
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange} PendingKeyExchange
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PendingKeyExchange.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.sequence = reader.uint32();
+                            break;
+                        }
+                    case 2: {
+                            message.localBaseKey = reader.bytes();
+                            break;
+                        }
+                    case 3: {
+                            message.localBaseKeyPrivate = reader.bytes();
+                            break;
+                        }
+                    case 4: {
+                            message.localRatchetKey = reader.bytes();
+                            break;
+                        }
+                    case 5: {
+                            message.localRatchetKeyPrivate = reader.bytes();
+                            break;
+                        }
+                    case 7: {
+                            message.localIdentityKey = reader.bytes();
+                            break;
+                        }
+                    case 8: {
+                            message.localIdentityKeyPrivate = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PendingKeyExchange message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange} PendingKeyExchange
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PendingKeyExchange.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PendingKeyExchange message.
+             * @function verify
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PendingKeyExchange.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.sequence != null && Object.hasOwnProperty.call(message, "sequence"))
+                    if (!$util.isInteger(message.sequence))
+                        return "sequence: integer expected";
+                if (message.localBaseKey != null && Object.hasOwnProperty.call(message, "localBaseKey"))
+                    if (!(message.localBaseKey && typeof message.localBaseKey.length === "number" || $util.isString(message.localBaseKey)))
+                        return "localBaseKey: buffer expected";
+                if (message.localBaseKeyPrivate != null && Object.hasOwnProperty.call(message, "localBaseKeyPrivate"))
+                    if (!(message.localBaseKeyPrivate && typeof message.localBaseKeyPrivate.length === "number" || $util.isString(message.localBaseKeyPrivate)))
+                        return "localBaseKeyPrivate: buffer expected";
+                if (message.localRatchetKey != null && Object.hasOwnProperty.call(message, "localRatchetKey"))
+                    if (!(message.localRatchetKey && typeof message.localRatchetKey.length === "number" || $util.isString(message.localRatchetKey)))
+                        return "localRatchetKey: buffer expected";
+                if (message.localRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "localRatchetKeyPrivate"))
+                    if (!(message.localRatchetKeyPrivate && typeof message.localRatchetKeyPrivate.length === "number" || $util.isString(message.localRatchetKeyPrivate)))
+                        return "localRatchetKeyPrivate: buffer expected";
+                if (message.localIdentityKey != null && Object.hasOwnProperty.call(message, "localIdentityKey"))
+                    if (!(message.localIdentityKey && typeof message.localIdentityKey.length === "number" || $util.isString(message.localIdentityKey)))
+                        return "localIdentityKey: buffer expected";
+                if (message.localIdentityKeyPrivate != null && Object.hasOwnProperty.call(message, "localIdentityKeyPrivate"))
+                    if (!(message.localIdentityKeyPrivate && typeof message.localIdentityKeyPrivate.length === "number" || $util.isString(message.localIdentityKeyPrivate)))
+                        return "localIdentityKeyPrivate: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a PendingKeyExchange message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange} PendingKeyExchange
+             */
+            PendingKeyExchange.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange();
+                if (object.sequence != null)
+                    message.sequence = object.sequence >>> 0;
+                if (object.localBaseKey != null)
+                    if (typeof object.localBaseKey === "string")
+                        $util.base64.decode(object.localBaseKey, message.localBaseKey = $util.newBuffer($util.base64.length(object.localBaseKey)), 0);
+                    else if (object.localBaseKey.length >= 0)
+                        message.localBaseKey = object.localBaseKey;
+                if (object.localBaseKeyPrivate != null)
+                    if (typeof object.localBaseKeyPrivate === "string")
+                        $util.base64.decode(object.localBaseKeyPrivate, message.localBaseKeyPrivate = $util.newBuffer($util.base64.length(object.localBaseKeyPrivate)), 0);
+                    else if (object.localBaseKeyPrivate.length >= 0)
+                        message.localBaseKeyPrivate = object.localBaseKeyPrivate;
+                if (object.localRatchetKey != null)
+                    if (typeof object.localRatchetKey === "string")
+                        $util.base64.decode(object.localRatchetKey, message.localRatchetKey = $util.newBuffer($util.base64.length(object.localRatchetKey)), 0);
+                    else if (object.localRatchetKey.length >= 0)
+                        message.localRatchetKey = object.localRatchetKey;
+                if (object.localRatchetKeyPrivate != null)
+                    if (typeof object.localRatchetKeyPrivate === "string")
+                        $util.base64.decode(object.localRatchetKeyPrivate, message.localRatchetKeyPrivate = $util.newBuffer($util.base64.length(object.localRatchetKeyPrivate)), 0);
+                    else if (object.localRatchetKeyPrivate.length >= 0)
+                        message.localRatchetKeyPrivate = object.localRatchetKeyPrivate;
+                if (object.localIdentityKey != null)
+                    if (typeof object.localIdentityKey === "string")
+                        $util.base64.decode(object.localIdentityKey, message.localIdentityKey = $util.newBuffer($util.base64.length(object.localIdentityKey)), 0);
+                    else if (object.localIdentityKey.length >= 0)
+                        message.localIdentityKey = object.localIdentityKey;
+                if (object.localIdentityKeyPrivate != null)
+                    if (typeof object.localIdentityKeyPrivate === "string")
+                        $util.base64.decode(object.localIdentityKeyPrivate, message.localIdentityKeyPrivate = $util.newBuffer($util.base64.length(object.localIdentityKeyPrivate)), 0);
+                    else if (object.localIdentityKeyPrivate.length >= 0)
+                        message.localIdentityKeyPrivate = object.localIdentityKeyPrivate;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PendingKeyExchange message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange} message PendingKeyExchange
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PendingKeyExchange.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    object.sequence = 0;
+                    if (options.bytes === String)
+                        object.localBaseKey = "";
+                    else {
+                        object.localBaseKey = [];
+                        if (options.bytes !== Array)
+                            object.localBaseKey = $util.newBuffer(object.localBaseKey);
+                    }
+                    if (options.bytes === String)
+                        object.localBaseKeyPrivate = "";
+                    else {
+                        object.localBaseKeyPrivate = [];
+                        if (options.bytes !== Array)
+                            object.localBaseKeyPrivate = $util.newBuffer(object.localBaseKeyPrivate);
+                    }
+                    if (options.bytes === String)
+                        object.localRatchetKey = "";
+                    else {
+                        object.localRatchetKey = [];
+                        if (options.bytes !== Array)
+                            object.localRatchetKey = $util.newBuffer(object.localRatchetKey);
+                    }
+                    if (options.bytes === String)
+                        object.localRatchetKeyPrivate = "";
+                    else {
+                        object.localRatchetKeyPrivate = [];
+                        if (options.bytes !== Array)
+                            object.localRatchetKeyPrivate = $util.newBuffer(object.localRatchetKeyPrivate);
+                    }
+                    if (options.bytes === String)
+                        object.localIdentityKey = "";
+                    else {
+                        object.localIdentityKey = [];
+                        if (options.bytes !== Array)
+                            object.localIdentityKey = $util.newBuffer(object.localIdentityKey);
+                    }
+                    if (options.bytes === String)
+                        object.localIdentityKeyPrivate = "";
+                    else {
+                        object.localIdentityKeyPrivate = [];
+                        if (options.bytes !== Array)
+                            object.localIdentityKeyPrivate = $util.newBuffer(object.localIdentityKeyPrivate);
+                    }
+                }
+                if (message.sequence != null && Object.hasOwnProperty.call(message, "sequence"))
+                    object.sequence = message.sequence;
+                if (message.localBaseKey != null && Object.hasOwnProperty.call(message, "localBaseKey"))
+                    object.localBaseKey = options.bytes === String ? $util.base64.encode(message.localBaseKey, 0, message.localBaseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.localBaseKey) : message.localBaseKey;
+                if (message.localBaseKeyPrivate != null && Object.hasOwnProperty.call(message, "localBaseKeyPrivate"))
+                    object.localBaseKeyPrivate = options.bytes === String ? $util.base64.encode(message.localBaseKeyPrivate, 0, message.localBaseKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.localBaseKeyPrivate) : message.localBaseKeyPrivate;
+                if (message.localRatchetKey != null && Object.hasOwnProperty.call(message, "localRatchetKey"))
+                    object.localRatchetKey = options.bytes === String ? $util.base64.encode(message.localRatchetKey, 0, message.localRatchetKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.localRatchetKey) : message.localRatchetKey;
+                if (message.localRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "localRatchetKeyPrivate"))
+                    object.localRatchetKeyPrivate = options.bytes === String ? $util.base64.encode(message.localRatchetKeyPrivate, 0, message.localRatchetKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.localRatchetKeyPrivate) : message.localRatchetKeyPrivate;
+                if (message.localIdentityKey != null && Object.hasOwnProperty.call(message, "localIdentityKey"))
+                    object.localIdentityKey = options.bytes === String ? $util.base64.encode(message.localIdentityKey, 0, message.localIdentityKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.localIdentityKey) : message.localIdentityKey;
+                if (message.localIdentityKeyPrivate != null && Object.hasOwnProperty.call(message, "localIdentityKeyPrivate"))
+                    object.localIdentityKeyPrivate = options.bytes === String ? $util.base64.encode(message.localIdentityKeyPrivate, 0, message.localIdentityKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.localIdentityKeyPrivate) : message.localIdentityKeyPrivate;
+                return object;
+            };
+
+            /**
+             * Converts this PendingKeyExchange to JSON.
+             * @function toJSON
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PendingKeyExchange.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PendingKeyExchange
+             * @function getTypeUrl
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PendingKeyExchange.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange";
+            };
+
+            return PendingKeyExchange;
+        })();
+
+        SessionStructure.PendingPreKey = (function() {
+
+            /**
+             * Properties of a PendingPreKey.
+             * @memberof SignalLocalStorageProtocol.SessionStructure
+             * @interface IPendingPreKey
+             * @property {number|null} [preKeyId] PendingPreKey preKeyId
+             * @property {number|null} [signedPreKeyId] PendingPreKey signedPreKeyId
+             * @property {Uint8Array|null} [baseKey] PendingPreKey baseKey
+             * @property {number|null} [kyberPreKeyId] PendingPreKey kyberPreKeyId
+             * @property {Uint8Array|null} [kyberCiphertext] PendingPreKey kyberCiphertext
+             */
+
+            /**
+             * Constructs a new PendingPreKey.
+             * @memberof SignalLocalStorageProtocol.SessionStructure
+             * @classdesc Represents a PendingPreKey.
+             * @implements IPendingPreKey
+             * @constructor
+             * @param {SignalLocalStorageProtocol.SessionStructure.IPendingPreKey=} [properties] Properties to set
+             */
+            function PendingPreKey(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PendingPreKey preKeyId.
+             * @member {number} preKeyId
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @instance
+             */
+            PendingPreKey.prototype.preKeyId = 0;
+
+            /**
+             * PendingPreKey signedPreKeyId.
+             * @member {number} signedPreKeyId
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @instance
+             */
+            PendingPreKey.prototype.signedPreKeyId = 0;
+
+            /**
+             * PendingPreKey baseKey.
+             * @member {Uint8Array} baseKey
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @instance
+             */
+            PendingPreKey.prototype.baseKey = $util.newBuffer([]);
+
+            /**
+             * PendingPreKey kyberPreKeyId.
+             * @member {number} kyberPreKeyId
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @instance
+             */
+            PendingPreKey.prototype.kyberPreKeyId = 0;
+
+            /**
+             * PendingPreKey kyberCiphertext.
+             * @member {Uint8Array} kyberCiphertext
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @instance
+             */
+            PendingPreKey.prototype.kyberCiphertext = $util.newBuffer([]);
+
+            /**
+             * Creates a new PendingPreKey instance using the specified properties.
+             * @function create
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IPendingPreKey=} [properties] Properties to set
+             * @returns {SignalLocalStorageProtocol.SessionStructure.PendingPreKey} PendingPreKey instance
+             */
+            PendingPreKey.create = function create(properties) {
+                return new PendingPreKey(properties);
+            };
+
+            /**
+             * Encodes the specified PendingPreKey message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.PendingPreKey.verify|verify} messages.
+             * @function encode
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IPendingPreKey} message PendingPreKey message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PendingPreKey.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.preKeyId);
+                if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.baseKey);
+                if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.signedPreKeyId);
+                if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.kyberPreKeyId);
+                if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.kyberCiphertext);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PendingPreKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.PendingPreKey.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.IPendingPreKey} message PendingPreKey message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PendingPreKey.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a PendingPreKey message from the specified reader or buffer.
+             * @function decode
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SignalLocalStorageProtocol.SessionStructure.PendingPreKey} PendingPreKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PendingPreKey.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.preKeyId = reader.uint32();
+                            break;
+                        }
+                    case 3: {
+                            message.signedPreKeyId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.baseKey = reader.bytes();
+                            break;
+                        }
+                    case 4: {
+                            message.kyberPreKeyId = reader.uint32();
+                            break;
+                        }
+                    case 5: {
+                            message.kyberCiphertext = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PendingPreKey message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SignalLocalStorageProtocol.SessionStructure.PendingPreKey} PendingPreKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PendingPreKey.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PendingPreKey message.
+             * @function verify
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PendingPreKey.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
+                    if (!$util.isInteger(message.preKeyId))
+                        return "preKeyId: integer expected";
+                if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
+                    if (!$util.isInteger(message.signedPreKeyId))
+                        return "signedPreKeyId: integer expected";
+                if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
+                    if (!(message.baseKey && typeof message.baseKey.length === "number" || $util.isString(message.baseKey)))
+                        return "baseKey: buffer expected";
+                if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                    if (!$util.isInteger(message.kyberPreKeyId))
+                        return "kyberPreKeyId: integer expected";
+                if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                    if (!(message.kyberCiphertext && typeof message.kyberCiphertext.length === "number" || $util.isString(message.kyberCiphertext)))
+                        return "kyberCiphertext: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a PendingPreKey message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SignalLocalStorageProtocol.SessionStructure.PendingPreKey} PendingPreKey
+             */
+            PendingPreKey.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.PendingPreKey: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey();
+                if (object.preKeyId != null)
+                    message.preKeyId = object.preKeyId >>> 0;
+                if (object.signedPreKeyId != null)
+                    message.signedPreKeyId = object.signedPreKeyId | 0;
+                if (object.baseKey != null)
+                    if (typeof object.baseKey === "string")
+                        $util.base64.decode(object.baseKey, message.baseKey = $util.newBuffer($util.base64.length(object.baseKey)), 0);
+                    else if (object.baseKey.length >= 0)
+                        message.baseKey = object.baseKey;
+                if (object.kyberPreKeyId != null)
+                    message.kyberPreKeyId = object.kyberPreKeyId >>> 0;
+                if (object.kyberCiphertext != null)
+                    if (typeof object.kyberCiphertext === "string")
+                        $util.base64.decode(object.kyberCiphertext, message.kyberCiphertext = $util.newBuffer($util.base64.length(object.kyberCiphertext)), 0);
+                    else if (object.kyberCiphertext.length >= 0)
+                        message.kyberCiphertext = object.kyberCiphertext;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PendingPreKey message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {SignalLocalStorageProtocol.SessionStructure.PendingPreKey} message PendingPreKey
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PendingPreKey.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    object.preKeyId = 0;
+                    if (options.bytes === String)
+                        object.baseKey = "";
+                    else {
+                        object.baseKey = [];
+                        if (options.bytes !== Array)
+                            object.baseKey = $util.newBuffer(object.baseKey);
+                    }
+                    object.signedPreKeyId = 0;
+                    object.kyberPreKeyId = 0;
+                    if (options.bytes === String)
+                        object.kyberCiphertext = "";
+                    else {
+                        object.kyberCiphertext = [];
+                        if (options.bytes !== Array)
+                            object.kyberCiphertext = $util.newBuffer(object.kyberCiphertext);
+                    }
+                }
+                if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
+                    object.preKeyId = message.preKeyId;
+                if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
+                    object.baseKey = options.bytes === String ? $util.base64.encode(message.baseKey, 0, message.baseKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.baseKey) : message.baseKey;
+                if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
+                    object.signedPreKeyId = message.signedPreKeyId;
+                if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                    object.kyberPreKeyId = message.kyberPreKeyId;
+                if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                    object.kyberCiphertext = options.bytes === String ? $util.base64.encode(message.kyberCiphertext, 0, message.kyberCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.kyberCiphertext) : message.kyberCiphertext;
+                return object;
+            };
+
+            /**
+             * Converts this PendingPreKey to JSON.
+             * @function toJSON
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PendingPreKey.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PendingPreKey
+             * @function getTypeUrl
+             * @memberof SignalLocalStorageProtocol.SessionStructure.PendingPreKey
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PendingPreKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SignalLocalStorageProtocol.SessionStructure.PendingPreKey";
+            };
+
+            return PendingPreKey;
+        })();
+
+        return SessionStructure;
+    })();
+
+    return SignalLocalStorageProtocol;
 })();
 
 $root.AICommonDeprecated = (function() {
@@ -109976,7 +114147,7 @@ $root.AICommon = (function() {
          * Properties of a AIRegenerateMetadata.
          * @memberof AICommon
          * @interface IAIRegenerateMetadata
-         * @property {Protocol.IMessageKey|null} [messageKey] AIRegenerateMetadata messageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [messageKey] AIRegenerateMetadata messageKey
          * @property {number|Long|null} [responseTimestampMs] AIRegenerateMetadata responseTimestampMs
          */
 
@@ -109997,7 +114168,7 @@ $root.AICommon = (function() {
 
         /**
          * AIRegenerateMetadata messageKey.
-         * @member {Protocol.IMessageKey|null|undefined} messageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} messageKey
          * @memberof AICommon.AIRegenerateMetadata
          * @instance
          */
@@ -110040,7 +114211,7 @@ $root.AICommon = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
-                $root.Protocol.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.responseTimestampMs != null && Object.hasOwnProperty.call(message, "responseTimestampMs"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int64(message.responseTimestampMs);
             return writer;
@@ -110084,7 +114255,7 @@ $root.AICommon = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -110131,7 +114302,7 @@ $root.AICommon = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.messageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.messageKey, long + 1);
                 if (error)
                     return "messageKey." + error;
             }
@@ -110162,7 +114333,7 @@ $root.AICommon = (function() {
             if (object.messageKey != null) {
                 if (!$util.isObject(object.messageKey))
                     throw TypeError(".AICommon.AIRegenerateMetadata.messageKey: object expected");
-                message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey, long + 1);
+                message.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.messageKey, long + 1);
             }
             if (object.responseTimestampMs != null)
                 if ($util.Long)
@@ -110202,7 +114373,7 @@ $root.AICommon = (function() {
                     object.responseTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
-                object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options, q + 1);
+                object.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.messageKey, options, q + 1);
             if (message.responseTimestampMs != null && Object.hasOwnProperty.call(message, "responseTimestampMs"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
                     object.responseTimestampMs = typeof message.responseTimestampMs === "number" ? BigInt(message.responseTimestampMs) : $util.Long.fromBits(message.responseTimestampMs.low >>> 0, message.responseTimestampMs.high >>> 0, false).toBigInt();
@@ -111258,7 +115429,7 @@ $root.AICommon = (function() {
          * Properties of a BotFeedbackMessage.
          * @memberof AICommon
          * @interface IBotFeedbackMessage
-         * @property {Protocol.IMessageKey|null} [messageKey] BotFeedbackMessage messageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [messageKey] BotFeedbackMessage messageKey
          * @property {AICommon.BotFeedbackMessage.BotFeedbackKind|null} [kind] BotFeedbackMessage kind
          * @property {string|null} [text] BotFeedbackMessage text
          * @property {number|Long|null} [kindNegative] BotFeedbackMessage kindNegative
@@ -111284,7 +115455,7 @@ $root.AICommon = (function() {
 
         /**
          * BotFeedbackMessage messageKey.
-         * @member {Protocol.IMessageKey|null|undefined} messageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} messageKey
          * @memberof AICommon.BotFeedbackMessage
          * @instance
          */
@@ -111367,7 +115538,7 @@ $root.AICommon = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
-                $root.Protocol.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.kind != null && Object.hasOwnProperty.call(message, "kind"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.kind);
             if (message.text != null && Object.hasOwnProperty.call(message, "text"))
@@ -111421,7 +115592,7 @@ $root.AICommon = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -111488,7 +115659,7 @@ $root.AICommon = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.messageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.messageKey, long + 1);
                 if (error)
                     return "messageKey." + error;
             }
@@ -111559,7 +115730,7 @@ $root.AICommon = (function() {
             if (object.messageKey != null) {
                 if (!$util.isObject(object.messageKey))
                     throw TypeError(".AICommon.BotFeedbackMessage.messageKey: object expected");
-                message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey, long + 1);
+                message.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.messageKey, long + 1);
             }
             switch (object.kind) {
             default:
@@ -111708,7 +115879,7 @@ $root.AICommon = (function() {
                 object.sideBySideSurveyMetadata = null;
             }
             if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
-                object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options, q + 1);
+                object.messageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.messageKey, options, q + 1);
             if (message.kind != null && Object.hasOwnProperty.call(message, "kind"))
                 object.kind = options.enums === String ? $root.AICommon.BotFeedbackMessage.BotFeedbackKind[message.kind] === undefined ? message.kind : $root.AICommon.BotFeedbackMessage.BotFeedbackKind[message.kind] : message.kind;
             if (message.text != null && Object.hasOwnProperty.call(message, "text"))
@@ -126863,7 +131034,7 @@ $root.AICommon = (function() {
          * Properties of a BotReminderMetadata.
          * @memberof AICommon
          * @interface IBotReminderMetadata
-         * @property {Protocol.IMessageKey|null} [requestMessageKey] BotReminderMetadata requestMessageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [requestMessageKey] BotReminderMetadata requestMessageKey
          * @property {AICommon.BotReminderMetadata.ReminderAction|null} [action] BotReminderMetadata action
          * @property {string|null} [name] BotReminderMetadata name
          * @property {number|Long|null} [nextTriggerTimestamp] BotReminderMetadata nextTriggerTimestamp
@@ -126887,7 +131058,7 @@ $root.AICommon = (function() {
 
         /**
          * BotReminderMetadata requestMessageKey.
-         * @member {Protocol.IMessageKey|null|undefined} requestMessageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} requestMessageKey
          * @memberof AICommon.BotReminderMetadata
          * @instance
          */
@@ -126954,7 +131125,7 @@ $root.AICommon = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey"))
-                $root.Protocol.MessageKey.encode(message.requestMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.requestMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.action != null && Object.hasOwnProperty.call(message, "action"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.action);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -127004,7 +131175,7 @@ $root.AICommon = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.requestMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -127063,7 +131234,7 @@ $root.AICommon = (function() {
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
             if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.requestMessageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.requestMessageKey, long + 1);
                 if (error)
                     return "requestMessageKey." + error;
             }
@@ -127118,7 +131289,7 @@ $root.AICommon = (function() {
             if (object.requestMessageKey != null) {
                 if (!$util.isObject(object.requestMessageKey))
                     throw TypeError(".AICommon.BotReminderMetadata.requestMessageKey: object expected");
-                message.requestMessageKey = $root.Protocol.MessageKey.fromObject(object.requestMessageKey, long + 1);
+                message.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.requestMessageKey, long + 1);
             }
             switch (object.action) {
             default:
@@ -127215,7 +131386,7 @@ $root.AICommon = (function() {
                 object.frequency = options.enums === String ? "ONCE" : 1;
             }
             if (message.requestMessageKey != null && Object.hasOwnProperty.call(message, "requestMessageKey"))
-                object.requestMessageKey = $root.Protocol.MessageKey.toObject(message.requestMessageKey, options, q + 1);
+                object.requestMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.requestMessageKey, options, q + 1);
             if (message.action != null && Object.hasOwnProperty.call(message, "action"))
                 object.action = options.enums === String ? $root.AICommon.BotReminderMetadata.ReminderAction[message.action] === undefined ? message.action : $root.AICommon.BotReminderMetadata.ReminderAction[message.action] : message.action;
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -132211,7 +136382,7 @@ $root.AICommon = (function() {
          * @property {number|null} [referenceIndex] BotPluginMetadata referenceIndex
          * @property {number|null} [expectedLinksCount] BotPluginMetadata expectedLinksCount
          * @property {string|null} [searchQuery] BotPluginMetadata searchQuery
-         * @property {Protocol.IMessageKey|null} [parentPluginMessageKey] BotPluginMetadata parentPluginMessageKey
+         * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [parentPluginMessageKey] BotPluginMetadata parentPluginMessageKey
          * @property {AICommon.BotPluginMetadata.PluginType|null} [deprecatedField] BotPluginMetadata deprecatedField
          * @property {AICommon.BotPluginMetadata.PluginType|null} [parentPluginType] BotPluginMetadata parentPluginType
          * @property {string|null} [faviconCdnUrl] BotPluginMetadata faviconCdnUrl
@@ -132298,7 +136469,7 @@ $root.AICommon = (function() {
 
         /**
          * BotPluginMetadata parentPluginMessageKey.
-         * @member {Protocol.IMessageKey|null|undefined} parentPluginMessageKey
+         * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} parentPluginMessageKey
          * @memberof AICommon.BotPluginMetadata
          * @instance
          */
@@ -132373,7 +136544,7 @@ $root.AICommon = (function() {
             if (message.searchQuery != null && Object.hasOwnProperty.call(message, "searchQuery"))
                 writer.uint32(/* id 9, wireType 2 =*/74).string(message.searchQuery);
             if (message.parentPluginMessageKey != null && Object.hasOwnProperty.call(message, "parentPluginMessageKey"))
-                $root.Protocol.MessageKey.encode(message.parentPluginMessageKey, writer.uint32(/* id 10, wireType 2 =*/82).fork(), q + 1).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.parentPluginMessageKey, writer.uint32(/* id 10, wireType 2 =*/82).fork(), q + 1).ldelim();
             if (message.deprecatedField != null && Object.hasOwnProperty.call(message, "deprecatedField"))
                 writer.uint32(/* id 11, wireType 0 =*/88).int32(message.deprecatedField);
             if (message.parentPluginType != null && Object.hasOwnProperty.call(message, "parentPluginType"))
@@ -132453,7 +136624,7 @@ $root.AICommon = (function() {
                         break;
                     }
                 case 10: {
-                        message.parentPluginMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.parentPluginMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 11: {
@@ -132545,7 +136716,7 @@ $root.AICommon = (function() {
                 if (!$util.isString(message.searchQuery))
                     return "searchQuery: string expected";
             if (message.parentPluginMessageKey != null && Object.hasOwnProperty.call(message, "parentPluginMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.parentPluginMessageKey, long + 1);
+                var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.parentPluginMessageKey, long + 1);
                 if (error)
                     return "parentPluginMessageKey." + error;
             }
@@ -132650,7 +136821,7 @@ $root.AICommon = (function() {
             if (object.parentPluginMessageKey != null) {
                 if (!$util.isObject(object.parentPluginMessageKey))
                     throw TypeError(".AICommon.BotPluginMetadata.parentPluginMessageKey: object expected");
-                message.parentPluginMessageKey = $root.Protocol.MessageKey.fromObject(object.parentPluginMessageKey, long + 1);
+                message.parentPluginMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.parentPluginMessageKey, long + 1);
             }
             switch (object.deprecatedField) {
             default:
@@ -132745,7 +136916,7 @@ $root.AICommon = (function() {
             if (message.searchQuery != null && Object.hasOwnProperty.call(message, "searchQuery"))
                 object.searchQuery = message.searchQuery;
             if (message.parentPluginMessageKey != null && Object.hasOwnProperty.call(message, "parentPluginMessageKey"))
-                object.parentPluginMessageKey = $root.Protocol.MessageKey.toObject(message.parentPluginMessageKey, options, q + 1);
+                object.parentPluginMessageKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.parentPluginMessageKey, options, q + 1);
             if (message.deprecatedField != null && Object.hasOwnProperty.call(message, "deprecatedField"))
                 object.deprecatedField = options.enums === String ? $root.AICommon.BotPluginMetadata.PluginType[message.deprecatedField] === undefined ? message.deprecatedField : $root.AICommon.BotPluginMetadata.PluginType[message.deprecatedField] : message.deprecatedField;
             if (message.parentPluginType != null && Object.hasOwnProperty.call(message, "parentPluginType"))
@@ -134750,6 +138921,675 @@ $root.Adv = (function() {
     })();
 
     return Adv;
+})();
+
+$root.Protocol = (function() {
+
+    /**
+     * Namespace Protocol.
+     * @exports Protocol
+     * @namespace
+     */
+    var Protocol = {};
+
+    Protocol.LimitSharing = (function() {
+
+        /**
+         * Properties of a LimitSharing.
+         * @memberof Protocol
+         * @interface ILimitSharing
+         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
+         * @property {Protocol.LimitSharing.TriggerType|null} [trigger] LimitSharing trigger
+         * @property {number|Long|null} [limitSharingSettingTimestamp] LimitSharing limitSharingSettingTimestamp
+         * @property {boolean|null} [initiatedByMe] LimitSharing initiatedByMe
+         */
+
+        /**
+         * Constructs a new LimitSharing.
+         * @memberof Protocol
+         * @classdesc Represents a LimitSharing.
+         * @implements ILimitSharing
+         * @constructor
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         */
+        function LimitSharing(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LimitSharing sharingLimited.
+         * @member {boolean} sharingLimited
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.sharingLimited = false;
+
+        /**
+         * LimitSharing trigger.
+         * @member {Protocol.LimitSharing.TriggerType} trigger
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.trigger = 0;
+
+        /**
+         * LimitSharing limitSharingSettingTimestamp.
+         * @member {number|Long} limitSharingSettingTimestamp
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.limitSharingSettingTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LimitSharing initiatedByMe.
+         * @member {boolean} initiatedByMe
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.initiatedByMe = false;
+
+        /**
+         * Creates a new LimitSharing instance using the specified properties.
+         * @function create
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         * @returns {Protocol.LimitSharing} LimitSharing instance
+         */
+        LimitSharing.create = function create(properties) {
+            return new LimitSharing(properties);
+        };
+
+        /**
+         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encode = function encode(message, writer, q) {
+            if (!writer)
+                writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.limitSharingSettingTimestamp);
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.initiatedByMe);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decode = function decode(reader, length, error, long) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.sharingLimited = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.trigger = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.limitSharingSettingTimestamp = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.initiatedByMe = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7, long);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LimitSharing message.
+         * @function verify
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LimitSharing.verify = function verify(message, long) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
+                if (typeof message.sharingLimited !== "boolean")
+                    return "sharingLimited: boolean expected";
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
+                switch (message.trigger) {
+                default:
+                    return "trigger: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
+                if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
+                    return "limitSharingSettingTimestamp: integer|Long expected";
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
+                if (typeof message.initiatedByMe !== "boolean")
+                    return "initiatedByMe: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.LimitSharing} LimitSharing
+         */
+        LimitSharing.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.Protocol.LimitSharing)
+                return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Protocol.LimitSharing: object expected");
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var message = new $root.Protocol.LimitSharing();
+            if (object.sharingLimited != null)
+                message.sharingLimited = Boolean(object.sharingLimited);
+            switch (object.trigger) {
+            default:
+                if (typeof object.trigger === "number") {
+                    message.trigger = object.trigger;
+                    break;
+                }
+                break;
+            case "UNKNOWN":
+            case 0:
+                message.trigger = 0;
+                break;
+            case "CHAT_SETTING":
+            case 1:
+                message.trigger = 1;
+                break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 2:
+                message.trigger = 2;
+                break;
+            case "UNKNOWN_GROUP":
+            case 3:
+                message.trigger = 3;
+                break;
+            }
+            if (object.limitSharingSettingTimestamp != null)
+                if ($util.Long)
+                    message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp, false);
+                else if (typeof object.limitSharingSettingTimestamp === "string")
+                    message.limitSharingSettingTimestamp = parseInt(object.limitSharingSettingTimestamp, 10);
+                else if (typeof object.limitSharingSettingTimestamp === "number")
+                    message.limitSharingSettingTimestamp = object.limitSharingSettingTimestamp;
+                else if (typeof object.limitSharingSettingTimestamp === "object")
+                    message.limitSharingSettingTimestamp = new $util.LongBits(object.limitSharingSettingTimestamp.low >>> 0, object.limitSharingSettingTimestamp.high >>> 0).toNumber();
+            if (object.initiatedByMe != null)
+                message.initiatedByMe = Boolean(object.initiatedByMe);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.LimitSharing} message LimitSharing
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LimitSharing.toObject = function toObject(message, options, q) {
+            if (!options)
+                options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            var object = {};
+            if (options.defaults) {
+                object.sharingLimited = false;
+                object.trigger = options.enums === String ? "UNKNOWN" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                } else
+                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                object.initiatedByMe = false;
+            }
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
+                object.sharingLimited = message.sharingLimited;
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
+                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.limitSharingSettingTimestamp = typeof message.limitSharingSettingTimestamp === "number" ? BigInt(message.limitSharingSettingTimestamp) : $util.Long.fromBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.limitSharingSettingTimestamp === "number")
+                    object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
+                else
+                    object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
+                object.initiatedByMe = message.initiatedByMe;
+            return object;
+        };
+
+        /**
+         * Converts this LimitSharing to JSON.
+         * @function toJSON
+         * @memberof Protocol.LimitSharing
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LimitSharing.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LimitSharing
+         * @function getTypeUrl
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.LimitSharing";
+        };
+
+        /**
+         * TriggerType enum.
+         * @name Protocol.LimitSharing.TriggerType
+         * @enum {number}
+         * @property {number} UNKNOWN=0 UNKNOWN value
+         * @property {number} CHAT_SETTING=1 CHAT_SETTING value
+         * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
+         * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
+         */
+        LimitSharing.TriggerType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN"] = 0;
+            values[valuesById[1] = "CHAT_SETTING"] = 1;
+            values[valuesById[2] = "BIZ_SUPPORTS_FB_HOSTING"] = 2;
+            values[valuesById[3] = "UNKNOWN_GROUP"] = 3;
+            return values;
+        })();
+
+        return LimitSharing;
+    })();
+
+    Protocol.MessageKey = (function() {
+
+        /**
+         * Properties of a MessageKey.
+         * @memberof Protocol
+         * @interface IMessageKey
+         * @property {string|null} [remoteJid] MessageKey remoteJid
+         * @property {boolean|null} [fromMe] MessageKey fromMe
+         * @property {string|null} [id] MessageKey id
+         * @property {string|null} [participant] MessageKey participant
+         */
+
+        /**
+         * Constructs a new MessageKey.
+         * @memberof Protocol
+         * @classdesc Represents a MessageKey.
+         * @implements IMessageKey
+         * @constructor
+         * @param {Protocol.IMessageKey=} [properties] Properties to set
+         */
+        function MessageKey(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * MessageKey remoteJid.
+         * @member {string} remoteJid
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.remoteJid = "";
+
+        /**
+         * MessageKey fromMe.
+         * @member {boolean} fromMe
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.fromMe = false;
+
+        /**
+         * MessageKey id.
+         * @member {string} id
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.id = "";
+
+        /**
+         * MessageKey participant.
+         * @member {string} participant
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.participant = "";
+
+        /**
+         * Creates a new MessageKey instance using the specified properties.
+         * @function create
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey=} [properties] Properties to set
+         * @returns {Protocol.MessageKey} MessageKey instance
+         */
+        MessageKey.create = function create(properties) {
+            return new MessageKey(properties);
+        };
+
+        /**
+         * Encodes the specified MessageKey message. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MessageKey.encode = function encode(message, writer, q) {
+            if (!writer)
+                writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.remoteJid);
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.fromMe);
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.participant);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a MessageKey message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.MessageKey} MessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MessageKey.decode = function decode(reader, length, error, long) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.remoteJid = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.fromMe = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.participant = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7, long);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a MessageKey message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.MessageKey} MessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MessageKey.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a MessageKey message.
+         * @function verify
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        MessageKey.verify = function verify(message, long) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
+                if (!$util.isString(message.remoteJid))
+                    return "remoteJid: string expected";
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
+                if (typeof message.fromMe !== "boolean")
+                    return "fromMe: boolean expected";
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
+                if (!$util.isString(message.participant))
+                    return "participant: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.MessageKey} MessageKey
+         */
+        MessageKey.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.Protocol.MessageKey)
+                return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Protocol.MessageKey: object expected");
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var message = new $root.Protocol.MessageKey();
+            if (object.remoteJid != null)
+                message.remoteJid = String(object.remoteJid);
+            if (object.fromMe != null)
+                message.fromMe = Boolean(object.fromMe);
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.participant != null)
+                message.participant = String(object.participant);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.MessageKey} message MessageKey
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        MessageKey.toObject = function toObject(message, options, q) {
+            if (!options)
+                options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            var object = {};
+            if (options.defaults) {
+                object.remoteJid = "";
+                object.fromMe = false;
+                object.id = "";
+                object.participant = "";
+            }
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
+                object.remoteJid = message.remoteJid;
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
+                object.fromMe = message.fromMe;
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                object.id = message.id;
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
+                object.participant = message.participant;
+            return object;
+        };
+
+        /**
+         * Converts this MessageKey to JSON.
+         * @function toJSON
+         * @memberof Protocol.MessageKey
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        MessageKey.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MessageKey
+         * @function getTypeUrl
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.MessageKey";
+        };
+
+        return MessageKey;
+    })();
+
+    return Protocol;
 })();
 
 $root.CompanionReg = (function() {

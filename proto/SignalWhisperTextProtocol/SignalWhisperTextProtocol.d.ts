@@ -471,6 +471,12 @@ export namespace SignalWhisperTextProtocol {
 
         /** PreKeySignalMessage message */
         message?: (Uint8Array|null);
+
+        /** PreKeySignalMessage kyberPreKeyId */
+        kyberPreKeyId?: (number|null);
+
+        /** PreKeySignalMessage kyberCiphertext */
+        kyberCiphertext?: (Uint8Array|null);
     }
 
     /** Represents a PreKeySignalMessage. */
@@ -499,6 +505,12 @@ export namespace SignalWhisperTextProtocol {
 
         /** PreKeySignalMessage message. */
         public message: Uint8Array;
+
+        /** PreKeySignalMessage kyberPreKeyId. */
+        public kyberPreKeyId: number;
+
+        /** PreKeySignalMessage kyberCiphertext. */
+        public kyberCiphertext: Uint8Array;
 
         /**
          * Creates a new PreKeySignalMessage instance using the specified properties.

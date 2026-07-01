@@ -1244,6 +1244,8 @@ $root.SignalWhisperTextProtocol = (function() {
          * @property {Uint8Array|null} [baseKey] PreKeySignalMessage baseKey
          * @property {Uint8Array|null} [identityKey] PreKeySignalMessage identityKey
          * @property {Uint8Array|null} [message] PreKeySignalMessage message
+         * @property {number|null} [kyberPreKeyId] PreKeySignalMessage kyberPreKeyId
+         * @property {Uint8Array|null} [kyberCiphertext] PreKeySignalMessage kyberCiphertext
          */
 
         /**
@@ -1310,6 +1312,22 @@ $root.SignalWhisperTextProtocol = (function() {
         PreKeySignalMessage.prototype.message = $util.newBuffer([]);
 
         /**
+         * PreKeySignalMessage kyberPreKeyId.
+         * @member {number} kyberPreKeyId
+         * @memberof SignalWhisperTextProtocol.PreKeySignalMessage
+         * @instance
+         */
+        PreKeySignalMessage.prototype.kyberPreKeyId = 0;
+
+        /**
+         * PreKeySignalMessage kyberCiphertext.
+         * @member {Uint8Array} kyberCiphertext
+         * @memberof SignalWhisperTextProtocol.PreKeySignalMessage
+         * @instance
+         */
+        PreKeySignalMessage.prototype.kyberCiphertext = $util.newBuffer([]);
+
+        /**
          * Creates a new PreKeySignalMessage instance using the specified properties.
          * @function create
          * @memberof SignalWhisperTextProtocol.PreKeySignalMessage
@@ -1349,6 +1367,10 @@ $root.SignalWhisperTextProtocol = (function() {
                 writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.registrationId);
             if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
                 writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.signedPreKeyId);
+            if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.kyberPreKeyId);
+            if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                writer.uint32(/* id 8, wireType 2 =*/66).bytes(message.kyberCiphertext);
             return writer;
         };
 
@@ -1413,6 +1435,14 @@ $root.SignalWhisperTextProtocol = (function() {
                         message.message = reader.bytes();
                         break;
                     }
+                case 7: {
+                        message.kyberPreKeyId = reader.uint32();
+                        break;
+                    }
+                case 8: {
+                        message.kyberCiphertext = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -1470,6 +1500,12 @@ $root.SignalWhisperTextProtocol = (function() {
             if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                 if (!(message.message && typeof message.message.length === "number" || $util.isString(message.message)))
                     return "message: buffer expected";
+            if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                if (!$util.isInteger(message.kyberPreKeyId))
+                    return "kyberPreKeyId: integer expected";
+            if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                if (!(message.kyberCiphertext && typeof message.kyberCiphertext.length === "number" || $util.isString(message.kyberCiphertext)))
+                    return "kyberCiphertext: buffer expected";
             return null;
         };
 
@@ -1512,6 +1548,13 @@ $root.SignalWhisperTextProtocol = (function() {
                     $util.base64.decode(object.message, message.message = $util.newBuffer($util.base64.length(object.message)), 0);
                 else if (object.message.length >= 0)
                     message.message = object.message;
+            if (object.kyberPreKeyId != null)
+                message.kyberPreKeyId = object.kyberPreKeyId >>> 0;
+            if (object.kyberCiphertext != null)
+                if (typeof object.kyberCiphertext === "string")
+                    $util.base64.decode(object.kyberCiphertext, message.kyberCiphertext = $util.newBuffer($util.base64.length(object.kyberCiphertext)), 0);
+                else if (object.kyberCiphertext.length >= 0)
+                    message.kyberCiphertext = object.kyberCiphertext;
             return message;
         };
 
@@ -1557,6 +1600,14 @@ $root.SignalWhisperTextProtocol = (function() {
                 }
                 object.registrationId = 0;
                 object.signedPreKeyId = 0;
+                object.kyberPreKeyId = 0;
+                if (options.bytes === String)
+                    object.kyberCiphertext = "";
+                else {
+                    object.kyberCiphertext = [];
+                    if (options.bytes !== Array)
+                        object.kyberCiphertext = $util.newBuffer(object.kyberCiphertext);
+                }
             }
             if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
                 object.preKeyId = message.preKeyId;
@@ -1570,6 +1621,10 @@ $root.SignalWhisperTextProtocol = (function() {
                 object.registrationId = message.registrationId;
             if (message.signedPreKeyId != null && Object.hasOwnProperty.call(message, "signedPreKeyId"))
                 object.signedPreKeyId = message.signedPreKeyId;
+            if (message.kyberPreKeyId != null && Object.hasOwnProperty.call(message, "kyberPreKeyId"))
+                object.kyberPreKeyId = message.kyberPreKeyId;
+            if (message.kyberCiphertext != null && Object.hasOwnProperty.call(message, "kyberCiphertext"))
+                object.kyberCiphertext = options.bytes === String ? $util.base64.encode(message.kyberCiphertext, 0, message.kyberCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.kyberCiphertext) : message.kyberCiphertext;
             return object;
         };
 

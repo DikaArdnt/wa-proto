@@ -3129,7 +3129,7 @@ export namespace E2E {
     interface IAIQueryFanout {
 
         /** AIQueryFanout messageKey */
-        messageKey?: (Protocol.IMessageKey|null);
+        messageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** AIQueryFanout message */
         message?: (E2E.IMessage|null);
@@ -3148,7 +3148,7 @@ export namespace E2E {
         constructor(properties?: E2E.IAIQueryFanout);
 
         /** AIQueryFanout messageKey. */
-        public messageKey?: (Protocol.IMessageKey|null);
+        public messageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** AIQueryFanout message. */
         public message?: (E2E.IMessage|null);
@@ -6957,7 +6957,7 @@ export namespace E2E {
         threadType?: (E2E.ThreadID.ThreadType|null);
 
         /** ThreadID threadKey */
-        threadKey?: (Protocol.IMessageKey|null);
+        threadKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
     }
 
     /** Represents a ThreadID. */
@@ -6973,7 +6973,7 @@ export namespace E2E {
         public threadType: E2E.ThreadID.ThreadType;
 
         /** ThreadID threadKey. */
-        public threadKey?: (Protocol.IMessageKey|null);
+        public threadKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /**
          * Creates a new ThreadID instance using the specified properties.
@@ -7070,7 +7070,7 @@ export namespace E2E {
         associationType?: (E2E.MessageAssociation.AssociationType|null);
 
         /** MessageAssociation parentMessageKey */
-        parentMessageKey?: (Protocol.IMessageKey|null);
+        parentMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** MessageAssociation messageIndex */
         messageIndex?: (number|null);
@@ -7089,7 +7089,7 @@ export namespace E2E {
         public associationType: E2E.MessageAssociation.AssociationType;
 
         /** MessageAssociation parentMessageKey. */
-        public parentMessageKey?: (Protocol.IMessageKey|null);
+        public parentMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** MessageAssociation messageIndex. */
         public messageIndex: number;
@@ -7237,7 +7237,7 @@ export namespace E2E {
         quotedAd?: (E2E.ContextInfo.IAdReplyInfo|null);
 
         /** ContextInfo placeholderKey */
-        placeholderKey?: (Protocol.IMessageKey|null);
+        placeholderKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** ContextInfo expiration */
         expiration?: (number|null);
@@ -7433,7 +7433,7 @@ export namespace E2E {
         public quotedAd?: (E2E.ContextInfo.IAdReplyInfo|null);
 
         /** ContextInfo placeholderKey. */
-        public placeholderKey?: (Protocol.IMessageKey|null);
+        public placeholderKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** ContextInfo expiration. */
         public expiration: number;
@@ -12530,7 +12530,7 @@ export namespace E2E {
         interface ICancelPaymentRequestMessage {
 
             /** CancelPaymentRequestMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
         }
 
         /** Represents a CancelPaymentRequestMessage. */
@@ -12543,7 +12543,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.ICancelPaymentRequestMessage);
 
             /** CancelPaymentRequestMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /**
              * Creates a new CancelPaymentRequestMessage instance using the specified properties.
@@ -13540,7 +13540,7 @@ export namespace E2E {
             message?: (E2E.IMessage|null);
 
             /** CommentMessage targetMessageKey */
-            targetMessageKey?: (Protocol.IMessageKey|null);
+            targetMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
         }
 
         /** Represents a CommentMessage. */
@@ -13556,7 +13556,7 @@ export namespace E2E {
             public message?: (E2E.IMessage|null);
 
             /** CommentMessage targetMessageKey. */
-            public targetMessageKey?: (Protocol.IMessageKey|null);
+            public targetMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /**
              * Creates a new CommentMessage instance using the specified properties.
@@ -13988,7 +13988,7 @@ export namespace E2E {
         interface IDeclinePaymentRequestMessage {
 
             /** DeclinePaymentRequestMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
         }
 
         /** Represents a DeclinePaymentRequestMessage. */
@@ -14001,7 +14001,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IDeclinePaymentRequestMessage);
 
             /** DeclinePaymentRequestMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /**
              * Creates a new DeclinePaymentRequestMessage instance using the specified properties.
@@ -14411,7 +14411,7 @@ export namespace E2E {
         interface IEncCommentMessage {
 
             /** EncCommentMessage targetMessageKey */
-            targetMessageKey?: (Protocol.IMessageKey|null);
+            targetMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** EncCommentMessage encPayload */
             encPayload?: (Uint8Array|null);
@@ -14430,7 +14430,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IEncCommentMessage);
 
             /** EncCommentMessage targetMessageKey. */
-            public targetMessageKey?: (Protocol.IMessageKey|null);
+            public targetMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** EncCommentMessage encPayload. */
             public encPayload: Uint8Array;
@@ -14520,7 +14520,7 @@ export namespace E2E {
         interface IEncEventResponseMessage {
 
             /** EncEventResponseMessage eventCreationMessageKey */
-            eventCreationMessageKey?: (Protocol.IMessageKey|null);
+            eventCreationMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** EncEventResponseMessage encPayload */
             encPayload?: (Uint8Array|null);
@@ -14539,7 +14539,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IEncEventResponseMessage);
 
             /** EncEventResponseMessage eventCreationMessageKey. */
-            public eventCreationMessageKey?: (Protocol.IMessageKey|null);
+            public eventCreationMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** EncEventResponseMessage encPayload. */
             public encPayload: Uint8Array;
@@ -14629,7 +14629,7 @@ export namespace E2E {
         interface IEncReactionMessage {
 
             /** EncReactionMessage targetMessageKey */
-            targetMessageKey?: (Protocol.IMessageKey|null);
+            targetMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** EncReactionMessage encPayload */
             encPayload?: (Uint8Array|null);
@@ -14648,7 +14648,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IEncReactionMessage);
 
             /** EncReactionMessage targetMessageKey. */
-            public targetMessageKey?: (Protocol.IMessageKey|null);
+            public targetMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** EncReactionMessage encPayload. */
             public encPayload: Uint8Array;
@@ -19037,7 +19037,7 @@ export namespace E2E {
         interface IKeepInChatMessage {
 
             /** KeepInChatMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** KeepInChatMessage keepType */
             keepType?: (E2E.KeepType|null);
@@ -19056,7 +19056,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IKeepInChatMessage);
 
             /** KeepInChatMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** KeepInChatMessage keepType. */
             public keepType: E2E.KeepType;
@@ -21401,7 +21401,7 @@ export namespace E2E {
             messageVersion?: (number|null);
 
             /** OrderMessage orderRequestMessageId */
-            orderRequestMessageId?: (Protocol.IMessageKey|null);
+            orderRequestMessageId?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** OrderMessage catalogType */
             catalogType?: (string|null);
@@ -21456,7 +21456,7 @@ export namespace E2E {
             public messageVersion: number;
 
             /** OrderMessage orderRequestMessageId. */
-            public orderRequestMessageId?: (Protocol.IMessageKey|null);
+            public orderRequestMessageId?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** OrderMessage catalogType. */
             public catalogType: string;
@@ -23321,7 +23321,7 @@ export namespace E2E {
             interface IPlaceholderMessageResendRequest {
 
                 /** PlaceholderMessageResendRequest messageKey */
-                messageKey?: (Protocol.IMessageKey|null);
+                messageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
             }
 
             /** Represents a PlaceholderMessageResendRequest. */
@@ -23334,7 +23334,7 @@ export namespace E2E {
                 constructor(properties?: E2E.Message.PeerDataOperationRequestMessage.IPlaceholderMessageResendRequest);
 
                 /** PlaceholderMessageResendRequest messageKey. */
-                public messageKey?: (Protocol.IMessageKey|null);
+                public messageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
                 /**
                  * Creates a new PlaceholderMessageResendRequest instance using the specified properties.
@@ -25532,7 +25532,7 @@ export namespace E2E {
         interface IPinInChatMessage {
 
             /** PinInChatMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** PinInChatMessage type */
             type?: (E2E.Message.PinInChatMessage.Type|null);
@@ -25551,7 +25551,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IPinInChatMessage);
 
             /** PinInChatMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** PinInChatMessage type. */
             public type: E2E.Message.PinInChatMessage.Type;
@@ -25756,7 +25756,7 @@ export namespace E2E {
         interface IPollAddOptionMessage {
 
             /** PollAddOptionMessage pollCreationMessageKey */
-            pollCreationMessageKey?: (Protocol.IMessageKey|null);
+            pollCreationMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** PollAddOptionMessage addOption */
             addOption?: (E2E.Message.PollCreationMessage.IOption|null);
@@ -25775,7 +25775,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IPollAddOptionMessage);
 
             /** PollAddOptionMessage pollCreationMessageKey. */
-            public pollCreationMessageKey?: (Protocol.IMessageKey|null);
+            public pollCreationMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** PollAddOptionMessage addOption. */
             public addOption?: (E2E.Message.PollCreationMessage.IOption|null);
@@ -26465,7 +26465,7 @@ export namespace E2E {
         interface IPollUpdateMessage {
 
             /** PollUpdateMessage pollCreationMessageKey */
-            pollCreationMessageKey?: (Protocol.IMessageKey|null);
+            pollCreationMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** PollUpdateMessage vote */
             vote?: (E2E.Message.IPollEncValue|null);
@@ -26487,7 +26487,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IPollUpdateMessage);
 
             /** PollUpdateMessage pollCreationMessageKey. */
-            public pollCreationMessageKey?: (Protocol.IMessageKey|null);
+            public pollCreationMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** PollUpdateMessage vote. */
             public vote?: (E2E.Message.IPollEncValue|null);
@@ -27182,7 +27182,7 @@ export namespace E2E {
         interface IProtocolMessage {
 
             /** ProtocolMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** ProtocolMessage type */
             type?: (E2E.Message.ProtocolMessage.Type|null);
@@ -27276,7 +27276,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IProtocolMessage);
 
             /** ProtocolMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** ProtocolMessage type. */
             public type: E2E.Message.ProtocolMessage.Type;
@@ -27478,7 +27478,7 @@ export namespace E2E {
         interface IQuestionResponseMessage {
 
             /** QuestionResponseMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** QuestionResponseMessage text */
             text?: (string|null);
@@ -27494,7 +27494,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IQuestionResponseMessage);
 
             /** QuestionResponseMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** QuestionResponseMessage text. */
             public text: string;
@@ -27581,7 +27581,7 @@ export namespace E2E {
         interface IReactionMessage {
 
             /** ReactionMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** ReactionMessage text */
             text?: (string|null);
@@ -27603,7 +27603,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IReactionMessage);
 
             /** ReactionMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** ReactionMessage text. */
             public text: string;
@@ -28266,7 +28266,7 @@ export namespace E2E {
         interface IScheduledCallEditMessage {
 
             /** ScheduledCallEditMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** ScheduledCallEditMessage editType */
             editType?: (E2E.Message.ScheduledCallEditMessage.EditType|null);
@@ -28282,7 +28282,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IScheduledCallEditMessage);
 
             /** ScheduledCallEditMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** ScheduledCallEditMessage editType. */
             public editType: E2E.Message.ScheduledCallEditMessage.EditType;
@@ -28378,7 +28378,7 @@ export namespace E2E {
         interface ISecretEncryptedMessage {
 
             /** SecretEncryptedMessage targetMessageKey */
-            targetMessageKey?: (Protocol.IMessageKey|null);
+            targetMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** SecretEncryptedMessage encPayload */
             encPayload?: (Uint8Array|null);
@@ -28403,7 +28403,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.ISecretEncryptedMessage);
 
             /** SecretEncryptedMessage targetMessageKey. */
-            public targetMessageKey?: (Protocol.IMessageKey|null);
+            public targetMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** SecretEncryptedMessage encPayload. */
             public encPayload: Uint8Array;
@@ -28515,7 +28515,7 @@ export namespace E2E {
             noteMessage?: (E2E.IMessage|null);
 
             /** SendPaymentMessage requestMessageKey */
-            requestMessageKey?: (Protocol.IMessageKey|null);
+            requestMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** SendPaymentMessage background */
             background?: (E2E.IPaymentBackground|null);
@@ -28537,7 +28537,7 @@ export namespace E2E {
             public noteMessage?: (E2E.IMessage|null);
 
             /** SendPaymentMessage requestMessageKey. */
-            public requestMessageKey?: (Protocol.IMessageKey|null);
+            public requestMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** SendPaymentMessage background. */
             public background?: (E2E.IPaymentBackground|null);
@@ -28981,10 +28981,10 @@ export namespace E2E {
         interface IStatusNotificationMessage {
 
             /** StatusNotificationMessage responseMessageKey */
-            responseMessageKey?: (Protocol.IMessageKey|null);
+            responseMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** StatusNotificationMessage originalMessageKey */
-            originalMessageKey?: (Protocol.IMessageKey|null);
+            originalMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** StatusNotificationMessage type */
             type?: (E2E.Message.StatusNotificationMessage.StatusNotificationType|null);
@@ -29000,10 +29000,10 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IStatusNotificationMessage);
 
             /** StatusNotificationMessage responseMessageKey. */
-            public responseMessageKey?: (Protocol.IMessageKey|null);
+            public responseMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** StatusNotificationMessage originalMessageKey. */
-            public originalMessageKey?: (Protocol.IMessageKey|null);
+            public originalMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** StatusNotificationMessage type. */
             public type: E2E.Message.StatusNotificationMessage.StatusNotificationType;
@@ -29101,7 +29101,7 @@ export namespace E2E {
         interface IStatusQuestionAnswerMessage {
 
             /** StatusQuestionAnswerMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** StatusQuestionAnswerMessage text */
             text?: (string|null);
@@ -29117,7 +29117,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IStatusQuestionAnswerMessage);
 
             /** StatusQuestionAnswerMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** StatusQuestionAnswerMessage text. */
             public text: string;
@@ -29213,7 +29213,7 @@ export namespace E2E {
             thumbnail?: (Uint8Array|null);
 
             /** StatusQuotedMessage originalStatusId */
-            originalStatusId?: (Protocol.IMessageKey|null);
+            originalStatusId?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
         }
 
         /** Represents a StatusQuotedMessage. */
@@ -29235,7 +29235,7 @@ export namespace E2E {
             public thumbnail: Uint8Array;
 
             /** StatusQuotedMessage originalStatusId. */
-            public originalStatusId?: (Protocol.IMessageKey|null);
+            public originalStatusId?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /**
              * Creates a new StatusQuotedMessage instance using the specified properties.
@@ -29327,7 +29327,7 @@ export namespace E2E {
         interface IStatusStickerInteractionMessage {
 
             /** StatusStickerInteractionMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** StatusStickerInteractionMessage stickerKey */
             stickerKey?: (string|null);
@@ -29346,7 +29346,7 @@ export namespace E2E {
             constructor(properties?: E2E.Message.IStatusStickerInteractionMessage);
 
             /** StatusStickerInteractionMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** StatusStickerInteractionMessage stickerKey. */
             public stickerKey: string;
@@ -31211,248 +31211,1729 @@ export namespace E2E {
     }
 }
 
-/** Namespace Protocol. */
-export namespace Protocol {
+/** Namespace SignalLocalStorageProtocol. */
+export namespace SignalLocalStorageProtocol {
 
-    /** Properties of a LimitSharing. */
-    interface ILimitSharing {
+    /** Properties of a SenderKeyRecordStructure. */
+    interface ISenderKeyRecordStructure {
 
-        /** LimitSharing sharingLimited */
-        sharingLimited?: (boolean|null);
-
-        /** LimitSharing trigger */
-        trigger?: (Protocol.LimitSharing.TriggerType|null);
-
-        /** LimitSharing limitSharingSettingTimestamp */
-        limitSharingSettingTimestamp?: (number|Long|null);
-
-        /** LimitSharing initiatedByMe */
-        initiatedByMe?: (boolean|null);
+        /** SenderKeyRecordStructure senderKeyStates */
+        senderKeyStates?: (SignalLocalStorageProtocol.ISenderKeyStateStructure[]|null);
     }
 
-    /** Represents a LimitSharing. */
-    class LimitSharing implements ILimitSharing {
+    /** Represents a SenderKeyRecordStructure. */
+    class SenderKeyRecordStructure implements ISenderKeyRecordStructure {
 
         /**
-         * Constructs a new LimitSharing.
+         * Constructs a new SenderKeyRecordStructure.
          * @param [properties] Properties to set
          */
-        constructor(properties?: Protocol.ILimitSharing);
+        constructor(properties?: SignalLocalStorageProtocol.ISenderKeyRecordStructure);
 
-        /** LimitSharing sharingLimited. */
-        public sharingLimited: boolean;
-
-        /** LimitSharing trigger. */
-        public trigger: Protocol.LimitSharing.TriggerType;
-
-        /** LimitSharing limitSharingSettingTimestamp. */
-        public limitSharingSettingTimestamp: (number|Long);
-
-        /** LimitSharing initiatedByMe. */
-        public initiatedByMe: boolean;
+        /** SenderKeyRecordStructure senderKeyStates. */
+        public senderKeyStates: SignalLocalStorageProtocol.ISenderKeyStateStructure[];
 
         /**
-         * Creates a new LimitSharing instance using the specified properties.
+         * Creates a new SenderKeyRecordStructure instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns LimitSharing instance
+         * @returns SenderKeyRecordStructure instance
          */
-        public static create(properties?: Protocol.ILimitSharing): Protocol.LimitSharing;
+        public static create(properties?: SignalLocalStorageProtocol.ISenderKeyRecordStructure): SignalLocalStorageProtocol.SenderKeyRecordStructure;
 
         /**
-         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
-         * @param message LimitSharing message or plain object to encode
+         * Encodes the specified SenderKeyRecordStructure message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyRecordStructure.verify|verify} messages.
+         * @param message SenderKeyRecordStructure message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: Protocol.ILimitSharing, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: SignalLocalStorageProtocol.ISenderKeyRecordStructure, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
-         * @param message LimitSharing message or plain object to encode
+         * Encodes the specified SenderKeyRecordStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyRecordStructure.verify|verify} messages.
+         * @param message SenderKeyRecordStructure message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: Protocol.ILimitSharing, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: SignalLocalStorageProtocol.ISenderKeyRecordStructure, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a LimitSharing message from the specified reader or buffer.
+         * Decodes a SenderKeyRecordStructure message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns LimitSharing
+         * @returns SenderKeyRecordStructure
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Protocol.LimitSharing;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SenderKeyRecordStructure;
 
         /**
-         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * Decodes a SenderKeyRecordStructure message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns LimitSharing
+         * @returns SenderKeyRecordStructure
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Protocol.LimitSharing;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SenderKeyRecordStructure;
 
         /**
-         * Verifies a LimitSharing message.
+         * Verifies a SenderKeyRecordStructure message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * Creates a SenderKeyRecordStructure message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns LimitSharing
+         * @returns SenderKeyRecordStructure
          */
-        public static fromObject(object: { [k: string]: any }): Protocol.LimitSharing;
+        public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SenderKeyRecordStructure;
 
         /**
-         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
-         * @param message LimitSharing
+         * Creates a plain object from a SenderKeyRecordStructure message. Also converts values to other types if specified.
+         * @param message SenderKeyRecordStructure
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: Protocol.LimitSharing, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: SignalLocalStorageProtocol.SenderKeyRecordStructure, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this LimitSharing to JSON.
+         * Converts this SenderKeyRecordStructure to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for LimitSharing
+         * Gets the default type url for SenderKeyRecordStructure
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace LimitSharing {
+    /** Properties of a SenderKeyStateStructure. */
+    interface ISenderKeyStateStructure {
 
-        /** TriggerType enum. */
-        enum TriggerType {
-            UNKNOWN = 0,
-            CHAT_SETTING = 1,
-            BIZ_SUPPORTS_FB_HOSTING = 2,
-            UNKNOWN_GROUP = 3
+        /** SenderKeyStateStructure senderKeyId */
+        senderKeyId?: (number|null);
+
+        /** SenderKeyStateStructure senderChainKey */
+        senderChainKey?: (SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey|null);
+
+        /** SenderKeyStateStructure senderSigningKey */
+        senderSigningKey?: (SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey|null);
+
+        /** SenderKeyStateStructure senderMessageKeys */
+        senderMessageKeys?: (SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey[]|null);
+    }
+
+    /** Represents a SenderKeyStateStructure. */
+    class SenderKeyStateStructure implements ISenderKeyStateStructure {
+
+        /**
+         * Constructs a new SenderKeyStateStructure.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: SignalLocalStorageProtocol.ISenderKeyStateStructure);
+
+        /** SenderKeyStateStructure senderKeyId. */
+        public senderKeyId: number;
+
+        /** SenderKeyStateStructure senderChainKey. */
+        public senderChainKey?: (SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey|null);
+
+        /** SenderKeyStateStructure senderSigningKey. */
+        public senderSigningKey?: (SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey|null);
+
+        /** SenderKeyStateStructure senderMessageKeys. */
+        public senderMessageKeys: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey[];
+
+        /**
+         * Creates a new SenderKeyStateStructure instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SenderKeyStateStructure instance
+         */
+        public static create(properties?: SignalLocalStorageProtocol.ISenderKeyStateStructure): SignalLocalStorageProtocol.SenderKeyStateStructure;
+
+        /**
+         * Encodes the specified SenderKeyStateStructure message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.verify|verify} messages.
+         * @param message SenderKeyStateStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: SignalLocalStorageProtocol.ISenderKeyStateStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SenderKeyStateStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.verify|verify} messages.
+         * @param message SenderKeyStateStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: SignalLocalStorageProtocol.ISenderKeyStateStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SenderKeyStateStructure message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SenderKeyStateStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SenderKeyStateStructure;
+
+        /**
+         * Decodes a SenderKeyStateStructure message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SenderKeyStateStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SenderKeyStateStructure;
+
+        /**
+         * Verifies a SenderKeyStateStructure message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SenderKeyStateStructure message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SenderKeyStateStructure
+         */
+        public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SenderKeyStateStructure;
+
+        /**
+         * Creates a plain object from a SenderKeyStateStructure message. Also converts values to other types if specified.
+         * @param message SenderKeyStateStructure
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: SignalLocalStorageProtocol.SenderKeyStateStructure, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SenderKeyStateStructure to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SenderKeyStateStructure
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace SenderKeyStateStructure {
+
+        /** Properties of a SenderChainKey. */
+        interface ISenderChainKey {
+
+            /** SenderChainKey iteration */
+            iteration?: (number|null);
+
+            /** SenderChainKey seed */
+            seed?: (Uint8Array|null);
+        }
+
+        /** Represents a SenderChainKey. */
+        class SenderChainKey implements ISenderChainKey {
+
+            /**
+             * Constructs a new SenderChainKey.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey);
+
+            /** SenderChainKey iteration. */
+            public iteration: number;
+
+            /** SenderChainKey seed. */
+            public seed: Uint8Array;
+
+            /**
+             * Creates a new SenderChainKey instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SenderChainKey instance
+             */
+            public static create(properties?: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey;
+
+            /**
+             * Encodes the specified SenderChainKey message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.verify|verify} messages.
+             * @param message SenderChainKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SenderChainKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.verify|verify} messages.
+             * @param message SenderChainKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderChainKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SenderChainKey message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SenderChainKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey;
+
+            /**
+             * Decodes a SenderChainKey message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SenderChainKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey;
+
+            /**
+             * Verifies a SenderChainKey message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SenderChainKey message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SenderChainKey
+             */
+            public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey;
+
+            /**
+             * Creates a plain object from a SenderChainKey message. Also converts values to other types if specified.
+             * @param message SenderChainKey
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SenderChainKey to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SenderChainKey
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SenderMessageKey. */
+        interface ISenderMessageKey {
+
+            /** SenderMessageKey iteration */
+            iteration?: (number|null);
+
+            /** SenderMessageKey seed */
+            seed?: (Uint8Array|null);
+        }
+
+        /** Represents a SenderMessageKey. */
+        class SenderMessageKey implements ISenderMessageKey {
+
+            /**
+             * Constructs a new SenderMessageKey.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey);
+
+            /** SenderMessageKey iteration. */
+            public iteration: number;
+
+            /** SenderMessageKey seed. */
+            public seed: Uint8Array;
+
+            /**
+             * Creates a new SenderMessageKey instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SenderMessageKey instance
+             */
+            public static create(properties?: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey;
+
+            /**
+             * Encodes the specified SenderMessageKey message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.verify|verify} messages.
+             * @param message SenderMessageKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SenderMessageKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.verify|verify} messages.
+             * @param message SenderMessageKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderMessageKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SenderMessageKey message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SenderMessageKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey;
+
+            /**
+             * Decodes a SenderMessageKey message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SenderMessageKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey;
+
+            /**
+             * Verifies a SenderMessageKey message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SenderMessageKey message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SenderMessageKey
+             */
+            public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey;
+
+            /**
+             * Creates a plain object from a SenderMessageKey message. Also converts values to other types if specified.
+             * @param message SenderMessageKey
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SenderMessageKey to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SenderMessageKey
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SenderSigningKey. */
+        interface ISenderSigningKey {
+
+            /** SenderSigningKey public */
+            "public"?: (Uint8Array|null);
+
+            /** SenderSigningKey private */
+            "private"?: (Uint8Array|null);
+        }
+
+        /** Represents a SenderSigningKey. */
+        class SenderSigningKey implements ISenderSigningKey {
+
+            /**
+             * Constructs a new SenderSigningKey.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey);
+
+            /** SenderSigningKey public. */
+            public public: Uint8Array;
+
+            /** SenderSigningKey private. */
+            public private: Uint8Array;
+
+            /**
+             * Creates a new SenderSigningKey instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SenderSigningKey instance
+             */
+            public static create(properties?: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey;
+
+            /**
+             * Encodes the specified SenderSigningKey message. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.verify|verify} messages.
+             * @param message SenderSigningKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SenderSigningKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.verify|verify} messages.
+             * @param message SenderSigningKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SignalLocalStorageProtocol.SenderKeyStateStructure.ISenderSigningKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SenderSigningKey message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SenderSigningKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey;
+
+            /**
+             * Decodes a SenderSigningKey message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SenderSigningKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey;
+
+            /**
+             * Verifies a SenderSigningKey message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SenderSigningKey message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SenderSigningKey
+             */
+            public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey;
+
+            /**
+             * Creates a plain object from a SenderSigningKey message. Also converts values to other types if specified.
+             * @param message SenderSigningKey
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SenderSigningKey to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SenderSigningKey
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
     }
 
-    /** Properties of a MessageKey. */
-    interface IMessageKey {
+    /** Properties of an IdentityKeyPairStructure. */
+    interface IIdentityKeyPairStructure {
 
-        /** MessageKey remoteJid */
-        remoteJid?: (string|null);
+        /** IdentityKeyPairStructure publicKey */
+        publicKey?: (Uint8Array|null);
 
-        /** MessageKey fromMe */
-        fromMe?: (boolean|null);
-
-        /** MessageKey id */
-        id?: (string|null);
-
-        /** MessageKey participant */
-        participant?: (string|null);
+        /** IdentityKeyPairStructure privateKey */
+        privateKey?: (Uint8Array|null);
     }
 
-    /** Represents a MessageKey. */
-    class MessageKey implements IMessageKey {
+    /** Represents an IdentityKeyPairStructure. */
+    class IdentityKeyPairStructure implements IIdentityKeyPairStructure {
 
         /**
-         * Constructs a new MessageKey.
+         * Constructs a new IdentityKeyPairStructure.
          * @param [properties] Properties to set
          */
-        constructor(properties?: Protocol.IMessageKey);
+        constructor(properties?: SignalLocalStorageProtocol.IIdentityKeyPairStructure);
 
-        /** MessageKey remoteJid. */
-        public remoteJid: string;
+        /** IdentityKeyPairStructure publicKey. */
+        public publicKey: Uint8Array;
 
-        /** MessageKey fromMe. */
-        public fromMe: boolean;
-
-        /** MessageKey id. */
-        public id: string;
-
-        /** MessageKey participant. */
-        public participant: string;
+        /** IdentityKeyPairStructure privateKey. */
+        public privateKey: Uint8Array;
 
         /**
-         * Creates a new MessageKey instance using the specified properties.
+         * Creates a new IdentityKeyPairStructure instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns MessageKey instance
+         * @returns IdentityKeyPairStructure instance
          */
-        public static create(properties?: Protocol.IMessageKey): Protocol.MessageKey;
+        public static create(properties?: SignalLocalStorageProtocol.IIdentityKeyPairStructure): SignalLocalStorageProtocol.IdentityKeyPairStructure;
 
         /**
-         * Encodes the specified MessageKey message. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
-         * @param message MessageKey message or plain object to encode
+         * Encodes the specified IdentityKeyPairStructure message. Does not implicitly {@link SignalLocalStorageProtocol.IdentityKeyPairStructure.verify|verify} messages.
+         * @param message IdentityKeyPairStructure message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: Protocol.IMessageKey, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: SignalLocalStorageProtocol.IIdentityKeyPairStructure, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
-         * @param message MessageKey message or plain object to encode
+         * Encodes the specified IdentityKeyPairStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.IdentityKeyPairStructure.verify|verify} messages.
+         * @param message IdentityKeyPairStructure message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: Protocol.IMessageKey, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: SignalLocalStorageProtocol.IIdentityKeyPairStructure, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a MessageKey message from the specified reader or buffer.
+         * Decodes an IdentityKeyPairStructure message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns MessageKey
+         * @returns IdentityKeyPairStructure
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Protocol.MessageKey;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.IdentityKeyPairStructure;
 
         /**
-         * Decodes a MessageKey message from the specified reader or buffer, length delimited.
+         * Decodes an IdentityKeyPairStructure message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns MessageKey
+         * @returns IdentityKeyPairStructure
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Protocol.MessageKey;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.IdentityKeyPairStructure;
 
         /**
-         * Verifies a MessageKey message.
+         * Verifies an IdentityKeyPairStructure message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
+         * Creates an IdentityKeyPairStructure message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns MessageKey
+         * @returns IdentityKeyPairStructure
          */
-        public static fromObject(object: { [k: string]: any }): Protocol.MessageKey;
+        public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.IdentityKeyPairStructure;
 
         /**
-         * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
-         * @param message MessageKey
+         * Creates a plain object from an IdentityKeyPairStructure message. Also converts values to other types if specified.
+         * @param message IdentityKeyPairStructure
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: Protocol.MessageKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: SignalLocalStorageProtocol.IdentityKeyPairStructure, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this MessageKey to JSON.
+         * Converts this IdentityKeyPairStructure to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for MessageKey
+         * Gets the default type url for IdentityKeyPairStructure
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SignedPreKeyRecordStructure. */
+    interface ISignedPreKeyRecordStructure {
+
+        /** SignedPreKeyRecordStructure id */
+        id?: (number|null);
+
+        /** SignedPreKeyRecordStructure publicKey */
+        publicKey?: (Uint8Array|null);
+
+        /** SignedPreKeyRecordStructure privateKey */
+        privateKey?: (Uint8Array|null);
+
+        /** SignedPreKeyRecordStructure signature */
+        signature?: (Uint8Array|null);
+
+        /** SignedPreKeyRecordStructure timestamp */
+        timestamp?: (number|Long|null);
+    }
+
+    /** Represents a SignedPreKeyRecordStructure. */
+    class SignedPreKeyRecordStructure implements ISignedPreKeyRecordStructure {
+
+        /**
+         * Constructs a new SignedPreKeyRecordStructure.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: SignalLocalStorageProtocol.ISignedPreKeyRecordStructure);
+
+        /** SignedPreKeyRecordStructure id. */
+        public id: number;
+
+        /** SignedPreKeyRecordStructure publicKey. */
+        public publicKey: Uint8Array;
+
+        /** SignedPreKeyRecordStructure privateKey. */
+        public privateKey: Uint8Array;
+
+        /** SignedPreKeyRecordStructure signature. */
+        public signature: Uint8Array;
+
+        /** SignedPreKeyRecordStructure timestamp. */
+        public timestamp: (number|Long);
+
+        /**
+         * Creates a new SignedPreKeyRecordStructure instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SignedPreKeyRecordStructure instance
+         */
+        public static create(properties?: SignalLocalStorageProtocol.ISignedPreKeyRecordStructure): SignalLocalStorageProtocol.SignedPreKeyRecordStructure;
+
+        /**
+         * Encodes the specified SignedPreKeyRecordStructure message. Does not implicitly {@link SignalLocalStorageProtocol.SignedPreKeyRecordStructure.verify|verify} messages.
+         * @param message SignedPreKeyRecordStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: SignalLocalStorageProtocol.ISignedPreKeyRecordStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SignedPreKeyRecordStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SignedPreKeyRecordStructure.verify|verify} messages.
+         * @param message SignedPreKeyRecordStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: SignalLocalStorageProtocol.ISignedPreKeyRecordStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SignedPreKeyRecordStructure message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SignedPreKeyRecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SignedPreKeyRecordStructure;
+
+        /**
+         * Decodes a SignedPreKeyRecordStructure message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SignedPreKeyRecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SignedPreKeyRecordStructure;
+
+        /**
+         * Verifies a SignedPreKeyRecordStructure message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SignedPreKeyRecordStructure message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SignedPreKeyRecordStructure
+         */
+        public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SignedPreKeyRecordStructure;
+
+        /**
+         * Creates a plain object from a SignedPreKeyRecordStructure message. Also converts values to other types if specified.
+         * @param message SignedPreKeyRecordStructure
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: SignalLocalStorageProtocol.SignedPreKeyRecordStructure, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SignedPreKeyRecordStructure to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SignedPreKeyRecordStructure
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PreKeyRecordStructure. */
+    interface IPreKeyRecordStructure {
+
+        /** PreKeyRecordStructure id */
+        id?: (number|null);
+
+        /** PreKeyRecordStructure publicKey */
+        publicKey?: (Uint8Array|null);
+
+        /** PreKeyRecordStructure privateKey */
+        privateKey?: (Uint8Array|null);
+    }
+
+    /** Represents a PreKeyRecordStructure. */
+    class PreKeyRecordStructure implements IPreKeyRecordStructure {
+
+        /**
+         * Constructs a new PreKeyRecordStructure.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: SignalLocalStorageProtocol.IPreKeyRecordStructure);
+
+        /** PreKeyRecordStructure id. */
+        public id: number;
+
+        /** PreKeyRecordStructure publicKey. */
+        public publicKey: Uint8Array;
+
+        /** PreKeyRecordStructure privateKey. */
+        public privateKey: Uint8Array;
+
+        /**
+         * Creates a new PreKeyRecordStructure instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PreKeyRecordStructure instance
+         */
+        public static create(properties?: SignalLocalStorageProtocol.IPreKeyRecordStructure): SignalLocalStorageProtocol.PreKeyRecordStructure;
+
+        /**
+         * Encodes the specified PreKeyRecordStructure message. Does not implicitly {@link SignalLocalStorageProtocol.PreKeyRecordStructure.verify|verify} messages.
+         * @param message PreKeyRecordStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: SignalLocalStorageProtocol.IPreKeyRecordStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PreKeyRecordStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.PreKeyRecordStructure.verify|verify} messages.
+         * @param message PreKeyRecordStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: SignalLocalStorageProtocol.IPreKeyRecordStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PreKeyRecordStructure message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PreKeyRecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.PreKeyRecordStructure;
+
+        /**
+         * Decodes a PreKeyRecordStructure message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PreKeyRecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.PreKeyRecordStructure;
+
+        /**
+         * Verifies a PreKeyRecordStructure message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PreKeyRecordStructure message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PreKeyRecordStructure
+         */
+        public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.PreKeyRecordStructure;
+
+        /**
+         * Creates a plain object from a PreKeyRecordStructure message. Also converts values to other types if specified.
+         * @param message PreKeyRecordStructure
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: SignalLocalStorageProtocol.PreKeyRecordStructure, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PreKeyRecordStructure to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PreKeyRecordStructure
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a RecordStructure. */
+    interface IRecordStructure {
+
+        /** RecordStructure currentSession */
+        currentSession?: (SignalLocalStorageProtocol.ISessionStructure|null);
+
+        /** RecordStructure previousSessions */
+        previousSessions?: (SignalLocalStorageProtocol.ISessionStructure[]|null);
+    }
+
+    /** Represents a RecordStructure. */
+    class RecordStructure implements IRecordStructure {
+
+        /**
+         * Constructs a new RecordStructure.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: SignalLocalStorageProtocol.IRecordStructure);
+
+        /** RecordStructure currentSession. */
+        public currentSession?: (SignalLocalStorageProtocol.ISessionStructure|null);
+
+        /** RecordStructure previousSessions. */
+        public previousSessions: SignalLocalStorageProtocol.ISessionStructure[];
+
+        /**
+         * Creates a new RecordStructure instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns RecordStructure instance
+         */
+        public static create(properties?: SignalLocalStorageProtocol.IRecordStructure): SignalLocalStorageProtocol.RecordStructure;
+
+        /**
+         * Encodes the specified RecordStructure message. Does not implicitly {@link SignalLocalStorageProtocol.RecordStructure.verify|verify} messages.
+         * @param message RecordStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: SignalLocalStorageProtocol.IRecordStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified RecordStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.RecordStructure.verify|verify} messages.
+         * @param message RecordStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: SignalLocalStorageProtocol.IRecordStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a RecordStructure message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns RecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.RecordStructure;
+
+        /**
+         * Decodes a RecordStructure message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns RecordStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.RecordStructure;
+
+        /**
+         * Verifies a RecordStructure message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a RecordStructure message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns RecordStructure
+         */
+        public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.RecordStructure;
+
+        /**
+         * Creates a plain object from a RecordStructure message. Also converts values to other types if specified.
+         * @param message RecordStructure
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: SignalLocalStorageProtocol.RecordStructure, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this RecordStructure to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for RecordStructure
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SessionStructure. */
+    interface ISessionStructure {
+
+        /** SessionStructure sessionVersion */
+        sessionVersion?: (number|null);
+
+        /** SessionStructure localIdentityPublic */
+        localIdentityPublic?: (Uint8Array|null);
+
+        /** SessionStructure remoteIdentityPublic */
+        remoteIdentityPublic?: (Uint8Array|null);
+
+        /** SessionStructure rootKey */
+        rootKey?: (Uint8Array|null);
+
+        /** SessionStructure previousCounter */
+        previousCounter?: (number|null);
+
+        /** SessionStructure senderChain */
+        senderChain?: (SignalLocalStorageProtocol.SessionStructure.IChain|null);
+
+        /** SessionStructure receiverChains */
+        receiverChains?: (SignalLocalStorageProtocol.SessionStructure.IChain[]|null);
+
+        /** SessionStructure pendingKeyExchange */
+        pendingKeyExchange?: (SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange|null);
+
+        /** SessionStructure pendingPreKey */
+        pendingPreKey?: (SignalLocalStorageProtocol.SessionStructure.IPendingPreKey|null);
+
+        /** SessionStructure remoteRegistrationId */
+        remoteRegistrationId?: (number|null);
+
+        /** SessionStructure localRegistrationId */
+        localRegistrationId?: (number|null);
+
+        /** SessionStructure needsRefresh */
+        needsRefresh?: (boolean|null);
+
+        /** SessionStructure aliceBaseKey */
+        aliceBaseKey?: (Uint8Array|null);
+    }
+
+    /** Represents a SessionStructure. */
+    class SessionStructure implements ISessionStructure {
+
+        /**
+         * Constructs a new SessionStructure.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: SignalLocalStorageProtocol.ISessionStructure);
+
+        /** SessionStructure sessionVersion. */
+        public sessionVersion: number;
+
+        /** SessionStructure localIdentityPublic. */
+        public localIdentityPublic: Uint8Array;
+
+        /** SessionStructure remoteIdentityPublic. */
+        public remoteIdentityPublic: Uint8Array;
+
+        /** SessionStructure rootKey. */
+        public rootKey: Uint8Array;
+
+        /** SessionStructure previousCounter. */
+        public previousCounter: number;
+
+        /** SessionStructure senderChain. */
+        public senderChain?: (SignalLocalStorageProtocol.SessionStructure.IChain|null);
+
+        /** SessionStructure receiverChains. */
+        public receiverChains: SignalLocalStorageProtocol.SessionStructure.IChain[];
+
+        /** SessionStructure pendingKeyExchange. */
+        public pendingKeyExchange?: (SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange|null);
+
+        /** SessionStructure pendingPreKey. */
+        public pendingPreKey?: (SignalLocalStorageProtocol.SessionStructure.IPendingPreKey|null);
+
+        /** SessionStructure remoteRegistrationId. */
+        public remoteRegistrationId: number;
+
+        /** SessionStructure localRegistrationId. */
+        public localRegistrationId: number;
+
+        /** SessionStructure needsRefresh. */
+        public needsRefresh: boolean;
+
+        /** SessionStructure aliceBaseKey. */
+        public aliceBaseKey: Uint8Array;
+
+        /**
+         * Creates a new SessionStructure instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SessionStructure instance
+         */
+        public static create(properties?: SignalLocalStorageProtocol.ISessionStructure): SignalLocalStorageProtocol.SessionStructure;
+
+        /**
+         * Encodes the specified SessionStructure message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.verify|verify} messages.
+         * @param message SessionStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: SignalLocalStorageProtocol.ISessionStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SessionStructure message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.verify|verify} messages.
+         * @param message SessionStructure message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: SignalLocalStorageProtocol.ISessionStructure, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SessionStructure message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SessionStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SessionStructure;
+
+        /**
+         * Decodes a SessionStructure message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SessionStructure
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SessionStructure;
+
+        /**
+         * Verifies a SessionStructure message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SessionStructure message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SessionStructure
+         */
+        public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SessionStructure;
+
+        /**
+         * Creates a plain object from a SessionStructure message. Also converts values to other types if specified.
+         * @param message SessionStructure
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: SignalLocalStorageProtocol.SessionStructure, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SessionStructure to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SessionStructure
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace SessionStructure {
+
+        /** Properties of a Chain. */
+        interface IChain {
+
+            /** Chain senderRatchetKey */
+            senderRatchetKey?: (Uint8Array|null);
+
+            /** Chain senderRatchetKeyPrivate */
+            senderRatchetKeyPrivate?: (Uint8Array|null);
+
+            /** Chain chainKey */
+            chainKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey|null);
+
+            /** Chain messageKeys */
+            messageKeys?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey[]|null);
+        }
+
+        /** Represents a Chain. */
+        class Chain implements IChain {
+
+            /**
+             * Constructs a new Chain.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SignalLocalStorageProtocol.SessionStructure.IChain);
+
+            /** Chain senderRatchetKey. */
+            public senderRatchetKey: Uint8Array;
+
+            /** Chain senderRatchetKeyPrivate. */
+            public senderRatchetKeyPrivate: Uint8Array;
+
+            /** Chain chainKey. */
+            public chainKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey|null);
+
+            /** Chain messageKeys. */
+            public messageKeys: SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey[];
+
+            /**
+             * Creates a new Chain instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Chain instance
+             */
+            public static create(properties?: SignalLocalStorageProtocol.SessionStructure.IChain): SignalLocalStorageProtocol.SessionStructure.Chain;
+
+            /**
+             * Encodes the specified Chain message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.verify|verify} messages.
+             * @param message Chain message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SignalLocalStorageProtocol.SessionStructure.IChain, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Chain message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.verify|verify} messages.
+             * @param message Chain message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SignalLocalStorageProtocol.SessionStructure.IChain, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a Chain message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Chain
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SessionStructure.Chain;
+
+            /**
+             * Decodes a Chain message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Chain
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SessionStructure.Chain;
+
+            /**
+             * Verifies a Chain message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a Chain message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Chain
+             */
+            public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SessionStructure.Chain;
+
+            /**
+             * Creates a plain object from a Chain message. Also converts values to other types if specified.
+             * @param message Chain
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SignalLocalStorageProtocol.SessionStructure.Chain, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Chain to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for Chain
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace Chain {
+
+            /** Properties of a ChainKey. */
+            interface IChainKey {
+
+                /** ChainKey index */
+                index?: (number|null);
+
+                /** ChainKey key */
+                key?: (Uint8Array|null);
+            }
+
+            /** Represents a ChainKey. */
+            class ChainKey implements IChainKey {
+
+                /**
+                 * Constructs a new ChainKey.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey);
+
+                /** ChainKey index. */
+                public index: number;
+
+                /** ChainKey key. */
+                public key: Uint8Array;
+
+                /**
+                 * Creates a new ChainKey instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns ChainKey instance
+                 */
+                public static create(properties?: SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey): SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey;
+
+                /**
+                 * Encodes the specified ChainKey message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.verify|verify} messages.
+                 * @param message ChainKey message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified ChainKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.verify|verify} messages.
+                 * @param message ChainKey message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: SignalLocalStorageProtocol.SessionStructure.Chain.IChainKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a ChainKey message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns ChainKey
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey;
+
+                /**
+                 * Decodes a ChainKey message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns ChainKey
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey;
+
+                /**
+                 * Verifies a ChainKey message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a ChainKey message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns ChainKey
+                 */
+                public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey;
+
+                /**
+                 * Creates a plain object from a ChainKey message. Also converts values to other types if specified.
+                 * @param message ChainKey
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this ChainKey to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for ChainKey
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a MessageKey. */
+            interface IMessageKey {
+
+                /** MessageKey index */
+                index?: (number|null);
+
+                /** MessageKey cipherKey */
+                cipherKey?: (Uint8Array|null);
+
+                /** MessageKey macKey */
+                macKey?: (Uint8Array|null);
+
+                /** MessageKey iv */
+                iv?: (Uint8Array|null);
+            }
+
+            /** Represents a MessageKey. */
+            class MessageKey implements IMessageKey {
+
+                /**
+                 * Constructs a new MessageKey.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey);
+
+                /** MessageKey index. */
+                public index: number;
+
+                /** MessageKey cipherKey. */
+                public cipherKey: Uint8Array;
+
+                /** MessageKey macKey. */
+                public macKey: Uint8Array;
+
+                /** MessageKey iv. */
+                public iv: Uint8Array;
+
+                /**
+                 * Creates a new MessageKey instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns MessageKey instance
+                 */
+                public static create(properties?: SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey): SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey;
+
+                /**
+                 * Encodes the specified MessageKey message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify|verify} messages.
+                 * @param message MessageKey message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify|verify} messages.
+                 * @param message MessageKey message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a MessageKey message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns MessageKey
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey;
+
+                /**
+                 * Decodes a MessageKey message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns MessageKey
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey;
+
+                /**
+                 * Verifies a MessageKey message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns MessageKey
+                 */
+                public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey;
+
+                /**
+                 * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
+                 * @param message MessageKey
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this MessageKey to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for MessageKey
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+        }
+
+        /** Properties of a PendingKeyExchange. */
+        interface IPendingKeyExchange {
+
+            /** PendingKeyExchange sequence */
+            sequence?: (number|null);
+
+            /** PendingKeyExchange localBaseKey */
+            localBaseKey?: (Uint8Array|null);
+
+            /** PendingKeyExchange localBaseKeyPrivate */
+            localBaseKeyPrivate?: (Uint8Array|null);
+
+            /** PendingKeyExchange localRatchetKey */
+            localRatchetKey?: (Uint8Array|null);
+
+            /** PendingKeyExchange localRatchetKeyPrivate */
+            localRatchetKeyPrivate?: (Uint8Array|null);
+
+            /** PendingKeyExchange localIdentityKey */
+            localIdentityKey?: (Uint8Array|null);
+
+            /** PendingKeyExchange localIdentityKeyPrivate */
+            localIdentityKeyPrivate?: (Uint8Array|null);
+        }
+
+        /** Represents a PendingKeyExchange. */
+        class PendingKeyExchange implements IPendingKeyExchange {
+
+            /**
+             * Constructs a new PendingKeyExchange.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange);
+
+            /** PendingKeyExchange sequence. */
+            public sequence: number;
+
+            /** PendingKeyExchange localBaseKey. */
+            public localBaseKey: Uint8Array;
+
+            /** PendingKeyExchange localBaseKeyPrivate. */
+            public localBaseKeyPrivate: Uint8Array;
+
+            /** PendingKeyExchange localRatchetKey. */
+            public localRatchetKey: Uint8Array;
+
+            /** PendingKeyExchange localRatchetKeyPrivate. */
+            public localRatchetKeyPrivate: Uint8Array;
+
+            /** PendingKeyExchange localIdentityKey. */
+            public localIdentityKey: Uint8Array;
+
+            /** PendingKeyExchange localIdentityKeyPrivate. */
+            public localIdentityKeyPrivate: Uint8Array;
+
+            /**
+             * Creates a new PendingKeyExchange instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns PendingKeyExchange instance
+             */
+            public static create(properties?: SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange): SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange;
+
+            /**
+             * Encodes the specified PendingKeyExchange message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.verify|verify} messages.
+             * @param message PendingKeyExchange message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified PendingKeyExchange message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.verify|verify} messages.
+             * @param message PendingKeyExchange message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SignalLocalStorageProtocol.SessionStructure.IPendingKeyExchange, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a PendingKeyExchange message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns PendingKeyExchange
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange;
+
+            /**
+             * Decodes a PendingKeyExchange message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns PendingKeyExchange
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange;
+
+            /**
+             * Verifies a PendingKeyExchange message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a PendingKeyExchange message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns PendingKeyExchange
+             */
+            public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange;
+
+            /**
+             * Creates a plain object from a PendingKeyExchange message. Also converts values to other types if specified.
+             * @param message PendingKeyExchange
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this PendingKeyExchange to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for PendingKeyExchange
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a PendingPreKey. */
+        interface IPendingPreKey {
+
+            /** PendingPreKey preKeyId */
+            preKeyId?: (number|null);
+
+            /** PendingPreKey signedPreKeyId */
+            signedPreKeyId?: (number|null);
+
+            /** PendingPreKey baseKey */
+            baseKey?: (Uint8Array|null);
+
+            /** PendingPreKey kyberPreKeyId */
+            kyberPreKeyId?: (number|null);
+
+            /** PendingPreKey kyberCiphertext */
+            kyberCiphertext?: (Uint8Array|null);
+        }
+
+        /** Represents a PendingPreKey. */
+        class PendingPreKey implements IPendingPreKey {
+
+            /**
+             * Constructs a new PendingPreKey.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SignalLocalStorageProtocol.SessionStructure.IPendingPreKey);
+
+            /** PendingPreKey preKeyId. */
+            public preKeyId: number;
+
+            /** PendingPreKey signedPreKeyId. */
+            public signedPreKeyId: number;
+
+            /** PendingPreKey baseKey. */
+            public baseKey: Uint8Array;
+
+            /** PendingPreKey kyberPreKeyId. */
+            public kyberPreKeyId: number;
+
+            /** PendingPreKey kyberCiphertext. */
+            public kyberCiphertext: Uint8Array;
+
+            /**
+             * Creates a new PendingPreKey instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns PendingPreKey instance
+             */
+            public static create(properties?: SignalLocalStorageProtocol.SessionStructure.IPendingPreKey): SignalLocalStorageProtocol.SessionStructure.PendingPreKey;
+
+            /**
+             * Encodes the specified PendingPreKey message. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.PendingPreKey.verify|verify} messages.
+             * @param message PendingPreKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SignalLocalStorageProtocol.SessionStructure.IPendingPreKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified PendingPreKey message, length delimited. Does not implicitly {@link SignalLocalStorageProtocol.SessionStructure.PendingPreKey.verify|verify} messages.
+             * @param message PendingPreKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SignalLocalStorageProtocol.SessionStructure.IPendingPreKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a PendingPreKey message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns PendingPreKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalLocalStorageProtocol.SessionStructure.PendingPreKey;
+
+            /**
+             * Decodes a PendingPreKey message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns PendingPreKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalLocalStorageProtocol.SessionStructure.PendingPreKey;
+
+            /**
+             * Verifies a PendingPreKey message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a PendingPreKey message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns PendingPreKey
+             */
+            public static fromObject(object: { [k: string]: any }): SignalLocalStorageProtocol.SessionStructure.PendingPreKey;
+
+            /**
+             * Creates a plain object from a PendingPreKey message. Also converts values to other types if specified.
+             * @param message PendingPreKey
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SignalLocalStorageProtocol.SessionStructure.PendingPreKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this PendingPreKey to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for PendingPreKey
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
     }
 }
 
@@ -35116,7 +36597,7 @@ export namespace AICommon {
     interface IAIRegenerateMetadata {
 
         /** AIRegenerateMetadata messageKey */
-        messageKey?: (Protocol.IMessageKey|null);
+        messageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** AIRegenerateMetadata responseTimestampMs */
         responseTimestampMs?: (number|Long|null);
@@ -35132,7 +36613,7 @@ export namespace AICommon {
         constructor(properties?: AICommon.IAIRegenerateMetadata);
 
         /** AIRegenerateMetadata messageKey. */
-        public messageKey?: (Protocol.IMessageKey|null);
+        public messageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** AIRegenerateMetadata responseTimestampMs. */
         public responseTimestampMs: (number|Long);
@@ -35528,7 +37009,7 @@ export namespace AICommon {
     interface IBotFeedbackMessage {
 
         /** BotFeedbackMessage messageKey */
-        messageKey?: (Protocol.IMessageKey|null);
+        messageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** BotFeedbackMessage kind */
         kind?: (AICommon.BotFeedbackMessage.BotFeedbackKind|null);
@@ -35559,7 +37040,7 @@ export namespace AICommon {
         constructor(properties?: AICommon.IBotFeedbackMessage);
 
         /** BotFeedbackMessage messageKey. */
-        public messageKey?: (Protocol.IMessageKey|null);
+        public messageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** BotFeedbackMessage kind. */
         public kind: AICommon.BotFeedbackMessage.BotFeedbackKind;
@@ -41139,7 +42620,7 @@ export namespace AICommon {
     interface IBotReminderMetadata {
 
         /** BotReminderMetadata requestMessageKey */
-        requestMessageKey?: (Protocol.IMessageKey|null);
+        requestMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** BotReminderMetadata action */
         action?: (AICommon.BotReminderMetadata.ReminderAction|null);
@@ -41164,7 +42645,7 @@ export namespace AICommon {
         constructor(properties?: AICommon.IBotReminderMetadata);
 
         /** BotReminderMetadata requestMessageKey. */
-        public requestMessageKey?: (Protocol.IMessageKey|null);
+        public requestMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** BotReminderMetadata action. */
         public action: AICommon.BotReminderMetadata.ReminderAction;
@@ -43036,7 +44517,7 @@ export namespace AICommon {
         searchQuery?: (string|null);
 
         /** BotPluginMetadata parentPluginMessageKey */
-        parentPluginMessageKey?: (Protocol.IMessageKey|null);
+        parentPluginMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** BotPluginMetadata deprecatedField */
         deprecatedField?: (AICommon.BotPluginMetadata.PluginType|null);
@@ -43082,7 +44563,7 @@ export namespace AICommon {
         public searchQuery: string;
 
         /** BotPluginMetadata parentPluginMessageKey. */
-        public parentPluginMessageKey?: (Protocol.IMessageKey|null);
+        public parentPluginMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** BotPluginMetadata deprecatedField. */
         public deprecatedField: AICommon.BotPluginMetadata.PluginType;
@@ -43860,6 +45341,251 @@ export namespace Adv {
         E2EE = 0,
         HOSTED = 1,
         NON_E2EE = 2
+    }
+}
+
+/** Namespace Protocol. */
+export namespace Protocol {
+
+    /** Properties of a LimitSharing. */
+    interface ILimitSharing {
+
+        /** LimitSharing sharingLimited */
+        sharingLimited?: (boolean|null);
+
+        /** LimitSharing trigger */
+        trigger?: (Protocol.LimitSharing.TriggerType|null);
+
+        /** LimitSharing limitSharingSettingTimestamp */
+        limitSharingSettingTimestamp?: (number|Long|null);
+
+        /** LimitSharing initiatedByMe */
+        initiatedByMe?: (boolean|null);
+    }
+
+    /** Represents a LimitSharing. */
+    class LimitSharing implements ILimitSharing {
+
+        /**
+         * Constructs a new LimitSharing.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Protocol.ILimitSharing);
+
+        /** LimitSharing sharingLimited. */
+        public sharingLimited: boolean;
+
+        /** LimitSharing trigger. */
+        public trigger: Protocol.LimitSharing.TriggerType;
+
+        /** LimitSharing limitSharingSettingTimestamp. */
+        public limitSharingSettingTimestamp: (number|Long);
+
+        /** LimitSharing initiatedByMe. */
+        public initiatedByMe: boolean;
+
+        /**
+         * Creates a new LimitSharing instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LimitSharing instance
+         */
+        public static create(properties?: Protocol.ILimitSharing): Protocol.LimitSharing;
+
+        /**
+         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @param message LimitSharing message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Protocol.ILimitSharing, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @param message LimitSharing message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Protocol.ILimitSharing, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Protocol.LimitSharing;
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Protocol.LimitSharing;
+
+        /**
+         * Verifies a LimitSharing message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LimitSharing
+         */
+        public static fromObject(object: { [k: string]: any }): Protocol.LimitSharing;
+
+        /**
+         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * @param message LimitSharing
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Protocol.LimitSharing, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LimitSharing to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for LimitSharing
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace LimitSharing {
+
+        /** TriggerType enum. */
+        enum TriggerType {
+            UNKNOWN = 0,
+            CHAT_SETTING = 1,
+            BIZ_SUPPORTS_FB_HOSTING = 2,
+            UNKNOWN_GROUP = 3
+        }
+    }
+
+    /** Properties of a MessageKey. */
+    interface IMessageKey {
+
+        /** MessageKey remoteJid */
+        remoteJid?: (string|null);
+
+        /** MessageKey fromMe */
+        fromMe?: (boolean|null);
+
+        /** MessageKey id */
+        id?: (string|null);
+
+        /** MessageKey participant */
+        participant?: (string|null);
+    }
+
+    /** Represents a MessageKey. */
+    class MessageKey implements IMessageKey {
+
+        /**
+         * Constructs a new MessageKey.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Protocol.IMessageKey);
+
+        /** MessageKey remoteJid. */
+        public remoteJid: string;
+
+        /** MessageKey fromMe. */
+        public fromMe: boolean;
+
+        /** MessageKey id. */
+        public id: string;
+
+        /** MessageKey participant. */
+        public participant: string;
+
+        /**
+         * Creates a new MessageKey instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns MessageKey instance
+         */
+        public static create(properties?: Protocol.IMessageKey): Protocol.MessageKey;
+
+        /**
+         * Encodes the specified MessageKey message. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * @param message MessageKey message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Protocol.IMessageKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * @param message MessageKey message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Protocol.IMessageKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a MessageKey message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns MessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Protocol.MessageKey;
+
+        /**
+         * Decodes a MessageKey message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns MessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Protocol.MessageKey;
+
+        /**
+         * Verifies a MessageKey message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns MessageKey
+         */
+        public static fromObject(object: { [k: string]: any }): Protocol.MessageKey;
+
+        /**
+         * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
+         * @param message MessageKey
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Protocol.MessageKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this MessageKey to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for MessageKey
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }
 
@@ -45683,7 +47409,7 @@ export namespace Web {
     interface IGroupHistoryIndividualMessageInfo {
 
         /** GroupHistoryIndividualMessageInfo bundleMessageKey */
-        bundleMessageKey?: (Protocol.IMessageKey|null);
+        bundleMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** GroupHistoryIndividualMessageInfo editedAfterReceivedAsHistory */
         editedAfterReceivedAsHistory?: (boolean|null);
@@ -45699,7 +47425,7 @@ export namespace Web {
         constructor(properties?: Web.IGroupHistoryIndividualMessageInfo);
 
         /** GroupHistoryIndividualMessageInfo bundleMessageKey. */
-        public bundleMessageKey?: (Protocol.IMessageKey|null);
+        public bundleMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** GroupHistoryIndividualMessageInfo editedAfterReceivedAsHistory. */
         public editedAfterReceivedAsHistory: boolean;
@@ -46016,7 +47742,7 @@ export namespace Web {
         addOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
 
         /** MessageAddOn messageAddOnKey */
-        messageAddOnKey?: (Protocol.IMessageKey|null);
+        messageAddOnKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** MessageAddOn legacyMessage */
         legacyMessage?: (Web.ILegacyMessage|null);
@@ -46050,7 +47776,7 @@ export namespace Web {
         public addOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
 
         /** MessageAddOn messageAddOnKey. */
-        public messageAddOnKey?: (Protocol.IMessageKey|null);
+        public messageAddOnKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** MessageAddOn legacyMessage. */
         public legacyMessage?: (Web.ILegacyMessage|null);
@@ -46252,7 +47978,7 @@ export namespace Web {
     interface IEventResponse {
 
         /** EventResponse eventResponseMessageKey */
-        eventResponseMessageKey?: (Protocol.IMessageKey|null);
+        eventResponseMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** EventResponse timestampMs */
         timestampMs?: (number|Long|null);
@@ -46274,7 +48000,7 @@ export namespace Web {
         constructor(properties?: Web.IEventResponse);
 
         /** EventResponse eventResponseMessageKey. */
-        public eventResponseMessageKey?: (Protocol.IMessageKey|null);
+        public eventResponseMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** EventResponse timestampMs. */
         public timestampMs: (number|Long);
@@ -46570,7 +48296,7 @@ export namespace Web {
         type?: (Web.PinInChat.Type|null);
 
         /** PinInChat key */
-        key?: (Protocol.IMessageKey|null);
+        key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** PinInChat senderTimestampMs */
         senderTimestampMs?: (number|Long|null);
@@ -46595,7 +48321,7 @@ export namespace Web {
         public type: Web.PinInChat.Type;
 
         /** PinInChat key. */
-        public key?: (Protocol.IMessageKey|null);
+        public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** PinInChat senderTimestampMs. */
         public senderTimestampMs: (number|Long);
@@ -46704,7 +48430,7 @@ export namespace Web {
         serverTimestamp?: (number|Long|null);
 
         /** KeepInChat key */
-        key?: (Protocol.IMessageKey|null);
+        key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** KeepInChat deviceJid */
         deviceJid?: (string|null);
@@ -46732,7 +48458,7 @@ export namespace Web {
         public serverTimestamp: (number|Long);
 
         /** KeepInChat key. */
-        public key?: (Protocol.IMessageKey|null);
+        public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** KeepInChat deviceJid. */
         public deviceJid: string;
@@ -47228,7 +48954,7 @@ export namespace Web {
     interface IPollUpdate {
 
         /** PollUpdate pollUpdateMessageKey */
-        pollUpdateMessageKey?: (Protocol.IMessageKey|null);
+        pollUpdateMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** PollUpdate vote */
         vote?: (E2E.Message.IPollVoteMessage|null);
@@ -47256,7 +48982,7 @@ export namespace Web {
         constructor(properties?: Web.IPollUpdate);
 
         /** PollUpdate pollUpdateMessageKey. */
-        public pollUpdateMessageKey?: (Protocol.IMessageKey|null);
+        public pollUpdateMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** PollUpdate vote. */
         public vote?: (E2E.Message.IPollVoteMessage|null);
@@ -47355,7 +49081,7 @@ export namespace Web {
     interface IReaction {
 
         /** Reaction key */
-        key?: (Protocol.IMessageKey|null);
+        key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** Reaction text */
         text?: (string|null);
@@ -47380,7 +49106,7 @@ export namespace Web {
         constructor(properties?: Web.IReaction);
 
         /** Reaction key. */
-        public key?: (Protocol.IMessageKey|null);
+        public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** Reaction text. */
         public text: string;
@@ -48381,7 +50107,7 @@ export namespace Web {
     interface INotificationMessageInfo {
 
         /** NotificationMessageInfo key */
-        key?: (Protocol.IMessageKey|null);
+        key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** NotificationMessageInfo message */
         message?: (E2E.IMessage|null);
@@ -48403,7 +50129,7 @@ export namespace Web {
         constructor(properties?: Web.INotificationMessageInfo);
 
         /** NotificationMessageInfo key. */
-        public key?: (Protocol.IMessageKey|null);
+        public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** NotificationMessageInfo message. */
         public message?: (E2E.IMessage|null);
@@ -48626,7 +50352,7 @@ export namespace Web {
         transactionTimestamp?: (number|Long|null);
 
         /** PaymentInfo requestMessageKey */
-        requestMessageKey?: (Protocol.IMessageKey|null);
+        requestMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** PaymentInfo expiryTimestamp */
         expiryTimestamp?: (number|Long|null);
@@ -48675,7 +50401,7 @@ export namespace Web {
         public transactionTimestamp: (number|Long);
 
         /** PaymentInfo requestMessageKey. */
-        public requestMessageKey?: (Protocol.IMessageKey|null);
+        public requestMessageKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** PaymentInfo expiryTimestamp. */
         public expiryTimestamp: (number|Long);
@@ -48841,7 +50567,7 @@ export namespace Web {
     interface ICommentMetadata {
 
         /** CommentMetadata commentParentKey */
-        commentParentKey?: (Protocol.IMessageKey|null);
+        commentParentKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** CommentMetadata replyCount */
         replyCount?: (number|null);
@@ -48857,7 +50583,7 @@ export namespace Web {
         constructor(properties?: Web.ICommentMetadata);
 
         /** CommentMetadata commentParentKey. */
-        public commentParentKey?: (Protocol.IMessageKey|null);
+        public commentParentKey?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** CommentMetadata replyCount. */
         public replyCount: number;
@@ -48944,7 +50670,7 @@ export namespace Web {
     interface IWebMessageInfo {
 
         /** WebMessageInfo key */
-        key: Protocol.IMessageKey;
+        key: SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey;
 
         /** WebMessageInfo message */
         message?: (E2E.IMessage|null);
@@ -49109,7 +50835,7 @@ export namespace Web {
         statusMentions?: (string[]|null);
 
         /** WebMessageInfo targetMessageId */
-        targetMessageId?: (Protocol.IMessageKey|null);
+        targetMessageId?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** WebMessageInfo messageAddOns */
         messageAddOns?: (Web.IMessageAddOn[]|null);
@@ -49170,7 +50896,7 @@ export namespace Web {
         constructor(properties?: Web.IWebMessageInfo);
 
         /** WebMessageInfo key. */
-        public key: Protocol.IMessageKey;
+        public key: SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey;
 
         /** WebMessageInfo message. */
         public message?: (E2E.IMessage|null);
@@ -49335,7 +51061,7 @@ export namespace Web {
         public statusMentions: string[];
 
         /** WebMessageInfo targetMessageId. */
-        public targetMessageId?: (Protocol.IMessageKey|null);
+        public targetMessageId?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
         /** WebMessageInfo messageAddOns. */
         public messageAddOns: Web.IMessageAddOn[];
@@ -59064,7 +60790,7 @@ export namespace SyncAction {
         interface ISyncActionMessage {
 
             /** SyncActionMessage key */
-            key?: (Protocol.IMessageKey|null);
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** SyncActionMessage timestamp */
             timestamp?: (number|Long|null);
@@ -59080,7 +60806,7 @@ export namespace SyncAction {
             constructor(properties?: SyncAction.SyncActionValue.ISyncActionMessage);
 
             /** SyncActionMessage key. */
-            public key?: (Protocol.IMessageKey|null);
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
 
             /** SyncActionMessage timestamp. */
             public timestamp: (number|Long);
