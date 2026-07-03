@@ -13259,6 +13259,10 @@ $root.Web = (function() {
                 case 223:
                 case 224:
                 case 225:
+                case 226:
+                case 227:
+                case 228:
+                case 230:
                     break;
                 }
             if (message.clearMedia != null && Object.hasOwnProperty.call(message, "clearMedia"))
@@ -14550,6 +14554,22 @@ $root.Web = (function() {
             case 225:
                 message.messageStubType = 225;
                 break;
+            case "IDENTITY_TRUST_MARKED":
+            case 226:
+                message.messageStubType = 226;
+                break;
+            case "IDENTITY_TRUST_UNMARKED":
+            case 227:
+                message.messageStubType = 227;
+                break;
+            case "IDENTITY_TRUST_REVOKED":
+            case 228:
+                message.messageStubType = 228;
+                break;
+            case "CTWA_CONSUMER_DISCLOSURE":
+            case 230:
+                message.messageStubType = 230;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -15501,6 +15521,10 @@ $root.Web = (function() {
          * @property {number} GROUP_TEE_BOT_ADDED=223 GROUP_TEE_BOT_ADDED value
          * @property {number} CONTACT_INFO=224 CONTACT_INFO value
          * @property {number} SCHEDULED_MESSAGE_CREATED=225 SCHEDULED_MESSAGE_CREATED value
+         * @property {number} IDENTITY_TRUST_MARKED=226 IDENTITY_TRUST_MARKED value
+         * @property {number} IDENTITY_TRUST_UNMARKED=227 IDENTITY_TRUST_UNMARKED value
+         * @property {number} IDENTITY_TRUST_REVOKED=228 IDENTITY_TRUST_REVOKED value
+         * @property {number} CTWA_CONSUMER_DISCLOSURE=230 CTWA_CONSUMER_DISCLOSURE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -15730,6 +15754,10 @@ $root.Web = (function() {
             values[valuesById[223] = "GROUP_TEE_BOT_ADDED"] = 223;
             values[valuesById[224] = "CONTACT_INFO"] = 224;
             values[valuesById[225] = "SCHEDULED_MESSAGE_CREATED"] = 225;
+            values[valuesById[226] = "IDENTITY_TRUST_MARKED"] = 226;
+            values[valuesById[227] = "IDENTITY_TRUST_UNMARKED"] = 227;
+            values[valuesById[228] = "IDENTITY_TRUST_REVOKED"] = 228;
+            values[valuesById[230] = "CTWA_CONSUMER_DISCLOSURE"] = 230;
             return values;
         })();
 
