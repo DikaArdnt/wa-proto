@@ -1066,6 +1066,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportInlineContacts */
             supportInlineContacts?: (boolean|null);
+
+            /** HistorySyncConfig supportNewsletter */
+            supportNewsletter?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -1148,6 +1151,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportInlineContacts. */
             public supportInlineContacts: boolean;
+
+            /** HistorySyncConfig supportNewsletter. */
+            public supportNewsletter: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

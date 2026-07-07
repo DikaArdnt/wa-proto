@@ -1,6 +1,20 @@
 syntax = "proto2";
 package ServerSync;
 
+message CoexStateSync {
+    repeated CollectionMutations collectionMutations = 1;
+    message CollectionMutations {
+        optional string collection = 1;
+        repeated CoexStateSync.Mutation mutations = 2;
+    }
+    message Mutation {
+        optional SyncdIndex index = 1;
+        optional SyncdValue value = 2;
+        optional uint64 dirtyVersion = 3;
+        optional SyncdMutation.SyncdOperation operation = 4;
+    }
+}
+
 message SyncdPatch {
     optional SyncdVersion version = 1;
     repeated SyncdMutation mutations = 2;

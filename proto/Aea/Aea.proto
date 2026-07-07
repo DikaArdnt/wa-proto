@@ -1,0 +1,11 @@
+syntax = "proto2";
+package Aea;
+
+message NonE2EEAttestation {
+    optional AccountType accountType = 1;
+    enum AccountType {
+        E2EE = 0;
+        HYBRID_E2EE = 1;
+        NON_E2EE = 2;
+    }
+}

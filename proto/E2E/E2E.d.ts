@@ -3891,6 +3891,12 @@ export namespace E2E {
 
         /** MessageContextInfo teeBotMetadata */
         teeBotMetadata?: (Uint8Array|null);
+
+        /** MessageContextInfo accountEncryptionAttestation */
+        accountEncryptionAttestation?: (Aea.INonE2EEAttestation|null);
+
+        /** MessageContextInfo associatedPrimaryIdentityKey */
+        associatedPrimaryIdentityKey?: (Uint8Array|null);
     }
 
     /** Represents a MessageContextInfo. */
@@ -3952,6 +3958,12 @@ export namespace E2E {
 
         /** MessageContextInfo teeBotMetadata. */
         public teeBotMetadata: Uint8Array;
+
+        /** MessageContextInfo accountEncryptionAttestation. */
+        public accountEncryptionAttestation?: (Aea.INonE2EEAttestation|null);
+
+        /** MessageContextInfo associatedPrimaryIdentityKey. */
+        public associatedPrimaryIdentityKey: Uint8Array;
 
         /**
          * Creates a new MessageContextInfo instance using the specified properties.
@@ -4478,6 +4490,12 @@ export namespace E2E {
 
         /** ContextInfo posterStatusId */
         posterStatusId?: (string|null);
+
+        /** ContextInfo instagramThreadLink */
+        instagramThreadLink?: (E2E.ContextInfo.IInstagramThreadLink|null);
+
+        /** ContextInfo aiProvenance */
+        aiProvenance?: (AICommon.IAIProvenance|null);
     }
 
     /** Represents a ContextInfo. */
@@ -4674,6 +4692,12 @@ export namespace E2E {
 
         /** ContextInfo posterStatusId. */
         public posterStatusId: string;
+
+        /** ContextInfo instagramThreadLink. */
+        public instagramThreadLink?: (E2E.ContextInfo.IInstagramThreadLink|null);
+
+        /** ContextInfo aiProvenance. */
+        public aiProvenance?: (AICommon.IAIProvenance|null);
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -4897,6 +4921,9 @@ export namespace E2E {
 
             /** BusinessInteractionPills signatureEnvelope */
             signatureEnvelope?: (AICommon.IBotSignatureVerificationMetadata|null);
+
+            /** BusinessInteractionPills unauthenticatedBusinessMetadata */
+            unauthenticatedBusinessMetadata?: (E2E.ContextInfo.BusinessInteractionPills.IUnauthenticatedBusinessMetadata|null);
         }
 
         /** Represents a BusinessInteractionPills. */
@@ -4922,6 +4949,9 @@ export namespace E2E {
 
             /** BusinessInteractionPills signatureEnvelope. */
             public signatureEnvelope?: (AICommon.IBotSignatureVerificationMetadata|null);
+
+            /** BusinessInteractionPills unauthenticatedBusinessMetadata. */
+            public unauthenticatedBusinessMetadata?: (E2E.ContextInfo.BusinessInteractionPills.IUnauthenticatedBusinessMetadata|null);
 
             /**
              * Creates a new BusinessInteractionPills instance using the specified properties.
@@ -5230,6 +5260,121 @@ export namespace E2E {
 
                 /**
                  * Gets the default type url for SignedPayload
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of an UnauthenticatedBusinessMetadata. */
+            interface IUnauthenticatedBusinessMetadata {
+
+                /** UnauthenticatedBusinessMetadata businessName */
+                businessName?: (string|null);
+
+                /** UnauthenticatedBusinessMetadata businessCategory */
+                businessCategory?: (string|null);
+
+                /** UnauthenticatedBusinessMetadata businessIsOpen */
+                businessIsOpen?: (boolean|null);
+
+                /** UnauthenticatedBusinessMetadata businessIsOpenSnapshotMs */
+                businessIsOpenSnapshotMs?: (number|Long|null);
+            }
+
+            /** Represents an UnauthenticatedBusinessMetadata. */
+            class UnauthenticatedBusinessMetadata implements IUnauthenticatedBusinessMetadata {
+
+                /**
+                 * Constructs a new UnauthenticatedBusinessMetadata.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.ContextInfo.BusinessInteractionPills.IUnauthenticatedBusinessMetadata);
+
+                /** UnauthenticatedBusinessMetadata businessName. */
+                public businessName: string;
+
+                /** UnauthenticatedBusinessMetadata businessCategory. */
+                public businessCategory: string;
+
+                /** UnauthenticatedBusinessMetadata businessIsOpen. */
+                public businessIsOpen: boolean;
+
+                /** UnauthenticatedBusinessMetadata businessIsOpenSnapshotMs. */
+                public businessIsOpenSnapshotMs: (number|Long);
+
+                /**
+                 * Creates a new UnauthenticatedBusinessMetadata instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns UnauthenticatedBusinessMetadata instance
+                 */
+                public static create(properties?: E2E.ContextInfo.BusinessInteractionPills.IUnauthenticatedBusinessMetadata): E2E.ContextInfo.BusinessInteractionPills.UnauthenticatedBusinessMetadata;
+
+                /**
+                 * Encodes the specified UnauthenticatedBusinessMetadata message. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.UnauthenticatedBusinessMetadata.verify|verify} messages.
+                 * @param message UnauthenticatedBusinessMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.ContextInfo.BusinessInteractionPills.IUnauthenticatedBusinessMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified UnauthenticatedBusinessMetadata message, length delimited. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.UnauthenticatedBusinessMetadata.verify|verify} messages.
+                 * @param message UnauthenticatedBusinessMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.ContextInfo.BusinessInteractionPills.IUnauthenticatedBusinessMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes an UnauthenticatedBusinessMetadata message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns UnauthenticatedBusinessMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.BusinessInteractionPills.UnauthenticatedBusinessMetadata;
+
+                /**
+                 * Decodes an UnauthenticatedBusinessMetadata message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns UnauthenticatedBusinessMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.BusinessInteractionPills.UnauthenticatedBusinessMetadata;
+
+                /**
+                 * Verifies an UnauthenticatedBusinessMetadata message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates an UnauthenticatedBusinessMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns UnauthenticatedBusinessMetadata
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.BusinessInteractionPills.UnauthenticatedBusinessMetadata;
+
+                /**
+                 * Creates a plain object from an UnauthenticatedBusinessMetadata message. Also converts values to other types if specified.
+                 * @param message UnauthenticatedBusinessMetadata
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.ContextInfo.BusinessInteractionPills.UnauthenticatedBusinessMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this UnauthenticatedBusinessMetadata to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for UnauthenticatedBusinessMetadata
                  * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns The default type url
                  */
@@ -6153,6 +6298,103 @@ export namespace E2E {
             }
         }
 
+        /** Properties of an InstagramThreadLink. */
+        interface IInstagramThreadLink {
+
+            /** InstagramThreadLink url */
+            url?: (string|null);
+        }
+
+        /** Represents an InstagramThreadLink. */
+        class InstagramThreadLink implements IInstagramThreadLink {
+
+            /**
+             * Constructs a new InstagramThreadLink.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.ContextInfo.IInstagramThreadLink);
+
+            /** InstagramThreadLink url. */
+            public url: string;
+
+            /**
+             * Creates a new InstagramThreadLink instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns InstagramThreadLink instance
+             */
+            public static create(properties?: E2E.ContextInfo.IInstagramThreadLink): E2E.ContextInfo.InstagramThreadLink;
+
+            /**
+             * Encodes the specified InstagramThreadLink message. Does not implicitly {@link E2E.ContextInfo.InstagramThreadLink.verify|verify} messages.
+             * @param message InstagramThreadLink message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.ContextInfo.IInstagramThreadLink, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified InstagramThreadLink message, length delimited. Does not implicitly {@link E2E.ContextInfo.InstagramThreadLink.verify|verify} messages.
+             * @param message InstagramThreadLink message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.ContextInfo.IInstagramThreadLink, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an InstagramThreadLink message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns InstagramThreadLink
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.InstagramThreadLink;
+
+            /**
+             * Decodes an InstagramThreadLink message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns InstagramThreadLink
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.InstagramThreadLink;
+
+            /**
+             * Verifies an InstagramThreadLink message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an InstagramThreadLink message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns InstagramThreadLink
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.InstagramThreadLink;
+
+            /**
+             * Creates a plain object from an InstagramThreadLink message. Also converts values to other types if specified.
+             * @param message InstagramThreadLink
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.ContextInfo.InstagramThreadLink, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this InstagramThreadLink to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for InstagramThreadLink
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** PairedMediaType enum. */
         enum PairedMediaType {
             NOT_PAIRED_MEDIA = 0,
@@ -7045,6 +7287,9 @@ export namespace E2E {
 
         /** Message rootSecretDistributeMessage */
         rootSecretDistributeMessage?: (E2E.Message.IRootSecretDistributeMessage|null);
+
+        /** Message splitPaymentUpdateMessage */
+        splitPaymentUpdateMessage?: (E2E.Message.ISplitPaymentUpdateMessage|null);
     }
 
     /** Represents a Message. */
@@ -7376,6 +7621,9 @@ export namespace E2E {
 
         /** Message rootSecretDistributeMessage. */
         public rootSecretDistributeMessage?: (E2E.Message.IRootSecretDistributeMessage|null);
+
+        /** Message splitPaymentUpdateMessage. */
+        public splitPaymentUpdateMessage?: (E2E.Message.ISplitPaymentUpdateMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -8591,6 +8839,115 @@ export namespace E2E {
                 AUDIO = 1,
                 VIDEO = 2
             }
+        }
+
+        /** Properties of a BotHistoryShareSyncMetadata. */
+        interface IBotHistoryShareSyncMetadata {
+
+            /** BotHistoryShareSyncMetadata botJid */
+            botJid?: (string|null);
+
+            /** BotHistoryShareSyncMetadata historyShareCutoffTimestamp */
+            historyShareCutoffTimestamp?: (number|Long|null);
+
+            /** BotHistoryShareSyncMetadata historyShareMessages */
+            historyShareMessages?: (E2E.Message.IHistoryShareMessageEntry[]|null);
+        }
+
+        /** Represents a BotHistoryShareSyncMetadata. */
+        class BotHistoryShareSyncMetadata implements IBotHistoryShareSyncMetadata {
+
+            /**
+             * Constructs a new BotHistoryShareSyncMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IBotHistoryShareSyncMetadata);
+
+            /** BotHistoryShareSyncMetadata botJid. */
+            public botJid: string;
+
+            /** BotHistoryShareSyncMetadata historyShareCutoffTimestamp. */
+            public historyShareCutoffTimestamp: (number|Long);
+
+            /** BotHistoryShareSyncMetadata historyShareMessages. */
+            public historyShareMessages: E2E.Message.IHistoryShareMessageEntry[];
+
+            /**
+             * Creates a new BotHistoryShareSyncMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BotHistoryShareSyncMetadata instance
+             */
+            public static create(properties?: E2E.Message.IBotHistoryShareSyncMetadata): E2E.Message.BotHistoryShareSyncMetadata;
+
+            /**
+             * Encodes the specified BotHistoryShareSyncMetadata message. Does not implicitly {@link E2E.Message.BotHistoryShareSyncMetadata.verify|verify} messages.
+             * @param message BotHistoryShareSyncMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IBotHistoryShareSyncMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BotHistoryShareSyncMetadata message, length delimited. Does not implicitly {@link E2E.Message.BotHistoryShareSyncMetadata.verify|verify} messages.
+             * @param message BotHistoryShareSyncMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IBotHistoryShareSyncMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BotHistoryShareSyncMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BotHistoryShareSyncMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.BotHistoryShareSyncMetadata;
+
+            /**
+             * Decodes a BotHistoryShareSyncMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BotHistoryShareSyncMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.BotHistoryShareSyncMetadata;
+
+            /**
+             * Verifies a BotHistoryShareSyncMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BotHistoryShareSyncMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BotHistoryShareSyncMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.BotHistoryShareSyncMetadata;
+
+            /**
+             * Creates a plain object from a BotHistoryShareSyncMetadata message. Also converts values to other types if specified.
+             * @param message BotHistoryShareSyncMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.BotHistoryShareSyncMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BotHistoryShareSyncMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BotHistoryShareSyncMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a ButtonsMessage. */
@@ -12330,8 +12687,8 @@ export namespace E2E {
             /** ExtendedTextMessage videoWidth */
             videoWidth?: (number|null);
 
-            /** ExtendedTextMessage faviconMMSMetadata */
-            faviconMMSMetadata?: (E2E.Message.IMMSThumbnailMetadata|null);
+            /** ExtendedTextMessage faviconMmsMetadata */
+            faviconMmsMetadata?: (E2E.Message.IMMSThumbnailMetadata|null);
 
             /** ExtendedTextMessage linkPreviewMetadata */
             linkPreviewMetadata?: (E2E.Message.ILinkPreviewMetadata|null);
@@ -12436,8 +12793,8 @@ export namespace E2E {
             /** ExtendedTextMessage videoWidth. */
             public videoWidth: number;
 
-            /** ExtendedTextMessage faviconMMSMetadata. */
-            public faviconMMSMetadata?: (E2E.Message.IMMSThumbnailMetadata|null);
+            /** ExtendedTextMessage faviconMmsMetadata. */
+            public faviconMmsMetadata?: (E2E.Message.IMMSThumbnailMetadata|null);
 
             /** ExtendedTextMessage linkPreviewMetadata. */
             public linkPreviewMetadata?: (E2E.Message.ILinkPreviewMetadata|null);
@@ -13748,6 +14105,109 @@ export namespace E2E {
                     }
                 }
             }
+        }
+
+        /** Properties of a HistoryShareMessageEntry. */
+        interface IHistoryShareMessageEntry {
+
+            /** HistoryShareMessageEntry stanzaId */
+            stanzaId?: (string|null);
+
+            /** HistoryShareMessageEntry messageSecretProof */
+            messageSecretProof?: (Uint8Array|null);
+        }
+
+        /** Represents a HistoryShareMessageEntry. */
+        class HistoryShareMessageEntry implements IHistoryShareMessageEntry {
+
+            /**
+             * Constructs a new HistoryShareMessageEntry.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IHistoryShareMessageEntry);
+
+            /** HistoryShareMessageEntry stanzaId. */
+            public stanzaId: string;
+
+            /** HistoryShareMessageEntry messageSecretProof. */
+            public messageSecretProof: Uint8Array;
+
+            /**
+             * Creates a new HistoryShareMessageEntry instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns HistoryShareMessageEntry instance
+             */
+            public static create(properties?: E2E.Message.IHistoryShareMessageEntry): E2E.Message.HistoryShareMessageEntry;
+
+            /**
+             * Encodes the specified HistoryShareMessageEntry message. Does not implicitly {@link E2E.Message.HistoryShareMessageEntry.verify|verify} messages.
+             * @param message HistoryShareMessageEntry message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IHistoryShareMessageEntry, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified HistoryShareMessageEntry message, length delimited. Does not implicitly {@link E2E.Message.HistoryShareMessageEntry.verify|verify} messages.
+             * @param message HistoryShareMessageEntry message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IHistoryShareMessageEntry, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a HistoryShareMessageEntry message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns HistoryShareMessageEntry
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.HistoryShareMessageEntry;
+
+            /**
+             * Decodes a HistoryShareMessageEntry message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns HistoryShareMessageEntry
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.HistoryShareMessageEntry;
+
+            /**
+             * Verifies a HistoryShareMessageEntry message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a HistoryShareMessageEntry message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns HistoryShareMessageEntry
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.HistoryShareMessageEntry;
+
+            /**
+             * Creates a plain object from a HistoryShareMessageEntry message. Also converts values to other types if specified.
+             * @param message HistoryShareMessageEntry
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.HistoryShareMessageEntry, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this HistoryShareMessageEntry to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for HistoryShareMessageEntry
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a HistorySyncMessageAccessStatus. */
@@ -17837,6 +18297,121 @@ export namespace E2E {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a MarkAsVerifiedAction. */
+        interface IMarkAsVerifiedAction {
+
+            /** MarkAsVerifiedAction userJidString */
+            userJidString?: (string|null);
+
+            /** MarkAsVerifiedAction verified */
+            verified?: (boolean|null);
+
+            /** MarkAsVerifiedAction verifiedIdentityKey */
+            verifiedIdentityKey?: (Uint8Array|null);
+
+            /** MarkAsVerifiedAction actionSeq */
+            actionSeq?: (number|Long|null);
+        }
+
+        /** Represents a MarkAsVerifiedAction. */
+        class MarkAsVerifiedAction implements IMarkAsVerifiedAction {
+
+            /**
+             * Constructs a new MarkAsVerifiedAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IMarkAsVerifiedAction);
+
+            /** MarkAsVerifiedAction userJidString. */
+            public userJidString: string;
+
+            /** MarkAsVerifiedAction verified. */
+            public verified: boolean;
+
+            /** MarkAsVerifiedAction verifiedIdentityKey. */
+            public verifiedIdentityKey: Uint8Array;
+
+            /** MarkAsVerifiedAction actionSeq. */
+            public actionSeq: (number|Long);
+
+            /**
+             * Creates a new MarkAsVerifiedAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns MarkAsVerifiedAction instance
+             */
+            public static create(properties?: E2E.Message.IMarkAsVerifiedAction): E2E.Message.MarkAsVerifiedAction;
+
+            /**
+             * Encodes the specified MarkAsVerifiedAction message. Does not implicitly {@link E2E.Message.MarkAsVerifiedAction.verify|verify} messages.
+             * @param message MarkAsVerifiedAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IMarkAsVerifiedAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified MarkAsVerifiedAction message, length delimited. Does not implicitly {@link E2E.Message.MarkAsVerifiedAction.verify|verify} messages.
+             * @param message MarkAsVerifiedAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IMarkAsVerifiedAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a MarkAsVerifiedAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns MarkAsVerifiedAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.MarkAsVerifiedAction;
+
+            /**
+             * Decodes a MarkAsVerifiedAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns MarkAsVerifiedAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.MarkAsVerifiedAction;
+
+            /**
+             * Verifies a MarkAsVerifiedAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a MarkAsVerifiedAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns MarkAsVerifiedAction
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.MarkAsVerifiedAction;
+
+            /**
+             * Creates a plain object from a MarkAsVerifiedAction message. Also converts values to other types if specified.
+             * @param message MarkAsVerifiedAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.MarkAsVerifiedAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this MarkAsVerifiedAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for MarkAsVerifiedAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a MessageHistoryBundle. */
         interface IMessageHistoryBundle {
 
@@ -18105,6 +18680,9 @@ export namespace E2E {
 
             /** MessageHistoryNotice messageHistoryMetadata */
             messageHistoryMetadata?: (E2E.Message.IMessageHistoryMetadata|null);
+
+            /** MessageHistoryNotice botHistoryShareSyncMetadata */
+            botHistoryShareSyncMetadata?: (E2E.Message.IBotHistoryShareSyncMetadata|null);
         }
 
         /** Represents a MessageHistoryNotice. */
@@ -18121,6 +18699,9 @@ export namespace E2E {
 
             /** MessageHistoryNotice messageHistoryMetadata. */
             public messageHistoryMetadata?: (E2E.Message.IMessageHistoryMetadata|null);
+
+            /** MessageHistoryNotice botHistoryShareSyncMetadata. */
+            public botHistoryShareSyncMetadata?: (E2E.Message.IBotHistoryShareSyncMetadata|null);
 
             /**
              * Creates a new MessageHistoryNotice instance using the specified properties.
@@ -18652,6 +19233,9 @@ export namespace E2E {
 
             /** PaymentExtendedMetadata platform */
             platform?: (string|null);
+
+            /** PaymentExtendedMetadata messageParamsJson */
+            messageParamsJson?: (string|null);
         }
 
         /** Represents a PaymentExtendedMetadata. */
@@ -18668,6 +19252,9 @@ export namespace E2E {
 
             /** PaymentExtendedMetadata platform. */
             public platform: string;
+
+            /** PaymentExtendedMetadata messageParamsJson. */
+            public messageParamsJson: string;
 
             /**
              * Creates a new PaymentExtendedMetadata instance using the specified properties.
@@ -24354,6 +24941,12 @@ export namespace E2E {
 
             /** ProtocolMessage aiMetadataOperation */
             aiMetadataOperation?: (AICommon.IAIMetadataOperation|null);
+
+            /** ProtocolMessage markAsVerifiedAction */
+            markAsVerifiedAction?: (E2E.Message.IMarkAsVerifiedAction|null);
+
+            /** ProtocolMessage coexStateSync */
+            coexStateSync?: (ServerSync.ICoexStateSync|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -24448,6 +25041,12 @@ export namespace E2E {
 
             /** ProtocolMessage aiMetadataOperation. */
             public aiMetadataOperation?: (AICommon.IAIMetadataOperation|null);
+
+            /** ProtocolMessage markAsVerifiedAction. */
+            public markAsVerifiedAction?: (E2E.Message.IMarkAsVerifiedAction|null);
+
+            /** ProtocolMessage coexStateSync. */
+            public coexStateSync?: (ServerSync.ICoexStateSync|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -24560,7 +25159,9 @@ export namespace E2E {
                 AI_MEDIA_COLLECTION_MESSAGE = 31,
                 MESSAGE_UNSCHEDULE = 32,
                 CHAT_THEME_SETTING = 34,
-                AI_METADATA_OPERATION = 35
+                AI_METADATA_OPERATION = 35,
+                MARK_AS_VERIFIED_ACTION = 36,
+                COEX_STATE_SYNC = 37
             }
         }
 
@@ -26065,6 +26666,109 @@ export namespace E2E {
                 PENDING = 0,
                 PAID = 1
             }
+        }
+
+        /** Properties of a SplitPaymentUpdateMessage. */
+        interface ISplitPaymentUpdateMessage {
+
+            /** SplitPaymentUpdateMessage splitId */
+            splitId?: (string|null);
+
+            /** SplitPaymentUpdateMessage participantJid */
+            participantJid?: (string|null);
+        }
+
+        /** Represents a SplitPaymentUpdateMessage. */
+        class SplitPaymentUpdateMessage implements ISplitPaymentUpdateMessage {
+
+            /**
+             * Constructs a new SplitPaymentUpdateMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.ISplitPaymentUpdateMessage);
+
+            /** SplitPaymentUpdateMessage splitId. */
+            public splitId: string;
+
+            /** SplitPaymentUpdateMessage participantJid. */
+            public participantJid: string;
+
+            /**
+             * Creates a new SplitPaymentUpdateMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SplitPaymentUpdateMessage instance
+             */
+            public static create(properties?: E2E.Message.ISplitPaymentUpdateMessage): E2E.Message.SplitPaymentUpdateMessage;
+
+            /**
+             * Encodes the specified SplitPaymentUpdateMessage message. Does not implicitly {@link E2E.Message.SplitPaymentUpdateMessage.verify|verify} messages.
+             * @param message SplitPaymentUpdateMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.ISplitPaymentUpdateMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SplitPaymentUpdateMessage message, length delimited. Does not implicitly {@link E2E.Message.SplitPaymentUpdateMessage.verify|verify} messages.
+             * @param message SplitPaymentUpdateMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.ISplitPaymentUpdateMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SplitPaymentUpdateMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SplitPaymentUpdateMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.SplitPaymentUpdateMessage;
+
+            /**
+             * Decodes a SplitPaymentUpdateMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SplitPaymentUpdateMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.SplitPaymentUpdateMessage;
+
+            /**
+             * Verifies a SplitPaymentUpdateMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SplitPaymentUpdateMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SplitPaymentUpdateMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.SplitPaymentUpdateMessage;
+
+            /**
+             * Creates a plain object from a SplitPaymentUpdateMessage message. Also converts values to other types if specified.
+             * @param message SplitPaymentUpdateMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.SplitPaymentUpdateMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SplitPaymentUpdateMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SplitPaymentUpdateMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a StatusNotificationMessage. */
@@ -30305,8 +31009,8 @@ export namespace AICommonDeprecated {
             /** AIRichResponseContentItemMetadata reelItem. */
             public reelItem?: (AICommonDeprecated.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem|null);
 
-            /** AIRichResponseContentItemMetadata aIRichResponseContentItem. */
-            public aIRichResponseContentItem?: "reelItem";
+            /** AIRichResponseContentItemMetadata aiRichResponseContentItem. */
+            public aiRichResponseContentItem?: "reelItem";
 
             /**
              * Creates a new AIRichResponseContentItemMetadata instance using the specified properties.
@@ -31921,982 +32625,226 @@ export namespace AICommonDeprecated {
     }
 }
 
-/** Namespace StatusAttributions. */
-export namespace StatusAttributions {
+/** Namespace AICommon. */
+export namespace AICommon {
 
-    /** Properties of a StatusAttribution. */
-    interface IStatusAttribution {
+    /** Properties of a AIProvenance. */
+    interface IAIProvenance {
 
-        /** StatusAttribution type */
-        type?: (StatusAttributions.StatusAttribution.Type|null);
+        /** AIProvenance c2PaMetadata */
+        c2PaMetadata?: (AICommon.AIProvenance.IMetadata|null);
 
-        /** StatusAttribution actionUrl */
-        actionUrl?: (string|null);
-
-        /** StatusAttribution statusReshare */
-        statusReshare?: (StatusAttributions.StatusAttribution.IStatusReshare|null);
-
-        /** StatusAttribution externalShare */
-        externalShare?: (StatusAttributions.StatusAttribution.IExternalShare|null);
-
-        /** StatusAttribution music */
-        music?: (StatusAttributions.StatusAttribution.IMusic|null);
-
-        /** StatusAttribution groupStatus */
-        groupStatus?: (StatusAttributions.StatusAttribution.IGroupStatus|null);
-
-        /** StatusAttribution rlAttribution */
-        rlAttribution?: (StatusAttributions.StatusAttribution.IRLAttribution|null);
-
-        /** StatusAttribution aiCreatedAttribution */
-        aiCreatedAttribution?: (StatusAttributions.StatusAttribution.IAiCreatedAttribution|null);
+        /** AIProvenance iptcMetadata */
+        iptcMetadata?: (AICommon.AIProvenance.IMetadata|null);
     }
 
-    /** Represents a StatusAttribution. */
-    class StatusAttribution implements IStatusAttribution {
+    /** Represents a AIProvenance. */
+    class AIProvenance implements IAIProvenance {
 
         /**
-         * Constructs a new StatusAttribution.
+         * Constructs a new AIProvenance.
          * @param [properties] Properties to set
          */
-        constructor(properties?: StatusAttributions.IStatusAttribution);
+        constructor(properties?: AICommon.IAIProvenance);
 
-        /** StatusAttribution type. */
-        public type: StatusAttributions.StatusAttribution.Type;
+        /** AIProvenance c2PaMetadata. */
+        public c2PaMetadata?: (AICommon.AIProvenance.IMetadata|null);
 
-        /** StatusAttribution actionUrl. */
-        public actionUrl: string;
-
-        /** StatusAttribution statusReshare. */
-        public statusReshare?: (StatusAttributions.StatusAttribution.IStatusReshare|null);
-
-        /** StatusAttribution externalShare. */
-        public externalShare?: (StatusAttributions.StatusAttribution.IExternalShare|null);
-
-        /** StatusAttribution music. */
-        public music?: (StatusAttributions.StatusAttribution.IMusic|null);
-
-        /** StatusAttribution groupStatus. */
-        public groupStatus?: (StatusAttributions.StatusAttribution.IGroupStatus|null);
-
-        /** StatusAttribution rlAttribution. */
-        public rlAttribution?: (StatusAttributions.StatusAttribution.IRLAttribution|null);
-
-        /** StatusAttribution aiCreatedAttribution. */
-        public aiCreatedAttribution?: (StatusAttributions.StatusAttribution.IAiCreatedAttribution|null);
-
-        /** StatusAttribution attributionData. */
-        public attributionData?: ("statusReshare"|"externalShare"|"music"|"groupStatus"|"rlAttribution"|"aiCreatedAttribution");
+        /** AIProvenance iptcMetadata. */
+        public iptcMetadata?: (AICommon.AIProvenance.IMetadata|null);
 
         /**
-         * Creates a new StatusAttribution instance using the specified properties.
+         * Creates a new AIProvenance instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns StatusAttribution instance
+         * @returns AIProvenance instance
          */
-        public static create(properties?: StatusAttributions.IStatusAttribution): StatusAttributions.StatusAttribution;
+        public static create(properties?: AICommon.IAIProvenance): AICommon.AIProvenance;
 
         /**
-         * Encodes the specified StatusAttribution message. Does not implicitly {@link StatusAttributions.StatusAttribution.verify|verify} messages.
-         * @param message StatusAttribution message or plain object to encode
+         * Encodes the specified AIProvenance message. Does not implicitly {@link AICommon.AIProvenance.verify|verify} messages.
+         * @param message AIProvenance message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: StatusAttributions.IStatusAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: AICommon.IAIProvenance, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified StatusAttribution message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.verify|verify} messages.
-         * @param message StatusAttribution message or plain object to encode
+         * Encodes the specified AIProvenance message, length delimited. Does not implicitly {@link AICommon.AIProvenance.verify|verify} messages.
+         * @param message AIProvenance message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: StatusAttributions.IStatusAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: AICommon.IAIProvenance, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a StatusAttribution message from the specified reader or buffer.
+         * Decodes a AIProvenance message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns StatusAttribution
+         * @returns AIProvenance
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.AIProvenance;
 
         /**
-         * Decodes a StatusAttribution message from the specified reader or buffer, length delimited.
+         * Decodes a AIProvenance message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns StatusAttribution
+         * @returns AIProvenance
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.AIProvenance;
 
         /**
-         * Verifies a StatusAttribution message.
+         * Verifies a AIProvenance message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a StatusAttribution message from a plain object. Also converts values to their respective internal types.
+         * Creates a AIProvenance message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns StatusAttribution
+         * @returns AIProvenance
          */
-        public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution;
+        public static fromObject(object: { [k: string]: any }): AICommon.AIProvenance;
 
         /**
-         * Creates a plain object from a StatusAttribution message. Also converts values to other types if specified.
-         * @param message StatusAttribution
+         * Creates a plain object from a AIProvenance message. Also converts values to other types if specified.
+         * @param message AIProvenance
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: StatusAttributions.StatusAttribution, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: AICommon.AIProvenance, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this StatusAttribution to JSON.
+         * Converts this AIProvenance to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for StatusAttribution
+         * Gets the default type url for AIProvenance
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace StatusAttribution {
+    namespace AIProvenance {
 
-        /** Properties of an AiCreatedAttribution. */
-        interface IAiCreatedAttribution {
+        /** Properties of a Metadata. */
+        interface IMetadata {
 
-            /** AiCreatedAttribution source */
-            source?: (StatusAttributions.StatusAttribution.AiCreatedAttribution.Source|null);
+            /** Metadata createdWithGenAi */
+            createdWithGenAi?: (boolean|null);
+
+            /** Metadata editedWithGenAi */
+            editedWithGenAi?: (boolean|null);
         }
 
-        /** Represents an AiCreatedAttribution. */
-        class AiCreatedAttribution implements IAiCreatedAttribution {
+        /** Represents a Metadata. */
+        class Metadata implements IMetadata {
 
             /**
-             * Constructs a new AiCreatedAttribution.
+             * Constructs a new Metadata.
              * @param [properties] Properties to set
              */
-            constructor(properties?: StatusAttributions.StatusAttribution.IAiCreatedAttribution);
+            constructor(properties?: AICommon.AIProvenance.IMetadata);
 
-            /** AiCreatedAttribution source. */
-            public source: StatusAttributions.StatusAttribution.AiCreatedAttribution.Source;
+            /** Metadata createdWithGenAi. */
+            public createdWithGenAi: boolean;
+
+            /** Metadata editedWithGenAi. */
+            public editedWithGenAi: boolean;
 
             /**
-             * Creates a new AiCreatedAttribution instance using the specified properties.
+             * Creates a new Metadata instance using the specified properties.
              * @param [properties] Properties to set
-             * @returns AiCreatedAttribution instance
+             * @returns Metadata instance
              */
-            public static create(properties?: StatusAttributions.StatusAttribution.IAiCreatedAttribution): StatusAttributions.StatusAttribution.AiCreatedAttribution;
+            public static create(properties?: AICommon.AIProvenance.IMetadata): AICommon.AIProvenance.Metadata;
 
             /**
-             * Encodes the specified AiCreatedAttribution message. Does not implicitly {@link StatusAttributions.StatusAttribution.AiCreatedAttribution.verify|verify} messages.
-             * @param message AiCreatedAttribution message or plain object to encode
+             * Encodes the specified Metadata message. Does not implicitly {@link AICommon.AIProvenance.Metadata.verify|verify} messages.
+             * @param message Metadata message or plain object to encode
              * @param [writer] Writer to encode to
              * @returns Writer
              */
-            public static encode(message: StatusAttributions.StatusAttribution.IAiCreatedAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+            public static encode(message: AICommon.AIProvenance.IMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
 
             /**
-             * Encodes the specified AiCreatedAttribution message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.AiCreatedAttribution.verify|verify} messages.
-             * @param message AiCreatedAttribution message or plain object to encode
+             * Encodes the specified Metadata message, length delimited. Does not implicitly {@link AICommon.AIProvenance.Metadata.verify|verify} messages.
+             * @param message Metadata message or plain object to encode
              * @param [writer] Writer to encode to
              * @returns Writer
              */
-            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IAiCreatedAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+            public static encodeDelimited(message: AICommon.AIProvenance.IMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
 
             /**
-             * Decodes an AiCreatedAttribution message from the specified reader or buffer.
+             * Decodes a Metadata message from the specified reader or buffer.
              * @param reader Reader or buffer to decode from
              * @param [length] Message length if known beforehand
-             * @returns AiCreatedAttribution
+             * @returns Metadata
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.AiCreatedAttribution;
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.AIProvenance.Metadata;
 
             /**
-             * Decodes an AiCreatedAttribution message from the specified reader or buffer, length delimited.
+             * Decodes a Metadata message from the specified reader or buffer, length delimited.
              * @param reader Reader or buffer to decode from
-             * @returns AiCreatedAttribution
+             * @returns Metadata
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.AiCreatedAttribution;
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.AIProvenance.Metadata;
 
             /**
-             * Verifies an AiCreatedAttribution message.
+             * Verifies a Metadata message.
              * @param message Plain object to verify
              * @returns `null` if valid, otherwise the reason why it is not
              */
             public static verify(message: { [k: string]: any }): (string|null);
 
             /**
-             * Creates an AiCreatedAttribution message from a plain object. Also converts values to their respective internal types.
+             * Creates a Metadata message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
-             * @returns AiCreatedAttribution
+             * @returns Metadata
              */
-            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.AiCreatedAttribution;
+            public static fromObject(object: { [k: string]: any }): AICommon.AIProvenance.Metadata;
 
             /**
-             * Creates a plain object from an AiCreatedAttribution message. Also converts values to other types if specified.
-             * @param message AiCreatedAttribution
+             * Creates a plain object from a Metadata message. Also converts values to other types if specified.
+             * @param message Metadata
              * @param [options] Conversion options
              * @returns Plain object
              */
-            public static toObject(message: StatusAttributions.StatusAttribution.AiCreatedAttribution, options?: $protobuf.IConversionOptions): { [k: string]: any };
+            public static toObject(message: AICommon.AIProvenance.Metadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
             /**
-             * Converts this AiCreatedAttribution to JSON.
+             * Converts this Metadata to JSON.
              * @returns JSON object
              */
             public toJSON(): { [k: string]: any };
 
             /**
-             * Gets the default type url for AiCreatedAttribution
+             * Gets the default type url for Metadata
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace AiCreatedAttribution {
-
-            /** Source enum. */
-            enum Source {
-                UNKNOWN = 0,
-                STATUS_MIMICRY = 1
-            }
-        }
-
-        /** Properties of an ExternalShare. */
-        interface IExternalShare {
-
-            /** ExternalShare actionUrl */
-            actionUrl?: (string|null);
-
-            /** ExternalShare source */
-            source?: (StatusAttributions.StatusAttribution.ExternalShare.Source|null);
-
-            /** ExternalShare duration */
-            duration?: (number|null);
-
-            /** ExternalShare actionFallbackUrl */
-            actionFallbackUrl?: (string|null);
-        }
-
-        /** Represents an ExternalShare. */
-        class ExternalShare implements IExternalShare {
-
-            /**
-             * Constructs a new ExternalShare.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: StatusAttributions.StatusAttribution.IExternalShare);
-
-            /** ExternalShare actionUrl. */
-            public actionUrl: string;
-
-            /** ExternalShare source. */
-            public source: StatusAttributions.StatusAttribution.ExternalShare.Source;
-
-            /** ExternalShare duration. */
-            public duration: number;
-
-            /** ExternalShare actionFallbackUrl. */
-            public actionFallbackUrl: string;
-
-            /**
-             * Creates a new ExternalShare instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ExternalShare instance
-             */
-            public static create(properties?: StatusAttributions.StatusAttribution.IExternalShare): StatusAttributions.StatusAttribution.ExternalShare;
-
-            /**
-             * Encodes the specified ExternalShare message. Does not implicitly {@link StatusAttributions.StatusAttribution.ExternalShare.verify|verify} messages.
-             * @param message ExternalShare message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: StatusAttributions.StatusAttribution.IExternalShare, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ExternalShare message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.ExternalShare.verify|verify} messages.
-             * @param message ExternalShare message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IExternalShare, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes an ExternalShare message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ExternalShare
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.ExternalShare;
-
-            /**
-             * Decodes an ExternalShare message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ExternalShare
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.ExternalShare;
-
-            /**
-             * Verifies an ExternalShare message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates an ExternalShare message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ExternalShare
-             */
-            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.ExternalShare;
-
-            /**
-             * Creates a plain object from an ExternalShare message. Also converts values to other types if specified.
-             * @param message ExternalShare
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: StatusAttributions.StatusAttribution.ExternalShare, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ExternalShare to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for ExternalShare
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace ExternalShare {
-
-            /** Source enum. */
-            enum Source {
-                UNKNOWN = 0,
-                INSTAGRAM = 1,
-                FACEBOOK = 2,
-                MESSENGER = 3,
-                SPOTIFY = 4,
-                YOUTUBE = 5,
-                PINTEREST = 6,
-                THREADS = 7,
-                APPLE_MUSIC = 8,
-                SHARECHAT = 9,
-                GOOGLE_PHOTOS = 10,
-                SOUNDCLOUD = 11,
-                SHAZAM = 12
-            }
-        }
-
-        /** Properties of a GroupStatus. */
-        interface IGroupStatus {
-
-            /** GroupStatus authorJid */
-            authorJid?: (string|null);
-        }
-
-        /** Represents a GroupStatus. */
-        class GroupStatus implements IGroupStatus {
-
-            /**
-             * Constructs a new GroupStatus.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: StatusAttributions.StatusAttribution.IGroupStatus);
-
-            /** GroupStatus authorJid. */
-            public authorJid: string;
-
-            /**
-             * Creates a new GroupStatus instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns GroupStatus instance
-             */
-            public static create(properties?: StatusAttributions.StatusAttribution.IGroupStatus): StatusAttributions.StatusAttribution.GroupStatus;
-
-            /**
-             * Encodes the specified GroupStatus message. Does not implicitly {@link StatusAttributions.StatusAttribution.GroupStatus.verify|verify} messages.
-             * @param message GroupStatus message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: StatusAttributions.StatusAttribution.IGroupStatus, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified GroupStatus message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.GroupStatus.verify|verify} messages.
-             * @param message GroupStatus message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IGroupStatus, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a GroupStatus message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns GroupStatus
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.GroupStatus;
-
-            /**
-             * Decodes a GroupStatus message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns GroupStatus
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.GroupStatus;
-
-            /**
-             * Verifies a GroupStatus message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a GroupStatus message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns GroupStatus
-             */
-            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.GroupStatus;
-
-            /**
-             * Creates a plain object from a GroupStatus message. Also converts values to other types if specified.
-             * @param message GroupStatus
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: StatusAttributions.StatusAttribution.GroupStatus, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this GroupStatus to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for GroupStatus
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** Properties of a Music. */
-        interface IMusic {
-
-            /** Music authorName */
-            authorName?: (string|null);
-
-            /** Music songId */
-            songId?: (string|null);
-
-            /** Music title */
-            title?: (string|null);
-
-            /** Music author */
-            author?: (string|null);
-
-            /** Music artistAttribution */
-            artistAttribution?: (string|null);
-
-            /** Music isExplicit */
-            isExplicit?: (boolean|null);
-        }
-
-        /** Represents a Music. */
-        class Music implements IMusic {
-
-            /**
-             * Constructs a new Music.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: StatusAttributions.StatusAttribution.IMusic);
-
-            /** Music authorName. */
-            public authorName: string;
-
-            /** Music songId. */
-            public songId: string;
-
-            /** Music title. */
-            public title: string;
-
-            /** Music author. */
-            public author: string;
-
-            /** Music artistAttribution. */
-            public artistAttribution: string;
-
-            /** Music isExplicit. */
-            public isExplicit: boolean;
-
-            /**
-             * Creates a new Music instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns Music instance
-             */
-            public static create(properties?: StatusAttributions.StatusAttribution.IMusic): StatusAttributions.StatusAttribution.Music;
-
-            /**
-             * Encodes the specified Music message. Does not implicitly {@link StatusAttributions.StatusAttribution.Music.verify|verify} messages.
-             * @param message Music message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: StatusAttributions.StatusAttribution.IMusic, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified Music message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.Music.verify|verify} messages.
-             * @param message Music message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IMusic, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a Music message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns Music
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.Music;
-
-            /**
-             * Decodes a Music message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns Music
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.Music;
-
-            /**
-             * Verifies a Music message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a Music message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns Music
-             */
-            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.Music;
-
-            /**
-             * Creates a plain object from a Music message. Also converts values to other types if specified.
-             * @param message Music
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: StatusAttributions.StatusAttribution.Music, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this Music to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for Music
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** Properties of a RLAttribution. */
-        interface IRLAttribution {
-
-            /** RLAttribution source */
-            source?: (StatusAttributions.StatusAttribution.RLAttribution.Source|null);
-        }
-
-        /** Represents a RLAttribution. */
-        class RLAttribution implements IRLAttribution {
-
-            /**
-             * Constructs a new RLAttribution.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: StatusAttributions.StatusAttribution.IRLAttribution);
-
-            /** RLAttribution source. */
-            public source: StatusAttributions.StatusAttribution.RLAttribution.Source;
-
-            /**
-             * Creates a new RLAttribution instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns RLAttribution instance
-             */
-            public static create(properties?: StatusAttributions.StatusAttribution.IRLAttribution): StatusAttributions.StatusAttribution.RLAttribution;
-
-            /**
-             * Encodes the specified RLAttribution message. Does not implicitly {@link StatusAttributions.StatusAttribution.RLAttribution.verify|verify} messages.
-             * @param message RLAttribution message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: StatusAttributions.StatusAttribution.IRLAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified RLAttribution message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.RLAttribution.verify|verify} messages.
-             * @param message RLAttribution message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IRLAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a RLAttribution message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns RLAttribution
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.RLAttribution;
-
-            /**
-             * Decodes a RLAttribution message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns RLAttribution
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.RLAttribution;
-
-            /**
-             * Verifies a RLAttribution message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a RLAttribution message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns RLAttribution
-             */
-            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.RLAttribution;
-
-            /**
-             * Creates a plain object from a RLAttribution message. Also converts values to other types if specified.
-             * @param message RLAttribution
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: StatusAttributions.StatusAttribution.RLAttribution, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this RLAttribution to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for RLAttribution
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace RLAttribution {
-
-            /** Source enum. */
-            enum Source {
-                UNKNOWN = 0,
-                RAY_BAN_META_GLASSES = 1,
-                OAKLEY_META_GLASSES = 2,
-                HYPERNOVA_GLASSES = 3
-            }
-        }
-
-        /** Properties of a StatusReshare. */
-        interface IStatusReshare {
-
-            /** StatusReshare source */
-            source?: (StatusAttributions.StatusAttribution.StatusReshare.Source|null);
-
-            /** StatusReshare metadata */
-            metadata?: (StatusAttributions.StatusAttribution.StatusReshare.IMetadata|null);
-        }
-
-        /** Represents a StatusReshare. */
-        class StatusReshare implements IStatusReshare {
-
-            /**
-             * Constructs a new StatusReshare.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: StatusAttributions.StatusAttribution.IStatusReshare);
-
-            /** StatusReshare source. */
-            public source: StatusAttributions.StatusAttribution.StatusReshare.Source;
-
-            /** StatusReshare metadata. */
-            public metadata?: (StatusAttributions.StatusAttribution.StatusReshare.IMetadata|null);
-
-            /**
-             * Creates a new StatusReshare instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns StatusReshare instance
-             */
-            public static create(properties?: StatusAttributions.StatusAttribution.IStatusReshare): StatusAttributions.StatusAttribution.StatusReshare;
-
-            /**
-             * Encodes the specified StatusReshare message. Does not implicitly {@link StatusAttributions.StatusAttribution.StatusReshare.verify|verify} messages.
-             * @param message StatusReshare message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: StatusAttributions.StatusAttribution.IStatusReshare, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified StatusReshare message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.StatusReshare.verify|verify} messages.
-             * @param message StatusReshare message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IStatusReshare, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a StatusReshare message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns StatusReshare
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.StatusReshare;
-
-            /**
-             * Decodes a StatusReshare message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns StatusReshare
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.StatusReshare;
-
-            /**
-             * Verifies a StatusReshare message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a StatusReshare message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns StatusReshare
-             */
-            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.StatusReshare;
-
-            /**
-             * Creates a plain object from a StatusReshare message. Also converts values to other types if specified.
-             * @param message StatusReshare
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: StatusAttributions.StatusAttribution.StatusReshare, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this StatusReshare to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for StatusReshare
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace StatusReshare {
-
-            /** Properties of a Metadata. */
-            interface IMetadata {
-
-                /** Metadata duration */
-                duration?: (number|null);
-
-                /** Metadata channelJid */
-                channelJid?: (string|null);
-
-                /** Metadata channelMessageId */
-                channelMessageId?: (number|null);
-
-                /** Metadata hasMultipleReshares */
-                hasMultipleReshares?: (boolean|null);
-            }
-
-            /** Represents a Metadata. */
-            class Metadata implements IMetadata {
-
-                /**
-                 * Constructs a new Metadata.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: StatusAttributions.StatusAttribution.StatusReshare.IMetadata);
-
-                /** Metadata duration. */
-                public duration: number;
-
-                /** Metadata channelJid. */
-                public channelJid: string;
-
-                /** Metadata channelMessageId. */
-                public channelMessageId: number;
-
-                /** Metadata hasMultipleReshares. */
-                public hasMultipleReshares: boolean;
-
-                /**
-                 * Creates a new Metadata instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns Metadata instance
-                 */
-                public static create(properties?: StatusAttributions.StatusAttribution.StatusReshare.IMetadata): StatusAttributions.StatusAttribution.StatusReshare.Metadata;
-
-                /**
-                 * Encodes the specified Metadata message. Does not implicitly {@link StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify|verify} messages.
-                 * @param message Metadata message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: StatusAttributions.StatusAttribution.StatusReshare.IMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified Metadata message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify|verify} messages.
-                 * @param message Metadata message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: StatusAttributions.StatusAttribution.StatusReshare.IMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a Metadata message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns Metadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.StatusReshare.Metadata;
-
-                /**
-                 * Decodes a Metadata message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns Metadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.StatusReshare.Metadata;
-
-                /**
-                 * Verifies a Metadata message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a Metadata message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns Metadata
-                 */
-                public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.StatusReshare.Metadata;
-
-                /**
-                 * Creates a plain object from a Metadata message. Also converts values to other types if specified.
-                 * @param message Metadata
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: StatusAttributions.StatusAttribution.StatusReshare.Metadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this Metadata to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for Metadata
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-
-            /** Source enum. */
-            enum Source {
-                UNKNOWN = 0,
-                INTERNAL_RESHARE = 1,
-                MENTION_RESHARE = 2,
-                CHANNEL_RESHARE = 3,
-                FORWARD = 4
-            }
-        }
-
-        /** Type enum. */
-        enum Type {
-            UNKNOWN = 0,
-            RESHARE = 1,
-            EXTERNAL_SHARE = 2,
-            MUSIC = 3,
-            STATUS_MENTION = 4,
-            GROUP_STATUS = 5,
-            RL_ATTRIBUTION = 6,
-            AI_CREATED = 7,
-            LAYOUTS = 8,
-            NEWSLETTER_STATUS = 9,
-            STATUS_CLOSE_SHARING = 10,
-            PAID_PARTNERSHIP = 11
         }
     }
-}
-
-/** Namespace AICommon. */
-export namespace AICommon {
 
     /** Properties of a BotAgentDeepLinkMetadata. */
     interface IBotAgentDeepLinkMetadata {
 
         /** BotAgentDeepLinkMetadata token */
         token?: (string|null);
+
+        /** BotAgentDeepLinkMetadata clientPublicKey */
+        clientPublicKey?: (Uint8Array|null);
     }
 
     /** Represents a BotAgentDeepLinkMetadata. */
@@ -32910,6 +32858,9 @@ export namespace AICommon {
 
         /** BotAgentDeepLinkMetadata token. */
         public token: string;
+
+        /** BotAgentDeepLinkMetadata clientPublicKey. */
+        public clientPublicKey: Uint8Array;
 
         /**
          * Creates a new BotAgentDeepLinkMetadata instance using the specified properties.
@@ -35370,6 +35321,103 @@ export namespace AICommon {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a BotHistoryShareMetadata. */
+    interface IBotHistoryShareMetadata {
+
+        /** BotHistoryShareMetadata participantsMetadata */
+        participantsMetadata?: (AICommon.IBotGroupParticipantMetadata[]|null);
+    }
+
+    /** Represents a BotHistoryShareMetadata. */
+    class BotHistoryShareMetadata implements IBotHistoryShareMetadata {
+
+        /**
+         * Constructs a new BotHistoryShareMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IBotHistoryShareMetadata);
+
+        /** BotHistoryShareMetadata participantsMetadata. */
+        public participantsMetadata: AICommon.IBotGroupParticipantMetadata[];
+
+        /**
+         * Creates a new BotHistoryShareMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotHistoryShareMetadata instance
+         */
+        public static create(properties?: AICommon.IBotHistoryShareMetadata): AICommon.BotHistoryShareMetadata;
+
+        /**
+         * Encodes the specified BotHistoryShareMetadata message. Does not implicitly {@link AICommon.BotHistoryShareMetadata.verify|verify} messages.
+         * @param message BotHistoryShareMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IBotHistoryShareMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotHistoryShareMetadata message, length delimited. Does not implicitly {@link AICommon.BotHistoryShareMetadata.verify|verify} messages.
+         * @param message BotHistoryShareMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IBotHistoryShareMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotHistoryShareMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotHistoryShareMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotHistoryShareMetadata;
+
+        /**
+         * Decodes a BotHistoryShareMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotHistoryShareMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotHistoryShareMetadata;
+
+        /**
+         * Verifies a BotHistoryShareMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotHistoryShareMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotHistoryShareMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.BotHistoryShareMetadata;
+
+        /**
+         * Creates a plain object from a BotHistoryShareMetadata message. Also converts values to other types if specified.
+         * @param message BotHistoryShareMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.BotHistoryShareMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotHistoryShareMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotHistoryShareMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a BotGroupMetadata. */
     interface IBotGroupMetadata {
 
@@ -35690,6 +35738,9 @@ export namespace AICommon {
         /** BotMetadata pttPromptMetadata */
         pttPromptMetadata?: (AICommon.IBotPttPromptMetadata|null);
 
+        /** BotMetadata botHistoryShareMetadata */
+        botHistoryShareMetadata?: (AICommon.IBotHistoryShareMetadata|null);
+
         /** BotMetadata internalMetadata */
         internalMetadata?: (Uint8Array|null);
     }
@@ -35825,6 +35876,9 @@ export namespace AICommon {
 
         /** BotMetadata pttPromptMetadata. */
         public pttPromptMetadata?: (AICommon.IBotPttPromptMetadata|null);
+
+        /** BotMetadata botHistoryShareMetadata. */
+        public botHistoryShareMetadata?: (AICommon.IBotHistoryShareMetadata|null);
 
         /** BotMetadata internalMetadata. */
         public internalMetadata: Uint8Array;
@@ -38968,7 +39022,8 @@ export namespace AICommon {
             UNIFIED_RESPONSE_AI_CONTENT_SEARCH_ENABLED = 62,
             UNIFIED_RESPONSE_MARKDOWN_LINKS_ENABLED = 63,
             AI_RICH_RESPONSE_MAPS_V2_ENABLED = 64,
-            AI_SUBSCRIPTION_METERING_ENABLED = 65
+            AI_SUBSCRIPTION_METERING_ENABLED = 65,
+            RICH_RESPONSE_SPORTS_WIDGET_ENABLED = 66
         }
     }
 
@@ -42679,6 +42734,1086 @@ export namespace Protocol {
     }
 }
 
+/** Namespace Aea. */
+export namespace Aea {
+
+    /** Properties of a NonE2EEAttestation. */
+    interface INonE2EEAttestation {
+
+        /** NonE2EEAttestation accountType */
+        accountType?: (Aea.NonE2EEAttestation.AccountType|null);
+    }
+
+    /** Represents a NonE2EEAttestation. */
+    class NonE2EEAttestation implements INonE2EEAttestation {
+
+        /**
+         * Constructs a new NonE2EEAttestation.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Aea.INonE2EEAttestation);
+
+        /** NonE2EEAttestation accountType. */
+        public accountType: Aea.NonE2EEAttestation.AccountType;
+
+        /**
+         * Creates a new NonE2EEAttestation instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns NonE2EEAttestation instance
+         */
+        public static create(properties?: Aea.INonE2EEAttestation): Aea.NonE2EEAttestation;
+
+        /**
+         * Encodes the specified NonE2EEAttestation message. Does not implicitly {@link Aea.NonE2EEAttestation.verify|verify} messages.
+         * @param message NonE2EEAttestation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Aea.INonE2EEAttestation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified NonE2EEAttestation message, length delimited. Does not implicitly {@link Aea.NonE2EEAttestation.verify|verify} messages.
+         * @param message NonE2EEAttestation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Aea.INonE2EEAttestation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a NonE2EEAttestation message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns NonE2EEAttestation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Aea.NonE2EEAttestation;
+
+        /**
+         * Decodes a NonE2EEAttestation message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns NonE2EEAttestation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Aea.NonE2EEAttestation;
+
+        /**
+         * Verifies a NonE2EEAttestation message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a NonE2EEAttestation message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns NonE2EEAttestation
+         */
+        public static fromObject(object: { [k: string]: any }): Aea.NonE2EEAttestation;
+
+        /**
+         * Creates a plain object from a NonE2EEAttestation message. Also converts values to other types if specified.
+         * @param message NonE2EEAttestation
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Aea.NonE2EEAttestation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this NonE2EEAttestation to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for NonE2EEAttestation
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace NonE2EEAttestation {
+
+        /** AccountType enum. */
+        enum AccountType {
+            E2EE = 0,
+            HYBRID_E2EE = 1,
+            NON_E2EE = 2
+        }
+    }
+}
+
+/** Namespace StatusAttributions. */
+export namespace StatusAttributions {
+
+    /** Properties of a StatusAttribution. */
+    interface IStatusAttribution {
+
+        /** StatusAttribution type */
+        type?: (StatusAttributions.StatusAttribution.Type|null);
+
+        /** StatusAttribution actionUrl */
+        actionUrl?: (string|null);
+
+        /** StatusAttribution statusReshare */
+        statusReshare?: (StatusAttributions.StatusAttribution.IStatusReshare|null);
+
+        /** StatusAttribution externalShare */
+        externalShare?: (StatusAttributions.StatusAttribution.IExternalShare|null);
+
+        /** StatusAttribution music */
+        music?: (StatusAttributions.StatusAttribution.IMusic|null);
+
+        /** StatusAttribution groupStatus */
+        groupStatus?: (StatusAttributions.StatusAttribution.IGroupStatus|null);
+
+        /** StatusAttribution rlAttribution */
+        rlAttribution?: (StatusAttributions.StatusAttribution.IRLAttribution|null);
+
+        /** StatusAttribution aiCreatedAttribution */
+        aiCreatedAttribution?: (StatusAttributions.StatusAttribution.IAiCreatedAttribution|null);
+    }
+
+    /** Represents a StatusAttribution. */
+    class StatusAttribution implements IStatusAttribution {
+
+        /**
+         * Constructs a new StatusAttribution.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: StatusAttributions.IStatusAttribution);
+
+        /** StatusAttribution type. */
+        public type: StatusAttributions.StatusAttribution.Type;
+
+        /** StatusAttribution actionUrl. */
+        public actionUrl: string;
+
+        /** StatusAttribution statusReshare. */
+        public statusReshare?: (StatusAttributions.StatusAttribution.IStatusReshare|null);
+
+        /** StatusAttribution externalShare. */
+        public externalShare?: (StatusAttributions.StatusAttribution.IExternalShare|null);
+
+        /** StatusAttribution music. */
+        public music?: (StatusAttributions.StatusAttribution.IMusic|null);
+
+        /** StatusAttribution groupStatus. */
+        public groupStatus?: (StatusAttributions.StatusAttribution.IGroupStatus|null);
+
+        /** StatusAttribution rlAttribution. */
+        public rlAttribution?: (StatusAttributions.StatusAttribution.IRLAttribution|null);
+
+        /** StatusAttribution aiCreatedAttribution. */
+        public aiCreatedAttribution?: (StatusAttributions.StatusAttribution.IAiCreatedAttribution|null);
+
+        /** StatusAttribution attributionData. */
+        public attributionData?: ("statusReshare"|"externalShare"|"music"|"groupStatus"|"rlAttribution"|"aiCreatedAttribution");
+
+        /**
+         * Creates a new StatusAttribution instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns StatusAttribution instance
+         */
+        public static create(properties?: StatusAttributions.IStatusAttribution): StatusAttributions.StatusAttribution;
+
+        /**
+         * Encodes the specified StatusAttribution message. Does not implicitly {@link StatusAttributions.StatusAttribution.verify|verify} messages.
+         * @param message StatusAttribution message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: StatusAttributions.IStatusAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified StatusAttribution message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.verify|verify} messages.
+         * @param message StatusAttribution message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: StatusAttributions.IStatusAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a StatusAttribution message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns StatusAttribution
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution;
+
+        /**
+         * Decodes a StatusAttribution message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns StatusAttribution
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution;
+
+        /**
+         * Verifies a StatusAttribution message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a StatusAttribution message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns StatusAttribution
+         */
+        public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution;
+
+        /**
+         * Creates a plain object from a StatusAttribution message. Also converts values to other types if specified.
+         * @param message StatusAttribution
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: StatusAttributions.StatusAttribution, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this StatusAttribution to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for StatusAttribution
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace StatusAttribution {
+
+        /** Properties of an AiCreatedAttribution. */
+        interface IAiCreatedAttribution {
+
+            /** AiCreatedAttribution source */
+            source?: (StatusAttributions.StatusAttribution.AiCreatedAttribution.Source|null);
+        }
+
+        /** Represents an AiCreatedAttribution. */
+        class AiCreatedAttribution implements IAiCreatedAttribution {
+
+            /**
+             * Constructs a new AiCreatedAttribution.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: StatusAttributions.StatusAttribution.IAiCreatedAttribution);
+
+            /** AiCreatedAttribution source. */
+            public source: StatusAttributions.StatusAttribution.AiCreatedAttribution.Source;
+
+            /**
+             * Creates a new AiCreatedAttribution instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AiCreatedAttribution instance
+             */
+            public static create(properties?: StatusAttributions.StatusAttribution.IAiCreatedAttribution): StatusAttributions.StatusAttribution.AiCreatedAttribution;
+
+            /**
+             * Encodes the specified AiCreatedAttribution message. Does not implicitly {@link StatusAttributions.StatusAttribution.AiCreatedAttribution.verify|verify} messages.
+             * @param message AiCreatedAttribution message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: StatusAttributions.StatusAttribution.IAiCreatedAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AiCreatedAttribution message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.AiCreatedAttribution.verify|verify} messages.
+             * @param message AiCreatedAttribution message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IAiCreatedAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an AiCreatedAttribution message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AiCreatedAttribution
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.AiCreatedAttribution;
+
+            /**
+             * Decodes an AiCreatedAttribution message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AiCreatedAttribution
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.AiCreatedAttribution;
+
+            /**
+             * Verifies an AiCreatedAttribution message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an AiCreatedAttribution message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AiCreatedAttribution
+             */
+            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.AiCreatedAttribution;
+
+            /**
+             * Creates a plain object from an AiCreatedAttribution message. Also converts values to other types if specified.
+             * @param message AiCreatedAttribution
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: StatusAttributions.StatusAttribution.AiCreatedAttribution, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AiCreatedAttribution to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AiCreatedAttribution
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace AiCreatedAttribution {
+
+            /** Source enum. */
+            enum Source {
+                UNKNOWN = 0,
+                STATUS_MIMICRY = 1
+            }
+        }
+
+        /** Properties of an ExternalShare. */
+        interface IExternalShare {
+
+            /** ExternalShare actionUrl */
+            actionUrl?: (string|null);
+
+            /** ExternalShare source */
+            source?: (StatusAttributions.StatusAttribution.ExternalShare.Source|null);
+
+            /** ExternalShare duration */
+            duration?: (number|null);
+
+            /** ExternalShare actionFallbackUrl */
+            actionFallbackUrl?: (string|null);
+        }
+
+        /** Represents an ExternalShare. */
+        class ExternalShare implements IExternalShare {
+
+            /**
+             * Constructs a new ExternalShare.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: StatusAttributions.StatusAttribution.IExternalShare);
+
+            /** ExternalShare actionUrl. */
+            public actionUrl: string;
+
+            /** ExternalShare source. */
+            public source: StatusAttributions.StatusAttribution.ExternalShare.Source;
+
+            /** ExternalShare duration. */
+            public duration: number;
+
+            /** ExternalShare actionFallbackUrl. */
+            public actionFallbackUrl: string;
+
+            /**
+             * Creates a new ExternalShare instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ExternalShare instance
+             */
+            public static create(properties?: StatusAttributions.StatusAttribution.IExternalShare): StatusAttributions.StatusAttribution.ExternalShare;
+
+            /**
+             * Encodes the specified ExternalShare message. Does not implicitly {@link StatusAttributions.StatusAttribution.ExternalShare.verify|verify} messages.
+             * @param message ExternalShare message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: StatusAttributions.StatusAttribution.IExternalShare, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ExternalShare message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.ExternalShare.verify|verify} messages.
+             * @param message ExternalShare message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IExternalShare, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an ExternalShare message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ExternalShare
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.ExternalShare;
+
+            /**
+             * Decodes an ExternalShare message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ExternalShare
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.ExternalShare;
+
+            /**
+             * Verifies an ExternalShare message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an ExternalShare message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ExternalShare
+             */
+            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.ExternalShare;
+
+            /**
+             * Creates a plain object from an ExternalShare message. Also converts values to other types if specified.
+             * @param message ExternalShare
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: StatusAttributions.StatusAttribution.ExternalShare, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ExternalShare to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ExternalShare
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace ExternalShare {
+
+            /** Source enum. */
+            enum Source {
+                UNKNOWN = 0,
+                INSTAGRAM = 1,
+                FACEBOOK = 2,
+                MESSENGER = 3,
+                SPOTIFY = 4,
+                YOUTUBE = 5,
+                PINTEREST = 6,
+                THREADS = 7,
+                APPLE_MUSIC = 8,
+                SHARECHAT = 9,
+                GOOGLE_PHOTOS = 10,
+                SOUNDCLOUD = 11,
+                SHAZAM = 12,
+                PICSART = 13
+            }
+        }
+
+        /** Properties of a GroupStatus. */
+        interface IGroupStatus {
+
+            /** GroupStatus authorJid */
+            authorJid?: (string|null);
+        }
+
+        /** Represents a GroupStatus. */
+        class GroupStatus implements IGroupStatus {
+
+            /**
+             * Constructs a new GroupStatus.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: StatusAttributions.StatusAttribution.IGroupStatus);
+
+            /** GroupStatus authorJid. */
+            public authorJid: string;
+
+            /**
+             * Creates a new GroupStatus instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns GroupStatus instance
+             */
+            public static create(properties?: StatusAttributions.StatusAttribution.IGroupStatus): StatusAttributions.StatusAttribution.GroupStatus;
+
+            /**
+             * Encodes the specified GroupStatus message. Does not implicitly {@link StatusAttributions.StatusAttribution.GroupStatus.verify|verify} messages.
+             * @param message GroupStatus message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: StatusAttributions.StatusAttribution.IGroupStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified GroupStatus message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.GroupStatus.verify|verify} messages.
+             * @param message GroupStatus message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IGroupStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a GroupStatus message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns GroupStatus
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.GroupStatus;
+
+            /**
+             * Decodes a GroupStatus message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns GroupStatus
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.GroupStatus;
+
+            /**
+             * Verifies a GroupStatus message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a GroupStatus message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns GroupStatus
+             */
+            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.GroupStatus;
+
+            /**
+             * Creates a plain object from a GroupStatus message. Also converts values to other types if specified.
+             * @param message GroupStatus
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: StatusAttributions.StatusAttribution.GroupStatus, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this GroupStatus to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for GroupStatus
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a Music. */
+        interface IMusic {
+
+            /** Music authorName */
+            authorName?: (string|null);
+
+            /** Music songId */
+            songId?: (string|null);
+
+            /** Music title */
+            title?: (string|null);
+
+            /** Music author */
+            author?: (string|null);
+
+            /** Music artistAttribution */
+            artistAttribution?: (string|null);
+
+            /** Music isExplicit */
+            isExplicit?: (boolean|null);
+        }
+
+        /** Represents a Music. */
+        class Music implements IMusic {
+
+            /**
+             * Constructs a new Music.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: StatusAttributions.StatusAttribution.IMusic);
+
+            /** Music authorName. */
+            public authorName: string;
+
+            /** Music songId. */
+            public songId: string;
+
+            /** Music title. */
+            public title: string;
+
+            /** Music author. */
+            public author: string;
+
+            /** Music artistAttribution. */
+            public artistAttribution: string;
+
+            /** Music isExplicit. */
+            public isExplicit: boolean;
+
+            /**
+             * Creates a new Music instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Music instance
+             */
+            public static create(properties?: StatusAttributions.StatusAttribution.IMusic): StatusAttributions.StatusAttribution.Music;
+
+            /**
+             * Encodes the specified Music message. Does not implicitly {@link StatusAttributions.StatusAttribution.Music.verify|verify} messages.
+             * @param message Music message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: StatusAttributions.StatusAttribution.IMusic, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Music message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.Music.verify|verify} messages.
+             * @param message Music message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IMusic, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a Music message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Music
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.Music;
+
+            /**
+             * Decodes a Music message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Music
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.Music;
+
+            /**
+             * Verifies a Music message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a Music message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Music
+             */
+            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.Music;
+
+            /**
+             * Creates a plain object from a Music message. Also converts values to other types if specified.
+             * @param message Music
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: StatusAttributions.StatusAttribution.Music, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Music to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for Music
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a RLAttribution. */
+        interface IRLAttribution {
+
+            /** RLAttribution source */
+            source?: (StatusAttributions.StatusAttribution.RLAttribution.Source|null);
+        }
+
+        /** Represents a RLAttribution. */
+        class RLAttribution implements IRLAttribution {
+
+            /**
+             * Constructs a new RLAttribution.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: StatusAttributions.StatusAttribution.IRLAttribution);
+
+            /** RLAttribution source. */
+            public source: StatusAttributions.StatusAttribution.RLAttribution.Source;
+
+            /**
+             * Creates a new RLAttribution instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns RLAttribution instance
+             */
+            public static create(properties?: StatusAttributions.StatusAttribution.IRLAttribution): StatusAttributions.StatusAttribution.RLAttribution;
+
+            /**
+             * Encodes the specified RLAttribution message. Does not implicitly {@link StatusAttributions.StatusAttribution.RLAttribution.verify|verify} messages.
+             * @param message RLAttribution message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: StatusAttributions.StatusAttribution.IRLAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified RLAttribution message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.RLAttribution.verify|verify} messages.
+             * @param message RLAttribution message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IRLAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a RLAttribution message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns RLAttribution
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.RLAttribution;
+
+            /**
+             * Decodes a RLAttribution message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns RLAttribution
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.RLAttribution;
+
+            /**
+             * Verifies a RLAttribution message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a RLAttribution message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns RLAttribution
+             */
+            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.RLAttribution;
+
+            /**
+             * Creates a plain object from a RLAttribution message. Also converts values to other types if specified.
+             * @param message RLAttribution
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: StatusAttributions.StatusAttribution.RLAttribution, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this RLAttribution to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for RLAttribution
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace RLAttribution {
+
+            /** Source enum. */
+            enum Source {
+                UNKNOWN = 0,
+                RAY_BAN_META_GLASSES = 1,
+                OAKLEY_META_GLASSES = 2,
+                HYPERNOVA_GLASSES = 3
+            }
+        }
+
+        /** Properties of a StatusReshare. */
+        interface IStatusReshare {
+
+            /** StatusReshare source */
+            source?: (StatusAttributions.StatusAttribution.StatusReshare.Source|null);
+
+            /** StatusReshare metadata */
+            metadata?: (StatusAttributions.StatusAttribution.StatusReshare.IMetadata|null);
+        }
+
+        /** Represents a StatusReshare. */
+        class StatusReshare implements IStatusReshare {
+
+            /**
+             * Constructs a new StatusReshare.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: StatusAttributions.StatusAttribution.IStatusReshare);
+
+            /** StatusReshare source. */
+            public source: StatusAttributions.StatusAttribution.StatusReshare.Source;
+
+            /** StatusReshare metadata. */
+            public metadata?: (StatusAttributions.StatusAttribution.StatusReshare.IMetadata|null);
+
+            /**
+             * Creates a new StatusReshare instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StatusReshare instance
+             */
+            public static create(properties?: StatusAttributions.StatusAttribution.IStatusReshare): StatusAttributions.StatusAttribution.StatusReshare;
+
+            /**
+             * Encodes the specified StatusReshare message. Does not implicitly {@link StatusAttributions.StatusAttribution.StatusReshare.verify|verify} messages.
+             * @param message StatusReshare message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: StatusAttributions.StatusAttribution.IStatusReshare, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StatusReshare message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.StatusReshare.verify|verify} messages.
+             * @param message StatusReshare message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IStatusReshare, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StatusReshare message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StatusReshare
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.StatusReshare;
+
+            /**
+             * Decodes a StatusReshare message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StatusReshare
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.StatusReshare;
+
+            /**
+             * Verifies a StatusReshare message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StatusReshare message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StatusReshare
+             */
+            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.StatusReshare;
+
+            /**
+             * Creates a plain object from a StatusReshare message. Also converts values to other types if specified.
+             * @param message StatusReshare
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: StatusAttributions.StatusAttribution.StatusReshare, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StatusReshare to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for StatusReshare
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace StatusReshare {
+
+            /** Properties of a Metadata. */
+            interface IMetadata {
+
+                /** Metadata duration */
+                duration?: (number|null);
+
+                /** Metadata channelJid */
+                channelJid?: (string|null);
+
+                /** Metadata channelMessageId */
+                channelMessageId?: (number|null);
+
+                /** Metadata hasMultipleReshares */
+                hasMultipleReshares?: (boolean|null);
+            }
+
+            /** Represents a Metadata. */
+            class Metadata implements IMetadata {
+
+                /**
+                 * Constructs a new Metadata.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: StatusAttributions.StatusAttribution.StatusReshare.IMetadata);
+
+                /** Metadata duration. */
+                public duration: number;
+
+                /** Metadata channelJid. */
+                public channelJid: string;
+
+                /** Metadata channelMessageId. */
+                public channelMessageId: number;
+
+                /** Metadata hasMultipleReshares. */
+                public hasMultipleReshares: boolean;
+
+                /**
+                 * Creates a new Metadata instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns Metadata instance
+                 */
+                public static create(properties?: StatusAttributions.StatusAttribution.StatusReshare.IMetadata): StatusAttributions.StatusAttribution.StatusReshare.Metadata;
+
+                /**
+                 * Encodes the specified Metadata message. Does not implicitly {@link StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify|verify} messages.
+                 * @param message Metadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: StatusAttributions.StatusAttribution.StatusReshare.IMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified Metadata message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify|verify} messages.
+                 * @param message Metadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: StatusAttributions.StatusAttribution.StatusReshare.IMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a Metadata message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns Metadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.StatusReshare.Metadata;
+
+                /**
+                 * Decodes a Metadata message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns Metadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.StatusReshare.Metadata;
+
+                /**
+                 * Verifies a Metadata message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a Metadata message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns Metadata
+                 */
+                public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.StatusReshare.Metadata;
+
+                /**
+                 * Creates a plain object from a Metadata message. Also converts values to other types if specified.
+                 * @param message Metadata
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: StatusAttributions.StatusAttribution.StatusReshare.Metadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this Metadata to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for Metadata
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Source enum. */
+            enum Source {
+                UNKNOWN = 0,
+                INTERNAL_RESHARE = 1,
+                MENTION_RESHARE = 2,
+                CHANNEL_RESHARE = 3,
+                FORWARD = 4
+            }
+        }
+
+        /** Type enum. */
+        enum Type {
+            UNKNOWN = 0,
+            RESHARE = 1,
+            EXTERNAL_SHARE = 2,
+            MUSIC = 3,
+            STATUS_MENTION = 4,
+            GROUP_STATUS = 5,
+            RL_ATTRIBUTION = 6,
+            AI_CREATED = 7,
+            LAYOUTS = 8,
+            NEWSLETTER_STATUS = 9,
+            STATUS_CLOSE_SHARING = 10,
+            PAID_PARTNERSHIP = 11
+        }
+    }
+}
+
 /** Namespace CompanionReg. */
 export namespace CompanionReg {
 
@@ -43745,6 +44880,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportInlineContacts */
             supportInlineContacts?: (boolean|null);
+
+            /** HistorySyncConfig supportNewsletter */
+            supportNewsletter?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -43827,6 +44965,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportInlineContacts. */
             public supportInlineContacts: boolean;
+
+            /** HistorySyncConfig supportNewsletter. */
+            public supportNewsletter: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
@@ -44161,5 +45302,1523 @@ export namespace MmsRetry {
             NOT_FOUND = 2,
             DECRYPTION_ERROR = 3
         }
+    }
+}
+
+/** Namespace ServerSync. */
+export namespace ServerSync {
+
+    /** Properties of a CoexStateSync. */
+    interface ICoexStateSync {
+
+        /** CoexStateSync collectionMutations */
+        collectionMutations?: (ServerSync.CoexStateSync.ICollectionMutations[]|null);
+    }
+
+    /** Represents a CoexStateSync. */
+    class CoexStateSync implements ICoexStateSync {
+
+        /**
+         * Constructs a new CoexStateSync.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ICoexStateSync);
+
+        /** CoexStateSync collectionMutations. */
+        public collectionMutations: ServerSync.CoexStateSync.ICollectionMutations[];
+
+        /**
+         * Creates a new CoexStateSync instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CoexStateSync instance
+         */
+        public static create(properties?: ServerSync.ICoexStateSync): ServerSync.CoexStateSync;
+
+        /**
+         * Encodes the specified CoexStateSync message. Does not implicitly {@link ServerSync.CoexStateSync.verify|verify} messages.
+         * @param message CoexStateSync message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ICoexStateSync, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CoexStateSync message, length delimited. Does not implicitly {@link ServerSync.CoexStateSync.verify|verify} messages.
+         * @param message CoexStateSync message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ICoexStateSync, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CoexStateSync message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CoexStateSync
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.CoexStateSync;
+
+        /**
+         * Decodes a CoexStateSync message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CoexStateSync
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.CoexStateSync;
+
+        /**
+         * Verifies a CoexStateSync message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CoexStateSync message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CoexStateSync
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.CoexStateSync;
+
+        /**
+         * Creates a plain object from a CoexStateSync message. Also converts values to other types if specified.
+         * @param message CoexStateSync
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.CoexStateSync, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CoexStateSync to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CoexStateSync
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace CoexStateSync {
+
+        /** Properties of a CollectionMutations. */
+        interface ICollectionMutations {
+
+            /** CollectionMutations collection */
+            collection?: (string|null);
+
+            /** CollectionMutations mutations */
+            mutations?: (ServerSync.CoexStateSync.IMutation[]|null);
+        }
+
+        /** Represents a CollectionMutations. */
+        class CollectionMutations implements ICollectionMutations {
+
+            /**
+             * Constructs a new CollectionMutations.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: ServerSync.CoexStateSync.ICollectionMutations);
+
+            /** CollectionMutations collection. */
+            public collection: string;
+
+            /** CollectionMutations mutations. */
+            public mutations: ServerSync.CoexStateSync.IMutation[];
+
+            /**
+             * Creates a new CollectionMutations instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CollectionMutations instance
+             */
+            public static create(properties?: ServerSync.CoexStateSync.ICollectionMutations): ServerSync.CoexStateSync.CollectionMutations;
+
+            /**
+             * Encodes the specified CollectionMutations message. Does not implicitly {@link ServerSync.CoexStateSync.CollectionMutations.verify|verify} messages.
+             * @param message CollectionMutations message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: ServerSync.CoexStateSync.ICollectionMutations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CollectionMutations message, length delimited. Does not implicitly {@link ServerSync.CoexStateSync.CollectionMutations.verify|verify} messages.
+             * @param message CollectionMutations message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: ServerSync.CoexStateSync.ICollectionMutations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CollectionMutations message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CollectionMutations
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.CoexStateSync.CollectionMutations;
+
+            /**
+             * Decodes a CollectionMutations message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CollectionMutations
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.CoexStateSync.CollectionMutations;
+
+            /**
+             * Verifies a CollectionMutations message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CollectionMutations message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CollectionMutations
+             */
+            public static fromObject(object: { [k: string]: any }): ServerSync.CoexStateSync.CollectionMutations;
+
+            /**
+             * Creates a plain object from a CollectionMutations message. Also converts values to other types if specified.
+             * @param message CollectionMutations
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: ServerSync.CoexStateSync.CollectionMutations, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CollectionMutations to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CollectionMutations
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a Mutation. */
+        interface IMutation {
+
+            /** Mutation index */
+            index?: (ServerSync.ISyncdIndex|null);
+
+            /** Mutation value */
+            value?: (ServerSync.ISyncdValue|null);
+
+            /** Mutation dirtyVersion */
+            dirtyVersion?: (number|Long|null);
+
+            /** Mutation operation */
+            operation?: (ServerSync.SyncdMutation.SyncdOperation|null);
+        }
+
+        /** Represents a Mutation. */
+        class Mutation implements IMutation {
+
+            /**
+             * Constructs a new Mutation.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: ServerSync.CoexStateSync.IMutation);
+
+            /** Mutation index. */
+            public index?: (ServerSync.ISyncdIndex|null);
+
+            /** Mutation value. */
+            public value?: (ServerSync.ISyncdValue|null);
+
+            /** Mutation dirtyVersion. */
+            public dirtyVersion: (number|Long);
+
+            /** Mutation operation. */
+            public operation: ServerSync.SyncdMutation.SyncdOperation;
+
+            /**
+             * Creates a new Mutation instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Mutation instance
+             */
+            public static create(properties?: ServerSync.CoexStateSync.IMutation): ServerSync.CoexStateSync.Mutation;
+
+            /**
+             * Encodes the specified Mutation message. Does not implicitly {@link ServerSync.CoexStateSync.Mutation.verify|verify} messages.
+             * @param message Mutation message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: ServerSync.CoexStateSync.IMutation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Mutation message, length delimited. Does not implicitly {@link ServerSync.CoexStateSync.Mutation.verify|verify} messages.
+             * @param message Mutation message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: ServerSync.CoexStateSync.IMutation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a Mutation message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Mutation
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.CoexStateSync.Mutation;
+
+            /**
+             * Decodes a Mutation message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Mutation
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.CoexStateSync.Mutation;
+
+            /**
+             * Verifies a Mutation message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a Mutation message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Mutation
+             */
+            public static fromObject(object: { [k: string]: any }): ServerSync.CoexStateSync.Mutation;
+
+            /**
+             * Creates a plain object from a Mutation message. Also converts values to other types if specified.
+             * @param message Mutation
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: ServerSync.CoexStateSync.Mutation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Mutation to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for Mutation
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+    }
+
+    /** Properties of a SyncdPatch. */
+    interface ISyncdPatch {
+
+        /** SyncdPatch version */
+        version?: (ServerSync.ISyncdVersion|null);
+
+        /** SyncdPatch mutations */
+        mutations?: (ServerSync.ISyncdMutation[]|null);
+
+        /** SyncdPatch externalMutations */
+        externalMutations?: (ServerSync.IExternalBlobReference|null);
+
+        /** SyncdPatch snapshotMac */
+        snapshotMac?: (Uint8Array|null);
+
+        /** SyncdPatch patchMac */
+        patchMac?: (Uint8Array|null);
+
+        /** SyncdPatch keyId */
+        keyId?: (ServerSync.IKeyId|null);
+
+        /** SyncdPatch exitCode */
+        exitCode?: (ServerSync.IExitCode|null);
+
+        /** SyncdPatch deviceIndex */
+        deviceIndex?: (number|null);
+
+        /** SyncdPatch clientDebugData */
+        clientDebugData?: (Uint8Array|null);
+    }
+
+    /** Represents a SyncdPatch. */
+    class SyncdPatch implements ISyncdPatch {
+
+        /**
+         * Constructs a new SyncdPatch.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ISyncdPatch);
+
+        /** SyncdPatch version. */
+        public version?: (ServerSync.ISyncdVersion|null);
+
+        /** SyncdPatch mutations. */
+        public mutations: ServerSync.ISyncdMutation[];
+
+        /** SyncdPatch externalMutations. */
+        public externalMutations?: (ServerSync.IExternalBlobReference|null);
+
+        /** SyncdPatch snapshotMac. */
+        public snapshotMac: Uint8Array;
+
+        /** SyncdPatch patchMac. */
+        public patchMac: Uint8Array;
+
+        /** SyncdPatch keyId. */
+        public keyId?: (ServerSync.IKeyId|null);
+
+        /** SyncdPatch exitCode. */
+        public exitCode?: (ServerSync.IExitCode|null);
+
+        /** SyncdPatch deviceIndex. */
+        public deviceIndex: number;
+
+        /** SyncdPatch clientDebugData. */
+        public clientDebugData: Uint8Array;
+
+        /**
+         * Creates a new SyncdPatch instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SyncdPatch instance
+         */
+        public static create(properties?: ServerSync.ISyncdPatch): ServerSync.SyncdPatch;
+
+        /**
+         * Encodes the specified SyncdPatch message. Does not implicitly {@link ServerSync.SyncdPatch.verify|verify} messages.
+         * @param message SyncdPatch message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ISyncdPatch, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SyncdPatch message, length delimited. Does not implicitly {@link ServerSync.SyncdPatch.verify|verify} messages.
+         * @param message SyncdPatch message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ISyncdPatch, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SyncdPatch message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SyncdPatch
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.SyncdPatch;
+
+        /**
+         * Decodes a SyncdPatch message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SyncdPatch
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.SyncdPatch;
+
+        /**
+         * Verifies a SyncdPatch message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SyncdPatch message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SyncdPatch
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.SyncdPatch;
+
+        /**
+         * Creates a plain object from a SyncdPatch message. Also converts values to other types if specified.
+         * @param message SyncdPatch
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.SyncdPatch, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SyncdPatch to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SyncdPatch
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SyncdMutation. */
+    interface ISyncdMutation {
+
+        /** SyncdMutation operation */
+        operation?: (ServerSync.SyncdMutation.SyncdOperation|null);
+
+        /** SyncdMutation record */
+        record?: (ServerSync.ISyncdRecord|null);
+    }
+
+    /** Represents a SyncdMutation. */
+    class SyncdMutation implements ISyncdMutation {
+
+        /**
+         * Constructs a new SyncdMutation.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ISyncdMutation);
+
+        /** SyncdMutation operation. */
+        public operation: ServerSync.SyncdMutation.SyncdOperation;
+
+        /** SyncdMutation record. */
+        public record?: (ServerSync.ISyncdRecord|null);
+
+        /**
+         * Creates a new SyncdMutation instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SyncdMutation instance
+         */
+        public static create(properties?: ServerSync.ISyncdMutation): ServerSync.SyncdMutation;
+
+        /**
+         * Encodes the specified SyncdMutation message. Does not implicitly {@link ServerSync.SyncdMutation.verify|verify} messages.
+         * @param message SyncdMutation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ISyncdMutation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SyncdMutation message, length delimited. Does not implicitly {@link ServerSync.SyncdMutation.verify|verify} messages.
+         * @param message SyncdMutation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ISyncdMutation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SyncdMutation message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SyncdMutation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.SyncdMutation;
+
+        /**
+         * Decodes a SyncdMutation message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SyncdMutation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.SyncdMutation;
+
+        /**
+         * Verifies a SyncdMutation message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SyncdMutation message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SyncdMutation
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.SyncdMutation;
+
+        /**
+         * Creates a plain object from a SyncdMutation message. Also converts values to other types if specified.
+         * @param message SyncdMutation
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.SyncdMutation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SyncdMutation to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SyncdMutation
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace SyncdMutation {
+
+        /** SyncdOperation enum. */
+        enum SyncdOperation {
+            SET = 0,
+            REMOVE = 1
+        }
+    }
+
+    /** Properties of a SyncdMutations. */
+    interface ISyncdMutations {
+
+        /** SyncdMutations mutations */
+        mutations?: (ServerSync.ISyncdMutation[]|null);
+    }
+
+    /** Represents a SyncdMutations. */
+    class SyncdMutations implements ISyncdMutations {
+
+        /**
+         * Constructs a new SyncdMutations.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ISyncdMutations);
+
+        /** SyncdMutations mutations. */
+        public mutations: ServerSync.ISyncdMutation[];
+
+        /**
+         * Creates a new SyncdMutations instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SyncdMutations instance
+         */
+        public static create(properties?: ServerSync.ISyncdMutations): ServerSync.SyncdMutations;
+
+        /**
+         * Encodes the specified SyncdMutations message. Does not implicitly {@link ServerSync.SyncdMutations.verify|verify} messages.
+         * @param message SyncdMutations message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ISyncdMutations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SyncdMutations message, length delimited. Does not implicitly {@link ServerSync.SyncdMutations.verify|verify} messages.
+         * @param message SyncdMutations message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ISyncdMutations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SyncdMutations message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SyncdMutations
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.SyncdMutations;
+
+        /**
+         * Decodes a SyncdMutations message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SyncdMutations
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.SyncdMutations;
+
+        /**
+         * Verifies a SyncdMutations message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SyncdMutations message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SyncdMutations
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.SyncdMutations;
+
+        /**
+         * Creates a plain object from a SyncdMutations message. Also converts values to other types if specified.
+         * @param message SyncdMutations
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.SyncdMutations, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SyncdMutations to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SyncdMutations
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SyncdSnapshot. */
+    interface ISyncdSnapshot {
+
+        /** SyncdSnapshot version */
+        version?: (ServerSync.ISyncdVersion|null);
+
+        /** SyncdSnapshot records */
+        records?: (ServerSync.ISyncdRecord[]|null);
+
+        /** SyncdSnapshot mac */
+        mac?: (Uint8Array|null);
+
+        /** SyncdSnapshot keyId */
+        keyId?: (ServerSync.IKeyId|null);
+    }
+
+    /** Represents a SyncdSnapshot. */
+    class SyncdSnapshot implements ISyncdSnapshot {
+
+        /**
+         * Constructs a new SyncdSnapshot.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ISyncdSnapshot);
+
+        /** SyncdSnapshot version. */
+        public version?: (ServerSync.ISyncdVersion|null);
+
+        /** SyncdSnapshot records. */
+        public records: ServerSync.ISyncdRecord[];
+
+        /** SyncdSnapshot mac. */
+        public mac: Uint8Array;
+
+        /** SyncdSnapshot keyId. */
+        public keyId?: (ServerSync.IKeyId|null);
+
+        /**
+         * Creates a new SyncdSnapshot instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SyncdSnapshot instance
+         */
+        public static create(properties?: ServerSync.ISyncdSnapshot): ServerSync.SyncdSnapshot;
+
+        /**
+         * Encodes the specified SyncdSnapshot message. Does not implicitly {@link ServerSync.SyncdSnapshot.verify|verify} messages.
+         * @param message SyncdSnapshot message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ISyncdSnapshot, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SyncdSnapshot message, length delimited. Does not implicitly {@link ServerSync.SyncdSnapshot.verify|verify} messages.
+         * @param message SyncdSnapshot message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ISyncdSnapshot, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SyncdSnapshot message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SyncdSnapshot
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.SyncdSnapshot;
+
+        /**
+         * Decodes a SyncdSnapshot message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SyncdSnapshot
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.SyncdSnapshot;
+
+        /**
+         * Verifies a SyncdSnapshot message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SyncdSnapshot message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SyncdSnapshot
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.SyncdSnapshot;
+
+        /**
+         * Creates a plain object from a SyncdSnapshot message. Also converts values to other types if specified.
+         * @param message SyncdSnapshot
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.SyncdSnapshot, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SyncdSnapshot to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SyncdSnapshot
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an ExternalBlobReference. */
+    interface IExternalBlobReference {
+
+        /** ExternalBlobReference mediaKey */
+        mediaKey?: (Uint8Array|null);
+
+        /** ExternalBlobReference directPath */
+        directPath?: (string|null);
+
+        /** ExternalBlobReference handle */
+        handle?: (string|null);
+
+        /** ExternalBlobReference fileSizeBytes */
+        fileSizeBytes?: (number|Long|null);
+
+        /** ExternalBlobReference fileSha256 */
+        fileSha256?: (Uint8Array|null);
+
+        /** ExternalBlobReference fileEncSha256 */
+        fileEncSha256?: (Uint8Array|null);
+    }
+
+    /** Represents an ExternalBlobReference. */
+    class ExternalBlobReference implements IExternalBlobReference {
+
+        /**
+         * Constructs a new ExternalBlobReference.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.IExternalBlobReference);
+
+        /** ExternalBlobReference mediaKey. */
+        public mediaKey: Uint8Array;
+
+        /** ExternalBlobReference directPath. */
+        public directPath: string;
+
+        /** ExternalBlobReference handle. */
+        public handle: string;
+
+        /** ExternalBlobReference fileSizeBytes. */
+        public fileSizeBytes: (number|Long);
+
+        /** ExternalBlobReference fileSha256. */
+        public fileSha256: Uint8Array;
+
+        /** ExternalBlobReference fileEncSha256. */
+        public fileEncSha256: Uint8Array;
+
+        /**
+         * Creates a new ExternalBlobReference instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ExternalBlobReference instance
+         */
+        public static create(properties?: ServerSync.IExternalBlobReference): ServerSync.ExternalBlobReference;
+
+        /**
+         * Encodes the specified ExternalBlobReference message. Does not implicitly {@link ServerSync.ExternalBlobReference.verify|verify} messages.
+         * @param message ExternalBlobReference message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.IExternalBlobReference, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ExternalBlobReference message, length delimited. Does not implicitly {@link ServerSync.ExternalBlobReference.verify|verify} messages.
+         * @param message ExternalBlobReference message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.IExternalBlobReference, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an ExternalBlobReference message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ExternalBlobReference
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.ExternalBlobReference;
+
+        /**
+         * Decodes an ExternalBlobReference message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ExternalBlobReference
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.ExternalBlobReference;
+
+        /**
+         * Verifies an ExternalBlobReference message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an ExternalBlobReference message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ExternalBlobReference
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.ExternalBlobReference;
+
+        /**
+         * Creates a plain object from an ExternalBlobReference message. Also converts values to other types if specified.
+         * @param message ExternalBlobReference
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.ExternalBlobReference, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ExternalBlobReference to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ExternalBlobReference
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SyncdRecord. */
+    interface ISyncdRecord {
+
+        /** SyncdRecord index */
+        index?: (ServerSync.ISyncdIndex|null);
+
+        /** SyncdRecord value */
+        value?: (ServerSync.ISyncdValue|null);
+
+        /** SyncdRecord keyId */
+        keyId?: (ServerSync.IKeyId|null);
+    }
+
+    /** Represents a SyncdRecord. */
+    class SyncdRecord implements ISyncdRecord {
+
+        /**
+         * Constructs a new SyncdRecord.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ISyncdRecord);
+
+        /** SyncdRecord index. */
+        public index?: (ServerSync.ISyncdIndex|null);
+
+        /** SyncdRecord value. */
+        public value?: (ServerSync.ISyncdValue|null);
+
+        /** SyncdRecord keyId. */
+        public keyId?: (ServerSync.IKeyId|null);
+
+        /**
+         * Creates a new SyncdRecord instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SyncdRecord instance
+         */
+        public static create(properties?: ServerSync.ISyncdRecord): ServerSync.SyncdRecord;
+
+        /**
+         * Encodes the specified SyncdRecord message. Does not implicitly {@link ServerSync.SyncdRecord.verify|verify} messages.
+         * @param message SyncdRecord message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ISyncdRecord, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SyncdRecord message, length delimited. Does not implicitly {@link ServerSync.SyncdRecord.verify|verify} messages.
+         * @param message SyncdRecord message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ISyncdRecord, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SyncdRecord message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SyncdRecord
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.SyncdRecord;
+
+        /**
+         * Decodes a SyncdRecord message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SyncdRecord
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.SyncdRecord;
+
+        /**
+         * Verifies a SyncdRecord message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SyncdRecord message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SyncdRecord
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.SyncdRecord;
+
+        /**
+         * Creates a plain object from a SyncdRecord message. Also converts values to other types if specified.
+         * @param message SyncdRecord
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.SyncdRecord, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SyncdRecord to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SyncdRecord
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a KeyId. */
+    interface IKeyId {
+
+        /** KeyId id */
+        id?: (Uint8Array|null);
+    }
+
+    /** Represents a KeyId. */
+    class KeyId implements IKeyId {
+
+        /**
+         * Constructs a new KeyId.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.IKeyId);
+
+        /** KeyId id. */
+        public id: Uint8Array;
+
+        /**
+         * Creates a new KeyId instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns KeyId instance
+         */
+        public static create(properties?: ServerSync.IKeyId): ServerSync.KeyId;
+
+        /**
+         * Encodes the specified KeyId message. Does not implicitly {@link ServerSync.KeyId.verify|verify} messages.
+         * @param message KeyId message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.IKeyId, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified KeyId message, length delimited. Does not implicitly {@link ServerSync.KeyId.verify|verify} messages.
+         * @param message KeyId message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.IKeyId, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a KeyId message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns KeyId
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.KeyId;
+
+        /**
+         * Decodes a KeyId message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns KeyId
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.KeyId;
+
+        /**
+         * Verifies a KeyId message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a KeyId message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns KeyId
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.KeyId;
+
+        /**
+         * Creates a plain object from a KeyId message. Also converts values to other types if specified.
+         * @param message KeyId
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.KeyId, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this KeyId to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for KeyId
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SyncdValue. */
+    interface ISyncdValue {
+
+        /** SyncdValue blob */
+        blob?: (Uint8Array|null);
+    }
+
+    /** Represents a SyncdValue. */
+    class SyncdValue implements ISyncdValue {
+
+        /**
+         * Constructs a new SyncdValue.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ISyncdValue);
+
+        /** SyncdValue blob. */
+        public blob: Uint8Array;
+
+        /**
+         * Creates a new SyncdValue instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SyncdValue instance
+         */
+        public static create(properties?: ServerSync.ISyncdValue): ServerSync.SyncdValue;
+
+        /**
+         * Encodes the specified SyncdValue message. Does not implicitly {@link ServerSync.SyncdValue.verify|verify} messages.
+         * @param message SyncdValue message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ISyncdValue, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SyncdValue message, length delimited. Does not implicitly {@link ServerSync.SyncdValue.verify|verify} messages.
+         * @param message SyncdValue message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ISyncdValue, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SyncdValue message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SyncdValue
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.SyncdValue;
+
+        /**
+         * Decodes a SyncdValue message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SyncdValue
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.SyncdValue;
+
+        /**
+         * Verifies a SyncdValue message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SyncdValue message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SyncdValue
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.SyncdValue;
+
+        /**
+         * Creates a plain object from a SyncdValue message. Also converts values to other types if specified.
+         * @param message SyncdValue
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.SyncdValue, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SyncdValue to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SyncdValue
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SyncdIndex. */
+    interface ISyncdIndex {
+
+        /** SyncdIndex blob */
+        blob?: (Uint8Array|null);
+    }
+
+    /** Represents a SyncdIndex. */
+    class SyncdIndex implements ISyncdIndex {
+
+        /**
+         * Constructs a new SyncdIndex.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ISyncdIndex);
+
+        /** SyncdIndex blob. */
+        public blob: Uint8Array;
+
+        /**
+         * Creates a new SyncdIndex instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SyncdIndex instance
+         */
+        public static create(properties?: ServerSync.ISyncdIndex): ServerSync.SyncdIndex;
+
+        /**
+         * Encodes the specified SyncdIndex message. Does not implicitly {@link ServerSync.SyncdIndex.verify|verify} messages.
+         * @param message SyncdIndex message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ISyncdIndex, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SyncdIndex message, length delimited. Does not implicitly {@link ServerSync.SyncdIndex.verify|verify} messages.
+         * @param message SyncdIndex message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ISyncdIndex, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SyncdIndex message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SyncdIndex
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.SyncdIndex;
+
+        /**
+         * Decodes a SyncdIndex message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SyncdIndex
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.SyncdIndex;
+
+        /**
+         * Verifies a SyncdIndex message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SyncdIndex message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SyncdIndex
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.SyncdIndex;
+
+        /**
+         * Creates a plain object from a SyncdIndex message. Also converts values to other types if specified.
+         * @param message SyncdIndex
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.SyncdIndex, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SyncdIndex to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SyncdIndex
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an ExitCode. */
+    interface IExitCode {
+
+        /** ExitCode code */
+        code?: (number|Long|null);
+
+        /** ExitCode text */
+        text?: (string|null);
+    }
+
+    /** Represents an ExitCode. */
+    class ExitCode implements IExitCode {
+
+        /**
+         * Constructs a new ExitCode.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.IExitCode);
+
+        /** ExitCode code. */
+        public code: (number|Long);
+
+        /** ExitCode text. */
+        public text: string;
+
+        /**
+         * Creates a new ExitCode instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ExitCode instance
+         */
+        public static create(properties?: ServerSync.IExitCode): ServerSync.ExitCode;
+
+        /**
+         * Encodes the specified ExitCode message. Does not implicitly {@link ServerSync.ExitCode.verify|verify} messages.
+         * @param message ExitCode message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.IExitCode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ExitCode message, length delimited. Does not implicitly {@link ServerSync.ExitCode.verify|verify} messages.
+         * @param message ExitCode message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.IExitCode, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an ExitCode message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ExitCode
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.ExitCode;
+
+        /**
+         * Decodes an ExitCode message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ExitCode
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.ExitCode;
+
+        /**
+         * Verifies an ExitCode message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an ExitCode message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ExitCode
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.ExitCode;
+
+        /**
+         * Creates a plain object from an ExitCode message. Also converts values to other types if specified.
+         * @param message ExitCode
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.ExitCode, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ExitCode to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ExitCode
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SyncdVersion. */
+    interface ISyncdVersion {
+
+        /** SyncdVersion version */
+        version?: (number|Long|null);
+    }
+
+    /** Represents a SyncdVersion. */
+    class SyncdVersion implements ISyncdVersion {
+
+        /**
+         * Constructs a new SyncdVersion.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ISyncdVersion);
+
+        /** SyncdVersion version. */
+        public version: (number|Long);
+
+        /**
+         * Creates a new SyncdVersion instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SyncdVersion instance
+         */
+        public static create(properties?: ServerSync.ISyncdVersion): ServerSync.SyncdVersion;
+
+        /**
+         * Encodes the specified SyncdVersion message. Does not implicitly {@link ServerSync.SyncdVersion.verify|verify} messages.
+         * @param message SyncdVersion message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ISyncdVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SyncdVersion message, length delimited. Does not implicitly {@link ServerSync.SyncdVersion.verify|verify} messages.
+         * @param message SyncdVersion message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ISyncdVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SyncdVersion message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SyncdVersion
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.SyncdVersion;
+
+        /**
+         * Decodes a SyncdVersion message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SyncdVersion
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.SyncdVersion;
+
+        /**
+         * Verifies a SyncdVersion message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SyncdVersion message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SyncdVersion
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.SyncdVersion;
+
+        /**
+         * Creates a plain object from a SyncdVersion message. Also converts values to other types if specified.
+         * @param message SyncdVersion
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.SyncdVersion, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SyncdVersion to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SyncdVersion
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }

@@ -1,6 +1,7 @@
 exports.AICommon = require('./AICommon/AICommon').AICommon;
 exports.AICommonDeprecated = require('./AICommonDeprecated/AICommonDeprecated').AICommonDeprecated;
 exports.Adv = require('./Adv/Adv').Adv;
+exports.Aea = require('./Aea/Aea').Aea;
 exports.BotMetadata = require('./BotMetadata/BotMetadata').BotMetadata;
 exports.Cert = require('./Cert/Cert').Cert;
 exports.ChatLockSettings = require('./ChatLockSettings/ChatLockSettings').ChatLockSettings;

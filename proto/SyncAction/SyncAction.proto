@@ -121,6 +121,7 @@ message SyncActionValue {
     optional BizAISettingsNudgeAction bizAiSettingsNudgeAction = 87;
     optional CoexV2VersionAction coexV2VersionAction = 88;
     optional WASARootSecretAction wasaRootSecretAction = 89;
+    optional BubbleLockMessageAction bubbleLockMessageAction = 90;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceId = 2;
@@ -168,6 +169,9 @@ message SyncActionValue {
         required string lidJid = 1;
         optional string pnJid = 2;
     }
+    message BubbleLockMessageAction {
+        optional bool locked = 1;
+    }
     message BusinessBroadcastAssociationAction {
         optional bool deleted = 1;
     }
@@ -202,6 +206,7 @@ message SyncActionValue {
         optional string listName = 3;
         repeated string labelIds = 4;
         optional string audienceExpression = 5;
+        optional string customAudienceFbid = 6;
     }
     message CallLogAction {
         optional CallLogRecord callLogRecord = 1;
@@ -821,6 +826,7 @@ enum MutationProps {
     BIZ_AI_SETTINGS_NUDGE_ACTION = 87;
     COEX_V2_VERSION_ACTION = 88;
     WASA_ROOT_SECRET_ACTION = 89;
+    BUBBLE_LOCK_MESSAGE_ACTION = 90;
     SHARE_OWN_PN = 10001;
     BUSINESS_BROADCAST_ACTION = 10002;
     AI_THREAD_DELETE_ACTION = 10003;

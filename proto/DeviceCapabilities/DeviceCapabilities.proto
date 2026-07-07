@@ -8,6 +8,10 @@ message DeviceCapabilities {
     optional UserHasAvatar userHasAvatar = 4;
     optional MemberNameTagPrimarySupport memberNameTagPrimarySupport = 5;
     optional AiThread aiThread = 6;
+    optional AiFbidMigration aiFbidMigration = 7;
+    message AiFbidMigration {
+        optional uint64 chatDbMigrationTimestamp = 1;
+    }
     message AiThread {
         optional SupportLevel supportLevel = 1;
         enum SupportLevel {

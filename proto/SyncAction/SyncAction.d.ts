@@ -536,6 +536,9 @@ export namespace SyncAction {
 
         /** SyncActionValue wasaRootSecretAction */
         wasaRootSecretAction?: (SyncAction.SyncActionValue.IWASARootSecretAction|null);
+
+        /** SyncActionValue bubbleLockMessageAction */
+        bubbleLockMessageAction?: (SyncAction.SyncActionValue.IBubbleLockMessageAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -786,6 +789,9 @@ export namespace SyncAction {
 
         /** SyncActionValue wasaRootSecretAction. */
         public wasaRootSecretAction?: (SyncAction.SyncActionValue.IWASARootSecretAction|null);
+
+        /** SyncActionValue bubbleLockMessageAction. */
+        public bubbleLockMessageAction?: (SyncAction.SyncActionValue.IBubbleLockMessageAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -1805,6 +1811,103 @@ export namespace SyncAction {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a BubbleLockMessageAction. */
+        interface IBubbleLockMessageAction {
+
+            /** BubbleLockMessageAction locked */
+            locked?: (boolean|null);
+        }
+
+        /** Represents a BubbleLockMessageAction. */
+        class BubbleLockMessageAction implements IBubbleLockMessageAction {
+
+            /**
+             * Constructs a new BubbleLockMessageAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IBubbleLockMessageAction);
+
+            /** BubbleLockMessageAction locked. */
+            public locked: boolean;
+
+            /**
+             * Creates a new BubbleLockMessageAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BubbleLockMessageAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IBubbleLockMessageAction): SyncAction.SyncActionValue.BubbleLockMessageAction;
+
+            /**
+             * Encodes the specified BubbleLockMessageAction message. Does not implicitly {@link SyncAction.SyncActionValue.BubbleLockMessageAction.verify|verify} messages.
+             * @param message BubbleLockMessageAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IBubbleLockMessageAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BubbleLockMessageAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BubbleLockMessageAction.verify|verify} messages.
+             * @param message BubbleLockMessageAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IBubbleLockMessageAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BubbleLockMessageAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BubbleLockMessageAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.BubbleLockMessageAction;
+
+            /**
+             * Decodes a BubbleLockMessageAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BubbleLockMessageAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.BubbleLockMessageAction;
+
+            /**
+             * Verifies a BubbleLockMessageAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BubbleLockMessageAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BubbleLockMessageAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.BubbleLockMessageAction;
+
+            /**
+             * Creates a plain object from a BubbleLockMessageAction message. Also converts values to other types if specified.
+             * @param message BubbleLockMessageAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.BubbleLockMessageAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BubbleLockMessageAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BubbleLockMessageAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a BusinessBroadcastAssociationAction. */
         interface IBusinessBroadcastAssociationAction {
 
@@ -2194,6 +2297,9 @@ export namespace SyncAction {
 
             /** BusinessBroadcastListAction audienceExpression */
             audienceExpression?: (string|null);
+
+            /** BusinessBroadcastListAction customAudienceFbid */
+            customAudienceFbid?: (string|null);
         }
 
         /** Represents a BusinessBroadcastListAction. */
@@ -2219,6 +2325,9 @@ export namespace SyncAction {
 
             /** BusinessBroadcastListAction audienceExpression. */
             public audienceExpression: string;
+
+            /** BusinessBroadcastListAction customAudienceFbid. */
+            public customAudienceFbid: string;
 
             /**
              * Creates a new BusinessBroadcastListAction instance using the specified properties.
@@ -11067,6 +11176,7 @@ export namespace SyncAction {
         BIZ_AI_SETTINGS_NUDGE_ACTION = 87,
         COEX_V2_VERSION_ACTION = 88,
         WASA_ROOT_SECRET_ACTION = 89,
+        BUBBLE_LOCK_MESSAGE_ACTION = 90,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003
@@ -11560,6 +11670,9 @@ export namespace DeviceCapabilities {
 
         /** DeviceCapabilities aiThread */
         aiThread?: (DeviceCapabilities.DeviceCapabilities.IAiThread|null);
+
+        /** DeviceCapabilities aiFbidMigration */
+        aiFbidMigration?: (DeviceCapabilities.DeviceCapabilities.IAiFbidMigration|null);
     }
 
     /** Represents a DeviceCapabilities. */
@@ -11588,6 +11701,9 @@ export namespace DeviceCapabilities {
 
         /** DeviceCapabilities aiThread. */
         public aiThread?: (DeviceCapabilities.DeviceCapabilities.IAiThread|null);
+
+        /** DeviceCapabilities aiFbidMigration. */
+        public aiFbidMigration?: (DeviceCapabilities.DeviceCapabilities.IAiFbidMigration|null);
 
         /**
          * Creates a new DeviceCapabilities instance using the specified properties.
@@ -11668,6 +11784,103 @@ export namespace DeviceCapabilities {
     }
 
     namespace DeviceCapabilities {
+
+        /** Properties of an AiFbidMigration. */
+        interface IAiFbidMigration {
+
+            /** AiFbidMigration chatDbMigrationTimestamp */
+            chatDbMigrationTimestamp?: (number|Long|null);
+        }
+
+        /** Represents an AiFbidMigration. */
+        class AiFbidMigration implements IAiFbidMigration {
+
+            /**
+             * Constructs a new AiFbidMigration.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: DeviceCapabilities.DeviceCapabilities.IAiFbidMigration);
+
+            /** AiFbidMigration chatDbMigrationTimestamp. */
+            public chatDbMigrationTimestamp: (number|Long);
+
+            /**
+             * Creates a new AiFbidMigration instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AiFbidMigration instance
+             */
+            public static create(properties?: DeviceCapabilities.DeviceCapabilities.IAiFbidMigration): DeviceCapabilities.DeviceCapabilities.AiFbidMigration;
+
+            /**
+             * Encodes the specified AiFbidMigration message. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.AiFbidMigration.verify|verify} messages.
+             * @param message AiFbidMigration message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: DeviceCapabilities.DeviceCapabilities.IAiFbidMigration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AiFbidMigration message, length delimited. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.AiFbidMigration.verify|verify} messages.
+             * @param message AiFbidMigration message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: DeviceCapabilities.DeviceCapabilities.IAiFbidMigration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an AiFbidMigration message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AiFbidMigration
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): DeviceCapabilities.DeviceCapabilities.AiFbidMigration;
+
+            /**
+             * Decodes an AiFbidMigration message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AiFbidMigration
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): DeviceCapabilities.DeviceCapabilities.AiFbidMigration;
+
+            /**
+             * Verifies an AiFbidMigration message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an AiFbidMigration message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AiFbidMigration
+             */
+            public static fromObject(object: { [k: string]: any }): DeviceCapabilities.DeviceCapabilities.AiFbidMigration;
+
+            /**
+             * Creates a plain object from an AiFbidMigration message. Also converts values to other types if specified.
+             * @param message AiFbidMigration
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: DeviceCapabilities.DeviceCapabilities.AiFbidMigration, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AiFbidMigration to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AiFbidMigration
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
 
         /** Properties of an AiThread. */
         interface IAiThread {

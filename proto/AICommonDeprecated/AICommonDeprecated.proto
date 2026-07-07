@@ -1,7 +1,7 @@
 syntax = "proto2";
 package AICommonDeprecated;
 
-import "../StatusAttributions/StatusAttributions.proto";
+import "../AICommon/AICommon.proto";
 
 message AIRichResponseSubMessage {
     optional AIRichResponseSubMessageType messageType = 1;
@@ -20,7 +20,7 @@ message AIRichResponseContentItemsMetadata {
     repeated AIRichResponseContentItemMetadata itemsMetadata = 1;
     optional ContentType contentType = 2;
     message AIRichResponseContentItemMetadata {
-        oneof aIRichResponseContentItem {
+        oneof aiRichResponseContentItem {
             AIRichResponseContentItemsMetadata.AIRichResponseReelItem reelItem = 1;
         }
     }

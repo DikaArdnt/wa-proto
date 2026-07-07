@@ -3,6 +3,324 @@ import Long = require("long");
 /** Namespace ServerSync. */
 export namespace ServerSync {
 
+    /** Properties of a CoexStateSync. */
+    interface ICoexStateSync {
+
+        /** CoexStateSync collectionMutations */
+        collectionMutations?: (ServerSync.CoexStateSync.ICollectionMutations[]|null);
+    }
+
+    /** Represents a CoexStateSync. */
+    class CoexStateSync implements ICoexStateSync {
+
+        /**
+         * Constructs a new CoexStateSync.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: ServerSync.ICoexStateSync);
+
+        /** CoexStateSync collectionMutations. */
+        public collectionMutations: ServerSync.CoexStateSync.ICollectionMutations[];
+
+        /**
+         * Creates a new CoexStateSync instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CoexStateSync instance
+         */
+        public static create(properties?: ServerSync.ICoexStateSync): ServerSync.CoexStateSync;
+
+        /**
+         * Encodes the specified CoexStateSync message. Does not implicitly {@link ServerSync.CoexStateSync.verify|verify} messages.
+         * @param message CoexStateSync message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: ServerSync.ICoexStateSync, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CoexStateSync message, length delimited. Does not implicitly {@link ServerSync.CoexStateSync.verify|verify} messages.
+         * @param message CoexStateSync message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: ServerSync.ICoexStateSync, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CoexStateSync message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CoexStateSync
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.CoexStateSync;
+
+        /**
+         * Decodes a CoexStateSync message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CoexStateSync
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.CoexStateSync;
+
+        /**
+         * Verifies a CoexStateSync message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CoexStateSync message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CoexStateSync
+         */
+        public static fromObject(object: { [k: string]: any }): ServerSync.CoexStateSync;
+
+        /**
+         * Creates a plain object from a CoexStateSync message. Also converts values to other types if specified.
+         * @param message CoexStateSync
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: ServerSync.CoexStateSync, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CoexStateSync to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CoexStateSync
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace CoexStateSync {
+
+        /** Properties of a CollectionMutations. */
+        interface ICollectionMutations {
+
+            /** CollectionMutations collection */
+            collection?: (string|null);
+
+            /** CollectionMutations mutations */
+            mutations?: (ServerSync.CoexStateSync.IMutation[]|null);
+        }
+
+        /** Represents a CollectionMutations. */
+        class CollectionMutations implements ICollectionMutations {
+
+            /**
+             * Constructs a new CollectionMutations.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: ServerSync.CoexStateSync.ICollectionMutations);
+
+            /** CollectionMutations collection. */
+            public collection: string;
+
+            /** CollectionMutations mutations. */
+            public mutations: ServerSync.CoexStateSync.IMutation[];
+
+            /**
+             * Creates a new CollectionMutations instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CollectionMutations instance
+             */
+            public static create(properties?: ServerSync.CoexStateSync.ICollectionMutations): ServerSync.CoexStateSync.CollectionMutations;
+
+            /**
+             * Encodes the specified CollectionMutations message. Does not implicitly {@link ServerSync.CoexStateSync.CollectionMutations.verify|verify} messages.
+             * @param message CollectionMutations message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: ServerSync.CoexStateSync.ICollectionMutations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CollectionMutations message, length delimited. Does not implicitly {@link ServerSync.CoexStateSync.CollectionMutations.verify|verify} messages.
+             * @param message CollectionMutations message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: ServerSync.CoexStateSync.ICollectionMutations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CollectionMutations message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CollectionMutations
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.CoexStateSync.CollectionMutations;
+
+            /**
+             * Decodes a CollectionMutations message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CollectionMutations
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.CoexStateSync.CollectionMutations;
+
+            /**
+             * Verifies a CollectionMutations message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CollectionMutations message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CollectionMutations
+             */
+            public static fromObject(object: { [k: string]: any }): ServerSync.CoexStateSync.CollectionMutations;
+
+            /**
+             * Creates a plain object from a CollectionMutations message. Also converts values to other types if specified.
+             * @param message CollectionMutations
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: ServerSync.CoexStateSync.CollectionMutations, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CollectionMutations to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CollectionMutations
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a Mutation. */
+        interface IMutation {
+
+            /** Mutation index */
+            index?: (ServerSync.ISyncdIndex|null);
+
+            /** Mutation value */
+            value?: (ServerSync.ISyncdValue|null);
+
+            /** Mutation dirtyVersion */
+            dirtyVersion?: (number|Long|null);
+
+            /** Mutation operation */
+            operation?: (ServerSync.SyncdMutation.SyncdOperation|null);
+        }
+
+        /** Represents a Mutation. */
+        class Mutation implements IMutation {
+
+            /**
+             * Constructs a new Mutation.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: ServerSync.CoexStateSync.IMutation);
+
+            /** Mutation index. */
+            public index?: (ServerSync.ISyncdIndex|null);
+
+            /** Mutation value. */
+            public value?: (ServerSync.ISyncdValue|null);
+
+            /** Mutation dirtyVersion. */
+            public dirtyVersion: (number|Long);
+
+            /** Mutation operation. */
+            public operation: ServerSync.SyncdMutation.SyncdOperation;
+
+            /**
+             * Creates a new Mutation instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Mutation instance
+             */
+            public static create(properties?: ServerSync.CoexStateSync.IMutation): ServerSync.CoexStateSync.Mutation;
+
+            /**
+             * Encodes the specified Mutation message. Does not implicitly {@link ServerSync.CoexStateSync.Mutation.verify|verify} messages.
+             * @param message Mutation message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: ServerSync.CoexStateSync.IMutation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Mutation message, length delimited. Does not implicitly {@link ServerSync.CoexStateSync.Mutation.verify|verify} messages.
+             * @param message Mutation message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: ServerSync.CoexStateSync.IMutation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a Mutation message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Mutation
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerSync.CoexStateSync.Mutation;
+
+            /**
+             * Decodes a Mutation message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Mutation
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerSync.CoexStateSync.Mutation;
+
+            /**
+             * Verifies a Mutation message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a Mutation message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Mutation
+             */
+            public static fromObject(object: { [k: string]: any }): ServerSync.CoexStateSync.Mutation;
+
+            /**
+             * Creates a plain object from a Mutation message. Also converts values to other types if specified.
+             * @param message Mutation
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: ServerSync.CoexStateSync.Mutation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Mutation to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for Mutation
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+    }
+
     /** Properties of a SyncdPatch. */
     interface ISyncdPatch {
 
