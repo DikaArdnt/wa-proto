@@ -539,6 +539,9 @@ export namespace SyncAction {
 
         /** SyncActionValue bubbleLockMessageAction */
         bubbleLockMessageAction?: (SyncAction.SyncActionValue.IBubbleLockMessageAction|null);
+
+        /** SyncActionValue labelSublistAction */
+        labelSublistAction?: (SyncAction.SyncActionValue.ILabelSublistAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -792,6 +795,9 @@ export namespace SyncAction {
 
         /** SyncActionValue bubbleLockMessageAction. */
         public bubbleLockMessageAction?: (SyncAction.SyncActionValue.IBubbleLockMessageAction|null);
+
+        /** SyncActionValue labelSublistAction. */
+        public labelSublistAction?: (SyncAction.SyncActionValue.ILabelSublistAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -4852,6 +4858,103 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for LabelReorderingAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a LabelSublistAction. */
+        interface ILabelSublistAction {
+
+            /** LabelSublistAction subListId */
+            subListId?: (number|null);
+        }
+
+        /** Represents a LabelSublistAction. */
+        class LabelSublistAction implements ILabelSublistAction {
+
+            /**
+             * Constructs a new LabelSublistAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.ILabelSublistAction);
+
+            /** LabelSublistAction subListId. */
+            public subListId: number;
+
+            /**
+             * Creates a new LabelSublistAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns LabelSublistAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.ILabelSublistAction): SyncAction.SyncActionValue.LabelSublistAction;
+
+            /**
+             * Encodes the specified LabelSublistAction message. Does not implicitly {@link SyncAction.SyncActionValue.LabelSublistAction.verify|verify} messages.
+             * @param message LabelSublistAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.ILabelSublistAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified LabelSublistAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.LabelSublistAction.verify|verify} messages.
+             * @param message LabelSublistAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.ILabelSublistAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a LabelSublistAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns LabelSublistAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.LabelSublistAction;
+
+            /**
+             * Decodes a LabelSublistAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns LabelSublistAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.LabelSublistAction;
+
+            /**
+             * Verifies a LabelSublistAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a LabelSublistAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns LabelSublistAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.LabelSublistAction;
+
+            /**
+             * Creates a plain object from a LabelSublistAction message. Also converts values to other types if specified.
+             * @param message LabelSublistAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.LabelSublistAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this LabelSublistAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for LabelSublistAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -10367,6 +10470,9 @@ export namespace SyncAction {
 
                 /** RootSecretEntry epoch */
                 epoch?: (number|Long|null);
+
+                /** RootSecretEntry status */
+                status?: (SyncAction.SyncActionValue.WASARootSecretAction.RootSecretEntry.Status|null);
             }
 
             /** Represents a RootSecretEntry. */
@@ -10386,6 +10492,9 @@ export namespace SyncAction {
 
                 /** RootSecretEntry epoch. */
                 public epoch: (number|Long);
+
+                /** RootSecretEntry status. */
+                public status: SyncAction.SyncActionValue.WASARootSecretAction.RootSecretEntry.Status;
 
                 /**
                  * Creates a new RootSecretEntry instance using the specified properties.
@@ -10463,6 +10572,15 @@ export namespace SyncAction {
                  * @returns The default type url
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace RootSecretEntry {
+
+                /** Status enum. */
+                enum Status {
+                    INACTIVE = 0,
+                    ACTIVE = 1
+                }
             }
         }
 
@@ -11177,6 +11295,7 @@ export namespace SyncAction {
         COEX_V2_VERSION_ACTION = 88,
         WASA_ROOT_SECRET_ACTION = 89,
         BUBBLE_LOCK_MESSAGE_ACTION = 90,
+        LABEL_SUBLIST_ACTION = 91,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

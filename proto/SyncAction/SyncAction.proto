@@ -122,6 +122,7 @@ message SyncActionValue {
     optional CoexV2VersionAction coexV2VersionAction = 88;
     optional WASARootSecretAction wasaRootSecretAction = 89;
     optional BubbleLockMessageAction bubbleLockMessageAction = 90;
+    optional LabelSublistAction labelSublistAction = 91;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceId = 2;
@@ -328,6 +329,9 @@ message SyncActionValue {
     }
     message LabelReorderingAction {
         repeated int32 sortedLabelIds = 1;
+    }
+    message LabelSublistAction {
+        optional int32 subListId = 1;
     }
     message LidContactAction {
         optional string fullName = 1;
@@ -676,6 +680,11 @@ message SyncActionValue {
             optional string id = 1;
             optional bytes rootSecret = 2;
             optional int64 epoch = 3;
+            optional Status status = 4;
+            enum Status {
+                INACTIVE = 0;
+                ACTIVE = 1;
+            }
         }
     }
     message WaffleAccountLinkStateAction {
@@ -827,6 +836,7 @@ enum MutationProps {
     COEX_V2_VERSION_ACTION = 88;
     WASA_ROOT_SECRET_ACTION = 89;
     BUBBLE_LOCK_MESSAGE_ACTION = 90;
+    LABEL_SUBLIST_ACTION = 91;
     SHARE_OWN_PN = 10001;
     BUSINESS_BROADCAST_ACTION = 10002;
     AI_THREAD_DELETE_ACTION = 10003;

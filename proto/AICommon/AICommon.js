@@ -3402,6 +3402,7 @@ $root.AICommon = (function() {
                 case 54:
                 case 55:
                 case 56:
+                case 57:
                     break;
                 }
             if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
@@ -3626,6 +3627,10 @@ $root.AICommon = (function() {
             case "NEW_CHAT_LIST":
             case 56:
                 message.botEntryPointOrigin = 56;
+                break;
+            case "CONTACTS_TAB":
+            case 57:
+                message.botEntryPointOrigin = 57;
                 break;
             }
             if (object.forwardScore != null)
@@ -21494,6 +21499,7 @@ $root.AICommon = (function() {
                 case 54:
                 case 55:
                 case 56:
+                case 57:
                     break;
                 }
             if (message.threadOrigin != null && Object.hasOwnProperty.call(message, "threadOrigin"))
@@ -21728,6 +21734,10 @@ $root.AICommon = (function() {
             case "NEW_CHAT_LIST":
             case 56:
                 message.destinationEntryPoint = 56;
+                break;
+            case "CONTACTS_TAB":
+            case 57:
+                message.destinationEntryPoint = 57;
                 break;
             }
             switch (object.threadOrigin) {
@@ -25943,6 +25953,7 @@ $root.AICommon = (function() {
      * @property {number} GROUP_MEMBER=54 GROUP_MEMBER value
      * @property {number} CHATLIST_SEARCH=55 CHATLIST_SEARCH value
      * @property {number} NEW_CHAT_LIST=56 NEW_CHAT_LIST value
+     * @property {number} CONTACTS_TAB=57 CONTACTS_TAB value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -25994,6 +26005,7 @@ $root.AICommon = (function() {
         values[valuesById[54] = "GROUP_MEMBER"] = 54;
         values[valuesById[55] = "CHATLIST_SEARCH"] = 55;
         values[valuesById[56] = "NEW_CHAT_LIST"] = 56;
+        values[valuesById[57] = "CONTACTS_TAB"] = 57;
         return values;
     })();
 

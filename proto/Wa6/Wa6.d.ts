@@ -1108,7 +1108,8 @@ export namespace Wa6 {
                 TEST = 34,
                 SMART_GLASSES = 35,
                 BLUE_VR = 36,
-                AR_WRIST = 37
+                AR_WRIST = 37,
+                WAIL = 38
             }
 
             /** ReleaseChannel enum. */
