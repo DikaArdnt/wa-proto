@@ -69054,6 +69054,7 @@ $root.E2E = (function() {
                     case 11:
                     case 12:
                     case 13:
+                    case 14:
                         break;
                     }
                 if (message.requestStickerReupload != null && Object.hasOwnProperty.call(message, "requestStickerReupload")) {
@@ -69206,6 +69207,10 @@ $root.E2E = (function() {
                 case "BUSINESS_BROADCAST_INSIGHTS_REFRESH":
                 case 13:
                     message.peerDataOperationRequestType = 13;
+                    break;
+                case "CONTACT_REFRESH_REQUEST":
+                case 14:
+                    message.peerDataOperationRequestType = 14;
                     break;
                 }
                 if (object.requestStickerReupload) {
@@ -72609,6 +72614,7 @@ $root.E2E = (function() {
                     case 11:
                     case 12:
                     case 13:
+                    case 14:
                         break;
                     }
                 if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
@@ -72706,6 +72712,10 @@ $root.E2E = (function() {
                 case "BUSINESS_BROADCAST_INSIGHTS_REFRESH":
                 case 13:
                     message.peerDataOperationRequestType = 13;
+                    break;
+                case "CONTACT_REFRESH_REQUEST":
+                case 14:
+                    message.peerDataOperationRequestType = 14;
                     break;
                 }
                 if (object.stanzaId != null)
@@ -77594,6 +77604,7 @@ $root.E2E = (function() {
          * @property {number} GALAXY_FLOW_ACTION=11 GALAXY_FLOW_ACTION value
          * @property {number} BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO=12 BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO value
          * @property {number} BUSINESS_BROADCAST_INSIGHTS_REFRESH=13 BUSINESS_BROADCAST_INSIGHTS_REFRESH value
+         * @property {number} CONTACT_REFRESH_REQUEST=14 CONTACT_REFRESH_REQUEST value
          */
         Message.PeerDataOperationRequestType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -77611,6 +77622,7 @@ $root.E2E = (function() {
             values[valuesById[11] = "GALAXY_FLOW_ACTION"] = 11;
             values[valuesById[12] = "BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO"] = 12;
             values[valuesById[13] = "BUSINESS_BROADCAST_INSIGHTS_REFRESH"] = 13;
+            values[valuesById[14] = "CONTACT_REFRESH_REQUEST"] = 14;
             return values;
         })();
 
