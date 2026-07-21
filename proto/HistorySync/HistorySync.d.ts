@@ -59206,7 +59206,8 @@ export namespace SyncAction {
                 ARCHIVED = 12,
                 LOCKED = 13,
                 INVITES = 14,
-                THIRD_PARTY = 15
+                THIRD_PARTY = 15,
+                LEAD = 16
             }
         }
 
