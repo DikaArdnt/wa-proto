@@ -5170,6 +5170,7 @@ $root.SyncAction = (function() {
                     case 3:
                     case 4:
                     case 5:
+                    case 6:
                         break;
                     }
                 if (message.version != null && Object.hasOwnProperty.call(message, "version"))
@@ -5229,6 +5230,10 @@ $root.SyncAction = (function() {
                 case "LEAD_GEN":
                 case 5:
                     message.category = 5;
+                    break;
+                case "HANDOFF_REMOVAL_TIMING":
+                case 6:
+                    message.category = 6;
                     break;
                 }
                 if (object.version != null)
@@ -5337,6 +5342,7 @@ $root.SyncAction = (function() {
              * @property {number} EXAMPLE_RESPONSES=3 EXAMPLE_RESPONSES value
              * @property {number} KNOWLEDGE=4 KNOWLEDGE value
              * @property {number} LEAD_GEN=5 LEAD_GEN value
+             * @property {number} HANDOFF_REMOVAL_TIMING=6 HANDOFF_REMOVAL_TIMING value
              */
             BizAISettingsNudgeAction.BizAISettingsCategory = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -5346,6 +5352,7 @@ $root.SyncAction = (function() {
                 values[valuesById[3] = "EXAMPLE_RESPONSES"] = 3;
                 values[valuesById[4] = "KNOWLEDGE"] = 4;
                 values[valuesById[5] = "LEAD_GEN"] = 5;
+                values[valuesById[6] = "HANDOFF_REMOVAL_TIMING"] = 6;
                 return values;
             })();
 
