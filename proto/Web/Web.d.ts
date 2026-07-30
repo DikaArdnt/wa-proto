@@ -26487,14 +26487,11 @@ export namespace E2E {
                     /** ContactRefreshResponse collectionVersion */
                     collectionVersion?: (number|Long|null);
 
-                    /** ContactRefreshResponse primaryProcessStartTimestampMs */
-                    primaryProcessStartTimestampMs?: (number|Long|null);
+                    /** ContactRefreshResponse primaryDurationMs */
+                    primaryDurationMs?: (number|Long|null);
 
-                    /** ContactRefreshResponse primaryProcessEndTimestampMs */
-                    primaryProcessEndTimestampMs?: (number|Long|null);
-
-                    /** ContactRefreshResponse uploadedContactCount */
-                    uploadedContactCount?: (number|null);
+                    /** ContactRefreshResponse uniqueContactCount */
+                    uniqueContactCount?: (number|null);
                 }
 
                 /** Represents a ContactRefreshResponse. */
@@ -26512,14 +26509,11 @@ export namespace E2E {
                     /** ContactRefreshResponse collectionVersion. */
                     public collectionVersion: (number|Long);
 
-                    /** ContactRefreshResponse primaryProcessStartTimestampMs. */
-                    public primaryProcessStartTimestampMs: (number|Long);
+                    /** ContactRefreshResponse primaryDurationMs. */
+                    public primaryDurationMs: (number|Long);
 
-                    /** ContactRefreshResponse primaryProcessEndTimestampMs. */
-                    public primaryProcessEndTimestampMs: (number|Long);
-
-                    /** ContactRefreshResponse uploadedContactCount. */
-                    public uploadedContactCount: number;
+                    /** ContactRefreshResponse uniqueContactCount. */
+                    public uniqueContactCount: number;
 
                     /**
                      * Creates a new ContactRefreshResponse instance using the specified properties.
