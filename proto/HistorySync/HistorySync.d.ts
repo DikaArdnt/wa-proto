@@ -62788,6 +62788,9 @@ export namespace SyncAction {
 
             /** SettingsSyncAction colorSchemeId */
             colorSchemeId?: (string|null);
+
+            /** SettingsSyncAction stockWallpaperImageId */
+            stockWallpaperImageId?: (string|null);
         }
 
         /** Represents a SettingsSyncAction. */
@@ -62897,6 +62900,9 @@ export namespace SyncAction {
 
             /** SettingsSyncAction colorSchemeId. */
             public colorSchemeId: string;
+
+            /** SettingsSyncAction stockWallpaperImageId. */
+            public stockWallpaperImageId: string;
 
             /**
              * Creates a new SettingsSyncAction instance using the specified properties.
@@ -63028,7 +63034,8 @@ export namespace SyncAction {
                 STATUS_NOTIFICATION_TONE_ID = 30,
                 SHOULD_PLAY_SOUND_FOR_CALL_NOTIFICATION = 31,
                 CHAT_THEME_ID = 32,
-                COLOR_SCHEME_ID = 33
+                COLOR_SCHEME_ID = 33,
+                STOCK_WALLPAPER_IMAGE_ID = 34
             }
 
             /** SettingPlatform enum. */

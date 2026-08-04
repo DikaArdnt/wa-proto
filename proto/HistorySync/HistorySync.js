@@ -183680,6 +183680,7 @@ $root.SyncAction = (function() {
              * @property {boolean|null} [shouldPlaySoundForCallNotification] SettingsSyncAction shouldPlaySoundForCallNotification
              * @property {string|null} [chatThemeId] SettingsSyncAction chatThemeId
              * @property {string|null} [colorSchemeId] SettingsSyncAction colorSchemeId
+             * @property {string|null} [stockWallpaperImageId] SettingsSyncAction stockWallpaperImageId
              */
 
             /**
@@ -183962,6 +183963,14 @@ $root.SyncAction = (function() {
             SettingsSyncAction.prototype.colorSchemeId = "";
 
             /**
+             * SettingsSyncAction stockWallpaperImageId.
+             * @member {string} stockWallpaperImageId
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.stockWallpaperImageId = "";
+
+            /**
              * Creates a new SettingsSyncAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.SettingsSyncAction
@@ -184055,6 +184064,8 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 32, wireType 2 =*/258).string(message.chatThemeId);
                 if (message.colorSchemeId != null && Object.hasOwnProperty.call(message, "colorSchemeId"))
                     writer.uint32(/* id 33, wireType 2 =*/266).string(message.colorSchemeId);
+                if (message.stockWallpaperImageId != null && Object.hasOwnProperty.call(message, "stockWallpaperImageId"))
+                    writer.uint32(/* id 34, wireType 2 =*/274).string(message.stockWallpaperImageId);
                 return writer;
             };
 
@@ -184227,6 +184238,10 @@ $root.SyncAction = (function() {
                             message.colorSchemeId = reader.string();
                             break;
                         }
+                    case 34: {
+                            message.stockWallpaperImageId = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -184385,6 +184400,9 @@ $root.SyncAction = (function() {
                 if (message.colorSchemeId != null && Object.hasOwnProperty.call(message, "colorSchemeId"))
                     if (!$util.isString(message.colorSchemeId))
                         return "colorSchemeId: string expected";
+                if (message.stockWallpaperImageId != null && Object.hasOwnProperty.call(message, "stockWallpaperImageId"))
+                    if (!$util.isString(message.stockWallpaperImageId))
+                        return "stockWallpaperImageId: string expected";
                 return null;
             };
 
@@ -184534,6 +184552,8 @@ $root.SyncAction = (function() {
                     message.chatThemeId = String(object.chatThemeId);
                 if (object.colorSchemeId != null)
                     message.colorSchemeId = String(object.colorSchemeId);
+                if (object.stockWallpaperImageId != null)
+                    message.stockWallpaperImageId = String(object.stockWallpaperImageId);
                 return message;
             };
 
@@ -184588,6 +184608,7 @@ $root.SyncAction = (function() {
                     object.shouldPlaySoundForCallNotification = false;
                     object.chatThemeId = "";
                     object.colorSchemeId = "";
+                    object.stockWallpaperImageId = "";
                 }
                 if (message.startAtLogin != null && Object.hasOwnProperty.call(message, "startAtLogin"))
                     object.startAtLogin = message.startAtLogin;
@@ -184655,6 +184676,8 @@ $root.SyncAction = (function() {
                     object.chatThemeId = message.chatThemeId;
                 if (message.colorSchemeId != null && Object.hasOwnProperty.call(message, "colorSchemeId"))
                     object.colorSchemeId = message.colorSchemeId;
+                if (message.stockWallpaperImageId != null && Object.hasOwnProperty.call(message, "stockWallpaperImageId"))
+                    object.stockWallpaperImageId = message.stockWallpaperImageId;
                 return object;
             };
 
@@ -184756,6 +184779,7 @@ $root.SyncAction = (function() {
              * @property {number} SHOULD_PLAY_SOUND_FOR_CALL_NOTIFICATION=31 SHOULD_PLAY_SOUND_FOR_CALL_NOTIFICATION value
              * @property {number} CHAT_THEME_ID=32 CHAT_THEME_ID value
              * @property {number} COLOR_SCHEME_ID=33 COLOR_SCHEME_ID value
+             * @property {number} STOCK_WALLPAPER_IMAGE_ID=34 STOCK_WALLPAPER_IMAGE_ID value
              */
             SettingsSyncAction.SettingKey = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -184793,6 +184817,7 @@ $root.SyncAction = (function() {
                 values[valuesById[31] = "SHOULD_PLAY_SOUND_FOR_CALL_NOTIFICATION"] = 31;
                 values[valuesById[32] = "CHAT_THEME_ID"] = 32;
                 values[valuesById[33] = "COLOR_SCHEME_ID"] = 33;
+                values[valuesById[34] = "STOCK_WALLPAPER_IMAGE_ID"] = 34;
                 return values;
             })();
 
