@@ -55110,6 +55110,9 @@ export namespace SyncAction {
 
         /** SyncActionValue labelSublistAction */
         labelSublistAction?: (SyncAction.SyncActionValue.ILabelSublistAction|null);
+
+        /** SyncActionValue deviceCapabilitiesV2 */
+        deviceCapabilitiesV2?: (DeviceCapabilities.IDeviceCapabilities|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -55366,6 +55369,9 @@ export namespace SyncAction {
 
         /** SyncActionValue labelSublistAction. */
         public labelSublistAction?: (SyncAction.SyncActionValue.ILabelSublistAction|null);
+
+        /** SyncActionValue deviceCapabilitiesV2. */
+        public deviceCapabilitiesV2?: (DeviceCapabilities.IDeviceCapabilities|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -65866,6 +65872,7 @@ export namespace SyncAction {
         WASA_ROOT_SECRET_ACTION = 89,
         BUBBLE_LOCK_MESSAGE_ACTION = 90,
         LABEL_SUBLIST_ACTION = 91,
+        DEVICE_CAPABILITIES_V2 = 92,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

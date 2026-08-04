@@ -1041,6 +1041,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IWASARootSecretAction|null} [wasaRootSecretAction] SyncActionValue wasaRootSecretAction
          * @property {SyncAction.SyncActionValue.IBubbleLockMessageAction|null} [bubbleLockMessageAction] SyncActionValue bubbleLockMessageAction
          * @property {SyncAction.SyncActionValue.ILabelSublistAction|null} [labelSublistAction] SyncActionValue labelSublistAction
+         * @property {DeviceCapabilities.IDeviceCapabilities|null} [deviceCapabilitiesV2] SyncActionValue deviceCapabilitiesV2
          */
 
         /**
@@ -1715,6 +1716,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.labelSublistAction = null;
 
         /**
+         * SyncActionValue deviceCapabilitiesV2.
+         * @member {DeviceCapabilities.IDeviceCapabilities|null|undefined} deviceCapabilitiesV2
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.deviceCapabilitiesV2 = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1906,6 +1915,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.BubbleLockMessageAction.encode(message.bubbleLockMessageAction, writer.uint32(/* id 90, wireType 2 =*/722).fork(), q + 1).ldelim();
             if (message.labelSublistAction != null && Object.hasOwnProperty.call(message, "labelSublistAction"))
                 $root.SyncAction.SyncActionValue.LabelSublistAction.encode(message.labelSublistAction, writer.uint32(/* id 91, wireType 2 =*/730).fork(), q + 1).ldelim();
+            if (message.deviceCapabilitiesV2 != null && Object.hasOwnProperty.call(message, "deviceCapabilitiesV2"))
+                $root.DeviceCapabilities.DeviceCapabilities.encode(message.deviceCapabilitiesV2, writer.uint32(/* id 92, wireType 2 =*/738).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -2272,6 +2283,10 @@ $root.SyncAction = (function() {
                     }
                 case 91: {
                         message.labelSublistAction = $root.SyncAction.SyncActionValue.LabelSublistAction.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 92: {
+                        message.deviceCapabilitiesV2 = $root.DeviceCapabilities.DeviceCapabilities.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -2721,6 +2736,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "labelSublistAction." + error;
             }
+            if (message.deviceCapabilitiesV2 != null && Object.hasOwnProperty.call(message, "deviceCapabilitiesV2")) {
+                var error = $root.DeviceCapabilities.DeviceCapabilities.verify(message.deviceCapabilitiesV2, long + 1);
+                if (error)
+                    return "deviceCapabilitiesV2." + error;
+            }
             return null;
         };
 
@@ -3156,6 +3176,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.labelSublistAction: object expected");
                 message.labelSublistAction = $root.SyncAction.SyncActionValue.LabelSublistAction.fromObject(object.labelSublistAction, long + 1);
             }
+            if (object.deviceCapabilitiesV2 != null) {
+                if (!$util.isObject(object.deviceCapabilitiesV2))
+                    throw TypeError(".SyncAction.SyncActionValue.deviceCapabilitiesV2: object expected");
+                message.deviceCapabilitiesV2 = $root.DeviceCapabilities.DeviceCapabilities.fromObject(object.deviceCapabilitiesV2, long + 1);
+            }
             return message;
         };
 
@@ -3263,6 +3288,7 @@ $root.SyncAction = (function() {
                 object.wasaRootSecretAction = null;
                 object.bubbleLockMessageAction = null;
                 object.labelSublistAction = null;
+                object.deviceCapabilitiesV2 = null;
             }
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
@@ -3433,6 +3459,8 @@ $root.SyncAction = (function() {
                 object.bubbleLockMessageAction = $root.SyncAction.SyncActionValue.BubbleLockMessageAction.toObject(message.bubbleLockMessageAction, options, q + 1);
             if (message.labelSublistAction != null && Object.hasOwnProperty.call(message, "labelSublistAction"))
                 object.labelSublistAction = $root.SyncAction.SyncActionValue.LabelSublistAction.toObject(message.labelSublistAction, options, q + 1);
+            if (message.deviceCapabilitiesV2 != null && Object.hasOwnProperty.call(message, "deviceCapabilitiesV2"))
+                object.deviceCapabilitiesV2 = $root.DeviceCapabilities.DeviceCapabilities.toObject(message.deviceCapabilitiesV2, options, q + 1);
             return object;
         };
 
@@ -30888,6 +30916,7 @@ $root.SyncAction = (function() {
      * @property {number} WASA_ROOT_SECRET_ACTION=89 WASA_ROOT_SECRET_ACTION value
      * @property {number} BUBBLE_LOCK_MESSAGE_ACTION=90 BUBBLE_LOCK_MESSAGE_ACTION value
      * @property {number} LABEL_SUBLIST_ACTION=91 LABEL_SUBLIST_ACTION value
+     * @property {number} DEVICE_CAPABILITIES_V2=92 DEVICE_CAPABILITIES_V2 value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -30979,6 +31008,7 @@ $root.SyncAction = (function() {
         values[valuesById[89] = "WASA_ROOT_SECRET_ACTION"] = 89;
         values[valuesById[90] = "BUBBLE_LOCK_MESSAGE_ACTION"] = 90;
         values[valuesById[91] = "LABEL_SUBLIST_ACTION"] = 91;
+        values[valuesById[92] = "DEVICE_CAPABILITIES_V2"] = 92;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;
