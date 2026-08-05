@@ -722,6 +722,9 @@ message Message {
     optional FutureProofMessage newsletterAdminProfileStatusMessage = 126;
     optional RootSecretDistributeMessage rootSecretDistributeMessage = 127;
     optional SplitPaymentUpdateMessage splitPaymentUpdateMessage = 128;
+    optional MusicMessage musicMessage = 129;
+    optional StatusLinkPreviewMetadata statusLinkPreviewMetadata = 130;
+    optional FutureProofMessage botPlatformRegistrationSuccessMessage = 131;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -1519,6 +1522,16 @@ message Message {
         optional Message.MessageHistoryMetadata messageHistoryMetadata = 2;
         optional Message.BotHistoryShareSyncMetadata botHistoryShareSyncMetadata = 3;
     }
+    message MusicMessage {
+        optional EmbeddedMusic embeddedMusic = 1;
+        optional string songUri = 2;
+        optional string artworkUri = 3;
+        optional int32 style = 4;
+        optional ContextInfo contextInfo = 5;
+        enum MusicMessageStyle {
+            UNKNOWN = 0;
+        }
+    }
     message NewsletterAdminInviteMessage {
         optional string newsletterJid = 1;
         optional string newsletterName = 2;
@@ -1579,6 +1592,7 @@ message Message {
             FBPAY = 1;
             NOVI = 2;
             UPI = 3;
+            PIX = 4;
         }
     }
     message PaymentLinkMetadata {
@@ -1963,7 +1977,6 @@ message Message {
         optional AICommon.AIMetadataOperation aiMetadataOperation = 31;
         optional Message.MarkAsVerifiedAction markAsVerifiedAction = 32;
         optional ServerSync.CoexStateSync coexStateSync = 33;
-        optional Message.SyncRequestMutationRetry syncRequestMutationRetry = 34;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
@@ -1997,7 +2010,6 @@ message Message {
             AI_METADATA_OPERATION = 35;
             MARK_AS_VERIFIED_ACTION = 36;
             COEX_STATE_SYNC = 37;
-            SYNC_REQUEST_MUTATION_RETRY = 38;
         }
     }
     message QuestionResponseMessage {
@@ -2103,6 +2115,15 @@ message Message {
         optional string splitId = 1;
         optional string participantJid = 2;
     }
+    message StatusLinkPreviewMetadata {
+        optional Style style = 1;
+        enum Style {
+            AUTO = 0;
+            COMPACT = 1;
+            FULL = 2;
+            IMMERSIVE = 3;
+        }
+    }
     message StatusNotificationMessage {
         optional SignalLocalStorageProtocol.MessageKey responseMessageKey = 1;
         optional SignalLocalStorageProtocol.MessageKey originalMessageKey = 2;
@@ -2112,6 +2133,7 @@ message Message {
             STATUS_ADD_YOURS = 1;
             STATUS_RESHARE = 2;
             STATUS_QUESTION_ANSWER_RESHARE = 3;
+            STATUS_GROUP_STATUS_REPLY = 4;
         }
     }
     message StatusQuestionAnswerMessage {
@@ -2202,14 +2224,6 @@ message Message {
         repeated string filehash = 1;
         optional string rmrSource = 2;
         optional int64 requestTimestamp = 3;
-    }
-    message SyncRequestMutationRetry {
-        repeated Collection collections = 1;
-        optional uint32 count = 2;
-        message Collection {
-            optional string name = 1;
-            optional uint64 storedSyncdVersion = 2;
-        }
     }
     message TemplateButtonReplyMessage {
         optional string selectedId = 1;

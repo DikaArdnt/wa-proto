@@ -11667,6 +11667,15 @@ export namespace E2E {
 
         /** Message splitPaymentUpdateMessage */
         splitPaymentUpdateMessage?: (E2E.Message.ISplitPaymentUpdateMessage|null);
+
+        /** Message musicMessage */
+        musicMessage?: (E2E.Message.IMusicMessage|null);
+
+        /** Message statusLinkPreviewMetadata */
+        statusLinkPreviewMetadata?: (E2E.Message.IStatusLinkPreviewMetadata|null);
+
+        /** Message botPlatformRegistrationSuccessMessage */
+        botPlatformRegistrationSuccessMessage?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -12001,6 +12010,15 @@ export namespace E2E {
 
         /** Message splitPaymentUpdateMessage. */
         public splitPaymentUpdateMessage?: (E2E.Message.ISplitPaymentUpdateMessage|null);
+
+        /** Message musicMessage. */
+        public musicMessage?: (E2E.Message.IMusicMessage|null);
+
+        /** Message statusLinkPreviewMetadata. */
+        public statusLinkPreviewMetadata?: (E2E.Message.IStatusLinkPreviewMetadata|null);
+
+        /** Message botPlatformRegistrationSuccessMessage. */
+        public botPlatformRegistrationSuccessMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -23164,6 +23182,135 @@ export namespace E2E {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a MusicMessage. */
+        interface IMusicMessage {
+
+            /** MusicMessage embeddedMusic */
+            embeddedMusic?: (E2E.IEmbeddedMusic|null);
+
+            /** MusicMessage songUri */
+            songUri?: (string|null);
+
+            /** MusicMessage artworkUri */
+            artworkUri?: (string|null);
+
+            /** MusicMessage style */
+            style?: (number|null);
+
+            /** MusicMessage contextInfo */
+            contextInfo?: (E2E.IContextInfo|null);
+        }
+
+        /** Represents a MusicMessage. */
+        class MusicMessage implements IMusicMessage {
+
+            /**
+             * Constructs a new MusicMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IMusicMessage);
+
+            /** MusicMessage embeddedMusic. */
+            public embeddedMusic?: (E2E.IEmbeddedMusic|null);
+
+            /** MusicMessage songUri. */
+            public songUri: string;
+
+            /** MusicMessage artworkUri. */
+            public artworkUri: string;
+
+            /** MusicMessage style. */
+            public style: number;
+
+            /** MusicMessage contextInfo. */
+            public contextInfo?: (E2E.IContextInfo|null);
+
+            /**
+             * Creates a new MusicMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns MusicMessage instance
+             */
+            public static create(properties?: E2E.Message.IMusicMessage): E2E.Message.MusicMessage;
+
+            /**
+             * Encodes the specified MusicMessage message. Does not implicitly {@link E2E.Message.MusicMessage.verify|verify} messages.
+             * @param message MusicMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IMusicMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified MusicMessage message, length delimited. Does not implicitly {@link E2E.Message.MusicMessage.verify|verify} messages.
+             * @param message MusicMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IMusicMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a MusicMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns MusicMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.MusicMessage;
+
+            /**
+             * Decodes a MusicMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns MusicMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.MusicMessage;
+
+            /**
+             * Verifies a MusicMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a MusicMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns MusicMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.MusicMessage;
+
+            /**
+             * Creates a plain object from a MusicMessage message. Also converts values to other types if specified.
+             * @param message MusicMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.MusicMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this MusicMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for MusicMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace MusicMessage {
+
+            /** MusicMessageStyle enum. */
+            enum MusicMessageStyle {
+                UNKNOWN = 0
+            }
+        }
+
         /** Properties of a NewsletterAdminInviteMessage. */
         interface INewsletterAdminInviteMessage {
 
@@ -23851,7 +23998,8 @@ export namespace E2E {
                 UNKNOWN = 0,
                 FBPAY = 1,
                 NOVI = 2,
-                UPI = 3
+                UPI = 3,
+                PIX = 4
             }
         }
 
@@ -29452,9 +29600,6 @@ export namespace E2E {
 
             /** ProtocolMessage coexStateSync */
             coexStateSync?: (ServerSync.ICoexStateSync|null);
-
-            /** ProtocolMessage syncRequestMutationRetry */
-            syncRequestMutationRetry?: (E2E.Message.ISyncRequestMutationRetry|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -29555,9 +29700,6 @@ export namespace E2E {
 
             /** ProtocolMessage coexStateSync. */
             public coexStateSync?: (ServerSync.ICoexStateSync|null);
-
-            /** ProtocolMessage syncRequestMutationRetry. */
-            public syncRequestMutationRetry?: (E2E.Message.ISyncRequestMutationRetry|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -29672,8 +29814,7 @@ export namespace E2E {
                 CHAT_THEME_SETTING = 34,
                 AI_METADATA_OPERATION = 35,
                 MARK_AS_VERIFIED_ACTION = 36,
-                COEX_STATE_SYNC = 37,
-                SYNC_REQUEST_MUTATION_RETRY = 38
+                COEX_STATE_SYNC = 37
             }
         }
 
@@ -31283,6 +31424,114 @@ export namespace E2E {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a StatusLinkPreviewMetadata. */
+        interface IStatusLinkPreviewMetadata {
+
+            /** StatusLinkPreviewMetadata style */
+            style?: (E2E.Message.StatusLinkPreviewMetadata.Style|null);
+        }
+
+        /** Represents a StatusLinkPreviewMetadata. */
+        class StatusLinkPreviewMetadata implements IStatusLinkPreviewMetadata {
+
+            /**
+             * Constructs a new StatusLinkPreviewMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IStatusLinkPreviewMetadata);
+
+            /** StatusLinkPreviewMetadata style. */
+            public style: E2E.Message.StatusLinkPreviewMetadata.Style;
+
+            /**
+             * Creates a new StatusLinkPreviewMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StatusLinkPreviewMetadata instance
+             */
+            public static create(properties?: E2E.Message.IStatusLinkPreviewMetadata): E2E.Message.StatusLinkPreviewMetadata;
+
+            /**
+             * Encodes the specified StatusLinkPreviewMetadata message. Does not implicitly {@link E2E.Message.StatusLinkPreviewMetadata.verify|verify} messages.
+             * @param message StatusLinkPreviewMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IStatusLinkPreviewMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StatusLinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.StatusLinkPreviewMetadata.verify|verify} messages.
+             * @param message StatusLinkPreviewMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IStatusLinkPreviewMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StatusLinkPreviewMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StatusLinkPreviewMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.StatusLinkPreviewMetadata;
+
+            /**
+             * Decodes a StatusLinkPreviewMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StatusLinkPreviewMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.StatusLinkPreviewMetadata;
+
+            /**
+             * Verifies a StatusLinkPreviewMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StatusLinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StatusLinkPreviewMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.StatusLinkPreviewMetadata;
+
+            /**
+             * Creates a plain object from a StatusLinkPreviewMetadata message. Also converts values to other types if specified.
+             * @param message StatusLinkPreviewMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.StatusLinkPreviewMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StatusLinkPreviewMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for StatusLinkPreviewMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace StatusLinkPreviewMetadata {
+
+            /** Style enum. */
+            enum Style {
+                AUTO = 0,
+                COMPACT = 1,
+                FULL = 2,
+                IMMERSIVE = 3
+            }
+        }
+
         /** Properties of a StatusNotificationMessage. */
         interface IStatusNotificationMessage {
 
@@ -31399,7 +31648,8 @@ export namespace E2E {
                 UNKNOWN = 0,
                 STATUS_ADD_YOURS = 1,
                 STATUS_RESHARE = 2,
-                STATUS_QUESTION_ANSWER_RESHARE = 3
+                STATUS_QUESTION_ANSWER_RESHARE = 3,
+                STATUS_GROUP_STATUS_REPLY = 4
             }
         }
 
@@ -32443,215 +32693,6 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** Properties of a SyncRequestMutationRetry. */
-        interface ISyncRequestMutationRetry {
-
-            /** SyncRequestMutationRetry collections */
-            collections?: (E2E.Message.SyncRequestMutationRetry.ICollection[]|null);
-
-            /** SyncRequestMutationRetry count */
-            count?: (number|null);
-        }
-
-        /** Represents a SyncRequestMutationRetry. */
-        class SyncRequestMutationRetry implements ISyncRequestMutationRetry {
-
-            /**
-             * Constructs a new SyncRequestMutationRetry.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: E2E.Message.ISyncRequestMutationRetry);
-
-            /** SyncRequestMutationRetry collections. */
-            public collections: E2E.Message.SyncRequestMutationRetry.ICollection[];
-
-            /** SyncRequestMutationRetry count. */
-            public count: number;
-
-            /**
-             * Creates a new SyncRequestMutationRetry instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns SyncRequestMutationRetry instance
-             */
-            public static create(properties?: E2E.Message.ISyncRequestMutationRetry): E2E.Message.SyncRequestMutationRetry;
-
-            /**
-             * Encodes the specified SyncRequestMutationRetry message. Does not implicitly {@link E2E.Message.SyncRequestMutationRetry.verify|verify} messages.
-             * @param message SyncRequestMutationRetry message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: E2E.Message.ISyncRequestMutationRetry, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified SyncRequestMutationRetry message, length delimited. Does not implicitly {@link E2E.Message.SyncRequestMutationRetry.verify|verify} messages.
-             * @param message SyncRequestMutationRetry message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: E2E.Message.ISyncRequestMutationRetry, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a SyncRequestMutationRetry message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns SyncRequestMutationRetry
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.SyncRequestMutationRetry;
-
-            /**
-             * Decodes a SyncRequestMutationRetry message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns SyncRequestMutationRetry
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.SyncRequestMutationRetry;
-
-            /**
-             * Verifies a SyncRequestMutationRetry message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a SyncRequestMutationRetry message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns SyncRequestMutationRetry
-             */
-            public static fromObject(object: { [k: string]: any }): E2E.Message.SyncRequestMutationRetry;
-
-            /**
-             * Creates a plain object from a SyncRequestMutationRetry message. Also converts values to other types if specified.
-             * @param message SyncRequestMutationRetry
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: E2E.Message.SyncRequestMutationRetry, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this SyncRequestMutationRetry to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for SyncRequestMutationRetry
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace SyncRequestMutationRetry {
-
-            /** Properties of a Collection. */
-            interface ICollection {
-
-                /** Collection name */
-                name?: (string|null);
-
-                /** Collection storedSyncdVersion */
-                storedSyncdVersion?: (number|Long|null);
-            }
-
-            /** Represents a Collection. */
-            class Collection implements ICollection {
-
-                /**
-                 * Constructs a new Collection.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: E2E.Message.SyncRequestMutationRetry.ICollection);
-
-                /** Collection name. */
-                public name: string;
-
-                /** Collection storedSyncdVersion. */
-                public storedSyncdVersion: (number|Long);
-
-                /**
-                 * Creates a new Collection instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns Collection instance
-                 */
-                public static create(properties?: E2E.Message.SyncRequestMutationRetry.ICollection): E2E.Message.SyncRequestMutationRetry.Collection;
-
-                /**
-                 * Encodes the specified Collection message. Does not implicitly {@link E2E.Message.SyncRequestMutationRetry.Collection.verify|verify} messages.
-                 * @param message Collection message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: E2E.Message.SyncRequestMutationRetry.ICollection, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified Collection message, length delimited. Does not implicitly {@link E2E.Message.SyncRequestMutationRetry.Collection.verify|verify} messages.
-                 * @param message Collection message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: E2E.Message.SyncRequestMutationRetry.ICollection, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a Collection message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns Collection
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.SyncRequestMutationRetry.Collection;
-
-                /**
-                 * Decodes a Collection message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns Collection
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.SyncRequestMutationRetry.Collection;
-
-                /**
-                 * Verifies a Collection message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a Collection message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns Collection
-                 */
-                public static fromObject(object: { [k: string]: any }): E2E.Message.SyncRequestMutationRetry.Collection;
-
-                /**
-                 * Creates a plain object from a Collection message. Also converts values to other types if specified.
-                 * @param message Collection
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: E2E.Message.SyncRequestMutationRetry.Collection, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this Collection to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for Collection
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
         }
 
         /** Properties of a TemplateButtonReplyMessage. */
@@ -45408,6 +45449,9 @@ export namespace AICommon {
 
         /** BotSignatureVerificationUseCaseProof certificateChain */
         certificateChain?: (Uint8Array[]|null);
+
+        /** BotSignatureVerificationUseCaseProof certificateChainSki */
+        certificateChainSki?: (AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI[]|null);
     }
 
     /** Represents a BotSignatureVerificationUseCaseProof. */
@@ -45430,6 +45474,9 @@ export namespace AICommon {
 
         /** BotSignatureVerificationUseCaseProof certificateChain. */
         public certificateChain: Uint8Array[];
+
+        /** BotSignatureVerificationUseCaseProof certificateChainSki. */
+        public certificateChainSki: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI[];
 
         /**
          * Creates a new BotSignatureVerificationUseCaseProof instance using the specified properties.
@@ -45516,7 +45563,112 @@ export namespace AICommon {
             UNSPECIFIED = 0,
             WA_BOT_MSG = 1,
             WA_TEE_BOT_MSG = 2,
-            P2P_PILLS = 3
+            P2P_PILLS = 3,
+            WA_WAFFLE = 4,
+            WA_FEATURE_PKI = 5
+        }
+
+        /** Properties of a CertificateSKI. */
+        interface ICertificateSKI {
+
+            /** CertificateSKI useCase */
+            useCase?: (AICommon.BotSignatureVerificationUseCaseProof.BotSignatureUseCase|null);
+
+            /** CertificateSKI ski */
+            ski?: (Uint8Array|null);
+        }
+
+        /** Represents a CertificateSKI. */
+        class CertificateSKI implements ICertificateSKI {
+
+            /**
+             * Constructs a new CertificateSKI.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI);
+
+            /** CertificateSKI useCase. */
+            public useCase: AICommon.BotSignatureVerificationUseCaseProof.BotSignatureUseCase;
+
+            /** CertificateSKI ski. */
+            public ski: Uint8Array;
+
+            /**
+             * Creates a new CertificateSKI instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CertificateSKI instance
+             */
+            public static create(properties?: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI): AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI;
+
+            /**
+             * Encodes the specified CertificateSKI message. Does not implicitly {@link AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI.verify|verify} messages.
+             * @param message CertificateSKI message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CertificateSKI message, length delimited. Does not implicitly {@link AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI.verify|verify} messages.
+             * @param message CertificateSKI message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CertificateSKI message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CertificateSKI
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI;
+
+            /**
+             * Decodes a CertificateSKI message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CertificateSKI
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI;
+
+            /**
+             * Verifies a CertificateSKI message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CertificateSKI message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CertificateSKI
+             */
+            public static fromObject(object: { [k: string]: any }): AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI;
+
+            /**
+             * Creates a plain object from a CertificateSKI message. Also converts values to other types if specified.
+             * @param message CertificateSKI
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CertificateSKI to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CertificateSKI
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
     }
 
@@ -49799,7 +49951,8 @@ export namespace CompanionReg {
             UWP = 21,
             VR = 22,
             CLOUD_API = 23,
-            SMARTGLASSES = 24
+            SMARTGLASSES = 24,
+            WAIL = 25
         }
     }
 }

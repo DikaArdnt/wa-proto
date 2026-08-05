@@ -5820,6 +5820,7 @@ $root.Wa6 = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 9:
                     case 3:
                     case 4:
                     case 5:
@@ -5901,6 +5902,10 @@ $root.Wa6 = (function() {
                 case "XXKEM_FS":
                 case 2:
                     message.pqMode = 2;
+                    break;
+                case "XXKEM_EPH":
+                case 9:
+                    message.pqMode = 9;
                     break;
                 case "WA_CLASSICAL":
                 case 3:
@@ -6059,6 +6064,7 @@ $root.Wa6 = (function() {
          * @property {number} HANDSHAKE_PQ_MODE_UNKNOWN=0 HANDSHAKE_PQ_MODE_UNKNOWN value
          * @property {number} XXKEM=1 XXKEM value
          * @property {number} XXKEM_FS=2 XXKEM_FS value
+         * @property {number} XXKEM_EPH=9 XXKEM_EPH value
          * @property {number} WA_CLASSICAL=3 WA_CLASSICAL value
          * @property {number} WA_PQ=4 WA_PQ value
          * @property {number} IKKEM=5 IKKEM value
@@ -6071,6 +6077,7 @@ $root.Wa6 = (function() {
             values[valuesById[0] = "HANDSHAKE_PQ_MODE_UNKNOWN"] = 0;
             values[valuesById[1] = "XXKEM"] = 1;
             values[valuesById[2] = "XXKEM_FS"] = 2;
+            values[valuesById[9] = "XXKEM_EPH"] = 9;
             values[valuesById[3] = "WA_CLASSICAL"] = 3;
             values[valuesById[4] = "WA_PQ"] = 4;
             values[valuesById[5] = "IKKEM"] = 5;

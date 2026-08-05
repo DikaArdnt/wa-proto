@@ -1259,7 +1259,8 @@ export namespace CompanionReg {
             UWP = 21,
             VR = 22,
             CLOUD_API = 23,
-            SMARTGLASSES = 24
+            SMARTGLASSES = 24,
+            WAIL = 25
         }
     }
 }

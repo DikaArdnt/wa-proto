@@ -8062,6 +8062,9 @@ export namespace AICommon {
 
         /** BotSignatureVerificationUseCaseProof certificateChain */
         certificateChain?: (Uint8Array[]|null);
+
+        /** BotSignatureVerificationUseCaseProof certificateChainSki */
+        certificateChainSki?: (AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI[]|null);
     }
 
     /** Represents a BotSignatureVerificationUseCaseProof. */
@@ -8084,6 +8087,9 @@ export namespace AICommon {
 
         /** BotSignatureVerificationUseCaseProof certificateChain. */
         public certificateChain: Uint8Array[];
+
+        /** BotSignatureVerificationUseCaseProof certificateChainSki. */
+        public certificateChainSki: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI[];
 
         /**
          * Creates a new BotSignatureVerificationUseCaseProof instance using the specified properties.
@@ -8170,7 +8176,112 @@ export namespace AICommon {
             UNSPECIFIED = 0,
             WA_BOT_MSG = 1,
             WA_TEE_BOT_MSG = 2,
-            P2P_PILLS = 3
+            P2P_PILLS = 3,
+            WA_WAFFLE = 4,
+            WA_FEATURE_PKI = 5
+        }
+
+        /** Properties of a CertificateSKI. */
+        interface ICertificateSKI {
+
+            /** CertificateSKI useCase */
+            useCase?: (AICommon.BotSignatureVerificationUseCaseProof.BotSignatureUseCase|null);
+
+            /** CertificateSKI ski */
+            ski?: (Uint8Array|null);
+        }
+
+        /** Represents a CertificateSKI. */
+        class CertificateSKI implements ICertificateSKI {
+
+            /**
+             * Constructs a new CertificateSKI.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI);
+
+            /** CertificateSKI useCase. */
+            public useCase: AICommon.BotSignatureVerificationUseCaseProof.BotSignatureUseCase;
+
+            /** CertificateSKI ski. */
+            public ski: Uint8Array;
+
+            /**
+             * Creates a new CertificateSKI instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CertificateSKI instance
+             */
+            public static create(properties?: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI): AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI;
+
+            /**
+             * Encodes the specified CertificateSKI message. Does not implicitly {@link AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI.verify|verify} messages.
+             * @param message CertificateSKI message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CertificateSKI message, length delimited. Does not implicitly {@link AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI.verify|verify} messages.
+             * @param message CertificateSKI message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: AICommon.BotSignatureVerificationUseCaseProof.ICertificateSKI, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CertificateSKI message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CertificateSKI
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI;
+
+            /**
+             * Decodes a CertificateSKI message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CertificateSKI
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI;
+
+            /**
+             * Verifies a CertificateSKI message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CertificateSKI message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CertificateSKI
+             */
+            public static fromObject(object: { [k: string]: any }): AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI;
+
+            /**
+             * Creates a plain object from a CertificateSKI message. Also converts values to other types if specified.
+             * @param message CertificateSKI
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CertificateSKI to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CertificateSKI
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
     }
 
