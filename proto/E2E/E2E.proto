@@ -1530,6 +1530,7 @@ message Message {
         optional ContextInfo contextInfo = 5;
         enum MusicMessageStyle {
             UNKNOWN = 0;
+            VINYL = 1;
         }
     }
     message NewsletterAdminInviteMessage {

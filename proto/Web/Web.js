@@ -71963,10 +71963,12 @@ $root.E2E = (function() {
              * @name E2E.Message.MusicMessage.MusicMessageStyle
              * @enum {number}
              * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} VINYL=1 VINYL value
              */
             MusicMessage.MusicMessageStyle = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "VINYL"] = 1;
                 return values;
             })();
 

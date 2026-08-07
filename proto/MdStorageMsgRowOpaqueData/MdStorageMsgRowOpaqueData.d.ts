@@ -20007,7 +20007,8 @@ export namespace E2E {
 
             /** MusicMessageStyle enum. */
             enum MusicMessageStyle {
-                UNKNOWN = 0
+                UNKNOWN = 0,
+                VINYL = 1
             }
         }
 

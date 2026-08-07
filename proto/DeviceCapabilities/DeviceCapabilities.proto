@@ -9,6 +9,7 @@ message DeviceCapabilities {
     optional MemberNameTagPrimarySupport memberNameTagPrimarySupport = 5;
     optional AiThread aiThread = 6;
     optional AiFbidMigration aiFbidMigration = 7;
+    optional BizAiSettingsSync bizAiSettingsSync = 8;
     message AiFbidMigration {
         optional uint64 chatDbMigrationTimestamp = 1;
     }
@@ -19,6 +20,9 @@ message DeviceCapabilities {
             INFRA = 1;
             FULL = 2;
         }
+    }
+    message BizAiSettingsSync {
+        optional bool handoffRemovalTimingEnabled = 1;
     }
     message BusinessBroadcast {
         optional bool importListEnabled = 1;
