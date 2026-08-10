@@ -163156,6 +163156,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IBubbleLockMessageAction|null} [bubbleLockMessageAction] SyncActionValue bubbleLockMessageAction
          * @property {SyncAction.SyncActionValue.ILabelSublistAction|null} [labelSublistAction] SyncActionValue labelSublistAction
          * @property {DeviceCapabilities.IDeviceCapabilities|null} [deviceCapabilitiesV2] SyncActionValue deviceCapabilitiesV2
+         * @property {SyncAction.SyncActionValue.ICtwaMessageReceivedAction|null} [ctwaMessageReceivedAction] SyncActionValue ctwaMessageReceivedAction
          */
 
         /**
@@ -163838,6 +163839,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.deviceCapabilitiesV2 = null;
 
         /**
+         * SyncActionValue ctwaMessageReceivedAction.
+         * @member {SyncAction.SyncActionValue.ICtwaMessageReceivedAction|null|undefined} ctwaMessageReceivedAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.ctwaMessageReceivedAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -164031,6 +164040,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.LabelSublistAction.encode(message.labelSublistAction, writer.uint32(/* id 91, wireType 2 =*/730).fork(), q + 1).ldelim();
             if (message.deviceCapabilitiesV2 != null && Object.hasOwnProperty.call(message, "deviceCapabilitiesV2"))
                 $root.DeviceCapabilities.DeviceCapabilities.encode(message.deviceCapabilitiesV2, writer.uint32(/* id 92, wireType 2 =*/738).fork(), q + 1).ldelim();
+            if (message.ctwaMessageReceivedAction != null && Object.hasOwnProperty.call(message, "ctwaMessageReceivedAction"))
+                $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.encode(message.ctwaMessageReceivedAction, writer.uint32(/* id 93, wireType 2 =*/746).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -164401,6 +164412,10 @@ $root.SyncAction = (function() {
                     }
                 case 92: {
                         message.deviceCapabilitiesV2 = $root.DeviceCapabilities.DeviceCapabilities.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 93: {
+                        message.ctwaMessageReceivedAction = $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -164855,6 +164870,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "deviceCapabilitiesV2." + error;
             }
+            if (message.ctwaMessageReceivedAction != null && Object.hasOwnProperty.call(message, "ctwaMessageReceivedAction")) {
+                var error = $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.verify(message.ctwaMessageReceivedAction, long + 1);
+                if (error)
+                    return "ctwaMessageReceivedAction." + error;
+            }
             return null;
         };
 
@@ -165295,6 +165315,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.deviceCapabilitiesV2: object expected");
                 message.deviceCapabilitiesV2 = $root.DeviceCapabilities.DeviceCapabilities.fromObject(object.deviceCapabilitiesV2, long + 1);
             }
+            if (object.ctwaMessageReceivedAction != null) {
+                if (!$util.isObject(object.ctwaMessageReceivedAction))
+                    throw TypeError(".SyncAction.SyncActionValue.ctwaMessageReceivedAction: object expected");
+                message.ctwaMessageReceivedAction = $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.fromObject(object.ctwaMessageReceivedAction, long + 1);
+            }
             return message;
         };
 
@@ -165403,6 +165428,7 @@ $root.SyncAction = (function() {
                 object.bubbleLockMessageAction = null;
                 object.labelSublistAction = null;
                 object.deviceCapabilitiesV2 = null;
+                object.ctwaMessageReceivedAction = null;
             }
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
@@ -165575,6 +165601,8 @@ $root.SyncAction = (function() {
                 object.labelSublistAction = $root.SyncAction.SyncActionValue.LabelSublistAction.toObject(message.labelSublistAction, options, q + 1);
             if (message.deviceCapabilitiesV2 != null && Object.hasOwnProperty.call(message, "deviceCapabilitiesV2"))
                 object.deviceCapabilitiesV2 = $root.DeviceCapabilities.DeviceCapabilities.toObject(message.deviceCapabilitiesV2, options, q + 1);
+            if (message.ctwaMessageReceivedAction != null && Object.hasOwnProperty.call(message, "ctwaMessageReceivedAction"))
+                object.ctwaMessageReceivedAction = $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.toObject(message.ctwaMessageReceivedAction, options, q + 1);
             return object;
         };
 
@@ -171135,6 +171163,233 @@ $root.SyncAction = (function() {
             };
 
             return ContactAction;
+        })();
+
+        SyncActionValue.CtwaMessageReceivedAction = (function() {
+
+            /**
+             * Properties of a CtwaMessageReceivedAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface ICtwaMessageReceivedAction
+             * @property {boolean|null} [isCtwaMessageReceived] CtwaMessageReceivedAction isCtwaMessageReceived
+             */
+
+            /**
+             * Constructs a new CtwaMessageReceivedAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a CtwaMessageReceivedAction.
+             * @implements ICtwaMessageReceivedAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.ICtwaMessageReceivedAction=} [properties] Properties to set
+             */
+            function CtwaMessageReceivedAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CtwaMessageReceivedAction isCtwaMessageReceived.
+             * @member {boolean} isCtwaMessageReceived
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @instance
+             */
+            CtwaMessageReceivedAction.prototype.isCtwaMessageReceived = false;
+
+            /**
+             * Creates a new CtwaMessageReceivedAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaMessageReceivedAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.CtwaMessageReceivedAction} CtwaMessageReceivedAction instance
+             */
+            CtwaMessageReceivedAction.create = function create(properties) {
+                return new CtwaMessageReceivedAction(properties);
+            };
+
+            /**
+             * Encodes the specified CtwaMessageReceivedAction message. Does not implicitly {@link SyncAction.SyncActionValue.CtwaMessageReceivedAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaMessageReceivedAction} message CtwaMessageReceivedAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CtwaMessageReceivedAction.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.isCtwaMessageReceived != null && Object.hasOwnProperty.call(message, "isCtwaMessageReceived"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isCtwaMessageReceived);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CtwaMessageReceivedAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.CtwaMessageReceivedAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaMessageReceivedAction} message CtwaMessageReceivedAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CtwaMessageReceivedAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a CtwaMessageReceivedAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.CtwaMessageReceivedAction} CtwaMessageReceivedAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CtwaMessageReceivedAction.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.isCtwaMessageReceived = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CtwaMessageReceivedAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.CtwaMessageReceivedAction} CtwaMessageReceivedAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CtwaMessageReceivedAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CtwaMessageReceivedAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CtwaMessageReceivedAction.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.isCtwaMessageReceived != null && Object.hasOwnProperty.call(message, "isCtwaMessageReceived"))
+                    if (typeof message.isCtwaMessageReceived !== "boolean")
+                        return "isCtwaMessageReceived: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a CtwaMessageReceivedAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.CtwaMessageReceivedAction} CtwaMessageReceivedAction
+             */
+            CtwaMessageReceivedAction.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SyncAction.SyncActionValue.CtwaMessageReceivedAction: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction();
+                if (object.isCtwaMessageReceived != null)
+                    message.isCtwaMessageReceived = Boolean(object.isCtwaMessageReceived);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CtwaMessageReceivedAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {SyncAction.SyncActionValue.CtwaMessageReceivedAction} message CtwaMessageReceivedAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CtwaMessageReceivedAction.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults)
+                    object.isCtwaMessageReceived = false;
+                if (message.isCtwaMessageReceived != null && Object.hasOwnProperty.call(message, "isCtwaMessageReceived"))
+                    object.isCtwaMessageReceived = message.isCtwaMessageReceived;
+                return object;
+            };
+
+            /**
+             * Converts this CtwaMessageReceivedAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CtwaMessageReceivedAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for CtwaMessageReceivedAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.CtwaMessageReceivedAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            CtwaMessageReceivedAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.CtwaMessageReceivedAction";
+            };
+
+            return CtwaMessageReceivedAction;
         })();
 
         SyncActionValue.CtwaPerCustomerDataSharingAction = (function() {
@@ -193063,6 +193318,7 @@ $root.SyncAction = (function() {
      * @property {number} BUBBLE_LOCK_MESSAGE_ACTION=90 BUBBLE_LOCK_MESSAGE_ACTION value
      * @property {number} LABEL_SUBLIST_ACTION=91 LABEL_SUBLIST_ACTION value
      * @property {number} DEVICE_CAPABILITIES_V2=92 DEVICE_CAPABILITIES_V2 value
+     * @property {number} CTWA_MESSAGE_RECEIVED_ACTION=93 CTWA_MESSAGE_RECEIVED_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -193155,6 +193411,7 @@ $root.SyncAction = (function() {
         values[valuesById[90] = "BUBBLE_LOCK_MESSAGE_ACTION"] = 90;
         values[valuesById[91] = "LABEL_SUBLIST_ACTION"] = 91;
         values[valuesById[92] = "DEVICE_CAPABILITIES_V2"] = 92;
+        values[valuesById[93] = "CTWA_MESSAGE_RECEIVED_ACTION"] = 93;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;
