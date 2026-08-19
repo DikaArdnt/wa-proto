@@ -7255,9 +7255,6 @@ export namespace E2E {
         /** Message newsletterAdminProfileMessage */
         newsletterAdminProfileMessage?: (E2E.Message.IFutureProofMessage|null);
 
-        /** Message newsletterAdminProfileMessageV2 */
-        newsletterAdminProfileMessageV2?: (E2E.Message.IFutureProofMessage|null);
-
         /** Message spoilerMessage */
         spoilerMessage?: (E2E.Message.IFutureProofMessage|null);
 
@@ -7597,9 +7594,6 @@ export namespace E2E {
 
         /** Message newsletterAdminProfileMessage. */
         public newsletterAdminProfileMessage?: (E2E.Message.IFutureProofMessage|null);
-
-        /** Message newsletterAdminProfileMessageV2. */
-        public newsletterAdminProfileMessageV2?: (E2E.Message.IFutureProofMessage|null);
 
         /** Message spoilerMessage. */
         public spoilerMessage?: (E2E.Message.IFutureProofMessage|null);
