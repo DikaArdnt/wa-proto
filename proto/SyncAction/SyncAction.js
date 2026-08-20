@@ -1043,6 +1043,8 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.ILabelSublistAction|null} [labelSublistAction] SyncActionValue labelSublistAction
          * @property {DeviceCapabilities.IDeviceCapabilities|null} [deviceCapabilitiesV2] SyncActionValue deviceCapabilitiesV2
          * @property {SyncAction.SyncActionValue.ICtwaMessageReceivedAction|null} [ctwaMessageReceivedAction] SyncActionValue ctwaMessageReceivedAction
+         * @property {SyncAction.SyncActionValue.ISharedDeviceAllowlistAction|null} [sharedDeviceAllowlistAction] SyncActionValue sharedDeviceAllowlistAction
+         * @property {SyncAction.SyncActionValue.IContactManagerMetadataAction|null} [contactManagerMetadataAction] SyncActionValue contactManagerMetadataAction
          */
 
         /**
@@ -1733,6 +1735,22 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.ctwaMessageReceivedAction = null;
 
         /**
+         * SyncActionValue sharedDeviceAllowlistAction.
+         * @member {SyncAction.SyncActionValue.ISharedDeviceAllowlistAction|null|undefined} sharedDeviceAllowlistAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.sharedDeviceAllowlistAction = null;
+
+        /**
+         * SyncActionValue contactManagerMetadataAction.
+         * @member {SyncAction.SyncActionValue.IContactManagerMetadataAction|null|undefined} contactManagerMetadataAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.contactManagerMetadataAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1928,6 +1946,10 @@ $root.SyncAction = (function() {
                 $root.DeviceCapabilities.DeviceCapabilities.encode(message.deviceCapabilitiesV2, writer.uint32(/* id 92, wireType 2 =*/738).fork(), q + 1).ldelim();
             if (message.ctwaMessageReceivedAction != null && Object.hasOwnProperty.call(message, "ctwaMessageReceivedAction"))
                 $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.encode(message.ctwaMessageReceivedAction, writer.uint32(/* id 93, wireType 2 =*/746).fork(), q + 1).ldelim();
+            if (message.sharedDeviceAllowlistAction != null && Object.hasOwnProperty.call(message, "sharedDeviceAllowlistAction"))
+                $root.SyncAction.SyncActionValue.SharedDeviceAllowlistAction.encode(message.sharedDeviceAllowlistAction, writer.uint32(/* id 94, wireType 2 =*/754).fork(), q + 1).ldelim();
+            if (message.contactManagerMetadataAction != null && Object.hasOwnProperty.call(message, "contactManagerMetadataAction"))
+                $root.SyncAction.SyncActionValue.ContactManagerMetadataAction.encode(message.contactManagerMetadataAction, writer.uint32(/* id 95, wireType 2 =*/762).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -2302,6 +2324,14 @@ $root.SyncAction = (function() {
                     }
                 case 93: {
                         message.ctwaMessageReceivedAction = $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 94: {
+                        message.sharedDeviceAllowlistAction = $root.SyncAction.SyncActionValue.SharedDeviceAllowlistAction.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 95: {
+                        message.contactManagerMetadataAction = $root.SyncAction.SyncActionValue.ContactManagerMetadataAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -2761,6 +2791,16 @@ $root.SyncAction = (function() {
                 if (error)
                     return "ctwaMessageReceivedAction." + error;
             }
+            if (message.sharedDeviceAllowlistAction != null && Object.hasOwnProperty.call(message, "sharedDeviceAllowlistAction")) {
+                var error = $root.SyncAction.SyncActionValue.SharedDeviceAllowlistAction.verify(message.sharedDeviceAllowlistAction, long + 1);
+                if (error)
+                    return "sharedDeviceAllowlistAction." + error;
+            }
+            if (message.contactManagerMetadataAction != null && Object.hasOwnProperty.call(message, "contactManagerMetadataAction")) {
+                var error = $root.SyncAction.SyncActionValue.ContactManagerMetadataAction.verify(message.contactManagerMetadataAction, long + 1);
+                if (error)
+                    return "contactManagerMetadataAction." + error;
+            }
             return null;
         };
 
@@ -3206,6 +3246,16 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.ctwaMessageReceivedAction: object expected");
                 message.ctwaMessageReceivedAction = $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.fromObject(object.ctwaMessageReceivedAction, long + 1);
             }
+            if (object.sharedDeviceAllowlistAction != null) {
+                if (!$util.isObject(object.sharedDeviceAllowlistAction))
+                    throw TypeError(".SyncAction.SyncActionValue.sharedDeviceAllowlistAction: object expected");
+                message.sharedDeviceAllowlistAction = $root.SyncAction.SyncActionValue.SharedDeviceAllowlistAction.fromObject(object.sharedDeviceAllowlistAction, long + 1);
+            }
+            if (object.contactManagerMetadataAction != null) {
+                if (!$util.isObject(object.contactManagerMetadataAction))
+                    throw TypeError(".SyncAction.SyncActionValue.contactManagerMetadataAction: object expected");
+                message.contactManagerMetadataAction = $root.SyncAction.SyncActionValue.ContactManagerMetadataAction.fromObject(object.contactManagerMetadataAction, long + 1);
+            }
             return message;
         };
 
@@ -3315,6 +3365,8 @@ $root.SyncAction = (function() {
                 object.labelSublistAction = null;
                 object.deviceCapabilitiesV2 = null;
                 object.ctwaMessageReceivedAction = null;
+                object.sharedDeviceAllowlistAction = null;
+                object.contactManagerMetadataAction = null;
             }
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
@@ -3489,6 +3541,10 @@ $root.SyncAction = (function() {
                 object.deviceCapabilitiesV2 = $root.DeviceCapabilities.DeviceCapabilities.toObject(message.deviceCapabilitiesV2, options, q + 1);
             if (message.ctwaMessageReceivedAction != null && Object.hasOwnProperty.call(message, "ctwaMessageReceivedAction"))
                 object.ctwaMessageReceivedAction = $root.SyncAction.SyncActionValue.CtwaMessageReceivedAction.toObject(message.ctwaMessageReceivedAction, options, q + 1);
+            if (message.sharedDeviceAllowlistAction != null && Object.hasOwnProperty.call(message, "sharedDeviceAllowlistAction"))
+                object.sharedDeviceAllowlistAction = $root.SyncAction.SyncActionValue.SharedDeviceAllowlistAction.toObject(message.sharedDeviceAllowlistAction, options, q + 1);
+            if (message.contactManagerMetadataAction != null && Object.hasOwnProperty.call(message, "contactManagerMetadataAction"))
+                object.contactManagerMetadataAction = $root.SyncAction.SyncActionValue.ContactManagerMetadataAction.toObject(message.contactManagerMetadataAction, options, q + 1);
             return object;
         };
 
@@ -9049,6 +9105,233 @@ $root.SyncAction = (function() {
             };
 
             return ContactAction;
+        })();
+
+        SyncActionValue.ContactManagerMetadataAction = (function() {
+
+            /**
+             * Properties of a ContactManagerMetadataAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IContactManagerMetadataAction
+             * @property {boolean|null} [isHidden] ContactManagerMetadataAction isHidden
+             */
+
+            /**
+             * Constructs a new ContactManagerMetadataAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a ContactManagerMetadataAction.
+             * @implements IContactManagerMetadataAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IContactManagerMetadataAction=} [properties] Properties to set
+             */
+            function ContactManagerMetadataAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * ContactManagerMetadataAction isHidden.
+             * @member {boolean} isHidden
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @instance
+             */
+            ContactManagerMetadataAction.prototype.isHidden = false;
+
+            /**
+             * Creates a new ContactManagerMetadataAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IContactManagerMetadataAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.ContactManagerMetadataAction} ContactManagerMetadataAction instance
+             */
+            ContactManagerMetadataAction.create = function create(properties) {
+                return new ContactManagerMetadataAction(properties);
+            };
+
+            /**
+             * Encodes the specified ContactManagerMetadataAction message. Does not implicitly {@link SyncAction.SyncActionValue.ContactManagerMetadataAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IContactManagerMetadataAction} message ContactManagerMetadataAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ContactManagerMetadataAction.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.isHidden != null && Object.hasOwnProperty.call(message, "isHidden"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isHidden);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified ContactManagerMetadataAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.ContactManagerMetadataAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IContactManagerMetadataAction} message ContactManagerMetadataAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ContactManagerMetadataAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a ContactManagerMetadataAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.ContactManagerMetadataAction} ContactManagerMetadataAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ContactManagerMetadataAction.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ContactManagerMetadataAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.isHidden = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a ContactManagerMetadataAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.ContactManagerMetadataAction} ContactManagerMetadataAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ContactManagerMetadataAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a ContactManagerMetadataAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ContactManagerMetadataAction.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.isHidden != null && Object.hasOwnProperty.call(message, "isHidden"))
+                    if (typeof message.isHidden !== "boolean")
+                        return "isHidden: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a ContactManagerMetadataAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.ContactManagerMetadataAction} ContactManagerMetadataAction
+             */
+            ContactManagerMetadataAction.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SyncAction.SyncActionValue.ContactManagerMetadataAction)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SyncAction.SyncActionValue.ContactManagerMetadataAction: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SyncAction.SyncActionValue.ContactManagerMetadataAction();
+                if (object.isHidden != null)
+                    message.isHidden = Boolean(object.isHidden);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a ContactManagerMetadataAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ContactManagerMetadataAction} message ContactManagerMetadataAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ContactManagerMetadataAction.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults)
+                    object.isHidden = false;
+                if (message.isHidden != null && Object.hasOwnProperty.call(message, "isHidden"))
+                    object.isHidden = message.isHidden;
+                return object;
+            };
+
+            /**
+             * Converts this ContactManagerMetadataAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ContactManagerMetadataAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for ContactManagerMetadataAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.ContactManagerMetadataAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ContactManagerMetadataAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.ContactManagerMetadataAction";
+            };
+
+            return ContactManagerMetadataAction;
         })();
 
         SyncActionValue.CtwaMessageReceivedAction = (function() {
@@ -23504,6 +23787,233 @@ $root.SyncAction = (function() {
             return SettingsSyncAction;
         })();
 
+        SyncActionValue.SharedDeviceAllowlistAction = (function() {
+
+            /**
+             * Properties of a SharedDeviceAllowlistAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface ISharedDeviceAllowlistAction
+             * @property {boolean|null} [allowed] SharedDeviceAllowlistAction allowed
+             */
+
+            /**
+             * Constructs a new SharedDeviceAllowlistAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a SharedDeviceAllowlistAction.
+             * @implements ISharedDeviceAllowlistAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.ISharedDeviceAllowlistAction=} [properties] Properties to set
+             */
+            function SharedDeviceAllowlistAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * SharedDeviceAllowlistAction allowed.
+             * @member {boolean} allowed
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @instance
+             */
+            SharedDeviceAllowlistAction.prototype.allowed = false;
+
+            /**
+             * Creates a new SharedDeviceAllowlistAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ISharedDeviceAllowlistAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.SharedDeviceAllowlistAction} SharedDeviceAllowlistAction instance
+             */
+            SharedDeviceAllowlistAction.create = function create(properties) {
+                return new SharedDeviceAllowlistAction(properties);
+            };
+
+            /**
+             * Encodes the specified SharedDeviceAllowlistAction message. Does not implicitly {@link SyncAction.SyncActionValue.SharedDeviceAllowlistAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ISharedDeviceAllowlistAction} message SharedDeviceAllowlistAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SharedDeviceAllowlistAction.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.allowed != null && Object.hasOwnProperty.call(message, "allowed"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.allowed);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified SharedDeviceAllowlistAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.SharedDeviceAllowlistAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ISharedDeviceAllowlistAction} message SharedDeviceAllowlistAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SharedDeviceAllowlistAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a SharedDeviceAllowlistAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.SharedDeviceAllowlistAction} SharedDeviceAllowlistAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SharedDeviceAllowlistAction.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SharedDeviceAllowlistAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.allowed = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a SharedDeviceAllowlistAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.SharedDeviceAllowlistAction} SharedDeviceAllowlistAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SharedDeviceAllowlistAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a SharedDeviceAllowlistAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            SharedDeviceAllowlistAction.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.allowed != null && Object.hasOwnProperty.call(message, "allowed"))
+                    if (typeof message.allowed !== "boolean")
+                        return "allowed: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a SharedDeviceAllowlistAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.SharedDeviceAllowlistAction} SharedDeviceAllowlistAction
+             */
+            SharedDeviceAllowlistAction.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SyncAction.SyncActionValue.SharedDeviceAllowlistAction)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SyncAction.SyncActionValue.SharedDeviceAllowlistAction: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SyncAction.SyncActionValue.SharedDeviceAllowlistAction();
+                if (object.allowed != null)
+                    message.allowed = Boolean(object.allowed);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a SharedDeviceAllowlistAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {SyncAction.SyncActionValue.SharedDeviceAllowlistAction} message SharedDeviceAllowlistAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            SharedDeviceAllowlistAction.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults)
+                    object.allowed = false;
+                if (message.allowed != null && Object.hasOwnProperty.call(message, "allowed"))
+                    object.allowed = message.allowed;
+                return object;
+            };
+
+            /**
+             * Converts this SharedDeviceAllowlistAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            SharedDeviceAllowlistAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for SharedDeviceAllowlistAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.SharedDeviceAllowlistAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            SharedDeviceAllowlistAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.SharedDeviceAllowlistAction";
+            };
+
+            return SharedDeviceAllowlistAction;
+        })();
+
         SyncActionValue.StarAction = (function() {
 
             /**
@@ -31205,6 +31715,8 @@ $root.SyncAction = (function() {
      * @property {number} LABEL_SUBLIST_ACTION=91 LABEL_SUBLIST_ACTION value
      * @property {number} DEVICE_CAPABILITIES_V2=92 DEVICE_CAPABILITIES_V2 value
      * @property {number} CTWA_MESSAGE_RECEIVED_ACTION=93 CTWA_MESSAGE_RECEIVED_ACTION value
+     * @property {number} SHARED_DEVICE_ALLOWLIST_ACTION=94 SHARED_DEVICE_ALLOWLIST_ACTION value
+     * @property {number} CONTACT_MANAGER_METADATA_ACTION=95 CONTACT_MANAGER_METADATA_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -31298,6 +31810,8 @@ $root.SyncAction = (function() {
         values[valuesById[91] = "LABEL_SUBLIST_ACTION"] = 91;
         values[valuesById[92] = "DEVICE_CAPABILITIES_V2"] = 92;
         values[valuesById[93] = "CTWA_MESSAGE_RECEIVED_ACTION"] = 93;
+        values[valuesById[94] = "SHARED_DEVICE_ALLOWLIST_ACTION"] = 94;
+        values[valuesById[95] = "CONTACT_MANAGER_METADATA_ACTION"] = 95;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;
