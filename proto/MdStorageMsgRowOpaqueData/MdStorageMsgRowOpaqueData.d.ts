@@ -5573,6 +5573,9 @@ export namespace E2E {
 
         /** ContextInfo aiProvenance */
         aiProvenance?: (AICommon.IAIProvenance|null);
+
+        /** ContextInfo experienceIds */
+        experienceIds?: (number[]|null);
     }
 
     /** Represents a ContextInfo. */
@@ -5775,6 +5778,9 @@ export namespace E2E {
 
         /** ContextInfo aiProvenance. */
         public aiProvenance?: (AICommon.IAIProvenance|null);
+
+        /** ContextInfo experienceIds. */
+        public experienceIds: number[];
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -8373,6 +8379,9 @@ export namespace E2E {
 
         /** Message botPlatformRegistrationSuccessMessage */
         botPlatformRegistrationSuccessMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message newsletterScheduledMessage */
+        newsletterScheduledMessage?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -8713,6 +8722,9 @@ export namespace E2E {
 
         /** Message botPlatformRegistrationSuccessMessage. */
         public botPlatformRegistrationSuccessMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message newsletterScheduledMessage. */
+        public newsletterScheduledMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
