@@ -116,7 +116,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.CoexStateSync();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.CoexStateSync();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -132,6 +142,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -372,7 +387,17 @@ $root.ServerSync = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.CoexStateSync.CollectionMutations();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.ServerSync.CoexStateSync.CollectionMutations();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -392,6 +417,11 @@ $root.ServerSync = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -664,7 +694,17 @@ $root.ServerSync = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.CoexStateSync.Mutation();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.ServerSync.CoexStateSync.Mutation();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -690,6 +730,11 @@ $root.ServerSync = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1066,7 +1111,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.SyncdPatch();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.SyncdPatch();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1114,6 +1169,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -1468,7 +1528,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.SyncdMutation();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.SyncdMutation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1486,6 +1556,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -1748,7 +1823,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.SyncdMutations();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.SyncdMutations();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1764,6 +1849,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2029,7 +2119,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.SyncdSnapshot();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.SyncdSnapshot();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2057,6 +2157,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2387,7 +2492,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.ExternalBlobReference();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.ExternalBlobReference();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2421,6 +2536,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2740,7 +2860,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.SyncdRecord();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.SyncdRecord();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2762,6 +2892,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -3007,7 +3142,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.KeyId();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.KeyId();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -3021,6 +3166,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -3243,7 +3393,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.SyncdValue();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.SyncdValue();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -3257,6 +3417,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -3479,7 +3644,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.SyncdIndex();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.SyncdIndex();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -3493,6 +3668,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -3726,7 +3906,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.ExitCode();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.ExitCode();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -3744,6 +3934,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -3982,7 +4177,17 @@ $root.ServerSync = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerSync.SyncdVersion();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.ServerSync.SyncdVersion();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -3996,6 +4201,11 @@ $root.ServerSync = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };

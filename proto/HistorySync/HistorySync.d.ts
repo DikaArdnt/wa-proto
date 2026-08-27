@@ -3357,6 +3357,9 @@ export namespace E2E {
 
         /** AIRichResponseMessage contextInfo */
         contextInfo?: (E2E.IContextInfo|null);
+
+        /** AIRichResponseMessage originalRecipientMetadata */
+        originalRecipientMetadata?: (AICommon.IAIRichResponseUnifiedResponse|null);
     }
 
     /** Represents a AIRichResponseMessage. */
@@ -3379,6 +3382,9 @@ export namespace E2E {
 
         /** AIRichResponseMessage contextInfo. */
         public contextInfo?: (E2E.IContextInfo|null);
+
+        /** AIRichResponseMessage originalRecipientMetadata. */
+        public originalRecipientMetadata?: (AICommon.IAIRichResponseUnifiedResponse|null);
 
         /**
          * Creates a new AIRichResponseMessage instance using the specified properties.
@@ -32198,6 +32204,9 @@ export namespace E2E {
 
             /** VideoMessage videoSourceType */
             videoSourceType?: (E2E.Message.VideoMessage.VideoSourceType|null);
+
+            /** VideoMessage dashManifestUrl */
+            dashManifestUrl?: (string|null);
         }
 
         /** Represents a VideoMessage. */
@@ -32298,6 +32307,9 @@ export namespace E2E {
 
             /** VideoMessage videoSourceType. */
             public videoSourceType: E2E.Message.VideoMessage.VideoSourceType;
+
+            /** VideoMessage dashManifestUrl. */
+            public dashManifestUrl: string;
 
             /**
              * Creates a new VideoMessage instance using the specified properties.
@@ -39152,6 +39164,9 @@ export namespace AICommon {
         /** BotMetadata botHistoryShareMetadata */
         botHistoryShareMetadata?: (AICommon.IBotHistoryShareMetadata|null);
 
+        /** BotMetadata responseStoppedByUser */
+        responseStoppedByUser?: (boolean|null);
+
         /** BotMetadata internalMetadata */
         internalMetadata?: (Uint8Array|null);
     }
@@ -39290,6 +39305,9 @@ export namespace AICommon {
 
         /** BotMetadata botHistoryShareMetadata. */
         public botHistoryShareMetadata?: (AICommon.IBotHistoryShareMetadata|null);
+
+        /** BotMetadata responseStoppedByUser. */
+        public responseStoppedByUser: boolean;
 
         /** BotMetadata internalMetadata. */
         public internalMetadata: Uint8Array;
@@ -42437,7 +42455,8 @@ export namespace AICommon {
             RICH_RESPONSE_SPORTS_WIDGET_ENABLED = 66,
             AI_RICH_RESPONSE_ARTIFACTS_ENABLED = 67,
             AI_RICH_RESPONSE_EMAIL_CALENDAR_ENABLED = 68,
-            AI_RICH_RESPONSE_REMINDERS_ENABLED = 69
+            AI_RICH_RESPONSE_REMINDERS_ENABLED = 69,
+            AI_STOP_GENERATION_ENABLED = 70
         }
     }
 
@@ -45425,7 +45444,8 @@ export namespace AICommon {
         GROUP_MEMBER = 54,
         CHATLIST_SEARCH = 55,
         NEW_CHAT_LIST = 56,
-        CONTACTS_TAB = 57
+        CONTACTS_TAB = 57,
+        NEW_3P_AGENT_CREATION = 58
     }
 }
 
@@ -66941,6 +66961,9 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast recipientLimit */
             recipientLimit?: (number|null);
+
+            /** BusinessBroadcast proCompanionSupportEnabled */
+            proCompanionSupportEnabled?: (boolean|null);
         }
 
         /** Represents a BusinessBroadcast. */
@@ -66966,6 +66989,9 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast recipientLimit. */
             public recipientLimit: number;
+
+            /** BusinessBroadcast proCompanionSupportEnabled. */
+            public proCompanionSupportEnabled: boolean;
 
             /**
              * Creates a new BusinessBroadcast instance using the specified properties.

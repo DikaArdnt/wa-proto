@@ -158,7 +158,17 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.ClientPairingProps();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.CompanionReg.ClientPairingProps();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -188,6 +198,11 @@ $root.CompanionReg = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -454,7 +469,17 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.EncryptedPairingRequest();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.CompanionReg.EncryptedPairingRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -472,6 +497,11 @@ $root.CompanionReg = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -734,7 +764,17 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.PairingRequest();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.CompanionReg.PairingRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -756,6 +796,11 @@ $root.CompanionReg = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -1024,7 +1069,17 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.PrimaryEphemeralIdentity();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.CompanionReg.PrimaryEphemeralIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1042,6 +1097,11 @@ $root.CompanionReg = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -1293,7 +1353,17 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.ProloguePayload();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.CompanionReg.ProloguePayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1311,6 +1381,11 @@ $root.CompanionReg = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -1547,7 +1622,17 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.CompanionCommitment();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.CompanionReg.CompanionCommitment();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1561,6 +1646,11 @@ $root.CompanionReg = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -1805,7 +1895,17 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.CompanionEphemeralIdentity();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.CompanionReg.CompanionEphemeralIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1827,6 +1927,11 @@ $root.CompanionReg = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2249,7 +2354,17 @@ $root.CompanionReg = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.CompanionReg.DeviceProps();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2279,6 +2394,11 @@ $root.CompanionReg = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2715,7 +2835,17 @@ $root.CompanionReg = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps.AppVersion();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.CompanionReg.DeviceProps.AppVersion();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -2745,6 +2875,11 @@ $root.CompanionReg = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -3257,7 +3392,17 @@ $root.CompanionReg = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps.HistorySyncConfig();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.CompanionReg.DeviceProps.HistorySyncConfig();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -3369,6 +3514,11 @@ $root.CompanionReg = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };

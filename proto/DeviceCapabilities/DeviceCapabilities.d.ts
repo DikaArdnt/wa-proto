@@ -468,6 +468,9 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast recipientLimit */
             recipientLimit?: (number|null);
+
+            /** BusinessBroadcast proCompanionSupportEnabled */
+            proCompanionSupportEnabled?: (boolean|null);
         }
 
         /** Represents a BusinessBroadcast. */
@@ -493,6 +496,9 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast recipientLimit. */
             public recipientLimit: number;
+
+            /** BusinessBroadcast proCompanionSupportEnabled. */
+            public proCompanionSupportEnabled: boolean;
 
             /**
              * Creates a new BusinessBroadcast instance using the specified properties.

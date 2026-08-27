@@ -116,7 +116,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyRecordStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.SenderKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -132,6 +142,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -397,7 +412,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -425,6 +450,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -699,7 +729,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -717,6 +757,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -959,7 +1004,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -977,6 +1032,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1219,7 +1279,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -1237,6 +1307,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1491,7 +1566,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.IdentityKeyPairStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.IdentityKeyPairStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1509,6 +1594,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -1793,7 +1883,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1823,6 +1923,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2134,7 +2239,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.PreKeyRecordStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.PreKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2156,6 +2271,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2417,7 +2537,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.RecordStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.RecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2437,6 +2567,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2815,7 +2950,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.SessionStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2879,6 +3024,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -3290,7 +3440,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -3318,6 +3478,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -3605,7 +3770,17 @@ $root.SignalLocalStorageProtocol = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -3623,6 +3798,11 @@ $root.SignalLocalStorageProtocol = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -3887,7 +4067,17 @@ $root.SignalLocalStorageProtocol = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -3913,6 +4103,11 @@ $root.SignalLocalStorageProtocol = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -4247,7 +4442,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -4285,6 +4490,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -4645,7 +4855,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -4675,6 +4895,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };

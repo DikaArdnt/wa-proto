@@ -202,7 +202,17 @@ $root.DeviceCapabilities = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.DeviceCapabilities.DeviceCapabilities();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -248,6 +258,11 @@ $root.DeviceCapabilities = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -606,7 +621,17 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.AiFbidMigration();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.DeviceCapabilities.DeviceCapabilities.AiFbidMigration();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -620,6 +645,11 @@ $root.DeviceCapabilities = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -849,7 +879,17 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.AiThread();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.DeviceCapabilities.DeviceCapabilities.AiThread();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -863,6 +903,11 @@ $root.DeviceCapabilities = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1116,7 +1161,17 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.BizAiSettingsSync();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.DeviceCapabilities.DeviceCapabilities.BizAiSettingsSync();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -1130,6 +1185,11 @@ $root.DeviceCapabilities = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1258,6 +1318,7 @@ $root.DeviceCapabilities = (function() {
              * @property {boolean|null} [campaignSyncEnabled] BusinessBroadcast campaignSyncEnabled
              * @property {boolean|null} [insightsSyncEnabled] BusinessBroadcast insightsSyncEnabled
              * @property {number|null} [recipientLimit] BusinessBroadcast recipientLimit
+             * @property {boolean|null} [proCompanionSupportEnabled] BusinessBroadcast proCompanionSupportEnabled
              */
 
             /**
@@ -1316,6 +1377,14 @@ $root.DeviceCapabilities = (function() {
             BusinessBroadcast.prototype.recipientLimit = 0;
 
             /**
+             * BusinessBroadcast proCompanionSupportEnabled.
+             * @member {boolean} proCompanionSupportEnabled
+             * @memberof DeviceCapabilities.DeviceCapabilities.BusinessBroadcast
+             * @instance
+             */
+            BusinessBroadcast.prototype.proCompanionSupportEnabled = false;
+
+            /**
              * Creates a new BusinessBroadcast instance using the specified properties.
              * @function create
              * @memberof DeviceCapabilities.DeviceCapabilities.BusinessBroadcast
@@ -1353,6 +1422,8 @@ $root.DeviceCapabilities = (function() {
                     writer.uint32(/* id 4, wireType 0 =*/32).bool(message.insightsSyncEnabled);
                 if (message.recipientLimit != null && Object.hasOwnProperty.call(message, "recipientLimit"))
                     writer.uint32(/* id 5, wireType 0 =*/40).int32(message.recipientLimit);
+                if (message.proCompanionSupportEnabled != null && Object.hasOwnProperty.call(message, "proCompanionSupportEnabled"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).bool(message.proCompanionSupportEnabled);
                 return writer;
             };
 
@@ -1387,7 +1458,17 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -1413,10 +1494,19 @@ $root.DeviceCapabilities = (function() {
                             message.recipientLimit = reader.int32();
                             break;
                         }
+                    case 6: {
+                            message.proCompanionSupportEnabled = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1467,6 +1557,9 @@ $root.DeviceCapabilities = (function() {
                 if (message.recipientLimit != null && Object.hasOwnProperty.call(message, "recipientLimit"))
                     if (!$util.isInteger(message.recipientLimit))
                         return "recipientLimit: integer expected";
+                if (message.proCompanionSupportEnabled != null && Object.hasOwnProperty.call(message, "proCompanionSupportEnabled"))
+                    if (typeof message.proCompanionSupportEnabled !== "boolean")
+                        return "proCompanionSupportEnabled: boolean expected";
                 return null;
             };
 
@@ -1498,6 +1591,8 @@ $root.DeviceCapabilities = (function() {
                     message.insightsSyncEnabled = Boolean(object.insightsSyncEnabled);
                 if (object.recipientLimit != null)
                     message.recipientLimit = object.recipientLimit | 0;
+                if (object.proCompanionSupportEnabled != null)
+                    message.proCompanionSupportEnabled = Boolean(object.proCompanionSupportEnabled);
                 return message;
             };
 
@@ -1524,6 +1619,7 @@ $root.DeviceCapabilities = (function() {
                     object.campaignSyncEnabled = false;
                     object.insightsSyncEnabled = false;
                     object.recipientLimit = 0;
+                    object.proCompanionSupportEnabled = false;
                 }
                 if (message.importListEnabled != null && Object.hasOwnProperty.call(message, "importListEnabled"))
                     object.importListEnabled = message.importListEnabled;
@@ -1535,6 +1631,8 @@ $root.DeviceCapabilities = (function() {
                     object.insightsSyncEnabled = message.insightsSyncEnabled;
                 if (message.recipientLimit != null && Object.hasOwnProperty.call(message, "recipientLimit"))
                     object.recipientLimit = message.recipientLimit;
+                if (message.proCompanionSupportEnabled != null && Object.hasOwnProperty.call(message, "proCompanionSupportEnabled"))
+                    object.proCompanionSupportEnabled = message.proCompanionSupportEnabled;
                 return object;
             };
 
@@ -1679,7 +1777,17 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.ContactRefresh();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.DeviceCapabilities.DeviceCapabilities.ContactRefresh();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -1693,6 +1801,11 @@ $root.DeviceCapabilities = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1906,7 +2019,17 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -1920,6 +2043,11 @@ $root.DeviceCapabilities = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -2165,7 +2293,17 @@ $root.DeviceCapabilities = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -2179,6 +2317,11 @@ $root.DeviceCapabilities = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };

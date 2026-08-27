@@ -34,6 +34,7 @@ message AIRichResponseMessage {
     repeated AICommonDeprecated.AIRichResponseSubMessage submessages = 2;
     optional AICommon.AIRichResponseUnifiedResponse unifiedResponse = 3;
     optional ContextInfo contextInfo = 4;
+    optional AICommon.AIRichResponseUnifiedResponse originalRecipientMetadata = 5;
 }
 
 message MemberLabel {
@@ -2310,6 +2311,7 @@ message Message {
         optional uint64 motionPhotoPresentationOffsetMs = 29;
         optional string metadataUrl = 30;
         optional VideoSourceType videoSourceType = 31;
+        optional string dashManifestUrl = 33;
         enum Attribution {
             NONE = 0;
             GIPHY = 1;

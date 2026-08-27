@@ -213,7 +213,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseSubMessage();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseSubMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -263,6 +273,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -661,7 +676,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -681,6 +706,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -950,7 +980,17 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -964,6 +1004,11 @@ $root.AICommonDeprecated = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1220,7 +1265,17 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -1246,6 +1301,11 @@ $root.AICommonDeprecated = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -1558,7 +1618,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseMapMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseMapMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -1594,6 +1664,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -1907,7 +1982,17 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -1937,6 +2022,11 @@ $root.AICommonDeprecated = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -2199,7 +2289,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseLatexMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseLatexMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2219,6 +2319,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -2543,7 +2648,17 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -2589,6 +2704,11 @@ $root.AICommonDeprecated = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -2903,7 +3023,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseDynamicMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseDynamicMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -2929,6 +3059,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -3236,7 +3371,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseTableMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseTableMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -3256,6 +3401,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -3505,7 +3655,17 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -3525,6 +3685,11 @@ $root.AICommonDeprecated = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -3775,7 +3940,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseCodeMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseCodeMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -3795,6 +3970,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -4042,7 +4222,17 @@ $root.AICommonDeprecated = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -4060,6 +4250,11 @@ $root.AICommonDeprecated = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -4379,7 +4574,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseInlineImageMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseInlineImageMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -4405,6 +4610,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -4701,7 +4911,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseGridImageMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseGridImageMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -4721,6 +4941,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -4987,7 +5212,17 @@ $root.AICommonDeprecated = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseImageURL();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommonDeprecated.AIRichResponseImageURL();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -5009,6 +5244,11 @@ $root.AICommonDeprecated = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -5306,7 +5546,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIProvenance();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AIProvenance();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -5324,6 +5574,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -5564,7 +5819,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIProvenance.Metadata();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.AIProvenance.Metadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -5582,6 +5847,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -5818,7 +6088,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotAgentDeepLinkMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotAgentDeepLinkMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -5836,6 +6116,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -6067,7 +6352,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotAgentMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotAgentMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -6081,6 +6376,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -6323,7 +6623,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotInfrastructureDiagnostics();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotInfrastructureDiagnostics();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -6347,6 +6657,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -6649,7 +6964,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIHomeState();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AIHomeState();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -6675,6 +7000,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -7030,7 +7360,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIHomeState.AIHomeOption();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.AIHomeState.AIHomeOption();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -7072,6 +7412,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -7406,7 +7751,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotDocumentMessageMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotDocumentMessageMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -7420,6 +7775,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -7688,7 +8048,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.SessionTransparencyMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.SessionTransparencyMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -7710,6 +8080,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -7970,7 +8345,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIRegenerateMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AIRegenerateMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -7988,6 +8373,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -8231,7 +8621,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIRichResponseUnifiedResponse();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AIRichResponseUnifiedResponse();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -8245,6 +8645,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -8478,7 +8883,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMessageSharingInfo();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMessageSharingInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -8496,6 +8911,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -8584,6 +9004,7 @@ $root.AICommon = (function() {
                 case 55:
                 case 56:
                 case 57:
+                case 58:
                     break;
                 }
             if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
@@ -8813,6 +9234,10 @@ $root.AICommon = (function() {
             case 57:
                 message.botEntryPointOrigin = 57;
                 break;
+            case "NEW_3P_AGENT_CREATION":
+            case 58:
+                message.botEntryPointOrigin = 58;
+                break;
             }
             if (object.forwardScore != null)
                 message.forwardScore = object.forwardScore >>> 0;
@@ -8994,7 +9419,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.ForwardedAIBotMessageInfo();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.ForwardedAIBotMessageInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -9016,6 +9451,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -9312,7 +9752,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotFeedbackMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -9350,6 +9800,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -9936,7 +10391,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -9982,6 +10447,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -10289,7 +10759,17 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -10311,6 +10791,11 @@ $root.AICommon = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -10629,7 +11114,17 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -10675,6 +11170,11 @@ $root.AICommon = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -10975,7 +11475,17 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $Reader.recursionLimit)
                             throw Error("maximum nesting depth exceeded");
-                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData();
+                        var end, message;
+                        if (length === undefined)
+                            end = reader.len;
+                        else {
+                            end = reader.pos + length;
+                            if (end > reader.len)
+                                throw RangeError("index out of range");
+                            length = reader.len;
+                            reader.len = end;
+                        }
+                        message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
                             if (tag === error)
@@ -10989,6 +11499,11 @@ $root.AICommon = (function() {
                                 reader.skipType(tag & 7, long);
                                 break;
                             }
+                        }
+                        if (length !== undefined) {
+                            if (reader.pos !== end)
+                                throw RangeError("index out of range");
+                            reader.len = length;
                         }
                         return message;
                     };
@@ -11213,7 +11728,17 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $Reader.recursionLimit)
                             throw Error("maximum nesting depth exceeded");
-                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData();
+                        var end, message;
+                        if (length === undefined)
+                            end = reader.len;
+                        else {
+                            end = reader.pos + length;
+                            if (end > reader.len)
+                                throw RangeError("index out of range");
+                            length = reader.len;
+                            reader.len = end;
+                        }
+                        message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
                             if (tag === error)
@@ -11231,6 +11756,11 @@ $root.AICommon = (function() {
                                 reader.skipType(tag & 7, long);
                                 break;
                             }
+                        }
+                        if (length !== undefined) {
+                            if (reader.pos !== end)
+                                throw RangeError("index out of range");
+                            reader.len = length;
                         }
                         return message;
                     };
@@ -11453,7 +11983,17 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $Reader.recursionLimit)
                             throw Error("maximum nesting depth exceeded");
-                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData();
+                        var end, message;
+                        if (length === undefined)
+                            end = reader.len;
+                        else {
+                            end = reader.pos + length;
+                            if (end > reader.len)
+                                throw RangeError("index out of range");
+                            length = reader.len;
+                            reader.len = end;
+                        }
+                        message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
                             if (tag === error)
@@ -11467,6 +12007,11 @@ $root.AICommon = (function() {
                                 reader.skipType(tag & 7, long);
                                 break;
                             }
+                        }
+                        if (length !== undefined) {
+                            if (reader.pos !== end)
+                                throw RangeError("index out of range");
+                            reader.len = length;
                         }
                         return message;
                     };
@@ -11669,7 +12214,17 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $Reader.recursionLimit)
                             throw Error("maximum nesting depth exceeded");
-                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData();
+                        var end, message;
+                        if (length === undefined)
+                            end = reader.len;
+                        else {
+                            end = reader.pos + length;
+                            if (end > reader.len)
+                                throw RangeError("index out of range");
+                            length = reader.len;
+                            reader.len = end;
+                        }
+                        message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
                             if (tag === error)
@@ -11679,6 +12234,11 @@ $root.AICommon = (function() {
                                 reader.skipType(tag & 7, long);
                                 break;
                             }
+                        }
+                        if (length !== undefined) {
+                            if (reader.pos !== end)
+                                throw RangeError("index out of range");
+                            reader.len = length;
                         }
                         return message;
                     };
@@ -11880,7 +12440,17 @@ $root.AICommon = (function() {
                             long = 0;
                         if (long > $Reader.recursionLimit)
                             throw Error("maximum nesting depth exceeded");
-                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData();
+                        var end, message;
+                        if (length === undefined)
+                            end = reader.len;
+                        else {
+                            end = reader.pos + length;
+                            if (end > reader.len)
+                                throw RangeError("index out of range");
+                            length = reader.len;
+                            reader.len = end;
+                        }
+                        message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
                             if (tag === error)
@@ -11898,6 +12468,11 @@ $root.AICommon = (function() {
                                 reader.skipType(tag & 7, long);
                                 break;
                             }
+                        }
+                        if (length !== undefined) {
+                            if (reader.pos !== end)
+                                throw RangeError("index out of range");
+                            reader.len = length;
                         }
                         return message;
                     };
@@ -12129,7 +12704,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotGroupParticipantMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotGroupParticipantMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -12143,6 +12728,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -12367,7 +12957,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotRenderingConfigMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotRenderingConfigMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -12385,6 +12985,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -12609,7 +13214,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotHistoryShareMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotHistoryShareMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -12625,6 +13240,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -12857,7 +13477,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotGroupMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotGroupMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -12873,6 +13503,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -13103,7 +13738,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AISubscriptionUpsellMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AISubscriptionUpsellMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -13117,6 +13762,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -13311,6 +13961,7 @@ $root.AICommon = (function() {
          * @property {AICommon.IAISubscriptionUpsellMetadata|null} [subscriptionUpsellMetadata] BotMetadata subscriptionUpsellMetadata
          * @property {AICommon.IBotPttPromptMetadata|null} [pttPromptMetadata] BotMetadata pttPromptMetadata
          * @property {AICommon.IBotHistoryShareMetadata|null} [botHistoryShareMetadata] BotMetadata botHistoryShareMetadata
+         * @property {boolean|null} [responseStoppedByUser] BotMetadata responseStoppedByUser
          * @property {Uint8Array|null} [internalMetadata] BotMetadata internalMetadata
          */
 
@@ -13666,6 +14317,14 @@ $root.AICommon = (function() {
         BotMetadata.prototype.botHistoryShareMetadata = null;
 
         /**
+         * BotMetadata responseStoppedByUser.
+         * @member {boolean} responseStoppedByUser
+         * @memberof AICommon.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.responseStoppedByUser = false;
+
+        /**
          * BotMetadata internalMetadata.
          * @member {Uint8Array} internalMetadata
          * @memberof AICommon.BotMetadata
@@ -13785,6 +14444,8 @@ $root.AICommon = (function() {
                 $root.AICommon.BotPttPromptMetadata.encode(message.pttPromptMetadata, writer.uint32(/* id 42, wireType 2 =*/338).fork(), q + 1).ldelim();
             if (message.botHistoryShareMetadata != null && Object.hasOwnProperty.call(message, "botHistoryShareMetadata"))
                 $root.AICommon.BotHistoryShareMetadata.encode(message.botHistoryShareMetadata, writer.uint32(/* id 43, wireType 2 =*/346).fork(), q + 1).ldelim();
+            if (message.responseStoppedByUser != null && Object.hasOwnProperty.call(message, "responseStoppedByUser"))
+                writer.uint32(/* id 44, wireType 0 =*/352).bool(message.responseStoppedByUser);
             if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 writer.uint32(/* id 999, wireType 2 =*/7994).bytes(message.internalMetadata);
             return writer;
@@ -13821,7 +14482,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -13995,6 +14666,10 @@ $root.AICommon = (function() {
                         message.botHistoryShareMetadata = $root.AICommon.BotHistoryShareMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
+                case 44: {
+                        message.responseStoppedByUser = reader.bool();
+                        break;
+                    }
                 case 999: {
                         message.internalMetadata = reader.bytes();
                         break;
@@ -14003,6 +14678,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -14234,6 +14914,9 @@ $root.AICommon = (function() {
                 if (error)
                     return "botHistoryShareMetadata." + error;
             }
+            if (message.responseStoppedByUser != null && Object.hasOwnProperty.call(message, "responseStoppedByUser"))
+                if (typeof message.responseStoppedByUser !== "boolean")
+                    return "responseStoppedByUser: boolean expected";
             if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 if (!(message.internalMetadata && typeof message.internalMetadata.length === "number" || $util.isString(message.internalMetadata)))
                     return "internalMetadata: buffer expected";
@@ -14450,6 +15133,8 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMetadata.botHistoryShareMetadata: object expected");
                 message.botHistoryShareMetadata = $root.AICommon.BotHistoryShareMetadata.fromObject(object.botHistoryShareMetadata, long + 1);
             }
+            if (object.responseStoppedByUser != null)
+                message.responseStoppedByUser = Boolean(object.responseStoppedByUser);
             if (object.internalMetadata != null)
                 if (typeof object.internalMetadata === "string")
                     $util.base64.decode(object.internalMetadata, message.internalMetadata = $util.newBuffer($util.base64.length(object.internalMetadata)), 0);
@@ -14524,6 +15209,7 @@ $root.AICommon = (function() {
                 object.subscriptionUpsellMetadata = null;
                 object.pttPromptMetadata = null;
                 object.botHistoryShareMetadata = null;
+                object.responseStoppedByUser = false;
                 if (options.bytes === String)
                     object.internalMetadata = "";
                 else {
@@ -14616,6 +15302,8 @@ $root.AICommon = (function() {
                 object.pttPromptMetadata = $root.AICommon.BotPttPromptMetadata.toObject(message.pttPromptMetadata, options, q + 1);
             if (message.botHistoryShareMetadata != null && Object.hasOwnProperty.call(message, "botHistoryShareMetadata"))
                 object.botHistoryShareMetadata = $root.AICommon.BotHistoryShareMetadata.toObject(message.botHistoryShareMetadata, options, q + 1);
+            if (message.responseStoppedByUser != null && Object.hasOwnProperty.call(message, "responseStoppedByUser"))
+                object.responseStoppedByUser = message.responseStoppedByUser;
             if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 object.internalMetadata = options.bytes === String ? $util.base64.encode(message.internalMetadata, 0, message.internalMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.internalMetadata) : message.internalMetadata;
             return object;
@@ -14746,7 +15434,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotPttPromptMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotPttPromptMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -14760,6 +15458,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -14984,7 +15687,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotResolvedToolCallMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotResolvedToolCallMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -15002,6 +15715,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -15246,7 +15964,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotCommandMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotCommandMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -15268,6 +15996,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -15498,7 +16231,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIMetadataOperation();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AIMetadataOperation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -15512,6 +16255,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -15752,7 +16500,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.HatchMetadataSync();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.HatchMetadataSync();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -15774,6 +16532,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -16051,7 +16814,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIMediaCollectionMessage();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AIMediaCollectionMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -16073,6 +16846,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -16314,7 +17092,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIMediaCollectionMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AIMediaCollectionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -16332,6 +17120,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -16565,7 +17358,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIThreadInfo();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.AIThreadInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -16583,6 +17386,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -16823,7 +17631,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIThreadInfo.AIThreadClientInfo();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.AIThreadInfo.AIThreadClientInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -16841,6 +17659,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -17110,7 +17933,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIThreadInfo.AIThreadServerInfo();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.AIThreadInfo.AIThreadServerInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -17124,6 +17957,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -17353,7 +18191,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotUnifiedResponseMutation();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotUnifiedResponseMutation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -17373,6 +18221,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -17636,7 +18489,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -17658,6 +18521,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -17909,7 +18777,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotUnifiedResponseMutation.SideBySideMetadata();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.BotUnifiedResponseMutation.SideBySideMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -17927,6 +18805,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -18152,7 +19035,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMessageOrigin();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMessageOrigin();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -18166,6 +19059,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -18407,7 +19305,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMessageOriginMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMessageOriginMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -18423,6 +19331,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -18844,7 +19757,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.InThreadSurveyMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.InThreadSurveyMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -18930,6 +19853,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -19335,7 +20263,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.InThreadSurveyMetadata.InThreadSurveyOption();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.InThreadSurveyMetadata.InThreadSurveyOption();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -19357,6 +20295,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -19598,7 +20541,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -19616,6 +20569,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -19862,7 +20820,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -19886,6 +20854,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -20139,7 +21112,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotSourcesMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotSourcesMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -20155,6 +21138,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -20448,7 +21436,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotSourcesMetadata.BotSourceItem();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.BotSourcesMetadata.BotSourceItem();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -20486,6 +21484,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -20827,7 +21830,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotAgeCollectionMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotAgeCollectionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -20849,6 +21862,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -21123,7 +22141,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotImagineMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotImagineMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -21141,6 +22169,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -21419,7 +22452,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotQuotaMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotQuotaMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -21435,6 +22478,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -21684,7 +22732,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -21706,6 +22764,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -22003,7 +23066,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotModeSelectionMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotModeSelectionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -22014,8 +23087,14 @@ $root.AICommon = (function() {
                             message.mode = [];
                         if ((tag & 7) === 2) {
                             var end2 = reader.uint32() + reader.pos;
+                            if (end2 > reader.len)
+                                throw RangeError("index out of range");
+                            reader.len = end2;
                             while (reader.pos < end2)
                                 message.mode.push(reader.int32());
+                            if (reader.pos !== end2)
+                                throw RangeError("index out of range");
+                            reader.len = end;
                         } else
                             message.mode.push(reader.int32());
                         break;
@@ -22025,8 +23104,14 @@ $root.AICommon = (function() {
                             message.overrideMode = [];
                         if ((tag & 7) === 2) {
                             var end2 = reader.uint32() + reader.pos;
+                            if (end2 > reader.len)
+                                throw RangeError("index out of range");
+                            reader.len = end2;
                             while (reader.pos < end2)
                                 message.overrideMode.push(reader.uint32());
+                            if (reader.pos !== end2)
+                                throw RangeError("index out of range");
+                            reader.len = end;
                         } else
                             message.overrideMode.push(reader.uint32());
                         break;
@@ -22035,6 +23120,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -22316,7 +23406,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotCapabilityMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotCapabilityMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -22327,8 +23427,14 @@ $root.AICommon = (function() {
                             message.capabilities = [];
                         if ((tag & 7) === 2) {
                             var end2 = reader.uint32() + reader.pos;
+                            if (end2 > reader.len)
+                                throw RangeError("index out of range");
+                            reader.len = end2;
                             while (reader.pos < end2)
                                 message.capabilities.push(reader.int32());
+                            if (reader.pos !== end2)
+                                throw RangeError("index out of range");
+                            reader.len = end;
                         } else
                             message.capabilities.push(reader.int32());
                         break;
@@ -22337,6 +23443,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -22449,6 +23560,7 @@ $root.AICommon = (function() {
                     case 67:
                     case 68:
                     case 69:
+                    case 70:
                         break;
                     }
             }
@@ -22764,6 +23876,10 @@ $root.AICommon = (function() {
                     case 69:
                         message.capabilities[i] = 69;
                         break;
+                    case "AI_STOP_GENERATION_ENABLED":
+                    case 70:
+                        message.capabilities[i] = 70;
+                        break;
                     }
             }
             return message;
@@ -22896,6 +24012,7 @@ $root.AICommon = (function() {
          * @property {number} AI_RICH_RESPONSE_ARTIFACTS_ENABLED=67 AI_RICH_RESPONSE_ARTIFACTS_ENABLED value
          * @property {number} AI_RICH_RESPONSE_EMAIL_CALENDAR_ENABLED=68 AI_RICH_RESPONSE_EMAIL_CALENDAR_ENABLED value
          * @property {number} AI_RICH_RESPONSE_REMINDERS_ENABLED=69 AI_RICH_RESPONSE_REMINDERS_ENABLED value
+         * @property {number} AI_STOP_GENERATION_ENABLED=70 AI_STOP_GENERATION_ENABLED value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -22969,6 +24086,7 @@ $root.AICommon = (function() {
             values[valuesById[67] = "AI_RICH_RESPONSE_ARTIFACTS_ENABLED"] = 67;
             values[valuesById[68] = "AI_RICH_RESPONSE_EMAIL_CALENDAR_ENABLED"] = 68;
             values[valuesById[69] = "AI_RICH_RESPONSE_REMINDERS_ENABLED"] = 69;
+            values[valuesById[70] = "AI_STOP_GENERATION_ENABLED"] = 70;
             return values;
         })();
 
@@ -23095,7 +24213,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotProgressIndicatorMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotProgressIndicatorMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -23119,6 +24247,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -23450,7 +24583,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -23492,6 +24635,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -23849,7 +24997,17 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -23875,6 +25033,11 @@ $root.AICommon = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -24164,7 +25327,17 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -24186,6 +25359,11 @@ $root.AICommon = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -24487,7 +25665,17 @@ $root.AICommon = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -24511,6 +25699,11 @@ $root.AICommon = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -24823,7 +26016,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotModelMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotModelMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -24845,6 +26048,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -25199,7 +26407,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotReminderMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotReminderMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -25229,6 +26447,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -25599,7 +26822,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMemuMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMemuMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -25615,6 +26848,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -25911,7 +27149,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMediaMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMediaMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -25949,6 +27197,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -26278,7 +27531,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotSessionMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotSessionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -26296,6 +27559,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -26589,7 +27857,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMetricsMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMetricsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -26611,6 +27889,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -26702,6 +27985,7 @@ $root.AICommon = (function() {
                 case 55:
                 case 56:
                 case 57:
+                case 58:
                     break;
                 }
             if (message.threadOrigin != null && Object.hasOwnProperty.call(message, "threadOrigin"))
@@ -26941,6 +28225,10 @@ $root.AICommon = (function() {
             case 57:
                 message.destinationEntryPoint = 57;
                 break;
+            case "NEW_3P_AGENT_CREATION":
+            case 58:
+                message.destinationEntryPoint = 58;
+                break;
             }
             switch (object.threadOrigin) {
             default:
@@ -27131,7 +28419,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotRenderingMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotRenderingMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -27147,6 +28445,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -27387,7 +28690,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotRenderingMetadata.Keyword();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.BotRenderingMetadata.Keyword();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -27407,6 +28720,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -27655,7 +28973,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotPromotionMessageMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotPromotionMessageMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -27673,6 +29001,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -27983,7 +29316,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotSignatureVerificationUseCaseProof();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotSignatureVerificationUseCaseProof();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -28017,6 +29360,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -28375,7 +29723,17 @@ $root.AICommon = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.AICommon.BotSignatureVerificationUseCaseProof.CertificateSKI();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -28393,6 +29751,11 @@ $root.AICommon = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -28668,7 +30031,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotSignatureVerificationMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotSignatureVerificationMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -28684,6 +30057,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -28925,7 +30303,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMemoryFact();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMemoryFact();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -28943,6 +30331,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -29191,7 +30584,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMemoryMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotMemoryMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -29217,6 +30620,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -29482,7 +30890,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotLinkedAccount();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotLinkedAccount();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -29496,6 +30914,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -29759,7 +31182,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotLinkedAccountsMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotLinkedAccountsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -29783,6 +31216,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -30051,7 +31489,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotPromptSuggestion();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotPromptSuggestion();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -30069,6 +31517,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -30293,7 +31746,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotPromptSuggestions();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotPromptSuggestions();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -30309,6 +31772,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -30574,7 +32042,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotSuggestedPromptMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotSuggestedPromptMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -30602,6 +32080,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -30979,7 +32462,17 @@ $root.AICommon = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotPluginMetadata();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.AICommon.BotPluginMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -31037,6 +32530,11 @@ $root.AICommon = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -31514,6 +33012,7 @@ $root.AICommon = (function() {
      * @property {number} CHATLIST_SEARCH=55 CHATLIST_SEARCH value
      * @property {number} NEW_CHAT_LIST=56 NEW_CHAT_LIST value
      * @property {number} CONTACTS_TAB=57 CONTACTS_TAB value
+     * @property {number} NEW_3P_AGENT_CREATION=58 NEW_3P_AGENT_CREATION value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -31566,6 +33065,7 @@ $root.AICommon = (function() {
         values[valuesById[55] = "CHATLIST_SEARCH"] = 55;
         values[valuesById[56] = "NEW_CHAT_LIST"] = 56;
         values[valuesById[57] = "CONTACTS_TAB"] = 57;
+        values[valuesById[58] = "NEW_3P_AGENT_CREATION"] = 58;
         return values;
     })();
 
@@ -31679,7 +33179,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyRecordStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.SenderKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -31695,6 +33205,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -31960,7 +33475,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -31988,6 +33513,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -32262,7 +33792,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -32280,6 +33820,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -32522,7 +34067,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -32540,6 +34095,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -32782,7 +34342,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -32800,6 +34370,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -33054,7 +34629,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.IdentityKeyPairStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.IdentityKeyPairStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -33072,6 +34657,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -33356,7 +34946,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -33386,6 +34986,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -33697,7 +35302,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.PreKeyRecordStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.PreKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -33719,6 +35334,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -33980,7 +35600,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.RecordStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.RecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -34000,6 +35630,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -34378,7 +36013,17 @@ $root.SignalLocalStorageProtocol = (function() {
                 long = 0;
             if (long > $Reader.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure();
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.SignalLocalStorageProtocol.SessionStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -34442,6 +36087,11 @@ $root.SignalLocalStorageProtocol = (function() {
                     reader.skipType(tag & 7, long);
                     break;
                 }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
             }
             return message;
         };
@@ -34853,7 +36503,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -34881,6 +36541,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -35168,7 +36833,17 @@ $root.SignalLocalStorageProtocol = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -35186,6 +36861,11 @@ $root.SignalLocalStorageProtocol = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -35450,7 +37130,17 @@ $root.SignalLocalStorageProtocol = (function() {
                         long = 0;
                     if (long > $Reader.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey();
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
                         if (tag === error)
@@ -35476,6 +37166,11 @@ $root.SignalLocalStorageProtocol = (function() {
                             reader.skipType(tag & 7, long);
                             break;
                         }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
                     }
                     return message;
                 };
@@ -35810,7 +37505,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -35848,6 +37553,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
@@ -36208,7 +37918,17 @@ $root.SignalLocalStorageProtocol = (function() {
                     long = 0;
                 if (long > $Reader.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey();
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     if (tag === error)
@@ -36238,6 +37958,11 @@ $root.SignalLocalStorageProtocol = (function() {
                         reader.skipType(tag & 7, long);
                         break;
                     }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
                 }
                 return message;
             };
