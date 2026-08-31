@@ -532,6 +532,7 @@ $root.DeviceCapabilities = (function() {
              * @memberof DeviceCapabilities.DeviceCapabilities
              * @interface IAiFbidMigration
              * @property {number|Long|null} [chatDbMigrationTimestamp] AiFbidMigration chatDbMigrationTimestamp
+             * @property {number|null} [supportVersion] AiFbidMigration supportVersion
              */
 
             /**
@@ -556,6 +557,14 @@ $root.DeviceCapabilities = (function() {
              * @instance
              */
             AiFbidMigration.prototype.chatDbMigrationTimestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+            /**
+             * AiFbidMigration supportVersion.
+             * @member {number} supportVersion
+             * @memberof DeviceCapabilities.DeviceCapabilities.AiFbidMigration
+             * @instance
+             */
+            AiFbidMigration.prototype.supportVersion = 0;
 
             /**
              * Creates a new AiFbidMigration instance using the specified properties.
@@ -587,6 +596,8 @@ $root.DeviceCapabilities = (function() {
                     throw Error("max depth exceeded");
                 if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.chatDbMigrationTimestamp);
+                if (message.supportVersion != null && Object.hasOwnProperty.call(message, "supportVersion"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.supportVersion);
                 return writer;
             };
 
@@ -641,6 +652,10 @@ $root.DeviceCapabilities = (function() {
                             message.chatDbMigrationTimestamp = reader.uint64();
                             break;
                         }
+                    case 2: {
+                            message.supportVersion = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -688,6 +703,9 @@ $root.DeviceCapabilities = (function() {
                 if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
                         return "chatDbMigrationTimestamp: integer|Long expected";
+                if (message.supportVersion != null && Object.hasOwnProperty.call(message, "supportVersion"))
+                    if (!$util.isInteger(message.supportVersion))
+                        return "supportVersion: integer expected";
                 return null;
             };
 
@@ -718,6 +736,8 @@ $root.DeviceCapabilities = (function() {
                         message.chatDbMigrationTimestamp = object.chatDbMigrationTimestamp;
                     else if (typeof object.chatDbMigrationTimestamp === "object")
                         message.chatDbMigrationTimestamp = new $util.LongBits(object.chatDbMigrationTimestamp.low >>> 0, object.chatDbMigrationTimestamp.high >>> 0).toNumber(true);
+                if (object.supportVersion != null)
+                    message.supportVersion = object.supportVersion >>> 0;
                 return message;
             };
 
@@ -738,12 +758,14 @@ $root.DeviceCapabilities = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
                         object.chatDbMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
                         object.chatDbMigrationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                    object.supportVersion = 0;
+                }
                 if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.chatDbMigrationTimestamp = typeof message.chatDbMigrationTimestamp === "number" ? BigInt(message.chatDbMigrationTimestamp) : $util.Long.fromBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0, true).toBigInt();
@@ -751,6 +773,8 @@ $root.DeviceCapabilities = (function() {
                         object.chatDbMigrationTimestamp = options.longs === String ? String(message.chatDbMigrationTimestamp) : message.chatDbMigrationTimestamp;
                     else
                         object.chatDbMigrationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.chatDbMigrationTimestamp) : options.longs === Number ? new $util.LongBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0).toNumber(true) : message.chatDbMigrationTimestamp;
+                if (message.supportVersion != null && Object.hasOwnProperty.call(message, "supportVersion"))
+                    object.supportVersion = message.supportVersion;
                 return object;
             };
 

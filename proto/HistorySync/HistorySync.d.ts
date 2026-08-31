@@ -47381,6 +47381,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps subscriptionSyncPayload */
         subscriptionSyncPayload?: (Uint8Array|null);
+
+        /** ClientPairingProps isBotJidDbMigrated */
+        isBotJidDbMigrated?: (boolean|null);
     }
 
     /** Represents a ClientPairingProps. */
@@ -47406,6 +47409,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps subscriptionSyncPayload. */
         public subscriptionSyncPayload: Uint8Array;
+
+        /** ClientPairingProps isBotJidDbMigrated. */
+        public isBotJidDbMigrated: boolean;
 
         /**
          * Creates a new ClientPairingProps instance using the specified properties.
@@ -66648,6 +66654,9 @@ export namespace DeviceCapabilities {
 
             /** AiFbidMigration chatDbMigrationTimestamp */
             chatDbMigrationTimestamp?: (number|Long|null);
+
+            /** AiFbidMigration supportVersion */
+            supportVersion?: (number|null);
         }
 
         /** Represents an AiFbidMigration. */
@@ -66661,6 +66670,9 @@ export namespace DeviceCapabilities {
 
             /** AiFbidMigration chatDbMigrationTimestamp. */
             public chatDbMigrationTimestamp: (number|Long);
+
+            /** AiFbidMigration supportVersion. */
+            public supportVersion: number;
 
             /**
              * Creates a new AiFbidMigration instance using the specified properties.

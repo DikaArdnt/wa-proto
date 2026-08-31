@@ -155,6 +155,9 @@ export namespace DeviceCapabilities {
 
             /** AiFbidMigration chatDbMigrationTimestamp */
             chatDbMigrationTimestamp?: (number|Long|null);
+
+            /** AiFbidMigration supportVersion */
+            supportVersion?: (number|null);
         }
 
         /** Represents an AiFbidMigration. */
@@ -168,6 +171,9 @@ export namespace DeviceCapabilities {
 
             /** AiFbidMigration chatDbMigrationTimestamp. */
             public chatDbMigrationTimestamp: (number|Long);
+
+            /** AiFbidMigration supportVersion. */
+            public supportVersion: number;
 
             /**
              * Creates a new AiFbidMigration instance using the specified properties.

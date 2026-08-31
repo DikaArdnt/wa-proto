@@ -143713,6 +143713,7 @@ $root.CompanionReg = (function() {
          * @property {boolean|null} [isSyncdSnapshotRecoveryEnabled] ClientPairingProps isSyncdSnapshotRecoveryEnabled
          * @property {boolean|null} [isHsThumbnailSyncEnabled] ClientPairingProps isHsThumbnailSyncEnabled
          * @property {Uint8Array|null} [subscriptionSyncPayload] ClientPairingProps subscriptionSyncPayload
+         * @property {boolean|null} [isBotJidDbMigrated] ClientPairingProps isBotJidDbMigrated
          */
 
         /**
@@ -143771,6 +143772,14 @@ $root.CompanionReg = (function() {
         ClientPairingProps.prototype.subscriptionSyncPayload = $util.newBuffer([]);
 
         /**
+         * ClientPairingProps isBotJidDbMigrated.
+         * @member {boolean} isBotJidDbMigrated
+         * @memberof CompanionReg.ClientPairingProps
+         * @instance
+         */
+        ClientPairingProps.prototype.isBotJidDbMigrated = false;
+
+        /**
          * Creates a new ClientPairingProps instance using the specified properties.
          * @function create
          * @memberof CompanionReg.ClientPairingProps
@@ -143808,6 +143817,8 @@ $root.CompanionReg = (function() {
                 writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isHsThumbnailSyncEnabled);
             if (message.subscriptionSyncPayload != null && Object.hasOwnProperty.call(message, "subscriptionSyncPayload"))
                 writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.subscriptionSyncPayload);
+            if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
+                writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isBotJidDbMigrated);
             return writer;
         };
 
@@ -143878,6 +143889,10 @@ $root.CompanionReg = (function() {
                         message.subscriptionSyncPayload = reader.bytes();
                         break;
                     }
+                case 6: {
+                        message.isBotJidDbMigrated = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -143937,6 +143952,9 @@ $root.CompanionReg = (function() {
             if (message.subscriptionSyncPayload != null && Object.hasOwnProperty.call(message, "subscriptionSyncPayload"))
                 if (!(message.subscriptionSyncPayload && typeof message.subscriptionSyncPayload.length === "number" || $util.isString(message.subscriptionSyncPayload)))
                     return "subscriptionSyncPayload: buffer expected";
+            if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
+                if (typeof message.isBotJidDbMigrated !== "boolean")
+                    return "isBotJidDbMigrated: boolean expected";
             return null;
         };
 
@@ -143971,6 +143989,8 @@ $root.CompanionReg = (function() {
                     $util.base64.decode(object.subscriptionSyncPayload, message.subscriptionSyncPayload = $util.newBuffer($util.base64.length(object.subscriptionSyncPayload)), 0);
                 else if (object.subscriptionSyncPayload.length >= 0)
                     message.subscriptionSyncPayload = object.subscriptionSyncPayload;
+            if (object.isBotJidDbMigrated != null)
+                message.isBotJidDbMigrated = Boolean(object.isBotJidDbMigrated);
             return message;
         };
 
@@ -144003,6 +144023,7 @@ $root.CompanionReg = (function() {
                     if (options.bytes !== Array)
                         object.subscriptionSyncPayload = $util.newBuffer(object.subscriptionSyncPayload);
                 }
+                object.isBotJidDbMigrated = false;
             }
             if (message.isChatDbLidMigrated != null && Object.hasOwnProperty.call(message, "isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
@@ -144014,6 +144035,8 @@ $root.CompanionReg = (function() {
                 object.isHsThumbnailSyncEnabled = message.isHsThumbnailSyncEnabled;
             if (message.subscriptionSyncPayload != null && Object.hasOwnProperty.call(message, "subscriptionSyncPayload"))
                 object.subscriptionSyncPayload = options.bytes === String ? $util.base64.encode(message.subscriptionSyncPayload, 0, message.subscriptionSyncPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.subscriptionSyncPayload) : message.subscriptionSyncPayload;
+            if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
+                object.isBotJidDbMigrated = message.isBotJidDbMigrated;
             return object;
         };
 
@@ -202929,6 +202952,7 @@ $root.DeviceCapabilities = (function() {
              * @memberof DeviceCapabilities.DeviceCapabilities
              * @interface IAiFbidMigration
              * @property {number|Long|null} [chatDbMigrationTimestamp] AiFbidMigration chatDbMigrationTimestamp
+             * @property {number|null} [supportVersion] AiFbidMigration supportVersion
              */
 
             /**
@@ -202953,6 +202977,14 @@ $root.DeviceCapabilities = (function() {
              * @instance
              */
             AiFbidMigration.prototype.chatDbMigrationTimestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+            /**
+             * AiFbidMigration supportVersion.
+             * @member {number} supportVersion
+             * @memberof DeviceCapabilities.DeviceCapabilities.AiFbidMigration
+             * @instance
+             */
+            AiFbidMigration.prototype.supportVersion = 0;
 
             /**
              * Creates a new AiFbidMigration instance using the specified properties.
@@ -202984,6 +203016,8 @@ $root.DeviceCapabilities = (function() {
                     throw Error("max depth exceeded");
                 if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.chatDbMigrationTimestamp);
+                if (message.supportVersion != null && Object.hasOwnProperty.call(message, "supportVersion"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.supportVersion);
                 return writer;
             };
 
@@ -203038,6 +203072,10 @@ $root.DeviceCapabilities = (function() {
                             message.chatDbMigrationTimestamp = reader.uint64();
                             break;
                         }
+                    case 2: {
+                            message.supportVersion = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -203085,6 +203123,9 @@ $root.DeviceCapabilities = (function() {
                 if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
                         return "chatDbMigrationTimestamp: integer|Long expected";
+                if (message.supportVersion != null && Object.hasOwnProperty.call(message, "supportVersion"))
+                    if (!$util.isInteger(message.supportVersion))
+                        return "supportVersion: integer expected";
                 return null;
             };
 
@@ -203115,6 +203156,8 @@ $root.DeviceCapabilities = (function() {
                         message.chatDbMigrationTimestamp = object.chatDbMigrationTimestamp;
                     else if (typeof object.chatDbMigrationTimestamp === "object")
                         message.chatDbMigrationTimestamp = new $util.LongBits(object.chatDbMigrationTimestamp.low >>> 0, object.chatDbMigrationTimestamp.high >>> 0).toNumber(true);
+                if (object.supportVersion != null)
+                    message.supportVersion = object.supportVersion >>> 0;
                 return message;
             };
 
@@ -203135,12 +203178,14 @@ $root.DeviceCapabilities = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
                         object.chatDbMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
                         object.chatDbMigrationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                    object.supportVersion = 0;
+                }
                 if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.chatDbMigrationTimestamp = typeof message.chatDbMigrationTimestamp === "number" ? BigInt(message.chatDbMigrationTimestamp) : $util.Long.fromBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0, true).toBigInt();
@@ -203148,6 +203193,8 @@ $root.DeviceCapabilities = (function() {
                         object.chatDbMigrationTimestamp = options.longs === String ? String(message.chatDbMigrationTimestamp) : message.chatDbMigrationTimestamp;
                     else
                         object.chatDbMigrationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.chatDbMigrationTimestamp) : options.longs === Number ? new $util.LongBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0).toNumber(true) : message.chatDbMigrationTimestamp;
+                if (message.supportVersion != null && Object.hasOwnProperty.call(message, "supportVersion"))
+                    object.supportVersion = message.supportVersion;
                 return object;
             };
 
