@@ -170,6 +170,12 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData sharableEventInviteCallLink */
         sharableEventInviteCallLink?: (string|null);
+
+        /** MsgOpaqueData mediaPngThumbnail */
+        mediaPngThumbnail?: (string|null);
+
+        /** MsgOpaqueData qrUrl */
+        qrUrl?: (string|null);
     }
 
     /** Represents a MsgOpaqueData. */
@@ -345,6 +351,12 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData sharableEventInviteCallLink. */
         public sharableEventInviteCallLink: string;
+
+        /** MsgOpaqueData mediaPngThumbnail. */
+        public mediaPngThumbnail: string;
+
+        /** MsgOpaqueData qrUrl. */
+        public qrUrl: string;
 
         /**
          * Creates a new MsgOpaqueData instance using the specified properties.
