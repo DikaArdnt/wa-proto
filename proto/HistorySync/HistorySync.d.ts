@@ -2022,6 +2022,9 @@ export namespace HistorySync {
 
         /** Conversation identityVerification */
         identityVerification?: (HistorySync.IIdentityVerificationState|null);
+
+        /** Conversation acp2Setting */
+        acp2Setting?: (Protocol.IACP2Setting|null);
     }
 
     /** Represents a Conversation. */
@@ -2221,6 +2224,9 @@ export namespace HistorySync {
 
         /** Conversation identityVerification. */
         public identityVerification?: (HistorySync.IIdentityVerificationState|null);
+
+        /** Conversation acp2Setting. */
+        public acp2Setting?: (Protocol.IACP2Setting|null);
 
         /**
          * Creates a new Conversation instance using the specified properties.
@@ -8872,6 +8878,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo agmHeaderInteractionStrategy */
             agmHeaderInteractionStrategy?: (number|null);
+
+            /** ExternalAdReplyInfo containsCtwaFlowsAutoLabel */
+            containsCtwaFlowsAutoLabel?: (boolean|null);
         }
 
         /** Represents an ExternalAdReplyInfo. */
@@ -8978,6 +8987,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo agmHeaderInteractionStrategy. */
             public agmHeaderInteractionStrategy: number;
+
+            /** ExternalAdReplyInfo containsCtwaFlowsAutoLabel. */
+            public containsCtwaFlowsAutoLabel: boolean;
 
             /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
@@ -13246,6 +13258,109 @@ export namespace E2E {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a ChatAnimatedWallpaper. */
+        interface IChatAnimatedWallpaper {
+
+            /** ChatAnimatedWallpaper animatedWallpaperId */
+            animatedWallpaperId?: (string|null);
+
+            /** ChatAnimatedWallpaper dimLevel */
+            dimLevel?: (number|null);
+        }
+
+        /** Represents a ChatAnimatedWallpaper. */
+        class ChatAnimatedWallpaper implements IChatAnimatedWallpaper {
+
+            /**
+             * Constructs a new ChatAnimatedWallpaper.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IChatAnimatedWallpaper);
+
+            /** ChatAnimatedWallpaper animatedWallpaperId. */
+            public animatedWallpaperId: string;
+
+            /** ChatAnimatedWallpaper dimLevel. */
+            public dimLevel: number;
+
+            /**
+             * Creates a new ChatAnimatedWallpaper instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ChatAnimatedWallpaper instance
+             */
+            public static create(properties?: E2E.Message.IChatAnimatedWallpaper): E2E.Message.ChatAnimatedWallpaper;
+
+            /**
+             * Encodes the specified ChatAnimatedWallpaper message. Does not implicitly {@link E2E.Message.ChatAnimatedWallpaper.verify|verify} messages.
+             * @param message ChatAnimatedWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IChatAnimatedWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ChatAnimatedWallpaper message, length delimited. Does not implicitly {@link E2E.Message.ChatAnimatedWallpaper.verify|verify} messages.
+             * @param message ChatAnimatedWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IChatAnimatedWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ChatAnimatedWallpaper message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ChatAnimatedWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.ChatAnimatedWallpaper;
+
+            /**
+             * Decodes a ChatAnimatedWallpaper message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ChatAnimatedWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.ChatAnimatedWallpaper;
+
+            /**
+             * Verifies a ChatAnimatedWallpaper message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ChatAnimatedWallpaper message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ChatAnimatedWallpaper
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.ChatAnimatedWallpaper;
+
+            /**
+             * Creates a plain object from a ChatAnimatedWallpaper message. Also converts values to other types if specified.
+             * @param message ChatAnimatedWallpaper
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.ChatAnimatedWallpaper, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ChatAnimatedWallpaper to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ChatAnimatedWallpaper
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a ChatCustomImageWallpaper. */
         interface IChatCustomImageWallpaper {
 
@@ -13699,6 +13814,9 @@ export namespace E2E {
 
             /** ChatThemeSetting customImage */
             customImage?: (E2E.Message.IChatCustomImageWallpaper|null);
+
+            /** ChatThemeSetting animatedWallpaper */
+            animatedWallpaper?: (E2E.Message.IChatAnimatedWallpaper|null);
         }
 
         /** Represents a ChatThemeSetting. */
@@ -13731,8 +13849,11 @@ export namespace E2E {
             /** ChatThemeSetting customImage. */
             public customImage?: (E2E.Message.IChatCustomImageWallpaper|null);
 
+            /** ChatThemeSetting animatedWallpaper. */
+            public animatedWallpaper?: (E2E.Message.IChatAnimatedWallpaper|null);
+
             /** ChatThemeSetting wallpaper. */
-            public wallpaper?: ("defaultWallpaper"|"solidColor"|"stockImage"|"customImage");
+            public wallpaper?: ("defaultWallpaper"|"solidColor"|"stockImage"|"customImage"|"animatedWallpaper");
 
             /**
              * Creates a new ChatThemeSetting instance using the specified properties.
@@ -28276,6 +28397,12 @@ export namespace E2E {
 
             /** ProtocolMessage acp2Setting */
             acp2Setting?: (Protocol.IACP2Setting|null);
+
+            /** ProtocolMessage sharedDeviceContactHashKeyShare */
+            sharedDeviceContactHashKeyShare?: (E2E.Message.ISharedDeviceContactHashKeyShare|null);
+
+            /** ProtocolMessage sharedDeviceContactHashKeyRequest */
+            sharedDeviceContactHashKeyRequest?: (E2E.Message.ISharedDeviceContactHashKeyRequest|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -28379,6 +28506,12 @@ export namespace E2E {
 
             /** ProtocolMessage acp2Setting. */
             public acp2Setting?: (Protocol.IACP2Setting|null);
+
+            /** ProtocolMessage sharedDeviceContactHashKeyShare. */
+            public sharedDeviceContactHashKeyShare?: (E2E.Message.ISharedDeviceContactHashKeyShare|null);
+
+            /** ProtocolMessage sharedDeviceContactHashKeyRequest. */
+            public sharedDeviceContactHashKeyRequest?: (E2E.Message.ISharedDeviceContactHashKeyRequest|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -28494,7 +28627,9 @@ export namespace E2E {
                 AI_METADATA_OPERATION = 35,
                 MARK_AS_VERIFIED_ACTION = 36,
                 COEX_STATE_SYNC = 37,
-                ACP2_SETTING = 39
+                ACP2_SETTING = 39,
+                SHARED_DEVICE_CONTACT_HASH_KEY_SHARE = 40,
+                SHARED_DEVICE_CONTACT_HASH_KEY_REQUEST = 41
             }
         }
 
@@ -29744,6 +29879,319 @@ export namespace E2E {
 
             /**
              * Gets the default type url for SenderKeyDistributionMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SharedDeviceContactHashKey. */
+        interface ISharedDeviceContactHashKey {
+
+            /** SharedDeviceContactHashKey epoch */
+            epoch?: (number|null);
+
+            /** SharedDeviceContactHashKey kind */
+            kind?: (E2E.Message.SharedDeviceContactHashKey.Kind|null);
+
+            /** SharedDeviceContactHashKey keyData */
+            keyData?: (Uint8Array|null);
+        }
+
+        /** Represents a SharedDeviceContactHashKey. */
+        class SharedDeviceContactHashKey implements ISharedDeviceContactHashKey {
+
+            /**
+             * Constructs a new SharedDeviceContactHashKey.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.ISharedDeviceContactHashKey);
+
+            /** SharedDeviceContactHashKey epoch. */
+            public epoch: number;
+
+            /** SharedDeviceContactHashKey kind. */
+            public kind: E2E.Message.SharedDeviceContactHashKey.Kind;
+
+            /** SharedDeviceContactHashKey keyData. */
+            public keyData: Uint8Array;
+
+            /**
+             * Creates a new SharedDeviceContactHashKey instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SharedDeviceContactHashKey instance
+             */
+            public static create(properties?: E2E.Message.ISharedDeviceContactHashKey): E2E.Message.SharedDeviceContactHashKey;
+
+            /**
+             * Encodes the specified SharedDeviceContactHashKey message. Does not implicitly {@link E2E.Message.SharedDeviceContactHashKey.verify|verify} messages.
+             * @param message SharedDeviceContactHashKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.ISharedDeviceContactHashKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SharedDeviceContactHashKey message, length delimited. Does not implicitly {@link E2E.Message.SharedDeviceContactHashKey.verify|verify} messages.
+             * @param message SharedDeviceContactHashKey message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.ISharedDeviceContactHashKey, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SharedDeviceContactHashKey message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SharedDeviceContactHashKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.SharedDeviceContactHashKey;
+
+            /**
+             * Decodes a SharedDeviceContactHashKey message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SharedDeviceContactHashKey
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.SharedDeviceContactHashKey;
+
+            /**
+             * Verifies a SharedDeviceContactHashKey message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SharedDeviceContactHashKey message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SharedDeviceContactHashKey
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.SharedDeviceContactHashKey;
+
+            /**
+             * Creates a plain object from a SharedDeviceContactHashKey message. Also converts values to other types if specified.
+             * @param message SharedDeviceContactHashKey
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.SharedDeviceContactHashKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SharedDeviceContactHashKey to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SharedDeviceContactHashKey
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace SharedDeviceContactHashKey {
+
+            /** Kind enum. */
+            enum Kind {
+                UNKNOWN = 0,
+                LID = 1,
+                PHONE_NUMBER = 2
+            }
+        }
+
+        /** Properties of a SharedDeviceContactHashKeyRequest. */
+        interface ISharedDeviceContactHashKeyRequest {
+
+            /** SharedDeviceContactHashKeyRequest knownEpoch */
+            knownEpoch?: (number|null);
+        }
+
+        /** Represents a SharedDeviceContactHashKeyRequest. */
+        class SharedDeviceContactHashKeyRequest implements ISharedDeviceContactHashKeyRequest {
+
+            /**
+             * Constructs a new SharedDeviceContactHashKeyRequest.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.ISharedDeviceContactHashKeyRequest);
+
+            /** SharedDeviceContactHashKeyRequest knownEpoch. */
+            public knownEpoch: number;
+
+            /**
+             * Creates a new SharedDeviceContactHashKeyRequest instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SharedDeviceContactHashKeyRequest instance
+             */
+            public static create(properties?: E2E.Message.ISharedDeviceContactHashKeyRequest): E2E.Message.SharedDeviceContactHashKeyRequest;
+
+            /**
+             * Encodes the specified SharedDeviceContactHashKeyRequest message. Does not implicitly {@link E2E.Message.SharedDeviceContactHashKeyRequest.verify|verify} messages.
+             * @param message SharedDeviceContactHashKeyRequest message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.ISharedDeviceContactHashKeyRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SharedDeviceContactHashKeyRequest message, length delimited. Does not implicitly {@link E2E.Message.SharedDeviceContactHashKeyRequest.verify|verify} messages.
+             * @param message SharedDeviceContactHashKeyRequest message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.ISharedDeviceContactHashKeyRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SharedDeviceContactHashKeyRequest message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SharedDeviceContactHashKeyRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.SharedDeviceContactHashKeyRequest;
+
+            /**
+             * Decodes a SharedDeviceContactHashKeyRequest message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SharedDeviceContactHashKeyRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.SharedDeviceContactHashKeyRequest;
+
+            /**
+             * Verifies a SharedDeviceContactHashKeyRequest message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SharedDeviceContactHashKeyRequest message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SharedDeviceContactHashKeyRequest
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.SharedDeviceContactHashKeyRequest;
+
+            /**
+             * Creates a plain object from a SharedDeviceContactHashKeyRequest message. Also converts values to other types if specified.
+             * @param message SharedDeviceContactHashKeyRequest
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.SharedDeviceContactHashKeyRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SharedDeviceContactHashKeyRequest to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SharedDeviceContactHashKeyRequest
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SharedDeviceContactHashKeyShare. */
+        interface ISharedDeviceContactHashKeyShare {
+
+            /** SharedDeviceContactHashKeyShare keys */
+            keys?: (E2E.Message.ISharedDeviceContactHashKey[]|null);
+        }
+
+        /** Represents a SharedDeviceContactHashKeyShare. */
+        class SharedDeviceContactHashKeyShare implements ISharedDeviceContactHashKeyShare {
+
+            /**
+             * Constructs a new SharedDeviceContactHashKeyShare.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.ISharedDeviceContactHashKeyShare);
+
+            /** SharedDeviceContactHashKeyShare keys. */
+            public keys: E2E.Message.ISharedDeviceContactHashKey[];
+
+            /**
+             * Creates a new SharedDeviceContactHashKeyShare instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SharedDeviceContactHashKeyShare instance
+             */
+            public static create(properties?: E2E.Message.ISharedDeviceContactHashKeyShare): E2E.Message.SharedDeviceContactHashKeyShare;
+
+            /**
+             * Encodes the specified SharedDeviceContactHashKeyShare message. Does not implicitly {@link E2E.Message.SharedDeviceContactHashKeyShare.verify|verify} messages.
+             * @param message SharedDeviceContactHashKeyShare message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.ISharedDeviceContactHashKeyShare, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SharedDeviceContactHashKeyShare message, length delimited. Does not implicitly {@link E2E.Message.SharedDeviceContactHashKeyShare.verify|verify} messages.
+             * @param message SharedDeviceContactHashKeyShare message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.ISharedDeviceContactHashKeyShare, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SharedDeviceContactHashKeyShare message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SharedDeviceContactHashKeyShare
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.SharedDeviceContactHashKeyShare;
+
+            /**
+             * Decodes a SharedDeviceContactHashKeyShare message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SharedDeviceContactHashKeyShare
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.SharedDeviceContactHashKeyShare;
+
+            /**
+             * Verifies a SharedDeviceContactHashKeyShare message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SharedDeviceContactHashKeyShare message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SharedDeviceContactHashKeyShare
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.SharedDeviceContactHashKeyShare;
+
+            /**
+             * Creates a plain object from a SharedDeviceContactHashKeyShare message. Also converts values to other types if specified.
+             * @param message SharedDeviceContactHashKeyShare
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.SharedDeviceContactHashKeyShare, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SharedDeviceContactHashKeyShare to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SharedDeviceContactHashKeyShare
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -49089,7 +49537,9 @@ export namespace CompanionReg {
             VR = 22,
             CLOUD_API = 23,
             SMARTGLASSES = 24,
-            WAIL = 25
+            WAIL = 25,
+            WASS = 26,
+            BUSINESS_BACK_OFFICE = 27
         }
     }
 }
@@ -55211,7 +55661,9 @@ export namespace Web {
             IDENTITY_TRUST_MARKED = 226,
             IDENTITY_TRUST_UNMARKED = 227,
             IDENTITY_TRUST_REVOKED = 228,
-            CTWA_CONSUMER_DISCLOSURE = 230
+            CTWA_CONSUMER_DISCLOSURE = 230,
+            CHANGE_ACP2_SETTING = 240,
+            EPHEMERAL_CHANGED_FOR_COEX = 248
         }
     }
 }
@@ -57287,6 +57739,12 @@ export namespace SyncAction {
 
             /** BusinessBroadcastCampaignAction status */
             status?: (SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus|null);
+
+            /** BusinessBroadcastCampaignAction bbProStatus */
+            bbProStatus?: (SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus|null);
+
+            /** BusinessBroadcastCampaignAction customAudienceFbid */
+            customAudienceFbid?: (string|null);
         }
 
         /** Represents a BusinessBroadcastCampaignAction. */
@@ -57324,6 +57782,12 @@ export namespace SyncAction {
 
             /** BusinessBroadcastCampaignAction status. */
             public status: SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus;
+
+            /** BusinessBroadcastCampaignAction bbProStatus. */
+            public bbProStatus: SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus;
+
+            /** BusinessBroadcastCampaignAction customAudienceFbid. */
+            public customAudienceFbid: string;
 
             /**
              * Creates a new BusinessBroadcastCampaignAction instance using the specified properties.
@@ -57401,6 +57865,20 @@ export namespace SyncAction {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** BusinessBroadcastCampaignBBProStatus enum. */
+        enum BusinessBroadcastCampaignBBProStatus {
+            BB_PRO_ACTIVE = 1,
+            BB_PRO_COMPLETED = 2,
+            BB_PRO_IN_DRAFT = 3,
+            BB_PRO_IN_REVIEW = 4,
+            BB_PRO_NOT_SENDING = 5,
+            BB_PRO_OFF = 6,
+            BB_PRO_REJECTED = 7,
+            BB_PRO_SCHEDULED = 8,
+            BB_PRO_SENDING_LIMITED = 9,
+            BB_PRO_PROCESSING = 10
         }
 
         /** BusinessBroadcastCampaignStatus enum. */

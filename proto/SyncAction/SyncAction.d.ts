@@ -2071,6 +2071,12 @@ export namespace SyncAction {
 
             /** BusinessBroadcastCampaignAction status */
             status?: (SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus|null);
+
+            /** BusinessBroadcastCampaignAction bbProStatus */
+            bbProStatus?: (SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus|null);
+
+            /** BusinessBroadcastCampaignAction customAudienceFbid */
+            customAudienceFbid?: (string|null);
         }
 
         /** Represents a BusinessBroadcastCampaignAction. */
@@ -2108,6 +2114,12 @@ export namespace SyncAction {
 
             /** BusinessBroadcastCampaignAction status. */
             public status: SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus;
+
+            /** BusinessBroadcastCampaignAction bbProStatus. */
+            public bbProStatus: SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus;
+
+            /** BusinessBroadcastCampaignAction customAudienceFbid. */
+            public customAudienceFbid: string;
 
             /**
              * Creates a new BusinessBroadcastCampaignAction instance using the specified properties.
@@ -2185,6 +2197,20 @@ export namespace SyncAction {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** BusinessBroadcastCampaignBBProStatus enum. */
+        enum BusinessBroadcastCampaignBBProStatus {
+            BB_PRO_ACTIVE = 1,
+            BB_PRO_COMPLETED = 2,
+            BB_PRO_IN_DRAFT = 3,
+            BB_PRO_IN_REVIEW = 4,
+            BB_PRO_NOT_SENDING = 5,
+            BB_PRO_OFF = 6,
+            BB_PRO_REJECTED = 7,
+            BB_PRO_SCHEDULED = 8,
+            BB_PRO_SENDING_LIMITED = 9,
+            BB_PRO_PROCESSING = 10
         }
 
         /** BusinessBroadcastCampaignStatus enum. */

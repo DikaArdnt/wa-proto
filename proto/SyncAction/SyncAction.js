@@ -6656,6 +6656,8 @@ $root.SyncAction = (function() {
              * @property {number|Long|null} [scheduledTimestamp] BusinessBroadcastCampaignAction scheduledTimestamp
              * @property {number|Long|null} [createTimestamp] BusinessBroadcastCampaignAction createTimestamp
              * @property {SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus|null} [status] BusinessBroadcastCampaignAction status
+             * @property {SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus|null} [bbProStatus] BusinessBroadcastCampaignAction bbProStatus
+             * @property {string|null} [customAudienceFbid] BusinessBroadcastCampaignAction customAudienceFbid
              */
 
             /**
@@ -6746,6 +6748,22 @@ $root.SyncAction = (function() {
             BusinessBroadcastCampaignAction.prototype.status = 1;
 
             /**
+             * BusinessBroadcastCampaignAction bbProStatus.
+             * @member {SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus} bbProStatus
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastCampaignAction
+             * @instance
+             */
+            BusinessBroadcastCampaignAction.prototype.bbProStatus = 1;
+
+            /**
+             * BusinessBroadcastCampaignAction customAudienceFbid.
+             * @member {string} customAudienceFbid
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastCampaignAction
+             * @instance
+             */
+            BusinessBroadcastCampaignAction.prototype.customAudienceFbid = "";
+
+            /**
              * Creates a new BusinessBroadcastCampaignAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.BusinessBroadcastCampaignAction
@@ -6791,6 +6809,10 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 8, wireType 0 =*/64).int64(message.createTimestamp);
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     writer.uint32(/* id 9, wireType 0 =*/72).int32(message.status);
+                if (message.bbProStatus != null && Object.hasOwnProperty.call(message, "bbProStatus"))
+                    writer.uint32(/* id 10, wireType 0 =*/80).int32(message.bbProStatus);
+                if (message.customAudienceFbid != null && Object.hasOwnProperty.call(message, "customAudienceFbid"))
+                    writer.uint32(/* id 11, wireType 2 =*/90).string(message.customAudienceFbid);
                 return writer;
             };
 
@@ -6877,6 +6899,14 @@ $root.SyncAction = (function() {
                             message.status = reader.int32();
                             break;
                         }
+                    case 10: {
+                            message.bbProStatus = reader.int32();
+                            break;
+                        }
+                    case 11: {
+                            message.customAudienceFbid = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -6956,6 +6986,25 @@ $root.SyncAction = (function() {
                     case 5:
                         break;
                     }
+                if (message.bbProStatus != null && Object.hasOwnProperty.call(message, "bbProStatus"))
+                    switch (message.bbProStatus) {
+                    default:
+                        return "bbProStatus: enum value expected";
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                        break;
+                    }
+                if (message.customAudienceFbid != null && Object.hasOwnProperty.call(message, "customAudienceFbid"))
+                    if (!$util.isString(message.customAudienceFbid))
+                        return "customAudienceFbid: string expected";
                 return null;
             };
 
@@ -7035,6 +7084,56 @@ $root.SyncAction = (function() {
                     message.status = 5;
                     break;
                 }
+                switch (object.bbProStatus) {
+                default:
+                    if (typeof object.bbProStatus === "number") {
+                        message.bbProStatus = object.bbProStatus;
+                        break;
+                    }
+                    break;
+                case "BB_PRO_ACTIVE":
+                case 1:
+                    message.bbProStatus = 1;
+                    break;
+                case "BB_PRO_COMPLETED":
+                case 2:
+                    message.bbProStatus = 2;
+                    break;
+                case "BB_PRO_IN_DRAFT":
+                case 3:
+                    message.bbProStatus = 3;
+                    break;
+                case "BB_PRO_IN_REVIEW":
+                case 4:
+                    message.bbProStatus = 4;
+                    break;
+                case "BB_PRO_NOT_SENDING":
+                case 5:
+                    message.bbProStatus = 5;
+                    break;
+                case "BB_PRO_OFF":
+                case 6:
+                    message.bbProStatus = 6;
+                    break;
+                case "BB_PRO_REJECTED":
+                case 7:
+                    message.bbProStatus = 7;
+                    break;
+                case "BB_PRO_SCHEDULED":
+                case 8:
+                    message.bbProStatus = 8;
+                    break;
+                case "BB_PRO_SENDING_LIMITED":
+                case 9:
+                    message.bbProStatus = 9;
+                    break;
+                case "BB_PRO_PROCESSING":
+                case 10:
+                    message.bbProStatus = 10;
+                    break;
+                }
+                if (object.customAudienceFbid != null)
+                    message.customAudienceFbid = String(object.customAudienceFbid);
                 return message;
             };
 
@@ -7073,6 +7172,8 @@ $root.SyncAction = (function() {
                     } else
                         object.createTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.status = options.enums === String ? "DRAFT" : 1;
+                    object.bbProStatus = options.enums === String ? "BB_PRO_ACTIVE" : 1;
+                    object.customAudienceFbid = "";
                 }
                 if (message.deviceId != null && Object.hasOwnProperty.call(message, "deviceId"))
                     object.deviceId = message.deviceId;
@@ -7102,6 +7203,10 @@ $root.SyncAction = (function() {
                         object.createTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.createTimestamp) : options.longs === Number ? new $util.LongBits(message.createTimestamp.low >>> 0, message.createTimestamp.high >>> 0).toNumber() : message.createTimestamp;
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     object.status = options.enums === String ? $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus[message.status] === undefined ? message.status : $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus[message.status] : message.status;
+                if (message.bbProStatus != null && Object.hasOwnProperty.call(message, "bbProStatus"))
+                    object.bbProStatus = options.enums === String ? $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus[message.bbProStatus] === undefined ? message.bbProStatus : $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus[message.bbProStatus] : message.bbProStatus;
+                if (message.customAudienceFbid != null && Object.hasOwnProperty.call(message, "customAudienceFbid"))
+                    object.customAudienceFbid = message.customAudienceFbid;
                 return object;
             };
 
@@ -7132,6 +7237,36 @@ $root.SyncAction = (function() {
             };
 
             return BusinessBroadcastCampaignAction;
+        })();
+
+        /**
+         * BusinessBroadcastCampaignBBProStatus enum.
+         * @name SyncAction.SyncActionValue.BusinessBroadcastCampaignBBProStatus
+         * @enum {number}
+         * @property {number} BB_PRO_ACTIVE=1 BB_PRO_ACTIVE value
+         * @property {number} BB_PRO_COMPLETED=2 BB_PRO_COMPLETED value
+         * @property {number} BB_PRO_IN_DRAFT=3 BB_PRO_IN_DRAFT value
+         * @property {number} BB_PRO_IN_REVIEW=4 BB_PRO_IN_REVIEW value
+         * @property {number} BB_PRO_NOT_SENDING=5 BB_PRO_NOT_SENDING value
+         * @property {number} BB_PRO_OFF=6 BB_PRO_OFF value
+         * @property {number} BB_PRO_REJECTED=7 BB_PRO_REJECTED value
+         * @property {number} BB_PRO_SCHEDULED=8 BB_PRO_SCHEDULED value
+         * @property {number} BB_PRO_SENDING_LIMITED=9 BB_PRO_SENDING_LIMITED value
+         * @property {number} BB_PRO_PROCESSING=10 BB_PRO_PROCESSING value
+         */
+        SyncActionValue.BusinessBroadcastCampaignBBProStatus = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[1] = "BB_PRO_ACTIVE"] = 1;
+            values[valuesById[2] = "BB_PRO_COMPLETED"] = 2;
+            values[valuesById[3] = "BB_PRO_IN_DRAFT"] = 3;
+            values[valuesById[4] = "BB_PRO_IN_REVIEW"] = 4;
+            values[valuesById[5] = "BB_PRO_NOT_SENDING"] = 5;
+            values[valuesById[6] = "BB_PRO_OFF"] = 6;
+            values[valuesById[7] = "BB_PRO_REJECTED"] = 7;
+            values[valuesById[8] = "BB_PRO_SCHEDULED"] = 8;
+            values[valuesById[9] = "BB_PRO_SENDING_LIMITED"] = 9;
+            values[valuesById[10] = "BB_PRO_PROCESSING"] = 10;
+            return values;
         })();
 
         /**
