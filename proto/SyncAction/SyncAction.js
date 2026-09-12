@@ -14887,6 +14887,7 @@ $root.SyncAction = (function() {
                     case 15:
                     case 16:
                     case 17:
+                    case 18:
                         break;
                     }
                 if (message.isImmutable != null && Object.hasOwnProperty.call(message, "isImmutable"))
@@ -15006,6 +15007,10 @@ $root.SyncAction = (function() {
                 case "MENTIONS_AND_REPLIES":
                 case 17:
                     message.type = 17;
+                    break;
+                case "REQUESTS":
+                case 18:
+                    message.type = 18;
                     break;
                 }
                 if (object.isImmutable != null)
@@ -15128,6 +15133,7 @@ $root.SyncAction = (function() {
              * @property {number} THIRD_PARTY=15 THIRD_PARTY value
              * @property {number} LEAD=16 LEAD value
              * @property {number} MENTIONS_AND_REPLIES=17 MENTIONS_AND_REPLIES value
+             * @property {number} REQUESTS=18 REQUESTS value
              */
             LabelEditAction.ListType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -15149,6 +15155,7 @@ $root.SyncAction = (function() {
                 values[valuesById[15] = "THIRD_PARTY"] = 15;
                 values[valuesById[16] = "LEAD"] = 16;
                 values[valuesById[17] = "MENTIONS_AND_REPLIES"] = 17;
+                values[valuesById[18] = "REQUESTS"] = 18;
                 return values;
             })();
 

@@ -731,6 +731,7 @@ message Message {
     optional FutureProofMessage botPlatformRegistrationSuccessMessage = 131;
     optional FutureProofMessage newsletterScheduledMessage = 132;
     optional FutureProofMessage acp2SettingMessage = 133;
+    optional FutureProofMessage audioStickerMessage = 134;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -2215,6 +2216,9 @@ message Message {
         optional string accessibilityLabel = 22;
         optional int32 premium = 24;
         optional string emojis = 25;
+        oneof audio {
+            Message.AudioMessage audioMessage = 26;
+        }
     }
     message StickerPackMessage {
         optional string stickerPackId = 1;

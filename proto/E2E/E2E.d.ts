@@ -7332,6 +7332,9 @@ export namespace E2E {
 
         /** Message acp2SettingMessage */
         acp2SettingMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message audioStickerMessage */
+        audioStickerMessage?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -7678,6 +7681,9 @@ export namespace E2E {
 
         /** Message acp2SettingMessage. */
         public acp2SettingMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message audioStickerMessage. */
+        public audioStickerMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -28168,6 +28174,9 @@ export namespace E2E {
 
             /** StickerMessage emojis */
             emojis?: (string|null);
+
+            /** StickerMessage audioMessage */
+            audioMessage?: (E2E.Message.IAudioMessage|null);
         }
 
         /** Represents a StickerMessage. */
@@ -28244,6 +28253,12 @@ export namespace E2E {
 
             /** StickerMessage emojis. */
             public emojis: string;
+
+            /** StickerMessage audioMessage. */
+            public audioMessage?: (E2E.Message.IAudioMessage|null);
+
+            /** StickerMessage audio. */
+            public audio?: "audioMessage";
 
             /**
              * Creates a new StickerMessage instance using the specified properties.
