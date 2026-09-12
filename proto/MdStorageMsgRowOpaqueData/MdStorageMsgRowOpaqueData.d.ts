@@ -580,6 +580,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
             /** PollOption hash */
             hash?: (string|null);
+
+            /** PollOption addOptionMsgKey */
+            addOptionMsgKey?: (string|null);
         }
 
         /** Represents a PollOption. */
@@ -596,6 +599,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
             /** PollOption hash. */
             public hash: string;
+
+            /** PollOption addOptionMsgKey. */
+            public addOptionMsgKey: string;
 
             /**
              * Creates a new PollOption instance using the specified properties.

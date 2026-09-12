@@ -2194,6 +2194,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
              * @interface IPollOption
              * @property {string|null} [name] PollOption name
              * @property {string|null} [hash] PollOption hash
+             * @property {string|null} [addOptionMsgKey] PollOption addOptionMsgKey
              */
 
             /**
@@ -2228,6 +2229,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             PollOption.prototype.hash = "";
 
             /**
+             * PollOption addOptionMsgKey.
+             * @member {string} addOptionMsgKey
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.PollOption
+             * @instance
+             */
+            PollOption.prototype.addOptionMsgKey = "";
+
+            /**
              * Creates a new PollOption instance using the specified properties.
              * @function create
              * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.PollOption
@@ -2259,6 +2268,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                 if (message.hash != null && Object.hasOwnProperty.call(message, "hash"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.hash);
+                if (message.addOptionMsgKey != null && Object.hasOwnProperty.call(message, "addOptionMsgKey"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.addOptionMsgKey);
                 return writer;
             };
 
@@ -2317,6 +2328,10 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                             message.hash = reader.string();
                             break;
                         }
+                    case 3: {
+                            message.addOptionMsgKey = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -2367,6 +2382,9 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 if (message.hash != null && Object.hasOwnProperty.call(message, "hash"))
                     if (!$util.isString(message.hash))
                         return "hash: string expected";
+                if (message.addOptionMsgKey != null && Object.hasOwnProperty.call(message, "addOptionMsgKey"))
+                    if (!$util.isString(message.addOptionMsgKey))
+                        return "addOptionMsgKey: string expected";
                 return null;
             };
 
@@ -2392,6 +2410,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     message.name = String(object.name);
                 if (object.hash != null)
                     message.hash = String(object.hash);
+                if (object.addOptionMsgKey != null)
+                    message.addOptionMsgKey = String(object.addOptionMsgKey);
                 return message;
             };
 
@@ -2415,11 +2435,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 if (options.defaults) {
                     object.name = "";
                     object.hash = "";
+                    object.addOptionMsgKey = "";
                 }
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     object.name = message.name;
                 if (message.hash != null && Object.hasOwnProperty.call(message, "hash"))
                     object.hash = message.hash;
+                if (message.addOptionMsgKey != null && Object.hasOwnProperty.call(message, "addOptionMsgKey"))
+                    object.addOptionMsgKey = message.addOptionMsgKey;
                 return object;
             };
 
