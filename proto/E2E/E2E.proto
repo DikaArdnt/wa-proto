@@ -404,6 +404,7 @@ message ContextInfo {
     optional InstagramThreadLink instagramThreadLink = 80;
     optional AICommon.AIProvenance aiProvenance = 81;
     repeated uint32 experienceIds = 82 [packed=true];
+    optional string partnerDeepLinkToken = 83;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;

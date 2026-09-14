@@ -4517,6 +4517,9 @@ export namespace E2E {
 
         /** ContextInfo experienceIds */
         experienceIds?: (number[]|null);
+
+        /** ContextInfo partnerDeepLinkToken */
+        partnerDeepLinkToken?: (string|null);
     }
 
     /** Represents a ContextInfo. */
@@ -4722,6 +4725,9 @@ export namespace E2E {
 
         /** ContextInfo experienceIds. */
         public experienceIds: number[];
+
+        /** ContextInfo partnerDeepLinkToken. */
+        public partnerDeepLinkToken: string;
 
         /**
          * Creates a new ContextInfo instance using the specified properties.

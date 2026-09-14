@@ -16562,6 +16562,7 @@ $root.E2E = (function() {
          * @property {E2E.ContextInfo.IInstagramThreadLink|null} [instagramThreadLink] ContextInfo instagramThreadLink
          * @property {AICommon.IAIProvenance|null} [aiProvenance] ContextInfo aiProvenance
          * @property {Array.<number>|null} [experienceIds] ContextInfo experienceIds
+         * @property {string|null} [partnerDeepLinkToken] ContextInfo partnerDeepLinkToken
          */
 
         /**
@@ -17104,6 +17105,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.experienceIds = $util.emptyArray;
 
         /**
+         * ContextInfo partnerDeepLinkToken.
+         * @member {string} partnerDeepLinkToken
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.partnerDeepLinkToken = "";
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -17268,6 +17277,8 @@ $root.E2E = (function() {
                     writer.uint32(message.experienceIds[i]);
                 writer.ldelim();
             }
+            if (message.partnerDeepLinkToken != null && Object.hasOwnProperty.call(message, "partnerDeepLinkToken"))
+                writer.uint32(/* id 83, wireType 2 =*/666).string(message.partnerDeepLinkToken);
             return writer;
         };
 
@@ -17595,6 +17606,10 @@ $root.E2E = (function() {
                             reader.len = end;
                         } else
                             message.experienceIds.push(reader.uint32());
+                        break;
+                    }
+                case 83: {
+                        message.partnerDeepLinkToken = reader.string();
                         break;
                     }
                 default:
@@ -17949,6 +17964,9 @@ $root.E2E = (function() {
                     if (!$util.isInteger(message.experienceIds[i]))
                         return "experienceIds: integer[] expected";
             }
+            if (message.partnerDeepLinkToken != null && Object.hasOwnProperty.call(message, "partnerDeepLinkToken"))
+                if (!$util.isString(message.partnerDeepLinkToken))
+                    return "partnerDeepLinkToken: string expected";
             return null;
         };
 
@@ -18368,6 +18386,8 @@ $root.E2E = (function() {
                 for (var i = 0; i < object.experienceIds.length; ++i)
                     message.experienceIds[i] = object.experienceIds[i] >>> 0;
             }
+            if (object.partnerDeepLinkToken != null)
+                message.partnerDeepLinkToken = String(object.partnerDeepLinkToken);
             return message;
         };
 
@@ -18478,6 +18498,7 @@ $root.E2E = (function() {
                 object.posterStatusId = "";
                 object.instagramThreadLink = null;
                 object.aiProvenance = null;
+                object.partnerDeepLinkToken = "";
             }
             if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -18626,6 +18647,8 @@ $root.E2E = (function() {
                 for (var j = 0; j < message.experienceIds.length; ++j)
                     object.experienceIds[j] = message.experienceIds[j];
             }
+            if (message.partnerDeepLinkToken != null && Object.hasOwnProperty.call(message, "partnerDeepLinkToken"))
+                object.partnerDeepLinkToken = message.partnerDeepLinkToken;
             return object;
         };
 
