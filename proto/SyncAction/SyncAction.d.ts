@@ -5114,7 +5114,8 @@ export namespace SyncAction {
                 THIRD_PARTY = 15,
                 LEAD = 16,
                 MENTIONS_AND_REPLIES = 17,
-                REQUESTS = 18
+                REQUESTS = 18,
+                BUSINESS = 19
             }
         }
 
