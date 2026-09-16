@@ -67567,6 +67567,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [messageCount] MessageHistoryMetadata messageCount
              * @property {Array.<string>|null} [nonHistoryReceivers] MessageHistoryMetadata nonHistoryReceivers
              * @property {number|Long|null} [oldestMessageTimestampInBundle] MessageHistoryMetadata oldestMessageTimestampInBundle
+             * @property {boolean|null} [includesChatTheme] MessageHistoryMetadata includesChatTheme
              */
 
             /**
@@ -67627,6 +67628,14 @@ $root.E2E = (function() {
             MessageHistoryMetadata.prototype.oldestMessageTimestampInBundle = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
+             * MessageHistoryMetadata includesChatTheme.
+             * @member {boolean} includesChatTheme
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.includesChatTheme = false;
+
+            /**
              * Creates a new MessageHistoryMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.MessageHistoryMetadata
@@ -67666,6 +67675,8 @@ $root.E2E = (function() {
                         writer.uint32(/* id 4, wireType 2 =*/34).string(message.nonHistoryReceivers[i]);
                 if (message.oldestMessageTimestampInBundle != null && Object.hasOwnProperty.call(message, "oldestMessageTimestampInBundle"))
                     writer.uint32(/* id 5, wireType 0 =*/40).int64(message.oldestMessageTimestampInBundle);
+                if (message.includesChatTheme != null && Object.hasOwnProperty.call(message, "includesChatTheme"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).bool(message.includesChatTheme);
                 return writer;
             };
 
@@ -67740,6 +67751,10 @@ $root.E2E = (function() {
                             message.oldestMessageTimestampInBundle = reader.int64();
                             break;
                         }
+                    case 6: {
+                            message.includesChatTheme = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -67807,6 +67822,9 @@ $root.E2E = (function() {
                 if (message.oldestMessageTimestampInBundle != null && Object.hasOwnProperty.call(message, "oldestMessageTimestampInBundle"))
                     if (!$util.isInteger(message.oldestMessageTimestampInBundle) && !(message.oldestMessageTimestampInBundle && $util.isInteger(message.oldestMessageTimestampInBundle.low) && $util.isInteger(message.oldestMessageTimestampInBundle.high)))
                         return "oldestMessageTimestampInBundle: integer|Long expected";
+                if (message.includesChatTheme != null && Object.hasOwnProperty.call(message, "includesChatTheme"))
+                    if (typeof message.includesChatTheme !== "boolean")
+                        return "includesChatTheme: boolean expected";
                 return null;
             };
 
@@ -67869,6 +67887,8 @@ $root.E2E = (function() {
                         message.oldestMessageTimestampInBundle = object.oldestMessageTimestampInBundle;
                     else if (typeof object.oldestMessageTimestampInBundle === "object")
                         message.oldestMessageTimestampInBundle = new $util.LongBits(object.oldestMessageTimestampInBundle.low >>> 0, object.oldestMessageTimestampInBundle.high >>> 0).toNumber();
+                if (object.includesChatTheme != null)
+                    message.includesChatTheme = Boolean(object.includesChatTheme);
                 return message;
             };
 
@@ -67909,6 +67929,7 @@ $root.E2E = (function() {
                         object.oldestMessageTimestampInBundle = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
                         object.oldestMessageTimestampInBundle = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                    object.includesChatTheme = false;
                 }
                 if (message.historyReceivers && message.historyReceivers.length) {
                     object.historyReceivers = [];
@@ -67941,6 +67962,8 @@ $root.E2E = (function() {
                         object.oldestMessageTimestampInBundle = options.longs === String ? String(message.oldestMessageTimestampInBundle) : message.oldestMessageTimestampInBundle;
                     else
                         object.oldestMessageTimestampInBundle = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMessageTimestampInBundle) : options.longs === Number ? new $util.LongBits(message.oldestMessageTimestampInBundle.low >>> 0, message.oldestMessageTimestampInBundle.high >>> 0).toNumber() : message.oldestMessageTimestampInBundle;
+                if (message.includesChatTheme != null && Object.hasOwnProperty.call(message, "includesChatTheme"))
+                    object.includesChatTheme = message.includesChatTheme;
                 return object;
             };
 
@@ -100172,6 +100195,7 @@ $root.E2E = (function() {
              * @property {string|null} [metadataUrl] VideoMessage metadataUrl
              * @property {E2E.Message.VideoMessage.VideoSourceType|null} [videoSourceType] VideoMessage videoSourceType
              * @property {string|null} [dashManifestUrl] VideoMessage dashManifestUrl
+             * @property {number|Long|null} [smartThumbnailTs] VideoMessage smartThumbnailTs
              */
 
             /**
@@ -100441,6 +100465,14 @@ $root.E2E = (function() {
             VideoMessage.prototype.dashManifestUrl = "";
 
             /**
+             * VideoMessage smartThumbnailTs.
+             * @member {number|Long} smartThumbnailTs
+             * @memberof E2E.Message.VideoMessage
+             * @instance
+             */
+            VideoMessage.prototype.smartThumbnailTs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
              * Creates a new VideoMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.VideoMessage
@@ -100533,6 +100565,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 31, wireType 0 =*/248).int32(message.videoSourceType);
                 if (message.dashManifestUrl != null && Object.hasOwnProperty.call(message, "dashManifestUrl"))
                     writer.uint32(/* id 33, wireType 2 =*/266).string(message.dashManifestUrl);
+                if (message.smartThumbnailTs != null && Object.hasOwnProperty.call(message, "smartThumbnailTs"))
+                    writer.uint32(/* id 34, wireType 0 =*/272).int64(message.smartThumbnailTs);
                 return writer;
             };
 
@@ -100713,6 +100747,10 @@ $root.E2E = (function() {
                             message.dashManifestUrl = reader.string();
                             break;
                         }
+                    case 34: {
+                            message.smartThumbnailTs = reader.int64();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -100882,6 +100920,9 @@ $root.E2E = (function() {
                 if (message.dashManifestUrl != null && Object.hasOwnProperty.call(message, "dashManifestUrl"))
                     if (!$util.isString(message.dashManifestUrl))
                         return "dashManifestUrl: string expected";
+                if (message.smartThumbnailTs != null && Object.hasOwnProperty.call(message, "smartThumbnailTs"))
+                    if (!$util.isInteger(message.smartThumbnailTs) && !(message.smartThumbnailTs && $util.isInteger(message.smartThumbnailTs.low) && $util.isInteger(message.smartThumbnailTs.high)))
+                        return "smartThumbnailTs: integer|Long expected";
                 return null;
             };
 
@@ -101070,6 +101111,15 @@ $root.E2E = (function() {
                 }
                 if (object.dashManifestUrl != null)
                     message.dashManifestUrl = String(object.dashManifestUrl);
+                if (object.smartThumbnailTs != null)
+                    if ($util.Long)
+                        message.smartThumbnailTs = $util.Long.fromValue(object.smartThumbnailTs, false);
+                    else if (typeof object.smartThumbnailTs === "string")
+                        message.smartThumbnailTs = parseInt(object.smartThumbnailTs, 10);
+                    else if (typeof object.smartThumbnailTs === "number")
+                        message.smartThumbnailTs = object.smartThumbnailTs;
+                    else if (typeof object.smartThumbnailTs === "object")
+                        message.smartThumbnailTs = new $util.LongBits(object.smartThumbnailTs.low >>> 0, object.smartThumbnailTs.high >>> 0).toNumber();
                 return message;
             };
 
@@ -101178,6 +101228,11 @@ $root.E2E = (function() {
                     object.metadataUrl = "";
                     object.videoSourceType = options.enums === String ? "USER_VIDEO" : 0;
                     object.dashManifestUrl = "";
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.smartThumbnailTs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                    } else
+                        object.smartThumbnailTs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                     object.url = message.url;
@@ -101265,6 +101320,13 @@ $root.E2E = (function() {
                     object.videoSourceType = options.enums === String ? $root.E2E.Message.VideoMessage.VideoSourceType[message.videoSourceType] === undefined ? message.videoSourceType : $root.E2E.Message.VideoMessage.VideoSourceType[message.videoSourceType] : message.videoSourceType;
                 if (message.dashManifestUrl != null && Object.hasOwnProperty.call(message, "dashManifestUrl"))
                     object.dashManifestUrl = message.dashManifestUrl;
+                if (message.smartThumbnailTs != null && Object.hasOwnProperty.call(message, "smartThumbnailTs"))
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.smartThumbnailTs = typeof message.smartThumbnailTs === "number" ? BigInt(message.smartThumbnailTs) : $util.Long.fromBits(message.smartThumbnailTs.low >>> 0, message.smartThumbnailTs.high >>> 0, false).toBigInt();
+                    else if (typeof message.smartThumbnailTs === "number")
+                        object.smartThumbnailTs = options.longs === String ? String(message.smartThumbnailTs) : message.smartThumbnailTs;
+                    else
+                        object.smartThumbnailTs = options.longs === String ? $util.Long.prototype.toString.call(message.smartThumbnailTs) : options.longs === Number ? new $util.LongBits(message.smartThumbnailTs.low >>> 0, message.smartThumbnailTs.high >>> 0).toNumber() : message.smartThumbnailTs;
                 return object;
             };
 
@@ -169070,6 +169132,7 @@ $root.Web = (function() {
                 case 250:
                 case 254:
                 case 256:
+                case 255:
                     break;
                 }
             if (message.clearMedia != null && Object.hasOwnProperty.call(message, "clearMedia"))
@@ -170405,6 +170468,10 @@ $root.Web = (function() {
             case 256:
                 message.messageStubType = 256;
                 break;
+            case "SENDER_SIDE_CONTACT_INFO":
+            case 255:
+                message.messageStubType = 255;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -171367,6 +171434,7 @@ $root.Web = (function() {
          * @property {number} ORDER_EPHEMERAL_EXEMPTION=250 ORDER_EPHEMERAL_EXEMPTION value
          * @property {number} CAMEO_CHAT_CREATED=254 CAMEO_CHAT_CREATED value
          * @property {number} CAMEO_TRANSITIONED=256 CAMEO_TRANSITIONED value
+         * @property {number} SENDER_SIDE_CONTACT_INFO=255 SENDER_SIDE_CONTACT_INFO value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -171607,6 +171675,7 @@ $root.Web = (function() {
             values[valuesById[250] = "ORDER_EPHEMERAL_EXEMPTION"] = 250;
             values[valuesById[254] = "CAMEO_CHAT_CREATED"] = 254;
             values[valuesById[256] = "CAMEO_TRANSITIONED"] = 256;
+            values[valuesById[255] = "SENDER_SIDE_CONTACT_INFO"] = 255;
             return values;
         })();
 

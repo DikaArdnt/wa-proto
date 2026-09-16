@@ -1529,6 +1529,7 @@ message Message {
         optional int64 messageCount = 3;
         repeated string nonHistoryReceivers = 4;
         optional int64 oldestMessageTimestampInBundle = 5;
+        optional bool includesChatTheme = 6;
     }
     message MessageHistoryNotice {
         optional ContextInfo contextInfo = 1;
@@ -2348,6 +2349,7 @@ message Message {
         optional string metadataUrl = 30;
         optional VideoSourceType videoSourceType = 31;
         optional string dashManifestUrl = 33;
+        optional int64 smartThumbnailTs = 34;
         enum Attribution {
             NONE = 0;
             GIPHY = 1;

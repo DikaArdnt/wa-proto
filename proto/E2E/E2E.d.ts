@@ -18749,6 +18749,9 @@ export namespace E2E {
 
             /** MessageHistoryMetadata oldestMessageTimestampInBundle */
             oldestMessageTimestampInBundle?: (number|Long|null);
+
+            /** MessageHistoryMetadata includesChatTheme */
+            includesChatTheme?: (boolean|null);
         }
 
         /** Represents a MessageHistoryMetadata. */
@@ -18774,6 +18777,9 @@ export namespace E2E {
 
             /** MessageHistoryMetadata oldestMessageTimestampInBundle. */
             public oldestMessageTimestampInBundle: (number|Long);
+
+            /** MessageHistoryMetadata includesChatTheme. */
+            public includesChatTheme: boolean;
 
             /**
              * Creates a new MessageHistoryMetadata instance using the specified properties.
@@ -29676,6 +29682,9 @@ export namespace E2E {
 
             /** VideoMessage dashManifestUrl */
             dashManifestUrl?: (string|null);
+
+            /** VideoMessage smartThumbnailTs */
+            smartThumbnailTs?: (number|Long|null);
         }
 
         /** Represents a VideoMessage. */
@@ -29779,6 +29788,9 @@ export namespace E2E {
 
             /** VideoMessage dashManifestUrl. */
             public dashManifestUrl: string;
+
+            /** VideoMessage smartThumbnailTs. */
+            public smartThumbnailTs: (number|Long);
 
             /**
              * Creates a new VideoMessage instance using the specified properties.

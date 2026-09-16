@@ -4379,7 +4379,8 @@ export namespace Web {
             UGC_BOT_PROFILE_UPDATED = 249,
             ORDER_EPHEMERAL_EXEMPTION = 250,
             CAMEO_CHAT_CREATED = 254,
-            CAMEO_TRANSITIONED = 256
+            CAMEO_TRANSITIONED = 256,
+            SENDER_SIDE_CONTACT_INFO = 255
         }
     }
 }
@@ -23133,6 +23134,9 @@ export namespace E2E {
 
             /** MessageHistoryMetadata oldestMessageTimestampInBundle */
             oldestMessageTimestampInBundle?: (number|Long|null);
+
+            /** MessageHistoryMetadata includesChatTheme */
+            includesChatTheme?: (boolean|null);
         }
 
         /** Represents a MessageHistoryMetadata. */
@@ -23158,6 +23162,9 @@ export namespace E2E {
 
             /** MessageHistoryMetadata oldestMessageTimestampInBundle. */
             public oldestMessageTimestampInBundle: (number|Long);
+
+            /** MessageHistoryMetadata includesChatTheme. */
+            public includesChatTheme: boolean;
 
             /**
              * Creates a new MessageHistoryMetadata instance using the specified properties.
@@ -34060,6 +34067,9 @@ export namespace E2E {
 
             /** VideoMessage dashManifestUrl */
             dashManifestUrl?: (string|null);
+
+            /** VideoMessage smartThumbnailTs */
+            smartThumbnailTs?: (number|Long|null);
         }
 
         /** Represents a VideoMessage. */
@@ -34163,6 +34173,9 @@ export namespace E2E {
 
             /** VideoMessage dashManifestUrl. */
             public dashManifestUrl: string;
+
+            /** VideoMessage smartThumbnailTs. */
+            public smartThumbnailTs: (number|Long);
 
             /**
              * Creates a new VideoMessage instance using the specified properties.
