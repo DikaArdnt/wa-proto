@@ -520,6 +520,7 @@ message ContextInfo {
         optional int32 agmSubtitleStrategy = 31;
         optional int32 agmHeaderInteractionStrategy = 32;
         optional bool containsCtwaFlowsAutoLabel = 33;
+        optional string productId = 34;
         enum AdType {
             CTWA = 0;
             CAWC = 1;

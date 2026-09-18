@@ -17911,6 +17911,7 @@ $root.E2E = (function() {
              * @property {number|null} [agmSubtitleStrategy] ExternalAdReplyInfo agmSubtitleStrategy
              * @property {number|null} [agmHeaderInteractionStrategy] ExternalAdReplyInfo agmHeaderInteractionStrategy
              * @property {boolean|null} [containsCtwaFlowsAutoLabel] ExternalAdReplyInfo containsCtwaFlowsAutoLabel
+             * @property {string|null} [productId] ExternalAdReplyInfo productId
              */
 
             /**
@@ -18193,6 +18194,14 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.containsCtwaFlowsAutoLabel = false;
 
             /**
+             * ExternalAdReplyInfo productId.
+             * @member {string} productId
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.productId = "";
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -18286,6 +18295,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 32, wireType 0 =*/256).int32(message.agmHeaderInteractionStrategy);
                 if (message.containsCtwaFlowsAutoLabel != null && Object.hasOwnProperty.call(message, "containsCtwaFlowsAutoLabel"))
                     writer.uint32(/* id 33, wireType 0 =*/264).bool(message.containsCtwaFlowsAutoLabel);
+                if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
+                    writer.uint32(/* id 34, wireType 2 =*/274).string(message.productId);
                 return writer;
             };
 
@@ -18468,6 +18479,10 @@ $root.E2E = (function() {
                             message.containsCtwaFlowsAutoLabel = reader.bool();
                             break;
                         }
+                    case 34: {
+                            message.productId = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -18622,6 +18637,9 @@ $root.E2E = (function() {
                 if (message.containsCtwaFlowsAutoLabel != null && Object.hasOwnProperty.call(message, "containsCtwaFlowsAutoLabel"))
                     if (typeof message.containsCtwaFlowsAutoLabel !== "boolean")
                         return "containsCtwaFlowsAutoLabel: boolean expected";
+                if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
+                    if (!$util.isString(message.productId))
+                        return "productId: string expected";
                 return null;
             };
 
@@ -18744,6 +18762,8 @@ $root.E2E = (function() {
                     message.agmHeaderInteractionStrategy = object.agmHeaderInteractionStrategy | 0;
                 if (object.containsCtwaFlowsAutoLabel != null)
                     message.containsCtwaFlowsAutoLabel = Boolean(object.containsCtwaFlowsAutoLabel);
+                if (object.productId != null)
+                    message.productId = String(object.productId);
                 return message;
             };
 
@@ -18804,6 +18824,7 @@ $root.E2E = (function() {
                     object.agmSubtitleStrategy = 0;
                     object.agmHeaderInteractionStrategy = 0;
                     object.containsCtwaFlowsAutoLabel = false;
+                    object.productId = "";
                 }
                 if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
@@ -18871,6 +18892,8 @@ $root.E2E = (function() {
                     object.agmHeaderInteractionStrategy = message.agmHeaderInteractionStrategy;
                 if (message.containsCtwaFlowsAutoLabel != null && Object.hasOwnProperty.call(message, "containsCtwaFlowsAutoLabel"))
                     object.containsCtwaFlowsAutoLabel = message.containsCtwaFlowsAutoLabel;
+                if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
+                    object.productId = message.productId;
                 return object;
             };
 

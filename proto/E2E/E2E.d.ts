@@ -5862,6 +5862,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo containsCtwaFlowsAutoLabel */
             containsCtwaFlowsAutoLabel?: (boolean|null);
+
+            /** ExternalAdReplyInfo productId */
+            productId?: (string|null);
         }
 
         /** Represents an ExternalAdReplyInfo. */
@@ -5971,6 +5974,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo containsCtwaFlowsAutoLabel. */
             public containsCtwaFlowsAutoLabel: boolean;
+
+            /** ExternalAdReplyInfo productId. */
+            public productId: string;
 
             /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.

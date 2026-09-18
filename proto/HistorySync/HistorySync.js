@@ -27636,6 +27636,7 @@ $root.E2E = (function() {
              * @property {number|null} [agmSubtitleStrategy] ExternalAdReplyInfo agmSubtitleStrategy
              * @property {number|null} [agmHeaderInteractionStrategy] ExternalAdReplyInfo agmHeaderInteractionStrategy
              * @property {boolean|null} [containsCtwaFlowsAutoLabel] ExternalAdReplyInfo containsCtwaFlowsAutoLabel
+             * @property {string|null} [productId] ExternalAdReplyInfo productId
              */
 
             /**
@@ -27918,6 +27919,14 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.containsCtwaFlowsAutoLabel = false;
 
             /**
+             * ExternalAdReplyInfo productId.
+             * @member {string} productId
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.productId = "";
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -28011,6 +28020,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 32, wireType 0 =*/256).int32(message.agmHeaderInteractionStrategy);
                 if (message.containsCtwaFlowsAutoLabel != null && Object.hasOwnProperty.call(message, "containsCtwaFlowsAutoLabel"))
                     writer.uint32(/* id 33, wireType 0 =*/264).bool(message.containsCtwaFlowsAutoLabel);
+                if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
+                    writer.uint32(/* id 34, wireType 2 =*/274).string(message.productId);
                 return writer;
             };
 
@@ -28193,6 +28204,10 @@ $root.E2E = (function() {
                             message.containsCtwaFlowsAutoLabel = reader.bool();
                             break;
                         }
+                    case 34: {
+                            message.productId = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -28347,6 +28362,9 @@ $root.E2E = (function() {
                 if (message.containsCtwaFlowsAutoLabel != null && Object.hasOwnProperty.call(message, "containsCtwaFlowsAutoLabel"))
                     if (typeof message.containsCtwaFlowsAutoLabel !== "boolean")
                         return "containsCtwaFlowsAutoLabel: boolean expected";
+                if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
+                    if (!$util.isString(message.productId))
+                        return "productId: string expected";
                 return null;
             };
 
@@ -28469,6 +28487,8 @@ $root.E2E = (function() {
                     message.agmHeaderInteractionStrategy = object.agmHeaderInteractionStrategy | 0;
                 if (object.containsCtwaFlowsAutoLabel != null)
                     message.containsCtwaFlowsAutoLabel = Boolean(object.containsCtwaFlowsAutoLabel);
+                if (object.productId != null)
+                    message.productId = String(object.productId);
                 return message;
             };
 
@@ -28529,6 +28549,7 @@ $root.E2E = (function() {
                     object.agmSubtitleStrategy = 0;
                     object.agmHeaderInteractionStrategy = 0;
                     object.containsCtwaFlowsAutoLabel = false;
+                    object.productId = "";
                 }
                 if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
@@ -28596,6 +28617,8 @@ $root.E2E = (function() {
                     object.agmHeaderInteractionStrategy = message.agmHeaderInteractionStrategy;
                 if (message.containsCtwaFlowsAutoLabel != null && Object.hasOwnProperty.call(message, "containsCtwaFlowsAutoLabel"))
                     object.containsCtwaFlowsAutoLabel = message.containsCtwaFlowsAutoLabel;
+                if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
+                    object.productId = message.productId;
                 return object;
             };
 
@@ -172766,6 +172789,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.ISharedDeviceAllowlistAction|null} [sharedDeviceAllowlistAction] SyncActionValue sharedDeviceAllowlistAction
          * @property {SyncAction.SyncActionValue.IContactManagerMetadataAction|null} [contactManagerMetadataAction] SyncActionValue contactManagerMetadataAction
          * @property {SyncAction.SyncActionValue.IBusinessFolderActivationAction|null} [businessFolderActivationAction] SyncActionValue businessFolderActivationAction
+         * @property {SyncAction.SyncActionValue.IGroupHistoryToggleAction|null} [groupHistoryToggleAction] SyncActionValue groupHistoryToggleAction
          */
 
         /**
@@ -173480,6 +173504,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.businessFolderActivationAction = null;
 
         /**
+         * SyncActionValue groupHistoryToggleAction.
+         * @member {SyncAction.SyncActionValue.IGroupHistoryToggleAction|null|undefined} groupHistoryToggleAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.groupHistoryToggleAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -173681,6 +173713,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.ContactManagerMetadataAction.encode(message.contactManagerMetadataAction, writer.uint32(/* id 95, wireType 2 =*/762).fork(), q + 1).ldelim();
             if (message.businessFolderActivationAction != null && Object.hasOwnProperty.call(message, "businessFolderActivationAction"))
                 $root.SyncAction.SyncActionValue.BusinessFolderActivationAction.encode(message.businessFolderActivationAction, writer.uint32(/* id 96, wireType 2 =*/770).fork(), q + 1).ldelim();
+            if (message.groupHistoryToggleAction != null && Object.hasOwnProperty.call(message, "groupHistoryToggleAction"))
+                $root.SyncAction.SyncActionValue.GroupHistoryToggleAction.encode(message.groupHistoryToggleAction, writer.uint32(/* id 97, wireType 2 =*/778).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -174077,6 +174111,10 @@ $root.SyncAction = (function() {
                     }
                 case 96: {
                         message.businessFolderActivationAction = $root.SyncAction.SyncActionValue.BusinessFolderActivationAction.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 97: {
+                        message.groupHistoryToggleAction = $root.SyncAction.SyncActionValue.GroupHistoryToggleAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -174556,6 +174594,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "businessFolderActivationAction." + error;
             }
+            if (message.groupHistoryToggleAction != null && Object.hasOwnProperty.call(message, "groupHistoryToggleAction")) {
+                var error = $root.SyncAction.SyncActionValue.GroupHistoryToggleAction.verify(message.groupHistoryToggleAction, long + 1);
+                if (error)
+                    return "groupHistoryToggleAction." + error;
+            }
             return null;
         };
 
@@ -175016,6 +175059,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.businessFolderActivationAction: object expected");
                 message.businessFolderActivationAction = $root.SyncAction.SyncActionValue.BusinessFolderActivationAction.fromObject(object.businessFolderActivationAction, long + 1);
             }
+            if (object.groupHistoryToggleAction != null) {
+                if (!$util.isObject(object.groupHistoryToggleAction))
+                    throw TypeError(".SyncAction.SyncActionValue.groupHistoryToggleAction: object expected");
+                message.groupHistoryToggleAction = $root.SyncAction.SyncActionValue.GroupHistoryToggleAction.fromObject(object.groupHistoryToggleAction, long + 1);
+            }
             return message;
         };
 
@@ -175128,6 +175176,7 @@ $root.SyncAction = (function() {
                 object.sharedDeviceAllowlistAction = null;
                 object.contactManagerMetadataAction = null;
                 object.businessFolderActivationAction = null;
+                object.groupHistoryToggleAction = null;
             }
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
@@ -175308,6 +175357,8 @@ $root.SyncAction = (function() {
                 object.contactManagerMetadataAction = $root.SyncAction.SyncActionValue.ContactManagerMetadataAction.toObject(message.contactManagerMetadataAction, options, q + 1);
             if (message.businessFolderActivationAction != null && Object.hasOwnProperty.call(message, "businessFolderActivationAction"))
                 object.businessFolderActivationAction = $root.SyncAction.SyncActionValue.BusinessFolderActivationAction.toObject(message.businessFolderActivationAction, options, q + 1);
+            if (message.groupHistoryToggleAction != null && Object.hasOwnProperty.call(message, "groupHistoryToggleAction"))
+                object.groupHistoryToggleAction = $root.SyncAction.SyncActionValue.GroupHistoryToggleAction.toObject(message.groupHistoryToggleAction, options, q + 1);
             return object;
         };
 
@@ -185455,6 +185506,288 @@ $root.SyncAction = (function() {
             })();
 
             return FavoritesAction;
+        })();
+
+        SyncActionValue.GroupHistoryToggleAction = (function() {
+
+            /**
+             * Properties of a GroupHistoryToggleAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IGroupHistoryToggleAction
+             * @property {SyncAction.SyncActionValue.GroupHistoryToggleAction.GroupHistoryToggleMode|null} [groupHistoryToggleMode] GroupHistoryToggleAction groupHistoryToggleMode
+             */
+
+            /**
+             * Constructs a new GroupHistoryToggleAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a GroupHistoryToggleAction.
+             * @implements IGroupHistoryToggleAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IGroupHistoryToggleAction=} [properties] Properties to set
+             */
+            function GroupHistoryToggleAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * GroupHistoryToggleAction groupHistoryToggleMode.
+             * @member {SyncAction.SyncActionValue.GroupHistoryToggleAction.GroupHistoryToggleMode} groupHistoryToggleMode
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @instance
+             */
+            GroupHistoryToggleAction.prototype.groupHistoryToggleMode = 0;
+
+            /**
+             * Creates a new GroupHistoryToggleAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IGroupHistoryToggleAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.GroupHistoryToggleAction} GroupHistoryToggleAction instance
+             */
+            GroupHistoryToggleAction.create = function create(properties) {
+                return new GroupHistoryToggleAction(properties);
+            };
+
+            /**
+             * Encodes the specified GroupHistoryToggleAction message. Does not implicitly {@link SyncAction.SyncActionValue.GroupHistoryToggleAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IGroupHistoryToggleAction} message GroupHistoryToggleAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GroupHistoryToggleAction.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.groupHistoryToggleMode != null && Object.hasOwnProperty.call(message, "groupHistoryToggleMode"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.groupHistoryToggleMode);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified GroupHistoryToggleAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.GroupHistoryToggleAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IGroupHistoryToggleAction} message GroupHistoryToggleAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GroupHistoryToggleAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a GroupHistoryToggleAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.GroupHistoryToggleAction} GroupHistoryToggleAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GroupHistoryToggleAction.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SyncAction.SyncActionValue.GroupHistoryToggleAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.groupHistoryToggleMode = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a GroupHistoryToggleAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.GroupHistoryToggleAction} GroupHistoryToggleAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GroupHistoryToggleAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a GroupHistoryToggleAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            GroupHistoryToggleAction.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.groupHistoryToggleMode != null && Object.hasOwnProperty.call(message, "groupHistoryToggleMode"))
+                    switch (message.groupHistoryToggleMode) {
+                    default:
+                        return "groupHistoryToggleMode: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
+                return null;
+            };
+
+            /**
+             * Creates a GroupHistoryToggleAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.GroupHistoryToggleAction} GroupHistoryToggleAction
+             */
+            GroupHistoryToggleAction.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SyncAction.SyncActionValue.GroupHistoryToggleAction)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SyncAction.SyncActionValue.GroupHistoryToggleAction: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SyncAction.SyncActionValue.GroupHistoryToggleAction();
+                switch (object.groupHistoryToggleMode) {
+                default:
+                    if (typeof object.groupHistoryToggleMode === "number") {
+                        message.groupHistoryToggleMode = object.groupHistoryToggleMode;
+                        break;
+                    }
+                    break;
+                case "GROUP_HISTORY_TOGGLE_MODE_UNKNOWN":
+                case 0:
+                    message.groupHistoryToggleMode = 0;
+                    break;
+                case "GROUP_HISTORY_TOGGLE_MODE_ON":
+                case 1:
+                    message.groupHistoryToggleMode = 1;
+                    break;
+                case "GROUP_HISTORY_TOGGLE_MODE_OFF":
+                case 2:
+                    message.groupHistoryToggleMode = 2;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a GroupHistoryToggleAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {SyncAction.SyncActionValue.GroupHistoryToggleAction} message GroupHistoryToggleAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            GroupHistoryToggleAction.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults)
+                    object.groupHistoryToggleMode = options.enums === String ? "GROUP_HISTORY_TOGGLE_MODE_UNKNOWN" : 0;
+                if (message.groupHistoryToggleMode != null && Object.hasOwnProperty.call(message, "groupHistoryToggleMode"))
+                    object.groupHistoryToggleMode = options.enums === String ? $root.SyncAction.SyncActionValue.GroupHistoryToggleAction.GroupHistoryToggleMode[message.groupHistoryToggleMode] === undefined ? message.groupHistoryToggleMode : $root.SyncAction.SyncActionValue.GroupHistoryToggleAction.GroupHistoryToggleMode[message.groupHistoryToggleMode] : message.groupHistoryToggleMode;
+                return object;
+            };
+
+            /**
+             * Converts this GroupHistoryToggleAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            GroupHistoryToggleAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for GroupHistoryToggleAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.GroupHistoryToggleAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            GroupHistoryToggleAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.GroupHistoryToggleAction";
+            };
+
+            /**
+             * GroupHistoryToggleMode enum.
+             * @name SyncAction.SyncActionValue.GroupHistoryToggleAction.GroupHistoryToggleMode
+             * @enum {number}
+             * @property {number} GROUP_HISTORY_TOGGLE_MODE_UNKNOWN=0 GROUP_HISTORY_TOGGLE_MODE_UNKNOWN value
+             * @property {number} GROUP_HISTORY_TOGGLE_MODE_ON=1 GROUP_HISTORY_TOGGLE_MODE_ON value
+             * @property {number} GROUP_HISTORY_TOGGLE_MODE_OFF=2 GROUP_HISTORY_TOGGLE_MODE_OFF value
+             */
+            GroupHistoryToggleAction.GroupHistoryToggleMode = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "GROUP_HISTORY_TOGGLE_MODE_UNKNOWN"] = 0;
+                values[valuesById[1] = "GROUP_HISTORY_TOGGLE_MODE_ON"] = 1;
+                values[valuesById[2] = "GROUP_HISTORY_TOGGLE_MODE_OFF"] = 2;
+                return values;
+            })();
+
+            return GroupHistoryToggleAction;
         })();
 
         SyncActionValue.InteractiveMessageAction = (function() {
@@ -205330,6 +205663,7 @@ $root.SyncAction = (function() {
      * @property {number} SHARED_DEVICE_ALLOWLIST_ACTION=94 SHARED_DEVICE_ALLOWLIST_ACTION value
      * @property {number} CONTACT_MANAGER_METADATA_ACTION=95 CONTACT_MANAGER_METADATA_ACTION value
      * @property {number} BUSINESS_FOLDER_ACTIVATION_ACTION=96 BUSINESS_FOLDER_ACTIVATION_ACTION value
+     * @property {number} GROUP_HISTORY_TOGGLE_ACTION=97 GROUP_HISTORY_TOGGLE_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -205426,6 +205760,7 @@ $root.SyncAction = (function() {
         values[valuesById[94] = "SHARED_DEVICE_ALLOWLIST_ACTION"] = 94;
         values[valuesById[95] = "CONTACT_MANAGER_METADATA_ACTION"] = 95;
         values[valuesById[96] = "BUSINESS_FOLDER_ACTIVATION_ACTION"] = 96;
+        values[valuesById[97] = "GROUP_HISTORY_TOGGLE_ACTION"] = 97;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;
