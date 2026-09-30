@@ -7347,6 +7347,9 @@ export namespace E2E {
 
         /** Message audioStickerMessage */
         audioStickerMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message botGroupParticipantMessage */
+        botGroupParticipantMessage?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -7696,6 +7699,9 @@ export namespace E2E {
 
         /** Message audioStickerMessage. */
         public audioStickerMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message botGroupParticipantMessage. */
+        public botGroupParticipantMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
