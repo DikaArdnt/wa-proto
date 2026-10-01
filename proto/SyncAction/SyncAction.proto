@@ -129,6 +129,7 @@ message SyncActionValue {
     optional ContactManagerMetadataAction contactManagerMetadataAction = 95;
     optional BusinessFolderActivationAction businessFolderActivationAction = 96;
     optional GroupHistoryToggleAction groupHistoryToggleAction = 97;
+    optional BBProPendingCustomerBaseAction bbProPendingCustomerBaseAction = 98;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceId = 2;
@@ -155,6 +156,9 @@ message SyncActionValue {
             CREATED = 1;
             DELETED = 2;
         }
+    }
+    message BBProPendingCustomerBaseAction {
+        optional bool pending = 1;
     }
     message BizAISettingsNudgeAction {
         optional BizAISettingsCategory category = 1;
@@ -781,9 +785,13 @@ message CallLogRecord {
         SCHEDULED_CALL = 1;
         VOICE_CHAT = 2;
     }
+    message GuestInfo {
+        optional string pushName = 1;
+    }
     message ParticipantInfo {
         optional string userJid = 1;
         optional CallLogRecord.CallResult callResult = 2;
+        optional CallLogRecord.GuestInfo guestInfo = 3;
     }
     enum SilenceReason {
         NONE = 0;
@@ -890,6 +898,7 @@ enum MutationProps {
     CONTACT_MANAGER_METADATA_ACTION = 95;
     BUSINESS_FOLDER_ACTIVATION_ACTION = 96;
     GROUP_HISTORY_TOGGLE_ACTION = 97;
+    BB_PRO_PENDING_CUSTOMER_BASE_ACTION = 98;
     SHARE_OWN_PN = 10001;
     BUSINESS_BROADCAST_ACTION = 10002;
     AI_THREAD_DELETE_ACTION = 10003;
