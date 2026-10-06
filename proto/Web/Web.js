@@ -4311,6 +4311,248 @@ $root.Web = (function() {
         return KeepInChat;
     })();
 
+    Web.EventInviteAdditionalMetadata = (function() {
+
+        /**
+         * Properties of an EventInviteAdditionalMetadata.
+         * @memberof Web
+         * @interface IEventInviteAdditionalMetadata
+         * @property {boolean|null} [isUpdated] EventInviteAdditionalMetadata isUpdated
+         */
+
+        /**
+         * Constructs a new EventInviteAdditionalMetadata.
+         * @memberof Web
+         * @classdesc Represents an EventInviteAdditionalMetadata.
+         * @implements IEventInviteAdditionalMetadata
+         * @constructor
+         * @param {Web.IEventInviteAdditionalMetadata=} [properties] Properties to set
+         */
+        function EventInviteAdditionalMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * EventInviteAdditionalMetadata isUpdated.
+         * @member {boolean} isUpdated
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @instance
+         */
+        EventInviteAdditionalMetadata.prototype.isUpdated = false;
+
+        /**
+         * Creates a new EventInviteAdditionalMetadata instance using the specified properties.
+         * @function create
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {Web.IEventInviteAdditionalMetadata=} [properties] Properties to set
+         * @returns {Web.EventInviteAdditionalMetadata} EventInviteAdditionalMetadata instance
+         */
+        EventInviteAdditionalMetadata.create = function create(properties) {
+            return new EventInviteAdditionalMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified EventInviteAdditionalMetadata message. Does not implicitly {@link Web.EventInviteAdditionalMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {Web.IEventInviteAdditionalMetadata} message EventInviteAdditionalMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        EventInviteAdditionalMetadata.encode = function encode(message, writer, q) {
+            if (!writer)
+                writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            if (message.isUpdated != null && Object.hasOwnProperty.call(message, "isUpdated"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isUpdated);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified EventInviteAdditionalMetadata message, length delimited. Does not implicitly {@link Web.EventInviteAdditionalMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {Web.IEventInviteAdditionalMetadata} message EventInviteAdditionalMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        EventInviteAdditionalMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes an EventInviteAdditionalMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Web.EventInviteAdditionalMetadata} EventInviteAdditionalMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        EventInviteAdditionalMetadata.decode = function decode(reader, length, error, long) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var end, message;
+            if (length === undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = new $root.Web.EventInviteAdditionalMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.isUpdated = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7, long);
+                    break;
+                }
+            }
+            if (length !== undefined) {
+                if (reader.pos !== end)
+                    throw RangeError("index out of range");
+                reader.len = length;
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an EventInviteAdditionalMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Web.EventInviteAdditionalMetadata} EventInviteAdditionalMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        EventInviteAdditionalMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an EventInviteAdditionalMetadata message.
+         * @function verify
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        EventInviteAdditionalMetadata.verify = function verify(message, long) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
+            if (message.isUpdated != null && Object.hasOwnProperty.call(message, "isUpdated"))
+                if (typeof message.isUpdated !== "boolean")
+                    return "isUpdated: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates an EventInviteAdditionalMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Web.EventInviteAdditionalMetadata} EventInviteAdditionalMetadata
+         */
+        EventInviteAdditionalMetadata.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.Web.EventInviteAdditionalMetadata)
+                return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Web.EventInviteAdditionalMetadata: object expected");
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
+            var message = new $root.Web.EventInviteAdditionalMetadata();
+            if (object.isUpdated != null)
+                message.isUpdated = Boolean(object.isUpdated);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an EventInviteAdditionalMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {Web.EventInviteAdditionalMetadata} message EventInviteAdditionalMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        EventInviteAdditionalMetadata.toObject = function toObject(message, options, q) {
+            if (!options)
+                options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
+            var object = {};
+            if (options.defaults)
+                object.isUpdated = false;
+            if (message.isUpdated != null && Object.hasOwnProperty.call(message, "isUpdated"))
+                object.isUpdated = message.isUpdated;
+            return object;
+        };
+
+        /**
+         * Converts this EventInviteAdditionalMetadata to JSON.
+         * @function toJSON
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        EventInviteAdditionalMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for EventInviteAdditionalMetadata
+         * @function getTypeUrl
+         * @memberof Web.EventInviteAdditionalMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        EventInviteAdditionalMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Web.EventInviteAdditionalMetadata";
+        };
+
+        return EventInviteAdditionalMetadata;
+    })();
+
     Web.EventAdditionalMetadata = (function() {
 
         /**
@@ -4803,6 +5045,7 @@ $root.Web = (function() {
          * @interface IPollAdditionalMetadata
          * @property {boolean|null} [pollInvalidated] PollAdditionalMetadata pollInvalidated
          * @property {Array.<Web.PollAdditionalMetadata.IPollNameHashHistoryEntry>|null} [pollNameHashHistory] PollAdditionalMetadata pollNameHashHistory
+         * @property {Array.<E2E.Message.PollCreationMessage.IOption>|null} [originalOptions] PollAdditionalMetadata originalOptions
          */
 
         /**
@@ -4815,6 +5058,7 @@ $root.Web = (function() {
          */
         function PollAdditionalMetadata(properties) {
             this.pollNameHashHistory = [];
+            this.originalOptions = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -4836,6 +5080,14 @@ $root.Web = (function() {
          * @instance
          */
         PollAdditionalMetadata.prototype.pollNameHashHistory = $util.emptyArray;
+
+        /**
+         * PollAdditionalMetadata originalOptions.
+         * @member {Array.<E2E.Message.PollCreationMessage.IOption>} originalOptions
+         * @memberof Web.PollAdditionalMetadata
+         * @instance
+         */
+        PollAdditionalMetadata.prototype.originalOptions = $util.emptyArray;
 
         /**
          * Creates a new PollAdditionalMetadata instance using the specified properties.
@@ -4870,6 +5122,9 @@ $root.Web = (function() {
             if (message.pollNameHashHistory != null && message.pollNameHashHistory.length)
                 for (var i = 0; i < message.pollNameHashHistory.length; ++i)
                     $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.encode(message.pollNameHashHistory[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+            if (message.originalOptions != null && message.originalOptions.length)
+                for (var i = 0; i < message.originalOptions.length; ++i)
+                    $root.E2E.Message.PollCreationMessage.Option.encode(message.originalOptions[i], writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -4930,6 +5185,12 @@ $root.Web = (function() {
                         message.pollNameHashHistory.push($root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
+                case 3: {
+                        if (!(message.originalOptions && message.originalOptions.length))
+                            message.originalOptions = [];
+                        message.originalOptions.push($root.E2E.Message.PollCreationMessage.Option.decode(reader, reader.uint32(), undefined, long + 1));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -4986,6 +5247,15 @@ $root.Web = (function() {
                         return "pollNameHashHistory." + error;
                 }
             }
+            if (message.originalOptions != null && Object.hasOwnProperty.call(message, "originalOptions")) {
+                if (!Array.isArray(message.originalOptions))
+                    return "originalOptions: array expected";
+                for (var i = 0; i < message.originalOptions.length; ++i) {
+                    var error = $root.E2E.Message.PollCreationMessage.Option.verify(message.originalOptions[i], long + 1);
+                    if (error)
+                        return "originalOptions." + error;
+                }
+            }
             return null;
         };
 
@@ -5019,6 +5289,16 @@ $root.Web = (function() {
                     message.pollNameHashHistory[i] = $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.fromObject(object.pollNameHashHistory[i], long + 1);
                 }
             }
+            if (object.originalOptions) {
+                if (!Array.isArray(object.originalOptions))
+                    throw TypeError(".Web.PollAdditionalMetadata.originalOptions: array expected");
+                message.originalOptions = [];
+                for (var i = 0; i < object.originalOptions.length; ++i) {
+                    if (!$util.isObject(object.originalOptions[i]))
+                        throw TypeError(".Web.PollAdditionalMetadata.originalOptions: object expected");
+                    message.originalOptions[i] = $root.E2E.Message.PollCreationMessage.Option.fromObject(object.originalOptions[i], long + 1);
+                }
+            }
             return message;
         };
 
@@ -5039,8 +5319,10 @@ $root.Web = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             var object = {};
-            if (options.arrays || options.defaults)
+            if (options.arrays || options.defaults) {
                 object.pollNameHashHistory = [];
+                object.originalOptions = [];
+            }
             if (options.defaults)
                 object.pollInvalidated = false;
             if (message.pollInvalidated != null && Object.hasOwnProperty.call(message, "pollInvalidated"))
@@ -5049,6 +5331,11 @@ $root.Web = (function() {
                 object.pollNameHashHistory = [];
                 for (var j = 0; j < message.pollNameHashHistory.length; ++j)
                     object.pollNameHashHistory[j] = $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.toObject(message.pollNameHashHistory[j], options, q + 1);
+            }
+            if (message.originalOptions && message.originalOptions.length) {
+                object.originalOptions = [];
+                for (var j = 0; j < message.originalOptions.length; ++j)
+                    object.originalOptions[j] = $root.E2E.Message.PollCreationMessage.Option.toObject(message.originalOptions[j], options, q + 1);
             }
             return object;
         };
@@ -12272,6 +12559,7 @@ $root.Web = (function() {
          * @property {Web.IScheduledMessageMetadata|null} [scheduledMessageMetadata] WebMessageInfo scheduledMessageMetadata
          * @property {string|null} [decisionId] WebMessageInfo decisionId
          * @property {Array.<string>|null} [decisionSources] WebMessageInfo decisionSources
+         * @property {Web.IEventInviteAdditionalMetadata|null} [eventInviteAdditionalMetadata] WebMessageInfo eventInviteAdditionalMetadata
          */
 
         /**
@@ -12877,6 +13165,14 @@ $root.Web = (function() {
         WebMessageInfo.prototype.decisionSources = $util.emptyArray;
 
         /**
+         * WebMessageInfo eventInviteAdditionalMetadata.
+         * @member {Web.IEventInviteAdditionalMetadata|null|undefined} eventInviteAdditionalMetadata
+         * @memberof Web.WebMessageInfo
+         * @instance
+         */
+        WebMessageInfo.prototype.eventInviteAdditionalMetadata = null;
+
+        /**
          * Creates a new WebMessageInfo instance using the specified properties.
          * @function create
          * @memberof Web.WebMessageInfo
@@ -13058,6 +13354,8 @@ $root.Web = (function() {
             if (message.decisionSources != null && message.decisionSources.length)
                 for (var i = 0; i < message.decisionSources.length; ++i)
                     writer.uint32(/* id 83, wireType 2 =*/666).string(message.decisionSources[i]);
+            if (message.eventInviteAdditionalMetadata != null && Object.hasOwnProperty.call(message, "eventInviteAdditionalMetadata"))
+                $root.Web.EventInviteAdditionalMetadata.encode(message.eventInviteAdditionalMetadata, writer.uint32(/* id 84, wireType 2 =*/674).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -13418,6 +13716,10 @@ $root.Web = (function() {
                         message.decisionSources.push(reader.string());
                         break;
                     }
+                case 84: {
+                        message.eventInviteAdditionalMetadata = $root.Web.EventInviteAdditionalMetadata.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -13759,9 +14061,25 @@ $root.Web = (function() {
                 case 248:
                 case 249:
                 case 250:
+                case 251:
+                case 252:
+                case 253:
                 case 254:
-                case 256:
                 case 255:
+                case 256:
+                case 257:
+                case 258:
+                case 259:
+                case 260:
+                case 261:
+                case 262:
+                case 263:
+                case 264:
+                case 265:
+                case 266:
+                case 267:
+                case 270:
+                case 271:
                     break;
                 }
             if (message.clearMedia != null && Object.hasOwnProperty.call(message, "clearMedia"))
@@ -14039,6 +14357,11 @@ $root.Web = (function() {
                 for (var i = 0; i < message.decisionSources.length; ++i)
                     if (!$util.isString(message.decisionSources[i]))
                         return "decisionSources: string[] expected";
+            }
+            if (message.eventInviteAdditionalMetadata != null && Object.hasOwnProperty.call(message, "eventInviteAdditionalMetadata")) {
+                var error = $root.Web.EventInviteAdditionalMetadata.verify(message.eventInviteAdditionalMetadata, long + 1);
+                if (error)
+                    return "eventInviteAdditionalMetadata." + error;
             }
             return null;
         };
@@ -15093,17 +15416,81 @@ $root.Web = (function() {
             case 250:
                 message.messageStubType = 250;
                 break;
+            case "GROUP_DEFAULT_SUB_GROUP_DEMOTE":
+            case 251:
+                message.messageStubType = 251;
+                break;
+            case "BIZ_BUSINESS_BROADCAST_ENTRY_POINT":
+            case 252:
+                message.messageStubType = 252;
+                break;
+            case "BOT_INLINE_TOS_CHAT":
+            case 253:
+                message.messageStubType = 253;
+                break;
             case "CAMEO_CHAT_CREATED":
             case 254:
                 message.messageStubType = 254;
+                break;
+            case "SENDER_SIDE_CONTACT_INFO":
+            case 255:
+                message.messageStubType = 255;
                 break;
             case "CAMEO_TRANSITIONED":
             case 256:
                 message.messageStubType = 256;
                 break;
-            case "SENDER_SIDE_CONTACT_INFO":
-            case 255:
-                message.messageStubType = 255;
+            case "CAMEO_REGISTERED_WITH_NEW_CHAT":
+            case 257:
+                message.messageStubType = 257;
+                break;
+            case "PRIVACY_SYSTEM_MESSAGE":
+            case 258:
+                message.messageStubType = 258;
+                break;
+            case "BIZ_AI_LEARNING_ENABLED_DISCLOSURE":
+            case 259:
+                message.messageStubType = 259;
+                break;
+            case "BIZ_AI_LEARNING_DISABLED_DISCLOSURE":
+            case 260:
+                message.messageStubType = 260;
+                break;
+            case "BIZ_AI_REPLIES_MUTED_HISTORICAL_CHAT":
+            case 261:
+                message.messageStubType = 261;
+                break;
+            case "INVITE_FROM_IG":
+            case 262:
+                message.messageStubType = 262;
+                break;
+            case "GROUP_ADMIN_FIRST_JOIN_VIA_LINK":
+            case 263:
+                message.messageStubType = 263;
+                break;
+            case "GROUP_ADMIN_FLOOD_JOIN_VIA_LINK":
+            case 264:
+                message.messageStubType = 264;
+                break;
+            case "BIZ_AI_REPLIES_MUTED_IRRELEVANT_HISTORICAL_CHAT":
+            case 265:
+                message.messageStubType = 265;
+                break;
+            case "PENDING_INVITE_CREATED":
+            case 266:
+                message.messageStubType = 266;
+                break;
+            case "CAMEO_CHAT_EXPIRED":
+            case 267:
+                message.messageStubType = 267;
+                break;
+            case "GROUP_PUSHNAME_SHARED":
+            case 270:
+                message.messageStubType = 270;
+                break;
+            case "BIZ_POST_SEND_OPT_OUT":
+            case 271:
+                message.messageStubType = 271;
                 break;
             }
             if (object.clearMedia != null)
@@ -15412,6 +15799,11 @@ $root.Web = (function() {
                 for (var i = 0; i < object.decisionSources.length; ++i)
                     message.decisionSources[i] = String(object.decisionSources[i]);
             }
+            if (object.eventInviteAdditionalMetadata != null) {
+                if (!$util.isObject(object.eventInviteAdditionalMetadata))
+                    throw TypeError(".Web.WebMessageInfo.eventInviteAdditionalMetadata: object expected");
+                message.eventInviteAdditionalMetadata = $root.Web.EventInviteAdditionalMetadata.fromObject(object.eventInviteAdditionalMetadata, long + 1);
+            }
             return message;
         };
 
@@ -15549,6 +15941,7 @@ $root.Web = (function() {
                     object.ephemeralExpirationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.scheduledMessageMetadata = null;
                 object.decisionId = "";
+                object.eventInviteAdditionalMetadata = null;
             }
             if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                 object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
@@ -15757,6 +16150,8 @@ $root.Web = (function() {
                 for (var j = 0; j < message.decisionSources.length; ++j)
                     object.decisionSources[j] = message.decisionSources[j];
             }
+            if (message.eventInviteAdditionalMetadata != null && Object.hasOwnProperty.call(message, "eventInviteAdditionalMetadata"))
+                object.eventInviteAdditionalMetadata = $root.Web.EventInviteAdditionalMetadata.toObject(message.eventInviteAdditionalMetadata, options, q + 1);
             return object;
         };
 
@@ -16066,9 +16461,25 @@ $root.Web = (function() {
          * @property {number} EPHEMERAL_CHANGED_FOR_COEX=248 EPHEMERAL_CHANGED_FOR_COEX value
          * @property {number} UGC_BOT_PROFILE_UPDATED=249 UGC_BOT_PROFILE_UPDATED value
          * @property {number} ORDER_EPHEMERAL_EXEMPTION=250 ORDER_EPHEMERAL_EXEMPTION value
+         * @property {number} GROUP_DEFAULT_SUB_GROUP_DEMOTE=251 GROUP_DEFAULT_SUB_GROUP_DEMOTE value
+         * @property {number} BIZ_BUSINESS_BROADCAST_ENTRY_POINT=252 BIZ_BUSINESS_BROADCAST_ENTRY_POINT value
+         * @property {number} BOT_INLINE_TOS_CHAT=253 BOT_INLINE_TOS_CHAT value
          * @property {number} CAMEO_CHAT_CREATED=254 CAMEO_CHAT_CREATED value
-         * @property {number} CAMEO_TRANSITIONED=256 CAMEO_TRANSITIONED value
          * @property {number} SENDER_SIDE_CONTACT_INFO=255 SENDER_SIDE_CONTACT_INFO value
+         * @property {number} CAMEO_TRANSITIONED=256 CAMEO_TRANSITIONED value
+         * @property {number} CAMEO_REGISTERED_WITH_NEW_CHAT=257 CAMEO_REGISTERED_WITH_NEW_CHAT value
+         * @property {number} PRIVACY_SYSTEM_MESSAGE=258 PRIVACY_SYSTEM_MESSAGE value
+         * @property {number} BIZ_AI_LEARNING_ENABLED_DISCLOSURE=259 BIZ_AI_LEARNING_ENABLED_DISCLOSURE value
+         * @property {number} BIZ_AI_LEARNING_DISABLED_DISCLOSURE=260 BIZ_AI_LEARNING_DISABLED_DISCLOSURE value
+         * @property {number} BIZ_AI_REPLIES_MUTED_HISTORICAL_CHAT=261 BIZ_AI_REPLIES_MUTED_HISTORICAL_CHAT value
+         * @property {number} INVITE_FROM_IG=262 INVITE_FROM_IG value
+         * @property {number} GROUP_ADMIN_FIRST_JOIN_VIA_LINK=263 GROUP_ADMIN_FIRST_JOIN_VIA_LINK value
+         * @property {number} GROUP_ADMIN_FLOOD_JOIN_VIA_LINK=264 GROUP_ADMIN_FLOOD_JOIN_VIA_LINK value
+         * @property {number} BIZ_AI_REPLIES_MUTED_IRRELEVANT_HISTORICAL_CHAT=265 BIZ_AI_REPLIES_MUTED_IRRELEVANT_HISTORICAL_CHAT value
+         * @property {number} PENDING_INVITE_CREATED=266 PENDING_INVITE_CREATED value
+         * @property {number} CAMEO_CHAT_EXPIRED=267 CAMEO_CHAT_EXPIRED value
+         * @property {number} GROUP_PUSHNAME_SHARED=270 GROUP_PUSHNAME_SHARED value
+         * @property {number} BIZ_POST_SEND_OPT_OUT=271 BIZ_POST_SEND_OPT_OUT value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -16308,9 +16719,25 @@ $root.Web = (function() {
             values[valuesById[248] = "EPHEMERAL_CHANGED_FOR_COEX"] = 248;
             values[valuesById[249] = "UGC_BOT_PROFILE_UPDATED"] = 249;
             values[valuesById[250] = "ORDER_EPHEMERAL_EXEMPTION"] = 250;
+            values[valuesById[251] = "GROUP_DEFAULT_SUB_GROUP_DEMOTE"] = 251;
+            values[valuesById[252] = "BIZ_BUSINESS_BROADCAST_ENTRY_POINT"] = 252;
+            values[valuesById[253] = "BOT_INLINE_TOS_CHAT"] = 253;
             values[valuesById[254] = "CAMEO_CHAT_CREATED"] = 254;
-            values[valuesById[256] = "CAMEO_TRANSITIONED"] = 256;
             values[valuesById[255] = "SENDER_SIDE_CONTACT_INFO"] = 255;
+            values[valuesById[256] = "CAMEO_TRANSITIONED"] = 256;
+            values[valuesById[257] = "CAMEO_REGISTERED_WITH_NEW_CHAT"] = 257;
+            values[valuesById[258] = "PRIVACY_SYSTEM_MESSAGE"] = 258;
+            values[valuesById[259] = "BIZ_AI_LEARNING_ENABLED_DISCLOSURE"] = 259;
+            values[valuesById[260] = "BIZ_AI_LEARNING_DISABLED_DISCLOSURE"] = 260;
+            values[valuesById[261] = "BIZ_AI_REPLIES_MUTED_HISTORICAL_CHAT"] = 261;
+            values[valuesById[262] = "INVITE_FROM_IG"] = 262;
+            values[valuesById[263] = "GROUP_ADMIN_FIRST_JOIN_VIA_LINK"] = 263;
+            values[valuesById[264] = "GROUP_ADMIN_FLOOD_JOIN_VIA_LINK"] = 264;
+            values[valuesById[265] = "BIZ_AI_REPLIES_MUTED_IRRELEVANT_HISTORICAL_CHAT"] = 265;
+            values[valuesById[266] = "PENDING_INVITE_CREATED"] = 266;
+            values[valuesById[267] = "CAMEO_CHAT_EXPIRED"] = 267;
+            values[valuesById[270] = "GROUP_PUSHNAME_SHARED"] = 270;
+            values[valuesById[271] = "BIZ_POST_SEND_OPT_OUT"] = 271;
             return values;
         })();
 
@@ -28977,6 +29404,7 @@ $root.E2E = (function() {
                 case 18:
                 case 19:
                 case 20:
+                case 21:
                     break;
                 }
             if (message.parentMessageKey != null && Object.hasOwnProperty.call(message, "parentMessageKey")) {
@@ -29099,6 +29527,10 @@ $root.E2E = (function() {
             case 20:
                 message.associationType = 20;
                 break;
+            case "AV1_VIDEO_DUAL_UPLOAD":
+            case 21:
+                message.associationType = 21;
+                break;
             }
             if (object.parentMessageKey != null) {
                 if (!$util.isObject(object.parentMessageKey))
@@ -29192,6 +29624,7 @@ $root.E2E = (function() {
          * @property {number} STATUS_REACTION=18 STATUS_REACTION value
          * @property {number} HEVC_VIDEO_DUAL_UPLOAD=19 HEVC_VIDEO_DUAL_UPLOAD value
          * @property {number} POLL_ADD_OPTION=20 POLL_ADD_OPTION value
+         * @property {number} AV1_VIDEO_DUAL_UPLOAD=21 AV1_VIDEO_DUAL_UPLOAD value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -29216,6 +29649,7 @@ $root.E2E = (function() {
             values[valuesById[18] = "STATUS_REACTION"] = 18;
             values[valuesById[19] = "HEVC_VIDEO_DUAL_UPLOAD"] = 19;
             values[valuesById[20] = "POLL_ADD_OPTION"] = 20;
+            values[valuesById[21] = "AV1_VIDEO_DUAL_UPLOAD"] = 21;
             return values;
         })();
 
@@ -30570,6 +31004,8 @@ $root.E2E = (function() {
                 case 6:
                 case 7:
                 case 8:
+                case 9:
+                case 10:
                     break;
                 }
             if (message.rankingVersion != null && Object.hasOwnProperty.call(message, "rankingVersion"))
@@ -30939,6 +31375,14 @@ $root.E2E = (function() {
             case "HEVC_VIDEO_CHILD":
             case 8:
                 message.pairedMediaType = 8;
+                break;
+            case "AV1_VIDEO_PARENT":
+            case 9:
+                message.pairedMediaType = 9;
+                break;
+            case "AV1_VIDEO_CHILD":
+            case 10:
+                message.pairedMediaType = 10;
                 break;
             }
             if (object.rankingVersion != null)
@@ -34223,6 +34667,13 @@ $root.E2E = (function() {
              * @property {number|null} [agmHeaderInteractionStrategy] ExternalAdReplyInfo agmHeaderInteractionStrategy
              * @property {boolean|null} [containsCtwaFlowsAutoLabel] ExternalAdReplyInfo containsCtwaFlowsAutoLabel
              * @property {string|null} [productId] ExternalAdReplyInfo productId
+             * @property {boolean|null} [containsCtwaPromo] ExternalAdReplyInfo containsCtwaPromo
+             * @property {string|null} [ctwaPromoResponseId] ExternalAdReplyInfo ctwaPromoResponseId
+             * @property {string|null} [ctwaPromoOfferId] ExternalAdReplyInfo ctwaPromoOfferId
+             * @property {string|null} [ctwaPromoAdEntryId] ExternalAdReplyInfo ctwaPromoAdEntryId
+             * @property {number|Long|null} [ctwaPromoResponseExpiresAtSeconds] ExternalAdReplyInfo ctwaPromoResponseExpiresAtSeconds
+             * @property {number|null} [ctwaPromoSchemaVersion] ExternalAdReplyInfo ctwaPromoSchemaVersion
+             * @property {string|null} [ctwaPromoAdgroupId] ExternalAdReplyInfo ctwaPromoAdgroupId
              */
 
             /**
@@ -34513,6 +34964,62 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.productId = "";
 
             /**
+             * ExternalAdReplyInfo containsCtwaPromo.
+             * @member {boolean} containsCtwaPromo
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.containsCtwaPromo = false;
+
+            /**
+             * ExternalAdReplyInfo ctwaPromoResponseId.
+             * @member {string} ctwaPromoResponseId
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.ctwaPromoResponseId = "";
+
+            /**
+             * ExternalAdReplyInfo ctwaPromoOfferId.
+             * @member {string} ctwaPromoOfferId
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.ctwaPromoOfferId = "";
+
+            /**
+             * ExternalAdReplyInfo ctwaPromoAdEntryId.
+             * @member {string} ctwaPromoAdEntryId
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.ctwaPromoAdEntryId = "";
+
+            /**
+             * ExternalAdReplyInfo ctwaPromoResponseExpiresAtSeconds.
+             * @member {number|Long} ctwaPromoResponseExpiresAtSeconds
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.ctwaPromoResponseExpiresAtSeconds = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+            /**
+             * ExternalAdReplyInfo ctwaPromoSchemaVersion.
+             * @member {number} ctwaPromoSchemaVersion
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.ctwaPromoSchemaVersion = 0;
+
+            /**
+             * ExternalAdReplyInfo ctwaPromoAdgroupId.
+             * @member {string} ctwaPromoAdgroupId
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.ctwaPromoAdgroupId = "";
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -34608,6 +35115,20 @@ $root.E2E = (function() {
                     writer.uint32(/* id 33, wireType 0 =*/264).bool(message.containsCtwaFlowsAutoLabel);
                 if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
                     writer.uint32(/* id 34, wireType 2 =*/274).string(message.productId);
+                if (message.containsCtwaPromo != null && Object.hasOwnProperty.call(message, "containsCtwaPromo"))
+                    writer.uint32(/* id 35, wireType 0 =*/280).bool(message.containsCtwaPromo);
+                if (message.ctwaPromoResponseId != null && Object.hasOwnProperty.call(message, "ctwaPromoResponseId"))
+                    writer.uint32(/* id 36, wireType 2 =*/290).string(message.ctwaPromoResponseId);
+                if (message.ctwaPromoOfferId != null && Object.hasOwnProperty.call(message, "ctwaPromoOfferId"))
+                    writer.uint32(/* id 37, wireType 2 =*/298).string(message.ctwaPromoOfferId);
+                if (message.ctwaPromoAdEntryId != null && Object.hasOwnProperty.call(message, "ctwaPromoAdEntryId"))
+                    writer.uint32(/* id 38, wireType 2 =*/306).string(message.ctwaPromoAdEntryId);
+                if (message.ctwaPromoResponseExpiresAtSeconds != null && Object.hasOwnProperty.call(message, "ctwaPromoResponseExpiresAtSeconds"))
+                    writer.uint32(/* id 39, wireType 0 =*/312).uint64(message.ctwaPromoResponseExpiresAtSeconds);
+                if (message.ctwaPromoSchemaVersion != null && Object.hasOwnProperty.call(message, "ctwaPromoSchemaVersion"))
+                    writer.uint32(/* id 40, wireType 0 =*/320).uint32(message.ctwaPromoSchemaVersion);
+                if (message.ctwaPromoAdgroupId != null && Object.hasOwnProperty.call(message, "ctwaPromoAdgroupId"))
+                    writer.uint32(/* id 41, wireType 2 =*/330).string(message.ctwaPromoAdgroupId);
                 return writer;
             };
 
@@ -34794,6 +35315,34 @@ $root.E2E = (function() {
                             message.productId = reader.string();
                             break;
                         }
+                    case 35: {
+                            message.containsCtwaPromo = reader.bool();
+                            break;
+                        }
+                    case 36: {
+                            message.ctwaPromoResponseId = reader.string();
+                            break;
+                        }
+                    case 37: {
+                            message.ctwaPromoOfferId = reader.string();
+                            break;
+                        }
+                    case 38: {
+                            message.ctwaPromoAdEntryId = reader.string();
+                            break;
+                        }
+                    case 39: {
+                            message.ctwaPromoResponseExpiresAtSeconds = reader.uint64();
+                            break;
+                        }
+                    case 40: {
+                            message.ctwaPromoSchemaVersion = reader.uint32();
+                            break;
+                        }
+                    case 41: {
+                            message.ctwaPromoAdgroupId = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -34951,6 +35500,27 @@ $root.E2E = (function() {
                 if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
                     if (!$util.isString(message.productId))
                         return "productId: string expected";
+                if (message.containsCtwaPromo != null && Object.hasOwnProperty.call(message, "containsCtwaPromo"))
+                    if (typeof message.containsCtwaPromo !== "boolean")
+                        return "containsCtwaPromo: boolean expected";
+                if (message.ctwaPromoResponseId != null && Object.hasOwnProperty.call(message, "ctwaPromoResponseId"))
+                    if (!$util.isString(message.ctwaPromoResponseId))
+                        return "ctwaPromoResponseId: string expected";
+                if (message.ctwaPromoOfferId != null && Object.hasOwnProperty.call(message, "ctwaPromoOfferId"))
+                    if (!$util.isString(message.ctwaPromoOfferId))
+                        return "ctwaPromoOfferId: string expected";
+                if (message.ctwaPromoAdEntryId != null && Object.hasOwnProperty.call(message, "ctwaPromoAdEntryId"))
+                    if (!$util.isString(message.ctwaPromoAdEntryId))
+                        return "ctwaPromoAdEntryId: string expected";
+                if (message.ctwaPromoResponseExpiresAtSeconds != null && Object.hasOwnProperty.call(message, "ctwaPromoResponseExpiresAtSeconds"))
+                    if (!$util.isInteger(message.ctwaPromoResponseExpiresAtSeconds) && !(message.ctwaPromoResponseExpiresAtSeconds && $util.isInteger(message.ctwaPromoResponseExpiresAtSeconds.low) && $util.isInteger(message.ctwaPromoResponseExpiresAtSeconds.high)))
+                        return "ctwaPromoResponseExpiresAtSeconds: integer|Long expected";
+                if (message.ctwaPromoSchemaVersion != null && Object.hasOwnProperty.call(message, "ctwaPromoSchemaVersion"))
+                    if (!$util.isInteger(message.ctwaPromoSchemaVersion))
+                        return "ctwaPromoSchemaVersion: integer expected";
+                if (message.ctwaPromoAdgroupId != null && Object.hasOwnProperty.call(message, "ctwaPromoAdgroupId"))
+                    if (!$util.isString(message.ctwaPromoAdgroupId))
+                        return "ctwaPromoAdgroupId: string expected";
                 return null;
             };
 
@@ -35075,6 +35645,27 @@ $root.E2E = (function() {
                     message.containsCtwaFlowsAutoLabel = Boolean(object.containsCtwaFlowsAutoLabel);
                 if (object.productId != null)
                     message.productId = String(object.productId);
+                if (object.containsCtwaPromo != null)
+                    message.containsCtwaPromo = Boolean(object.containsCtwaPromo);
+                if (object.ctwaPromoResponseId != null)
+                    message.ctwaPromoResponseId = String(object.ctwaPromoResponseId);
+                if (object.ctwaPromoOfferId != null)
+                    message.ctwaPromoOfferId = String(object.ctwaPromoOfferId);
+                if (object.ctwaPromoAdEntryId != null)
+                    message.ctwaPromoAdEntryId = String(object.ctwaPromoAdEntryId);
+                if (object.ctwaPromoResponseExpiresAtSeconds != null)
+                    if ($util.Long)
+                        message.ctwaPromoResponseExpiresAtSeconds = $util.Long.fromValue(object.ctwaPromoResponseExpiresAtSeconds, true);
+                    else if (typeof object.ctwaPromoResponseExpiresAtSeconds === "string")
+                        message.ctwaPromoResponseExpiresAtSeconds = parseInt(object.ctwaPromoResponseExpiresAtSeconds, 10);
+                    else if (typeof object.ctwaPromoResponseExpiresAtSeconds === "number")
+                        message.ctwaPromoResponseExpiresAtSeconds = object.ctwaPromoResponseExpiresAtSeconds;
+                    else if (typeof object.ctwaPromoResponseExpiresAtSeconds === "object")
+                        message.ctwaPromoResponseExpiresAtSeconds = new $util.LongBits(object.ctwaPromoResponseExpiresAtSeconds.low >>> 0, object.ctwaPromoResponseExpiresAtSeconds.high >>> 0).toNumber(true);
+                if (object.ctwaPromoSchemaVersion != null)
+                    message.ctwaPromoSchemaVersion = object.ctwaPromoSchemaVersion >>> 0;
+                if (object.ctwaPromoAdgroupId != null)
+                    message.ctwaPromoAdgroupId = String(object.ctwaPromoAdgroupId);
                 return message;
             };
 
@@ -35136,6 +35727,17 @@ $root.E2E = (function() {
                     object.agmHeaderInteractionStrategy = 0;
                     object.containsCtwaFlowsAutoLabel = false;
                     object.productId = "";
+                    object.containsCtwaPromo = false;
+                    object.ctwaPromoResponseId = "";
+                    object.ctwaPromoOfferId = "";
+                    object.ctwaPromoAdEntryId = "";
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, true);
+                        object.ctwaPromoResponseExpiresAtSeconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                    } else
+                        object.ctwaPromoResponseExpiresAtSeconds = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                    object.ctwaPromoSchemaVersion = 0;
+                    object.ctwaPromoAdgroupId = "";
                 }
                 if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                     object.title = message.title;
@@ -35205,6 +35807,25 @@ $root.E2E = (function() {
                     object.containsCtwaFlowsAutoLabel = message.containsCtwaFlowsAutoLabel;
                 if (message.productId != null && Object.hasOwnProperty.call(message, "productId"))
                     object.productId = message.productId;
+                if (message.containsCtwaPromo != null && Object.hasOwnProperty.call(message, "containsCtwaPromo"))
+                    object.containsCtwaPromo = message.containsCtwaPromo;
+                if (message.ctwaPromoResponseId != null && Object.hasOwnProperty.call(message, "ctwaPromoResponseId"))
+                    object.ctwaPromoResponseId = message.ctwaPromoResponseId;
+                if (message.ctwaPromoOfferId != null && Object.hasOwnProperty.call(message, "ctwaPromoOfferId"))
+                    object.ctwaPromoOfferId = message.ctwaPromoOfferId;
+                if (message.ctwaPromoAdEntryId != null && Object.hasOwnProperty.call(message, "ctwaPromoAdEntryId"))
+                    object.ctwaPromoAdEntryId = message.ctwaPromoAdEntryId;
+                if (message.ctwaPromoResponseExpiresAtSeconds != null && Object.hasOwnProperty.call(message, "ctwaPromoResponseExpiresAtSeconds"))
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.ctwaPromoResponseExpiresAtSeconds = typeof message.ctwaPromoResponseExpiresAtSeconds === "number" ? BigInt(message.ctwaPromoResponseExpiresAtSeconds) : $util.Long.fromBits(message.ctwaPromoResponseExpiresAtSeconds.low >>> 0, message.ctwaPromoResponseExpiresAtSeconds.high >>> 0, true).toBigInt();
+                    else if (typeof message.ctwaPromoResponseExpiresAtSeconds === "number")
+                        object.ctwaPromoResponseExpiresAtSeconds = options.longs === String ? String(message.ctwaPromoResponseExpiresAtSeconds) : message.ctwaPromoResponseExpiresAtSeconds;
+                    else
+                        object.ctwaPromoResponseExpiresAtSeconds = options.longs === String ? $util.Long.prototype.toString.call(message.ctwaPromoResponseExpiresAtSeconds) : options.longs === Number ? new $util.LongBits(message.ctwaPromoResponseExpiresAtSeconds.low >>> 0, message.ctwaPromoResponseExpiresAtSeconds.high >>> 0).toNumber(true) : message.ctwaPromoResponseExpiresAtSeconds;
+                if (message.ctwaPromoSchemaVersion != null && Object.hasOwnProperty.call(message, "ctwaPromoSchemaVersion"))
+                    object.ctwaPromoSchemaVersion = message.ctwaPromoSchemaVersion;
+                if (message.ctwaPromoAdgroupId != null && Object.hasOwnProperty.call(message, "ctwaPromoAdgroupId"))
+                    object.ctwaPromoAdgroupId = message.ctwaPromoAdgroupId;
                 return object;
             };
 
@@ -36277,6 +36898,8 @@ $root.E2E = (function() {
          * @property {number} MOTION_PHOTO_CHILD=6 MOTION_PHOTO_CHILD value
          * @property {number} HEVC_VIDEO_PARENT=7 HEVC_VIDEO_PARENT value
          * @property {number} HEVC_VIDEO_CHILD=8 HEVC_VIDEO_CHILD value
+         * @property {number} AV1_VIDEO_PARENT=9 AV1_VIDEO_PARENT value
+         * @property {number} AV1_VIDEO_CHILD=10 AV1_VIDEO_CHILD value
          */
         ContextInfo.PairedMediaType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -36289,6 +36912,8 @@ $root.E2E = (function() {
             values[valuesById[6] = "MOTION_PHOTO_CHILD"] = 6;
             values[valuesById[7] = "HEVC_VIDEO_PARENT"] = 7;
             values[valuesById[8] = "HEVC_VIDEO_CHILD"] = 8;
+            values[valuesById[9] = "AV1_VIDEO_PARENT"] = 9;
+            values[valuesById[10] = "AV1_VIDEO_CHILD"] = 10;
             return values;
         })();
 
@@ -37898,6 +38523,8 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [newsletterScheduledMessage] Message newsletterScheduledMessage
          * @property {E2E.Message.IFutureProofMessage|null} [acp2SettingMessage] Message acp2SettingMessage
          * @property {E2E.Message.IFutureProofMessage|null} [audioStickerMessage] Message audioStickerMessage
+         * @property {E2E.Message.IImageMessage|null} [instantImageMessage] Message instantImageMessage
+         * @property {E2E.Message.IRequestLocationMessage|null} [requestLocationMessage] Message requestLocationMessage
          * @property {E2E.Message.IFutureProofMessage|null} [botGroupParticipantMessage] Message botGroupParticipantMessage
          */
 
@@ -38821,6 +39448,22 @@ $root.E2E = (function() {
         Message.prototype.audioStickerMessage = null;
 
         /**
+         * Message instantImageMessage.
+         * @member {E2E.Message.IImageMessage|null|undefined} instantImageMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.instantImageMessage = null;
+
+        /**
+         * Message requestLocationMessage.
+         * @member {E2E.Message.IRequestLocationMessage|null|undefined} requestLocationMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.requestLocationMessage = null;
+
+        /**
          * Message botGroupParticipantMessage.
          * @member {E2E.Message.IFutureProofMessage|null|undefined} botGroupParticipantMessage
          * @memberof E2E.Message
@@ -39082,6 +39725,10 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.acp2SettingMessage, writer.uint32(/* id 133, wireType 2 =*/1066).fork(), q + 1).ldelim();
             if (message.audioStickerMessage != null && Object.hasOwnProperty.call(message, "audioStickerMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.audioStickerMessage, writer.uint32(/* id 134, wireType 2 =*/1074).fork(), q + 1).ldelim();
+            if (message.instantImageMessage != null && Object.hasOwnProperty.call(message, "instantImageMessage"))
+                $root.E2E.Message.ImageMessage.encode(message.instantImageMessage, writer.uint32(/* id 135, wireType 2 =*/1082).fork(), q + 1).ldelim();
+            if (message.requestLocationMessage != null && Object.hasOwnProperty.call(message, "requestLocationMessage"))
+                $root.E2E.Message.RequestLocationMessage.encode(message.requestLocationMessage, writer.uint32(/* id 136, wireType 2 =*/1090).fork(), q + 1).ldelim();
             if (message.botGroupParticipantMessage != null && Object.hasOwnProperty.call(message, "botGroupParticipantMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.botGroupParticipantMessage, writer.uint32(/* id 137, wireType 2 =*/1098).fork(), q + 1).ldelim();
             return writer;
@@ -39584,6 +40231,14 @@ $root.E2E = (function() {
                     }
                 case 134: {
                         message.audioStickerMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 135: {
+                        message.instantImageMessage = $root.E2E.Message.ImageMessage.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 136: {
+                        message.requestLocationMessage = $root.E2E.Message.RequestLocationMessage.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 137: {
@@ -40197,6 +40852,16 @@ $root.E2E = (function() {
                 if (error)
                     return "audioStickerMessage." + error;
             }
+            if (message.instantImageMessage != null && Object.hasOwnProperty.call(message, "instantImageMessage")) {
+                var error = $root.E2E.Message.ImageMessage.verify(message.instantImageMessage, long + 1);
+                if (error)
+                    return "instantImageMessage." + error;
+            }
+            if (message.requestLocationMessage != null && Object.hasOwnProperty.call(message, "requestLocationMessage")) {
+                var error = $root.E2E.Message.RequestLocationMessage.verify(message.requestLocationMessage, long + 1);
+                if (error)
+                    return "requestLocationMessage." + error;
+            }
             if (message.botGroupParticipantMessage != null && Object.hasOwnProperty.call(message, "botGroupParticipantMessage")) {
                 var error = $root.E2E.Message.FutureProofMessage.verify(message.botGroupParticipantMessage, long + 1);
                 if (error)
@@ -40785,6 +41450,16 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.audioStickerMessage: object expected");
                 message.audioStickerMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.audioStickerMessage, long + 1);
             }
+            if (object.instantImageMessage != null) {
+                if (!$util.isObject(object.instantImageMessage))
+                    throw TypeError(".E2E.Message.instantImageMessage: object expected");
+                message.instantImageMessage = $root.E2E.Message.ImageMessage.fromObject(object.instantImageMessage, long + 1);
+            }
+            if (object.requestLocationMessage != null) {
+                if (!$util.isObject(object.requestLocationMessage))
+                    throw TypeError(".E2E.Message.requestLocationMessage: object expected");
+                message.requestLocationMessage = $root.E2E.Message.RequestLocationMessage.fromObject(object.requestLocationMessage, long + 1);
+            }
             if (object.botGroupParticipantMessage != null) {
                 if (!$util.isObject(object.botGroupParticipantMessage))
                     throw TypeError(".E2E.Message.botGroupParticipantMessage: object expected");
@@ -40924,6 +41599,8 @@ $root.E2E = (function() {
                 object.newsletterScheduledMessage = null;
                 object.acp2SettingMessage = null;
                 object.audioStickerMessage = null;
+                object.instantImageMessage = null;
+                object.requestLocationMessage = null;
                 object.botGroupParticipantMessage = null;
             }
             if (message.conversation != null && Object.hasOwnProperty.call(message, "conversation"))
@@ -41152,6 +41829,10 @@ $root.E2E = (function() {
                 object.acp2SettingMessage = $root.E2E.Message.FutureProofMessage.toObject(message.acp2SettingMessage, options, q + 1);
             if (message.audioStickerMessage != null && Object.hasOwnProperty.call(message, "audioStickerMessage"))
                 object.audioStickerMessage = $root.E2E.Message.FutureProofMessage.toObject(message.audioStickerMessage, options, q + 1);
+            if (message.instantImageMessage != null && Object.hasOwnProperty.call(message, "instantImageMessage"))
+                object.instantImageMessage = $root.E2E.Message.ImageMessage.toObject(message.instantImageMessage, options, q + 1);
+            if (message.requestLocationMessage != null && Object.hasOwnProperty.call(message, "requestLocationMessage"))
+                object.requestLocationMessage = $root.E2E.Message.RequestLocationMessage.toObject(message.requestLocationMessage, options, q + 1);
             if (message.botGroupParticipantMessage != null && Object.hasOwnProperty.call(message, "botGroupParticipantMessage"))
                 object.botGroupParticipantMessage = $root.E2E.Message.FutureProofMessage.toObject(message.botGroupParticipantMessage, options, q + 1);
             return object;
@@ -49401,9 +50082,11 @@ $root.E2E = (function() {
              * Properties of a ChatSolidColorWallpaper.
              * @memberof E2E.Message
              * @interface IChatSolidColorWallpaper
-             * @property {string|null} [colorLight] ChatSolidColorWallpaper colorLight
-             * @property {string|null} [colorDark] ChatSolidColorWallpaper colorDark
+             * @property {number|null} [backgroundLightArgb] ChatSolidColorWallpaper backgroundLightArgb
+             * @property {number|null} [backgroundDarkArgb] ChatSolidColorWallpaper backgroundDarkArgb
              * @property {boolean|null} [isDoodleEnabled] ChatSolidColorWallpaper isDoodleEnabled
+             * @property {number|null} [doodleLightArgb] ChatSolidColorWallpaper doodleLightArgb
+             * @property {number|null} [doodleDarkArgb] ChatSolidColorWallpaper doodleDarkArgb
              */
 
             /**
@@ -49422,20 +50105,20 @@ $root.E2E = (function() {
             }
 
             /**
-             * ChatSolidColorWallpaper colorLight.
-             * @member {string} colorLight
+             * ChatSolidColorWallpaper backgroundLightArgb.
+             * @member {number} backgroundLightArgb
              * @memberof E2E.Message.ChatSolidColorWallpaper
              * @instance
              */
-            ChatSolidColorWallpaper.prototype.colorLight = "";
+            ChatSolidColorWallpaper.prototype.backgroundLightArgb = 0;
 
             /**
-             * ChatSolidColorWallpaper colorDark.
-             * @member {string} colorDark
+             * ChatSolidColorWallpaper backgroundDarkArgb.
+             * @member {number} backgroundDarkArgb
              * @memberof E2E.Message.ChatSolidColorWallpaper
              * @instance
              */
-            ChatSolidColorWallpaper.prototype.colorDark = "";
+            ChatSolidColorWallpaper.prototype.backgroundDarkArgb = 0;
 
             /**
              * ChatSolidColorWallpaper isDoodleEnabled.
@@ -49444,6 +50127,22 @@ $root.E2E = (function() {
              * @instance
              */
             ChatSolidColorWallpaper.prototype.isDoodleEnabled = false;
+
+            /**
+             * ChatSolidColorWallpaper doodleLightArgb.
+             * @member {number} doodleLightArgb
+             * @memberof E2E.Message.ChatSolidColorWallpaper
+             * @instance
+             */
+            ChatSolidColorWallpaper.prototype.doodleLightArgb = 0;
+
+            /**
+             * ChatSolidColorWallpaper doodleDarkArgb.
+             * @member {number} doodleDarkArgb
+             * @memberof E2E.Message.ChatSolidColorWallpaper
+             * @instance
+             */
+            ChatSolidColorWallpaper.prototype.doodleDarkArgb = 0;
 
             /**
              * Creates a new ChatSolidColorWallpaper instance using the specified properties.
@@ -49473,12 +50172,16 @@ $root.E2E = (function() {
                     q = 0;
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
-                if (message.colorLight != null && Object.hasOwnProperty.call(message, "colorLight"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.colorLight);
-                if (message.colorDark != null && Object.hasOwnProperty.call(message, "colorDark"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.colorDark);
+                if (message.backgroundLightArgb != null && Object.hasOwnProperty.call(message, "backgroundLightArgb"))
+                    writer.uint32(/* id 1, wireType 5 =*/13).fixed32(message.backgroundLightArgb);
+                if (message.backgroundDarkArgb != null && Object.hasOwnProperty.call(message, "backgroundDarkArgb"))
+                    writer.uint32(/* id 2, wireType 5 =*/21).fixed32(message.backgroundDarkArgb);
                 if (message.isDoodleEnabled != null && Object.hasOwnProperty.call(message, "isDoodleEnabled"))
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isDoodleEnabled);
+                if (message.doodleLightArgb != null && Object.hasOwnProperty.call(message, "doodleLightArgb"))
+                    writer.uint32(/* id 4, wireType 5 =*/37).fixed32(message.doodleLightArgb);
+                if (message.doodleDarkArgb != null && Object.hasOwnProperty.call(message, "doodleDarkArgb"))
+                    writer.uint32(/* id 5, wireType 5 =*/45).fixed32(message.doodleDarkArgb);
                 return writer;
             };
 
@@ -49530,15 +50233,23 @@ $root.E2E = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.colorLight = reader.string();
+                            message.backgroundLightArgb = reader.fixed32();
                             break;
                         }
                     case 2: {
-                            message.colorDark = reader.string();
+                            message.backgroundDarkArgb = reader.fixed32();
                             break;
                         }
                     case 3: {
                             message.isDoodleEnabled = reader.bool();
+                            break;
+                        }
+                    case 4: {
+                            message.doodleLightArgb = reader.fixed32();
+                            break;
+                        }
+                    case 5: {
+                            message.doodleDarkArgb = reader.fixed32();
                             break;
                         }
                     default:
@@ -49585,15 +50296,21 @@ $root.E2E = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
-                if (message.colorLight != null && Object.hasOwnProperty.call(message, "colorLight"))
-                    if (!$util.isString(message.colorLight))
-                        return "colorLight: string expected";
-                if (message.colorDark != null && Object.hasOwnProperty.call(message, "colorDark"))
-                    if (!$util.isString(message.colorDark))
-                        return "colorDark: string expected";
+                if (message.backgroundLightArgb != null && Object.hasOwnProperty.call(message, "backgroundLightArgb"))
+                    if (!$util.isInteger(message.backgroundLightArgb))
+                        return "backgroundLightArgb: integer expected";
+                if (message.backgroundDarkArgb != null && Object.hasOwnProperty.call(message, "backgroundDarkArgb"))
+                    if (!$util.isInteger(message.backgroundDarkArgb))
+                        return "backgroundDarkArgb: integer expected";
                 if (message.isDoodleEnabled != null && Object.hasOwnProperty.call(message, "isDoodleEnabled"))
                     if (typeof message.isDoodleEnabled !== "boolean")
                         return "isDoodleEnabled: boolean expected";
+                if (message.doodleLightArgb != null && Object.hasOwnProperty.call(message, "doodleLightArgb"))
+                    if (!$util.isInteger(message.doodleLightArgb))
+                        return "doodleLightArgb: integer expected";
+                if (message.doodleDarkArgb != null && Object.hasOwnProperty.call(message, "doodleDarkArgb"))
+                    if (!$util.isInteger(message.doodleDarkArgb))
+                        return "doodleDarkArgb: integer expected";
                 return null;
             };
 
@@ -49615,12 +50332,16 @@ $root.E2E = (function() {
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.ChatSolidColorWallpaper();
-                if (object.colorLight != null)
-                    message.colorLight = String(object.colorLight);
-                if (object.colorDark != null)
-                    message.colorDark = String(object.colorDark);
+                if (object.backgroundLightArgb != null)
+                    message.backgroundLightArgb = object.backgroundLightArgb >>> 0;
+                if (object.backgroundDarkArgb != null)
+                    message.backgroundDarkArgb = object.backgroundDarkArgb >>> 0;
                 if (object.isDoodleEnabled != null)
                     message.isDoodleEnabled = Boolean(object.isDoodleEnabled);
+                if (object.doodleLightArgb != null)
+                    message.doodleLightArgb = object.doodleLightArgb >>> 0;
+                if (object.doodleDarkArgb != null)
+                    message.doodleDarkArgb = object.doodleDarkArgb >>> 0;
                 return message;
             };
 
@@ -49642,16 +50363,22 @@ $root.E2E = (function() {
                     throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
-                    object.colorLight = "";
-                    object.colorDark = "";
+                    object.backgroundLightArgb = 0;
+                    object.backgroundDarkArgb = 0;
                     object.isDoodleEnabled = false;
+                    object.doodleLightArgb = 0;
+                    object.doodleDarkArgb = 0;
                 }
-                if (message.colorLight != null && Object.hasOwnProperty.call(message, "colorLight"))
-                    object.colorLight = message.colorLight;
-                if (message.colorDark != null && Object.hasOwnProperty.call(message, "colorDark"))
-                    object.colorDark = message.colorDark;
+                if (message.backgroundLightArgb != null && Object.hasOwnProperty.call(message, "backgroundLightArgb"))
+                    object.backgroundLightArgb = message.backgroundLightArgb;
+                if (message.backgroundDarkArgb != null && Object.hasOwnProperty.call(message, "backgroundDarkArgb"))
+                    object.backgroundDarkArgb = message.backgroundDarkArgb;
                 if (message.isDoodleEnabled != null && Object.hasOwnProperty.call(message, "isDoodleEnabled"))
                     object.isDoodleEnabled = message.isDoodleEnabled;
+                if (message.doodleLightArgb != null && Object.hasOwnProperty.call(message, "doodleLightArgb"))
+                    object.doodleLightArgb = message.doodleLightArgb;
+                if (message.doodleDarkArgb != null && Object.hasOwnProperty.call(message, "doodleDarkArgb"))
+                    object.doodleDarkArgb = message.doodleDarkArgb;
                 return object;
             };
 
@@ -51133,6 +51860,288 @@ $root.E2E = (function() {
             })();
 
             return CloudAPIThreadControlNotification;
+        })();
+
+        Message.CoexConnectionDescriptor = (function() {
+
+            /**
+             * Properties of a CoexConnectionDescriptor.
+             * @memberof E2E.Message
+             * @interface ICoexConnectionDescriptor
+             * @property {number|Long|null} [providerId] CoexConnectionDescriptor providerId
+             * @property {string|null} [product] CoexConnectionDescriptor product
+             */
+
+            /**
+             * Constructs a new CoexConnectionDescriptor.
+             * @memberof E2E.Message
+             * @classdesc Represents a CoexConnectionDescriptor.
+             * @implements ICoexConnectionDescriptor
+             * @constructor
+             * @param {E2E.Message.ICoexConnectionDescriptor=} [properties] Properties to set
+             */
+            function CoexConnectionDescriptor(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CoexConnectionDescriptor providerId.
+             * @member {number|Long} providerId
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @instance
+             */
+            CoexConnectionDescriptor.prototype.providerId = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * CoexConnectionDescriptor product.
+             * @member {string} product
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @instance
+             */
+            CoexConnectionDescriptor.prototype.product = "";
+
+            /**
+             * Creates a new CoexConnectionDescriptor instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {E2E.Message.ICoexConnectionDescriptor=} [properties] Properties to set
+             * @returns {E2E.Message.CoexConnectionDescriptor} CoexConnectionDescriptor instance
+             */
+            CoexConnectionDescriptor.create = function create(properties) {
+                return new CoexConnectionDescriptor(properties);
+            };
+
+            /**
+             * Encodes the specified CoexConnectionDescriptor message. Does not implicitly {@link E2E.Message.CoexConnectionDescriptor.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {E2E.Message.ICoexConnectionDescriptor} message CoexConnectionDescriptor message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CoexConnectionDescriptor.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.providerId != null && Object.hasOwnProperty.call(message, "providerId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int64(message.providerId);
+                if (message.product != null && Object.hasOwnProperty.call(message, "product"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.product);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CoexConnectionDescriptor message, length delimited. Does not implicitly {@link E2E.Message.CoexConnectionDescriptor.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {E2E.Message.ICoexConnectionDescriptor} message CoexConnectionDescriptor message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CoexConnectionDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a CoexConnectionDescriptor message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.CoexConnectionDescriptor} CoexConnectionDescriptor
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CoexConnectionDescriptor.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.E2E.Message.CoexConnectionDescriptor();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.providerId = reader.int64();
+                            break;
+                        }
+                    case 2: {
+                            message.product = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CoexConnectionDescriptor message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.CoexConnectionDescriptor} CoexConnectionDescriptor
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CoexConnectionDescriptor.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CoexConnectionDescriptor message.
+             * @function verify
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CoexConnectionDescriptor.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.providerId != null && Object.hasOwnProperty.call(message, "providerId"))
+                    if (!$util.isInteger(message.providerId) && !(message.providerId && $util.isInteger(message.providerId.low) && $util.isInteger(message.providerId.high)))
+                        return "providerId: integer|Long expected";
+                if (message.product != null && Object.hasOwnProperty.call(message, "product"))
+                    if (!$util.isString(message.product))
+                        return "product: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a CoexConnectionDescriptor message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.CoexConnectionDescriptor} CoexConnectionDescriptor
+             */
+            CoexConnectionDescriptor.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.E2E.Message.CoexConnectionDescriptor)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.CoexConnectionDescriptor: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.E2E.Message.CoexConnectionDescriptor();
+                if (object.providerId != null)
+                    if ($util.Long)
+                        message.providerId = $util.Long.fromValue(object.providerId, false);
+                    else if (typeof object.providerId === "string")
+                        message.providerId = parseInt(object.providerId, 10);
+                    else if (typeof object.providerId === "number")
+                        message.providerId = object.providerId;
+                    else if (typeof object.providerId === "object")
+                        message.providerId = new $util.LongBits(object.providerId.low >>> 0, object.providerId.high >>> 0).toNumber();
+                if (object.product != null)
+                    message.product = String(object.product);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CoexConnectionDescriptor message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {E2E.Message.CoexConnectionDescriptor} message CoexConnectionDescriptor
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CoexConnectionDescriptor.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.providerId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                    } else
+                        object.providerId = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                    object.product = "";
+                }
+                if (message.providerId != null && Object.hasOwnProperty.call(message, "providerId"))
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.providerId = typeof message.providerId === "number" ? BigInt(message.providerId) : $util.Long.fromBits(message.providerId.low >>> 0, message.providerId.high >>> 0, false).toBigInt();
+                    else if (typeof message.providerId === "number")
+                        object.providerId = options.longs === String ? String(message.providerId) : message.providerId;
+                    else
+                        object.providerId = options.longs === String ? $util.Long.prototype.toString.call(message.providerId) : options.longs === Number ? new $util.LongBits(message.providerId.low >>> 0, message.providerId.high >>> 0).toNumber() : message.providerId;
+                if (message.product != null && Object.hasOwnProperty.call(message, "product"))
+                    object.product = message.product;
+                return object;
+            };
+
+            /**
+             * Converts this CoexConnectionDescriptor to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CoexConnectionDescriptor.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for CoexConnectionDescriptor
+             * @function getTypeUrl
+             * @memberof E2E.Message.CoexConnectionDescriptor
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            CoexConnectionDescriptor.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.CoexConnectionDescriptor";
+            };
+
+            return CoexConnectionDescriptor;
         })();
 
         Message.CommentMessage = (function() {
@@ -54693,6 +55702,10 @@ $root.E2E = (function() {
              * @property {boolean|null} [isCanceled] EventInviteMessage isCanceled
              * @property {number|Long|null} [endTime] EventInviteMessage endTime
              * @property {string|null} [callLink] EventInviteMessage callLink
+             * @property {string|null} [coverImageHandle] EventInviteMessage coverImageHandle
+             * @property {string|null} [locationName] EventInviteMessage locationName
+             * @property {number|Long|null} [lastUpdatedTsUsec] EventInviteMessage lastUpdatedTsUsec
+             * @property {E2E.Message.EventInviteMessage.EventStatus|null} [status] EventInviteMessage status
              */
 
             /**
@@ -54783,6 +55796,38 @@ $root.E2E = (function() {
             EventInviteMessage.prototype.callLink = "";
 
             /**
+             * EventInviteMessage coverImageHandle.
+             * @member {string} coverImageHandle
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.coverImageHandle = "";
+
+            /**
+             * EventInviteMessage locationName.
+             * @member {string} locationName
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.locationName = "";
+
+            /**
+             * EventInviteMessage lastUpdatedTsUsec.
+             * @member {number|Long} lastUpdatedTsUsec
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.lastUpdatedTsUsec = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * EventInviteMessage status.
+             * @member {E2E.Message.EventInviteMessage.EventStatus} status
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.status = 0;
+
+            /**
              * Creates a new EventInviteMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.EventInviteMessage
@@ -54828,6 +55873,14 @@ $root.E2E = (function() {
                     writer.uint32(/* id 8, wireType 0 =*/64).int64(message.endTime);
                 if (message.callLink != null && Object.hasOwnProperty.call(message, "callLink"))
                     writer.uint32(/* id 9, wireType 2 =*/74).string(message.callLink);
+                if (message.coverImageHandle != null && Object.hasOwnProperty.call(message, "coverImageHandle"))
+                    writer.uint32(/* id 10, wireType 2 =*/82).string(message.coverImageHandle);
+                if (message.locationName != null && Object.hasOwnProperty.call(message, "locationName"))
+                    writer.uint32(/* id 11, wireType 2 =*/90).string(message.locationName);
+                if (message.lastUpdatedTsUsec != null && Object.hasOwnProperty.call(message, "lastUpdatedTsUsec"))
+                    writer.uint32(/* id 12, wireType 0 =*/96).int64(message.lastUpdatedTsUsec);
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 13, wireType 0 =*/104).int32(message.status);
                 return writer;
             };
 
@@ -54914,6 +55967,22 @@ $root.E2E = (function() {
                             message.callLink = reader.string();
                             break;
                         }
+                    case 10: {
+                            message.coverImageHandle = reader.string();
+                            break;
+                        }
+                    case 11: {
+                            message.locationName = reader.string();
+                            break;
+                        }
+                    case 12: {
+                            message.lastUpdatedTsUsec = reader.int64();
+                            break;
+                        }
+                    case 13: {
+                            message.status = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -54987,6 +56056,28 @@ $root.E2E = (function() {
                 if (message.callLink != null && Object.hasOwnProperty.call(message, "callLink"))
                     if (!$util.isString(message.callLink))
                         return "callLink: string expected";
+                if (message.coverImageHandle != null && Object.hasOwnProperty.call(message, "coverImageHandle"))
+                    if (!$util.isString(message.coverImageHandle))
+                        return "coverImageHandle: string expected";
+                if (message.locationName != null && Object.hasOwnProperty.call(message, "locationName"))
+                    if (!$util.isString(message.locationName))
+                        return "locationName: string expected";
+                if (message.lastUpdatedTsUsec != null && Object.hasOwnProperty.call(message, "lastUpdatedTsUsec"))
+                    if (!$util.isInteger(message.lastUpdatedTsUsec) && !(message.lastUpdatedTsUsec && $util.isInteger(message.lastUpdatedTsUsec.low) && $util.isInteger(message.lastUpdatedTsUsec.high)))
+                        return "lastUpdatedTsUsec: integer|Long expected";
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    switch (message.status) {
+                    default:
+                        return "status: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                        break;
+                    }
                 return null;
             };
 
@@ -55046,6 +56137,55 @@ $root.E2E = (function() {
                         message.endTime = new $util.LongBits(object.endTime.low >>> 0, object.endTime.high >>> 0).toNumber();
                 if (object.callLink != null)
                     message.callLink = String(object.callLink);
+                if (object.coverImageHandle != null)
+                    message.coverImageHandle = String(object.coverImageHandle);
+                if (object.locationName != null)
+                    message.locationName = String(object.locationName);
+                if (object.lastUpdatedTsUsec != null)
+                    if ($util.Long)
+                        message.lastUpdatedTsUsec = $util.Long.fromValue(object.lastUpdatedTsUsec, false);
+                    else if (typeof object.lastUpdatedTsUsec === "string")
+                        message.lastUpdatedTsUsec = parseInt(object.lastUpdatedTsUsec, 10);
+                    else if (typeof object.lastUpdatedTsUsec === "number")
+                        message.lastUpdatedTsUsec = object.lastUpdatedTsUsec;
+                    else if (typeof object.lastUpdatedTsUsec === "object")
+                        message.lastUpdatedTsUsec = new $util.LongBits(object.lastUpdatedTsUsec.low >>> 0, object.lastUpdatedTsUsec.high >>> 0).toNumber();
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.status = 0;
+                    break;
+                case "ACTIVE":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "CANCELED":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "SUSPENDED":
+                case 3:
+                    message.status = 3;
+                    break;
+                case "DELETED":
+                case 4:
+                    message.status = 4;
+                    break;
+                case "LEFT_EVENT":
+                case 5:
+                    message.status = 5;
+                    break;
+                case "REMOVED_FROM_INVITE_LIST":
+                case 6:
+                    message.status = 6;
+                    break;
+                }
                 return message;
             };
 
@@ -55090,6 +56230,14 @@ $root.E2E = (function() {
                     } else
                         object.endTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.callLink = "";
+                    object.coverImageHandle = "";
+                    object.locationName = "";
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.lastUpdatedTsUsec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                    } else
+                        object.lastUpdatedTsUsec = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                    object.status = options.enums === String ? "UNKNOWN" : 0;
                 }
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options, q + 1);
@@ -55119,6 +56267,19 @@ $root.E2E = (function() {
                         object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
                 if (message.callLink != null && Object.hasOwnProperty.call(message, "callLink"))
                     object.callLink = message.callLink;
+                if (message.coverImageHandle != null && Object.hasOwnProperty.call(message, "coverImageHandle"))
+                    object.coverImageHandle = message.coverImageHandle;
+                if (message.locationName != null && Object.hasOwnProperty.call(message, "locationName"))
+                    object.locationName = message.locationName;
+                if (message.lastUpdatedTsUsec != null && Object.hasOwnProperty.call(message, "lastUpdatedTsUsec"))
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.lastUpdatedTsUsec = typeof message.lastUpdatedTsUsec === "number" ? BigInt(message.lastUpdatedTsUsec) : $util.Long.fromBits(message.lastUpdatedTsUsec.low >>> 0, message.lastUpdatedTsUsec.high >>> 0, false).toBigInt();
+                    else if (typeof message.lastUpdatedTsUsec === "number")
+                        object.lastUpdatedTsUsec = options.longs === String ? String(message.lastUpdatedTsUsec) : message.lastUpdatedTsUsec;
+                    else
+                        object.lastUpdatedTsUsec = options.longs === String ? $util.Long.prototype.toString.call(message.lastUpdatedTsUsec) : options.longs === Number ? new $util.LongBits(message.lastUpdatedTsUsec.low >>> 0, message.lastUpdatedTsUsec.high >>> 0).toNumber() : message.lastUpdatedTsUsec;
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    object.status = options.enums === String ? $root.E2E.Message.EventInviteMessage.EventStatus[message.status] === undefined ? message.status : $root.E2E.Message.EventInviteMessage.EventStatus[message.status] : message.status;
                 return object;
             };
 
@@ -55147,6 +56308,30 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.Message.EventInviteMessage";
             };
+
+            /**
+             * EventStatus enum.
+             * @name E2E.Message.EventInviteMessage.EventStatus
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} ACTIVE=1 ACTIVE value
+             * @property {number} CANCELED=2 CANCELED value
+             * @property {number} SUSPENDED=3 SUSPENDED value
+             * @property {number} DELETED=4 DELETED value
+             * @property {number} LEFT_EVENT=5 LEFT_EVENT value
+             * @property {number} REMOVED_FROM_INVITE_LIST=6 REMOVED_FROM_INVITE_LIST value
+             */
+            EventInviteMessage.EventStatus = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "ACTIVE"] = 1;
+                values[valuesById[2] = "CANCELED"] = 2;
+                values[valuesById[3] = "SUSPENDED"] = 3;
+                values[valuesById[4] = "DELETED"] = 4;
+                values[valuesById[5] = "LEFT_EVENT"] = 5;
+                values[valuesById[6] = "REMOVED_FROM_INVITE_LIST"] = 6;
+                return values;
+            })();
 
             return EventInviteMessage;
         })();
@@ -57629,6 +58814,7 @@ $root.E2E = (function() {
              * @property {string|null} [requestId] FullHistorySyncOnDemandRequestMetadata requestId
              * @property {string|null} [businessProduct] FullHistorySyncOnDemandRequestMetadata businessProduct
              * @property {Uint8Array|null} [opaqueClientData] FullHistorySyncOnDemandRequestMetadata opaqueClientData
+             * @property {E2E.Message.ICoexConnectionDescriptor|null} [connection] FullHistorySyncOnDemandRequestMetadata connection
              */
 
             /**
@@ -57671,6 +58857,14 @@ $root.E2E = (function() {
             FullHistorySyncOnDemandRequestMetadata.prototype.opaqueClientData = $util.newBuffer([]);
 
             /**
+             * FullHistorySyncOnDemandRequestMetadata connection.
+             * @member {E2E.Message.ICoexConnectionDescriptor|null|undefined} connection
+             * @memberof E2E.Message.FullHistorySyncOnDemandRequestMetadata
+             * @instance
+             */
+            FullHistorySyncOnDemandRequestMetadata.prototype.connection = null;
+
+            /**
              * Creates a new FullHistorySyncOnDemandRequestMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.FullHistorySyncOnDemandRequestMetadata
@@ -57704,6 +58898,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.businessProduct);
                 if (message.opaqueClientData != null && Object.hasOwnProperty.call(message, "opaqueClientData"))
                     writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.opaqueClientData);
+                if (message.connection != null && Object.hasOwnProperty.call(message, "connection"))
+                    $root.E2E.Message.CoexConnectionDescriptor.encode(message.connection, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -57766,6 +58962,10 @@ $root.E2E = (function() {
                             message.opaqueClientData = reader.bytes();
                             break;
                         }
+                    case 4: {
+                            message.connection = $root.E2E.Message.CoexConnectionDescriptor.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -57819,6 +59019,11 @@ $root.E2E = (function() {
                 if (message.opaqueClientData != null && Object.hasOwnProperty.call(message, "opaqueClientData"))
                     if (!(message.opaqueClientData && typeof message.opaqueClientData.length === "number" || $util.isString(message.opaqueClientData)))
                         return "opaqueClientData: buffer expected";
+                if (message.connection != null && Object.hasOwnProperty.call(message, "connection")) {
+                    var error = $root.E2E.Message.CoexConnectionDescriptor.verify(message.connection, long + 1);
+                    if (error)
+                        return "connection." + error;
+                }
                 return null;
             };
 
@@ -57849,6 +59054,11 @@ $root.E2E = (function() {
                         $util.base64.decode(object.opaqueClientData, message.opaqueClientData = $util.newBuffer($util.base64.length(object.opaqueClientData)), 0);
                     else if (object.opaqueClientData.length >= 0)
                         message.opaqueClientData = object.opaqueClientData;
+                if (object.connection != null) {
+                    if (!$util.isObject(object.connection))
+                        throw TypeError(".E2E.Message.FullHistorySyncOnDemandRequestMetadata.connection: object expected");
+                    message.connection = $root.E2E.Message.CoexConnectionDescriptor.fromObject(object.connection, long + 1);
+                }
                 return message;
             };
 
@@ -57879,6 +59089,7 @@ $root.E2E = (function() {
                         if (options.bytes !== Array)
                             object.opaqueClientData = $util.newBuffer(object.opaqueClientData);
                     }
+                    object.connection = null;
                 }
                 if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
                     object.requestId = message.requestId;
@@ -57886,6 +59097,8 @@ $root.E2E = (function() {
                     object.businessProduct = message.businessProduct;
                 if (message.opaqueClientData != null && Object.hasOwnProperty.call(message, "opaqueClientData"))
                     object.opaqueClientData = options.bytes === String ? $util.base64.encode(message.opaqueClientData, 0, message.opaqueClientData.length) : options.bytes === Array ? Array.prototype.slice.call(message.opaqueClientData) : message.opaqueClientData;
+                if (message.connection != null && Object.hasOwnProperty.call(message, "connection"))
+                    object.connection = $root.E2E.Message.CoexConnectionDescriptor.toObject(message.connection, options, q + 1);
                 return object;
             };
 
@@ -93575,6 +94788,7 @@ $root.E2E = (function() {
              * @property {Protocol.IACP2Setting|null} [acp2Setting] ProtocolMessage acp2Setting
              * @property {E2E.Message.ISharedDeviceContactHashKeyShare|null} [sharedDeviceContactHashKeyShare] ProtocolMessage sharedDeviceContactHashKeyShare
              * @property {E2E.Message.ISharedDeviceContactHashKeyRequest|null} [sharedDeviceContactHashKeyRequest] ProtocolMessage sharedDeviceContactHashKeyRequest
+             * @property {Array.<string>|null} [additionalPromptIds] ProtocolMessage additionalPromptIds
              */
 
             /**
@@ -93586,6 +94800,7 @@ $root.E2E = (function() {
              * @param {E2E.Message.IProtocolMessage=} [properties] Properties to set
              */
             function ProtocolMessage(properties) {
+                this.additionalPromptIds = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -93857,6 +95072,14 @@ $root.E2E = (function() {
             ProtocolMessage.prototype.sharedDeviceContactHashKeyRequest = null;
 
             /**
+             * ProtocolMessage additionalPromptIds.
+             * @member {Array.<string>} additionalPromptIds
+             * @memberof E2E.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.additionalPromptIds = $util.emptyArray;
+
+            /**
              * Creates a new ProtocolMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ProtocolMessage
@@ -93950,6 +95173,9 @@ $root.E2E = (function() {
                     $root.E2E.Message.SharedDeviceContactHashKeyShare.encode(message.sharedDeviceContactHashKeyShare, writer.uint32(/* id 36, wireType 2 =*/290).fork(), q + 1).ldelim();
                 if (message.sharedDeviceContactHashKeyRequest != null && Object.hasOwnProperty.call(message, "sharedDeviceContactHashKeyRequest"))
                     $root.E2E.Message.SharedDeviceContactHashKeyRequest.encode(message.sharedDeviceContactHashKeyRequest, writer.uint32(/* id 37, wireType 2 =*/298).fork(), q + 1).ldelim();
+                if (message.additionalPromptIds != null && message.additionalPromptIds.length)
+                    for (var i = 0; i < message.additionalPromptIds.length; ++i)
+                        writer.uint32(/* id 38, wireType 2 =*/306).string(message.additionalPromptIds[i]);
                 return writer;
             };
 
@@ -94130,6 +95356,12 @@ $root.E2E = (function() {
                         }
                     case 37: {
                             message.sharedDeviceContactHashKeyRequest = $root.E2E.Message.SharedDeviceContactHashKeyRequest.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
+                    case 38: {
+                            if (!(message.additionalPromptIds && message.additionalPromptIds.length))
+                                message.additionalPromptIds = [];
+                            message.additionalPromptIds.push(reader.string());
                             break;
                         }
                     default:
@@ -94364,6 +95596,13 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.SharedDeviceContactHashKeyRequest.verify(message.sharedDeviceContactHashKeyRequest, long + 1);
                     if (error)
                         return "sharedDeviceContactHashKeyRequest." + error;
+                }
+                if (message.additionalPromptIds != null && Object.hasOwnProperty.call(message, "additionalPromptIds")) {
+                    if (!Array.isArray(message.additionalPromptIds))
+                        return "additionalPromptIds: array expected";
+                    for (var i = 0; i < message.additionalPromptIds.length; ++i)
+                        if (!$util.isString(message.additionalPromptIds[i]))
+                            return "additionalPromptIds: string[] expected";
                 }
                 return null;
             };
@@ -94693,6 +95932,13 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ProtocolMessage.sharedDeviceContactHashKeyRequest: object expected");
                     message.sharedDeviceContactHashKeyRequest = $root.E2E.Message.SharedDeviceContactHashKeyRequest.fromObject(object.sharedDeviceContactHashKeyRequest, long + 1);
                 }
+                if (object.additionalPromptIds) {
+                    if (!Array.isArray(object.additionalPromptIds))
+                        throw TypeError(".E2E.Message.ProtocolMessage.additionalPromptIds: array expected");
+                    message.additionalPromptIds = [];
+                    for (var i = 0; i < object.additionalPromptIds.length; ++i)
+                        message.additionalPromptIds[i] = String(object.additionalPromptIds[i]);
+                }
                 return message;
             };
 
@@ -94713,6 +95959,8 @@ $root.E2E = (function() {
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
                 var object = {};
+                if (options.arrays || options.defaults)
+                    object.additionalPromptIds = [];
                 if (options.defaults) {
                     object.key = null;
                     object.type = options.enums === String ? "REVOKE" : 0;
@@ -94838,6 +96086,11 @@ $root.E2E = (function() {
                     object.sharedDeviceContactHashKeyShare = $root.E2E.Message.SharedDeviceContactHashKeyShare.toObject(message.sharedDeviceContactHashKeyShare, options, q + 1);
                 if (message.sharedDeviceContactHashKeyRequest != null && Object.hasOwnProperty.call(message, "sharedDeviceContactHashKeyRequest"))
                     object.sharedDeviceContactHashKeyRequest = $root.E2E.Message.SharedDeviceContactHashKeyRequest.toObject(message.sharedDeviceContactHashKeyRequest, options, q + 1);
+                if (message.additionalPromptIds && message.additionalPromptIds.length) {
+                    object.additionalPromptIds = [];
+                    for (var j = 0; j < message.additionalPromptIds.length; ++j)
+                        object.additionalPromptIds[j] = message.additionalPromptIds[j];
+                }
                 return object;
             };
 
@@ -95552,6 +96805,253 @@ $root.E2E = (function() {
             };
 
             return ReactionMessage;
+        })();
+
+        Message.RequestLocationMessage = (function() {
+
+            /**
+             * Properties of a RequestLocationMessage.
+             * @memberof E2E.Message
+             * @interface IRequestLocationMessage
+             * @property {E2E.IContextInfo|null} [contextInfo] RequestLocationMessage contextInfo
+             */
+
+            /**
+             * Constructs a new RequestLocationMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a RequestLocationMessage.
+             * @implements IRequestLocationMessage
+             * @constructor
+             * @param {E2E.Message.IRequestLocationMessage=} [properties] Properties to set
+             */
+            function RequestLocationMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * RequestLocationMessage contextInfo.
+             * @member {E2E.IContextInfo|null|undefined} contextInfo
+             * @memberof E2E.Message.RequestLocationMessage
+             * @instance
+             */
+            RequestLocationMessage.prototype.contextInfo = null;
+
+            /**
+             * Creates a new RequestLocationMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {E2E.Message.IRequestLocationMessage=} [properties] Properties to set
+             * @returns {E2E.Message.RequestLocationMessage} RequestLocationMessage instance
+             */
+            RequestLocationMessage.create = function create(properties) {
+                return new RequestLocationMessage(properties);
+            };
+
+            /**
+             * Encodes the specified RequestLocationMessage message. Does not implicitly {@link E2E.Message.RequestLocationMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {E2E.Message.IRequestLocationMessage} message RequestLocationMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            RequestLocationMessage.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
+                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified RequestLocationMessage message, length delimited. Does not implicitly {@link E2E.Message.RequestLocationMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {E2E.Message.IRequestLocationMessage} message RequestLocationMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            RequestLocationMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a RequestLocationMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.RequestLocationMessage} RequestLocationMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            RequestLocationMessage.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.E2E.Message.RequestLocationMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a RequestLocationMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.RequestLocationMessage} RequestLocationMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            RequestLocationMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a RequestLocationMessage message.
+             * @function verify
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            RequestLocationMessage.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo")) {
+                    var error = $root.E2E.ContextInfo.verify(message.contextInfo, long + 1);
+                    if (error)
+                        return "contextInfo." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a RequestLocationMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.RequestLocationMessage} RequestLocationMessage
+             */
+            RequestLocationMessage.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.E2E.Message.RequestLocationMessage)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.RequestLocationMessage: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.E2E.Message.RequestLocationMessage();
+                if (object.contextInfo != null) {
+                    if (!$util.isObject(object.contextInfo))
+                        throw TypeError(".E2E.Message.RequestLocationMessage.contextInfo: object expected");
+                    message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a RequestLocationMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {E2E.Message.RequestLocationMessage} message RequestLocationMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            RequestLocationMessage.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults)
+                    object.contextInfo = null;
+                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
+                    object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options, q + 1);
+                return object;
+            };
+
+            /**
+             * Converts this RequestLocationMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.RequestLocationMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            RequestLocationMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for RequestLocationMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.RequestLocationMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            RequestLocationMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.RequestLocationMessage";
+            };
+
+            return RequestLocationMessage;
         })();
 
         Message.RequestPaymentMessage = (function() {
@@ -131724,6 +133224,7 @@ $root.AICommon = (function() {
                     case 1:
                     case 2:
                     case 3:
+                    case 4:
                         break;
                     }
                 if (message.sourceChatJid != null && Object.hasOwnProperty.call(message, "sourceChatJid"))
@@ -131772,6 +133273,10 @@ $root.AICommon = (function() {
                 case "SIDE_CHAT":
                 case 3:
                     message.type = 3;
+                    break;
+                case "PRIVATE_SEARCH_CHAT":
+                case 4:
+                    message.type = 4;
                     break;
                 }
                 if (object.sourceChatJid != null)
@@ -131841,6 +133346,7 @@ $root.AICommon = (function() {
              * @property {number} DEFAULT=1 DEFAULT value
              * @property {number} INCOGNITO=2 INCOGNITO value
              * @property {number} SIDE_CHAT=3 SIDE_CHAT value
+             * @property {number} PRIVATE_SEARCH_CHAT=4 PRIVATE_SEARCH_CHAT value
              */
             AIThreadClientInfo.AIThreadType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -131848,6 +133354,7 @@ $root.AICommon = (function() {
                 values[valuesById[1] = "DEFAULT"] = 1;
                 values[valuesById[2] = "INCOGNITO"] = 2;
                 values[valuesById[3] = "SIDE_CHAT"] = 3;
+                values[valuesById[4] = "PRIVATE_SEARCH_CHAT"] = 4;
                 return values;
             })();
 
@@ -137580,7 +139087,14 @@ $root.AICommon = (function() {
                     case 70:
                     case 71:
                     case 72:
+                    case 73:
+                    case 74:
+                    case 75:
                     case 76:
+                    case 77:
+                    case 78:
+                    case 79:
+                    case 80:
                         break;
                     }
             }
@@ -137908,9 +139422,37 @@ $root.AICommon = (function() {
                     case 72:
                         message.capabilities[i] = 72;
                         break;
+                    case "AI_SUGGESTED_REPLIES_ENABLED":
+                    case 73:
+                        message.capabilities[i] = 73;
+                        break;
+                    case "RICH_RESPONSE_IN_APP_SURVEY_BLOKS":
+                    case 74:
+                        message.capabilities[i] = 74;
+                        break;
+                    case "RICH_RESPONSE_IMAGE_SOURCE_ATTRIBUTION":
+                    case 75:
+                        message.capabilities[i] = 75;
+                        break;
                     case "HATCH_CONNECTOR_ACTION_CARD_ENABLED":
                     case 76:
                         message.capabilities[i] = 76;
+                        break;
+                    case "HATCH_SECURE_CREDENTIAL_CARD_ENABLED":
+                    case 77:
+                        message.capabilities[i] = 77;
+                        break;
+                    case "HATCH_BROWSER_TASK_CARD_ENABLED":
+                    case 78:
+                        message.capabilities[i] = 78;
+                        break;
+                    case "HATCH_ARTIFACT_CARD_ENABLED":
+                    case 79:
+                        message.capabilities[i] = 79;
+                        break;
+                    case "AI_STUDY_CENTER_ENABLED":
+                    case 80:
+                        message.capabilities[i] = 80;
                         break;
                     }
             }
@@ -138047,7 +139589,14 @@ $root.AICommon = (function() {
          * @property {number} AI_STOP_GENERATION_ENABLED=70 AI_STOP_GENERATION_ENABLED value
          * @property {number} AI_RICH_RESPONSE_3P_LINKING_CARD_ENABLED=71 AI_RICH_RESPONSE_3P_LINKING_CARD_ENABLED value
          * @property {number} HATCH_NOTIFICATION_METADATA_EVENT_ENABLED=72 HATCH_NOTIFICATION_METADATA_EVENT_ENABLED value
+         * @property {number} AI_SUGGESTED_REPLIES_ENABLED=73 AI_SUGGESTED_REPLIES_ENABLED value
+         * @property {number} RICH_RESPONSE_IN_APP_SURVEY_BLOKS=74 RICH_RESPONSE_IN_APP_SURVEY_BLOKS value
+         * @property {number} RICH_RESPONSE_IMAGE_SOURCE_ATTRIBUTION=75 RICH_RESPONSE_IMAGE_SOURCE_ATTRIBUTION value
          * @property {number} HATCH_CONNECTOR_ACTION_CARD_ENABLED=76 HATCH_CONNECTOR_ACTION_CARD_ENABLED value
+         * @property {number} HATCH_SECURE_CREDENTIAL_CARD_ENABLED=77 HATCH_SECURE_CREDENTIAL_CARD_ENABLED value
+         * @property {number} HATCH_BROWSER_TASK_CARD_ENABLED=78 HATCH_BROWSER_TASK_CARD_ENABLED value
+         * @property {number} HATCH_ARTIFACT_CARD_ENABLED=79 HATCH_ARTIFACT_CARD_ENABLED value
+         * @property {number} AI_STUDY_CENTER_ENABLED=80 AI_STUDY_CENTER_ENABLED value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -138124,7 +139673,14 @@ $root.AICommon = (function() {
             values[valuesById[70] = "AI_STOP_GENERATION_ENABLED"] = 70;
             values[valuesById[71] = "AI_RICH_RESPONSE_3P_LINKING_CARD_ENABLED"] = 71;
             values[valuesById[72] = "HATCH_NOTIFICATION_METADATA_EVENT_ENABLED"] = 72;
+            values[valuesById[73] = "AI_SUGGESTED_REPLIES_ENABLED"] = 73;
+            values[valuesById[74] = "RICH_RESPONSE_IN_APP_SURVEY_BLOKS"] = 74;
+            values[valuesById[75] = "RICH_RESPONSE_IMAGE_SOURCE_ATTRIBUTION"] = 75;
             values[valuesById[76] = "HATCH_CONNECTOR_ACTION_CARD_ENABLED"] = 76;
+            values[valuesById[77] = "HATCH_SECURE_CREDENTIAL_CARD_ENABLED"] = 77;
+            values[valuesById[78] = "HATCH_BROWSER_TASK_CARD_ENABLED"] = 78;
+            values[valuesById[79] = "HATCH_ARTIFACT_CARD_ENABLED"] = 79;
+            values[valuesById[80] = "AI_STUDY_CENTER_ENABLED"] = 80;
             return values;
         })();
 
@@ -155145,6 +156701,8 @@ $root.CompanionReg = (function() {
                 case 25:
                 case 26:
                 case 27:
+                case 28:
+                case 29:
                     break;
                 }
             if (message.ref != null && Object.hasOwnProperty.call(message, "ref"))
@@ -155294,6 +156852,14 @@ $root.CompanionReg = (function() {
             case "BUSINESS_BACK_OFFICE":
             case 27:
                 message.deviceType = 27;
+                break;
+            case "WAIL_WAI":
+            case 28:
+                message.deviceType = 28;
+                break;
+            case "WAIL_ALEXA":
+            case 29:
+                message.deviceType = 29;
                 break;
             }
             if (object.ref != null)
@@ -155627,6 +157193,8 @@ $root.CompanionReg = (function() {
                 case 25:
                 case 26:
                 case 27:
+                case 28:
+                case 29:
                     break;
                 }
             if (message.requireFullSync != null && Object.hasOwnProperty.call(message, "requireFullSync"))
@@ -155783,6 +157351,14 @@ $root.CompanionReg = (function() {
             case "BUSINESS_BACK_OFFICE":
             case 27:
                 message.platformType = 27;
+                break;
+            case "WAIL_WAI":
+            case 28:
+                message.platformType = 28;
+                break;
+            case "WAIL_ALEXA":
+            case 29:
+                message.platformType = 29;
                 break;
             }
             if (object.requireFullSync != null)
@@ -156224,6 +157800,8 @@ $root.CompanionReg = (function() {
              * @property {Array.<string>|null} [supportedBotChannelFbids] HistorySyncConfig supportedBotChannelFbids
              * @property {boolean|null} [supportInlineContacts] HistorySyncConfig supportInlineContacts
              * @property {boolean|null} [supportNewsletter] HistorySyncConfig supportNewsletter
+             * @property {boolean|null} [supportUniversalReachChat] HistorySyncConfig supportUniversalReachChat
+             * @property {boolean|null} [supportOmittedConversationIndex] HistorySyncConfig supportOmittedConversationIndex
              */
 
             /**
@@ -156443,6 +158021,22 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportNewsletter = false;
 
             /**
+             * HistorySyncConfig supportUniversalReachChat.
+             * @member {boolean} supportUniversalReachChat
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportUniversalReachChat = false;
+
+            /**
+             * HistorySyncConfig supportOmittedConversationIndex.
+             * @member {boolean} supportOmittedConversationIndex
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportOmittedConversationIndex = false;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -156521,6 +158115,10 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 24, wireType 0 =*/192).bool(message.supportInlineContacts);
                 if (message.supportNewsletter != null && Object.hasOwnProperty.call(message, "supportNewsletter"))
                     writer.uint32(/* id 25, wireType 0 =*/200).bool(message.supportNewsletter);
+                if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
+                    writer.uint32(/* id 26, wireType 0 =*/208).bool(message.supportUniversalReachChat);
+                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
+                    writer.uint32(/* id 27, wireType 0 =*/216).bool(message.supportOmittedConversationIndex);
                 return writer;
             };
 
@@ -156673,6 +158271,14 @@ $root.CompanionReg = (function() {
                             message.supportNewsletter = reader.bool();
                             break;
                         }
+                    case 26: {
+                            message.supportUniversalReachChat = reader.bool();
+                            break;
+                        }
+                    case 27: {
+                            message.supportOmittedConversationIndex = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -156796,6 +158402,12 @@ $root.CompanionReg = (function() {
                 if (message.supportNewsletter != null && Object.hasOwnProperty.call(message, "supportNewsletter"))
                     if (typeof message.supportNewsletter !== "boolean")
                         return "supportNewsletter: boolean expected";
+                if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
+                    if (typeof message.supportUniversalReachChat !== "boolean")
+                        return "supportUniversalReachChat: boolean expected";
+                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
+                    if (typeof message.supportOmittedConversationIndex !== "boolean")
+                        return "supportOmittedConversationIndex: boolean expected";
                 return null;
             };
 
@@ -156872,6 +158484,10 @@ $root.CompanionReg = (function() {
                     message.supportInlineContacts = Boolean(object.supportInlineContacts);
                 if (object.supportNewsletter != null)
                     message.supportNewsletter = Boolean(object.supportNewsletter);
+                if (object.supportUniversalReachChat != null)
+                    message.supportUniversalReachChat = Boolean(object.supportUniversalReachChat);
+                if (object.supportOmittedConversationIndex != null)
+                    message.supportOmittedConversationIndex = Boolean(object.supportOmittedConversationIndex);
                 return message;
             };
 
@@ -156919,6 +158535,8 @@ $root.CompanionReg = (function() {
                     object.supportHatchHistory = false;
                     object.supportInlineContacts = false;
                     object.supportNewsletter = false;
+                    object.supportUniversalReachChat = false;
+                    object.supportOmittedConversationIndex = false;
                 }
                 if (message.fullSyncDaysLimit != null && Object.hasOwnProperty.call(message, "fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -156973,6 +158591,10 @@ $root.CompanionReg = (function() {
                     object.supportInlineContacts = message.supportInlineContacts;
                 if (message.supportNewsletter != null && Object.hasOwnProperty.call(message, "supportNewsletter"))
                     object.supportNewsletter = message.supportNewsletter;
+                if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
+                    object.supportUniversalReachChat = message.supportUniversalReachChat;
+                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
+                    object.supportOmittedConversationIndex = message.supportOmittedConversationIndex;
                 return object;
             };
 
@@ -157037,6 +158659,8 @@ $root.CompanionReg = (function() {
          * @property {number} WAIL=25 WAIL value
          * @property {number} WASS=26 WASS value
          * @property {number} BUSINESS_BACK_OFFICE=27 BUSINESS_BACK_OFFICE value
+         * @property {number} WAIL_WAI=28 WAIL_WAI value
+         * @property {number} WAIL_ALEXA=29 WAIL_ALEXA value
          */
         DeviceProps.PlatformType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -157068,6 +158692,8 @@ $root.CompanionReg = (function() {
             values[valuesById[25] = "WAIL"] = 25;
             values[valuesById[26] = "WASS"] = 26;
             values[valuesById[27] = "BUSINESS_BACK_OFFICE"] = 27;
+            values[valuesById[28] = "WAIL_WAI"] = 28;
+            values[valuesById[29] = "WAIL_ALEXA"] = 29;
             return values;
         })();
 

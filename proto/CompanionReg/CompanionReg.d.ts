@@ -1075,6 +1075,12 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportNewsletter */
             supportNewsletter?: (boolean|null);
+
+            /** HistorySyncConfig supportUniversalReachChat */
+            supportUniversalReachChat?: (boolean|null);
+
+            /** HistorySyncConfig supportOmittedConversationIndex */
+            supportOmittedConversationIndex?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -1160,6 +1166,12 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportNewsletter. */
             public supportNewsletter: boolean;
+
+            /** HistorySyncConfig supportUniversalReachChat. */
+            public supportUniversalReachChat: boolean;
+
+            /** HistorySyncConfig supportOmittedConversationIndex. */
+            public supportOmittedConversationIndex: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
@@ -1268,7 +1280,9 @@ export namespace CompanionReg {
             SMARTGLASSES = 24,
             WAIL = 25,
             WASS = 26,
-            BUSINESS_BACK_OFFICE = 27
+            BUSINESS_BACK_OFFICE = 27,
+            WAIL_WAI = 28,
+            WAIL_ALEXA = 29
         }
     }
 }

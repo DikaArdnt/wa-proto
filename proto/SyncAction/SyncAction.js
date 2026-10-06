@@ -9809,6 +9809,7 @@ $root.SyncAction = (function() {
              * @property {boolean|null} [saveOnPrimaryAddressbook] ContactAction saveOnPrimaryAddressbook
              * @property {string|null} [pnJid] ContactAction pnJid
              * @property {string|null} [username] ContactAction username
+             * @property {string|null} [birthday] ContactAction birthday
              */
 
             /**
@@ -9875,6 +9876,14 @@ $root.SyncAction = (function() {
             ContactAction.prototype.username = "";
 
             /**
+             * ContactAction birthday.
+             * @member {string} birthday
+             * @memberof SyncAction.SyncActionValue.ContactAction
+             * @instance
+             */
+            ContactAction.prototype.birthday = "";
+
+            /**
              * Creates a new ContactAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.ContactAction
@@ -9914,6 +9923,8 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 5, wireType 2 =*/42).string(message.pnJid);
                 if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     writer.uint32(/* id 6, wireType 2 =*/50).string(message.username);
+                if (message.birthday != null && Object.hasOwnProperty.call(message, "birthday"))
+                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.birthday);
                 return writer;
             };
 
@@ -9988,6 +9999,10 @@ $root.SyncAction = (function() {
                             message.username = reader.string();
                             break;
                         }
+                    case 7: {
+                            message.birthday = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -10050,6 +10065,9 @@ $root.SyncAction = (function() {
                 if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     if (!$util.isString(message.username))
                         return "username: string expected";
+                if (message.birthday != null && Object.hasOwnProperty.call(message, "birthday"))
+                    if (!$util.isString(message.birthday))
+                        return "birthday: string expected";
                 return null;
             };
 
@@ -10083,6 +10101,8 @@ $root.SyncAction = (function() {
                     message.pnJid = String(object.pnJid);
                 if (object.username != null)
                     message.username = String(object.username);
+                if (object.birthday != null)
+                    message.birthday = String(object.birthday);
                 return message;
             };
 
@@ -10110,6 +10130,7 @@ $root.SyncAction = (function() {
                     object.saveOnPrimaryAddressbook = false;
                     object.pnJid = "";
                     object.username = "";
+                    object.birthday = "";
                 }
                 if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     object.fullName = message.fullName;
@@ -10123,6 +10144,8 @@ $root.SyncAction = (function() {
                     object.pnJid = message.pnJid;
                 if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     object.username = message.username;
+                if (message.birthday != null && Object.hasOwnProperty.call(message, "birthday"))
+                    object.birthday = message.birthday;
                 return object;
             };
 
@@ -16269,6 +16292,7 @@ $root.SyncAction = (function() {
              * @property {string|null} [fullName] LidContactAction fullName
              * @property {string|null} [firstName] LidContactAction firstName
              * @property {string|null} [username] LidContactAction username
+             * @property {string|null} [birthday] LidContactAction birthday
              */
 
             /**
@@ -16311,6 +16335,14 @@ $root.SyncAction = (function() {
             LidContactAction.prototype.username = "";
 
             /**
+             * LidContactAction birthday.
+             * @member {string} birthday
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.birthday = "";
+
+            /**
              * Creates a new LidContactAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.LidContactAction
@@ -16344,6 +16376,8 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.firstName);
                 if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.username);
+                if (message.birthday != null && Object.hasOwnProperty.call(message, "birthday"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.birthday);
                 return writer;
             };
 
@@ -16406,6 +16440,10 @@ $root.SyncAction = (function() {
                             message.username = reader.string();
                             break;
                         }
+                    case 4: {
+                            message.birthday = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -16459,6 +16497,9 @@ $root.SyncAction = (function() {
                 if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     if (!$util.isString(message.username))
                         return "username: string expected";
+                if (message.birthday != null && Object.hasOwnProperty.call(message, "birthday"))
+                    if (!$util.isString(message.birthday))
+                        return "birthday: string expected";
                 return null;
             };
 
@@ -16486,6 +16527,8 @@ $root.SyncAction = (function() {
                     message.firstName = String(object.firstName);
                 if (object.username != null)
                     message.username = String(object.username);
+                if (object.birthday != null)
+                    message.birthday = String(object.birthday);
                 return message;
             };
 
@@ -16510,6 +16553,7 @@ $root.SyncAction = (function() {
                     object.fullName = "";
                     object.firstName = "";
                     object.username = "";
+                    object.birthday = "";
                 }
                 if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     object.fullName = message.fullName;
@@ -16517,6 +16561,8 @@ $root.SyncAction = (function() {
                     object.firstName = message.firstName;
                 if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                     object.username = message.username;
+                if (message.birthday != null && Object.hasOwnProperty.call(message, "birthday"))
+                    object.birthday = message.birthday;
                 return object;
             };
 

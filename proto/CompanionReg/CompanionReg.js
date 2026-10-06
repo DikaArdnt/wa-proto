@@ -2025,6 +2025,8 @@ $root.CompanionReg = (function() {
                 case 25:
                 case 26:
                 case 27:
+                case 28:
+                case 29:
                     break;
                 }
             if (message.ref != null && Object.hasOwnProperty.call(message, "ref"))
@@ -2174,6 +2176,14 @@ $root.CompanionReg = (function() {
             case "BUSINESS_BACK_OFFICE":
             case 27:
                 message.deviceType = 27;
+                break;
+            case "WAIL_WAI":
+            case 28:
+                message.deviceType = 28;
+                break;
+            case "WAIL_ALEXA":
+            case 29:
+                message.deviceType = 29;
                 break;
             }
             if (object.ref != null)
@@ -2507,6 +2517,8 @@ $root.CompanionReg = (function() {
                 case 25:
                 case 26:
                 case 27:
+                case 28:
+                case 29:
                     break;
                 }
             if (message.requireFullSync != null && Object.hasOwnProperty.call(message, "requireFullSync"))
@@ -2663,6 +2675,14 @@ $root.CompanionReg = (function() {
             case "BUSINESS_BACK_OFFICE":
             case 27:
                 message.platformType = 27;
+                break;
+            case "WAIL_WAI":
+            case 28:
+                message.platformType = 28;
+                break;
+            case "WAIL_ALEXA":
+            case 29:
+                message.platformType = 29;
                 break;
             }
             if (object.requireFullSync != null)
@@ -3104,6 +3124,8 @@ $root.CompanionReg = (function() {
              * @property {Array.<string>|null} [supportedBotChannelFbids] HistorySyncConfig supportedBotChannelFbids
              * @property {boolean|null} [supportInlineContacts] HistorySyncConfig supportInlineContacts
              * @property {boolean|null} [supportNewsletter] HistorySyncConfig supportNewsletter
+             * @property {boolean|null} [supportUniversalReachChat] HistorySyncConfig supportUniversalReachChat
+             * @property {boolean|null} [supportOmittedConversationIndex] HistorySyncConfig supportOmittedConversationIndex
              */
 
             /**
@@ -3323,6 +3345,22 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportNewsletter = false;
 
             /**
+             * HistorySyncConfig supportUniversalReachChat.
+             * @member {boolean} supportUniversalReachChat
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportUniversalReachChat = false;
+
+            /**
+             * HistorySyncConfig supportOmittedConversationIndex.
+             * @member {boolean} supportOmittedConversationIndex
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportOmittedConversationIndex = false;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -3401,6 +3439,10 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 24, wireType 0 =*/192).bool(message.supportInlineContacts);
                 if (message.supportNewsletter != null && Object.hasOwnProperty.call(message, "supportNewsletter"))
                     writer.uint32(/* id 25, wireType 0 =*/200).bool(message.supportNewsletter);
+                if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
+                    writer.uint32(/* id 26, wireType 0 =*/208).bool(message.supportUniversalReachChat);
+                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
+                    writer.uint32(/* id 27, wireType 0 =*/216).bool(message.supportOmittedConversationIndex);
                 return writer;
             };
 
@@ -3553,6 +3595,14 @@ $root.CompanionReg = (function() {
                             message.supportNewsletter = reader.bool();
                             break;
                         }
+                    case 26: {
+                            message.supportUniversalReachChat = reader.bool();
+                            break;
+                        }
+                    case 27: {
+                            message.supportOmittedConversationIndex = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -3676,6 +3726,12 @@ $root.CompanionReg = (function() {
                 if (message.supportNewsletter != null && Object.hasOwnProperty.call(message, "supportNewsletter"))
                     if (typeof message.supportNewsletter !== "boolean")
                         return "supportNewsletter: boolean expected";
+                if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
+                    if (typeof message.supportUniversalReachChat !== "boolean")
+                        return "supportUniversalReachChat: boolean expected";
+                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
+                    if (typeof message.supportOmittedConversationIndex !== "boolean")
+                        return "supportOmittedConversationIndex: boolean expected";
                 return null;
             };
 
@@ -3752,6 +3808,10 @@ $root.CompanionReg = (function() {
                     message.supportInlineContacts = Boolean(object.supportInlineContacts);
                 if (object.supportNewsletter != null)
                     message.supportNewsletter = Boolean(object.supportNewsletter);
+                if (object.supportUniversalReachChat != null)
+                    message.supportUniversalReachChat = Boolean(object.supportUniversalReachChat);
+                if (object.supportOmittedConversationIndex != null)
+                    message.supportOmittedConversationIndex = Boolean(object.supportOmittedConversationIndex);
                 return message;
             };
 
@@ -3799,6 +3859,8 @@ $root.CompanionReg = (function() {
                     object.supportHatchHistory = false;
                     object.supportInlineContacts = false;
                     object.supportNewsletter = false;
+                    object.supportUniversalReachChat = false;
+                    object.supportOmittedConversationIndex = false;
                 }
                 if (message.fullSyncDaysLimit != null && Object.hasOwnProperty.call(message, "fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -3853,6 +3915,10 @@ $root.CompanionReg = (function() {
                     object.supportInlineContacts = message.supportInlineContacts;
                 if (message.supportNewsletter != null && Object.hasOwnProperty.call(message, "supportNewsletter"))
                     object.supportNewsletter = message.supportNewsletter;
+                if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
+                    object.supportUniversalReachChat = message.supportUniversalReachChat;
+                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
+                    object.supportOmittedConversationIndex = message.supportOmittedConversationIndex;
                 return object;
             };
 
@@ -3917,6 +3983,8 @@ $root.CompanionReg = (function() {
          * @property {number} WAIL=25 WAIL value
          * @property {number} WASS=26 WASS value
          * @property {number} BUSINESS_BACK_OFFICE=27 BUSINESS_BACK_OFFICE value
+         * @property {number} WAIL_WAI=28 WAIL_WAI value
+         * @property {number} WAIL_ALEXA=29 WAIL_ALEXA value
          */
         DeviceProps.PlatformType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -3948,6 +4016,8 @@ $root.CompanionReg = (function() {
             values[valuesById[25] = "WAIL"] = 25;
             values[valuesById[26] = "WASS"] = 26;
             values[valuesById[27] = "BUSINESS_BACK_OFFICE"] = 27;
+            values[valuesById[28] = "WAIL_WAI"] = 28;
+            values[valuesById[29] = "WAIL_ALEXA"] = 29;
             return values;
         })();
 

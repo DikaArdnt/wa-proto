@@ -259,6 +259,7 @@ message SyncActionValue {
         optional bool saveOnPrimaryAddressbook = 4;
         optional string pnJid = 5;
         optional string username = 6;
+        optional string birthday = 7;
     }
     message ContactManagerMetadataAction {
         optional bool isHidden = 1;
@@ -383,6 +384,7 @@ message SyncActionValue {
         optional string fullName = 1;
         optional string firstName = 2;
         optional string username = 3;
+        optional string birthday = 4;
     }
     message LocaleSetting {
         optional string locale = 1;

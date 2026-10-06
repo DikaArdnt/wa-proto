@@ -5411,7 +5411,8 @@ export namespace E2E {
             STATUS_ADD_YOURS_DIWALI = 17,
             STATUS_REACTION = 18,
             HEVC_VIDEO_DUAL_UPLOAD = 19,
-            POLL_ADD_OPTION = 20
+            POLL_ADD_OPTION = 20,
+            AV1_VIDEO_DUAL_UPLOAD = 21
         }
     }
 
@@ -6960,6 +6961,27 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo productId */
             productId?: (string|null);
+
+            /** ExternalAdReplyInfo containsCtwaPromo */
+            containsCtwaPromo?: (boolean|null);
+
+            /** ExternalAdReplyInfo ctwaPromoResponseId */
+            ctwaPromoResponseId?: (string|null);
+
+            /** ExternalAdReplyInfo ctwaPromoOfferId */
+            ctwaPromoOfferId?: (string|null);
+
+            /** ExternalAdReplyInfo ctwaPromoAdEntryId */
+            ctwaPromoAdEntryId?: (string|null);
+
+            /** ExternalAdReplyInfo ctwaPromoResponseExpiresAtSeconds */
+            ctwaPromoResponseExpiresAtSeconds?: (number|Long|null);
+
+            /** ExternalAdReplyInfo ctwaPromoSchemaVersion */
+            ctwaPromoSchemaVersion?: (number|null);
+
+            /** ExternalAdReplyInfo ctwaPromoAdgroupId */
+            ctwaPromoAdgroupId?: (string|null);
         }
 
         /** Represents an ExternalAdReplyInfo. */
@@ -7072,6 +7094,27 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo productId. */
             public productId: string;
+
+            /** ExternalAdReplyInfo containsCtwaPromo. */
+            public containsCtwaPromo: boolean;
+
+            /** ExternalAdReplyInfo ctwaPromoResponseId. */
+            public ctwaPromoResponseId: string;
+
+            /** ExternalAdReplyInfo ctwaPromoOfferId. */
+            public ctwaPromoOfferId: string;
+
+            /** ExternalAdReplyInfo ctwaPromoAdEntryId. */
+            public ctwaPromoAdEntryId: string;
+
+            /** ExternalAdReplyInfo ctwaPromoResponseExpiresAtSeconds. */
+            public ctwaPromoResponseExpiresAtSeconds: (number|Long);
+
+            /** ExternalAdReplyInfo ctwaPromoSchemaVersion. */
+            public ctwaPromoSchemaVersion: number;
+
+            /** ExternalAdReplyInfo ctwaPromoAdgroupId. */
+            public ctwaPromoAdgroupId: string;
 
             /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
@@ -7542,7 +7585,9 @@ export namespace E2E {
             MOTION_PHOTO_PARENT = 5,
             MOTION_PHOTO_CHILD = 6,
             HEVC_VIDEO_PARENT = 7,
-            HEVC_VIDEO_CHILD = 8
+            HEVC_VIDEO_CHILD = 8,
+            AV1_VIDEO_PARENT = 9,
+            AV1_VIDEO_CHILD = 10
         }
 
         /** Properties of a PartiallySelectedContent. */
@@ -8443,6 +8488,12 @@ export namespace E2E {
         /** Message audioStickerMessage */
         audioStickerMessage?: (E2E.Message.IFutureProofMessage|null);
 
+        /** Message instantImageMessage */
+        instantImageMessage?: (E2E.Message.IImageMessage|null);
+
+        /** Message requestLocationMessage */
+        requestLocationMessage?: (E2E.Message.IRequestLocationMessage|null);
+
         /** Message botGroupParticipantMessage */
         botGroupParticipantMessage?: (E2E.Message.IFutureProofMessage|null);
     }
@@ -8794,6 +8845,12 @@ export namespace E2E {
 
         /** Message audioStickerMessage. */
         public audioStickerMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message instantImageMessage. */
+        public instantImageMessage?: (E2E.Message.IImageMessage|null);
+
+        /** Message requestLocationMessage. */
+        public requestLocationMessage?: (E2E.Message.IRequestLocationMessage|null);
 
         /** Message botGroupParticipantMessage. */
         public botGroupParticipantMessage?: (E2E.Message.IFutureProofMessage|null);
@@ -11676,14 +11733,20 @@ export namespace E2E {
         /** Properties of a ChatSolidColorWallpaper. */
         interface IChatSolidColorWallpaper {
 
-            /** ChatSolidColorWallpaper colorLight */
-            colorLight?: (string|null);
+            /** ChatSolidColorWallpaper backgroundLightArgb */
+            backgroundLightArgb?: (number|null);
 
-            /** ChatSolidColorWallpaper colorDark */
-            colorDark?: (string|null);
+            /** ChatSolidColorWallpaper backgroundDarkArgb */
+            backgroundDarkArgb?: (number|null);
 
             /** ChatSolidColorWallpaper isDoodleEnabled */
             isDoodleEnabled?: (boolean|null);
+
+            /** ChatSolidColorWallpaper doodleLightArgb */
+            doodleLightArgb?: (number|null);
+
+            /** ChatSolidColorWallpaper doodleDarkArgb */
+            doodleDarkArgb?: (number|null);
         }
 
         /** Represents a ChatSolidColorWallpaper. */
@@ -11695,14 +11758,20 @@ export namespace E2E {
              */
             constructor(properties?: E2E.Message.IChatSolidColorWallpaper);
 
-            /** ChatSolidColorWallpaper colorLight. */
-            public colorLight: string;
+            /** ChatSolidColorWallpaper backgroundLightArgb. */
+            public backgroundLightArgb: number;
 
-            /** ChatSolidColorWallpaper colorDark. */
-            public colorDark: string;
+            /** ChatSolidColorWallpaper backgroundDarkArgb. */
+            public backgroundDarkArgb: number;
 
             /** ChatSolidColorWallpaper isDoodleEnabled. */
             public isDoodleEnabled: boolean;
+
+            /** ChatSolidColorWallpaper doodleLightArgb. */
+            public doodleLightArgb: number;
+
+            /** ChatSolidColorWallpaper doodleDarkArgb. */
+            public doodleDarkArgb: number;
 
             /**
              * Creates a new ChatSolidColorWallpaper instance using the specified properties.
@@ -12266,6 +12335,109 @@ export namespace E2E {
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
+        }
+
+        /** Properties of a CoexConnectionDescriptor. */
+        interface ICoexConnectionDescriptor {
+
+            /** CoexConnectionDescriptor providerId */
+            providerId?: (number|Long|null);
+
+            /** CoexConnectionDescriptor product */
+            product?: (string|null);
+        }
+
+        /** Represents a CoexConnectionDescriptor. */
+        class CoexConnectionDescriptor implements ICoexConnectionDescriptor {
+
+            /**
+             * Constructs a new CoexConnectionDescriptor.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.ICoexConnectionDescriptor);
+
+            /** CoexConnectionDescriptor providerId. */
+            public providerId: (number|Long);
+
+            /** CoexConnectionDescriptor product. */
+            public product: string;
+
+            /**
+             * Creates a new CoexConnectionDescriptor instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CoexConnectionDescriptor instance
+             */
+            public static create(properties?: E2E.Message.ICoexConnectionDescriptor): E2E.Message.CoexConnectionDescriptor;
+
+            /**
+             * Encodes the specified CoexConnectionDescriptor message. Does not implicitly {@link E2E.Message.CoexConnectionDescriptor.verify|verify} messages.
+             * @param message CoexConnectionDescriptor message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.ICoexConnectionDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CoexConnectionDescriptor message, length delimited. Does not implicitly {@link E2E.Message.CoexConnectionDescriptor.verify|verify} messages.
+             * @param message CoexConnectionDescriptor message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.ICoexConnectionDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CoexConnectionDescriptor message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CoexConnectionDescriptor
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.CoexConnectionDescriptor;
+
+            /**
+             * Decodes a CoexConnectionDescriptor message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CoexConnectionDescriptor
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.CoexConnectionDescriptor;
+
+            /**
+             * Verifies a CoexConnectionDescriptor message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CoexConnectionDescriptor message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CoexConnectionDescriptor
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.CoexConnectionDescriptor;
+
+            /**
+             * Creates a plain object from a CoexConnectionDescriptor message. Also converts values to other types if specified.
+             * @param message CoexConnectionDescriptor
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.CoexConnectionDescriptor, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CoexConnectionDescriptor to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CoexConnectionDescriptor
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a CommentMessage. */
@@ -13498,6 +13670,18 @@ export namespace E2E {
 
             /** EventInviteMessage callLink */
             callLink?: (string|null);
+
+            /** EventInviteMessage coverImageHandle */
+            coverImageHandle?: (string|null);
+
+            /** EventInviteMessage locationName */
+            locationName?: (string|null);
+
+            /** EventInviteMessage lastUpdatedTsUsec */
+            lastUpdatedTsUsec?: (number|Long|null);
+
+            /** EventInviteMessage status */
+            status?: (E2E.Message.EventInviteMessage.EventStatus|null);
         }
 
         /** Represents an EventInviteMessage. */
@@ -13535,6 +13719,18 @@ export namespace E2E {
 
             /** EventInviteMessage callLink. */
             public callLink: string;
+
+            /** EventInviteMessage coverImageHandle. */
+            public coverImageHandle: string;
+
+            /** EventInviteMessage locationName. */
+            public locationName: string;
+
+            /** EventInviteMessage lastUpdatedTsUsec. */
+            public lastUpdatedTsUsec: (number|Long);
+
+            /** EventInviteMessage status. */
+            public status: E2E.Message.EventInviteMessage.EventStatus;
 
             /**
              * Creates a new EventInviteMessage instance using the specified properties.
@@ -13612,6 +13808,20 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace EventInviteMessage {
+
+            /** EventStatus enum. */
+            enum EventStatus {
+                UNKNOWN = 0,
+                ACTIVE = 1,
+                CANCELED = 2,
+                SUSPENDED = 3,
+                DELETED = 4,
+                LEFT_EVENT = 5,
+                REMOVED_FROM_INVITE_LIST = 6
+            }
         }
 
         /** Properties of an EventMessage. */
@@ -14327,6 +14537,9 @@ export namespace E2E {
 
             /** FullHistorySyncOnDemandRequestMetadata opaqueClientData */
             opaqueClientData?: (Uint8Array|null);
+
+            /** FullHistorySyncOnDemandRequestMetadata connection */
+            connection?: (E2E.Message.ICoexConnectionDescriptor|null);
         }
 
         /** Represents a FullHistorySyncOnDemandRequestMetadata. */
@@ -14346,6 +14559,9 @@ export namespace E2E {
 
             /** FullHistorySyncOnDemandRequestMetadata opaqueClientData. */
             public opaqueClientData: Uint8Array;
+
+            /** FullHistorySyncOnDemandRequestMetadata connection. */
+            public connection?: (E2E.Message.ICoexConnectionDescriptor|null);
 
             /**
              * Creates a new FullHistorySyncOnDemandRequestMetadata instance using the specified properties.
@@ -26503,6 +26719,9 @@ export namespace E2E {
 
             /** ProtocolMessage sharedDeviceContactHashKeyRequest */
             sharedDeviceContactHashKeyRequest?: (E2E.Message.ISharedDeviceContactHashKeyRequest|null);
+
+            /** ProtocolMessage additionalPromptIds */
+            additionalPromptIds?: (string[]|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -26612,6 +26831,9 @@ export namespace E2E {
 
             /** ProtocolMessage sharedDeviceContactHashKeyRequest. */
             public sharedDeviceContactHashKeyRequest?: (E2E.Message.ISharedDeviceContactHashKeyRequest|null);
+
+            /** ProtocolMessage additionalPromptIds. */
+            public additionalPromptIds: string[];
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -26945,6 +27167,103 @@ export namespace E2E {
 
             /**
              * Gets the default type url for ReactionMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a RequestLocationMessage. */
+        interface IRequestLocationMessage {
+
+            /** RequestLocationMessage contextInfo */
+            contextInfo?: (E2E.IContextInfo|null);
+        }
+
+        /** Represents a RequestLocationMessage. */
+        class RequestLocationMessage implements IRequestLocationMessage {
+
+            /**
+             * Constructs a new RequestLocationMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IRequestLocationMessage);
+
+            /** RequestLocationMessage contextInfo. */
+            public contextInfo?: (E2E.IContextInfo|null);
+
+            /**
+             * Creates a new RequestLocationMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns RequestLocationMessage instance
+             */
+            public static create(properties?: E2E.Message.IRequestLocationMessage): E2E.Message.RequestLocationMessage;
+
+            /**
+             * Encodes the specified RequestLocationMessage message. Does not implicitly {@link E2E.Message.RequestLocationMessage.verify|verify} messages.
+             * @param message RequestLocationMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IRequestLocationMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified RequestLocationMessage message, length delimited. Does not implicitly {@link E2E.Message.RequestLocationMessage.verify|verify} messages.
+             * @param message RequestLocationMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IRequestLocationMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a RequestLocationMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns RequestLocationMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.RequestLocationMessage;
+
+            /**
+             * Decodes a RequestLocationMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns RequestLocationMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.RequestLocationMessage;
+
+            /**
+             * Verifies a RequestLocationMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a RequestLocationMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns RequestLocationMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.RequestLocationMessage;
+
+            /**
+             * Creates a plain object from a RequestLocationMessage message. Also converts values to other types if specified.
+             * @param message RequestLocationMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.RequestLocationMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this RequestLocationMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for RequestLocationMessage
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -39241,7 +39560,8 @@ export namespace AICommon {
                 UNKNOWN = 0,
                 DEFAULT = 1,
                 INCOGNITO = 2,
-                SIDE_CHAT = 3
+                SIDE_CHAT = 3,
+                PRIVATE_SEARCH_CHAT = 4
             }
         }
 
@@ -41368,7 +41688,14 @@ export namespace AICommon {
             AI_STOP_GENERATION_ENABLED = 70,
             AI_RICH_RESPONSE_3P_LINKING_CARD_ENABLED = 71,
             HATCH_NOTIFICATION_METADATA_EVENT_ENABLED = 72,
-            HATCH_CONNECTOR_ACTION_CARD_ENABLED = 76
+            AI_SUGGESTED_REPLIES_ENABLED = 73,
+            RICH_RESPONSE_IN_APP_SURVEY_BLOKS = 74,
+            RICH_RESPONSE_IMAGE_SOURCE_ATTRIBUTION = 75,
+            HATCH_CONNECTOR_ACTION_CARD_ENABLED = 76,
+            HATCH_SECURE_CREDENTIAL_CARD_ENABLED = 77,
+            HATCH_BROWSER_TASK_CARD_ENABLED = 78,
+            HATCH_ARTIFACT_CARD_ENABLED = 79,
+            AI_STUDY_CENTER_ENABLED = 80
         }
     }
 
@@ -47463,6 +47790,12 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportNewsletter */
             supportNewsletter?: (boolean|null);
+
+            /** HistorySyncConfig supportUniversalReachChat */
+            supportUniversalReachChat?: (boolean|null);
+
+            /** HistorySyncConfig supportOmittedConversationIndex */
+            supportOmittedConversationIndex?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -47548,6 +47881,12 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportNewsletter. */
             public supportNewsletter: boolean;
+
+            /** HistorySyncConfig supportUniversalReachChat. */
+            public supportUniversalReachChat: boolean;
+
+            /** HistorySyncConfig supportOmittedConversationIndex. */
+            public supportOmittedConversationIndex: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
@@ -47656,7 +47995,9 @@ export namespace CompanionReg {
             SMARTGLASSES = 24,
             WAIL = 25,
             WASS = 26,
-            BUSINESS_BACK_OFFICE = 27
+            BUSINESS_BACK_OFFICE = 27,
+            WAIL_WAI = 28,
+            WAIL_ALEXA = 29
         }
     }
 }

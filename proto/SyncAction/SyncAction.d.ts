@@ -3181,6 +3181,9 @@ export namespace SyncAction {
 
             /** ContactAction username */
             username?: (string|null);
+
+            /** ContactAction birthday */
+            birthday?: (string|null);
         }
 
         /** Represents a ContactAction. */
@@ -3209,6 +3212,9 @@ export namespace SyncAction {
 
             /** ContactAction username. */
             public username: string;
+
+            /** ContactAction birthday. */
+            public birthday: string;
 
             /**
              * Creates a new ContactAction instance using the specified properties.
@@ -5540,6 +5546,9 @@ export namespace SyncAction {
 
             /** LidContactAction username */
             username?: (string|null);
+
+            /** LidContactAction birthday */
+            birthday?: (string|null);
         }
 
         /** Represents a LidContactAction. */
@@ -5559,6 +5568,9 @@ export namespace SyncAction {
 
             /** LidContactAction username. */
             public username: string;
+
+            /** LidContactAction birthday. */
+            public birthday: string;
 
             /**
              * Creates a new LidContactAction instance using the specified properties.

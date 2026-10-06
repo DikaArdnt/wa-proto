@@ -335,6 +335,7 @@ message MessageAssociation {
         STATUS_REACTION = 18;
         HEVC_VIDEO_DUAL_UPLOAD = 19;
         POLL_ADD_OPTION = 20;
+        AV1_VIDEO_DUAL_UPLOAD = 21;
     }
 }
 
@@ -521,6 +522,13 @@ message ContextInfo {
         optional int32 agmHeaderInteractionStrategy = 32;
         optional bool containsCtwaFlowsAutoLabel = 33;
         optional string productId = 34;
+        optional bool containsCtwaPromo = 35;
+        optional string ctwaPromoResponseId = 36;
+        optional string ctwaPromoOfferId = 37;
+        optional string ctwaPromoAdEntryId = 38;
+        optional uint64 ctwaPromoResponseExpiresAtSeconds = 39;
+        optional uint32 ctwaPromoSchemaVersion = 40;
+        optional string ctwaPromoAdgroupId = 41;
         enum AdType {
             CTWA = 0;
             CAWC = 1;
@@ -572,6 +580,8 @@ message ContextInfo {
         MOTION_PHOTO_CHILD = 6;
         HEVC_VIDEO_PARENT = 7;
         HEVC_VIDEO_CHILD = 8;
+        AV1_VIDEO_PARENT = 9;
+        AV1_VIDEO_CHILD = 10;
     }
     message PartiallySelectedContent {
         optional string text = 1;
@@ -734,6 +744,8 @@ message Message {
     optional FutureProofMessage newsletterScheduledMessage = 132;
     optional FutureProofMessage acp2SettingMessage = 133;
     optional FutureProofMessage audioStickerMessage = 134;
+    optional ImageMessage instantImageMessage = 135;
+    optional RequestLocationMessage requestLocationMessage = 136;
     optional FutureProofMessage botGroupParticipantMessage = 137;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
@@ -916,9 +928,11 @@ message Message {
         optional bool isDoodleEnabled = 1;
     }
     message ChatSolidColorWallpaper {
-        optional string colorLight = 1;
-        optional string colorDark = 2;
+        optional fixed32 backgroundLightArgb = 1;
+        optional fixed32 backgroundDarkArgb = 2;
         optional bool isDoodleEnabled = 3;
+        optional fixed32 doodleLightArgb = 4;
+        optional fixed32 doodleDarkArgb = 5;
     }
     message ChatStockImageWallpaper {
         optional string stockImageId = 1;
@@ -953,6 +967,10 @@ message Message {
             optional string handoffNotificationText = 1;
             optional string extraJson = 2;
         }
+    }
+    message CoexConnectionDescriptor {
+        optional int64 providerId = 1;
+        optional string product = 2;
     }
     message CommentMessage {
         optional Message message = 1;
@@ -1035,6 +1053,19 @@ message Message {
         optional bool isCanceled = 7;
         optional int64 endTime = 8;
         optional string callLink = 9;
+        optional string coverImageHandle = 10;
+        optional string locationName = 11;
+        optional int64 lastUpdatedTsUsec = 12;
+        optional EventStatus status = 13;
+        enum EventStatus {
+            UNKNOWN = 0;
+            ACTIVE = 1;
+            CANCELED = 2;
+            SUSPENDED = 3;
+            DELETED = 4;
+            LEFT_EVENT = 5;
+            REMOVED_FROM_INVITE_LIST = 6;
+        }
     }
     message EventMessage {
         optional ContextInfo contextInfo = 1;
@@ -1127,6 +1158,7 @@ message Message {
         optional string requestId = 1;
         optional string businessProduct = 2;
         optional bytes opaqueClientData = 3;
+        optional Message.CoexConnectionDescriptor connection = 4;
     }
     message FutureProofMessage {
         optional Message message = 1;
@@ -1997,6 +2029,7 @@ message Message {
         optional Protocol.ACP2Setting acp2Setting = 35;
         optional Message.SharedDeviceContactHashKeyShare sharedDeviceContactHashKeyShare = 36;
         optional Message.SharedDeviceContactHashKeyRequest sharedDeviceContactHashKeyRequest = 37;
+        repeated string additionalPromptIds = 38;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
@@ -2044,6 +2077,9 @@ message Message {
         optional string text = 2;
         optional string groupingKey = 3;
         optional int64 senderTimestampMs = 4;
+    }
+    message RequestLocationMessage {
+        optional ContextInfo contextInfo = 1;
     }
     message RequestPaymentMessage {
         optional Message noteMessage = 4;
