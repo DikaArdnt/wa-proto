@@ -5337,7 +5337,8 @@ export namespace SyncAction {
                 LEAD = 16,
                 MENTIONS_AND_REPLIES = 17,
                 REQUESTS = 18,
-                BUSINESS = 19
+                BUSINESS = 19,
+                ONE_ON_ONE = 20
             }
         }
 
