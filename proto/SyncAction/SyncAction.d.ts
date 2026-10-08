@@ -563,6 +563,9 @@ export namespace SyncAction {
 
         /** SyncActionValue bbProPendingCustomerBaseAction */
         bbProPendingCustomerBaseAction?: (SyncAction.SyncActionValue.IBBProPendingCustomerBaseAction|null);
+
+        /** SyncActionValue communityNestingStateAction */
+        communityNestingStateAction?: (SyncAction.SyncActionValue.ICommunityNestingStateAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -840,6 +843,9 @@ export namespace SyncAction {
 
         /** SyncActionValue bbProPendingCustomerBaseAction. */
         public bbProPendingCustomerBaseAction?: (SyncAction.SyncActionValue.IBBProPendingCustomerBaseAction|null);
+
+        /** SyncActionValue communityNestingStateAction. */
+        public communityNestingStateAction?: (SyncAction.SyncActionValue.ICommunityNestingStateAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -3159,6 +3165,113 @@ export namespace SyncAction {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a CommunityNestingStateAction. */
+        interface ICommunityNestingStateAction {
+
+            /** CommunityNestingStateAction nestingState */
+            nestingState?: (SyncAction.SyncActionValue.CommunityNestingStateAction.NestingState|null);
+        }
+
+        /** Represents a CommunityNestingStateAction. */
+        class CommunityNestingStateAction implements ICommunityNestingStateAction {
+
+            /**
+             * Constructs a new CommunityNestingStateAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.ICommunityNestingStateAction);
+
+            /** CommunityNestingStateAction nestingState. */
+            public nestingState: SyncAction.SyncActionValue.CommunityNestingStateAction.NestingState;
+
+            /**
+             * Creates a new CommunityNestingStateAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CommunityNestingStateAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.ICommunityNestingStateAction): SyncAction.SyncActionValue.CommunityNestingStateAction;
+
+            /**
+             * Encodes the specified CommunityNestingStateAction message. Does not implicitly {@link SyncAction.SyncActionValue.CommunityNestingStateAction.verify|verify} messages.
+             * @param message CommunityNestingStateAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.ICommunityNestingStateAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CommunityNestingStateAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.CommunityNestingStateAction.verify|verify} messages.
+             * @param message CommunityNestingStateAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.ICommunityNestingStateAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CommunityNestingStateAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CommunityNestingStateAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.CommunityNestingStateAction;
+
+            /**
+             * Decodes a CommunityNestingStateAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CommunityNestingStateAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.CommunityNestingStateAction;
+
+            /**
+             * Verifies a CommunityNestingStateAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CommunityNestingStateAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CommunityNestingStateAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.CommunityNestingStateAction;
+
+            /**
+             * Creates a plain object from a CommunityNestingStateAction message. Also converts values to other types if specified.
+             * @param message CommunityNestingStateAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.CommunityNestingStateAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CommunityNestingStateAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CommunityNestingStateAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace CommunityNestingStateAction {
+
+            /** NestingState enum. */
+            enum NestingState {
+                NESTING_STATE_UNKNOWN = 0,
+                NESTING_STATE_NESTED = 1,
+                NESTING_STATE_UNNESTED = 2
+            }
         }
 
         /** Properties of a ContactAction. */
@@ -12091,6 +12204,7 @@ export namespace SyncAction {
         BUSINESS_FOLDER_ACTIVATION_ACTION = 96,
         GROUP_HISTORY_TOGGLE_ACTION = 97,
         BB_PRO_PENDING_CUSTOMER_BASE_ACTION = 98,
+        COMMUNITY_NESTING_STATE_ACTION = 99,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

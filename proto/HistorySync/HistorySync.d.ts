@@ -7469,7 +7469,8 @@ export namespace E2E {
             STATUS_REACTION = 18,
             HEVC_VIDEO_DUAL_UPLOAD = 19,
             POLL_ADD_OPTION = 20,
-            AV1_VIDEO_DUAL_UPLOAD = 21
+            AV1_VIDEO_DUAL_UPLOAD = 21,
+            STREAMED_HD_VIDEO_DUAL_UPLOAD = 22
         }
     }
 
@@ -9644,7 +9645,9 @@ export namespace E2E {
             HEVC_VIDEO_PARENT = 7,
             HEVC_VIDEO_CHILD = 8,
             AV1_VIDEO_PARENT = 9,
-            AV1_VIDEO_CHILD = 10
+            AV1_VIDEO_CHILD = 10,
+            STREAMED_VIDEO_PARENT = 11,
+            STREAMED_VIDEO_CHILD = 12
         }
 
         /** Properties of a PartiallySelectedContent. */
@@ -10553,6 +10556,9 @@ export namespace E2E {
 
         /** Message botGroupParticipantMessage */
         botGroupParticipantMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message requestLocationUpdateMessage */
+        requestLocationUpdateMessage?: (E2E.Message.IRequestLocationUpdateMessage|null);
     }
 
     /** Represents a Message. */
@@ -10911,6 +10917,9 @@ export namespace E2E {
 
         /** Message botGroupParticipantMessage. */
         public botGroupParticipantMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message requestLocationUpdateMessage. */
+        public requestLocationUpdateMessage?: (E2E.Message.IRequestLocationUpdateMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -29325,6 +29334,124 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a RequestLocationUpdateMessage. */
+        interface IRequestLocationUpdateMessage {
+
+            /** RequestLocationUpdateMessage key */
+            key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
+
+            /** RequestLocationUpdateMessage updateType */
+            updateType?: (E2E.Message.RequestLocationUpdateMessage.UpdateType|null);
+
+            /** RequestLocationUpdateMessage senderTimestampMs */
+            senderTimestampMs?: (number|Long|null);
+        }
+
+        /** Represents a RequestLocationUpdateMessage. */
+        class RequestLocationUpdateMessage implements IRequestLocationUpdateMessage {
+
+            /**
+             * Constructs a new RequestLocationUpdateMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IRequestLocationUpdateMessage);
+
+            /** RequestLocationUpdateMessage key. */
+            public key?: (SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null);
+
+            /** RequestLocationUpdateMessage updateType. */
+            public updateType: E2E.Message.RequestLocationUpdateMessage.UpdateType;
+
+            /** RequestLocationUpdateMessage senderTimestampMs. */
+            public senderTimestampMs: (number|Long);
+
+            /**
+             * Creates a new RequestLocationUpdateMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns RequestLocationUpdateMessage instance
+             */
+            public static create(properties?: E2E.Message.IRequestLocationUpdateMessage): E2E.Message.RequestLocationUpdateMessage;
+
+            /**
+             * Encodes the specified RequestLocationUpdateMessage message. Does not implicitly {@link E2E.Message.RequestLocationUpdateMessage.verify|verify} messages.
+             * @param message RequestLocationUpdateMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IRequestLocationUpdateMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified RequestLocationUpdateMessage message, length delimited. Does not implicitly {@link E2E.Message.RequestLocationUpdateMessage.verify|verify} messages.
+             * @param message RequestLocationUpdateMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IRequestLocationUpdateMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a RequestLocationUpdateMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns RequestLocationUpdateMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.RequestLocationUpdateMessage;
+
+            /**
+             * Decodes a RequestLocationUpdateMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns RequestLocationUpdateMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.RequestLocationUpdateMessage;
+
+            /**
+             * Verifies a RequestLocationUpdateMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a RequestLocationUpdateMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns RequestLocationUpdateMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.RequestLocationUpdateMessage;
+
+            /**
+             * Creates a plain object from a RequestLocationUpdateMessage message. Also converts values to other types if specified.
+             * @param message RequestLocationUpdateMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.RequestLocationUpdateMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this RequestLocationUpdateMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for RequestLocationUpdateMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace RequestLocationUpdateMessage {
+
+            /** UpdateType enum. */
+            enum UpdateType {
+                UNKNOWN = 0,
+                CANCEL = 1
+            }
         }
 
         /** Properties of a RequestPaymentMessage. */
@@ -52597,7 +52724,8 @@ export namespace Web {
             REACTION = 1,
             EVENT_RESPONSE = 2,
             POLL_UPDATE = 3,
-            PIN_IN_CHAT = 4
+            PIN_IN_CHAT = 4,
+            REQUEST_LOCATION_UPDATE = 5
         }
     }
 
@@ -56878,6 +57006,9 @@ export namespace SyncAction {
 
         /** SyncActionValue bbProPendingCustomerBaseAction */
         bbProPendingCustomerBaseAction?: (SyncAction.SyncActionValue.IBBProPendingCustomerBaseAction|null);
+
+        /** SyncActionValue communityNestingStateAction */
+        communityNestingStateAction?: (SyncAction.SyncActionValue.ICommunityNestingStateAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -57155,6 +57286,9 @@ export namespace SyncAction {
 
         /** SyncActionValue bbProPendingCustomerBaseAction. */
         public bbProPendingCustomerBaseAction?: (SyncAction.SyncActionValue.IBBProPendingCustomerBaseAction|null);
+
+        /** SyncActionValue communityNestingStateAction. */
+        public communityNestingStateAction?: (SyncAction.SyncActionValue.ICommunityNestingStateAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -59474,6 +59608,113 @@ export namespace SyncAction {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a CommunityNestingStateAction. */
+        interface ICommunityNestingStateAction {
+
+            /** CommunityNestingStateAction nestingState */
+            nestingState?: (SyncAction.SyncActionValue.CommunityNestingStateAction.NestingState|null);
+        }
+
+        /** Represents a CommunityNestingStateAction. */
+        class CommunityNestingStateAction implements ICommunityNestingStateAction {
+
+            /**
+             * Constructs a new CommunityNestingStateAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.ICommunityNestingStateAction);
+
+            /** CommunityNestingStateAction nestingState. */
+            public nestingState: SyncAction.SyncActionValue.CommunityNestingStateAction.NestingState;
+
+            /**
+             * Creates a new CommunityNestingStateAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CommunityNestingStateAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.ICommunityNestingStateAction): SyncAction.SyncActionValue.CommunityNestingStateAction;
+
+            /**
+             * Encodes the specified CommunityNestingStateAction message. Does not implicitly {@link SyncAction.SyncActionValue.CommunityNestingStateAction.verify|verify} messages.
+             * @param message CommunityNestingStateAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.ICommunityNestingStateAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CommunityNestingStateAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.CommunityNestingStateAction.verify|verify} messages.
+             * @param message CommunityNestingStateAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.ICommunityNestingStateAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CommunityNestingStateAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CommunityNestingStateAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.CommunityNestingStateAction;
+
+            /**
+             * Decodes a CommunityNestingStateAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CommunityNestingStateAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.CommunityNestingStateAction;
+
+            /**
+             * Verifies a CommunityNestingStateAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CommunityNestingStateAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CommunityNestingStateAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.CommunityNestingStateAction;
+
+            /**
+             * Creates a plain object from a CommunityNestingStateAction message. Also converts values to other types if specified.
+             * @param message CommunityNestingStateAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.CommunityNestingStateAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CommunityNestingStateAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CommunityNestingStateAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace CommunityNestingStateAction {
+
+            /** NestingState enum. */
+            enum NestingState {
+                NESTING_STATE_UNKNOWN = 0,
+                NESTING_STATE_NESTED = 1,
+                NESTING_STATE_UNNESTED = 2
+            }
         }
 
         /** Properties of a ContactAction. */
@@ -68406,6 +68647,7 @@ export namespace SyncAction {
         BUSINESS_FOLDER_ACTIVATION_ACTION = 96,
         GROUP_HISTORY_TOGGLE_ACTION = 97,
         BB_PRO_PENDING_CUSTOMER_BASE_ACTION = 98,
+        COMMUNITY_NESTING_STATE_ACTION = 99,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

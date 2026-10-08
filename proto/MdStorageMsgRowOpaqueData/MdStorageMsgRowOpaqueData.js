@@ -16247,6 +16247,7 @@ $root.E2E = (function() {
                 case 19:
                 case 20:
                 case 21:
+                case 22:
                     break;
                 }
             if (message.parentMessageKey != null && Object.hasOwnProperty.call(message, "parentMessageKey")) {
@@ -16373,6 +16374,10 @@ $root.E2E = (function() {
             case 21:
                 message.associationType = 21;
                 break;
+            case "STREAMED_HD_VIDEO_DUAL_UPLOAD":
+            case 22:
+                message.associationType = 22;
+                break;
             }
             if (object.parentMessageKey != null) {
                 if (!$util.isObject(object.parentMessageKey))
@@ -16467,6 +16472,7 @@ $root.E2E = (function() {
          * @property {number} HEVC_VIDEO_DUAL_UPLOAD=19 HEVC_VIDEO_DUAL_UPLOAD value
          * @property {number} POLL_ADD_OPTION=20 POLL_ADD_OPTION value
          * @property {number} AV1_VIDEO_DUAL_UPLOAD=21 AV1_VIDEO_DUAL_UPLOAD value
+         * @property {number} STREAMED_HD_VIDEO_DUAL_UPLOAD=22 STREAMED_HD_VIDEO_DUAL_UPLOAD value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -16492,6 +16498,7 @@ $root.E2E = (function() {
             values[valuesById[19] = "HEVC_VIDEO_DUAL_UPLOAD"] = 19;
             values[valuesById[20] = "POLL_ADD_OPTION"] = 20;
             values[valuesById[21] = "AV1_VIDEO_DUAL_UPLOAD"] = 21;
+            values[valuesById[22] = "STREAMED_HD_VIDEO_DUAL_UPLOAD"] = 22;
             return values;
         })();
 
@@ -17848,6 +17855,8 @@ $root.E2E = (function() {
                 case 8:
                 case 9:
                 case 10:
+                case 11:
+                case 12:
                     break;
                 }
             if (message.rankingVersion != null && Object.hasOwnProperty.call(message, "rankingVersion"))
@@ -18225,6 +18234,14 @@ $root.E2E = (function() {
             case "AV1_VIDEO_CHILD":
             case 10:
                 message.pairedMediaType = 10;
+                break;
+            case "STREAMED_VIDEO_PARENT":
+            case 11:
+                message.pairedMediaType = 11;
+                break;
+            case "STREAMED_VIDEO_CHILD":
+            case 12:
+                message.pairedMediaType = 12;
                 break;
             }
             if (object.rankingVersion != null)
@@ -23742,6 +23759,8 @@ $root.E2E = (function() {
          * @property {number} HEVC_VIDEO_CHILD=8 HEVC_VIDEO_CHILD value
          * @property {number} AV1_VIDEO_PARENT=9 AV1_VIDEO_PARENT value
          * @property {number} AV1_VIDEO_CHILD=10 AV1_VIDEO_CHILD value
+         * @property {number} STREAMED_VIDEO_PARENT=11 STREAMED_VIDEO_PARENT value
+         * @property {number} STREAMED_VIDEO_CHILD=12 STREAMED_VIDEO_CHILD value
          */
         ContextInfo.PairedMediaType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -23756,6 +23775,8 @@ $root.E2E = (function() {
             values[valuesById[8] = "HEVC_VIDEO_CHILD"] = 8;
             values[valuesById[9] = "AV1_VIDEO_PARENT"] = 9;
             values[valuesById[10] = "AV1_VIDEO_CHILD"] = 10;
+            values[valuesById[11] = "STREAMED_VIDEO_PARENT"] = 11;
+            values[valuesById[12] = "STREAMED_VIDEO_CHILD"] = 12;
             return values;
         })();
 
@@ -25368,6 +25389,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IImageMessage|null} [instantImageMessage] Message instantImageMessage
          * @property {E2E.Message.IRequestLocationMessage|null} [requestLocationMessage] Message requestLocationMessage
          * @property {E2E.Message.IFutureProofMessage|null} [botGroupParticipantMessage] Message botGroupParticipantMessage
+         * @property {E2E.Message.IRequestLocationUpdateMessage|null} [requestLocationUpdateMessage] Message requestLocationUpdateMessage
          */
 
         /**
@@ -26314,6 +26336,14 @@ $root.E2E = (function() {
         Message.prototype.botGroupParticipantMessage = null;
 
         /**
+         * Message requestLocationUpdateMessage.
+         * @member {E2E.Message.IRequestLocationUpdateMessage|null|undefined} requestLocationUpdateMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.requestLocationUpdateMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -26573,6 +26603,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.RequestLocationMessage.encode(message.requestLocationMessage, writer.uint32(/* id 136, wireType 2 =*/1090).fork(), q + 1).ldelim();
             if (message.botGroupParticipantMessage != null && Object.hasOwnProperty.call(message, "botGroupParticipantMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.botGroupParticipantMessage, writer.uint32(/* id 137, wireType 2 =*/1098).fork(), q + 1).ldelim();
+            if (message.requestLocationUpdateMessage != null && Object.hasOwnProperty.call(message, "requestLocationUpdateMessage"))
+                $root.E2E.Message.RequestLocationUpdateMessage.encode(message.requestLocationUpdateMessage, writer.uint32(/* id 138, wireType 2 =*/1106).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -27085,6 +27117,10 @@ $root.E2E = (function() {
                     }
                 case 137: {
                         message.botGroupParticipantMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 138: {
+                        message.requestLocationUpdateMessage = $root.E2E.Message.RequestLocationUpdateMessage.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -27709,6 +27745,11 @@ $root.E2E = (function() {
                 if (error)
                     return "botGroupParticipantMessage." + error;
             }
+            if (message.requestLocationUpdateMessage != null && Object.hasOwnProperty.call(message, "requestLocationUpdateMessage")) {
+                var error = $root.E2E.Message.RequestLocationUpdateMessage.verify(message.requestLocationUpdateMessage, long + 1);
+                if (error)
+                    return "requestLocationUpdateMessage." + error;
+            }
             return null;
         };
 
@@ -28307,6 +28348,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.botGroupParticipantMessage: object expected");
                 message.botGroupParticipantMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.botGroupParticipantMessage, long + 1);
             }
+            if (object.requestLocationUpdateMessage != null) {
+                if (!$util.isObject(object.requestLocationUpdateMessage))
+                    throw TypeError(".E2E.Message.requestLocationUpdateMessage: object expected");
+                message.requestLocationUpdateMessage = $root.E2E.Message.RequestLocationUpdateMessage.fromObject(object.requestLocationUpdateMessage, long + 1);
+            }
             return message;
         };
 
@@ -28444,6 +28490,7 @@ $root.E2E = (function() {
                 object.instantImageMessage = null;
                 object.requestLocationMessage = null;
                 object.botGroupParticipantMessage = null;
+                object.requestLocationUpdateMessage = null;
             }
             if (message.conversation != null && Object.hasOwnProperty.call(message, "conversation"))
                 object.conversation = message.conversation;
@@ -28677,6 +28724,8 @@ $root.E2E = (function() {
                 object.requestLocationMessage = $root.E2E.Message.RequestLocationMessage.toObject(message.requestLocationMessage, options, q + 1);
             if (message.botGroupParticipantMessage != null && Object.hasOwnProperty.call(message, "botGroupParticipantMessage"))
                 object.botGroupParticipantMessage = $root.E2E.Message.FutureProofMessage.toObject(message.botGroupParticipantMessage, options, q + 1);
+            if (message.requestLocationUpdateMessage != null && Object.hasOwnProperty.call(message, "requestLocationUpdateMessage"))
+                object.requestLocationUpdateMessage = $root.E2E.Message.RequestLocationUpdateMessage.toObject(message.requestLocationUpdateMessage, options, q + 1);
             return object;
         };
 
@@ -83894,6 +83943,349 @@ $root.E2E = (function() {
             };
 
             return RequestLocationMessage;
+        })();
+
+        Message.RequestLocationUpdateMessage = (function() {
+
+            /**
+             * Properties of a RequestLocationUpdateMessage.
+             * @memberof E2E.Message
+             * @interface IRequestLocationUpdateMessage
+             * @property {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null} [key] RequestLocationUpdateMessage key
+             * @property {E2E.Message.RequestLocationUpdateMessage.UpdateType|null} [updateType] RequestLocationUpdateMessage updateType
+             * @property {number|Long|null} [senderTimestampMs] RequestLocationUpdateMessage senderTimestampMs
+             */
+
+            /**
+             * Constructs a new RequestLocationUpdateMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a RequestLocationUpdateMessage.
+             * @implements IRequestLocationUpdateMessage
+             * @constructor
+             * @param {E2E.Message.IRequestLocationUpdateMessage=} [properties] Properties to set
+             */
+            function RequestLocationUpdateMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * RequestLocationUpdateMessage key.
+             * @member {SignalLocalStorageProtocol.SessionStructure.Chain.IMessageKey|null|undefined} key
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @instance
+             */
+            RequestLocationUpdateMessage.prototype.key = null;
+
+            /**
+             * RequestLocationUpdateMessage updateType.
+             * @member {E2E.Message.RequestLocationUpdateMessage.UpdateType} updateType
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @instance
+             */
+            RequestLocationUpdateMessage.prototype.updateType = 0;
+
+            /**
+             * RequestLocationUpdateMessage senderTimestampMs.
+             * @member {number|Long} senderTimestampMs
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @instance
+             */
+            RequestLocationUpdateMessage.prototype.senderTimestampMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * Creates a new RequestLocationUpdateMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {E2E.Message.IRequestLocationUpdateMessage=} [properties] Properties to set
+             * @returns {E2E.Message.RequestLocationUpdateMessage} RequestLocationUpdateMessage instance
+             */
+            RequestLocationUpdateMessage.create = function create(properties) {
+                return new RequestLocationUpdateMessage(properties);
+            };
+
+            /**
+             * Encodes the specified RequestLocationUpdateMessage message. Does not implicitly {@link E2E.Message.RequestLocationUpdateMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {E2E.Message.IRequestLocationUpdateMessage} message RequestLocationUpdateMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            RequestLocationUpdateMessage.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                if (message.updateType != null && Object.hasOwnProperty.call(message, "updateType"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.updateType);
+                if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.senderTimestampMs);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified RequestLocationUpdateMessage message, length delimited. Does not implicitly {@link E2E.Message.RequestLocationUpdateMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {E2E.Message.IRequestLocationUpdateMessage} message RequestLocationUpdateMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            RequestLocationUpdateMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a RequestLocationUpdateMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.RequestLocationUpdateMessage} RequestLocationUpdateMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            RequestLocationUpdateMessage.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.E2E.Message.RequestLocationUpdateMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
+                    case 2: {
+                            message.updateType = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.senderTimestampMs = reader.int64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a RequestLocationUpdateMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.RequestLocationUpdateMessage} RequestLocationUpdateMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            RequestLocationUpdateMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a RequestLocationUpdateMessage message.
+             * @function verify
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            RequestLocationUpdateMessage.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.key != null && Object.hasOwnProperty.call(message, "key")) {
+                    var error = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.verify(message.key, long + 1);
+                    if (error)
+                        return "key." + error;
+                }
+                if (message.updateType != null && Object.hasOwnProperty.call(message, "updateType"))
+                    switch (message.updateType) {
+                    default:
+                        return "updateType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
+                    if (!$util.isInteger(message.senderTimestampMs) && !(message.senderTimestampMs && $util.isInteger(message.senderTimestampMs.low) && $util.isInteger(message.senderTimestampMs.high)))
+                        return "senderTimestampMs: integer|Long expected";
+                return null;
+            };
+
+            /**
+             * Creates a RequestLocationUpdateMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.RequestLocationUpdateMessage} RequestLocationUpdateMessage
+             */
+            RequestLocationUpdateMessage.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.E2E.Message.RequestLocationUpdateMessage)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.RequestLocationUpdateMessage: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.E2E.Message.RequestLocationUpdateMessage();
+                if (object.key != null) {
+                    if (!$util.isObject(object.key))
+                        throw TypeError(".E2E.Message.RequestLocationUpdateMessage.key: object expected");
+                    message.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.key, long + 1);
+                }
+                switch (object.updateType) {
+                default:
+                    if (typeof object.updateType === "number") {
+                        message.updateType = object.updateType;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.updateType = 0;
+                    break;
+                case "CANCEL":
+                case 1:
+                    message.updateType = 1;
+                    break;
+                }
+                if (object.senderTimestampMs != null)
+                    if ($util.Long)
+                        message.senderTimestampMs = $util.Long.fromValue(object.senderTimestampMs, false);
+                    else if (typeof object.senderTimestampMs === "string")
+                        message.senderTimestampMs = parseInt(object.senderTimestampMs, 10);
+                    else if (typeof object.senderTimestampMs === "number")
+                        message.senderTimestampMs = object.senderTimestampMs;
+                    else if (typeof object.senderTimestampMs === "object")
+                        message.senderTimestampMs = new $util.LongBits(object.senderTimestampMs.low >>> 0, object.senderTimestampMs.high >>> 0).toNumber();
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a RequestLocationUpdateMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {E2E.Message.RequestLocationUpdateMessage} message RequestLocationUpdateMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            RequestLocationUpdateMessage.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    object.key = null;
+                    object.updateType = options.enums === String ? "UNKNOWN" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                    } else
+                        object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                }
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                    object.key = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.key, options, q + 1);
+                if (message.updateType != null && Object.hasOwnProperty.call(message, "updateType"))
+                    object.updateType = options.enums === String ? $root.E2E.Message.RequestLocationUpdateMessage.UpdateType[message.updateType] === undefined ? message.updateType : $root.E2E.Message.RequestLocationUpdateMessage.UpdateType[message.updateType] : message.updateType;
+                if (message.senderTimestampMs != null && Object.hasOwnProperty.call(message, "senderTimestampMs"))
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.senderTimestampMs === "number")
+                        object.senderTimestampMs = options.longs === String ? String(message.senderTimestampMs) : message.senderTimestampMs;
+                    else
+                        object.senderTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0).toNumber() : message.senderTimestampMs;
+                return object;
+            };
+
+            /**
+             * Converts this RequestLocationUpdateMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            RequestLocationUpdateMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for RequestLocationUpdateMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.RequestLocationUpdateMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            RequestLocationUpdateMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.RequestLocationUpdateMessage";
+            };
+
+            /**
+             * UpdateType enum.
+             * @name E2E.Message.RequestLocationUpdateMessage.UpdateType
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} CANCEL=1 CANCEL value
+             */
+            RequestLocationUpdateMessage.UpdateType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "CANCEL"] = 1;
+                return values;
+            })();
+
+            return RequestLocationUpdateMessage;
         })();
 
         Message.RequestPaymentMessage = (function() {
