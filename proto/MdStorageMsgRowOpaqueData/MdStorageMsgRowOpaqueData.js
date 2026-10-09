@@ -126329,6 +126329,7 @@ $root.AICommon = (function() {
                     case 78:
                     case 79:
                     case 80:
+                    case 81:
                         break;
                     }
             }
@@ -126688,6 +126689,10 @@ $root.AICommon = (function() {
                     case 80:
                         message.capabilities[i] = 80;
                         break;
+                    case "AI_MUSE_JARVIS_SCHEMA_ENABLED":
+                    case 81:
+                        message.capabilities[i] = 81;
+                        break;
                     }
             }
             return message;
@@ -126831,6 +126836,7 @@ $root.AICommon = (function() {
          * @property {number} HATCH_BROWSER_TASK_CARD_ENABLED=78 HATCH_BROWSER_TASK_CARD_ENABLED value
          * @property {number} HATCH_ARTIFACT_CARD_ENABLED=79 HATCH_ARTIFACT_CARD_ENABLED value
          * @property {number} AI_STUDY_CENTER_ENABLED=80 AI_STUDY_CENTER_ENABLED value
+         * @property {number} AI_MUSE_JARVIS_SCHEMA_ENABLED=81 AI_MUSE_JARVIS_SCHEMA_ENABLED value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -126915,6 +126921,7 @@ $root.AICommon = (function() {
             values[valuesById[78] = "HATCH_BROWSER_TASK_CARD_ENABLED"] = 78;
             values[valuesById[79] = "HATCH_ARTIFACT_CARD_ENABLED"] = 79;
             values[valuesById[80] = "AI_STUDY_CENTER_ENABLED"] = 80;
+            values[valuesById[81] = "AI_MUSE_JARVIS_SCHEMA_ENABLED"] = 81;
             return values;
         })();
 
