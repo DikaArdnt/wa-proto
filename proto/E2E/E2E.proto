@@ -1583,6 +1583,8 @@ message Message {
         enum MusicMessageStyle {
             UNKNOWN = 0;
             VINYL = 1;
+            MESSAGE_BUBBLE = 2;
+            LYRICS = 3;
         }
     }
     message NewsletterAdminInviteMessage {

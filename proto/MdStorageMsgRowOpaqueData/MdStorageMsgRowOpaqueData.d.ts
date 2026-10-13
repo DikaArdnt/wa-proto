@@ -20426,7 +20426,9 @@ export namespace E2E {
             /** MusicMessageStyle enum. */
             enum MusicMessageStyle {
                 UNKNOWN = 0,
-                VINYL = 1
+                VINYL = 1,
+                MESSAGE_BUBBLE = 2,
+                LYRICS = 3
             }
         }
 

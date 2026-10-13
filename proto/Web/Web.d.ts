@@ -4507,7 +4507,11 @@ export namespace Web {
             PENDING_INVITE_CREATED = 266,
             CAMEO_CHAT_EXPIRED = 267,
             GROUP_PUSHNAME_SHARED = 270,
-            BIZ_POST_SEND_OPT_OUT = 271
+            BIZ_POST_SEND_OPT_OUT = 271,
+            CHAT_WITH_BUSINESS_IN_DIRECTORY = 283,
+            META_AI_THREAD_CREATED = 284,
+            META_AI_CONNECTOR_LINKED = 285,
+            SPLIT_PAYMENT_MARKED_AS_PAID = 289
         }
     }
 }
@@ -23843,7 +23847,9 @@ export namespace E2E {
             /** MusicMessageStyle enum. */
             enum MusicMessageStyle {
                 UNKNOWN = 0,
-                VINYL = 1
+                VINYL = 1,
+                MESSAGE_BUBBLE = 2,
+                LYRICS = 3
             }
         }
 

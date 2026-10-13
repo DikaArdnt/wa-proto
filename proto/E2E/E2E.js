@@ -59809,11 +59809,15 @@ $root.E2E = (function() {
              * @enum {number}
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} VINYL=1 VINYL value
+             * @property {number} MESSAGE_BUBBLE=2 MESSAGE_BUBBLE value
+             * @property {number} LYRICS=3 LYRICS value
              */
             MusicMessage.MusicMessageStyle = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "VINYL"] = 1;
+                values[valuesById[2] = "MESSAGE_BUBBLE"] = 2;
+                values[valuesById[3] = "LYRICS"] = 3;
                 return values;
             })();
 

@@ -69934,11 +69934,15 @@ $root.E2E = (function() {
              * @enum {number}
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} VINYL=1 VINYL value
+             * @property {number} MESSAGE_BUBBLE=2 MESSAGE_BUBBLE value
+             * @property {number} LYRICS=3 LYRICS value
              */
             MusicMessage.MusicMessageStyle = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "VINYL"] = 1;
+                values[valuesById[2] = "MESSAGE_BUBBLE"] = 2;
+                values[valuesById[3] = "LYRICS"] = 3;
                 return values;
             })();
 
@@ -171522,6 +171526,10 @@ $root.Web = (function() {
                 case 267:
                 case 270:
                 case 271:
+                case 283:
+                case 284:
+                case 285:
+                case 289:
                     break;
                 }
             if (message.clearMedia != null && Object.hasOwnProperty.call(message, "clearMedia"))
@@ -172934,6 +172942,22 @@ $root.Web = (function() {
             case 271:
                 message.messageStubType = 271;
                 break;
+            case "CHAT_WITH_BUSINESS_IN_DIRECTORY":
+            case 283:
+                message.messageStubType = 283;
+                break;
+            case "META_AI_THREAD_CREATED":
+            case 284:
+                message.messageStubType = 284;
+                break;
+            case "META_AI_CONNECTOR_LINKED":
+            case 285:
+                message.messageStubType = 285;
+                break;
+            case "SPLIT_PAYMENT_MARKED_AS_PAID":
+            case 289:
+                message.messageStubType = 289;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -173922,6 +173946,10 @@ $root.Web = (function() {
          * @property {number} CAMEO_CHAT_EXPIRED=267 CAMEO_CHAT_EXPIRED value
          * @property {number} GROUP_PUSHNAME_SHARED=270 GROUP_PUSHNAME_SHARED value
          * @property {number} BIZ_POST_SEND_OPT_OUT=271 BIZ_POST_SEND_OPT_OUT value
+         * @property {number} CHAT_WITH_BUSINESS_IN_DIRECTORY=283 CHAT_WITH_BUSINESS_IN_DIRECTORY value
+         * @property {number} META_AI_THREAD_CREATED=284 META_AI_THREAD_CREATED value
+         * @property {number} META_AI_CONNECTOR_LINKED=285 META_AI_CONNECTOR_LINKED value
+         * @property {number} SPLIT_PAYMENT_MARKED_AS_PAID=289 SPLIT_PAYMENT_MARKED_AS_PAID value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -174180,6 +174208,10 @@ $root.Web = (function() {
             values[valuesById[267] = "CAMEO_CHAT_EXPIRED"] = 267;
             values[valuesById[270] = "GROUP_PUSHNAME_SHARED"] = 270;
             values[valuesById[271] = "BIZ_POST_SEND_OPT_OUT"] = 271;
+            values[valuesById[283] = "CHAT_WITH_BUSINESS_IN_DIRECTORY"] = 283;
+            values[valuesById[284] = "META_AI_THREAD_CREATED"] = 284;
+            values[valuesById[285] = "META_AI_CONNECTOR_LINKED"] = 285;
+            values[valuesById[289] = "SPLIT_PAYMENT_MARKED_AS_PAID"] = 289;
             return values;
         })();
 
