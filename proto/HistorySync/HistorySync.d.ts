@@ -50184,7 +50184,8 @@ export namespace CompanionReg {
             WASS = 26,
             BUSINESS_BACK_OFFICE = 27,
             WAIL_WAI = 28,
-            WAIL_ALEXA = 29
+            WAIL_ALEXA = 29,
+            AUTOMOTIVE = 30
         }
     }
 }
@@ -56442,6 +56443,7 @@ export namespace Web {
             CAMEO_CHAT_EXPIRED = 267,
             GROUP_PUSHNAME_SHARED = 270,
             BIZ_POST_SEND_OPT_OUT = 271,
+            BB_PRO_BROADCAST_CHAT_CARD = 272,
             CHAT_WITH_BUSINESS_IN_DIRECTORY = 283,
             META_AI_THREAD_CREATED = 284,
             META_AI_CONNECTOR_LINKED = 285,

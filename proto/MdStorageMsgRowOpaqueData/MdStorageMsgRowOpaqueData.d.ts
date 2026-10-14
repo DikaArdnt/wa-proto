@@ -48127,7 +48127,8 @@ export namespace CompanionReg {
             WASS = 26,
             BUSINESS_BACK_OFFICE = 27,
             WAIL_WAI = 28,
-            WAIL_ALEXA = 29
+            WAIL_ALEXA = 29,
+            AUTOMOTIVE = 30
         }
     }
 }
