@@ -41825,7 +41825,8 @@ export namespace AICommon {
             HATCH_BROWSER_TASK_CARD_ENABLED = 78,
             HATCH_ARTIFACT_CARD_ENABLED = 79,
             AI_STUDY_CENTER_ENABLED = 80,
-            AI_MUSE_JARVIS_SCHEMA_ENABLED = 81
+            AI_MUSE_JARVIS_SCHEMA_ENABLED = 81,
+            AI_STUDY_QUIZ_ENABLED = 82
         }
     }
 
@@ -44814,7 +44815,8 @@ export namespace AICommon {
         CHATLIST_SEARCH = 55,
         NEW_CHAT_LIST = 56,
         CONTACTS_TAB = 57,
-        NEW_3P_AGENT_CREATION = 58
+        NEW_3P_AGENT_CREATION = 58,
+        SHARE = 59
     }
 }
 

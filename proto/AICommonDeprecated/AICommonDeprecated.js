@@ -9857,6 +9857,7 @@ $root.AICommon = (function() {
                 case 56:
                 case 57:
                 case 58:
+                case 59:
                     break;
                 }
             if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
@@ -10089,6 +10090,10 @@ $root.AICommon = (function() {
             case "NEW_3P_AGENT_CREATION":
             case 58:
                 message.botEntryPointOrigin = 58;
+                break;
+            case "SHARE":
+            case 59:
+                message.botEntryPointOrigin = 59;
                 break;
             }
             if (object.forwardScore != null)
@@ -24460,6 +24465,7 @@ $root.AICommon = (function() {
                     case 79:
                     case 80:
                     case 81:
+                    case 82:
                         break;
                     }
             }
@@ -24823,6 +24829,10 @@ $root.AICommon = (function() {
                     case 81:
                         message.capabilities[i] = 81;
                         break;
+                    case "AI_STUDY_QUIZ_ENABLED":
+                    case 82:
+                        message.capabilities[i] = 82;
+                        break;
                     }
             }
             return message;
@@ -24967,6 +24977,7 @@ $root.AICommon = (function() {
          * @property {number} HATCH_ARTIFACT_CARD_ENABLED=79 HATCH_ARTIFACT_CARD_ENABLED value
          * @property {number} AI_STUDY_CENTER_ENABLED=80 AI_STUDY_CENTER_ENABLED value
          * @property {number} AI_MUSE_JARVIS_SCHEMA_ENABLED=81 AI_MUSE_JARVIS_SCHEMA_ENABLED value
+         * @property {number} AI_STUDY_QUIZ_ENABLED=82 AI_STUDY_QUIZ_ENABLED value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -25052,6 +25063,7 @@ $root.AICommon = (function() {
             values[valuesById[79] = "HATCH_ARTIFACT_CARD_ENABLED"] = 79;
             values[valuesById[80] = "AI_STUDY_CENTER_ENABLED"] = 80;
             values[valuesById[81] = "AI_MUSE_JARVIS_SCHEMA_ENABLED"] = 81;
+            values[valuesById[82] = "AI_STUDY_QUIZ_ENABLED"] = 82;
             return values;
         })();
 
@@ -28951,6 +28963,7 @@ $root.AICommon = (function() {
                 case 56:
                 case 57:
                 case 58:
+                case 59:
                     break;
                 }
             if (message.threadOrigin != null && Object.hasOwnProperty.call(message, "threadOrigin"))
@@ -29193,6 +29206,10 @@ $root.AICommon = (function() {
             case "NEW_3P_AGENT_CREATION":
             case 58:
                 message.destinationEntryPoint = 58;
+                break;
+            case "SHARE":
+            case 59:
+                message.destinationEntryPoint = 59;
                 break;
             }
             switch (object.threadOrigin) {
@@ -33978,6 +33995,7 @@ $root.AICommon = (function() {
      * @property {number} NEW_CHAT_LIST=56 NEW_CHAT_LIST value
      * @property {number} CONTACTS_TAB=57 CONTACTS_TAB value
      * @property {number} NEW_3P_AGENT_CREATION=58 NEW_3P_AGENT_CREATION value
+     * @property {number} SHARE=59 SHARE value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -34031,6 +34049,7 @@ $root.AICommon = (function() {
         values[valuesById[56] = "NEW_CHAT_LIST"] = 56;
         values[valuesById[57] = "CONTACTS_TAB"] = 57;
         values[valuesById[58] = "NEW_3P_AGENT_CREATION"] = 58;
+        values[valuesById[59] = "SHARE"] = 59;
         return values;
     })();
 

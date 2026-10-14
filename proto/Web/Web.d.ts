@@ -4509,6 +4509,11 @@ export namespace Web {
             GROUP_PUSHNAME_SHARED = 270,
             BIZ_POST_SEND_OPT_OUT = 271,
             BB_PRO_BROADCAST_CHAT_CARD = 272,
+            BOT_PROACTIVE_MESSAGE_ENABLED = 273,
+            BOT_PROACTIVE_MESSAGE_DISABLED = 274,
+            BOT_PROACTIVE_MESSAGE_FIRST_TIME = 275,
+            DYNAMIC_AUDIENCE_LIST_CREATE = 276,
+            DYNAMIC_AUDIENCE_LIST_UPDATE_LINK = 277,
             CHAT_WITH_BUSINESS_IN_DIRECTORY = 283,
             META_AI_THREAD_CREATED = 284,
             META_AI_CONNECTOR_LINKED = 285,
@@ -45247,7 +45252,8 @@ export namespace AICommon {
             HATCH_BROWSER_TASK_CARD_ENABLED = 78,
             HATCH_ARTIFACT_CARD_ENABLED = 79,
             AI_STUDY_CENTER_ENABLED = 80,
-            AI_MUSE_JARVIS_SCHEMA_ENABLED = 81
+            AI_MUSE_JARVIS_SCHEMA_ENABLED = 81,
+            AI_STUDY_QUIZ_ENABLED = 82
         }
     }
 
@@ -48236,7 +48242,8 @@ export namespace AICommon {
         CHATLIST_SEARCH = 55,
         NEW_CHAT_LIST = 56,
         CONTACTS_TAB = 57,
-        NEW_3P_AGENT_CREATION = 58
+        NEW_3P_AGENT_CREATION = 58,
+        SHARE = 59
     }
 }
 

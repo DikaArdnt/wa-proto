@@ -118276,6 +118276,7 @@ $root.AICommon = (function() {
                 case 56:
                 case 57:
                 case 58:
+                case 59:
                     break;
                 }
             if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
@@ -118508,6 +118509,10 @@ $root.AICommon = (function() {
             case "NEW_3P_AGENT_CREATION":
             case 58:
                 message.botEntryPointOrigin = 58;
+                break;
+            case "SHARE":
+            case 59:
+                message.botEntryPointOrigin = 59;
                 break;
             }
             if (object.forwardScore != null)
@@ -132879,6 +132884,7 @@ $root.AICommon = (function() {
                     case 79:
                     case 80:
                     case 81:
+                    case 82:
                         break;
                     }
             }
@@ -133242,6 +133248,10 @@ $root.AICommon = (function() {
                     case 81:
                         message.capabilities[i] = 81;
                         break;
+                    case "AI_STUDY_QUIZ_ENABLED":
+                    case 82:
+                        message.capabilities[i] = 82;
+                        break;
                     }
             }
             return message;
@@ -133386,6 +133396,7 @@ $root.AICommon = (function() {
          * @property {number} HATCH_ARTIFACT_CARD_ENABLED=79 HATCH_ARTIFACT_CARD_ENABLED value
          * @property {number} AI_STUDY_CENTER_ENABLED=80 AI_STUDY_CENTER_ENABLED value
          * @property {number} AI_MUSE_JARVIS_SCHEMA_ENABLED=81 AI_MUSE_JARVIS_SCHEMA_ENABLED value
+         * @property {number} AI_STUDY_QUIZ_ENABLED=82 AI_STUDY_QUIZ_ENABLED value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -133471,6 +133482,7 @@ $root.AICommon = (function() {
             values[valuesById[79] = "HATCH_ARTIFACT_CARD_ENABLED"] = 79;
             values[valuesById[80] = "AI_STUDY_CENTER_ENABLED"] = 80;
             values[valuesById[81] = "AI_MUSE_JARVIS_SCHEMA_ENABLED"] = 81;
+            values[valuesById[82] = "AI_STUDY_QUIZ_ENABLED"] = 82;
             return values;
         })();
 
@@ -137370,6 +137382,7 @@ $root.AICommon = (function() {
                 case 56:
                 case 57:
                 case 58:
+                case 59:
                     break;
                 }
             if (message.threadOrigin != null && Object.hasOwnProperty.call(message, "threadOrigin"))
@@ -137612,6 +137625,10 @@ $root.AICommon = (function() {
             case "NEW_3P_AGENT_CREATION":
             case 58:
                 message.destinationEntryPoint = 58;
+                break;
+            case "SHARE":
+            case 59:
+                message.destinationEntryPoint = 59;
                 break;
             }
             switch (object.threadOrigin) {
@@ -142397,6 +142414,7 @@ $root.AICommon = (function() {
      * @property {number} NEW_CHAT_LIST=56 NEW_CHAT_LIST value
      * @property {number} CONTACTS_TAB=57 CONTACTS_TAB value
      * @property {number} NEW_3P_AGENT_CREATION=58 NEW_3P_AGENT_CREATION value
+     * @property {number} SHARE=59 SHARE value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -142450,6 +142468,7 @@ $root.AICommon = (function() {
         values[valuesById[56] = "NEW_CHAT_LIST"] = 56;
         values[valuesById[57] = "CONTACTS_TAB"] = 57;
         values[valuesById[58] = "NEW_3P_AGENT_CREATION"] = 58;
+        values[valuesById[59] = "SHARE"] = 59;
         return values;
     })();
 
@@ -171539,6 +171558,11 @@ $root.Web = (function() {
                 case 270:
                 case 271:
                 case 272:
+                case 273:
+                case 274:
+                case 275:
+                case 276:
+                case 277:
                 case 283:
                 case 284:
                 case 285:
@@ -172959,6 +172983,26 @@ $root.Web = (function() {
             case 272:
                 message.messageStubType = 272;
                 break;
+            case "BOT_PROACTIVE_MESSAGE_ENABLED":
+            case 273:
+                message.messageStubType = 273;
+                break;
+            case "BOT_PROACTIVE_MESSAGE_DISABLED":
+            case 274:
+                message.messageStubType = 274;
+                break;
+            case "BOT_PROACTIVE_MESSAGE_FIRST_TIME":
+            case 275:
+                message.messageStubType = 275;
+                break;
+            case "DYNAMIC_AUDIENCE_LIST_CREATE":
+            case 276:
+                message.messageStubType = 276;
+                break;
+            case "DYNAMIC_AUDIENCE_LIST_UPDATE_LINK":
+            case 277:
+                message.messageStubType = 277;
+                break;
             case "CHAT_WITH_BUSINESS_IN_DIRECTORY":
             case 283:
                 message.messageStubType = 283;
@@ -173964,6 +174008,11 @@ $root.Web = (function() {
          * @property {number} GROUP_PUSHNAME_SHARED=270 GROUP_PUSHNAME_SHARED value
          * @property {number} BIZ_POST_SEND_OPT_OUT=271 BIZ_POST_SEND_OPT_OUT value
          * @property {number} BB_PRO_BROADCAST_CHAT_CARD=272 BB_PRO_BROADCAST_CHAT_CARD value
+         * @property {number} BOT_PROACTIVE_MESSAGE_ENABLED=273 BOT_PROACTIVE_MESSAGE_ENABLED value
+         * @property {number} BOT_PROACTIVE_MESSAGE_DISABLED=274 BOT_PROACTIVE_MESSAGE_DISABLED value
+         * @property {number} BOT_PROACTIVE_MESSAGE_FIRST_TIME=275 BOT_PROACTIVE_MESSAGE_FIRST_TIME value
+         * @property {number} DYNAMIC_AUDIENCE_LIST_CREATE=276 DYNAMIC_AUDIENCE_LIST_CREATE value
+         * @property {number} DYNAMIC_AUDIENCE_LIST_UPDATE_LINK=277 DYNAMIC_AUDIENCE_LIST_UPDATE_LINK value
          * @property {number} CHAT_WITH_BUSINESS_IN_DIRECTORY=283 CHAT_WITH_BUSINESS_IN_DIRECTORY value
          * @property {number} META_AI_THREAD_CREATED=284 META_AI_THREAD_CREATED value
          * @property {number} META_AI_CONNECTOR_LINKED=285 META_AI_CONNECTOR_LINKED value
@@ -174227,6 +174276,11 @@ $root.Web = (function() {
             values[valuesById[270] = "GROUP_PUSHNAME_SHARED"] = 270;
             values[valuesById[271] = "BIZ_POST_SEND_OPT_OUT"] = 271;
             values[valuesById[272] = "BB_PRO_BROADCAST_CHAT_CARD"] = 272;
+            values[valuesById[273] = "BOT_PROACTIVE_MESSAGE_ENABLED"] = 273;
+            values[valuesById[274] = "BOT_PROACTIVE_MESSAGE_DISABLED"] = 274;
+            values[valuesById[275] = "BOT_PROACTIVE_MESSAGE_FIRST_TIME"] = 275;
+            values[valuesById[276] = "DYNAMIC_AUDIENCE_LIST_CREATE"] = 276;
+            values[valuesById[277] = "DYNAMIC_AUDIENCE_LIST_UPDATE_LINK"] = 277;
             values[valuesById[283] = "CHAT_WITH_BUSINESS_IN_DIRECTORY"] = 283;
             values[valuesById[284] = "META_AI_THREAD_CREATED"] = 284;
             values[valuesById[285] = "META_AI_CONNECTOR_LINKED"] = 285;
