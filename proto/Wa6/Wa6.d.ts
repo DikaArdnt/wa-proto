@@ -1117,7 +1117,8 @@ export namespace Wa6 {
                 AR_WRIST = 37,
                 WAIL = 38,
                 WORK_ANDROID = 39,
-                WORK_IOS = 40
+                WORK_IOS = 40,
+                AUTOMOTIVE = 41
             }
 
             /** ReleaseChannel enum. */

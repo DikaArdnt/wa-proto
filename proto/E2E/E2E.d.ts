@@ -39116,7 +39116,8 @@ export namespace AICommon {
 
         /** BotMessageOriginType enum. */
         enum BotMessageOriginType {
-            BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED = 0
+            BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED = 0,
+            BOT_MESSAGE_ORIGIN_TYPE_META_AI_THREAD_WELCOME = 1
         }
     }
 

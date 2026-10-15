@@ -14576,6 +14576,7 @@ $root.AICommon = (function() {
                 default:
                     return "type: enum value expected";
                 case 0:
+                case 1:
                     break;
                 }
             return null;
@@ -14609,6 +14610,10 @@ $root.AICommon = (function() {
             case "BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED":
             case 0:
                 message.type = 0;
+                break;
+            case "BOT_MESSAGE_ORIGIN_TYPE_META_AI_THREAD_WELCOME":
+            case 1:
+                message.type = 1;
                 break;
             }
             return message;
@@ -14669,10 +14674,12 @@ $root.AICommon = (function() {
          * @name AICommon.BotMessageOrigin.BotMessageOriginType
          * @enum {number}
          * @property {number} BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED=0 BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED value
+         * @property {number} BOT_MESSAGE_ORIGIN_TYPE_META_AI_THREAD_WELCOME=1 BOT_MESSAGE_ORIGIN_TYPE_META_AI_THREAD_WELCOME value
          */
         BotMessageOrigin.BotMessageOriginType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED"] = 0;
+            values[valuesById[1] = "BOT_MESSAGE_ORIGIN_TYPE_META_AI_THREAD_WELCOME"] = 1;
             return values;
         })();
 
