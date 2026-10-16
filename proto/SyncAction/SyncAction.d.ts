@@ -566,6 +566,9 @@ export namespace SyncAction {
 
         /** SyncActionValue communityNestingStateAction */
         communityNestingStateAction?: (SyncAction.SyncActionValue.ICommunityNestingStateAction|null);
+
+        /** SyncActionValue sharedDeviceSecretAction */
+        sharedDeviceSecretAction?: (SyncAction.SyncActionValue.ISharedDeviceSecretAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -846,6 +849,9 @@ export namespace SyncAction {
 
         /** SyncActionValue communityNestingStateAction. */
         public communityNestingStateAction?: (SyncAction.SyncActionValue.ICommunityNestingStateAction|null);
+
+        /** SyncActionValue sharedDeviceSecretAction. */
+        public sharedDeviceSecretAction?: (SyncAction.SyncActionValue.ISharedDeviceSecretAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -9263,6 +9269,109 @@ export namespace SyncAction {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a SharedDeviceSecretAction. */
+        interface ISharedDeviceSecretAction {
+
+            /** SharedDeviceSecretAction secret */
+            secret?: (Uint8Array|null);
+
+            /** SharedDeviceSecretAction ttlMs */
+            ttlMs?: (number|Long|null);
+        }
+
+        /** Represents a SharedDeviceSecretAction. */
+        class SharedDeviceSecretAction implements ISharedDeviceSecretAction {
+
+            /**
+             * Constructs a new SharedDeviceSecretAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.ISharedDeviceSecretAction);
+
+            /** SharedDeviceSecretAction secret. */
+            public secret: Uint8Array;
+
+            /** SharedDeviceSecretAction ttlMs. */
+            public ttlMs: (number|Long);
+
+            /**
+             * Creates a new SharedDeviceSecretAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SharedDeviceSecretAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.ISharedDeviceSecretAction): SyncAction.SyncActionValue.SharedDeviceSecretAction;
+
+            /**
+             * Encodes the specified SharedDeviceSecretAction message. Does not implicitly {@link SyncAction.SyncActionValue.SharedDeviceSecretAction.verify|verify} messages.
+             * @param message SharedDeviceSecretAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.ISharedDeviceSecretAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SharedDeviceSecretAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.SharedDeviceSecretAction.verify|verify} messages.
+             * @param message SharedDeviceSecretAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.ISharedDeviceSecretAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SharedDeviceSecretAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SharedDeviceSecretAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.SharedDeviceSecretAction;
+
+            /**
+             * Decodes a SharedDeviceSecretAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SharedDeviceSecretAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.SharedDeviceSecretAction;
+
+            /**
+             * Verifies a SharedDeviceSecretAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SharedDeviceSecretAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SharedDeviceSecretAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.SharedDeviceSecretAction;
+
+            /**
+             * Creates a plain object from a SharedDeviceSecretAction message. Also converts values to other types if specified.
+             * @param message SharedDeviceSecretAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.SharedDeviceSecretAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SharedDeviceSecretAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SharedDeviceSecretAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a StarAction. */
         interface IStarAction {
 
@@ -12205,6 +12314,7 @@ export namespace SyncAction {
         GROUP_HISTORY_TOGGLE_ACTION = 97,
         BB_PRO_PENDING_CUSTOMER_BASE_ACTION = 98,
         COMMUNITY_NESTING_STATE_ACTION = 99,
+        SHARED_DEVICE_SECRET_ACTION = 100,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

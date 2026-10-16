@@ -1079,6 +1079,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IGroupHistoryToggleAction|null} [groupHistoryToggleAction] SyncActionValue groupHistoryToggleAction
          * @property {SyncAction.SyncActionValue.IBBProPendingCustomerBaseAction|null} [bbProPendingCustomerBaseAction] SyncActionValue bbProPendingCustomerBaseAction
          * @property {SyncAction.SyncActionValue.ICommunityNestingStateAction|null} [communityNestingStateAction] SyncActionValue communityNestingStateAction
+         * @property {SyncAction.SyncActionValue.ISharedDeviceSecretAction|null} [sharedDeviceSecretAction] SyncActionValue sharedDeviceSecretAction
          */
 
         /**
@@ -1817,6 +1818,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.communityNestingStateAction = null;
 
         /**
+         * SyncActionValue sharedDeviceSecretAction.
+         * @member {SyncAction.SyncActionValue.ISharedDeviceSecretAction|null|undefined} sharedDeviceSecretAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.sharedDeviceSecretAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -2024,6 +2033,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.BBProPendingCustomerBaseAction.encode(message.bbProPendingCustomerBaseAction, writer.uint32(/* id 98, wireType 2 =*/786).fork(), q + 1).ldelim();
             if (message.communityNestingStateAction != null && Object.hasOwnProperty.call(message, "communityNestingStateAction"))
                 $root.SyncAction.SyncActionValue.CommunityNestingStateAction.encode(message.communityNestingStateAction, writer.uint32(/* id 99, wireType 2 =*/794).fork(), q + 1).ldelim();
+            if (message.sharedDeviceSecretAction != null && Object.hasOwnProperty.call(message, "sharedDeviceSecretAction"))
+                $root.SyncAction.SyncActionValue.SharedDeviceSecretAction.encode(message.sharedDeviceSecretAction, writer.uint32(/* id 100, wireType 2 =*/802).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -2432,6 +2443,10 @@ $root.SyncAction = (function() {
                     }
                 case 99: {
                         message.communityNestingStateAction = $root.SyncAction.SyncActionValue.CommunityNestingStateAction.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 100: {
+                        message.sharedDeviceSecretAction = $root.SyncAction.SyncActionValue.SharedDeviceSecretAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -2926,6 +2941,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "communityNestingStateAction." + error;
             }
+            if (message.sharedDeviceSecretAction != null && Object.hasOwnProperty.call(message, "sharedDeviceSecretAction")) {
+                var error = $root.SyncAction.SyncActionValue.SharedDeviceSecretAction.verify(message.sharedDeviceSecretAction, long + 1);
+                if (error)
+                    return "sharedDeviceSecretAction." + error;
+            }
             return null;
         };
 
@@ -3401,6 +3421,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.communityNestingStateAction: object expected");
                 message.communityNestingStateAction = $root.SyncAction.SyncActionValue.CommunityNestingStateAction.fromObject(object.communityNestingStateAction, long + 1);
             }
+            if (object.sharedDeviceSecretAction != null) {
+                if (!$util.isObject(object.sharedDeviceSecretAction))
+                    throw TypeError(".SyncAction.SyncActionValue.sharedDeviceSecretAction: object expected");
+                message.sharedDeviceSecretAction = $root.SyncAction.SyncActionValue.SharedDeviceSecretAction.fromObject(object.sharedDeviceSecretAction, long + 1);
+            }
             return message;
         };
 
@@ -3516,6 +3541,7 @@ $root.SyncAction = (function() {
                 object.groupHistoryToggleAction = null;
                 object.bbProPendingCustomerBaseAction = null;
                 object.communityNestingStateAction = null;
+                object.sharedDeviceSecretAction = null;
             }
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
@@ -3702,6 +3728,8 @@ $root.SyncAction = (function() {
                 object.bbProPendingCustomerBaseAction = $root.SyncAction.SyncActionValue.BBProPendingCustomerBaseAction.toObject(message.bbProPendingCustomerBaseAction, options, q + 1);
             if (message.communityNestingStateAction != null && Object.hasOwnProperty.call(message, "communityNestingStateAction"))
                 object.communityNestingStateAction = $root.SyncAction.SyncActionValue.CommunityNestingStateAction.toObject(message.communityNestingStateAction, options, q + 1);
+            if (message.sharedDeviceSecretAction != null && Object.hasOwnProperty.call(message, "sharedDeviceSecretAction"))
+                object.sharedDeviceSecretAction = $root.SyncAction.SyncActionValue.SharedDeviceSecretAction.toObject(message.sharedDeviceSecretAction, options, q + 1);
             return object;
         };
 
@@ -26513,6 +26541,297 @@ $root.SyncAction = (function() {
             return SharedDeviceAllowlistAction;
         })();
 
+        SyncActionValue.SharedDeviceSecretAction = (function() {
+
+            /**
+             * Properties of a SharedDeviceSecretAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface ISharedDeviceSecretAction
+             * @property {Uint8Array|null} [secret] SharedDeviceSecretAction secret
+             * @property {number|Long|null} [ttlMs] SharedDeviceSecretAction ttlMs
+             */
+
+            /**
+             * Constructs a new SharedDeviceSecretAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a SharedDeviceSecretAction.
+             * @implements ISharedDeviceSecretAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.ISharedDeviceSecretAction=} [properties] Properties to set
+             */
+            function SharedDeviceSecretAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * SharedDeviceSecretAction secret.
+             * @member {Uint8Array} secret
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @instance
+             */
+            SharedDeviceSecretAction.prototype.secret = $util.newBuffer([]);
+
+            /**
+             * SharedDeviceSecretAction ttlMs.
+             * @member {number|Long} ttlMs
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @instance
+             */
+            SharedDeviceSecretAction.prototype.ttlMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * Creates a new SharedDeviceSecretAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ISharedDeviceSecretAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.SharedDeviceSecretAction} SharedDeviceSecretAction instance
+             */
+            SharedDeviceSecretAction.create = function create(properties) {
+                return new SharedDeviceSecretAction(properties);
+            };
+
+            /**
+             * Encodes the specified SharedDeviceSecretAction message. Does not implicitly {@link SyncAction.SyncActionValue.SharedDeviceSecretAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ISharedDeviceSecretAction} message SharedDeviceSecretAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SharedDeviceSecretAction.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.secret != null && Object.hasOwnProperty.call(message, "secret"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.secret);
+                if (message.ttlMs != null && Object.hasOwnProperty.call(message, "ttlMs"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.ttlMs);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified SharedDeviceSecretAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.SharedDeviceSecretAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ISharedDeviceSecretAction} message SharedDeviceSecretAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            SharedDeviceSecretAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a SharedDeviceSecretAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.SharedDeviceSecretAction} SharedDeviceSecretAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SharedDeviceSecretAction.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.SyncAction.SyncActionValue.SharedDeviceSecretAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.secret = reader.bytes();
+                            break;
+                        }
+                    case 2: {
+                            message.ttlMs = reader.int64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a SharedDeviceSecretAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.SharedDeviceSecretAction} SharedDeviceSecretAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            SharedDeviceSecretAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a SharedDeviceSecretAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            SharedDeviceSecretAction.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.secret != null && Object.hasOwnProperty.call(message, "secret"))
+                    if (!(message.secret && typeof message.secret.length === "number" || $util.isString(message.secret)))
+                        return "secret: buffer expected";
+                if (message.ttlMs != null && Object.hasOwnProperty.call(message, "ttlMs"))
+                    if (!$util.isInteger(message.ttlMs) && !(message.ttlMs && $util.isInteger(message.ttlMs.low) && $util.isInteger(message.ttlMs.high)))
+                        return "ttlMs: integer|Long expected";
+                return null;
+            };
+
+            /**
+             * Creates a SharedDeviceSecretAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.SharedDeviceSecretAction} SharedDeviceSecretAction
+             */
+            SharedDeviceSecretAction.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.SyncAction.SyncActionValue.SharedDeviceSecretAction)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SyncAction.SyncActionValue.SharedDeviceSecretAction: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.SyncAction.SyncActionValue.SharedDeviceSecretAction();
+                if (object.secret != null)
+                    if (typeof object.secret === "string")
+                        $util.base64.decode(object.secret, message.secret = $util.newBuffer($util.base64.length(object.secret)), 0);
+                    else if (object.secret.length >= 0)
+                        message.secret = object.secret;
+                if (object.ttlMs != null)
+                    if ($util.Long)
+                        message.ttlMs = $util.Long.fromValue(object.ttlMs, false);
+                    else if (typeof object.ttlMs === "string")
+                        message.ttlMs = parseInt(object.ttlMs, 10);
+                    else if (typeof object.ttlMs === "number")
+                        message.ttlMs = object.ttlMs;
+                    else if (typeof object.ttlMs === "object")
+                        message.ttlMs = new $util.LongBits(object.ttlMs.low >>> 0, object.ttlMs.high >>> 0).toNumber();
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a SharedDeviceSecretAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {SyncAction.SyncActionValue.SharedDeviceSecretAction} message SharedDeviceSecretAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            SharedDeviceSecretAction.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    if (options.bytes === String)
+                        object.secret = "";
+                    else {
+                        object.secret = [];
+                        if (options.bytes !== Array)
+                            object.secret = $util.newBuffer(object.secret);
+                    }
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.ttlMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                    } else
+                        object.ttlMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                }
+                if (message.secret != null && Object.hasOwnProperty.call(message, "secret"))
+                    object.secret = options.bytes === String ? $util.base64.encode(message.secret, 0, message.secret.length) : options.bytes === Array ? Array.prototype.slice.call(message.secret) : message.secret;
+                if (message.ttlMs != null && Object.hasOwnProperty.call(message, "ttlMs"))
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.ttlMs = typeof message.ttlMs === "number" ? BigInt(message.ttlMs) : $util.Long.fromBits(message.ttlMs.low >>> 0, message.ttlMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.ttlMs === "number")
+                        object.ttlMs = options.longs === String ? String(message.ttlMs) : message.ttlMs;
+                    else
+                        object.ttlMs = options.longs === String ? $util.Long.prototype.toString.call(message.ttlMs) : options.longs === Number ? new $util.LongBits(message.ttlMs.low >>> 0, message.ttlMs.high >>> 0).toNumber() : message.ttlMs;
+                return object;
+            };
+
+            /**
+             * Converts this SharedDeviceSecretAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            SharedDeviceSecretAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for SharedDeviceSecretAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.SharedDeviceSecretAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            SharedDeviceSecretAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.SharedDeviceSecretAction";
+            };
+
+            return SharedDeviceSecretAction;
+        })();
+
         SyncActionValue.StarAction = (function() {
 
             /**
@@ -34856,6 +35175,7 @@ $root.SyncAction = (function() {
      * @property {number} GROUP_HISTORY_TOGGLE_ACTION=97 GROUP_HISTORY_TOGGLE_ACTION value
      * @property {number} BB_PRO_PENDING_CUSTOMER_BASE_ACTION=98 BB_PRO_PENDING_CUSTOMER_BASE_ACTION value
      * @property {number} COMMUNITY_NESTING_STATE_ACTION=99 COMMUNITY_NESTING_STATE_ACTION value
+     * @property {number} SHARED_DEVICE_SECRET_ACTION=100 SHARED_DEVICE_SECRET_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -34955,6 +35275,7 @@ $root.SyncAction = (function() {
         values[valuesById[97] = "GROUP_HISTORY_TOGGLE_ACTION"] = 97;
         values[valuesById[98] = "BB_PRO_PENDING_CUSTOMER_BASE_ACTION"] = 98;
         values[valuesById[99] = "COMMUNITY_NESTING_STATE_ACTION"] = 99;
+        values[valuesById[100] = "SHARED_DEVICE_SECRET_ACTION"] = 100;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;
