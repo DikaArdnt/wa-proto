@@ -176,6 +176,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData qrUrl */
         qrUrl?: (string|null);
+
+        /** MsgOpaqueData musicData */
+        musicData?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData|null);
     }
 
     /** Represents a MsgOpaqueData. */
@@ -357,6 +360,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData qrUrl. */
         public qrUrl: string;
+
+        /** MsgOpaqueData musicData. */
+        public musicData?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData|null);
 
         /**
          * Creates a new MsgOpaqueData instance using the specified properties.
@@ -559,6 +565,205 @@ export namespace MdStorageMsgRowOpaqueData {
 
             /**
              * Gets the default type url for EventLocation
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a MusicData. */
+        interface IMusicData {
+
+            /** MusicData musicContentMediaId */
+            musicContentMediaId?: (string|null);
+
+            /** MusicData songId */
+            songId?: (string|null);
+
+            /** MusicData author */
+            author?: (string|null);
+
+            /** MusicData title */
+            title?: (string|null);
+
+            /** MusicData songUri */
+            songUri?: (string|null);
+
+            /** MusicData artworkUri */
+            artworkUri?: (string|null);
+
+            /** MusicData style */
+            style?: (number|null);
+
+            /** MusicData songStartTimeMs */
+            songStartTimeMs?: (number|null);
+
+            /** MusicData clipDurationMs */
+            clipDurationMs?: (number|null);
+
+            /** MusicData isExplicit */
+            isExplicit?: (boolean|null);
+
+            /** MusicData countryBlocklist */
+            countryBlocklist?: (Uint8Array|null);
+
+            /** MusicData artistAttribution */
+            artistAttribution?: (string|null);
+
+            /** MusicData artworkDirectPath */
+            artworkDirectPath?: (string|null);
+
+            /** MusicData artworkSha256 */
+            artworkSha256?: (Uint8Array|null);
+
+            /** MusicData artworkEncSha256 */
+            artworkEncSha256?: (Uint8Array|null);
+
+            /** MusicData artworkMediaKey */
+            artworkMediaKey?: (Uint8Array|null);
+
+            /** MusicData consumptionCheckedAtS */
+            consumptionCheckedAtS?: (number|Long|null);
+
+            /** MusicData isAvailableForConsumption */
+            isAvailableForConsumption?: (boolean|null);
+        }
+
+        /** Represents a MusicData. */
+        class MusicData implements IMusicData {
+
+            /**
+             * Constructs a new MusicData.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData);
+
+            /** MusicData musicContentMediaId. */
+            public musicContentMediaId: string;
+
+            /** MusicData songId. */
+            public songId: string;
+
+            /** MusicData author. */
+            public author: string;
+
+            /** MusicData title. */
+            public title: string;
+
+            /** MusicData songUri. */
+            public songUri: string;
+
+            /** MusicData artworkUri. */
+            public artworkUri: string;
+
+            /** MusicData style. */
+            public style: number;
+
+            /** MusicData songStartTimeMs. */
+            public songStartTimeMs: number;
+
+            /** MusicData clipDurationMs. */
+            public clipDurationMs: number;
+
+            /** MusicData isExplicit. */
+            public isExplicit: boolean;
+
+            /** MusicData countryBlocklist. */
+            public countryBlocklist: Uint8Array;
+
+            /** MusicData artistAttribution. */
+            public artistAttribution: string;
+
+            /** MusicData artworkDirectPath. */
+            public artworkDirectPath: string;
+
+            /** MusicData artworkSha256. */
+            public artworkSha256: Uint8Array;
+
+            /** MusicData artworkEncSha256. */
+            public artworkEncSha256: Uint8Array;
+
+            /** MusicData artworkMediaKey. */
+            public artworkMediaKey: Uint8Array;
+
+            /** MusicData consumptionCheckedAtS. */
+            public consumptionCheckedAtS: (number|Long);
+
+            /** MusicData isAvailableForConsumption. */
+            public isAvailableForConsumption: boolean;
+
+            /**
+             * Creates a new MusicData instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns MusicData instance
+             */
+            public static create(properties?: MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData): MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData;
+
+            /**
+             * Encodes the specified MusicData message. Does not implicitly {@link MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.verify|verify} messages.
+             * @param message MusicData message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified MusicData message, length delimited. Does not implicitly {@link MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.verify|verify} messages.
+             * @param message MusicData message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a MusicData message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns MusicData
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData;
+
+            /**
+             * Decodes a MusicData message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns MusicData
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData;
+
+            /**
+             * Verifies a MusicData message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a MusicData message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns MusicData
+             */
+            public static fromObject(object: { [k: string]: any }): MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData;
+
+            /**
+             * Creates a plain object from a MusicData message. Also converts values to other types if specified.
+             * @param message MusicData
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this MusicData to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for MusicData
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

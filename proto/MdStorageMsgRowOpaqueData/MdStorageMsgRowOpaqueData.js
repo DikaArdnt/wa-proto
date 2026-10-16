@@ -81,6 +81,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @property {string|null} [sharableEventInviteCallLink] MsgOpaqueData sharableEventInviteCallLink
          * @property {string|null} [mediaPngThumbnail] MsgOpaqueData mediaPngThumbnail
          * @property {string|null} [qrUrl] MsgOpaqueData qrUrl
+         * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData|null} [musicData] MsgOpaqueData musicData
          */
 
         /**
@@ -556,6 +557,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
         MsgOpaqueData.prototype.qrUrl = "";
 
         /**
+         * MsgOpaqueData musicData.
+         * @member {MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData|null|undefined} musicData
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.musicData = null;
+
+        /**
          * Creates a new MsgOpaqueData instance using the specified properties.
          * @function create
          * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
@@ -698,6 +707,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 writer.uint32(/* id 61, wireType 2 =*/490).string(message.mediaPngThumbnail);
             if (message.qrUrl != null && Object.hasOwnProperty.call(message, "qrUrl"))
                 writer.uint32(/* id 62, wireType 2 =*/498).string(message.qrUrl);
+            if (message.musicData != null && Object.hasOwnProperty.call(message, "musicData"))
+                $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.encode(message.musicData, writer.uint32(/* id 63, wireType 2 =*/506).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -978,6 +989,10 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                         message.qrUrl = reader.string();
                         break;
                     }
+                case 63: {
+                        message.musicData = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -1216,6 +1231,11 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             if (message.qrUrl != null && Object.hasOwnProperty.call(message, "qrUrl"))
                 if (!$util.isString(message.qrUrl))
                     return "qrUrl: string expected";
+            if (message.musicData != null && Object.hasOwnProperty.call(message, "musicData")) {
+                var error = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.verify(message.musicData, long + 1);
+                if (error)
+                    return "musicData." + error;
+            }
             return null;
         };
 
@@ -1469,6 +1489,11 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 message.mediaPngThumbnail = String(object.mediaPngThumbnail);
             if (object.qrUrl != null)
                 message.qrUrl = String(object.qrUrl);
+            if (object.musicData != null) {
+                if (!$util.isObject(object.musicData))
+                    throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.musicData: object expected");
+                message.musicData = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.fromObject(object.musicData, long + 1);
+            }
             return message;
         };
 
@@ -1626,6 +1651,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.sharableEventInviteCallLink = "";
                 object.mediaPngThumbnail = "";
                 object.qrUrl = "";
+                object.musicData = null;
             }
             if (message.body != null && Object.hasOwnProperty.call(message, "body"))
                 object.body = message.body;
@@ -1774,6 +1800,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.mediaPngThumbnail = message.mediaPngThumbnail;
             if (message.qrUrl != null && Object.hasOwnProperty.call(message, "qrUrl"))
                 object.qrUrl = message.qrUrl;
+            if (message.musicData != null && Object.hasOwnProperty.call(message, "musicData"))
+                object.musicData = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.toObject(message.musicData, options, q + 1);
             return object;
         };
 
@@ -2168,6 +2196,692 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             };
 
             return EventLocation;
+        })();
+
+        MsgOpaqueData.MusicData = (function() {
+
+            /**
+             * Properties of a MusicData.
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+             * @interface IMusicData
+             * @property {string|null} [musicContentMediaId] MusicData musicContentMediaId
+             * @property {string|null} [songId] MusicData songId
+             * @property {string|null} [author] MusicData author
+             * @property {string|null} [title] MusicData title
+             * @property {string|null} [songUri] MusicData songUri
+             * @property {string|null} [artworkUri] MusicData artworkUri
+             * @property {number|null} [style] MusicData style
+             * @property {number|null} [songStartTimeMs] MusicData songStartTimeMs
+             * @property {number|null} [clipDurationMs] MusicData clipDurationMs
+             * @property {boolean|null} [isExplicit] MusicData isExplicit
+             * @property {Uint8Array|null} [countryBlocklist] MusicData countryBlocklist
+             * @property {string|null} [artistAttribution] MusicData artistAttribution
+             * @property {string|null} [artworkDirectPath] MusicData artworkDirectPath
+             * @property {Uint8Array|null} [artworkSha256] MusicData artworkSha256
+             * @property {Uint8Array|null} [artworkEncSha256] MusicData artworkEncSha256
+             * @property {Uint8Array|null} [artworkMediaKey] MusicData artworkMediaKey
+             * @property {number|Long|null} [consumptionCheckedAtS] MusicData consumptionCheckedAtS
+             * @property {boolean|null} [isAvailableForConsumption] MusicData isAvailableForConsumption
+             */
+
+            /**
+             * Constructs a new MusicData.
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+             * @classdesc Represents a MusicData.
+             * @implements IMusicData
+             * @constructor
+             * @param {MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData=} [properties] Properties to set
+             */
+            function MusicData(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * MusicData musicContentMediaId.
+             * @member {string} musicContentMediaId
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.musicContentMediaId = "";
+
+            /**
+             * MusicData songId.
+             * @member {string} songId
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.songId = "";
+
+            /**
+             * MusicData author.
+             * @member {string} author
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.author = "";
+
+            /**
+             * MusicData title.
+             * @member {string} title
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.title = "";
+
+            /**
+             * MusicData songUri.
+             * @member {string} songUri
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.songUri = "";
+
+            /**
+             * MusicData artworkUri.
+             * @member {string} artworkUri
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.artworkUri = "";
+
+            /**
+             * MusicData style.
+             * @member {number} style
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.style = 0;
+
+            /**
+             * MusicData songStartTimeMs.
+             * @member {number} songStartTimeMs
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.songStartTimeMs = 0;
+
+            /**
+             * MusicData clipDurationMs.
+             * @member {number} clipDurationMs
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.clipDurationMs = 0;
+
+            /**
+             * MusicData isExplicit.
+             * @member {boolean} isExplicit
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.isExplicit = false;
+
+            /**
+             * MusicData countryBlocklist.
+             * @member {Uint8Array} countryBlocklist
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.countryBlocklist = $util.newBuffer([]);
+
+            /**
+             * MusicData artistAttribution.
+             * @member {string} artistAttribution
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.artistAttribution = "";
+
+            /**
+             * MusicData artworkDirectPath.
+             * @member {string} artworkDirectPath
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.artworkDirectPath = "";
+
+            /**
+             * MusicData artworkSha256.
+             * @member {Uint8Array} artworkSha256
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.artworkSha256 = $util.newBuffer([]);
+
+            /**
+             * MusicData artworkEncSha256.
+             * @member {Uint8Array} artworkEncSha256
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.artworkEncSha256 = $util.newBuffer([]);
+
+            /**
+             * MusicData artworkMediaKey.
+             * @member {Uint8Array} artworkMediaKey
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.artworkMediaKey = $util.newBuffer([]);
+
+            /**
+             * MusicData consumptionCheckedAtS.
+             * @member {number|Long} consumptionCheckedAtS
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.consumptionCheckedAtS = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * MusicData isAvailableForConsumption.
+             * @member {boolean} isAvailableForConsumption
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             */
+            MusicData.prototype.isAvailableForConsumption = false;
+
+            /**
+             * Creates a new MusicData instance using the specified properties.
+             * @function create
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData=} [properties] Properties to set
+             * @returns {MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData} MusicData instance
+             */
+            MusicData.create = function create(properties) {
+                return new MusicData(properties);
+            };
+
+            /**
+             * Encodes the specified MusicData message. Does not implicitly {@link MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.verify|verify} messages.
+             * @function encode
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData} message MusicData message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MusicData.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.musicContentMediaId != null && Object.hasOwnProperty.call(message, "musicContentMediaId"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.musicContentMediaId);
+                if (message.songId != null && Object.hasOwnProperty.call(message, "songId"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.songId);
+                if (message.author != null && Object.hasOwnProperty.call(message, "author"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.author);
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.title);
+                if (message.songUri != null && Object.hasOwnProperty.call(message, "songUri"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.songUri);
+                if (message.artworkUri != null && Object.hasOwnProperty.call(message, "artworkUri"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.artworkUri);
+                if (message.style != null && Object.hasOwnProperty.call(message, "style"))
+                    writer.uint32(/* id 7, wireType 0 =*/56).int32(message.style);
+                if (message.songStartTimeMs != null && Object.hasOwnProperty.call(message, "songStartTimeMs"))
+                    writer.uint32(/* id 8, wireType 0 =*/64).int32(message.songStartTimeMs);
+                if (message.clipDurationMs != null && Object.hasOwnProperty.call(message, "clipDurationMs"))
+                    writer.uint32(/* id 9, wireType 0 =*/72).int32(message.clipDurationMs);
+                if (message.isExplicit != null && Object.hasOwnProperty.call(message, "isExplicit"))
+                    writer.uint32(/* id 10, wireType 0 =*/80).bool(message.isExplicit);
+                if (message.countryBlocklist != null && Object.hasOwnProperty.call(message, "countryBlocklist"))
+                    writer.uint32(/* id 11, wireType 2 =*/90).bytes(message.countryBlocklist);
+                if (message.artistAttribution != null && Object.hasOwnProperty.call(message, "artistAttribution"))
+                    writer.uint32(/* id 12, wireType 2 =*/98).string(message.artistAttribution);
+                if (message.artworkDirectPath != null && Object.hasOwnProperty.call(message, "artworkDirectPath"))
+                    writer.uint32(/* id 13, wireType 2 =*/106).string(message.artworkDirectPath);
+                if (message.artworkSha256 != null && Object.hasOwnProperty.call(message, "artworkSha256"))
+                    writer.uint32(/* id 14, wireType 2 =*/114).bytes(message.artworkSha256);
+                if (message.artworkEncSha256 != null && Object.hasOwnProperty.call(message, "artworkEncSha256"))
+                    writer.uint32(/* id 15, wireType 2 =*/122).bytes(message.artworkEncSha256);
+                if (message.artworkMediaKey != null && Object.hasOwnProperty.call(message, "artworkMediaKey"))
+                    writer.uint32(/* id 16, wireType 2 =*/130).bytes(message.artworkMediaKey);
+                if (message.consumptionCheckedAtS != null && Object.hasOwnProperty.call(message, "consumptionCheckedAtS"))
+                    writer.uint32(/* id 17, wireType 0 =*/136).int64(message.consumptionCheckedAtS);
+                if (message.isAvailableForConsumption != null && Object.hasOwnProperty.call(message, "isAvailableForConsumption"))
+                    writer.uint32(/* id 18, wireType 0 =*/144).bool(message.isAvailableForConsumption);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified MusicData message, length delimited. Does not implicitly {@link MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData} message MusicData message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MusicData.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a MusicData message from the specified reader or buffer.
+             * @function decode
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData} MusicData
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MusicData.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.musicContentMediaId = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.songId = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.author = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.title = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.songUri = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            message.artworkUri = reader.string();
+                            break;
+                        }
+                    case 7: {
+                            message.style = reader.int32();
+                            break;
+                        }
+                    case 8: {
+                            message.songStartTimeMs = reader.int32();
+                            break;
+                        }
+                    case 9: {
+                            message.clipDurationMs = reader.int32();
+                            break;
+                        }
+                    case 10: {
+                            message.isExplicit = reader.bool();
+                            break;
+                        }
+                    case 11: {
+                            message.countryBlocklist = reader.bytes();
+                            break;
+                        }
+                    case 12: {
+                            message.artistAttribution = reader.string();
+                            break;
+                        }
+                    case 13: {
+                            message.artworkDirectPath = reader.string();
+                            break;
+                        }
+                    case 14: {
+                            message.artworkSha256 = reader.bytes();
+                            break;
+                        }
+                    case 15: {
+                            message.artworkEncSha256 = reader.bytes();
+                            break;
+                        }
+                    case 16: {
+                            message.artworkMediaKey = reader.bytes();
+                            break;
+                        }
+                    case 17: {
+                            message.consumptionCheckedAtS = reader.int64();
+                            break;
+                        }
+                    case 18: {
+                            message.isAvailableForConsumption = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a MusicData message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData} MusicData
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MusicData.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a MusicData message.
+             * @function verify
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            MusicData.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.musicContentMediaId != null && Object.hasOwnProperty.call(message, "musicContentMediaId"))
+                    if (!$util.isString(message.musicContentMediaId))
+                        return "musicContentMediaId: string expected";
+                if (message.songId != null && Object.hasOwnProperty.call(message, "songId"))
+                    if (!$util.isString(message.songId))
+                        return "songId: string expected";
+                if (message.author != null && Object.hasOwnProperty.call(message, "author"))
+                    if (!$util.isString(message.author))
+                        return "author: string expected";
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                    if (!$util.isString(message.title))
+                        return "title: string expected";
+                if (message.songUri != null && Object.hasOwnProperty.call(message, "songUri"))
+                    if (!$util.isString(message.songUri))
+                        return "songUri: string expected";
+                if (message.artworkUri != null && Object.hasOwnProperty.call(message, "artworkUri"))
+                    if (!$util.isString(message.artworkUri))
+                        return "artworkUri: string expected";
+                if (message.style != null && Object.hasOwnProperty.call(message, "style"))
+                    if (!$util.isInteger(message.style))
+                        return "style: integer expected";
+                if (message.songStartTimeMs != null && Object.hasOwnProperty.call(message, "songStartTimeMs"))
+                    if (!$util.isInteger(message.songStartTimeMs))
+                        return "songStartTimeMs: integer expected";
+                if (message.clipDurationMs != null && Object.hasOwnProperty.call(message, "clipDurationMs"))
+                    if (!$util.isInteger(message.clipDurationMs))
+                        return "clipDurationMs: integer expected";
+                if (message.isExplicit != null && Object.hasOwnProperty.call(message, "isExplicit"))
+                    if (typeof message.isExplicit !== "boolean")
+                        return "isExplicit: boolean expected";
+                if (message.countryBlocklist != null && Object.hasOwnProperty.call(message, "countryBlocklist"))
+                    if (!(message.countryBlocklist && typeof message.countryBlocklist.length === "number" || $util.isString(message.countryBlocklist)))
+                        return "countryBlocklist: buffer expected";
+                if (message.artistAttribution != null && Object.hasOwnProperty.call(message, "artistAttribution"))
+                    if (!$util.isString(message.artistAttribution))
+                        return "artistAttribution: string expected";
+                if (message.artworkDirectPath != null && Object.hasOwnProperty.call(message, "artworkDirectPath"))
+                    if (!$util.isString(message.artworkDirectPath))
+                        return "artworkDirectPath: string expected";
+                if (message.artworkSha256 != null && Object.hasOwnProperty.call(message, "artworkSha256"))
+                    if (!(message.artworkSha256 && typeof message.artworkSha256.length === "number" || $util.isString(message.artworkSha256)))
+                        return "artworkSha256: buffer expected";
+                if (message.artworkEncSha256 != null && Object.hasOwnProperty.call(message, "artworkEncSha256"))
+                    if (!(message.artworkEncSha256 && typeof message.artworkEncSha256.length === "number" || $util.isString(message.artworkEncSha256)))
+                        return "artworkEncSha256: buffer expected";
+                if (message.artworkMediaKey != null && Object.hasOwnProperty.call(message, "artworkMediaKey"))
+                    if (!(message.artworkMediaKey && typeof message.artworkMediaKey.length === "number" || $util.isString(message.artworkMediaKey)))
+                        return "artworkMediaKey: buffer expected";
+                if (message.consumptionCheckedAtS != null && Object.hasOwnProperty.call(message, "consumptionCheckedAtS"))
+                    if (!$util.isInteger(message.consumptionCheckedAtS) && !(message.consumptionCheckedAtS && $util.isInteger(message.consumptionCheckedAtS.low) && $util.isInteger(message.consumptionCheckedAtS.high)))
+                        return "consumptionCheckedAtS: integer|Long expected";
+                if (message.isAvailableForConsumption != null && Object.hasOwnProperty.call(message, "isAvailableForConsumption"))
+                    if (typeof message.isAvailableForConsumption !== "boolean")
+                        return "isAvailableForConsumption: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a MusicData message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData} MusicData
+             */
+            MusicData.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData();
+                if (object.musicContentMediaId != null)
+                    message.musicContentMediaId = String(object.musicContentMediaId);
+                if (object.songId != null)
+                    message.songId = String(object.songId);
+                if (object.author != null)
+                    message.author = String(object.author);
+                if (object.title != null)
+                    message.title = String(object.title);
+                if (object.songUri != null)
+                    message.songUri = String(object.songUri);
+                if (object.artworkUri != null)
+                    message.artworkUri = String(object.artworkUri);
+                if (object.style != null)
+                    message.style = object.style | 0;
+                if (object.songStartTimeMs != null)
+                    message.songStartTimeMs = object.songStartTimeMs | 0;
+                if (object.clipDurationMs != null)
+                    message.clipDurationMs = object.clipDurationMs | 0;
+                if (object.isExplicit != null)
+                    message.isExplicit = Boolean(object.isExplicit);
+                if (object.countryBlocklist != null)
+                    if (typeof object.countryBlocklist === "string")
+                        $util.base64.decode(object.countryBlocklist, message.countryBlocklist = $util.newBuffer($util.base64.length(object.countryBlocklist)), 0);
+                    else if (object.countryBlocklist.length >= 0)
+                        message.countryBlocklist = object.countryBlocklist;
+                if (object.artistAttribution != null)
+                    message.artistAttribution = String(object.artistAttribution);
+                if (object.artworkDirectPath != null)
+                    message.artworkDirectPath = String(object.artworkDirectPath);
+                if (object.artworkSha256 != null)
+                    if (typeof object.artworkSha256 === "string")
+                        $util.base64.decode(object.artworkSha256, message.artworkSha256 = $util.newBuffer($util.base64.length(object.artworkSha256)), 0);
+                    else if (object.artworkSha256.length >= 0)
+                        message.artworkSha256 = object.artworkSha256;
+                if (object.artworkEncSha256 != null)
+                    if (typeof object.artworkEncSha256 === "string")
+                        $util.base64.decode(object.artworkEncSha256, message.artworkEncSha256 = $util.newBuffer($util.base64.length(object.artworkEncSha256)), 0);
+                    else if (object.artworkEncSha256.length >= 0)
+                        message.artworkEncSha256 = object.artworkEncSha256;
+                if (object.artworkMediaKey != null)
+                    if (typeof object.artworkMediaKey === "string")
+                        $util.base64.decode(object.artworkMediaKey, message.artworkMediaKey = $util.newBuffer($util.base64.length(object.artworkMediaKey)), 0);
+                    else if (object.artworkMediaKey.length >= 0)
+                        message.artworkMediaKey = object.artworkMediaKey;
+                if (object.consumptionCheckedAtS != null)
+                    if ($util.Long)
+                        message.consumptionCheckedAtS = $util.Long.fromValue(object.consumptionCheckedAtS, false);
+                    else if (typeof object.consumptionCheckedAtS === "string")
+                        message.consumptionCheckedAtS = parseInt(object.consumptionCheckedAtS, 10);
+                    else if (typeof object.consumptionCheckedAtS === "number")
+                        message.consumptionCheckedAtS = object.consumptionCheckedAtS;
+                    else if (typeof object.consumptionCheckedAtS === "object")
+                        message.consumptionCheckedAtS = new $util.LongBits(object.consumptionCheckedAtS.low >>> 0, object.consumptionCheckedAtS.high >>> 0).toNumber();
+                if (object.isAvailableForConsumption != null)
+                    message.isAvailableForConsumption = Boolean(object.isAvailableForConsumption);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a MusicData message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData} message MusicData
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            MusicData.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    object.musicContentMediaId = "";
+                    object.songId = "";
+                    object.author = "";
+                    object.title = "";
+                    object.songUri = "";
+                    object.artworkUri = "";
+                    object.style = 0;
+                    object.songStartTimeMs = 0;
+                    object.clipDurationMs = 0;
+                    object.isExplicit = false;
+                    if (options.bytes === String)
+                        object.countryBlocklist = "";
+                    else {
+                        object.countryBlocklist = [];
+                        if (options.bytes !== Array)
+                            object.countryBlocklist = $util.newBuffer(object.countryBlocklist);
+                    }
+                    object.artistAttribution = "";
+                    object.artworkDirectPath = "";
+                    if (options.bytes === String)
+                        object.artworkSha256 = "";
+                    else {
+                        object.artworkSha256 = [];
+                        if (options.bytes !== Array)
+                            object.artworkSha256 = $util.newBuffer(object.artworkSha256);
+                    }
+                    if (options.bytes === String)
+                        object.artworkEncSha256 = "";
+                    else {
+                        object.artworkEncSha256 = [];
+                        if (options.bytes !== Array)
+                            object.artworkEncSha256 = $util.newBuffer(object.artworkEncSha256);
+                    }
+                    if (options.bytes === String)
+                        object.artworkMediaKey = "";
+                    else {
+                        object.artworkMediaKey = [];
+                        if (options.bytes !== Array)
+                            object.artworkMediaKey = $util.newBuffer(object.artworkMediaKey);
+                    }
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.consumptionCheckedAtS = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                    } else
+                        object.consumptionCheckedAtS = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                    object.isAvailableForConsumption = false;
+                }
+                if (message.musicContentMediaId != null && Object.hasOwnProperty.call(message, "musicContentMediaId"))
+                    object.musicContentMediaId = message.musicContentMediaId;
+                if (message.songId != null && Object.hasOwnProperty.call(message, "songId"))
+                    object.songId = message.songId;
+                if (message.author != null && Object.hasOwnProperty.call(message, "author"))
+                    object.author = message.author;
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                    object.title = message.title;
+                if (message.songUri != null && Object.hasOwnProperty.call(message, "songUri"))
+                    object.songUri = message.songUri;
+                if (message.artworkUri != null && Object.hasOwnProperty.call(message, "artworkUri"))
+                    object.artworkUri = message.artworkUri;
+                if (message.style != null && Object.hasOwnProperty.call(message, "style"))
+                    object.style = message.style;
+                if (message.songStartTimeMs != null && Object.hasOwnProperty.call(message, "songStartTimeMs"))
+                    object.songStartTimeMs = message.songStartTimeMs;
+                if (message.clipDurationMs != null && Object.hasOwnProperty.call(message, "clipDurationMs"))
+                    object.clipDurationMs = message.clipDurationMs;
+                if (message.isExplicit != null && Object.hasOwnProperty.call(message, "isExplicit"))
+                    object.isExplicit = message.isExplicit;
+                if (message.countryBlocklist != null && Object.hasOwnProperty.call(message, "countryBlocklist"))
+                    object.countryBlocklist = options.bytes === String ? $util.base64.encode(message.countryBlocklist, 0, message.countryBlocklist.length) : options.bytes === Array ? Array.prototype.slice.call(message.countryBlocklist) : message.countryBlocklist;
+                if (message.artistAttribution != null && Object.hasOwnProperty.call(message, "artistAttribution"))
+                    object.artistAttribution = message.artistAttribution;
+                if (message.artworkDirectPath != null && Object.hasOwnProperty.call(message, "artworkDirectPath"))
+                    object.artworkDirectPath = message.artworkDirectPath;
+                if (message.artworkSha256 != null && Object.hasOwnProperty.call(message, "artworkSha256"))
+                    object.artworkSha256 = options.bytes === String ? $util.base64.encode(message.artworkSha256, 0, message.artworkSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.artworkSha256) : message.artworkSha256;
+                if (message.artworkEncSha256 != null && Object.hasOwnProperty.call(message, "artworkEncSha256"))
+                    object.artworkEncSha256 = options.bytes === String ? $util.base64.encode(message.artworkEncSha256, 0, message.artworkEncSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.artworkEncSha256) : message.artworkEncSha256;
+                if (message.artworkMediaKey != null && Object.hasOwnProperty.call(message, "artworkMediaKey"))
+                    object.artworkMediaKey = options.bytes === String ? $util.base64.encode(message.artworkMediaKey, 0, message.artworkMediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.artworkMediaKey) : message.artworkMediaKey;
+                if (message.consumptionCheckedAtS != null && Object.hasOwnProperty.call(message, "consumptionCheckedAtS"))
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.consumptionCheckedAtS = typeof message.consumptionCheckedAtS === "number" ? BigInt(message.consumptionCheckedAtS) : $util.Long.fromBits(message.consumptionCheckedAtS.low >>> 0, message.consumptionCheckedAtS.high >>> 0, false).toBigInt();
+                    else if (typeof message.consumptionCheckedAtS === "number")
+                        object.consumptionCheckedAtS = options.longs === String ? String(message.consumptionCheckedAtS) : message.consumptionCheckedAtS;
+                    else
+                        object.consumptionCheckedAtS = options.longs === String ? $util.Long.prototype.toString.call(message.consumptionCheckedAtS) : options.longs === Number ? new $util.LongBits(message.consumptionCheckedAtS.low >>> 0, message.consumptionCheckedAtS.high >>> 0).toNumber() : message.consumptionCheckedAtS;
+                if (message.isAvailableForConsumption != null && Object.hasOwnProperty.call(message, "isAvailableForConsumption"))
+                    object.isAvailableForConsumption = message.isAvailableForConsumption;
+                return object;
+            };
+
+            /**
+             * Converts this MusicData to JSON.
+             * @function toJSON
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            MusicData.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for MusicData
+             * @function getTypeUrl
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            MusicData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData";
+            };
+
+            return MusicData;
         })();
 
         /**
