@@ -35,6 +35,7 @@ $root.DeviceCapabilities = (function() {
          * @property {DeviceCapabilities.DeviceCapabilities.IContactRefresh|null} [contactRefresh] DeviceCapabilities contactRefresh
          * @property {DeviceCapabilities.DeviceCapabilities.IReverseHistorySync|null} [reverseHistorySync] DeviceCapabilities reverseHistorySync
          * @property {DeviceCapabilities.DeviceCapabilities.INewsletterChatsMigration|null} [newsletterChatsMigration] DeviceCapabilities newsletterChatsMigration
+         * @property {DeviceCapabilities.DeviceCapabilities.IHostWriteMutationSupport|null} [hostWriteMutationSupport] DeviceCapabilities hostWriteMutationSupport
          */
 
         /**
@@ -141,6 +142,14 @@ $root.DeviceCapabilities = (function() {
         DeviceCapabilities.prototype.newsletterChatsMigration = null;
 
         /**
+         * DeviceCapabilities hostWriteMutationSupport.
+         * @member {DeviceCapabilities.DeviceCapabilities.IHostWriteMutationSupport|null|undefined} hostWriteMutationSupport
+         * @memberof DeviceCapabilities.DeviceCapabilities
+         * @instance
+         */
+        DeviceCapabilities.prototype.hostWriteMutationSupport = null;
+
+        /**
          * Creates a new DeviceCapabilities instance using the specified properties.
          * @function create
          * @memberof DeviceCapabilities.DeviceCapabilities
@@ -190,6 +199,8 @@ $root.DeviceCapabilities = (function() {
                 $root.DeviceCapabilities.DeviceCapabilities.ReverseHistorySync.encode(message.reverseHistorySync, writer.uint32(/* id 10, wireType 2 =*/82).fork(), q + 1).ldelim();
             if (message.newsletterChatsMigration != null && Object.hasOwnProperty.call(message, "newsletterChatsMigration"))
                 $root.DeviceCapabilities.DeviceCapabilities.NewsletterChatsMigration.encode(message.newsletterChatsMigration, writer.uint32(/* id 11, wireType 2 =*/90).fork(), q + 1).ldelim();
+            if (message.hostWriteMutationSupport != null && Object.hasOwnProperty.call(message, "hostWriteMutationSupport"))
+                $root.DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport.encode(message.hostWriteMutationSupport, writer.uint32(/* id 12, wireType 2 =*/98).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -282,6 +293,10 @@ $root.DeviceCapabilities = (function() {
                     }
                 case 11: {
                         message.newsletterChatsMigration = $root.DeviceCapabilities.DeviceCapabilities.NewsletterChatsMigration.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 12: {
+                        message.hostWriteMutationSupport = $root.DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -391,6 +406,11 @@ $root.DeviceCapabilities = (function() {
                 if (error)
                     return "newsletterChatsMigration." + error;
             }
+            if (message.hostWriteMutationSupport != null && Object.hasOwnProperty.call(message, "hostWriteMutationSupport")) {
+                var error = $root.DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport.verify(message.hostWriteMutationSupport, long + 1);
+                if (error)
+                    return "hostWriteMutationSupport." + error;
+            }
             return null;
         };
 
@@ -497,6 +517,11 @@ $root.DeviceCapabilities = (function() {
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.newsletterChatsMigration: object expected");
                 message.newsletterChatsMigration = $root.DeviceCapabilities.DeviceCapabilities.NewsletterChatsMigration.fromObject(object.newsletterChatsMigration, long + 1);
             }
+            if (object.hostWriteMutationSupport != null) {
+                if (!$util.isObject(object.hostWriteMutationSupport))
+                    throw TypeError(".DeviceCapabilities.DeviceCapabilities.hostWriteMutationSupport: object expected");
+                message.hostWriteMutationSupport = $root.DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport.fromObject(object.hostWriteMutationSupport, long + 1);
+            }
             return message;
         };
 
@@ -529,6 +554,7 @@ $root.DeviceCapabilities = (function() {
                 object.contactRefresh = null;
                 object.reverseHistorySync = null;
                 object.newsletterChatsMigration = null;
+                object.hostWriteMutationSupport = null;
             }
             if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 object.chatLockSupportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] === undefined ? message.chatLockSupportLevel : $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] : message.chatLockSupportLevel;
@@ -552,6 +578,8 @@ $root.DeviceCapabilities = (function() {
                 object.reverseHistorySync = $root.DeviceCapabilities.DeviceCapabilities.ReverseHistorySync.toObject(message.reverseHistorySync, options, q + 1);
             if (message.newsletterChatsMigration != null && Object.hasOwnProperty.call(message, "newsletterChatsMigration"))
                 object.newsletterChatsMigration = $root.DeviceCapabilities.DeviceCapabilities.NewsletterChatsMigration.toObject(message.newsletterChatsMigration, options, q + 1);
+            if (message.hostWriteMutationSupport != null && Object.hasOwnProperty.call(message, "hostWriteMutationSupport"))
+                object.hostWriteMutationSupport = $root.DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport.toObject(message.hostWriteMutationSupport, options, q + 1);
             return object;
         };
 
@@ -2001,6 +2029,264 @@ $root.DeviceCapabilities = (function() {
             };
 
             return ContactRefresh;
+        })();
+
+        DeviceCapabilities.HostWriteMutationSupport = (function() {
+
+            /**
+             * Properties of a HostWriteMutationSupport.
+             * @memberof DeviceCapabilities.DeviceCapabilities
+             * @interface IHostWriteMutationSupport
+             * @property {Array.<string>|null} [mutationNames] HostWriteMutationSupport mutationNames
+             */
+
+            /**
+             * Constructs a new HostWriteMutationSupport.
+             * @memberof DeviceCapabilities.DeviceCapabilities
+             * @classdesc Represents a HostWriteMutationSupport.
+             * @implements IHostWriteMutationSupport
+             * @constructor
+             * @param {DeviceCapabilities.DeviceCapabilities.IHostWriteMutationSupport=} [properties] Properties to set
+             */
+            function HostWriteMutationSupport(properties) {
+                this.mutationNames = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * HostWriteMutationSupport mutationNames.
+             * @member {Array.<string>} mutationNames
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @instance
+             */
+            HostWriteMutationSupport.prototype.mutationNames = $util.emptyArray;
+
+            /**
+             * Creates a new HostWriteMutationSupport instance using the specified properties.
+             * @function create
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.IHostWriteMutationSupport=} [properties] Properties to set
+             * @returns {DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport} HostWriteMutationSupport instance
+             */
+            HostWriteMutationSupport.create = function create(properties) {
+                return new HostWriteMutationSupport(properties);
+            };
+
+            /**
+             * Encodes the specified HostWriteMutationSupport message. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport.verify|verify} messages.
+             * @function encode
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.IHostWriteMutationSupport} message HostWriteMutationSupport message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            HostWriteMutationSupport.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.mutationNames != null && message.mutationNames.length)
+                    for (var i = 0; i < message.mutationNames.length; ++i)
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.mutationNames[i]);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified HostWriteMutationSupport message, length delimited. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.IHostWriteMutationSupport} message HostWriteMutationSupport message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            HostWriteMutationSupport.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a HostWriteMutationSupport message from the specified reader or buffer.
+             * @function decode
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport} HostWriteMutationSupport
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            HostWriteMutationSupport.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end, message;
+                if (length === undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = new $root.DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.mutationNames && message.mutationNames.length))
+                                message.mutationNames = [];
+                            message.mutationNames.push(reader.string());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                if (length !== undefined) {
+                    if (reader.pos !== end)
+                        throw RangeError("index out of range");
+                    reader.len = length;
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a HostWriteMutationSupport message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport} HostWriteMutationSupport
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            HostWriteMutationSupport.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a HostWriteMutationSupport message.
+             * @function verify
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            HostWriteMutationSupport.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.mutationNames != null && Object.hasOwnProperty.call(message, "mutationNames")) {
+                    if (!Array.isArray(message.mutationNames))
+                        return "mutationNames: array expected";
+                    for (var i = 0; i < message.mutationNames.length; ++i)
+                        if (!$util.isString(message.mutationNames[i]))
+                            return "mutationNames: string[] expected";
+                }
+                return null;
+            };
+
+            /**
+             * Creates a HostWriteMutationSupport message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport} HostWriteMutationSupport
+             */
+            HostWriteMutationSupport.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport();
+                if (object.mutationNames) {
+                    if (!Array.isArray(object.mutationNames))
+                        throw TypeError(".DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport.mutationNames: array expected");
+                    message.mutationNames = [];
+                    for (var i = 0; i < object.mutationNames.length; ++i)
+                        message.mutationNames[i] = String(object.mutationNames[i]);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a HostWriteMutationSupport message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport} message HostWriteMutationSupport
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            HostWriteMutationSupport.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.mutationNames = [];
+                if (message.mutationNames && message.mutationNames.length) {
+                    object.mutationNames = [];
+                    for (var j = 0; j < message.mutationNames.length; ++j)
+                        object.mutationNames[j] = message.mutationNames[j];
+                }
+                return object;
+            };
+
+            /**
+             * Converts this HostWriteMutationSupport to JSON.
+             * @function toJSON
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            HostWriteMutationSupport.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for HostWriteMutationSupport
+             * @function getTypeUrl
+             * @memberof DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            HostWriteMutationSupport.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/DeviceCapabilities.DeviceCapabilities.HostWriteMutationSupport";
+            };
+
+            return HostWriteMutationSupport;
         })();
 
         DeviceCapabilities.LIDMigration = (function() {
