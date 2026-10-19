@@ -8255,6 +8255,7 @@ $root.HistorySync = (function() {
             case 4:
             case 5:
             case 6:
+            case 9:
                 break;
             }
             if (message.conversations != null && Object.hasOwnProperty.call(message, "conversations")) {
@@ -8451,6 +8452,10 @@ $root.HistorySync = (function() {
             case "ON_DEMAND":
             case 6:
                 message.syncType = 6;
+                break;
+            case "RECENT_CONVERSATIONS_ON_DEMAND":
+            case 9:
+                message.syncType = 9;
                 break;
             }
             if (object.conversations) {
@@ -8809,6 +8814,7 @@ $root.HistorySync = (function() {
          * @property {number} PUSH_NAME=4 PUSH_NAME value
          * @property {number} NON_BLOCKING_DATA=5 NON_BLOCKING_DATA value
          * @property {number} ON_DEMAND=6 ON_DEMAND value
+         * @property {number} RECENT_CONVERSATIONS_ON_DEMAND=9 RECENT_CONVERSATIONS_ON_DEMAND value
          */
         HistorySync.HistorySyncType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -8819,6 +8825,7 @@ $root.HistorySync = (function() {
             values[valuesById[4] = "PUSH_NAME"] = 4;
             values[valuesById[5] = "NON_BLOCKING_DATA"] = 5;
             values[valuesById[6] = "ON_DEMAND"] = 6;
+            values[valuesById[9] = "RECENT_CONVERSATIONS_ON_DEMAND"] = 9;
             return values;
         })();
 
@@ -21435,6 +21442,7 @@ $root.E2E = (function() {
          * @property {Uint8Array|null} [associatedPrimaryIdentityKey] MessageContextInfo associatedPrimaryIdentityKey
          * @property {string|null} [teeContextAnchorMessageId] MessageContextInfo teeContextAnchorMessageId
          * @property {Protocol.IACP2Setting|null} [acp2Setting] MessageContextInfo acp2Setting
+         * @property {boolean|null} [lightE2Ee] MessageContextInfo lightE2Ee
          */
 
         /**
@@ -21622,6 +21630,14 @@ $root.E2E = (function() {
         MessageContextInfo.prototype.acp2Setting = null;
 
         /**
+         * MessageContextInfo lightE2Ee.
+         * @member {boolean} lightE2Ee
+         * @memberof E2E.MessageContextInfo
+         * @instance
+         */
+        MessageContextInfo.prototype.lightE2Ee = false;
+
+        /**
          * Creates a new MessageContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.MessageContextInfo
@@ -21692,6 +21708,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.teeContextAnchorMessageId);
             if (message.acp2Setting != null && Object.hasOwnProperty.call(message, "acp2Setting"))
                 $root.Protocol.ACP2Setting.encode(message.acp2Setting, writer.uint32(/* id 21, wireType 2 =*/170).fork(), q + 1).ldelim();
+            if (message.lightE2Ee != null && Object.hasOwnProperty.call(message, "lightE2Ee"))
+                writer.uint32(/* id 22, wireType 0 =*/176).bool(message.lightE2Ee);
             return writer;
         };
 
@@ -21826,6 +21844,10 @@ $root.E2E = (function() {
                     }
                 case 21: {
                         message.acp2Setting = $root.Protocol.ACP2Setting.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 22: {
+                        message.lightE2Ee = reader.bool();
                         break;
                     }
                 default:
@@ -21965,6 +21987,9 @@ $root.E2E = (function() {
                 if (error)
                     return "acp2Setting." + error;
             }
+            if (message.lightE2Ee != null && Object.hasOwnProperty.call(message, "lightE2Ee"))
+                if (typeof message.lightE2Ee !== "boolean")
+                    return "lightE2Ee: boolean expected";
             return null;
         };
 
@@ -22100,6 +22125,8 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.MessageContextInfo.acp2Setting: object expected");
                 message.acp2Setting = $root.Protocol.ACP2Setting.fromObject(object.acp2Setting, long + 1);
             }
+            if (object.lightE2Ee != null)
+                message.lightE2Ee = Boolean(object.lightE2Ee);
             return message;
         };
 
@@ -22173,6 +22200,7 @@ $root.E2E = (function() {
                 }
                 object.teeContextAnchorMessageId = "";
                 object.acp2Setting = null;
+                object.lightE2Ee = false;
             }
             if (message.deviceListMetadata != null && Object.hasOwnProperty.call(message, "deviceListMetadata"))
                 object.deviceListMetadata = $root.E2E.DeviceListMetadata.toObject(message.deviceListMetadata, options, q + 1);
@@ -22219,6 +22247,8 @@ $root.E2E = (function() {
                 object.teeContextAnchorMessageId = message.teeContextAnchorMessageId;
             if (message.acp2Setting != null && Object.hasOwnProperty.call(message, "acp2Setting"))
                 object.acp2Setting = $root.Protocol.ACP2Setting.toObject(message.acp2Setting, options, q + 1);
+            if (message.lightE2Ee != null && Object.hasOwnProperty.call(message, "lightE2Ee"))
+                object.lightE2Ee = message.lightE2Ee;
             return object;
         };
 
@@ -23122,6 +23152,7 @@ $root.E2E = (function() {
          * @property {AICommon.IAIProvenance|null} [aiProvenance] ContextInfo aiProvenance
          * @property {Array.<number>|null} [experienceIds] ContextInfo experienceIds
          * @property {string|null} [partnerDeepLinkToken] ContextInfo partnerDeepLinkToken
+         * @property {number|null} [sourceExperienceId] ContextInfo sourceExperienceId
          */
 
         /**
@@ -23672,6 +23703,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.partnerDeepLinkToken = "";
 
         /**
+         * ContextInfo sourceExperienceId.
+         * @member {number} sourceExperienceId
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.sourceExperienceId = 0;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -23838,6 +23877,8 @@ $root.E2E = (function() {
             }
             if (message.partnerDeepLinkToken != null && Object.hasOwnProperty.call(message, "partnerDeepLinkToken"))
                 writer.uint32(/* id 83, wireType 2 =*/666).string(message.partnerDeepLinkToken);
+            if (message.sourceExperienceId != null && Object.hasOwnProperty.call(message, "sourceExperienceId"))
+                writer.uint32(/* id 84, wireType 0 =*/672).uint32(message.sourceExperienceId);
             return writer;
         };
 
@@ -24169,6 +24210,10 @@ $root.E2E = (function() {
                     }
                 case 83: {
                         message.partnerDeepLinkToken = reader.string();
+                        break;
+                    }
+                case 84: {
+                        message.sourceExperienceId = reader.uint32();
                         break;
                     }
                 default:
@@ -24530,6 +24575,9 @@ $root.E2E = (function() {
             if (message.partnerDeepLinkToken != null && Object.hasOwnProperty.call(message, "partnerDeepLinkToken"))
                 if (!$util.isString(message.partnerDeepLinkToken))
                     return "partnerDeepLinkToken: string expected";
+            if (message.sourceExperienceId != null && Object.hasOwnProperty.call(message, "sourceExperienceId"))
+                if (!$util.isInteger(message.sourceExperienceId))
+                    return "sourceExperienceId: integer expected";
             return null;
         };
 
@@ -24967,6 +25015,8 @@ $root.E2E = (function() {
             }
             if (object.partnerDeepLinkToken != null)
                 message.partnerDeepLinkToken = String(object.partnerDeepLinkToken);
+            if (object.sourceExperienceId != null)
+                message.sourceExperienceId = object.sourceExperienceId >>> 0;
             return message;
         };
 
@@ -25078,6 +25128,7 @@ $root.E2E = (function() {
                 object.instagramThreadLink = null;
                 object.aiProvenance = null;
                 object.partnerDeepLinkToken = "";
+                object.sourceExperienceId = 0;
             }
             if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -25228,6 +25279,8 @@ $root.E2E = (function() {
             }
             if (message.partnerDeepLinkToken != null && Object.hasOwnProperty.call(message, "partnerDeepLinkToken"))
                 object.partnerDeepLinkToken = message.partnerDeepLinkToken;
+            if (message.sourceExperienceId != null && Object.hasOwnProperty.call(message, "sourceExperienceId"))
+                object.sourceExperienceId = message.sourceExperienceId;
             return object;
         };
 
@@ -30909,6 +30962,7 @@ $root.E2E = (function() {
              * @property {E2E.ContextInfo.StatusAudienceMetadata.AudienceType|null} [audienceType] StatusAudienceMetadata audienceType
              * @property {string|null} [listName] StatusAudienceMetadata listName
              * @property {string|null} [listEmoji] StatusAudienceMetadata listEmoji
+             * @property {string|null} [networkId] StatusAudienceMetadata networkId
              */
 
             /**
@@ -30951,6 +31005,14 @@ $root.E2E = (function() {
             StatusAudienceMetadata.prototype.listEmoji = "";
 
             /**
+             * StatusAudienceMetadata networkId.
+             * @member {string} networkId
+             * @memberof E2E.ContextInfo.StatusAudienceMetadata
+             * @instance
+             */
+            StatusAudienceMetadata.prototype.networkId = "";
+
+            /**
              * Creates a new StatusAudienceMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.StatusAudienceMetadata
@@ -30984,6 +31046,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.listName);
                 if (message.listEmoji != null && Object.hasOwnProperty.call(message, "listEmoji"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.listEmoji);
+                if (message.networkId != null && Object.hasOwnProperty.call(message, "networkId"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.networkId);
                 return writer;
             };
 
@@ -31046,6 +31110,10 @@ $root.E2E = (function() {
                             message.listEmoji = reader.string();
                             break;
                         }
+                    case 4: {
+                            message.networkId = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -31096,6 +31164,8 @@ $root.E2E = (function() {
                         return "audienceType: enum value expected";
                     case 0:
                     case 1:
+                    case 2:
+                    case 3:
                         break;
                     }
                 if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
@@ -31104,6 +31174,9 @@ $root.E2E = (function() {
                 if (message.listEmoji != null && Object.hasOwnProperty.call(message, "listEmoji"))
                     if (!$util.isString(message.listEmoji))
                         return "listEmoji: string expected";
+                if (message.networkId != null && Object.hasOwnProperty.call(message, "networkId"))
+                    if (!$util.isString(message.networkId))
+                        return "networkId: string expected";
                 return null;
             };
 
@@ -31140,11 +31213,21 @@ $root.E2E = (function() {
                 case 1:
                     message.audienceType = 1;
                     break;
+                case "CUSTOM_LIST":
+                case 2:
+                    message.audienceType = 2;
+                    break;
+                case "NETWORK":
+                case 3:
+                    message.audienceType = 3;
+                    break;
                 }
                 if (object.listName != null)
                     message.listName = String(object.listName);
                 if (object.listEmoji != null)
                     message.listEmoji = String(object.listEmoji);
+                if (object.networkId != null)
+                    message.networkId = String(object.networkId);
                 return message;
             };
 
@@ -31169,6 +31252,7 @@ $root.E2E = (function() {
                     object.audienceType = options.enums === String ? "UNKNOWN" : 0;
                     object.listName = "";
                     object.listEmoji = "";
+                    object.networkId = "";
                 }
                 if (message.audienceType != null && Object.hasOwnProperty.call(message, "audienceType"))
                     object.audienceType = options.enums === String ? $root.E2E.ContextInfo.StatusAudienceMetadata.AudienceType[message.audienceType] === undefined ? message.audienceType : $root.E2E.ContextInfo.StatusAudienceMetadata.AudienceType[message.audienceType] : message.audienceType;
@@ -31176,6 +31260,8 @@ $root.E2E = (function() {
                     object.listName = message.listName;
                 if (message.listEmoji != null && Object.hasOwnProperty.call(message, "listEmoji"))
                     object.listEmoji = message.listEmoji;
+                if (message.networkId != null && Object.hasOwnProperty.call(message, "networkId"))
+                    object.networkId = message.networkId;
                 return object;
             };
 
@@ -31211,11 +31297,15 @@ $root.E2E = (function() {
              * @enum {number}
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} CLOSE_FRIENDS=1 CLOSE_FRIENDS value
+             * @property {number} CUSTOM_LIST=2 CUSTOM_LIST value
+             * @property {number} NETWORK=3 NETWORK value
              */
             StatusAudienceMetadata.AudienceType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "CLOSE_FRIENDS"] = 1;
+                values[valuesById[2] = "CUSTOM_LIST"] = 2;
+                values[valuesById[3] = "NETWORK"] = 3;
                 return values;
             })();
 
@@ -56315,6 +56405,7 @@ $root.E2E = (function() {
                     case 6:
                     case 7:
                     case 8:
+                    case 9:
                         break;
                     }
                 if (message.chunkOrder != null && Object.hasOwnProperty.call(message, "chunkOrder"))
@@ -56437,6 +56528,10 @@ $root.E2E = (function() {
                 case "MESSAGE_ACCESS_STATUS":
                 case 8:
                     message.syncType = 8;
+                    break;
+                case "RECENT_CONVERSATIONS_ON_DEMAND":
+                case 9:
+                    message.syncType = 9;
                     break;
                 }
                 if (object.chunkOrder != null)
@@ -56627,6 +56722,7 @@ $root.E2E = (function() {
          * @property {number} ON_DEMAND=6 ON_DEMAND value
          * @property {number} NO_HISTORY=7 NO_HISTORY value
          * @property {number} MESSAGE_ACCESS_STATUS=8 MESSAGE_ACCESS_STATUS value
+         * @property {number} RECENT_CONVERSATIONS_ON_DEMAND=9 RECENT_CONVERSATIONS_ON_DEMAND value
          */
         Message.HistorySyncType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -56639,6 +56735,7 @@ $root.E2E = (function() {
             values[valuesById[6] = "ON_DEMAND"] = 6;
             values[valuesById[7] = "NO_HISTORY"] = 7;
             values[valuesById[8] = "MESSAGE_ACCESS_STATUS"] = 8;
+            values[valuesById[9] = "RECENT_CONVERSATIONS_ON_DEMAND"] = 9;
             return values;
         })();
 
@@ -73707,6 +73804,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest|null} [companionCanonicalUserNonceFetchRequest] PeerDataOperationRequestMessage companionCanonicalUserNonceFetchRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest|null} [bizBroadcastInsightsContactListRequest] PeerDataOperationRequestMessage bizBroadcastInsightsContactListRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest|null} [bizBroadcastInsightsRefreshRequest] PeerDataOperationRequestMessage bizBroadcastInsightsRefreshRequest
+             * @property {E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest|null} [recentConversationsOnDemandRequest] PeerDataOperationRequestMessage recentConversationsOnDemandRequest
              */
 
             /**
@@ -73824,6 +73922,14 @@ $root.E2E = (function() {
             PeerDataOperationRequestMessage.prototype.bizBroadcastInsightsRefreshRequest = null;
 
             /**
+             * PeerDataOperationRequestMessage recentConversationsOnDemandRequest.
+             * @member {E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest|null|undefined} recentConversationsOnDemandRequest
+             * @memberof E2E.Message.PeerDataOperationRequestMessage
+             * @instance
+             */
+            PeerDataOperationRequestMessage.prototype.recentConversationsOnDemandRequest = null;
+
+            /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PeerDataOperationRequestMessage
@@ -73878,6 +73984,8 @@ $root.E2E = (function() {
                     $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.encode(message.bizBroadcastInsightsContactListRequest, writer.uint32(/* id 11, wireType 2 =*/90).fork(), q + 1).ldelim();
                 if (message.bizBroadcastInsightsRefreshRequest != null && Object.hasOwnProperty.call(message, "bizBroadcastInsightsRefreshRequest"))
                     $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.encode(message.bizBroadcastInsightsRefreshRequest, writer.uint32(/* id 12, wireType 2 =*/98).fork(), q + 1).ldelim();
+                if (message.recentConversationsOnDemandRequest != null && Object.hasOwnProperty.call(message, "recentConversationsOnDemandRequest"))
+                    $root.E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.encode(message.recentConversationsOnDemandRequest, writer.uint32(/* id 13, wireType 2 =*/106).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -73982,6 +74090,10 @@ $root.E2E = (function() {
                             message.bizBroadcastInsightsRefreshRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
+                    case 13: {
+                            message.recentConversationsOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -74045,6 +74157,7 @@ $root.E2E = (function() {
                     case 12:
                     case 13:
                     case 14:
+                    case 15:
                         break;
                     }
                 if (message.requestStickerReupload != null && Object.hasOwnProperty.call(message, "requestStickerReupload")) {
@@ -74113,6 +74226,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.verify(message.bizBroadcastInsightsRefreshRequest, long + 1);
                     if (error)
                         return "bizBroadcastInsightsRefreshRequest." + error;
+                }
+                if (message.recentConversationsOnDemandRequest != null && Object.hasOwnProperty.call(message, "recentConversationsOnDemandRequest")) {
+                    var error = $root.E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.verify(message.recentConversationsOnDemandRequest, long + 1);
+                    if (error)
+                        return "recentConversationsOnDemandRequest." + error;
                 }
                 return null;
             };
@@ -74202,6 +74320,10 @@ $root.E2E = (function() {
                 case 14:
                     message.peerDataOperationRequestType = 14;
                     break;
+                case "RECENT_CONVERSATIONS_ON_DEMAND_REQUEST":
+                case 15:
+                    message.peerDataOperationRequestType = 15;
+                    break;
                 }
                 if (object.requestStickerReupload) {
                     if (!Array.isArray(object.requestStickerReupload))
@@ -74273,6 +74395,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.bizBroadcastInsightsRefreshRequest: object expected");
                     message.bizBroadcastInsightsRefreshRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.fromObject(object.bizBroadcastInsightsRefreshRequest, long + 1);
                 }
+                if (object.recentConversationsOnDemandRequest != null) {
+                    if (!$util.isObject(object.recentConversationsOnDemandRequest))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.recentConversationsOnDemandRequest: object expected");
+                    message.recentConversationsOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.fromObject(object.recentConversationsOnDemandRequest, long + 1);
+                }
                 return message;
             };
 
@@ -74308,6 +74435,7 @@ $root.E2E = (function() {
                     object.companionCanonicalUserNonceFetchRequest = null;
                     object.bizBroadcastInsightsContactListRequest = null;
                     object.bizBroadcastInsightsRefreshRequest = null;
+                    object.recentConversationsOnDemandRequest = null;
                 }
                 if (message.peerDataOperationRequestType != null && Object.hasOwnProperty.call(message, "peerDataOperationRequestType"))
                     object.peerDataOperationRequestType = options.enums === String ? $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] === undefined ? message.peerDataOperationRequestType : $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] : message.peerDataOperationRequestType;
@@ -74342,6 +74470,8 @@ $root.E2E = (function() {
                     object.bizBroadcastInsightsContactListRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.toObject(message.bizBroadcastInsightsContactListRequest, options, q + 1);
                 if (message.bizBroadcastInsightsRefreshRequest != null && Object.hasOwnProperty.call(message, "bizBroadcastInsightsRefreshRequest"))
                     object.bizBroadcastInsightsRefreshRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.toObject(message.bizBroadcastInsightsRefreshRequest, options, q + 1);
+                if (message.recentConversationsOnDemandRequest != null && Object.hasOwnProperty.call(message, "recentConversationsOnDemandRequest"))
+                    object.recentConversationsOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.toObject(message.recentConversationsOnDemandRequest, options, q + 1);
                 return object;
             };
 
@@ -75987,6 +76117,7 @@ $root.E2E = (function() {
                         case 6:
                         case 7:
                         case 8:
+                        case 9:
                             break;
                         }
                     if (message.chunkOrder != null && Object.hasOwnProperty.call(message, "chunkOrder"))
@@ -76061,6 +76192,10 @@ $root.E2E = (function() {
                     case "MESSAGE_ACCESS_STATUS":
                     case 8:
                         message.syncType = 8;
+                        break;
+                    case "RECENT_CONVERSATIONS_ON_DEMAND":
+                    case 9:
+                        message.syncType = 9;
                         break;
                     }
                     if (object.chunkOrder != null)
@@ -76777,6 +76912,272 @@ $root.E2E = (function() {
                 };
 
                 return PlaceholderMessageResendRequest;
+            })();
+
+            PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest = (function() {
+
+                /**
+                 * Properties of a RecentConversationsOnDemandRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @interface IRecentConversationsOnDemandRequest
+                 * @property {number|null} [conversationCount] RecentConversationsOnDemandRequest conversationCount
+                 * @property {number|null} [messagesPerConversation] RecentConversationsOnDemandRequest messagesPerConversation
+                 */
+
+                /**
+                 * Constructs a new RecentConversationsOnDemandRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @classdesc Represents a RecentConversationsOnDemandRequest.
+                 * @implements IRecentConversationsOnDemandRequest
+                 * @constructor
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest=} [properties] Properties to set
+                 */
+                function RecentConversationsOnDemandRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * RecentConversationsOnDemandRequest conversationCount.
+                 * @member {number} conversationCount
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @instance
+                 */
+                RecentConversationsOnDemandRequest.prototype.conversationCount = 0;
+
+                /**
+                 * RecentConversationsOnDemandRequest messagesPerConversation.
+                 * @member {number} messagesPerConversation
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @instance
+                 */
+                RecentConversationsOnDemandRequest.prototype.messagesPerConversation = 0;
+
+                /**
+                 * Creates a new RecentConversationsOnDemandRequest instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest=} [properties] Properties to set
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest} RecentConversationsOnDemandRequest instance
+                 */
+                RecentConversationsOnDemandRequest.create = function create(properties) {
+                    return new RecentConversationsOnDemandRequest(properties);
+                };
+
+                /**
+                 * Encodes the specified RecentConversationsOnDemandRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest} message RecentConversationsOnDemandRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                RecentConversationsOnDemandRequest.encode = function encode(message, writer, q) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    if (message.conversationCount != null && Object.hasOwnProperty.call(message, "conversationCount"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.conversationCount);
+                    if (message.messagesPerConversation != null && Object.hasOwnProperty.call(message, "messagesPerConversation"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.messagesPerConversation);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified RecentConversationsOnDemandRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest} message RecentConversationsOnDemandRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                RecentConversationsOnDemandRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+                };
+
+                /**
+                 * Decodes a RecentConversationsOnDemandRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest} RecentConversationsOnDemandRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                RecentConversationsOnDemandRequest.decode = function decode(reader, length, error, long) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.conversationCount = reader.uint32();
+                                break;
+                            }
+                        case 2: {
+                                message.messagesPerConversation = reader.uint32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7, long);
+                            break;
+                        }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a RecentConversationsOnDemandRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest} RecentConversationsOnDemandRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                RecentConversationsOnDemandRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a RecentConversationsOnDemandRequest message.
+                 * @function verify
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                RecentConversationsOnDemandRequest.verify = function verify(message, long) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
+                    if (message.conversationCount != null && Object.hasOwnProperty.call(message, "conversationCount"))
+                        if (!$util.isInteger(message.conversationCount))
+                            return "conversationCount: integer expected";
+                    if (message.messagesPerConversation != null && Object.hasOwnProperty.call(message, "messagesPerConversation"))
+                        if (!$util.isInteger(message.messagesPerConversation))
+                            return "messagesPerConversation: integer expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a RecentConversationsOnDemandRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest} RecentConversationsOnDemandRequest
+                 */
+                RecentConversationsOnDemandRequest.fromObject = function fromObject(object, long) {
+                    if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest)
+                        return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest: object expected");
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var message = new $root.E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest();
+                    if (object.conversationCount != null)
+                        message.conversationCount = object.conversationCount >>> 0;
+                    if (object.messagesPerConversation != null)
+                        message.messagesPerConversation = object.messagesPerConversation >>> 0;
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a RecentConversationsOnDemandRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest} message RecentConversationsOnDemandRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                RecentConversationsOnDemandRequest.toObject = function toObject(message, options, q) {
+                    if (!options)
+                        options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    var object = {};
+                    if (options.defaults) {
+                        object.conversationCount = 0;
+                        object.messagesPerConversation = 0;
+                    }
+                    if (message.conversationCount != null && Object.hasOwnProperty.call(message, "conversationCount"))
+                        object.conversationCount = message.conversationCount;
+                    if (message.messagesPerConversation != null && Object.hasOwnProperty.call(message, "messagesPerConversation"))
+                        object.messagesPerConversation = message.messagesPerConversation;
+                    return object;
+                };
+
+                /**
+                 * Converts this RecentConversationsOnDemandRequest to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                RecentConversationsOnDemandRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for RecentConversationsOnDemandRequest
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                RecentConversationsOnDemandRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest";
+                };
+
+                return RecentConversationsOnDemandRequest;
             })();
 
             PeerDataOperationRequestMessage.RequestStickerReupload = (function() {
@@ -77785,6 +78186,7 @@ $root.E2E = (function() {
                     case 12:
                     case 13:
                     case 14:
+                    case 15:
                         break;
                     }
                 if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
@@ -77886,6 +78288,10 @@ $root.E2E = (function() {
                 case "CONTACT_REFRESH_REQUEST":
                 case 14:
                     message.peerDataOperationRequestType = 14;
+                    break;
+                case "RECENT_CONVERSATIONS_ON_DEMAND_REQUEST":
+                case 15:
+                    message.peerDataOperationRequestType = 15;
                     break;
                 }
                 if (object.stanzaId != null)
@@ -81176,6 +81582,7 @@ $root.E2E = (function() {
                             case 6:
                             case 7:
                             case 8:
+                            case 9:
                                 break;
                             }
                         if (message.chunkOrder != null && Object.hasOwnProperty.call(message, "chunkOrder"))
@@ -81262,6 +81669,10 @@ $root.E2E = (function() {
                         case "MESSAGE_ACCESS_STATUS":
                         case 8:
                             message.syncType = 8;
+                            break;
+                        case "RECENT_CONVERSATIONS_ON_DEMAND":
+                        case 9:
+                            message.syncType = 9;
                             break;
                         }
                         if (object.chunkOrder != null)
@@ -83374,6 +83785,7 @@ $root.E2E = (function() {
          * @property {number} BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO=12 BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO value
          * @property {number} BUSINESS_BROADCAST_INSIGHTS_REFRESH=13 BUSINESS_BROADCAST_INSIGHTS_REFRESH value
          * @property {number} CONTACT_REFRESH_REQUEST=14 CONTACT_REFRESH_REQUEST value
+         * @property {number} RECENT_CONVERSATIONS_ON_DEMAND_REQUEST=15 RECENT_CONVERSATIONS_ON_DEMAND_REQUEST value
          */
         Message.PeerDataOperationRequestType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -83392,6 +83804,7 @@ $root.E2E = (function() {
             values[valuesById[12] = "BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO"] = 12;
             values[valuesById[13] = "BUSINESS_BROADCAST_INSIGHTS_REFRESH"] = 13;
             values[valuesById[14] = "CONTACT_REFRESH_REQUEST"] = 14;
+            values[valuesById[15] = "RECENT_CONVERSATIONS_ON_DEMAND_REQUEST"] = 15;
             return values;
         })();
 
@@ -171574,6 +171987,8 @@ $root.Web = (function() {
                 case 284:
                 case 285:
                 case 289:
+                case 290:
+                case 291:
                     break;
                 }
             if (message.clearMedia != null && Object.hasOwnProperty.call(message, "clearMedia"))
@@ -173026,6 +173441,14 @@ $root.Web = (function() {
             case 289:
                 message.messageStubType = 289;
                 break;
+            case "POLL_OPTIONS_REMOVED":
+            case 290:
+                message.messageStubType = 290;
+                break;
+            case "POLL_ADDED_OPTION_REMOVED":
+            case 291:
+                message.messageStubType = 291;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -174024,6 +174447,8 @@ $root.Web = (function() {
          * @property {number} META_AI_THREAD_CREATED=284 META_AI_THREAD_CREATED value
          * @property {number} META_AI_CONNECTOR_LINKED=285 META_AI_CONNECTOR_LINKED value
          * @property {number} SPLIT_PAYMENT_MARKED_AS_PAID=289 SPLIT_PAYMENT_MARKED_AS_PAID value
+         * @property {number} POLL_OPTIONS_REMOVED=290 POLL_OPTIONS_REMOVED value
+         * @property {number} POLL_ADDED_OPTION_REMOVED=291 POLL_ADDED_OPTION_REMOVED value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -174292,6 +174717,8 @@ $root.Web = (function() {
             values[valuesById[284] = "META_AI_THREAD_CREATED"] = 284;
             values[valuesById[285] = "META_AI_CONNECTOR_LINKED"] = 285;
             values[valuesById[289] = "SPLIT_PAYMENT_MARKED_AS_PAID"] = 289;
+            values[valuesById[290] = "POLL_OPTIONS_REMOVED"] = 290;
+            values[valuesById[291] = "POLL_ADDED_OPTION_REMOVED"] = 291;
             return values;
         })();
 

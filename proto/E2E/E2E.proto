@@ -293,6 +293,7 @@ message MessageContextInfo {
     optional bytes associatedPrimaryIdentityKey = 19;
     optional string teeContextAnchorMessageId = 20;
     optional Protocol.ACP2Setting acp2Setting = 21;
+    optional bool lightE2Ee = 22;
     enum MessageAddonExpiryType {
         STATIC = 1;
         DEPENDENT_ON_PARENT = 2;
@@ -407,6 +408,7 @@ message ContextInfo {
     optional AICommon.AIProvenance aiProvenance = 81;
     repeated uint32 experienceIds = 82 [packed=true];
     optional string partnerDeepLinkToken = 83;
+    optional uint32 sourceExperienceId = 84;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -609,9 +611,12 @@ message ContextInfo {
         optional AudienceType audienceType = 1;
         optional string listName = 2;
         optional string listEmoji = 3;
+        optional string networkId = 4;
         enum AudienceType {
             UNKNOWN = 0;
             CLOSE_FRIENDS = 1;
+            CUSTOM_LIST = 2;
+            NETWORK = 3;
         }
     }
     enum StatusSourceType {
@@ -1268,6 +1273,7 @@ message Message {
         ON_DEMAND = 6;
         NO_HISTORY = 7;
         MESSAGE_ACCESS_STATUS = 8;
+        RECENT_CONVERSATIONS_ON_DEMAND = 9;
     }
     message ImageMessage {
         optional string url = 1;
@@ -1707,6 +1713,7 @@ message Message {
         optional CompanionCanonicalUserNonceFetchRequest companionCanonicalUserNonceFetchRequest = 10;
         optional BizBroadcastInsightsContactListRequest bizBroadcastInsightsContactListRequest = 11;
         optional BizBroadcastInsightsRefreshRequest bizBroadcastInsightsRefreshRequest = 12;
+        optional RecentConversationsOnDemandRequest recentConversationsOnDemandRequest = 13;
         message BizBroadcastInsightsContactListRequest {
             optional string campaignId = 1;
         }
@@ -1749,6 +1756,10 @@ message Message {
         }
         message PlaceholderMessageResendRequest {
             optional SignalLocalStorageProtocol.MessageKey messageKey = 1;
+        }
+        message RecentConversationsOnDemandRequest {
+            optional uint32 conversationCount = 1;
+            optional uint32 messagesPerConversation = 2;
         }
         message RequestStickerReupload {
             optional string fileSha256 = 1;
@@ -1899,6 +1910,7 @@ message Message {
         BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO = 12;
         BUSINESS_BROADCAST_INSIGHTS_REFRESH = 13;
         CONTACT_REFRESH_REQUEST = 14;
+        RECENT_CONVERSATIONS_ON_DEMAND_REQUEST = 15;
     }
     message PinInChatMessage {
         optional SignalLocalStorageProtocol.MessageKey key = 1;

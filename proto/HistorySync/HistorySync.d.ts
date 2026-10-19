@@ -2679,7 +2679,8 @@ export namespace HistorySync {
             RECENT = 3,
             PUSH_NAME = 4,
             NON_BLOCKING_DATA = 5,
-            ON_DEMAND = 6
+            ON_DEMAND = 6,
+            RECENT_CONVERSATIONS_ON_DEMAND = 9
         }
     }
 
@@ -7061,6 +7062,9 @@ export namespace E2E {
 
         /** MessageContextInfo acp2Setting */
         acp2Setting?: (Protocol.IACP2Setting|null);
+
+        /** MessageContextInfo lightE2Ee */
+        lightE2Ee?: (boolean|null);
     }
 
     /** Represents a MessageContextInfo. */
@@ -7134,6 +7138,9 @@ export namespace E2E {
 
         /** MessageContextInfo acp2Setting. */
         public acp2Setting?: (Protocol.IACP2Setting|null);
+
+        /** MessageContextInfo lightE2Ee. */
+        public lightE2Ee: boolean;
 
         /**
          * Creates a new MessageContextInfo instance using the specified properties.
@@ -7674,6 +7681,9 @@ export namespace E2E {
 
         /** ContextInfo partnerDeepLinkToken */
         partnerDeepLinkToken?: (string|null);
+
+        /** ContextInfo sourceExperienceId */
+        sourceExperienceId?: (number|null);
     }
 
     /** Represents a ContextInfo. */
@@ -7882,6 +7892,9 @@ export namespace E2E {
 
         /** ContextInfo partnerDeepLinkToken. */
         public partnerDeepLinkToken: string;
+
+        /** ContextInfo sourceExperienceId. */
+        public sourceExperienceId: number;
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -9882,6 +9895,9 @@ export namespace E2E {
 
             /** StatusAudienceMetadata listEmoji */
             listEmoji?: (string|null);
+
+            /** StatusAudienceMetadata networkId */
+            networkId?: (string|null);
         }
 
         /** Represents a StatusAudienceMetadata. */
@@ -9901,6 +9917,9 @@ export namespace E2E {
 
             /** StatusAudienceMetadata listEmoji. */
             public listEmoji: string;
+
+            /** StatusAudienceMetadata networkId. */
+            public networkId: string;
 
             /**
              * Creates a new StatusAudienceMetadata instance using the specified properties.
@@ -9985,7 +10004,9 @@ export namespace E2E {
             /** AudienceType enum. */
             enum AudienceType {
                 UNKNOWN = 0,
-                CLOSE_FRIENDS = 1
+                CLOSE_FRIENDS = 1,
+                CUSTOM_LIST = 2,
+                NETWORK = 3
             }
         }
 
@@ -18068,7 +18089,8 @@ export namespace E2E {
             NON_BLOCKING_DATA = 5,
             ON_DEMAND = 6,
             NO_HISTORY = 7,
-            MESSAGE_ACCESS_STATUS = 8
+            MESSAGE_ACCESS_STATUS = 8,
+            RECENT_CONVERSATIONS_ON_DEMAND = 9
         }
 
         /** Properties of an ImageMessage. */
@@ -23798,6 +23820,9 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage bizBroadcastInsightsRefreshRequest */
             bizBroadcastInsightsRefreshRequest?: (E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest|null);
+
+            /** PeerDataOperationRequestMessage recentConversationsOnDemandRequest */
+            recentConversationsOnDemandRequest?: (E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest|null);
         }
 
         /** Represents a PeerDataOperationRequestMessage. */
@@ -23844,6 +23869,9 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage bizBroadcastInsightsRefreshRequest. */
             public bizBroadcastInsightsRefreshRequest?: (E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest|null);
+
+            /** PeerDataOperationRequestMessage recentConversationsOnDemandRequest. */
+            public recentConversationsOnDemandRequest?: (E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest|null);
 
             /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
@@ -24794,6 +24822,109 @@ export namespace E2E {
 
                 /**
                  * Gets the default type url for PlaceholderMessageResendRequest
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a RecentConversationsOnDemandRequest. */
+            interface IRecentConversationsOnDemandRequest {
+
+                /** RecentConversationsOnDemandRequest conversationCount */
+                conversationCount?: (number|null);
+
+                /** RecentConversationsOnDemandRequest messagesPerConversation */
+                messagesPerConversation?: (number|null);
+            }
+
+            /** Represents a RecentConversationsOnDemandRequest. */
+            class RecentConversationsOnDemandRequest implements IRecentConversationsOnDemandRequest {
+
+                /**
+                 * Constructs a new RecentConversationsOnDemandRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest);
+
+                /** RecentConversationsOnDemandRequest conversationCount. */
+                public conversationCount: number;
+
+                /** RecentConversationsOnDemandRequest messagesPerConversation. */
+                public messagesPerConversation: number;
+
+                /**
+                 * Creates a new RecentConversationsOnDemandRequest instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns RecentConversationsOnDemandRequest instance
+                 */
+                public static create(properties?: E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest): E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest;
+
+                /**
+                 * Encodes the specified RecentConversationsOnDemandRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.verify|verify} messages.
+                 * @param message RecentConversationsOnDemandRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified RecentConversationsOnDemandRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest.verify|verify} messages.
+                 * @param message RecentConversationsOnDemandRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestMessage.IRecentConversationsOnDemandRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a RecentConversationsOnDemandRequest message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns RecentConversationsOnDemandRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest;
+
+                /**
+                 * Decodes a RecentConversationsOnDemandRequest message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns RecentConversationsOnDemandRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest;
+
+                /**
+                 * Verifies a RecentConversationsOnDemandRequest message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a RecentConversationsOnDemandRequest message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns RecentConversationsOnDemandRequest
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest;
+
+                /**
+                 * Creates a plain object from a RecentConversationsOnDemandRequest message. Also converts values to other types if specified.
+                 * @param message RecentConversationsOnDemandRequest
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.PeerDataOperationRequestMessage.RecentConversationsOnDemandRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this RecentConversationsOnDemandRequest to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for RecentConversationsOnDemandRequest
                  * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns The default type url
                  */
@@ -27033,7 +27164,8 @@ export namespace E2E {
             GALAXY_FLOW_ACTION = 11,
             BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO = 12,
             BUSINESS_BROADCAST_INSIGHTS_REFRESH = 13,
-            CONTACT_REFRESH_REQUEST = 14
+            CONTACT_REFRESH_REQUEST = 14,
+            RECENT_CONVERSATIONS_ON_DEMAND_REQUEST = 15
         }
 
         /** Properties of a PinInChatMessage. */
@@ -56455,7 +56587,9 @@ export namespace Web {
             CHAT_WITH_BUSINESS_IN_DIRECTORY = 283,
             META_AI_THREAD_CREATED = 284,
             META_AI_CONNECTOR_LINKED = 285,
-            SPLIT_PAYMENT_MARKED_AS_PAID = 289
+            SPLIT_PAYMENT_MARKED_AS_PAID = 289,
+            POLL_OPTIONS_REMOVED = 290,
+            POLL_ADDED_OPTION_REMOVED = 291
         }
     }
 }
