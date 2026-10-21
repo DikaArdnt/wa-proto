@@ -118539,6 +118539,7 @@ $root.AICommon = (function() {
          * @memberof AICommon
          * @interface IBotMessageOrigin
          * @property {AICommon.BotMessageOrigin.BotMessageOriginType|null} [type] BotMessageOrigin type
+         * @property {string|null} [proactiveMessageCampaignId] BotMessageOrigin proactiveMessageCampaignId
          */
 
         /**
@@ -118563,6 +118564,14 @@ $root.AICommon = (function() {
          * @instance
          */
         BotMessageOrigin.prototype.type = 0;
+
+        /**
+         * BotMessageOrigin proactiveMessageCampaignId.
+         * @member {string} proactiveMessageCampaignId
+         * @memberof AICommon.BotMessageOrigin
+         * @instance
+         */
+        BotMessageOrigin.prototype.proactiveMessageCampaignId = "";
 
         /**
          * Creates a new BotMessageOrigin instance using the specified properties.
@@ -118594,6 +118603,8 @@ $root.AICommon = (function() {
                 throw Error("max depth exceeded");
             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+            if (message.proactiveMessageCampaignId != null && Object.hasOwnProperty.call(message, "proactiveMessageCampaignId"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.proactiveMessageCampaignId);
             return writer;
         };
 
@@ -118648,6 +118659,10 @@ $root.AICommon = (function() {
                         message.type = reader.int32();
                         break;
                     }
+                case 2: {
+                        message.proactiveMessageCampaignId = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -118700,6 +118715,9 @@ $root.AICommon = (function() {
                 case 1:
                     break;
                 }
+            if (message.proactiveMessageCampaignId != null && Object.hasOwnProperty.call(message, "proactiveMessageCampaignId"))
+                if (!$util.isString(message.proactiveMessageCampaignId))
+                    return "proactiveMessageCampaignId: string expected";
             return null;
         };
 
@@ -118737,6 +118755,8 @@ $root.AICommon = (function() {
                 message.type = 1;
                 break;
             }
+            if (object.proactiveMessageCampaignId != null)
+                message.proactiveMessageCampaignId = String(object.proactiveMessageCampaignId);
             return message;
         };
 
@@ -118757,10 +118777,14 @@ $root.AICommon = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.type = options.enums === String ? "BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED" : 0;
+                object.proactiveMessageCampaignId = "";
+            }
             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 object.type = options.enums === String ? $root.AICommon.BotMessageOrigin.BotMessageOriginType[message.type] === undefined ? message.type : $root.AICommon.BotMessageOrigin.BotMessageOriginType[message.type] : message.type;
+            if (message.proactiveMessageCampaignId != null && Object.hasOwnProperty.call(message, "proactiveMessageCampaignId"))
+                object.proactiveMessageCampaignId = message.proactiveMessageCampaignId;
             return object;
         };
 

@@ -39151,6 +39151,9 @@ export namespace AICommon {
 
         /** BotMessageOrigin type */
         type?: (AICommon.BotMessageOrigin.BotMessageOriginType|null);
+
+        /** BotMessageOrigin proactiveMessageCampaignId */
+        proactiveMessageCampaignId?: (string|null);
     }
 
     /** Represents a BotMessageOrigin. */
@@ -39164,6 +39167,9 @@ export namespace AICommon {
 
         /** BotMessageOrigin type. */
         public type: AICommon.BotMessageOrigin.BotMessageOriginType;
+
+        /** BotMessageOrigin proactiveMessageCampaignId. */
+        public proactiveMessageCampaignId: string;
 
         /**
          * Creates a new BotMessageOrigin instance using the specified properties.

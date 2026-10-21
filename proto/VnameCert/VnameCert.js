@@ -576,6 +576,7 @@ $root.VnameCert = (function() {
          * @property {number|Long|null} [issueTime] BizAccountLinkInfo issueTime
          * @property {VnameCert.BizAccountLinkInfo.HostStorageType|null} [hostStorage] BizAccountLinkInfo hostStorage
          * @property {VnameCert.BizAccountLinkInfo.AccountType|null} [accountType] BizAccountLinkInfo accountType
+         * @property {string|null} [whatsappAcctEmail] BizAccountLinkInfo whatsappAcctEmail
          */
 
         /**
@@ -634,6 +635,14 @@ $root.VnameCert = (function() {
         BizAccountLinkInfo.prototype.accountType = 0;
 
         /**
+         * BizAccountLinkInfo whatsappAcctEmail.
+         * @member {string} whatsappAcctEmail
+         * @memberof VnameCert.BizAccountLinkInfo
+         * @instance
+         */
+        BizAccountLinkInfo.prototype.whatsappAcctEmail = "";
+
+        /**
          * Creates a new BizAccountLinkInfo instance using the specified properties.
          * @function create
          * @memberof VnameCert.BizAccountLinkInfo
@@ -671,6 +680,8 @@ $root.VnameCert = (function() {
                 writer.uint32(/* id 4, wireType 0 =*/32).int32(message.hostStorage);
             if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.accountType);
+            if (message.whatsappAcctEmail != null && Object.hasOwnProperty.call(message, "whatsappAcctEmail"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.whatsappAcctEmail);
             return writer;
         };
 
@@ -741,6 +752,10 @@ $root.VnameCert = (function() {
                         message.accountType = reader.int32();
                         break;
                     }
+                case 6: {
+                        message.whatsappAcctEmail = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -809,6 +824,9 @@ $root.VnameCert = (function() {
                 case 0:
                     break;
                 }
+            if (message.whatsappAcctEmail != null && Object.hasOwnProperty.call(message, "whatsappAcctEmail"))
+                if (!$util.isString(message.whatsappAcctEmail))
+                    return "whatsappAcctEmail: string expected";
             return null;
         };
 
@@ -878,6 +896,8 @@ $root.VnameCert = (function() {
                 message.accountType = 0;
                 break;
             }
+            if (object.whatsappAcctEmail != null)
+                message.whatsappAcctEmail = String(object.whatsappAcctEmail);
             return message;
         };
 
@@ -912,6 +932,7 @@ $root.VnameCert = (function() {
                     object.issueTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.hostStorage = options.enums === String ? "ON_PREMISE" : 0;
                 object.accountType = options.enums === String ? "ENTERPRISE" : 0;
+                object.whatsappAcctEmail = "";
             }
             if (message.whatsappBizAcctFbid != null && Object.hasOwnProperty.call(message, "whatsappBizAcctFbid"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
@@ -933,6 +954,8 @@ $root.VnameCert = (function() {
                 object.hostStorage = options.enums === String ? $root.VnameCert.BizAccountLinkInfo.HostStorageType[message.hostStorage] === undefined ? message.hostStorage : $root.VnameCert.BizAccountLinkInfo.HostStorageType[message.hostStorage] : message.hostStorage;
             if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 object.accountType = options.enums === String ? $root.VnameCert.BizAccountLinkInfo.AccountType[message.accountType] === undefined ? message.accountType : $root.VnameCert.BizAccountLinkInfo.AccountType[message.accountType] : message.accountType;
+            if (message.whatsappAcctEmail != null && Object.hasOwnProperty.call(message, "whatsappAcctEmail"))
+                object.whatsappAcctEmail = message.whatsappAcctEmail;
             return object;
         };
 
