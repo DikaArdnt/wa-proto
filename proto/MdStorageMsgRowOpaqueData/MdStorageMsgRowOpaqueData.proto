@@ -62,6 +62,7 @@ message MsgOpaqueData {
     optional string mediaPngThumbnail = 61;
     optional string qrUrl = 62;
     optional MusicData musicData = 63;
+    optional string pollAddedOptionName = 64;
     message EventLocation {
         optional double degreesLatitude = 1;
         optional double degreesLongitude = 2;

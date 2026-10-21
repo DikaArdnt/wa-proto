@@ -82,6 +82,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @property {string|null} [mediaPngThumbnail] MsgOpaqueData mediaPngThumbnail
          * @property {string|null} [qrUrl] MsgOpaqueData qrUrl
          * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData|null} [musicData] MsgOpaqueData musicData
+         * @property {string|null} [pollAddedOptionName] MsgOpaqueData pollAddedOptionName
          */
 
         /**
@@ -565,6 +566,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
         MsgOpaqueData.prototype.musicData = null;
 
         /**
+         * MsgOpaqueData pollAddedOptionName.
+         * @member {string} pollAddedOptionName
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.pollAddedOptionName = "";
+
+        /**
          * Creates a new MsgOpaqueData instance using the specified properties.
          * @function create
          * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
@@ -709,6 +718,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 writer.uint32(/* id 62, wireType 2 =*/498).string(message.qrUrl);
             if (message.musicData != null && Object.hasOwnProperty.call(message, "musicData"))
                 $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.encode(message.musicData, writer.uint32(/* id 63, wireType 2 =*/506).fork(), q + 1).ldelim();
+            if (message.pollAddedOptionName != null && Object.hasOwnProperty.call(message, "pollAddedOptionName"))
+                writer.uint32(/* id 64, wireType 2 =*/514).string(message.pollAddedOptionName);
             return writer;
         };
 
@@ -993,6 +1004,10 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                         message.musicData = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
+                case 64: {
+                        message.pollAddedOptionName = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -1236,6 +1251,9 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 if (error)
                     return "musicData." + error;
             }
+            if (message.pollAddedOptionName != null && Object.hasOwnProperty.call(message, "pollAddedOptionName"))
+                if (!$util.isString(message.pollAddedOptionName))
+                    return "pollAddedOptionName: string expected";
             return null;
         };
 
@@ -1494,6 +1512,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.musicData: object expected");
                 message.musicData = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.fromObject(object.musicData, long + 1);
             }
+            if (object.pollAddedOptionName != null)
+                message.pollAddedOptionName = String(object.pollAddedOptionName);
             return message;
         };
 
@@ -1652,6 +1672,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.mediaPngThumbnail = "";
                 object.qrUrl = "";
                 object.musicData = null;
+                object.pollAddedOptionName = "";
             }
             if (message.body != null && Object.hasOwnProperty.call(message, "body"))
                 object.body = message.body;
@@ -1802,6 +1823,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.qrUrl = message.qrUrl;
             if (message.musicData != null && Object.hasOwnProperty.call(message, "musicData"))
                 object.musicData = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.MusicData.toObject(message.musicData, options, q + 1);
+            if (message.pollAddedOptionName != null && Object.hasOwnProperty.call(message, "pollAddedOptionName"))
+                object.pollAddedOptionName = message.pollAddedOptionName;
             return object;
         };
 

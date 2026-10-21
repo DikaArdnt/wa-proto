@@ -179,6 +179,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData musicData */
         musicData?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData|null);
+
+        /** MsgOpaqueData pollAddedOptionName */
+        pollAddedOptionName?: (string|null);
     }
 
     /** Represents a MsgOpaqueData. */
@@ -363,6 +366,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData musicData. */
         public musicData?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.IMusicData|null);
+
+        /** MsgOpaqueData pollAddedOptionName. */
+        public pollAddedOptionName: string;
 
         /**
          * Creates a new MsgOpaqueData instance using the specified properties.
