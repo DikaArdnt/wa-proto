@@ -81,7 +81,7 @@ message DeviceProps {
         optional bool supportInlineContacts = 24;
         optional bool supportNewsletter = 25;
         optional bool supportUniversalReachChat = 26;
-        optional bool supportOmittedConversationIndex = 27;
+        optional bool supportOmittedConversationMetadata = 28;
     }
     enum PlatformType {
         UNKNOWN = 0;

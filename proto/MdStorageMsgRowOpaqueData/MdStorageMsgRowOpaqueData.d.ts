@@ -20549,6 +20549,9 @@ export namespace E2E {
 
             /** MusicMessage contextInfo */
             contextInfo?: (E2E.IContextInfo|null);
+
+            /** MusicMessage lyrics */
+            lyrics?: (E2E.Message.MusicMessage.ILyrics|null);
         }
 
         /** Represents a MusicMessage. */
@@ -20574,6 +20577,9 @@ export namespace E2E {
 
             /** MusicMessage contextInfo. */
             public contextInfo?: (E2E.IContextInfo|null);
+
+            /** MusicMessage lyrics. */
+            public lyrics?: (E2E.Message.MusicMessage.ILyrics|null);
 
             /**
              * Creates a new MusicMessage instance using the specified properties.
@@ -20654,6 +20660,215 @@ export namespace E2E {
         }
 
         namespace MusicMessage {
+
+            /** Properties of a Lyrics. */
+            interface ILyrics {
+
+                /** Lyrics lines */
+                lines?: (E2E.Message.MusicMessage.Lyrics.ILine[]|null);
+            }
+
+            /** Represents a Lyrics. */
+            class Lyrics implements ILyrics {
+
+                /**
+                 * Constructs a new Lyrics.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.MusicMessage.ILyrics);
+
+                /** Lyrics lines. */
+                public lines: E2E.Message.MusicMessage.Lyrics.ILine[];
+
+                /**
+                 * Creates a new Lyrics instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns Lyrics instance
+                 */
+                public static create(properties?: E2E.Message.MusicMessage.ILyrics): E2E.Message.MusicMessage.Lyrics;
+
+                /**
+                 * Encodes the specified Lyrics message. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.verify|verify} messages.
+                 * @param message Lyrics message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.MusicMessage.ILyrics, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified Lyrics message, length delimited. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.verify|verify} messages.
+                 * @param message Lyrics message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.MusicMessage.ILyrics, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a Lyrics message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns Lyrics
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.MusicMessage.Lyrics;
+
+                /**
+                 * Decodes a Lyrics message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns Lyrics
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.MusicMessage.Lyrics;
+
+                /**
+                 * Verifies a Lyrics message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a Lyrics message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns Lyrics
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.MusicMessage.Lyrics;
+
+                /**
+                 * Creates a plain object from a Lyrics message. Also converts values to other types if specified.
+                 * @param message Lyrics
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.MusicMessage.Lyrics, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this Lyrics to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for Lyrics
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace Lyrics {
+
+                /** Properties of a Line. */
+                interface ILine {
+
+                    /** Line startTimeInMs */
+                    startTimeInMs?: (number|Long|null);
+
+                    /** Line endTimeInMs */
+                    endTimeInMs?: (number|Long|null);
+
+                    /** Line text */
+                    text?: (string|null);
+                }
+
+                /** Represents a Line. */
+                class Line implements ILine {
+
+                    /**
+                     * Constructs a new Line.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: E2E.Message.MusicMessage.Lyrics.ILine);
+
+                    /** Line startTimeInMs. */
+                    public startTimeInMs: (number|Long);
+
+                    /** Line endTimeInMs. */
+                    public endTimeInMs: (number|Long);
+
+                    /** Line text. */
+                    public text: string;
+
+                    /**
+                     * Creates a new Line instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Line instance
+                     */
+                    public static create(properties?: E2E.Message.MusicMessage.Lyrics.ILine): E2E.Message.MusicMessage.Lyrics.Line;
+
+                    /**
+                     * Encodes the specified Line message. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.Line.verify|verify} messages.
+                     * @param message Line message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: E2E.Message.MusicMessage.Lyrics.ILine, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Line message, length delimited. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.Line.verify|verify} messages.
+                     * @param message Line message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: E2E.Message.MusicMessage.Lyrics.ILine, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Line message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Line
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.MusicMessage.Lyrics.Line;
+
+                    /**
+                     * Decodes a Line message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Line
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.MusicMessage.Lyrics.Line;
+
+                    /**
+                     * Verifies a Line message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Line message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Line
+                     */
+                    public static fromObject(object: { [k: string]: any }): E2E.Message.MusicMessage.Lyrics.Line;
+
+                    /**
+                     * Creates a plain object from a Line message. Also converts values to other types if specified.
+                     * @param message Line
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: E2E.Message.MusicMessage.Lyrics.Line, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Line to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Line
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+            }
 
             /** MusicMessageStyle enum. */
             enum MusicMessageStyle {
@@ -48275,8 +48490,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig supportUniversalReachChat */
             supportUniversalReachChat?: (boolean|null);
 
-            /** HistorySyncConfig supportOmittedConversationIndex */
-            supportOmittedConversationIndex?: (boolean|null);
+            /** HistorySyncConfig supportOmittedConversationMetadata */
+            supportOmittedConversationMetadata?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -48366,8 +48581,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig supportUniversalReachChat. */
             public supportUniversalReachChat: boolean;
 
-            /** HistorySyncConfig supportOmittedConversationIndex. */
-            public supportOmittedConversationIndex: boolean;
+            /** HistorySyncConfig supportOmittedConversationMetadata. */
+            public supportOmittedConversationMetadata: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

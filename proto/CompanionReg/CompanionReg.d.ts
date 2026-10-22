@@ -1079,8 +1079,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig supportUniversalReachChat */
             supportUniversalReachChat?: (boolean|null);
 
-            /** HistorySyncConfig supportOmittedConversationIndex */
-            supportOmittedConversationIndex?: (boolean|null);
+            /** HistorySyncConfig supportOmittedConversationMetadata */
+            supportOmittedConversationMetadata?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -1170,8 +1170,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig supportUniversalReachChat. */
             public supportUniversalReachChat: boolean;
 
-            /** HistorySyncConfig supportOmittedConversationIndex. */
-            public supportOmittedConversationIndex: boolean;
+            /** HistorySyncConfig supportOmittedConversationMetadata. */
+            public supportOmittedConversationMetadata: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

@@ -1586,6 +1586,15 @@ message Message {
         optional string artworkUri = 3;
         optional int32 style = 4;
         optional ContextInfo contextInfo = 5;
+        optional Lyrics lyrics = 6;
+        message Lyrics {
+            repeated Line lines = 1;
+            message Line {
+                optional int64 startTimeInMs = 1;
+                optional int64 endTimeInMs = 2;
+                optional string text = 3;
+            }
+        }
         enum MusicMessageStyle {
             UNKNOWN = 0;
             VINYL = 1;

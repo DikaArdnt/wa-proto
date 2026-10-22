@@ -7444,25 +7444,30 @@ $root.HistorySync = (function() {
         return Conversation;
     })();
 
-    HistorySync.RecoverableHistoryConversation = (function() {
+    HistorySync.OmittedConversationMetadata = (function() {
 
         /**
-         * Properties of a RecoverableHistoryConversation.
+         * Properties of an OmittedConversationMetadata.
          * @memberof HistorySync
-         * @interface IRecoverableHistoryConversation
-         * @property {string|null} [historyChatId] RecoverableHistoryConversation historyChatId
-         * @property {string|null} [accountLid] RecoverableHistoryConversation accountLid
+         * @interface IOmittedConversationMetadata
+         * @property {string|null} [snapshotId] OmittedConversationMetadata snapshotId
+         * @property {number|Long|null} [snapshotTimestampMs] OmittedConversationMetadata snapshotTimestampMs
+         * @property {number|null} [batchIndex] OmittedConversationMetadata batchIndex
+         * @property {number|null} [batchCount] OmittedConversationMetadata batchCount
+         * @property {boolean|null} [complete] OmittedConversationMetadata complete
+         * @property {Array.<HistorySync.IConversation>|null} [conversations] OmittedConversationMetadata conversations
          */
 
         /**
-         * Constructs a new RecoverableHistoryConversation.
+         * Constructs a new OmittedConversationMetadata.
          * @memberof HistorySync
-         * @classdesc Represents a RecoverableHistoryConversation.
-         * @implements IRecoverableHistoryConversation
+         * @classdesc Represents an OmittedConversationMetadata.
+         * @implements IOmittedConversationMetadata
          * @constructor
-         * @param {HistorySync.IRecoverableHistoryConversation=} [properties] Properties to set
+         * @param {HistorySync.IOmittedConversationMetadata=} [properties] Properties to set
          */
-        function RecoverableHistoryConversation(properties) {
+        function OmittedConversationMetadata(properties) {
+            this.conversations = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -7470,81 +7475,122 @@ $root.HistorySync = (function() {
         }
 
         /**
-         * RecoverableHistoryConversation historyChatId.
-         * @member {string} historyChatId
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * OmittedConversationMetadata snapshotId.
+         * @member {string} snapshotId
+         * @memberof HistorySync.OmittedConversationMetadata
          * @instance
          */
-        RecoverableHistoryConversation.prototype.historyChatId = "";
+        OmittedConversationMetadata.prototype.snapshotId = "";
 
         /**
-         * RecoverableHistoryConversation accountLid.
-         * @member {string} accountLid
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * OmittedConversationMetadata snapshotTimestampMs.
+         * @member {number|Long} snapshotTimestampMs
+         * @memberof HistorySync.OmittedConversationMetadata
          * @instance
          */
-        RecoverableHistoryConversation.prototype.accountLid = "";
+        OmittedConversationMetadata.prototype.snapshotTimestampMs = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
 
         /**
-         * Creates a new RecoverableHistoryConversation instance using the specified properties.
+         * OmittedConversationMetadata batchIndex.
+         * @member {number} batchIndex
+         * @memberof HistorySync.OmittedConversationMetadata
+         * @instance
+         */
+        OmittedConversationMetadata.prototype.batchIndex = 0;
+
+        /**
+         * OmittedConversationMetadata batchCount.
+         * @member {number} batchCount
+         * @memberof HistorySync.OmittedConversationMetadata
+         * @instance
+         */
+        OmittedConversationMetadata.prototype.batchCount = 0;
+
+        /**
+         * OmittedConversationMetadata complete.
+         * @member {boolean} complete
+         * @memberof HistorySync.OmittedConversationMetadata
+         * @instance
+         */
+        OmittedConversationMetadata.prototype.complete = false;
+
+        /**
+         * OmittedConversationMetadata conversations.
+         * @member {Array.<HistorySync.IConversation>} conversations
+         * @memberof HistorySync.OmittedConversationMetadata
+         * @instance
+         */
+        OmittedConversationMetadata.prototype.conversations = $util.emptyArray;
+
+        /**
+         * Creates a new OmittedConversationMetadata instance using the specified properties.
          * @function create
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
-         * @param {HistorySync.IRecoverableHistoryConversation=} [properties] Properties to set
-         * @returns {HistorySync.RecoverableHistoryConversation} RecoverableHistoryConversation instance
+         * @param {HistorySync.IOmittedConversationMetadata=} [properties] Properties to set
+         * @returns {HistorySync.OmittedConversationMetadata} OmittedConversationMetadata instance
          */
-        RecoverableHistoryConversation.create = function create(properties) {
-            return new RecoverableHistoryConversation(properties);
+        OmittedConversationMetadata.create = function create(properties) {
+            return new OmittedConversationMetadata(properties);
         };
 
         /**
-         * Encodes the specified RecoverableHistoryConversation message. Does not implicitly {@link HistorySync.RecoverableHistoryConversation.verify|verify} messages.
+         * Encodes the specified OmittedConversationMetadata message. Does not implicitly {@link HistorySync.OmittedConversationMetadata.verify|verify} messages.
          * @function encode
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
-         * @param {HistorySync.IRecoverableHistoryConversation} message RecoverableHistoryConversation message or plain object to encode
+         * @param {HistorySync.IOmittedConversationMetadata} message OmittedConversationMetadata message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        RecoverableHistoryConversation.encode = function encode(message, writer, q) {
+        OmittedConversationMetadata.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
             if (q === undefined)
                 q = 0;
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
-            if (message.historyChatId != null && Object.hasOwnProperty.call(message, "historyChatId"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.historyChatId);
-            if (message.accountLid != null && Object.hasOwnProperty.call(message, "accountLid"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.accountLid);
+            if (message.snapshotId != null && Object.hasOwnProperty.call(message, "snapshotId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.snapshotId);
+            if (message.snapshotTimestampMs != null && Object.hasOwnProperty.call(message, "snapshotTimestampMs"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.snapshotTimestampMs);
+            if (message.batchIndex != null && Object.hasOwnProperty.call(message, "batchIndex"))
+                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.batchIndex);
+            if (message.batchCount != null && Object.hasOwnProperty.call(message, "batchCount"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.batchCount);
+            if (message.complete != null && Object.hasOwnProperty.call(message, "complete"))
+                writer.uint32(/* id 5, wireType 0 =*/40).bool(message.complete);
+            if (message.conversations != null && message.conversations.length)
+                for (var i = 0; i < message.conversations.length; ++i)
+                    $root.HistorySync.Conversation.encode(message.conversations[i], writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             return writer;
         };
 
         /**
-         * Encodes the specified RecoverableHistoryConversation message, length delimited. Does not implicitly {@link HistorySync.RecoverableHistoryConversation.verify|verify} messages.
+         * Encodes the specified OmittedConversationMetadata message, length delimited. Does not implicitly {@link HistorySync.OmittedConversationMetadata.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
-         * @param {HistorySync.IRecoverableHistoryConversation} message RecoverableHistoryConversation message or plain object to encode
+         * @param {HistorySync.IOmittedConversationMetadata} message OmittedConversationMetadata message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        RecoverableHistoryConversation.encodeDelimited = function encodeDelimited(message, writer) {
+        OmittedConversationMetadata.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
-         * Decodes a RecoverableHistoryConversation message from the specified reader or buffer.
+         * Decodes an OmittedConversationMetadata message from the specified reader or buffer.
          * @function decode
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {HistorySync.RecoverableHistoryConversation} RecoverableHistoryConversation
+         * @returns {HistorySync.OmittedConversationMetadata} OmittedConversationMetadata
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RecoverableHistoryConversation.decode = function decode(reader, length, error, long) {
+        OmittedConversationMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             if (long === undefined)
@@ -7561,18 +7607,36 @@ $root.HistorySync = (function() {
                 length = reader.len;
                 reader.len = end;
             }
-            message = new $root.HistorySync.RecoverableHistoryConversation();
+            message = new $root.HistorySync.OmittedConversationMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.historyChatId = reader.string();
+                        message.snapshotId = reader.string();
                         break;
                     }
                 case 2: {
-                        message.accountLid = reader.string();
+                        message.snapshotTimestampMs = reader.uint64();
+                        break;
+                    }
+                case 3: {
+                        message.batchIndex = reader.uint32();
+                        break;
+                    }
+                case 4: {
+                        message.batchCount = reader.uint32();
+                        break;
+                    }
+                case 5: {
+                        message.complete = reader.bool();
+                        break;
+                    }
+                case 6: {
+                        if (!(message.conversations && message.conversations.length))
+                            message.conversations = [];
+                        message.conversations.push($root.HistorySync.Conversation.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
@@ -7589,80 +7653,121 @@ $root.HistorySync = (function() {
         };
 
         /**
-         * Decodes a RecoverableHistoryConversation message from the specified reader or buffer, length delimited.
+         * Decodes an OmittedConversationMetadata message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {HistorySync.RecoverableHistoryConversation} RecoverableHistoryConversation
+         * @returns {HistorySync.OmittedConversationMetadata} OmittedConversationMetadata
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RecoverableHistoryConversation.decodeDelimited = function decodeDelimited(reader) {
+        OmittedConversationMetadata.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a RecoverableHistoryConversation message.
+         * Verifies an OmittedConversationMetadata message.
          * @function verify
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        RecoverableHistoryConversation.verify = function verify(message, long) {
+        OmittedConversationMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 return "maximum nesting depth exceeded";
-            if (message.historyChatId != null && Object.hasOwnProperty.call(message, "historyChatId"))
-                if (!$util.isString(message.historyChatId))
-                    return "historyChatId: string expected";
-            if (message.accountLid != null && Object.hasOwnProperty.call(message, "accountLid"))
-                if (!$util.isString(message.accountLid))
-                    return "accountLid: string expected";
+            if (message.snapshotId != null && Object.hasOwnProperty.call(message, "snapshotId"))
+                if (!$util.isString(message.snapshotId))
+                    return "snapshotId: string expected";
+            if (message.snapshotTimestampMs != null && Object.hasOwnProperty.call(message, "snapshotTimestampMs"))
+                if (!$util.isInteger(message.snapshotTimestampMs) && !(message.snapshotTimestampMs && $util.isInteger(message.snapshotTimestampMs.low) && $util.isInteger(message.snapshotTimestampMs.high)))
+                    return "snapshotTimestampMs: integer|Long expected";
+            if (message.batchIndex != null && Object.hasOwnProperty.call(message, "batchIndex"))
+                if (!$util.isInteger(message.batchIndex))
+                    return "batchIndex: integer expected";
+            if (message.batchCount != null && Object.hasOwnProperty.call(message, "batchCount"))
+                if (!$util.isInteger(message.batchCount))
+                    return "batchCount: integer expected";
+            if (message.complete != null && Object.hasOwnProperty.call(message, "complete"))
+                if (typeof message.complete !== "boolean")
+                    return "complete: boolean expected";
+            if (message.conversations != null && Object.hasOwnProperty.call(message, "conversations")) {
+                if (!Array.isArray(message.conversations))
+                    return "conversations: array expected";
+                for (var i = 0; i < message.conversations.length; ++i) {
+                    var error = $root.HistorySync.Conversation.verify(message.conversations[i], long + 1);
+                    if (error)
+                        return "conversations." + error;
+                }
+            }
             return null;
         };
 
         /**
-         * Creates a RecoverableHistoryConversation message from a plain object. Also converts values to their respective internal types.
+         * Creates an OmittedConversationMetadata message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {HistorySync.RecoverableHistoryConversation} RecoverableHistoryConversation
+         * @returns {HistorySync.OmittedConversationMetadata} OmittedConversationMetadata
          */
-        RecoverableHistoryConversation.fromObject = function fromObject(object, long) {
-            if (object instanceof $root.HistorySync.RecoverableHistoryConversation)
+        OmittedConversationMetadata.fromObject = function fromObject(object, long) {
+            if (object instanceof $root.HistorySync.OmittedConversationMetadata)
                 return object;
             if (!$util.isObject(object))
-                throw TypeError(".HistorySync.RecoverableHistoryConversation: object expected");
+                throw TypeError(".HistorySync.OmittedConversationMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
-            var message = new $root.HistorySync.RecoverableHistoryConversation();
-            if (object.historyChatId != null)
-                message.historyChatId = String(object.historyChatId);
-            if (object.accountLid != null)
-                message.accountLid = String(object.accountLid);
+            var message = new $root.HistorySync.OmittedConversationMetadata();
+            if (object.snapshotId != null)
+                message.snapshotId = String(object.snapshotId);
+            if (object.snapshotTimestampMs != null)
+                if ($util.Long)
+                    message.snapshotTimestampMs = $util.Long.fromValue(object.snapshotTimestampMs, true);
+                else if (typeof object.snapshotTimestampMs === "string")
+                    message.snapshotTimestampMs = parseInt(object.snapshotTimestampMs, 10);
+                else if (typeof object.snapshotTimestampMs === "number")
+                    message.snapshotTimestampMs = object.snapshotTimestampMs;
+                else if (typeof object.snapshotTimestampMs === "object")
+                    message.snapshotTimestampMs = new $util.LongBits(object.snapshotTimestampMs.low >>> 0, object.snapshotTimestampMs.high >>> 0).toNumber(true);
+            if (object.batchIndex != null)
+                message.batchIndex = object.batchIndex >>> 0;
+            if (object.batchCount != null)
+                message.batchCount = object.batchCount >>> 0;
+            if (object.complete != null)
+                message.complete = Boolean(object.complete);
+            if (object.conversations) {
+                if (!Array.isArray(object.conversations))
+                    throw TypeError(".HistorySync.OmittedConversationMetadata.conversations: array expected");
+                message.conversations = [];
+                for (var i = 0; i < object.conversations.length; ++i) {
+                    if (!$util.isObject(object.conversations[i]))
+                        throw TypeError(".HistorySync.OmittedConversationMetadata.conversations: object expected");
+                    message.conversations[i] = $root.HistorySync.Conversation.fromObject(object.conversations[i], long + 1);
+                }
+            }
             return message;
         };
 
         /**
-         * Creates a plain object from a RecoverableHistoryConversation message. Also converts values to other types if specified.
+         * Creates a plain object from an OmittedConversationMetadata message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
-         * @param {HistorySync.RecoverableHistoryConversation} message RecoverableHistoryConversation
+         * @param {HistorySync.OmittedConversationMetadata} message OmittedConversationMetadata
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        RecoverableHistoryConversation.toObject = function toObject(message, options, q) {
+        OmittedConversationMetadata.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
             if (q === undefined)
@@ -7670,44 +7775,69 @@ $root.HistorySync = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             var object = {};
+            if (options.arrays || options.defaults)
+                object.conversations = [];
             if (options.defaults) {
-                object.historyChatId = "";
-                object.accountLid = "";
+                object.snapshotId = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.snapshotTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                } else
+                    object.snapshotTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                object.batchIndex = 0;
+                object.batchCount = 0;
+                object.complete = false;
             }
-            if (message.historyChatId != null && Object.hasOwnProperty.call(message, "historyChatId"))
-                object.historyChatId = message.historyChatId;
-            if (message.accountLid != null && Object.hasOwnProperty.call(message, "accountLid"))
-                object.accountLid = message.accountLid;
+            if (message.snapshotId != null && Object.hasOwnProperty.call(message, "snapshotId"))
+                object.snapshotId = message.snapshotId;
+            if (message.snapshotTimestampMs != null && Object.hasOwnProperty.call(message, "snapshotTimestampMs"))
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.snapshotTimestampMs = typeof message.snapshotTimestampMs === "number" ? BigInt(message.snapshotTimestampMs) : $util.Long.fromBits(message.snapshotTimestampMs.low >>> 0, message.snapshotTimestampMs.high >>> 0, true).toBigInt();
+                else if (typeof message.snapshotTimestampMs === "number")
+                    object.snapshotTimestampMs = options.longs === String ? String(message.snapshotTimestampMs) : message.snapshotTimestampMs;
+                else
+                    object.snapshotTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.snapshotTimestampMs) : options.longs === Number ? new $util.LongBits(message.snapshotTimestampMs.low >>> 0, message.snapshotTimestampMs.high >>> 0).toNumber(true) : message.snapshotTimestampMs;
+            if (message.batchIndex != null && Object.hasOwnProperty.call(message, "batchIndex"))
+                object.batchIndex = message.batchIndex;
+            if (message.batchCount != null && Object.hasOwnProperty.call(message, "batchCount"))
+                object.batchCount = message.batchCount;
+            if (message.complete != null && Object.hasOwnProperty.call(message, "complete"))
+                object.complete = message.complete;
+            if (message.conversations && message.conversations.length) {
+                object.conversations = [];
+                for (var j = 0; j < message.conversations.length; ++j)
+                    object.conversations[j] = $root.HistorySync.Conversation.toObject(message.conversations[j], options, q + 1);
+            }
             return object;
         };
 
         /**
-         * Converts this RecoverableHistoryConversation to JSON.
+         * Converts this OmittedConversationMetadata to JSON.
          * @function toJSON
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        RecoverableHistoryConversation.prototype.toJSON = function toJSON() {
+        OmittedConversationMetadata.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for RecoverableHistoryConversation
+         * Gets the default type url for OmittedConversationMetadata
          * @function getTypeUrl
-         * @memberof HistorySync.RecoverableHistoryConversation
+         * @memberof HistorySync.OmittedConversationMetadata
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        RecoverableHistoryConversation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        OmittedConversationMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/HistorySync.RecoverableHistoryConversation";
+            return typeUrlPrefix + "/HistorySync.OmittedConversationMetadata";
         };
 
-        return RecoverableHistoryConversation;
+        return OmittedConversationMetadata;
     })();
 
     HistorySync.HistorySync = (function() {
@@ -7737,8 +7867,8 @@ $root.HistorySync = (function() {
          * @property {Array.<HistorySync.IInlineContact>|null} [inlineContacts] HistorySync inlineContacts
          * @property {boolean|null} [inlineContactsProvided] HistorySync inlineContactsProvided
          * @property {Array.<HistorySync.IStickerMetadata>|null} [favoriteStickers] HistorySync favoriteStickers
-         * @property {Array.<HistorySync.IRecoverableHistoryConversation>|null} [omittedConversations] HistorySync omittedConversations
-         * @property {boolean|null} [omittedConversationsProvided] HistorySync omittedConversationsProvided
+         * @property {HistorySync.IOmittedConversationMetadata|null} [omittedConversationMetadata] HistorySync omittedConversationMetadata
+         * @property {string|null} [omittedConversationMetadataSnapshotId] HistorySync omittedConversationMetadataSnapshotId
          */
 
         /**
@@ -7760,7 +7890,6 @@ $root.HistorySync = (function() {
             this.accounts = [];
             this.inlineContacts = [];
             this.favoriteStickers = [];
-            this.omittedConversations = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -7936,20 +8065,20 @@ $root.HistorySync = (function() {
         HistorySync.prototype.favoriteStickers = $util.emptyArray;
 
         /**
-         * HistorySync omittedConversations.
-         * @member {Array.<HistorySync.IRecoverableHistoryConversation>} omittedConversations
+         * HistorySync omittedConversationMetadata.
+         * @member {HistorySync.IOmittedConversationMetadata|null|undefined} omittedConversationMetadata
          * @memberof HistorySync.HistorySync
          * @instance
          */
-        HistorySync.prototype.omittedConversations = $util.emptyArray;
+        HistorySync.prototype.omittedConversationMetadata = null;
 
         /**
-         * HistorySync omittedConversationsProvided.
-         * @member {boolean} omittedConversationsProvided
+         * HistorySync omittedConversationMetadataSnapshotId.
+         * @member {string} omittedConversationMetadataSnapshotId
          * @memberof HistorySync.HistorySync
          * @instance
          */
-        HistorySync.prototype.omittedConversationsProvided = false;
+        HistorySync.prototype.omittedConversationMetadataSnapshotId = "";
 
         /**
          * Creates a new HistorySync instance using the specified properties.
@@ -8030,11 +8159,10 @@ $root.HistorySync = (function() {
             if (message.favoriteStickers != null && message.favoriteStickers.length)
                 for (var i = 0; i < message.favoriteStickers.length; ++i)
                     $root.HistorySync.StickerMetadata.encode(message.favoriteStickers[i], writer.uint32(/* id 22, wireType 2 =*/178).fork(), q + 1).ldelim();
-            if (message.omittedConversations != null && message.omittedConversations.length)
-                for (var i = 0; i < message.omittedConversations.length; ++i)
-                    $root.HistorySync.RecoverableHistoryConversation.encode(message.omittedConversations[i], writer.uint32(/* id 23, wireType 2 =*/186).fork(), q + 1).ldelim();
-            if (message.omittedConversationsProvided != null && Object.hasOwnProperty.call(message, "omittedConversationsProvided"))
-                writer.uint32(/* id 24, wireType 0 =*/192).bool(message.omittedConversationsProvided);
+            if (message.omittedConversationMetadata != null && Object.hasOwnProperty.call(message, "omittedConversationMetadata"))
+                $root.HistorySync.OmittedConversationMetadata.encode(message.omittedConversationMetadata, writer.uint32(/* id 25, wireType 2 =*/202).fork(), q + 1).ldelim();
+            if (message.omittedConversationMetadataSnapshotId != null && Object.hasOwnProperty.call(message, "omittedConversationMetadataSnapshotId"))
+                writer.uint32(/* id 26, wireType 2 =*/210).string(message.omittedConversationMetadataSnapshotId);
             return writer;
         };
 
@@ -8189,14 +8317,12 @@ $root.HistorySync = (function() {
                         message.favoriteStickers.push($root.HistorySync.StickerMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
-                case 23: {
-                        if (!(message.omittedConversations && message.omittedConversations.length))
-                            message.omittedConversations = [];
-                        message.omittedConversations.push($root.HistorySync.RecoverableHistoryConversation.decode(reader, reader.uint32(), undefined, long + 1));
+                case 25: {
+                        message.omittedConversationMetadata = $root.HistorySync.OmittedConversationMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
-                case 24: {
-                        message.omittedConversationsProvided = reader.bool();
+                case 26: {
+                        message.omittedConversationMetadataSnapshotId = reader.string();
                         break;
                     }
                 default:
@@ -8385,18 +8511,14 @@ $root.HistorySync = (function() {
                         return "favoriteStickers." + error;
                 }
             }
-            if (message.omittedConversations != null && Object.hasOwnProperty.call(message, "omittedConversations")) {
-                if (!Array.isArray(message.omittedConversations))
-                    return "omittedConversations: array expected";
-                for (var i = 0; i < message.omittedConversations.length; ++i) {
-                    var error = $root.HistorySync.RecoverableHistoryConversation.verify(message.omittedConversations[i], long + 1);
-                    if (error)
-                        return "omittedConversations." + error;
-                }
+            if (message.omittedConversationMetadata != null && Object.hasOwnProperty.call(message, "omittedConversationMetadata")) {
+                var error = $root.HistorySync.OmittedConversationMetadata.verify(message.omittedConversationMetadata, long + 1);
+                if (error)
+                    return "omittedConversationMetadata." + error;
             }
-            if (message.omittedConversationsProvided != null && Object.hasOwnProperty.call(message, "omittedConversationsProvided"))
-                if (typeof message.omittedConversationsProvided !== "boolean")
-                    return "omittedConversationsProvided: boolean expected";
+            if (message.omittedConversationMetadataSnapshotId != null && Object.hasOwnProperty.call(message, "omittedConversationMetadataSnapshotId"))
+                if (!$util.isString(message.omittedConversationMetadataSnapshotId))
+                    return "omittedConversationMetadataSnapshotId: string expected";
             return null;
         };
 
@@ -8604,18 +8726,13 @@ $root.HistorySync = (function() {
                     message.favoriteStickers[i] = $root.HistorySync.StickerMetadata.fromObject(object.favoriteStickers[i], long + 1);
                 }
             }
-            if (object.omittedConversations) {
-                if (!Array.isArray(object.omittedConversations))
-                    throw TypeError(".HistorySync.HistorySync.omittedConversations: array expected");
-                message.omittedConversations = [];
-                for (var i = 0; i < object.omittedConversations.length; ++i) {
-                    if (!$util.isObject(object.omittedConversations[i]))
-                        throw TypeError(".HistorySync.HistorySync.omittedConversations: object expected");
-                    message.omittedConversations[i] = $root.HistorySync.RecoverableHistoryConversation.fromObject(object.omittedConversations[i], long + 1);
-                }
+            if (object.omittedConversationMetadata != null) {
+                if (!$util.isObject(object.omittedConversationMetadata))
+                    throw TypeError(".HistorySync.HistorySync.omittedConversationMetadata: object expected");
+                message.omittedConversationMetadata = $root.HistorySync.OmittedConversationMetadata.fromObject(object.omittedConversationMetadata, long + 1);
             }
-            if (object.omittedConversationsProvided != null)
-                message.omittedConversationsProvided = Boolean(object.omittedConversationsProvided);
+            if (object.omittedConversationMetadataSnapshotId != null)
+                message.omittedConversationMetadataSnapshotId = String(object.omittedConversationMetadataSnapshotId);
             return message;
         };
 
@@ -8647,7 +8764,6 @@ $root.HistorySync = (function() {
                 object.accounts = [];
                 object.inlineContacts = [];
                 object.favoriteStickers = [];
-                object.omittedConversations = [];
             }
             if (options.defaults) {
                 object.syncType = options.enums === String ? "INITIAL_BOOTSTRAP" : 0;
@@ -8679,7 +8795,8 @@ $root.HistorySync = (function() {
                         object.nctSalt = $util.newBuffer(object.nctSalt);
                 }
                 object.inlineContactsProvided = false;
-                object.omittedConversationsProvided = false;
+                object.omittedConversationMetadata = null;
+                object.omittedConversationMetadataSnapshotId = "";
             }
             if (message.syncType != null && Object.hasOwnProperty.call(message, "syncType"))
                 object.syncType = options.enums === String ? $root.HistorySync.HistorySync.HistorySyncType[message.syncType] === undefined ? message.syncType : $root.HistorySync.HistorySync.HistorySyncType[message.syncType] : message.syncType;
@@ -8753,13 +8870,10 @@ $root.HistorySync = (function() {
                 for (var j = 0; j < message.favoriteStickers.length; ++j)
                     object.favoriteStickers[j] = $root.HistorySync.StickerMetadata.toObject(message.favoriteStickers[j], options, q + 1);
             }
-            if (message.omittedConversations && message.omittedConversations.length) {
-                object.omittedConversations = [];
-                for (var j = 0; j < message.omittedConversations.length; ++j)
-                    object.omittedConversations[j] = $root.HistorySync.RecoverableHistoryConversation.toObject(message.omittedConversations[j], options, q + 1);
-            }
-            if (message.omittedConversationsProvided != null && Object.hasOwnProperty.call(message, "omittedConversationsProvided"))
-                object.omittedConversationsProvided = message.omittedConversationsProvided;
+            if (message.omittedConversationMetadata != null && Object.hasOwnProperty.call(message, "omittedConversationMetadata"))
+                object.omittedConversationMetadata = $root.HistorySync.OmittedConversationMetadata.toObject(message.omittedConversationMetadata, options, q + 1);
+            if (message.omittedConversationMetadataSnapshotId != null && Object.hasOwnProperty.call(message, "omittedConversationMetadataSnapshotId"))
+                object.omittedConversationMetadataSnapshotId = message.omittedConversationMetadataSnapshotId;
             return object;
         };
 
@@ -69694,6 +69808,7 @@ $root.E2E = (function() {
              * @property {string|null} [artworkUri] MusicMessage artworkUri
              * @property {number|null} [style] MusicMessage style
              * @property {E2E.IContextInfo|null} [contextInfo] MusicMessage contextInfo
+             * @property {E2E.Message.MusicMessage.ILyrics|null} [lyrics] MusicMessage lyrics
              */
 
             /**
@@ -69752,6 +69867,14 @@ $root.E2E = (function() {
             MusicMessage.prototype.contextInfo = null;
 
             /**
+             * MusicMessage lyrics.
+             * @member {E2E.Message.MusicMessage.ILyrics|null|undefined} lyrics
+             * @memberof E2E.Message.MusicMessage
+             * @instance
+             */
+            MusicMessage.prototype.lyrics = null;
+
+            /**
              * Creates a new MusicMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.MusicMessage
@@ -69789,6 +69912,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 4, wireType 0 =*/32).int32(message.style);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 5, wireType 2 =*/42).fork(), q + 1).ldelim();
+                if (message.lyrics != null && Object.hasOwnProperty.call(message, "lyrics"))
+                    $root.E2E.Message.MusicMessage.Lyrics.encode(message.lyrics, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -69859,6 +69984,10 @@ $root.E2E = (function() {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
+                    case 6: {
+                            message.lyrics = $root.E2E.Message.MusicMessage.Lyrics.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -69922,6 +70051,11 @@ $root.E2E = (function() {
                     if (error)
                         return "contextInfo." + error;
                 }
+                if (message.lyrics != null && Object.hasOwnProperty.call(message, "lyrics")) {
+                    var error = $root.E2E.Message.MusicMessage.Lyrics.verify(message.lyrics, long + 1);
+                    if (error)
+                        return "lyrics." + error;
+                }
                 return null;
             };
 
@@ -69959,6 +70093,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.MusicMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
+                if (object.lyrics != null) {
+                    if (!$util.isObject(object.lyrics))
+                        throw TypeError(".E2E.Message.MusicMessage.lyrics: object expected");
+                    message.lyrics = $root.E2E.Message.MusicMessage.Lyrics.fromObject(object.lyrics, long + 1);
+                }
                 return message;
             };
 
@@ -69985,6 +70124,7 @@ $root.E2E = (function() {
                     object.artworkUri = "";
                     object.style = 0;
                     object.contextInfo = null;
+                    object.lyrics = null;
                 }
                 if (message.embeddedMusic != null && Object.hasOwnProperty.call(message, "embeddedMusic"))
                     object.embeddedMusic = $root.E2E.EmbeddedMusic.toObject(message.embeddedMusic, options, q + 1);
@@ -69996,6 +70136,8 @@ $root.E2E = (function() {
                     object.style = message.style;
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options, q + 1);
+                if (message.lyrics != null && Object.hasOwnProperty.call(message, "lyrics"))
+                    object.lyrics = $root.E2E.Message.MusicMessage.Lyrics.toObject(message.lyrics, options, q + 1);
                 return object;
             };
 
@@ -70024,6 +70166,590 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.Message.MusicMessage";
             };
+
+            MusicMessage.Lyrics = (function() {
+
+                /**
+                 * Properties of a Lyrics.
+                 * @memberof E2E.Message.MusicMessage
+                 * @interface ILyrics
+                 * @property {Array.<E2E.Message.MusicMessage.Lyrics.ILine>|null} [lines] Lyrics lines
+                 */
+
+                /**
+                 * Constructs a new Lyrics.
+                 * @memberof E2E.Message.MusicMessage
+                 * @classdesc Represents a Lyrics.
+                 * @implements ILyrics
+                 * @constructor
+                 * @param {E2E.Message.MusicMessage.ILyrics=} [properties] Properties to set
+                 */
+                function Lyrics(properties) {
+                    this.lines = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * Lyrics lines.
+                 * @member {Array.<E2E.Message.MusicMessage.Lyrics.ILine>} lines
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @instance
+                 */
+                Lyrics.prototype.lines = $util.emptyArray;
+
+                /**
+                 * Creates a new Lyrics instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {E2E.Message.MusicMessage.ILyrics=} [properties] Properties to set
+                 * @returns {E2E.Message.MusicMessage.Lyrics} Lyrics instance
+                 */
+                Lyrics.create = function create(properties) {
+                    return new Lyrics(properties);
+                };
+
+                /**
+                 * Encodes the specified Lyrics message. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {E2E.Message.MusicMessage.ILyrics} message Lyrics message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Lyrics.encode = function encode(message, writer, q) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    if (message.lines != null && message.lines.length)
+                        for (var i = 0; i < message.lines.length; ++i)
+                            $root.E2E.Message.MusicMessage.Lyrics.Line.encode(message.lines[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified Lyrics message, length delimited. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {E2E.Message.MusicMessage.ILyrics} message Lyrics message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Lyrics.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+                };
+
+                /**
+                 * Decodes a Lyrics message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.MusicMessage.Lyrics} Lyrics
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Lyrics.decode = function decode(reader, length, error, long) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var end, message;
+                    if (length === undefined)
+                        end = reader.len;
+                    else {
+                        end = reader.pos + length;
+                        if (end > reader.len)
+                            throw RangeError("index out of range");
+                        length = reader.len;
+                        reader.len = end;
+                    }
+                    message = new $root.E2E.Message.MusicMessage.Lyrics();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                if (!(message.lines && message.lines.length))
+                                    message.lines = [];
+                                message.lines.push($root.E2E.Message.MusicMessage.Lyrics.Line.decode(reader, reader.uint32(), undefined, long + 1));
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7, long);
+                            break;
+                        }
+                    }
+                    if (length !== undefined) {
+                        if (reader.pos !== end)
+                            throw RangeError("index out of range");
+                        reader.len = length;
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a Lyrics message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.MusicMessage.Lyrics} Lyrics
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Lyrics.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a Lyrics message.
+                 * @function verify
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Lyrics.verify = function verify(message, long) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
+                    if (message.lines != null && Object.hasOwnProperty.call(message, "lines")) {
+                        if (!Array.isArray(message.lines))
+                            return "lines: array expected";
+                        for (var i = 0; i < message.lines.length; ++i) {
+                            var error = $root.E2E.Message.MusicMessage.Lyrics.Line.verify(message.lines[i], long + 1);
+                            if (error)
+                                return "lines." + error;
+                        }
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a Lyrics message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.MusicMessage.Lyrics} Lyrics
+                 */
+                Lyrics.fromObject = function fromObject(object, long) {
+                    if (object instanceof $root.E2E.Message.MusicMessage.Lyrics)
+                        return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.MusicMessage.Lyrics: object expected");
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var message = new $root.E2E.Message.MusicMessage.Lyrics();
+                    if (object.lines) {
+                        if (!Array.isArray(object.lines))
+                            throw TypeError(".E2E.Message.MusicMessage.Lyrics.lines: array expected");
+                        message.lines = [];
+                        for (var i = 0; i < object.lines.length; ++i) {
+                            if (!$util.isObject(object.lines[i]))
+                                throw TypeError(".E2E.Message.MusicMessage.Lyrics.lines: object expected");
+                            message.lines[i] = $root.E2E.Message.MusicMessage.Lyrics.Line.fromObject(object.lines[i], long + 1);
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a Lyrics message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {E2E.Message.MusicMessage.Lyrics} message Lyrics
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Lyrics.toObject = function toObject(message, options, q) {
+                    if (!options)
+                        options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.lines = [];
+                    if (message.lines && message.lines.length) {
+                        object.lines = [];
+                        for (var j = 0; j < message.lines.length; ++j)
+                            object.lines[j] = $root.E2E.Message.MusicMessage.Lyrics.Line.toObject(message.lines[j], options, q + 1);
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this Lyrics to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Lyrics.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for Lyrics
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.MusicMessage.Lyrics
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Lyrics.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.MusicMessage.Lyrics";
+                };
+
+                Lyrics.Line = (function() {
+
+                    /**
+                     * Properties of a Line.
+                     * @memberof E2E.Message.MusicMessage.Lyrics
+                     * @interface ILine
+                     * @property {number|Long|null} [startTimeInMs] Line startTimeInMs
+                     * @property {number|Long|null} [endTimeInMs] Line endTimeInMs
+                     * @property {string|null} [text] Line text
+                     */
+
+                    /**
+                     * Constructs a new Line.
+                     * @memberof E2E.Message.MusicMessage.Lyrics
+                     * @classdesc Represents a Line.
+                     * @implements ILine
+                     * @constructor
+                     * @param {E2E.Message.MusicMessage.Lyrics.ILine=} [properties] Properties to set
+                     */
+                    function Line(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * Line startTimeInMs.
+                     * @member {number|Long} startTimeInMs
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @instance
+                     */
+                    Line.prototype.startTimeInMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+                    /**
+                     * Line endTimeInMs.
+                     * @member {number|Long} endTimeInMs
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @instance
+                     */
+                    Line.prototype.endTimeInMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+                    /**
+                     * Line text.
+                     * @member {string} text
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @instance
+                     */
+                    Line.prototype.text = "";
+
+                    /**
+                     * Creates a new Line instance using the specified properties.
+                     * @function create
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {E2E.Message.MusicMessage.Lyrics.ILine=} [properties] Properties to set
+                     * @returns {E2E.Message.MusicMessage.Lyrics.Line} Line instance
+                     */
+                    Line.create = function create(properties) {
+                        return new Line(properties);
+                    };
+
+                    /**
+                     * Encodes the specified Line message. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.Line.verify|verify} messages.
+                     * @function encode
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {E2E.Message.MusicMessage.Lyrics.ILine} message Line message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    Line.encode = function encode(message, writer, q) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (q === undefined)
+                            q = 0;
+                        if (q > $util.recursionLimit)
+                            throw Error("max depth exceeded");
+                        if (message.startTimeInMs != null && Object.hasOwnProperty.call(message, "startTimeInMs"))
+                            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.startTimeInMs);
+                        if (message.endTimeInMs != null && Object.hasOwnProperty.call(message, "endTimeInMs"))
+                            writer.uint32(/* id 2, wireType 0 =*/16).int64(message.endTimeInMs);
+                        if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                            writer.uint32(/* id 3, wireType 2 =*/26).string(message.text);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified Line message, length delimited. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.Line.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {E2E.Message.MusicMessage.Lyrics.ILine} message Line message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    Line.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a Line message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {E2E.Message.MusicMessage.Lyrics.Line} Line
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    Line.decode = function decode(reader, length, error, long) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        if (long === undefined)
+                            long = 0;
+                        if (long > $Reader.recursionLimit)
+                            throw Error("maximum nesting depth exceeded");
+                        var end, message;
+                        if (length === undefined)
+                            end = reader.len;
+                        else {
+                            end = reader.pos + length;
+                            if (end > reader.len)
+                                throw RangeError("index out of range");
+                            length = reader.len;
+                            reader.len = end;
+                        }
+                        message = new $root.E2E.Message.MusicMessage.Lyrics.Line();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.startTimeInMs = reader.int64();
+                                    break;
+                                }
+                            case 2: {
+                                    message.endTimeInMs = reader.int64();
+                                    break;
+                                }
+                            case 3: {
+                                    message.text = reader.string();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7, long);
+                                break;
+                            }
+                        }
+                        if (length !== undefined) {
+                            if (reader.pos !== end)
+                                throw RangeError("index out of range");
+                            reader.len = length;
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a Line message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {E2E.Message.MusicMessage.Lyrics.Line} Line
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    Line.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a Line message.
+                     * @function verify
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    Line.verify = function verify(message, long) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (long === undefined)
+                            long = 0;
+                        if (long > $util.recursionLimit)
+                            return "maximum nesting depth exceeded";
+                        if (message.startTimeInMs != null && Object.hasOwnProperty.call(message, "startTimeInMs"))
+                            if (!$util.isInteger(message.startTimeInMs) && !(message.startTimeInMs && $util.isInteger(message.startTimeInMs.low) && $util.isInteger(message.startTimeInMs.high)))
+                                return "startTimeInMs: integer|Long expected";
+                        if (message.endTimeInMs != null && Object.hasOwnProperty.call(message, "endTimeInMs"))
+                            if (!$util.isInteger(message.endTimeInMs) && !(message.endTimeInMs && $util.isInteger(message.endTimeInMs.low) && $util.isInteger(message.endTimeInMs.high)))
+                                return "endTimeInMs: integer|Long expected";
+                        if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                            if (!$util.isString(message.text))
+                                return "text: string expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a Line message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {E2E.Message.MusicMessage.Lyrics.Line} Line
+                     */
+                    Line.fromObject = function fromObject(object, long) {
+                        if (object instanceof $root.E2E.Message.MusicMessage.Lyrics.Line)
+                            return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.MusicMessage.Lyrics.Line: object expected");
+                        if (long === undefined)
+                            long = 0;
+                        if (long > $util.recursionLimit)
+                            throw Error("maximum nesting depth exceeded");
+                        var message = new $root.E2E.Message.MusicMessage.Lyrics.Line();
+                        if (object.startTimeInMs != null)
+                            if ($util.Long)
+                                message.startTimeInMs = $util.Long.fromValue(object.startTimeInMs, false);
+                            else if (typeof object.startTimeInMs === "string")
+                                message.startTimeInMs = parseInt(object.startTimeInMs, 10);
+                            else if (typeof object.startTimeInMs === "number")
+                                message.startTimeInMs = object.startTimeInMs;
+                            else if (typeof object.startTimeInMs === "object")
+                                message.startTimeInMs = new $util.LongBits(object.startTimeInMs.low >>> 0, object.startTimeInMs.high >>> 0).toNumber();
+                        if (object.endTimeInMs != null)
+                            if ($util.Long)
+                                message.endTimeInMs = $util.Long.fromValue(object.endTimeInMs, false);
+                            else if (typeof object.endTimeInMs === "string")
+                                message.endTimeInMs = parseInt(object.endTimeInMs, 10);
+                            else if (typeof object.endTimeInMs === "number")
+                                message.endTimeInMs = object.endTimeInMs;
+                            else if (typeof object.endTimeInMs === "object")
+                                message.endTimeInMs = new $util.LongBits(object.endTimeInMs.low >>> 0, object.endTimeInMs.high >>> 0).toNumber();
+                        if (object.text != null)
+                            message.text = String(object.text);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a Line message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {E2E.Message.MusicMessage.Lyrics.Line} message Line
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    Line.toObject = function toObject(message, options, q) {
+                        if (!options)
+                            options = {};
+                        if (q === undefined)
+                            q = 0;
+                        if (q > $util.recursionLimit)
+                            throw Error("max depth exceeded");
+                        var object = {};
+                        if (options.defaults) {
+                            if ($util.Long) {
+                                var long = new $util.Long(0, 0, false);
+                                object.startTimeInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                            } else
+                                object.startTimeInMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                            if ($util.Long) {
+                                var long = new $util.Long(0, 0, false);
+                                object.endTimeInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                            } else
+                                object.endTimeInMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                            object.text = "";
+                        }
+                        if (message.startTimeInMs != null && Object.hasOwnProperty.call(message, "startTimeInMs"))
+                            if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                                object.startTimeInMs = typeof message.startTimeInMs === "number" ? BigInt(message.startTimeInMs) : $util.Long.fromBits(message.startTimeInMs.low >>> 0, message.startTimeInMs.high >>> 0, false).toBigInt();
+                            else if (typeof message.startTimeInMs === "number")
+                                object.startTimeInMs = options.longs === String ? String(message.startTimeInMs) : message.startTimeInMs;
+                            else
+                                object.startTimeInMs = options.longs === String ? $util.Long.prototype.toString.call(message.startTimeInMs) : options.longs === Number ? new $util.LongBits(message.startTimeInMs.low >>> 0, message.startTimeInMs.high >>> 0).toNumber() : message.startTimeInMs;
+                        if (message.endTimeInMs != null && Object.hasOwnProperty.call(message, "endTimeInMs"))
+                            if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                                object.endTimeInMs = typeof message.endTimeInMs === "number" ? BigInt(message.endTimeInMs) : $util.Long.fromBits(message.endTimeInMs.low >>> 0, message.endTimeInMs.high >>> 0, false).toBigInt();
+                            else if (typeof message.endTimeInMs === "number")
+                                object.endTimeInMs = options.longs === String ? String(message.endTimeInMs) : message.endTimeInMs;
+                            else
+                                object.endTimeInMs = options.longs === String ? $util.Long.prototype.toString.call(message.endTimeInMs) : options.longs === Number ? new $util.LongBits(message.endTimeInMs.low >>> 0, message.endTimeInMs.high >>> 0).toNumber() : message.endTimeInMs;
+                        if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                            object.text = message.text;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this Line to JSON.
+                     * @function toJSON
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    Line.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for Line
+                     * @function getTypeUrl
+                     * @memberof E2E.Message.MusicMessage.Lyrics.Line
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    Line.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/E2E.Message.MusicMessage.Lyrics.Line";
+                    };
+
+                    return Line;
+                })();
+
+                return Lyrics;
+            })();
 
             /**
              * MusicMessageStyle enum.
@@ -152064,7 +152790,7 @@ $root.CompanionReg = (function() {
              * @property {boolean|null} [supportInlineContacts] HistorySyncConfig supportInlineContacts
              * @property {boolean|null} [supportNewsletter] HistorySyncConfig supportNewsletter
              * @property {boolean|null} [supportUniversalReachChat] HistorySyncConfig supportUniversalReachChat
-             * @property {boolean|null} [supportOmittedConversationIndex] HistorySyncConfig supportOmittedConversationIndex
+             * @property {boolean|null} [supportOmittedConversationMetadata] HistorySyncConfig supportOmittedConversationMetadata
              */
 
             /**
@@ -152292,12 +153018,12 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportUniversalReachChat = false;
 
             /**
-             * HistorySyncConfig supportOmittedConversationIndex.
-             * @member {boolean} supportOmittedConversationIndex
+             * HistorySyncConfig supportOmittedConversationMetadata.
+             * @member {boolean} supportOmittedConversationMetadata
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
              * @instance
              */
-            HistorySyncConfig.prototype.supportOmittedConversationIndex = false;
+            HistorySyncConfig.prototype.supportOmittedConversationMetadata = false;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
@@ -152380,8 +153106,8 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 25, wireType 0 =*/200).bool(message.supportNewsletter);
                 if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
                     writer.uint32(/* id 26, wireType 0 =*/208).bool(message.supportUniversalReachChat);
-                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
-                    writer.uint32(/* id 27, wireType 0 =*/216).bool(message.supportOmittedConversationIndex);
+                if (message.supportOmittedConversationMetadata != null && Object.hasOwnProperty.call(message, "supportOmittedConversationMetadata"))
+                    writer.uint32(/* id 28, wireType 0 =*/224).bool(message.supportOmittedConversationMetadata);
                 return writer;
             };
 
@@ -152538,8 +153264,8 @@ $root.CompanionReg = (function() {
                             message.supportUniversalReachChat = reader.bool();
                             break;
                         }
-                    case 27: {
-                            message.supportOmittedConversationIndex = reader.bool();
+                    case 28: {
+                            message.supportOmittedConversationMetadata = reader.bool();
                             break;
                         }
                     default:
@@ -152668,9 +153394,9 @@ $root.CompanionReg = (function() {
                 if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
                     if (typeof message.supportUniversalReachChat !== "boolean")
                         return "supportUniversalReachChat: boolean expected";
-                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
-                    if (typeof message.supportOmittedConversationIndex !== "boolean")
-                        return "supportOmittedConversationIndex: boolean expected";
+                if (message.supportOmittedConversationMetadata != null && Object.hasOwnProperty.call(message, "supportOmittedConversationMetadata"))
+                    if (typeof message.supportOmittedConversationMetadata !== "boolean")
+                        return "supportOmittedConversationMetadata: boolean expected";
                 return null;
             };
 
@@ -152749,8 +153475,8 @@ $root.CompanionReg = (function() {
                     message.supportNewsletter = Boolean(object.supportNewsletter);
                 if (object.supportUniversalReachChat != null)
                     message.supportUniversalReachChat = Boolean(object.supportUniversalReachChat);
-                if (object.supportOmittedConversationIndex != null)
-                    message.supportOmittedConversationIndex = Boolean(object.supportOmittedConversationIndex);
+                if (object.supportOmittedConversationMetadata != null)
+                    message.supportOmittedConversationMetadata = Boolean(object.supportOmittedConversationMetadata);
                 return message;
             };
 
@@ -152799,7 +153525,7 @@ $root.CompanionReg = (function() {
                     object.supportInlineContacts = false;
                     object.supportNewsletter = false;
                     object.supportUniversalReachChat = false;
-                    object.supportOmittedConversationIndex = false;
+                    object.supportOmittedConversationMetadata = false;
                 }
                 if (message.fullSyncDaysLimit != null && Object.hasOwnProperty.call(message, "fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -152856,8 +153582,8 @@ $root.CompanionReg = (function() {
                     object.supportNewsletter = message.supportNewsletter;
                 if (message.supportUniversalReachChat != null && Object.hasOwnProperty.call(message, "supportUniversalReachChat"))
                     object.supportUniversalReachChat = message.supportUniversalReachChat;
-                if (message.supportOmittedConversationIndex != null && Object.hasOwnProperty.call(message, "supportOmittedConversationIndex"))
-                    object.supportOmittedConversationIndex = message.supportOmittedConversationIndex;
+                if (message.supportOmittedConversationMetadata != null && Object.hasOwnProperty.call(message, "supportOmittedConversationMetadata"))
+                    object.supportOmittedConversationMetadata = message.supportOmittedConversationMetadata;
                 return object;
             };
 

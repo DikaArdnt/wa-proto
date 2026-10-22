@@ -2331,103 +2331,127 @@ export namespace HistorySync {
         }
     }
 
-    /** Properties of a RecoverableHistoryConversation. */
-    interface IRecoverableHistoryConversation {
+    /** Properties of an OmittedConversationMetadata. */
+    interface IOmittedConversationMetadata {
 
-        /** RecoverableHistoryConversation historyChatId */
-        historyChatId?: (string|null);
+        /** OmittedConversationMetadata snapshotId */
+        snapshotId?: (string|null);
 
-        /** RecoverableHistoryConversation accountLid */
-        accountLid?: (string|null);
+        /** OmittedConversationMetadata snapshotTimestampMs */
+        snapshotTimestampMs?: (number|Long|null);
+
+        /** OmittedConversationMetadata batchIndex */
+        batchIndex?: (number|null);
+
+        /** OmittedConversationMetadata batchCount */
+        batchCount?: (number|null);
+
+        /** OmittedConversationMetadata complete */
+        complete?: (boolean|null);
+
+        /** OmittedConversationMetadata conversations */
+        conversations?: (HistorySync.IConversation[]|null);
     }
 
-    /** Represents a RecoverableHistoryConversation. */
-    class RecoverableHistoryConversation implements IRecoverableHistoryConversation {
+    /** Represents an OmittedConversationMetadata. */
+    class OmittedConversationMetadata implements IOmittedConversationMetadata {
 
         /**
-         * Constructs a new RecoverableHistoryConversation.
+         * Constructs a new OmittedConversationMetadata.
          * @param [properties] Properties to set
          */
-        constructor(properties?: HistorySync.IRecoverableHistoryConversation);
+        constructor(properties?: HistorySync.IOmittedConversationMetadata);
 
-        /** RecoverableHistoryConversation historyChatId. */
-        public historyChatId: string;
+        /** OmittedConversationMetadata snapshotId. */
+        public snapshotId: string;
 
-        /** RecoverableHistoryConversation accountLid. */
-        public accountLid: string;
+        /** OmittedConversationMetadata snapshotTimestampMs. */
+        public snapshotTimestampMs: (number|Long);
+
+        /** OmittedConversationMetadata batchIndex. */
+        public batchIndex: number;
+
+        /** OmittedConversationMetadata batchCount. */
+        public batchCount: number;
+
+        /** OmittedConversationMetadata complete. */
+        public complete: boolean;
+
+        /** OmittedConversationMetadata conversations. */
+        public conversations: HistorySync.IConversation[];
 
         /**
-         * Creates a new RecoverableHistoryConversation instance using the specified properties.
+         * Creates a new OmittedConversationMetadata instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns RecoverableHistoryConversation instance
+         * @returns OmittedConversationMetadata instance
          */
-        public static create(properties?: HistorySync.IRecoverableHistoryConversation): HistorySync.RecoverableHistoryConversation;
+        public static create(properties?: HistorySync.IOmittedConversationMetadata): HistorySync.OmittedConversationMetadata;
 
         /**
-         * Encodes the specified RecoverableHistoryConversation message. Does not implicitly {@link HistorySync.RecoverableHistoryConversation.verify|verify} messages.
-         * @param message RecoverableHistoryConversation message or plain object to encode
+         * Encodes the specified OmittedConversationMetadata message. Does not implicitly {@link HistorySync.OmittedConversationMetadata.verify|verify} messages.
+         * @param message OmittedConversationMetadata message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: HistorySync.IRecoverableHistoryConversation, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: HistorySync.IOmittedConversationMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified RecoverableHistoryConversation message, length delimited. Does not implicitly {@link HistorySync.RecoverableHistoryConversation.verify|verify} messages.
-         * @param message RecoverableHistoryConversation message or plain object to encode
+         * Encodes the specified OmittedConversationMetadata message, length delimited. Does not implicitly {@link HistorySync.OmittedConversationMetadata.verify|verify} messages.
+         * @param message OmittedConversationMetadata message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: HistorySync.IRecoverableHistoryConversation, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: HistorySync.IOmittedConversationMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a RecoverableHistoryConversation message from the specified reader or buffer.
+         * Decodes an OmittedConversationMetadata message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns RecoverableHistoryConversation
+         * @returns OmittedConversationMetadata
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HistorySync.RecoverableHistoryConversation;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HistorySync.OmittedConversationMetadata;
 
         /**
-         * Decodes a RecoverableHistoryConversation message from the specified reader or buffer, length delimited.
+         * Decodes an OmittedConversationMetadata message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns RecoverableHistoryConversation
+         * @returns OmittedConversationMetadata
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HistorySync.RecoverableHistoryConversation;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HistorySync.OmittedConversationMetadata;
 
         /**
-         * Verifies a RecoverableHistoryConversation message.
+         * Verifies an OmittedConversationMetadata message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a RecoverableHistoryConversation message from a plain object. Also converts values to their respective internal types.
+         * Creates an OmittedConversationMetadata message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns RecoverableHistoryConversation
+         * @returns OmittedConversationMetadata
          */
-        public static fromObject(object: { [k: string]: any }): HistorySync.RecoverableHistoryConversation;
+        public static fromObject(object: { [k: string]: any }): HistorySync.OmittedConversationMetadata;
 
         /**
-         * Creates a plain object from a RecoverableHistoryConversation message. Also converts values to other types if specified.
-         * @param message RecoverableHistoryConversation
+         * Creates a plain object from an OmittedConversationMetadata message. Also converts values to other types if specified.
+         * @param message OmittedConversationMetadata
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: HistorySync.RecoverableHistoryConversation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: HistorySync.OmittedConversationMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this RecoverableHistoryConversation to JSON.
+         * Converts this OmittedConversationMetadata to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for RecoverableHistoryConversation
+         * Gets the default type url for OmittedConversationMetadata
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -2500,11 +2524,11 @@ export namespace HistorySync {
         /** HistorySync favoriteStickers */
         favoriteStickers?: (HistorySync.IStickerMetadata[]|null);
 
-        /** HistorySync omittedConversations */
-        omittedConversations?: (HistorySync.IRecoverableHistoryConversation[]|null);
+        /** HistorySync omittedConversationMetadata */
+        omittedConversationMetadata?: (HistorySync.IOmittedConversationMetadata|null);
 
-        /** HistorySync omittedConversationsProvided */
-        omittedConversationsProvided?: (boolean|null);
+        /** HistorySync omittedConversationMetadataSnapshotId */
+        omittedConversationMetadataSnapshotId?: (string|null);
     }
 
     /** Represents a HistorySync. */
@@ -2579,11 +2603,11 @@ export namespace HistorySync {
         /** HistorySync favoriteStickers. */
         public favoriteStickers: HistorySync.IStickerMetadata[];
 
-        /** HistorySync omittedConversations. */
-        public omittedConversations: HistorySync.IRecoverableHistoryConversation[];
+        /** HistorySync omittedConversationMetadata. */
+        public omittedConversationMetadata?: (HistorySync.IOmittedConversationMetadata|null);
 
-        /** HistorySync omittedConversationsProvided. */
-        public omittedConversationsProvided: boolean;
+        /** HistorySync omittedConversationMetadataSnapshotId. */
+        public omittedConversationMetadataSnapshotId: string;
 
         /**
          * Creates a new HistorySync instance using the specified properties.
@@ -22396,6 +22420,9 @@ export namespace E2E {
 
             /** MusicMessage contextInfo */
             contextInfo?: (E2E.IContextInfo|null);
+
+            /** MusicMessage lyrics */
+            lyrics?: (E2E.Message.MusicMessage.ILyrics|null);
         }
 
         /** Represents a MusicMessage. */
@@ -22421,6 +22448,9 @@ export namespace E2E {
 
             /** MusicMessage contextInfo. */
             public contextInfo?: (E2E.IContextInfo|null);
+
+            /** MusicMessage lyrics. */
+            public lyrics?: (E2E.Message.MusicMessage.ILyrics|null);
 
             /**
              * Creates a new MusicMessage instance using the specified properties.
@@ -22501,6 +22531,215 @@ export namespace E2E {
         }
 
         namespace MusicMessage {
+
+            /** Properties of a Lyrics. */
+            interface ILyrics {
+
+                /** Lyrics lines */
+                lines?: (E2E.Message.MusicMessage.Lyrics.ILine[]|null);
+            }
+
+            /** Represents a Lyrics. */
+            class Lyrics implements ILyrics {
+
+                /**
+                 * Constructs a new Lyrics.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.MusicMessage.ILyrics);
+
+                /** Lyrics lines. */
+                public lines: E2E.Message.MusicMessage.Lyrics.ILine[];
+
+                /**
+                 * Creates a new Lyrics instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns Lyrics instance
+                 */
+                public static create(properties?: E2E.Message.MusicMessage.ILyrics): E2E.Message.MusicMessage.Lyrics;
+
+                /**
+                 * Encodes the specified Lyrics message. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.verify|verify} messages.
+                 * @param message Lyrics message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.MusicMessage.ILyrics, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified Lyrics message, length delimited. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.verify|verify} messages.
+                 * @param message Lyrics message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.MusicMessage.ILyrics, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a Lyrics message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns Lyrics
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.MusicMessage.Lyrics;
+
+                /**
+                 * Decodes a Lyrics message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns Lyrics
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.MusicMessage.Lyrics;
+
+                /**
+                 * Verifies a Lyrics message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a Lyrics message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns Lyrics
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.MusicMessage.Lyrics;
+
+                /**
+                 * Creates a plain object from a Lyrics message. Also converts values to other types if specified.
+                 * @param message Lyrics
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.MusicMessage.Lyrics, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this Lyrics to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for Lyrics
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace Lyrics {
+
+                /** Properties of a Line. */
+                interface ILine {
+
+                    /** Line startTimeInMs */
+                    startTimeInMs?: (number|Long|null);
+
+                    /** Line endTimeInMs */
+                    endTimeInMs?: (number|Long|null);
+
+                    /** Line text */
+                    text?: (string|null);
+                }
+
+                /** Represents a Line. */
+                class Line implements ILine {
+
+                    /**
+                     * Constructs a new Line.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: E2E.Message.MusicMessage.Lyrics.ILine);
+
+                    /** Line startTimeInMs. */
+                    public startTimeInMs: (number|Long);
+
+                    /** Line endTimeInMs. */
+                    public endTimeInMs: (number|Long);
+
+                    /** Line text. */
+                    public text: string;
+
+                    /**
+                     * Creates a new Line instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Line instance
+                     */
+                    public static create(properties?: E2E.Message.MusicMessage.Lyrics.ILine): E2E.Message.MusicMessage.Lyrics.Line;
+
+                    /**
+                     * Encodes the specified Line message. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.Line.verify|verify} messages.
+                     * @param message Line message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: E2E.Message.MusicMessage.Lyrics.ILine, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Line message, length delimited. Does not implicitly {@link E2E.Message.MusicMessage.Lyrics.Line.verify|verify} messages.
+                     * @param message Line message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: E2E.Message.MusicMessage.Lyrics.ILine, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Line message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Line
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.MusicMessage.Lyrics.Line;
+
+                    /**
+                     * Decodes a Line message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Line
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.MusicMessage.Lyrics.Line;
+
+                    /**
+                     * Verifies a Line message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Line message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Line
+                     */
+                    public static fromObject(object: { [k: string]: any }): E2E.Message.MusicMessage.Lyrics.Line;
+
+                    /**
+                     * Creates a plain object from a Line message. Also converts values to other types if specified.
+                     * @param message Line
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: E2E.Message.MusicMessage.Lyrics.Line, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Line to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Line
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+            }
 
             /** MusicMessageStyle enum. */
             enum MusicMessageStyle {
@@ -50122,8 +50361,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig supportUniversalReachChat */
             supportUniversalReachChat?: (boolean|null);
 
-            /** HistorySyncConfig supportOmittedConversationIndex */
-            supportOmittedConversationIndex?: (boolean|null);
+            /** HistorySyncConfig supportOmittedConversationMetadata */
+            supportOmittedConversationMetadata?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -50213,8 +50452,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig supportUniversalReachChat. */
             public supportUniversalReachChat: boolean;
 
-            /** HistorySyncConfig supportOmittedConversationIndex. */
-            public supportOmittedConversationIndex: boolean;
+            /** HistorySyncConfig supportOmittedConversationMetadata. */
+            public supportOmittedConversationMetadata: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
