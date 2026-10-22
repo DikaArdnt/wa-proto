@@ -6743,8 +6743,8 @@ export namespace E2E {
             /** StatusAudienceMetadata listEmoji */
             listEmoji?: (string|null);
 
-            /** StatusAudienceMetadata networkId */
-            networkId?: (string|null);
+            /** StatusAudienceMetadata orgId */
+            orgId?: (string|null);
         }
 
         /** Represents a StatusAudienceMetadata. */
@@ -6765,8 +6765,8 @@ export namespace E2E {
             /** StatusAudienceMetadata listEmoji. */
             public listEmoji: string;
 
-            /** StatusAudienceMetadata networkId. */
-            public networkId: string;
+            /** StatusAudienceMetadata orgId. */
+            public orgId: string;
 
             /**
              * Creates a new StatusAudienceMetadata instance using the specified properties.
@@ -6853,7 +6853,7 @@ export namespace E2E {
                 UNKNOWN = 0,
                 CLOSE_FRIENDS = 1,
                 CUSTOM_LIST = 2,
-                NETWORK = 3
+                ORG = 3
             }
         }
 
