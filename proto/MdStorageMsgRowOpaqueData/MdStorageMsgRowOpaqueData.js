@@ -2932,6 +2932,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
              * @property {string|null} [name] PollOption name
              * @property {string|null} [hash] PollOption hash
              * @property {string|null} [addOptionMsgKey] PollOption addOptionMsgKey
+             * @property {number|null} [localId] PollOption localId
              */
 
             /**
@@ -2974,6 +2975,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             PollOption.prototype.addOptionMsgKey = "";
 
             /**
+             * PollOption localId.
+             * @member {number} localId
+             * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.PollOption
+             * @instance
+             */
+            PollOption.prototype.localId = 0;
+
+            /**
              * Creates a new PollOption instance using the specified properties.
              * @function create
              * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData.PollOption
@@ -3007,6 +3016,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.hash);
                 if (message.addOptionMsgKey != null && Object.hasOwnProperty.call(message, "addOptionMsgKey"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.addOptionMsgKey);
+                if (message.localId != null && Object.hasOwnProperty.call(message, "localId"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.localId);
                 return writer;
             };
 
@@ -3069,6 +3080,10 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                             message.addOptionMsgKey = reader.string();
                             break;
                         }
+                    case 4: {
+                            message.localId = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -3122,6 +3137,9 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 if (message.addOptionMsgKey != null && Object.hasOwnProperty.call(message, "addOptionMsgKey"))
                     if (!$util.isString(message.addOptionMsgKey))
                         return "addOptionMsgKey: string expected";
+                if (message.localId != null && Object.hasOwnProperty.call(message, "localId"))
+                    if (!$util.isInteger(message.localId))
+                        return "localId: integer expected";
                 return null;
             };
 
@@ -3149,6 +3167,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     message.hash = String(object.hash);
                 if (object.addOptionMsgKey != null)
                     message.addOptionMsgKey = String(object.addOptionMsgKey);
+                if (object.localId != null)
+                    message.localId = object.localId >>> 0;
                 return message;
             };
 
@@ -3173,6 +3193,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     object.name = "";
                     object.hash = "";
                     object.addOptionMsgKey = "";
+                    object.localId = 0;
                 }
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     object.name = message.name;
@@ -3180,6 +3201,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     object.hash = message.hash;
                 if (message.addOptionMsgKey != null && Object.hasOwnProperty.call(message, "addOptionMsgKey"))
                     object.addOptionMsgKey = message.addOptionMsgKey;
+                if (message.localId != null && Object.hasOwnProperty.call(message, "localId"))
+                    object.localId = message.localId;
                 return object;
             };
 
@@ -143756,6 +143779,7 @@ $root.CompanionReg = (function() {
          * @property {boolean|null} [isHsThumbnailSyncEnabled] ClientPairingProps isHsThumbnailSyncEnabled
          * @property {Uint8Array|null} [subscriptionSyncPayload] ClientPairingProps subscriptionSyncPayload
          * @property {boolean|null} [isBotJidDbMigrated] ClientPairingProps isBotJidDbMigrated
+         * @property {Uint8Array|null} [companionAddPeerPayload] ClientPairingProps companionAddPeerPayload
          */
 
         /**
@@ -143822,6 +143846,14 @@ $root.CompanionReg = (function() {
         ClientPairingProps.prototype.isBotJidDbMigrated = false;
 
         /**
+         * ClientPairingProps companionAddPeerPayload.
+         * @member {Uint8Array} companionAddPeerPayload
+         * @memberof CompanionReg.ClientPairingProps
+         * @instance
+         */
+        ClientPairingProps.prototype.companionAddPeerPayload = $util.newBuffer([]);
+
+        /**
          * Creates a new ClientPairingProps instance using the specified properties.
          * @function create
          * @memberof CompanionReg.ClientPairingProps
@@ -143861,6 +143893,8 @@ $root.CompanionReg = (function() {
                 writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.subscriptionSyncPayload);
             if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
                 writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isBotJidDbMigrated);
+            if (message.companionAddPeerPayload != null && Object.hasOwnProperty.call(message, "companionAddPeerPayload"))
+                writer.uint32(/* id 7, wireType 2 =*/58).bytes(message.companionAddPeerPayload);
             return writer;
         };
 
@@ -143935,6 +143969,10 @@ $root.CompanionReg = (function() {
                         message.isBotJidDbMigrated = reader.bool();
                         break;
                     }
+                case 7: {
+                        message.companionAddPeerPayload = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -143997,6 +144035,9 @@ $root.CompanionReg = (function() {
             if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
                 if (typeof message.isBotJidDbMigrated !== "boolean")
                     return "isBotJidDbMigrated: boolean expected";
+            if (message.companionAddPeerPayload != null && Object.hasOwnProperty.call(message, "companionAddPeerPayload"))
+                if (!(message.companionAddPeerPayload && typeof message.companionAddPeerPayload.length === "number" || $util.isString(message.companionAddPeerPayload)))
+                    return "companionAddPeerPayload: buffer expected";
             return null;
         };
 
@@ -144033,6 +144074,11 @@ $root.CompanionReg = (function() {
                     message.subscriptionSyncPayload = object.subscriptionSyncPayload;
             if (object.isBotJidDbMigrated != null)
                 message.isBotJidDbMigrated = Boolean(object.isBotJidDbMigrated);
+            if (object.companionAddPeerPayload != null)
+                if (typeof object.companionAddPeerPayload === "string")
+                    $util.base64.decode(object.companionAddPeerPayload, message.companionAddPeerPayload = $util.newBuffer($util.base64.length(object.companionAddPeerPayload)), 0);
+                else if (object.companionAddPeerPayload.length >= 0)
+                    message.companionAddPeerPayload = object.companionAddPeerPayload;
             return message;
         };
 
@@ -144066,6 +144112,13 @@ $root.CompanionReg = (function() {
                         object.subscriptionSyncPayload = $util.newBuffer(object.subscriptionSyncPayload);
                 }
                 object.isBotJidDbMigrated = false;
+                if (options.bytes === String)
+                    object.companionAddPeerPayload = "";
+                else {
+                    object.companionAddPeerPayload = [];
+                    if (options.bytes !== Array)
+                        object.companionAddPeerPayload = $util.newBuffer(object.companionAddPeerPayload);
+                }
             }
             if (message.isChatDbLidMigrated != null && Object.hasOwnProperty.call(message, "isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
@@ -144079,6 +144132,8 @@ $root.CompanionReg = (function() {
                 object.subscriptionSyncPayload = options.bytes === String ? $util.base64.encode(message.subscriptionSyncPayload, 0, message.subscriptionSyncPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.subscriptionSyncPayload) : message.subscriptionSyncPayload;
             if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
                 object.isBotJidDbMigrated = message.isBotJidDbMigrated;
+            if (message.companionAddPeerPayload != null && Object.hasOwnProperty.call(message, "companionAddPeerPayload"))
+                object.companionAddPeerPayload = options.bytes === String ? $util.base64.encode(message.companionAddPeerPayload, 0, message.companionAddPeerPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.companionAddPeerPayload) : message.companionAddPeerPayload;
             return object;
         };
 

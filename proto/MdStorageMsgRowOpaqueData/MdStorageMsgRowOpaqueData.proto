@@ -100,6 +100,7 @@ message MsgOpaqueData {
         optional string name = 1;
         optional string hash = 2;
         optional string addOptionMsgKey = 3;
+        optional uint32 localId = 4;
     }
     enum PollType {
         POLL = 0;

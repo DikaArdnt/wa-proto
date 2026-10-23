@@ -149685,6 +149685,7 @@ $root.CompanionReg = (function() {
          * @property {boolean|null} [isHsThumbnailSyncEnabled] ClientPairingProps isHsThumbnailSyncEnabled
          * @property {Uint8Array|null} [subscriptionSyncPayload] ClientPairingProps subscriptionSyncPayload
          * @property {boolean|null} [isBotJidDbMigrated] ClientPairingProps isBotJidDbMigrated
+         * @property {Uint8Array|null} [companionAddPeerPayload] ClientPairingProps companionAddPeerPayload
          */
 
         /**
@@ -149751,6 +149752,14 @@ $root.CompanionReg = (function() {
         ClientPairingProps.prototype.isBotJidDbMigrated = false;
 
         /**
+         * ClientPairingProps companionAddPeerPayload.
+         * @member {Uint8Array} companionAddPeerPayload
+         * @memberof CompanionReg.ClientPairingProps
+         * @instance
+         */
+        ClientPairingProps.prototype.companionAddPeerPayload = $util.newBuffer([]);
+
+        /**
          * Creates a new ClientPairingProps instance using the specified properties.
          * @function create
          * @memberof CompanionReg.ClientPairingProps
@@ -149790,6 +149799,8 @@ $root.CompanionReg = (function() {
                 writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.subscriptionSyncPayload);
             if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
                 writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isBotJidDbMigrated);
+            if (message.companionAddPeerPayload != null && Object.hasOwnProperty.call(message, "companionAddPeerPayload"))
+                writer.uint32(/* id 7, wireType 2 =*/58).bytes(message.companionAddPeerPayload);
             return writer;
         };
 
@@ -149864,6 +149875,10 @@ $root.CompanionReg = (function() {
                         message.isBotJidDbMigrated = reader.bool();
                         break;
                     }
+                case 7: {
+                        message.companionAddPeerPayload = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -149926,6 +149941,9 @@ $root.CompanionReg = (function() {
             if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
                 if (typeof message.isBotJidDbMigrated !== "boolean")
                     return "isBotJidDbMigrated: boolean expected";
+            if (message.companionAddPeerPayload != null && Object.hasOwnProperty.call(message, "companionAddPeerPayload"))
+                if (!(message.companionAddPeerPayload && typeof message.companionAddPeerPayload.length === "number" || $util.isString(message.companionAddPeerPayload)))
+                    return "companionAddPeerPayload: buffer expected";
             return null;
         };
 
@@ -149962,6 +149980,11 @@ $root.CompanionReg = (function() {
                     message.subscriptionSyncPayload = object.subscriptionSyncPayload;
             if (object.isBotJidDbMigrated != null)
                 message.isBotJidDbMigrated = Boolean(object.isBotJidDbMigrated);
+            if (object.companionAddPeerPayload != null)
+                if (typeof object.companionAddPeerPayload === "string")
+                    $util.base64.decode(object.companionAddPeerPayload, message.companionAddPeerPayload = $util.newBuffer($util.base64.length(object.companionAddPeerPayload)), 0);
+                else if (object.companionAddPeerPayload.length >= 0)
+                    message.companionAddPeerPayload = object.companionAddPeerPayload;
             return message;
         };
 
@@ -149995,6 +150018,13 @@ $root.CompanionReg = (function() {
                         object.subscriptionSyncPayload = $util.newBuffer(object.subscriptionSyncPayload);
                 }
                 object.isBotJidDbMigrated = false;
+                if (options.bytes === String)
+                    object.companionAddPeerPayload = "";
+                else {
+                    object.companionAddPeerPayload = [];
+                    if (options.bytes !== Array)
+                        object.companionAddPeerPayload = $util.newBuffer(object.companionAddPeerPayload);
+                }
             }
             if (message.isChatDbLidMigrated != null && Object.hasOwnProperty.call(message, "isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
@@ -150008,6 +150038,8 @@ $root.CompanionReg = (function() {
                 object.subscriptionSyncPayload = options.bytes === String ? $util.base64.encode(message.subscriptionSyncPayload, 0, message.subscriptionSyncPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.subscriptionSyncPayload) : message.subscriptionSyncPayload;
             if (message.isBotJidDbMigrated != null && Object.hasOwnProperty.call(message, "isBotJidDbMigrated"))
                 object.isBotJidDbMigrated = message.isBotJidDbMigrated;
+            if (message.companionAddPeerPayload != null && Object.hasOwnProperty.call(message, "companionAddPeerPayload"))
+                object.companionAddPeerPayload = options.bytes === String ? $util.base64.encode(message.companionAddPeerPayload, 0, message.companionAddPeerPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.companionAddPeerPayload) : message.companionAddPeerPayload;
             return object;
         };
 

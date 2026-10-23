@@ -794,6 +794,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
             /** PollOption addOptionMsgKey */
             addOptionMsgKey?: (string|null);
+
+            /** PollOption localId */
+            localId?: (number|null);
         }
 
         /** Represents a PollOption. */
@@ -813,6 +816,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
             /** PollOption addOptionMsgKey. */
             public addOptionMsgKey: string;
+
+            /** PollOption localId. */
+            public localId: number;
 
             /**
              * Creates a new PollOption instance using the specified properties.
@@ -47434,6 +47440,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isBotJidDbMigrated */
         isBotJidDbMigrated?: (boolean|null);
+
+        /** ClientPairingProps companionAddPeerPayload */
+        companionAddPeerPayload?: (Uint8Array|null);
     }
 
     /** Represents a ClientPairingProps. */
@@ -47462,6 +47471,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isBotJidDbMigrated. */
         public isBotJidDbMigrated: boolean;
+
+        /** ClientPairingProps companionAddPeerPayload. */
+        public companionAddPeerPayload: Uint8Array;
 
         /**
          * Creates a new ClientPairingProps instance using the specified properties.
